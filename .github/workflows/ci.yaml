@@ -1,5 +1,10 @@
 name: Test Before deploy
 
+on:
+  push:
+  pull_request:
+    types: [opened, synchronize]
+
 jobs:
   build:
     runs-os: ubuntu-latest
