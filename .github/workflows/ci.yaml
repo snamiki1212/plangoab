@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-os: ubuntu-latest
+    runs-on: ubuntu-latest
 
     steps:
       # Check out the current repository code
