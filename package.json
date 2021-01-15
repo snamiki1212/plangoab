@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx --ignore-path .gitignore .",
-    "test": "jest",
+    "test": "jest src/__tests__/.*/*.test.tsx?$",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run"
   },
