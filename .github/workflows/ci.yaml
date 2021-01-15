@@ -44,10 +44,10 @@ jobs:
       - name: Install packages
         run: yarn install --frozen-lockfile
 
+      - name: Build
+        run: yarn build
+
       - name: Test
         run: yarn test --ci --color
         env:
           CI: true
-
-      # - name: Build
-      #   run: yarn build
