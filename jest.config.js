@@ -8,6 +8,11 @@ module.exports = {
     '^(pages|components)/(.+)': '<rootDir>/src/$1/$2',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json'],
+  testPathIgnorePatterns: [
+    '<rootDir>/.next/',
+    '<rootDir>/cypress/',
+    '<rootDir>/node_modules/',
+  ],
   globals: {
     'ts-jest': {
       tsconfig: {
