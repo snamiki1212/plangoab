@@ -1,6 +1,6 @@
 // React と React Testing Library を読み込みます
 import React from 'react'
-import Home from 'pages/index'
+import Home from './index'
 import { cleanup, render, screen } from '@testing-library/react'
 
 // 各テスト実行後にレンダーしたコンポーネントをアンマウントする
