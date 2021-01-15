@@ -54,6 +54,5 @@ jobs:
 
       - name: Integration Test (Cypress.io)
         uses: cypress-io/github-action@v2.7.0
-          with:
-            start: yarn cypress:run
-
+        with:
+          start: yarn cypress:run
