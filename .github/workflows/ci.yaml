@@ -1,0 +1,48 @@
+name: Test Before deploy
+
+jobs:
+  build:
+    runs-os: ubuntu-latest
+
+    steps:
+      # Check out the current repository code
+      - uses: actions/checkout@v2
+
+      # Setup node (REF: https://github.com/actions/setup-node#usage )
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+
+      - name: Set yarn-cache-directory path
+        id: yarn-cache-dir
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+        # NOTE: dir::<hoge> means that 'dir' is assigned <hoge> params.
+
+      - name: Get yarn cache packages
+        uses: actions/cache@v1
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-dir.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      # - name: Cache build Folder
+      #   uses: actions/cache@v1
+      #   id: next-build-folder
+      #   with:
+      #     path: .next
+      #     key: ${{ runner.os }}-build-next
+      #     restore-keys: |
+      #       ${{ runner.os }}-build-next
+
+      - name: Install packages
+        run: yarn install --frozen-lockfile
+
+      - name: Test
+        run: yarn test --ci --color
+        env:
+          CI: true
+
+      # - name: Build
+      #   run: yarn build
