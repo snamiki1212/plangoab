@@ -14,6 +14,7 @@ const Home: NextPage = () => {
         <Link href="/about">
           <a>to about test</a>
         </Link>
+        <a href="https://nextjs.org">Next.js!</a>
       </div>
     </div>
   )
