@@ -47,7 +47,13 @@ jobs:
       - name: Build
         run: yarn build
 
-      - name: Test
+      - name: Unit Test (Jest)
         run: yarn test --ci --color
         env:
           CI: true
+
+      - name: Integration Test (Cypress.io)
+        uses: cypress-io/github-action@v2.7.0
+          with:
+              start: yarn cypress:run
+
