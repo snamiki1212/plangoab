@@ -15,7 +15,11 @@
     "cypress:run": "cypress run"
   },
   "dependencies": {
+    "@fullcalendar/daygrid": "^5.5.0",
+    "@fullcalendar/react": "^5.5.0",
+    "babel-plugin-transform-require-ignore": "^0.1.1",
     "next": "10.0.5",
+    "next-transpile-modules": "^4.1.0",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "sanitize.css": "^12.0.1"
