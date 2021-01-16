@@ -429,12 +429,60 @@
     "@fullcalendar/common" "~5.5.0"
     tslib "^2.0.3"
 
+"@fullcalendar/premium-common@~5.5.0":
+  version "5.5.0"
+  resolved "https://registry.yarnpkg.com/@fullcalendar/premium-common/-/premium-common-5.5.0.tgz#c15ab675b66ccf1666fe741cc86c1cf5d7c2e56e"
+  integrity sha512-8794uG3DES4eRr+q8shnhcVOEN0hJdNexfXZgYx/D2euWGsLNKo8+Xi4oQLcmEGZg1my9dmfzsqiHpRn2lDGSQ==
+  dependencies:
+    "@fullcalendar/common" "~5.5.0"
+    tslib "^2.0.3"
+
 "@fullcalendar/react@^5.5.0":
   version "5.5.0"
   resolved "https://registry.yarnpkg.com/@fullcalendar/react/-/react-5.5.0.tgz#4a74e816ee67c4de59ca6bae1a658e6e72c7970a"
   integrity sha512-ss109y/kYIb9mwmE9dZc5c2o5I4CoqREDqLNAur83CGC5NvCH8gRzZXEilZz1E6ORuziBEYkPPtREn7Mp+6lYg==
   dependencies:
     "@fullcalendar/common" "~5.5.0"
+    tslib "^2.0.3"
+
+"@fullcalendar/resource-common@~5.5.0":
+  version "5.5.0"
+  resolved "https://registry.yarnpkg.com/@fullcalendar/resource-common/-/resource-common-5.5.0.tgz#0739426064985844fb0a8263e20314796ec45f47"
+  integrity sha512-Bp1oqL30p9UGJ28ippsXtaHrBxbDXdcM5z/ZLEnmjbDB2wAHhy4oMXHZITbDvv1NlCqw0HUKjNz/gjWIhhSFiA==
+  dependencies:
+    "@fullcalendar/common" "~5.5.0"
+    "@fullcalendar/premium-common" "~5.5.0"
+    tslib "^2.0.3"
+
+"@fullcalendar/resource-timeline@^5.5.0":
+  version "5.5.0"
+  resolved "https://registry.yarnpkg.com/@fullcalendar/resource-timeline/-/resource-timeline-5.5.0.tgz#c19eaabe067739d37b69d23f321620f394ee363c"
+  integrity sha512-HLjs9RbidX9p3XStOuOz/8x/jPBJ4/9B2SUSU7KlhjEWnwvaxAgfeNApXSFy1c2IUh40t3rxf31Z3z+HcbEyZw==
+  dependencies:
+    "@fullcalendar/common" "~5.5.0"
+    "@fullcalendar/premium-common" "~5.5.0"
+    "@fullcalendar/resource-common" "~5.5.0"
+    "@fullcalendar/scrollgrid" "~5.5.0"
+    "@fullcalendar/timeline" "~5.5.0"
+    tslib "^2.0.3"
+
+"@fullcalendar/scrollgrid@~5.5.0":
+  version "5.5.0"
+  resolved "https://registry.yarnpkg.com/@fullcalendar/scrollgrid/-/scrollgrid-5.5.0.tgz#dad249b6a826f06434342678d9458348b68f23fc"
+  integrity sha512-xwWggE+rd1LkbdNeMNC/mevm5wRS3exBjggndCLuae6XzmGgzdx2HDJrtTbJAmJ2XSEbo3ugP4VGNv2XoAMPPQ==
+  dependencies:
+    "@fullcalendar/common" "~5.5.0"
+    "@fullcalendar/premium-common" "~5.5.0"
+    tslib "^2.0.3"
+
+"@fullcalendar/timeline@~5.5.0":
+  version "5.5.0"
+  resolved "https://registry.yarnpkg.com/@fullcalendar/timeline/-/timeline-5.5.0.tgz#24e57ae1f38cd4bd0595e7342990bfd27d481abd"
+  integrity sha512-W7Bj7X/+tKK62oT/KrSrcelpYFVt3MgEDnt2ju9BZzkjk5LX+Xa8jiH+PLFtUZasF9pJ50i86KICC9WnFZzu3g==
+  dependencies:
+    "@fullcalendar/common" "~5.5.0"
+    "@fullcalendar/premium-common" "~5.5.0"
+    "@fullcalendar/scrollgrid" "~5.5.0"
     tslib "^2.0.3"
 
 "@hapi/accept@5.0.1":

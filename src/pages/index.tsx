@@ -3,6 +3,12 @@ import { NextPage } from 'next'
 import Link from 'next/link'
 import Head from 'next/head'
 import { Fullcalendar } from 'components/pages/Fullcalendar'
+import dynamic from 'next/dynamic'
+
+// const FullcalendarDynamicallyWithNoSSR = dynamic(
+//   () => import('../components/pages/Fullcalendar'),
+//   { ssr: false }
+// )
 
 const Home: NextPage = () => {
   return (
@@ -17,7 +23,10 @@ const Home: NextPage = () => {
         </Link>
         <a href="https://nextjs.org">Next.js!</a>
       </div>
-      <Fullcalendar />
+      <div>
+        {/* <FullcalendarDynamicallyWithNoSSR /> */}
+        <Fullcalendar />
+      </div>
     </div>
   )
 }
