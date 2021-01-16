@@ -1,16 +1,20 @@
 import React from 'react'
 import { Chart } from 'react-google-charts'
 
+// REF: https://developers.google.com/chart/interactive/docs/gallery/ganttchart#data-format
 const GC_DATA_FORMAT = [
   { type: 'string', label: 'Task ID' },
   { type: 'string', label: 'Task Name' },
+  { type: 'string', label: 'Resource' },
   { type: 'date', label: 'Start Date' },
   { type: 'date', label: 'End Date' },
   { type: 'number', label: 'Duration' },
   { type: 'number', label: 'Percent Complete' },
   { type: 'string', label: 'Dependencies' },
 ] as const
+
 type GC_DATA_TYPE = [
+  string | null,
   string | null,
   string | null,
   Date,
@@ -22,67 +26,50 @@ type GC_DATA_TYPE = [
 
 export const HomePage = () => {
   const data1: GC_DATA_TYPE = [
-    'Research',
-    'Find sources',
-    new Date(2015, 0, 1),
-    new Date(2015, 0, 5),
+    '[VISA]Study-1',
+    '[VISA]Study Visa',
+    '',
+    new Date(2020, 10, 20),
+    new Date(2021, 11, 31),
     null,
     100,
     null,
   ]
 
   const data2: GC_DATA_TYPE = [
-    'Write',
-    'Write paper',
-    null,
-    new Date(2015, 0, 9),
-    3 * 24 * 60 * 60 * 1000,
-    25,
-    'Research,Outline',
+    '[VISA]COOP-1',
+    '[VISA]CO-OP VISA',
+    '',
+    new Date(2021, 11, 31),
+    new Date(2022, 11, 31),
+    0,
+    100,
+    data1[0],
   ]
 
   const data3: GC_DATA_TYPE = [
-    'Cite',
-    'Create bibliography',
-    null,
-    new Date(2015, 0, 7),
-    1 * 24 * 60 * 60 * 1000,
-    20,
-    'Research',
-  ]
-
-  const data4: GC_DATA_TYPE = [
-    'Complete',
-    'Hand in paper',
-    null,
-    new Date(2015, 0, 10),
-    1 * 24 * 60 * 60 * 1000,
+    '[VISA]Working Foliday VISA-1',
+    '[VISA]Working Foliday VISA-1',
+    '',
+    new Date(2022, 11, 31),
+    new Date(2023, 6, 31),
     0,
-    'Cite,Write',
-  ]
-  const data5: GC_DATA_TYPE = [
-    'Outline',
-    'Outline paper',
-    null,
-    new Date(2015, 0, 6),
-    1 * 24 * 60 * 60 * 1000,
     100,
-    'Research',
+    data2[0],
   ]
 
-  const dataList = [data1, data2, data3, data4, data5]
+  const dataList = [data1, data2, data3]
   const dataSet = [GC_DATA_FORMAT, ...dataList]
 
   return (
     <div>
       <Chart
-        width={'90%'}
-        height={'400px'}
+        width="100%"
+        height="200%"
         chartType="Gantt"
         loader={<div>Loading Chart</div>}
         options={{}}
         data={dataSet}
-        rootProps={{ 'data-testid': '1' }}
       />
     </div>
   )
