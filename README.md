@@ -32,4 +32,4 @@ $ yarn start #=> open http://local:3000
 
 ## Lisence
 
-TODO:
+GPL
