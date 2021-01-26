@@ -2,7 +2,6 @@
   "name": "canada-immigration-scheduler",
   "version": "0.2.0",
   "private": true,
-  "homepage": "/canada-immigration-scheduler",
   "dependencies": {
     "@date-io/date-fns": "1.x",
     "@fullcalendar/interaction": "^5.5.0",
