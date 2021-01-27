@@ -63,7 +63,6 @@ const views = {
     type: "resourceTimelineYear",
     duration: { year: 15 },
     buttonText: "TIME_LINE",
-    startStr: "2019-01-01",
   },
 } as const;
 

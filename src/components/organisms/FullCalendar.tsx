@@ -19,25 +19,25 @@ export const FullCalendar = () => {
     generate,
   } = useStoryList();
 
-  React.useEffect(() => {
-    generate(birth);
-  }, [generate, birth]);
+  const { events, select, click, set: setEvents } = useEventsHandler();
 
   const _resources = React.useMemo(
     () => [...SHARED__RESOURCES, ...storyResources],
     [storyResources]
   );
 
-  const _events = React.useMemo(() => [...ageEvents, ...storyEvents], [
+  const tmpAllEvents = React.useMemo(() => [...ageEvents, ...storyEvents], [
     ageEvents,
     storyEvents,
   ]);
 
-  const { events, select, click, set: setEvents } = useEventsHandler();
+  React.useEffect(() => {
+    generate(birth);
+  }, [generate, birth]);
 
   React.useEffect(() => {
-    setEvents(_events)
-  }, [_events, setEvents])
+    setEvents(tmpAllEvents)
+  }, [tmpAllEvents, setEvents])
 
   React.useEffect(() => {
     calcAgeEvents(birth);
