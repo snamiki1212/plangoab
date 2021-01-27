@@ -1,12 +1,13 @@
 import React from "react";
 import { getRangeNumbers } from "../lib/age";
-import { addMonths } from "date-fns";
+import { addMonths, addYears } from "date-fns";
 import { uuid } from "../lib/uuid";
 import { EventInput } from "@fullcalendar/react";
 import {
   RESOURCE_ID__SHARED__AGE,
   RESOURCE_ID__SHARED__LIMIT,
 } from "../constants/resourceIds";
+import { WORKING_HOLIDAY_APPLICATION_LIMITATION_AGE } from "../constants/visa";
 
 const getLastYear = () => {
   const BUFFER_YEAR = 10;
@@ -17,6 +18,25 @@ const getLastYear = () => {
 };
 
 const convertIsoToDateTime = (isoStr: string) => isoStr.split("T")[0];
+
+const createWorkingHolidayLimitEvent = (birthday: Date) => {
+  const lastYearDate = addYears(
+    birthday,
+    WORKING_HOLIDAY_APPLICATION_LIMITATION_AGE
+  );
+  const endDate = addMonths(lastYearDate, +11);
+  const end = convertIsoToDateTime(endDate.toISOString());
+
+  const start = convertIsoToDateTime(birthday.toISOString());
+  const _event = {
+    id: uuid(),
+    resourceId: RESOURCE_ID__SHARED__LIMIT,
+    title: "Limitation till WorkingHoliday",
+    start,
+    end,
+  };
+  return _event;
+};
 
 export const useAgeEvents = () => {
   const [ageEvents, setAgeEvents] = React.useState<EventInput[]>([]);
@@ -31,30 +51,7 @@ export const useAgeEvents = () => {
     // create years list
     const years = getRangeNumbers(startYear, endYear);
 
-    const start = (() => {
-      const year = years[0];
-      birthDate.setFullYear(year);
-      const isoStr = birthDate.toISOString();
-      const str = convertIsoToDateTime(isoStr);
-      return str;
-    })();
-    const end = (() => {
-      const year = years[31]; // working holiday have to be applied by age of 31.
-      birthDate.setFullYear(year);
-      const birthStr = birthDate.toISOString();
-      const endDate = addMonths(new Date(birthStr), +11);
-      const isoStr = endDate.toISOString();
-      const str = convertIsoToDateTime(isoStr);
-      return str;
-    })();
-
-    const e = {
-      id: uuid(),
-      resourceId: RESOURCE_ID__SHARED__LIMIT,
-      title: "Limitation till WorkingHoliday",
-      start,
-      end,
-    };
+    const workingHolidayLimitEvent = createWorkingHolidayLimitEvent(birthDate);
 
     // create EventInput obj
     const ageEventList = years.map<EventInput>((year, index) => {
@@ -77,7 +74,7 @@ export const useAgeEvents = () => {
       };
     });
 
-    setAgeEvents([e, ...ageEventList]);
+    setAgeEvents([workingHolidayLimitEvent, ...ageEventList]);
   }, []);
 
   return [ageEvents, calc] as const;

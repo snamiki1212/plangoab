@@ -59,7 +59,7 @@ export const resources = [
   {
     id: RESOURCE_ID__SHARED__LIMIT,
     [FIELD_NAME["H1"]]: FIELD__H1__LIST["SHARED"],
-    [FIELD_NAME["H2"]]: "LIMIT",
+    [FIELD_NAME["H2"]]: "Working Holiday Application Limit",
   },
 
   // VISA
