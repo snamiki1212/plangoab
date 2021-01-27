@@ -10,15 +10,15 @@ import interactionPlugin from "@fullcalendar/interaction";
 import { uuid } from "../../lib/uuid";
 import { useAgeEvents } from "../../hooks/useAgeEvents";
 import { useStoryEvents } from "../../hooks/useStoryEvents";
+import { useStoryResouces } from "../../hooks/useStoryResouces";
 import { useAgeContext } from "../../hooks/useAgeContext";
 import {
   resourceAreaColumns,
   views,
   headerToolbar,
-  resources,
   slotLabelFormat,
   MY_TIME_LINE,
-  RESOURCE_GROUP_FIELD_ID
+  GROUP_ID
 } from "../../constants/fullcalendar";
 
 export const FullCalendar = () => {
@@ -27,6 +27,12 @@ export const FullCalendar = () => {
   const { birth } = useAgeContext();
   const [ageEvents, calcAgeEvents] = useAgeEvents();
   const [storyEvents, createStoryEvents] = useStoryEvents();
+  const [storyResources, init] = useStoryResouces();
+
+  React.useEffect(() => {
+    init();
+  }, [init])
+  const _resources = storyResources;
 
   React.useEffect(() => {
     calcAgeEvents(birth);
@@ -76,14 +82,14 @@ export const FullCalendar = () => {
       initialView={MY_TIME_LINE}
       headerToolbar={headerToolbar}
       events={_events}
-      resources={resources}
+      resources={_resources}
       resourceAreaColumns={resourceAreaColumns}
       views={views}
       select={select}
       eventClick={click}
       slotLabelFormat={slotLabelFormat}
       initialDate={"2020-06-01"}
-      resourceGroupField={RESOURCE_GROUP_FIELD_ID}
+      resourceGroupField={GROUP_ID}
       // slotLabelInterval={{years: 3}}
       schedulerLicenseKey="GPL-My-Project-Is-Open-Source"
     />
