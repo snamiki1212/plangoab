@@ -6,7 +6,7 @@ import { EventInput } from "@fullcalendar/react";
 import {
   RESOURCE_ID__SHARED__AGE,
   RESOURCE_ID__SHARED__LIMIT,
-} from "../constants/resourceIds";
+} from "../constants/fullcalendar";
 import { WORKING_HOLIDAY_APPLICATION_LIMITATION_AGE } from "../constants/visa";
 
 const getLastYear = () => {

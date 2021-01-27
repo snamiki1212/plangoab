@@ -5,7 +5,7 @@ import {
   RESOURCE_ID__VISA__WORKING_HOLIDAY,
   RESOURCE_ID__STATUS__WORKER,
   RESOURCE_ID__STATUS__STUDENT,
-} from "./resourceIds";
+} from "./fullcalendar";
 
 export const events: EventInput[] = [
   {

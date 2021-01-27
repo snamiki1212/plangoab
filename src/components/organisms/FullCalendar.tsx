@@ -18,6 +18,7 @@ import {
   resources,
   slotLabelFormat,
   MY_TIME_LINE,
+  RESOURCE_GROUP_FIELD_ID
 } from "../../constants/fullcalendar";
 
 export const FullCalendar = () => {
@@ -82,6 +83,7 @@ export const FullCalendar = () => {
       eventClick={click}
       slotLabelFormat={slotLabelFormat}
       initialDate={"2020-06-01"}
+      resourceGroupField={RESOURCE_GROUP_FIELD_ID}
       // slotLabelInterval={{years: 3}}
       schedulerLicenseKey="GPL-My-Project-Is-Open-Source"
     />
