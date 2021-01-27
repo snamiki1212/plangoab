@@ -50,7 +50,7 @@ export const views = {
   [MY_TIME_LINE]: {
     name: "timeline",
     type: "resourceTimelineYear",
-    duration: { year: 6 },
+    duration: { year: 15 },
     buttonText: "TIME_LINE",
     startStr: "2019-01-01",
   },

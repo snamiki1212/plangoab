@@ -2,7 +2,7 @@ import React from "react";
 import { EventInput } from "@fullcalendar/react";
 import { uuid } from "../lib/uuid";
 import { convertIsoToDateTime } from "../lib/date";
-import { getLastYearDate } from '../core/visa/workingHoliday'
+import { getLastYearDate, getStartYearDate } from '../core/visa/workingHoliday'
 import {
   SHARED__RESOURCES,
   TEMPLATE__RESOURCES,
@@ -18,7 +18,8 @@ export const useStoryList = () => {
   const generate = React.useCallback((_birth: string) => {
     const birth = new Date(_birth);
     const lastDate = getLastYearDate(birth)
-    const strDate = convertIsoToDateTime(lastDate.toISOString())
+    const end = convertIsoToDateTime(lastDate.toISOString())
+    const start = convertIsoToDateTime(getStartYearDate(new Date(end)).toISOString());
 
     const groupId = uuid();
 
@@ -39,8 +40,8 @@ export const useStoryList = () => {
         const event = {
           id: eventId,
           resourceId,
-          start: "2022-01-01",
-          end: strDate,
+          start,
+          end,
         };
 
         // merge
