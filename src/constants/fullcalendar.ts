@@ -12,6 +12,7 @@ export const RESOURCE_ID__VISA__WORKING_HOLIDAY =
   "RESOURCE_ID__VISA__WORKING_HOLIDAY";
 export const RESOURCE_ID__STATUS__WORKER = "RESOURCE_ID__STATUS__WORKER";
 export const RESOURCE_ID__STATUS__STUDENT = "RESOURCE_ID__STATUS__STUDENT";
+export const RESOURCE_ID__ETC__CUSTOM = "RESOURCE_ID__ETC__CUSTOM";
 export type RESOURCE_ID =
   | typeof RESOURCE_ID__SHARED__AGE
   | typeof RESOURCE_ID__SHARED__LIMIT
@@ -19,7 +20,8 @@ export type RESOURCE_ID =
   | typeof RESOURCE_ID__VISA__COOP
   | typeof RESOURCE_ID__VISA__WORKING_HOLIDAY
   | typeof RESOURCE_ID__STATUS__WORKER
-  | typeof RESOURCE_ID__STATUS__STUDENT;
+  | typeof RESOURCE_ID__STATUS__STUDENT
+  | typeof RESOURCE_ID__ETC__CUSTOM;
 
 // keys
 export const GROUP_ID_KEY = "GROUP_ID_KEY";
@@ -83,7 +85,7 @@ export const SHARED__RESOURCES = [
     [GROUP_ID_KEY]: GROUP_ID__ALL,
     eventBorderColor: DARK_BLUE,
   },
-] as const;
+];
 
 export const TEMPLATE__RESOURCES = [
   // VISA
@@ -101,7 +103,7 @@ export const TEMPLATE__RESOURCES = [
     [FIELD_NAME["H2"]]: "Co-op VISA",
     [GROUP_ID_KEY]: "__REPLACE_ME__",
     eventBorderColor: DARK_BLUE,
-    [RESOURCE_NAME_KEY]: RESOURCE_ID__VISA__STUDY,
+    [RESOURCE_NAME_KEY]: RESOURCE_ID__VISA__COOP,
   },
   {
     id: "__REPLACE_ME__",
@@ -109,7 +111,7 @@ export const TEMPLATE__RESOURCES = [
     [FIELD_NAME["H2"]]: "Working Holiday VISA",
     [GROUP_ID_KEY]: "__REPLACE_ME__",
     eventBorderColor: DARK_BLUE,
-    [RESOURCE_NAME_KEY]: RESOURCE_ID__VISA__STUDY,
+    [RESOURCE_NAME_KEY]: RESOURCE_ID__VISA__WORKING_HOLIDAY,
   },
 
   // STATUS
@@ -119,7 +121,7 @@ export const TEMPLATE__RESOURCES = [
     [FIELD_NAME["H2"]]: "Student",
     [GROUP_ID_KEY]: "__REPLACE_ME__",
     eventBorderColor: DARK_BLUE,
-    [RESOURCE_NAME_KEY]: RESOURCE_ID__VISA__STUDY,
+    [RESOURCE_NAME_KEY]: RESOURCE_ID__STATUS__STUDENT,
   },
   {
     id: "__REPLACE_ME__",
@@ -127,7 +129,7 @@ export const TEMPLATE__RESOURCES = [
     [FIELD_NAME["H2"]]: "Worker",
     [GROUP_ID_KEY]: "__REPLACE_ME__",
     eventBorderColor: DARK_BLUE,
-    [RESOURCE_NAME_KEY]: RESOURCE_ID__VISA__STUDY,
+    [RESOURCE_NAME_KEY]: RESOURCE_ID__STATUS__WORKER,
   },
 
   // ETC
@@ -137,7 +139,7 @@ export const TEMPLATE__RESOURCES = [
     [FIELD_NAME["H2"]]: "_CUSTOM_EVENT",
     eventBorderColor: DARK_BLUE,
     [GROUP_ID_KEY]: "__REPLACE_ME__",
-    [RESOURCE_NAME_KEY]: RESOURCE_ID__VISA__STUDY,
+    [RESOURCE_NAME_KEY]: RESOURCE_ID__ETC__CUSTOM,
   },
 ] as const;
 

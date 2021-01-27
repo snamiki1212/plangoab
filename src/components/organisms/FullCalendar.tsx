@@ -11,11 +11,8 @@ import { uuid } from "../../lib/uuid";
 import { useAgeEvents } from "../../hooks/useAgeEvents";
 import { useStoryList } from "../../hooks/useStoryList";
 import { useAgeContext } from "../../hooks/useAgeContext";
-import {
-  FULL_CALENDAR_CONFIGS,
-  GROUP_ID_KEY,
-} from "../../constants/fullcalendar";
-
+import { FULL_CALENDAR_CONFIGS } from "../../constants/fullcalendar";
+import { SHARED__RESOURCES } from "../../constants/fullcalendar";
 
 export const FullCalendar = () => {
   const [_events, setEvents] = React.useState<EventInput[]>([]);
@@ -31,8 +28,11 @@ export const FullCalendar = () => {
   React.useEffect(() => {
     generate(birth);
   }, [generate, birth]);
-  
-  const _resources = storyResources;
+
+  const _resources = React.useMemo(
+    () => [...SHARED__RESOURCES, ...storyResources],
+    [storyResources]
+  );
 
   React.useEffect(() => {
     calcAgeEvents(birth);
@@ -58,7 +58,6 @@ export const FullCalendar = () => {
 
   const click = (info: EventClickArg) => {
     if (!window.confirm("Would you like to remove this event?")) return;
-
     const id = info.event.id;
     setEvents((prev) => {
       return prev.filter((e) => e.id !== id);

@@ -2,14 +2,13 @@ import React from "react";
 import { EventInput } from "@fullcalendar/react";
 import { uuid } from "../lib/uuid";
 import { convertIsoToDateTime } from "../lib/date";
-import { getLastYearDate, getStartYearDate } from '../core/visa/workingHoliday'
+import { getLastYearDate, getStartYearDate } from "../core/visa/workingHoliday";
 import {
-  SHARED__RESOURCES,
   TEMPLATE__RESOURCES,
   GROUP_ID_KEY,
   RESOURCE_NAME_KEY,
 } from "../constants/fullcalendar";
-import {createEventByName} from '../core/senario'
+import { createEventByName } from "../core/senario";
 
 type Resources = any;
 
@@ -19,9 +18,11 @@ export const useStoryList = () => {
 
   const generate = React.useCallback((_birth: string) => {
     const birth = new Date(_birth);
-    const lastDate = getLastYearDate(birth)
-    const end = convertIsoToDateTime(lastDate.toISOString())
-    const start = convertIsoToDateTime(getStartYearDate(new Date(end)).toISOString());
+    const lastDate = getLastYearDate(birth);
+    const end = convertIsoToDateTime(lastDate.toISOString());
+    const start = convertIsoToDateTime(
+      getStartYearDate(new Date(end)).toISOString()
+    );
 
     const groupId = uuid();
 
@@ -37,16 +38,10 @@ export const useStoryList = () => {
           id: resourceId,
         };
 
-        const resourceName = resource[RESOURCE_NAME_KEY]
+        const resourceName = resource[RESOURCE_NAME_KEY];
 
         // creat event
-        const event = {...createEventByName(resourceName), resourceId}
-        // const event = {
-        //   id: eventId,
-        //   resourceId,
-        //   start,
-        //   end,
-        // };
+        const event = { ...createEventByName(resourceName), resourceId };
 
         // merge
         const result = [
@@ -59,10 +54,7 @@ export const useStoryList = () => {
       [[], []] as [any[], any[]]
     );
 
-    const _r = [...SHARED__RESOURCES, ..._resources]
-
-    console.log("_events", _events)
-    setResources(_r);
+    setResources(_resources);
     setEvents(_events);
   }, []);
 
