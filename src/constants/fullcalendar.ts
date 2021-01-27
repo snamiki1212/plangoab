@@ -17,9 +17,9 @@ export const RESOURCE_ID__STATUS__STUDENT = "RESOURCE_ID__STATUS__STUDENT";
 export const GROUP_ID_KEY = "GROUP_ID_KEY";
 export const RESOURCE_NAME_KEY = "RESOURCE_NAME_KEY";
 
-export const slotLabelFormat = [{ year: "numeric" }, { month: "numeric" }];
+const slotLabelFormat = [{ year: "numeric" }, { month: "numeric" }];
 
-export const headerToolbar = {
+const headerToolbar = {
   left: "today prev,next",
   center: "title",
   right: `${MY_TIME_LINE_NAME},listMonth`,
@@ -36,7 +36,7 @@ export const FIELD_NAME = {
   H2: "FIELD__H2",
 } as const;
 
-export const resourceAreaColumns = [
+const resourceAreaColumns = [
   {
     field: FIELD_NAME["H1"],
     headerContent: "Category",
@@ -47,7 +47,7 @@ export const resourceAreaColumns = [
   },
 ];
 
-export const views = {
+const views = {
   [MY_TIME_LINE_NAME]: {
     name: "timeline",
     type: "resourceTimelineYear",
@@ -76,6 +76,7 @@ export const SHARED__RESOURCES = [
     eventBorderColor: DARK_BLUE,
   },
 ] as const;
+
 export const TEMPLATE__RESOURCES = [
   // VISA
   {
@@ -131,3 +132,21 @@ export const TEMPLATE__RESOURCES = [
     [RESOURCE_NAME_KEY]: RESOURCE_ID__VISA__STUDY,
   },
 ] as const;
+
+const initialView = { initialView: MY_TIME_LINE_NAME } as const;
+
+const resourceGroupField = { resourceGroupField: GROUP_ID_KEY } as const;
+
+const schedulerLicenseKey = {
+  schedulerLicenseKey: "GPL-My-Project-Is-Open-Source",
+} as const;
+
+export const FULL_CALENDAR_CONFIGS = {
+  resourceAreaColumns,
+  views,
+  headerToolbar,
+  slotLabelFormat,
+  ...initialView,
+  ...resourceGroupField,
+  ...schedulerLicenseKey,
+} as const;

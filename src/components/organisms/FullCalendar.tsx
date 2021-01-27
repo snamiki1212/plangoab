@@ -12,13 +12,10 @@ import { useAgeEvents } from "../../hooks/useAgeEvents";
 import { useStoryList } from "../../hooks/useStoryList";
 import { useAgeContext } from "../../hooks/useAgeContext";
 import {
-  resourceAreaColumns,
-  views,
-  headerToolbar,
-  slotLabelFormat,
-  MY_TIME_LINE_NAME,
+  FULL_CALENDAR_CONFIGS,
   GROUP_ID_KEY,
 } from "../../constants/fullcalendar";
+
 
 export const FullCalendar = () => {
   const [_events, setEvents] = React.useState<EventInput[]>([]);
@@ -73,19 +70,12 @@ export const FullCalendar = () => {
       selectable={true}
       editable={true}
       plugins={[interactionPlugin, resourceTimelinePlugin, listPlugin]}
-      initialView={MY_TIME_LINE_NAME}
-      headerToolbar={headerToolbar}
       events={_events}
       resources={_resources}
-      resourceAreaColumns={resourceAreaColumns}
-      views={views}
       select={select}
       eventClick={click}
-      slotLabelFormat={slotLabelFormat}
+      {...FULL_CALENDAR_CONFIGS}
       initialDate={"2020-06-01"}
-      resourceGroupField={GROUP_ID_KEY}
-      // slotLabelInterval={{years: 3}}
-      schedulerLicenseKey="GPL-My-Project-Is-Open-Source"
     />
   );
 };
