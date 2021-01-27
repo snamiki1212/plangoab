@@ -9,15 +9,16 @@ import interactionPlugin from "@fullcalendar/interaction";
 import { uuid } from "../../lib/uuid";
 import { useAgeEvents } from "../../hooks/useAgeEvents";
 import { useAgeContext } from "../../hooks/useAgeContext";
+import { events } from "../../constants/index";
+
 import {
   resourceAreaColumns,
   views,
   headerToolbar,
   resources,
-  events,
   slotLabelFormat,
   MY_TIME_LINE,
-} from "../../constants/index";
+} from "../../constants/fullcalendar";
 
 export const FullCalendar = () => {
   const [_events, setEvents] = React.useState(events);
