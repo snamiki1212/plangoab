@@ -1,7 +1,8 @@
 import React from "react";
 import { EventInput } from "@fullcalendar/react";
-import { events as list } from "../constants/index";
 import { uuid } from "../lib/uuid";
+import { convertIsoToDateTime } from "../lib/date";
+import { getLastYearDate } from '../core/visa/workingHoliday'
 import {
   SHARED__RESOURCES,
   TEMPLATE__RESOURCES,
@@ -14,11 +15,11 @@ export const useStoryList = () => {
   const [events, setEvents] = React.useState<EventInput[]>([]);
   const [resources, setResources] = React.useState<Resources[]>([]);
 
-  // const createStoryEvents = React.useCallback((_birth: Date | string) => {
-  //   setEvents(list);
-  // }, []);
+  const generate = React.useCallback((_birth: string) => {
+    const birth = new Date(_birth);
+    const lastDate = getLastYearDate(birth)
+    const strDate = convertIsoToDateTime(lastDate.toISOString())
 
-  const init = React.useCallback(() => {
     const groupId = uuid();
 
     const [_resources, _events] = TEMPLATE__RESOURCES.reduce(
@@ -39,7 +40,7 @@ export const useStoryList = () => {
           id: eventId,
           resourceId,
           start: "2022-01-01",
-          end: "2023-06-01",
+          end: strDate,
         };
 
         // merge
@@ -48,7 +49,6 @@ export const useStoryList = () => {
           [...events, event],
         ] as const;
 
-        console.log("result", result);
         return result;
       },
       [[], []] as [any[], any[]]
@@ -56,10 +56,10 @@ export const useStoryList = () => {
 
     
     const _r = [...SHARED__RESOURCES, ..._resources]
-    console.log("___events__", _events, "__r__", _r);
+
     setResources(_r);
     setEvents(_events);
   }, []);
 
-  return { events, resources, init } as const;
+  return { events, resources, generate } as const;
 };

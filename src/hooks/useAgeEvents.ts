@@ -2,6 +2,7 @@ import React from "react";
 import { getRangeNumbers } from "../lib/age";
 import { addMonths, addYears } from "date-fns";
 import { uuid } from "../lib/uuid";
+import { convertIsoToDateTime } from "../lib/date";
 import { EventInput } from "@fullcalendar/react";
 import {
   RESOURCE_ID__SHARED__AGE,
@@ -16,8 +17,6 @@ const getLastYear = () => {
   d.setFullYear(d.getFullYear() + BUFFER_YEAR);
   return d.getFullYear();
 };
-
-const convertIsoToDateTime = (isoStr: string) => isoStr.split("T")[0];
 
 const createWorkingHolidayLimitEvent = (birthday: Date) => {
   const lastYearDate = addYears(
