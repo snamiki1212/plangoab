@@ -1,5 +1,8 @@
 export const MY_TIME_LINE = "MY_TIME_LINE";
 
+// field id
+const RESOURCE_GROUP_FIELD_ID__ALL = "ALL";
+
 // resouce ID
 export const RESOURCE_ID__SHARED__AGE = "RESOURCE_ID__SHARED__AGE";
 export const RESOURCE_ID__SHARED__LIMIT = "RESOURCE_ID__SHARED__LIMIT";
@@ -11,7 +14,7 @@ export const RESOURCE_ID__STATUS__WORKER = "RESOURCE_ID__STATUS__WORKER";
 export const RESOURCE_ID__STATUS__STUDENT = "RESOURCE_ID__STATUS__STUDENT";
 
 // resource-group-field ID
-export const RESOURCE_GROUP_FIELD_ID = "groupId";
+export const RESOURCE_GROUP_FIELD_ID = "__RESOURCE_GROUP_ID__";
 
 export const slotLabelFormat = [{ year: "numeric" }, { month: "numeric" }];
 
@@ -34,7 +37,6 @@ export const FIELD_NAME = {
 
 export const resourceAreaColumns = [
   {
-    group: true,
     field: FIELD_NAME["H1"],
     headerContent: "Category",
   },
@@ -61,14 +63,14 @@ export const resources = [
     id: RESOURCE_ID__SHARED__AGE,
     [FIELD_NAME["H1"]]: FIELD__H1__LIST["SHARED"],
     [FIELD_NAME["H2"]]: "Age",
-    [RESOURCE_GROUP_FIELD_ID]: "XXX",
+    [RESOURCE_GROUP_FIELD_ID]: RESOURCE_GROUP_FIELD_ID__ALL,
     eventBorderColor: DARK_BLUE,
   },
   {
     id: RESOURCE_ID__SHARED__LIMIT,
     [FIELD_NAME["H1"]]: FIELD__H1__LIST["SHARED"],
     [FIELD_NAME["H2"]]: "Working Holiday Application Limit",
-    [RESOURCE_GROUP_FIELD_ID]: "XXX",
+    [RESOURCE_GROUP_FIELD_ID]: RESOURCE_GROUP_FIELD_ID__ALL,
     eventBorderColor: DARK_BLUE,
   },
 
@@ -77,21 +79,21 @@ export const resources = [
     id: RESOURCE_ID__VISA__STUDY,
     [FIELD_NAME["H1"]]: FIELD__H1__LIST["VISA"],
     [FIELD_NAME["H2"]]: "Study VISA",
-    [RESOURCE_GROUP_FIELD_ID]: "YYY",
+    [RESOURCE_GROUP_FIELD_ID]: "__REPLACE_ME__",
     eventBorderColor: DARK_BLUE,
   },
   {
     id: RESOURCE_ID__VISA__COOP,
     [FIELD_NAME["H1"]]: FIELD__H1__LIST["VISA"],
     [FIELD_NAME["H2"]]: "Co-op VISA",
-    [RESOURCE_GROUP_FIELD_ID]: "YYY",
+    [RESOURCE_GROUP_FIELD_ID]: "__REPLACE_ME__",
     eventBorderColor: DARK_BLUE,
   },
   {
     id: RESOURCE_ID__VISA__WORKING_HOLIDAY,
     [FIELD_NAME["H1"]]: FIELD__H1__LIST["VISA"],
     [FIELD_NAME["H2"]]: "Working Holiday VISA",
-    [RESOURCE_GROUP_FIELD_ID]: "YYY",
+    [RESOURCE_GROUP_FIELD_ID]: "__REPLACE_ME__",
     eventBorderColor: DARK_BLUE,
   },
 
@@ -100,22 +102,23 @@ export const resources = [
     id: RESOURCE_ID__STATUS__STUDENT,
     [FIELD_NAME["H1"]]: FIELD__H1__LIST["STATUS"],
     [FIELD_NAME["H2"]]: "Student",
-    [RESOURCE_GROUP_FIELD_ID]: "ZZZ",
+    [RESOURCE_GROUP_FIELD_ID]: "__REPLACE_ME__",
     eventBorderColor: DARK_BLUE,
   },
   {
     id: RESOURCE_ID__STATUS__WORKER,
     [FIELD_NAME["H1"]]: FIELD__H1__LIST["STATUS"],
     [FIELD_NAME["H2"]]: "Worker",
-    [RESOURCE_GROUP_FIELD_ID]: "ZZZ",
+    [RESOURCE_GROUP_FIELD_ID]: "__REPLACE_ME__",
     eventBorderColor: DARK_BLUE,
   },
 
   // ETC
   {
     id: "etc",
-    [FIELD_NAME["H1"]]: "CUSTOM_CATEGORY",
-    [FIELD_NAME["H2"]]: "CUSTOM_EVENT",
+    [FIELD_NAME["H1"]]: "_CUSTOM",
+    [FIELD_NAME["H2"]]: "_CUSTOM_EVENT",
     eventBorderColor: DARK_BLUE,
+    [RESOURCE_GROUP_FIELD_ID]: "__REPLACE_ME__",
   },
 ];
