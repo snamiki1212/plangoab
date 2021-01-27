@@ -1,6 +1,7 @@
 import { EventInput } from "@fullcalendar/react";
 import {
   RESOURCE_ID__SHARED__AGE,
+  RESOURCE_ID__SHARED__LIMIT,
   RESOURCE_ID__VISA__STUDY,
   RESOURCE_ID__VISA__COOP,
   RESOURCE_ID__VISA__WORKING_HOLIDAY,
@@ -54,6 +55,11 @@ export const resources = [
     id: RESOURCE_ID__SHARED__AGE,
     [FIELD_NAME["H1"]]: FIELD__H1__LIST["SHARED"],
     [FIELD_NAME["H2"]]: "Age",
+  },
+  {
+    id: RESOURCE_ID__SHARED__LIMIT,
+    [FIELD_NAME["H1"]]: FIELD__H1__LIST["SHARED"],
+    [FIELD_NAME["H2"]]: "LIMIT",
   },
 
   // VISA
