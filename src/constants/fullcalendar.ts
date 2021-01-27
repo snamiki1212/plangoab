@@ -1,4 +1,4 @@
-export const MY_TIME_LINE = "MY_TIME_LINE";
+export const MY_TIME_LINE_NAME = "MY_TIME_LINE_NAME";
 
 // group id
 const GROUP_ID__ALL = "ALL";
@@ -13,15 +13,16 @@ export const RESOURCE_ID__VISA__WORKING_HOLIDAY =
 export const RESOURCE_ID__STATUS__WORKER = "RESOURCE_ID__STATUS__WORKER";
 export const RESOURCE_ID__STATUS__STUDENT = "RESOURCE_ID__STATUS__STUDENT";
 
-// resource-group-field ID
-export const GROUP_ID = "GROUP_ID";
+// keys
+export const GROUP_ID_KEY = "GROUP_ID_KEY";
+export const RESOURCE_NAME_KEY = "RESOURCE_NAME_KEY";
 
 export const slotLabelFormat = [{ year: "numeric" }, { month: "numeric" }];
 
 export const headerToolbar = {
   left: "today prev,next",
   center: "title",
-  right: `${MY_TIME_LINE},listMonth`,
+  right: `${MY_TIME_LINE_NAME},listMonth`,
 } as const;
 
 export const FIELD__H1__LIST = {
@@ -47,14 +48,14 @@ export const resourceAreaColumns = [
 ];
 
 export const views = {
-  [MY_TIME_LINE]: {
+  [MY_TIME_LINE_NAME]: {
     name: "timeline",
     type: "resourceTimelineYear",
     duration: { year: 15 },
     buttonText: "TIME_LINE",
     startStr: "2019-01-01",
   },
-};
+} as const;
 
 const DARK_BLUE = "#00008b";
 
@@ -64,42 +65,42 @@ export const SHARED__RESOURCES = [
     id: RESOURCE_ID__SHARED__AGE,
     [FIELD_NAME["H1"]]: FIELD__H1__LIST["SHARED"],
     [FIELD_NAME["H2"]]: "Age",
-    [GROUP_ID]: GROUP_ID__ALL,
+    [GROUP_ID_KEY]: GROUP_ID__ALL,
     eventBorderColor: DARK_BLUE,
   },
   {
     id: RESOURCE_ID__SHARED__LIMIT,
     [FIELD_NAME["H1"]]: FIELD__H1__LIST["SHARED"],
     [FIELD_NAME["H2"]]: "Working Holiday Application Limit",
-    [GROUP_ID]: GROUP_ID__ALL,
+    [GROUP_ID_KEY]: GROUP_ID__ALL,
     eventBorderColor: DARK_BLUE,
   },
-];
+] as const;
 export const TEMPLATE__RESOURCES = [
   // VISA
   {
     id: "__REPLACE_ME__",
     [FIELD_NAME["H1"]]: FIELD__H1__LIST["VISA"],
     [FIELD_NAME["H2"]]: "Study VISA",
-    [GROUP_ID]: "__REPLACE_ME__",
+    [GROUP_ID_KEY]: "__REPLACE_ME__",
     eventBorderColor: DARK_BLUE,
-    name: RESOURCE_ID__VISA__STUDY,
+    [RESOURCE_NAME_KEY]: RESOURCE_ID__VISA__STUDY,
   },
   {
     id: "__REPLACE_ME__",
     [FIELD_NAME["H1"]]: FIELD__H1__LIST["VISA"],
     [FIELD_NAME["H2"]]: "Co-op VISA",
-    [GROUP_ID]: "__REPLACE_ME__",
+    [GROUP_ID_KEY]: "__REPLACE_ME__",
     eventBorderColor: DARK_BLUE,
-    name: RESOURCE_ID__VISA__STUDY,
+    [RESOURCE_NAME_KEY]: RESOURCE_ID__VISA__STUDY,
   },
   {
     id: "__REPLACE_ME__",
     [FIELD_NAME["H1"]]: FIELD__H1__LIST["VISA"],
     [FIELD_NAME["H2"]]: "Working Holiday VISA",
-    [GROUP_ID]: "__REPLACE_ME__",
+    [GROUP_ID_KEY]: "__REPLACE_ME__",
     eventBorderColor: DARK_BLUE,
-    name: RESOURCE_ID__VISA__STUDY,
+    [RESOURCE_NAME_KEY]: RESOURCE_ID__VISA__STUDY,
   },
 
   // STATUS
@@ -107,17 +108,17 @@ export const TEMPLATE__RESOURCES = [
     id: "__REPLACE_ME__",
     [FIELD_NAME["H1"]]: FIELD__H1__LIST["STATUS"],
     [FIELD_NAME["H2"]]: "Student",
-    [GROUP_ID]: "__REPLACE_ME__",
+    [GROUP_ID_KEY]: "__REPLACE_ME__",
     eventBorderColor: DARK_BLUE,
-    name: RESOURCE_ID__VISA__STUDY,
+    [RESOURCE_NAME_KEY]: RESOURCE_ID__VISA__STUDY,
   },
   {
     id: "__REPLACE_ME__",
     [FIELD_NAME["H1"]]: FIELD__H1__LIST["STATUS"],
     [FIELD_NAME["H2"]]: "Worker",
-    [GROUP_ID]: "__REPLACE_ME__",
+    [GROUP_ID_KEY]: "__REPLACE_ME__",
     eventBorderColor: DARK_BLUE,
-    name: RESOURCE_ID__VISA__STUDY,
+    [RESOURCE_NAME_KEY]: RESOURCE_ID__VISA__STUDY,
   },
 
   // ETC
@@ -126,7 +127,7 @@ export const TEMPLATE__RESOURCES = [
     [FIELD_NAME["H1"]]: "_CUSTOM",
     [FIELD_NAME["H2"]]: "_CUSTOM_EVENT",
     eventBorderColor: DARK_BLUE,
-    [GROUP_ID]: "__REPLACE_ME__",
-    name: RESOURCE_ID__VISA__STUDY,
+    [GROUP_ID_KEY]: "__REPLACE_ME__",
+    [RESOURCE_NAME_KEY]: RESOURCE_ID__VISA__STUDY,
   },
-];
+] as const;

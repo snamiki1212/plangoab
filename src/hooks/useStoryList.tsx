@@ -6,7 +6,8 @@ import { getLastYearDate, getStartYearDate } from '../core/visa/workingHoliday'
 import {
   SHARED__RESOURCES,
   TEMPLATE__RESOURCES,
-  GROUP_ID,
+  GROUP_ID_KEY,
+  RESOURCE_NAME_KEY,
 } from "../constants/fullcalendar";
 
 type Resources = any;
@@ -31,9 +32,11 @@ export const useStoryList = () => {
         const resourceId = uuid();
         const resource = {
           ...curr,
-          [GROUP_ID]: groupId,
+          [GROUP_ID_KEY]: groupId,
           id: resourceId,
         };
+
+        const resourceName = resource[RESOURCE_NAME_KEY]
 
         // creat event
         const eventId = uuid();
@@ -55,9 +58,9 @@ export const useStoryList = () => {
       [[], []] as [any[], any[]]
     );
 
-    
     const _r = [...SHARED__RESOURCES, ..._resources]
 
+    console.log("_events", _events)
     setResources(_r);
     setEvents(_events);
   }, []);

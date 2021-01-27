@@ -16,8 +16,8 @@ import {
   views,
   headerToolbar,
   slotLabelFormat,
-  MY_TIME_LINE,
-  GROUP_ID,
+  MY_TIME_LINE_NAME,
+  GROUP_ID_KEY,
 } from "../../constants/fullcalendar";
 
 export const FullCalendar = () => {
@@ -73,7 +73,7 @@ export const FullCalendar = () => {
       selectable={true}
       editable={true}
       plugins={[interactionPlugin, resourceTimelinePlugin, listPlugin]}
-      initialView={MY_TIME_LINE}
+      initialView={MY_TIME_LINE_NAME}
       headerToolbar={headerToolbar}
       events={_events}
       resources={_resources}
@@ -83,7 +83,7 @@ export const FullCalendar = () => {
       eventClick={click}
       slotLabelFormat={slotLabelFormat}
       initialDate={"2020-06-01"}
-      resourceGroupField={GROUP_ID}
+      resourceGroupField={GROUP_ID_KEY}
       // slotLabelInterval={{years: 3}}
       schedulerLicenseKey="GPL-My-Project-Is-Open-Source"
     />
