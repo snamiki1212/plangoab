@@ -12,10 +12,8 @@ import { WORKING_HOLIDAY_APPLICATION_LIMITATION_AGE } from "../constants/visa";
 
 const getLastYear = () => {
   const BUFFER_YEAR = 10;
-
-  let d = new Date();
-  d.setFullYear(d.getFullYear() + BUFFER_YEAR);
-  return d.getFullYear();
+  const date = new Date();
+  return addYears(date, BUFFER_YEAR).getFullYear();
 };
 
 const createWorkingHolidayLimitEvent = (birthday: Date) => {
