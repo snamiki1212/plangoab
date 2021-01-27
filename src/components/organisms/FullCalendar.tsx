@@ -2,15 +2,15 @@ import React from "react";
 import FullCalendarLib, {
   DateSelectArg,
   EventClickArg,
+  EventInput,
 } from "@fullcalendar/react";
 import resourceTimelinePlugin from "@fullcalendar/resource-timeline";
 import listPlugin from "@fullcalendar/list";
 import interactionPlugin from "@fullcalendar/interaction";
 import { uuid } from "../../lib/uuid";
 import { useAgeEvents } from "../../hooks/useAgeEvents";
+import { useStoryEvents } from "../../hooks/useStoryEvents";
 import { useAgeContext } from "../../hooks/useAgeContext";
-import { events } from "../../constants/index";
-
 import {
   resourceAreaColumns,
   views,
@@ -21,20 +21,26 @@ import {
 } from "../../constants/fullcalendar";
 
 export const FullCalendar = () => {
-  const [_events, setEvents] = React.useState(events);
+  const [_events, setEvents] = React.useState<EventInput[]>([]);
 
   const { birth } = useAgeContext();
   const [ageEvents, calcAgeEvents] = useAgeEvents();
+  const [storyEvents, createStoryEvents] = useStoryEvents();
 
   React.useEffect(() => {
     calcAgeEvents(birth);
   }, [birth, calcAgeEvents]);
 
   React.useEffect(() => {
+    console.log("start creat estory")
+    createStoryEvents(birth);
+  }, [birth, createStoryEvents]);
+
+  React.useEffect(() => {
     console.log("ageEvents", ageEvents);
-    const result = [...ageEvents, ...events];
+    const result = [...ageEvents, ...storyEvents];
     setEvents(result);
-  }, [ageEvents]);
+  }, [ageEvents, storyEvents]);
 
   console.log("ageEvents", ageEvents);
 
