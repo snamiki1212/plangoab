@@ -9,6 +9,7 @@ import {
   GROUP_ID_KEY,
   RESOURCE_NAME_KEY,
 } from "../constants/fullcalendar";
+import {createEventByName} from '../core/senario'
 
 type Resources = any;
 
@@ -39,13 +40,13 @@ export const useStoryList = () => {
         const resourceName = resource[RESOURCE_NAME_KEY]
 
         // creat event
-        const eventId = uuid();
-        const event = {
-          id: eventId,
-          resourceId,
-          start,
-          end,
-        };
+        const event = {...createEventByName(resourceName), resourceId}
+        // const event = {
+        //   id: eventId,
+        //   resourceId,
+        //   start,
+        //   end,
+        // };
 
         // merge
         const result = [
