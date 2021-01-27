@@ -14,7 +14,7 @@ export const RESOURCE_ID__STATUS__WORKER = "RESOURCE_ID__STATUS__WORKER";
 export const RESOURCE_ID__STATUS__STUDENT = "RESOURCE_ID__STATUS__STUDENT";
 
 // resource-group-field ID
-export const GROUP_ID = "__RESOURCE_GROUP_ID__";
+export const GROUP_ID = "GROUP_ID";
 
 export const slotLabelFormat = [{ year: "numeric" }, { month: "numeric" }];
 
@@ -78,49 +78,55 @@ export const SHARED__RESOURCES = [
 export const TEMPLATE__RESOURCES = [
   // VISA
   {
-    id: RESOURCE_ID__VISA__STUDY,
+    id: "__REPLACE_ME__",
     [FIELD_NAME["H1"]]: FIELD__H1__LIST["VISA"],
     [FIELD_NAME["H2"]]: "Study VISA",
     [GROUP_ID]: "__REPLACE_ME__",
     eventBorderColor: DARK_BLUE,
+    name: RESOURCE_ID__VISA__STUDY,
   },
   {
-    id: RESOURCE_ID__VISA__COOP,
+    id: "__REPLACE_ME__",
     [FIELD_NAME["H1"]]: FIELD__H1__LIST["VISA"],
     [FIELD_NAME["H2"]]: "Co-op VISA",
     [GROUP_ID]: "__REPLACE_ME__",
     eventBorderColor: DARK_BLUE,
+    name: RESOURCE_ID__VISA__STUDY,
   },
   {
-    id: RESOURCE_ID__VISA__WORKING_HOLIDAY,
+    id: "__REPLACE_ME__",
     [FIELD_NAME["H1"]]: FIELD__H1__LIST["VISA"],
     [FIELD_NAME["H2"]]: "Working Holiday VISA",
     [GROUP_ID]: "__REPLACE_ME__",
     eventBorderColor: DARK_BLUE,
+    name: RESOURCE_ID__VISA__STUDY,
   },
 
   // STATUS
   {
-    id: RESOURCE_ID__STATUS__STUDENT,
+    id: "__REPLACE_ME__",
     [FIELD_NAME["H1"]]: FIELD__H1__LIST["STATUS"],
     [FIELD_NAME["H2"]]: "Student",
     [GROUP_ID]: "__REPLACE_ME__",
     eventBorderColor: DARK_BLUE,
+    name: RESOURCE_ID__VISA__STUDY,
   },
   {
-    id: RESOURCE_ID__STATUS__WORKER,
+    id: "__REPLACE_ME__",
     [FIELD_NAME["H1"]]: FIELD__H1__LIST["STATUS"],
     [FIELD_NAME["H2"]]: "Worker",
     [GROUP_ID]: "__REPLACE_ME__",
     eventBorderColor: DARK_BLUE,
+    name: RESOURCE_ID__VISA__STUDY,
   },
 
   // ETC
   {
-    id: "etc",
+    id: "__REPLACE_ME__",
     [FIELD_NAME["H1"]]: "_CUSTOM",
     [FIELD_NAME["H2"]]: "_CUSTOM_EVENT",
     eventBorderColor: DARK_BLUE,
     [GROUP_ID]: "__REPLACE_ME__",
+    name: RESOURCE_ID__VISA__STUDY,
   },
 ];
