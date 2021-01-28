@@ -5,8 +5,8 @@ import {
   RESOURCE_TEMPLATE__VISA_STUDY,
   RESOURCE_TEMPLATE__VISA_COOP,
   RESOURCE_TEMPLATE__WORKING_HOLIDAY_COOP,
-  // RESOURCE_TEMPLATE__STUDENT_STATUS,
-  // RESOURCE_TEMPLATE__WORKER_STATUS,
+  RESOURCE_TEMPLATE__STUDENT_STATUS,
+  RESOURCE_TEMPLATE__WORKER_STATUS,
 } from "../../constants/fullcalendar/templates";
 export class CommunityCollegeAfterwardsWorkingHolidayStory
   implements BaseStory {
@@ -65,12 +65,54 @@ export class CommunityCollegeAfterwardsWorkingHolidayStory
       end: addMonths(startDate, 12 * 3),
     };
 
+    // student status
+    const studentStatusResourceId = uuid();
+    const studentStatusResource = {
+      ...RESOURCE_TEMPLATE__STUDENT_STATUS,
+      id: studentStatusResourceId,
+      groupId,
+    };
+    const studentStatusVisa = {
+      id: uuid(),
+      resourceId: studentStatusResourceId,
+      start: addMonths(startDate, 12 * 2),
+      end: addMonths(startDate, 12 * 3),
+    };
+
+    // worker status
+    const workerStatusResourceId = uuid();
+    const workerStatusResource = {
+      ...RESOURCE_TEMPLATE__WORKER_STATUS,
+      id: workerStatusResourceId,
+      groupId,
+    };
+    const workerStatusVisa = {
+      id: uuid(),
+      resourceId: workerStatusResourceId,
+      start: addMonths(startDate, 12 * 2),
+      end: addMonths(startDate, 12 * 3),
+    };
+
     const resources = [
+      // visa
       coopVisaResource,
       studyVisaResource,
       workingholidayResource,
+
+      // status
+      studentStatusResource,
+      workerStatusResource,
     ];
-    const events = [coopVisaEvent, studyVisaEvent, workingholidayVisa];
+    const events = [
+      // visa
+      coopVisaEvent,
+      studyVisaEvent,
+      workingholidayVisa,
+
+      // status
+      studentStatusVisa,
+      workerStatusVisa,
+    ];
     return [resources, events] as const;
   }
 
