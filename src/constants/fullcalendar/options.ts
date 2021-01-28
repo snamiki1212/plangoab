@@ -38,6 +38,10 @@ const views = {
   },
 } as const;
 
+const nowIndicator = {
+  nowIndicator: true,
+};
+
 export const FULL_CALENDAR_CONFIGS = {
   resourceAreaColumns,
   views,
@@ -46,4 +50,5 @@ export const FULL_CALENDAR_CONFIGS = {
   ...initialView,
   ...resourceGroupField,
   ...schedulerLicenseKey,
+  ...nowIndicator,
 } as const;
