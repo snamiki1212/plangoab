@@ -7,8 +7,8 @@ import { useAgeEvents } from "../../hooks/useAgeEvents";
 import { useStoryList } from "../../hooks/useStoryList";
 import { useAgeContext } from "../../hooks/useAgeContext";
 import { useEventsHandler } from "../../hooks/useEventsHandler";
-import { FULL_CALENDAR_CONFIGS } from "../../constants/fullcalendar";
-import { SHARED__RESOURCES } from "../../constants/fullcalendar";
+import { FULL_CALENDAR_CONFIGS } from "../../constants/fullcalendar/options";
+import { DEPRECATED_SHARED__RESOURCES } from "../../constants/fullcalendar/templates";
 
 export const FullCalendar = () => {
   const { birth } = useAgeContext();
@@ -22,7 +22,7 @@ export const FullCalendar = () => {
   const { events, select, click, set: setEvents } = useEventsHandler();
 
   const _resources = React.useMemo(
-    () => [...SHARED__RESOURCES, ...storyResources],
+    () => [...DEPRECATED_SHARED__RESOURCES, ...storyResources],
     [storyResources]
   );
 

@@ -7,7 +7,7 @@ import {
   RESOURCE_TEMPLATE__WORKING_HOLIDAY_COOP,
   // RESOURCE_TEMPLATE__STUDENT_STATUS,
   // RESOURCE_TEMPLATE__WORKER_STATUS,
-} from "../../constants/fullcalendar";
+} from "../../constants/fullcalendar/templates";
 export class CommunityCollegeAfterwardsWorkingHolidayStory
   implements BaseStory {
   private _periodMonths = 12 * 2 + 12 * 1; // schoolePeriod + WorkingholidayPeroid
