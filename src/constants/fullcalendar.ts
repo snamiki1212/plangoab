@@ -86,61 +86,35 @@ export const SHARED__RESOURCES = [
   },
 ];
 
-export const TEMPLATE__RESOURCES = [
-  // VISA
-  {
-    id: "__REPLACE_ME__",
-    [FIELD_NAME["H1"]]: FIELD__H1__LIST["VISA"],
-    [FIELD_NAME["H2"]]: "Study VISA",
-    [GROUP_ID_KEY]: "__REPLACE_ME__",
-    eventBorderColor: DARK_BLUE,
-    [RESOURCE_NAME_KEY]: RESOURCE_ID__VISA__STUDY,
-  },
-  {
-    id: "__REPLACE_ME__",
-    [FIELD_NAME["H1"]]: FIELD__H1__LIST["VISA"],
-    [FIELD_NAME["H2"]]: "Co-op VISA",
-    [GROUP_ID_KEY]: "__REPLACE_ME__",
-    eventBorderColor: DARK_BLUE,
-    [RESOURCE_NAME_KEY]: RESOURCE_ID__VISA__COOP,
-  },
-  {
-    id: "__REPLACE_ME__",
-    [FIELD_NAME["H1"]]: FIELD__H1__LIST["VISA"],
-    [FIELD_NAME["H2"]]: "Working Holiday VISA",
-    [GROUP_ID_KEY]: "__REPLACE_ME__",
-    eventBorderColor: DARK_BLUE,
-    [RESOURCE_NAME_KEY]: RESOURCE_ID__VISA__WORKING_HOLIDAY,
-  },
+export const RESOURCE_TEMPLATE__VISA_STUDY = {
+  [FIELD_NAME["H1"]]: FIELD__H1__LIST["VISA"],
+  [FIELD_NAME["H2"]]: "Study VISA",
+  eventBorderColor: DARK_BLUE,
+};
 
-  // STATUS
-  {
-    id: "__REPLACE_ME__",
-    [FIELD_NAME["H1"]]: FIELD__H1__LIST["STATUS"],
-    [FIELD_NAME["H2"]]: "Student",
-    [GROUP_ID_KEY]: "__REPLACE_ME__",
-    eventBorderColor: DARK_BLUE,
-    [RESOURCE_NAME_KEY]: RESOURCE_ID__STATUS__STUDENT,
-  },
-  {
-    id: "__REPLACE_ME__",
-    [FIELD_NAME["H1"]]: FIELD__H1__LIST["STATUS"],
-    [FIELD_NAME["H2"]]: "Worker",
-    [GROUP_ID_KEY]: "__REPLACE_ME__",
-    eventBorderColor: DARK_BLUE,
-    [RESOURCE_NAME_KEY]: RESOURCE_ID__STATUS__WORKER,
-  },
+export const RESOURCE_TEMPLATE__VISA_COOP = {
+  [FIELD_NAME["H1"]]: FIELD__H1__LIST["VISA"],
+  [FIELD_NAME["H2"]]: "Co-op VISA",
+  eventBorderColor: DARK_BLUE,
+};
 
-  // ETC
-  {
-    id: "__REPLACE_ME__",
-    [FIELD_NAME["H1"]]: "_CUSTOM",
-    [FIELD_NAME["H2"]]: "_CUSTOM_EVENT",
-    eventBorderColor: DARK_BLUE,
-    [GROUP_ID_KEY]: "__REPLACE_ME__",
-    [RESOURCE_NAME_KEY]: RESOURCE_ID__ETC__CUSTOM,
-  },
-] as const;
+export const RESOURCE_TEMPLATE__WORKING_HOLIDAY_COOP = {
+  [FIELD_NAME["H1"]]: FIELD__H1__LIST["VISA"],
+  [FIELD_NAME["H2"]]: "Working Holiday VISA",
+  eventBorderColor: DARK_BLUE,
+};
+
+export const RESOURCE_TEMPLATE__STUDENT_STATUS = {
+  [FIELD_NAME["H1"]]: FIELD__H1__LIST["STATUS"],
+  [FIELD_NAME["H2"]]: "Student",
+  eventBorderColor: DARK_BLUE,
+};
+
+export const RESOURCE_TEMPLATE__WORKER_STATUS = {
+  [FIELD_NAME["H1"]]: FIELD__H1__LIST["STATUS"],
+  [FIELD_NAME["H2"]]: "Worker",
+  eventBorderColor: DARK_BLUE,
+};
 
 const initialView = { initialView: MY_TIME_LINE_NAME } as const;
 
