@@ -1,65 +1,41 @@
 import React from "react";
-import { EventInput } from "@fullcalendar/react";
-import { uuid } from "../lib/uuid";
-import { convertIsoToDateTime } from "../lib/date";
-import { getLastYearDate } from '../core/visa/workingHoliday'
-import {
-  SHARED__RESOURCES,
-  TEMPLATE__RESOURCES,
-  GROUP_ID,
-} from "../constants/fullcalendar";
+import { addYears, addMonths } from "date-fns";
+import { CommunityCollegeAfterwardsWorkingHolidayStory } from "../core/story/CommunityCollegeAfterwardsWorkingHolidayStory";
+import { communityCollegeExample1 } from "../constants/school";
+import { AGE_OF_START_STORY } from "../constants/fullcalendar/options";
+import { WORKING_HOLIDAY_APPLICATION_LIMITATION_AGE } from "../constants/visa";
+import { range } from "../lib/util";
 
-type Resources = any;
+type Story = any;
+
+const addingNumbers = range(
+  AGE_OF_START_STORY,
+  WORKING_HOLIDAY_APPLICATION_LIMITATION_AGE
+);
+
+const startMonths = communityCollegeExample1.startMonths;
 
 export const useStoryList = () => {
-  const [events, setEvents] = React.useState<EventInput[]>([]);
-  const [resources, setResources] = React.useState<Resources[]>([]);
+  const [stories, setStories] = React.useState<Story[]>([]);
 
   const generate = React.useCallback((_birth: string) => {
     const birth = new Date(_birth);
-    const lastDate = getLastYearDate(birth)
-    const strDate = convertIsoToDateTime(lastDate.toISOString())
 
-    const groupId = uuid();
+    const startDates = addingNumbers
+      .map((num) => addYears(birth, num))
+      .flatMap((startDate) => {
+        const datesInYear = startMonths.map((month) =>
+          addMonths(startDate, month)
+        );
+        return datesInYear;
+      });
 
-    const [_resources, _events] = TEMPLATE__RESOURCES.reduce(
-      (prev: any, curr) => {
-        const [resources, events] = prev;
-
-        // create resource
-        const resourceId = uuid();
-        const resource = {
-          ...curr,
-          [GROUP_ID]: groupId,
-          id: resourceId,
-        };
-
-        // creat event
-        const eventId = uuid();
-        const event = {
-          id: eventId,
-          resourceId,
-          start: "2022-01-01",
-          end: strDate,
-        };
-
-        // merge
-        const result = [
-          [...resources, resource],
-          [...events, event],
-        ] as const;
-
-        return result;
-      },
-      [[], []] as [any[], any[]]
+    const _stories = startDates.map(
+      (startDate) =>
+        new CommunityCollegeAfterwardsWorkingHolidayStory(startDate)
     );
-
-    
-    const _r = [...SHARED__RESOURCES, ..._resources]
-
-    setResources(_r);
-    setEvents(_events);
+    setStories(_stories);
   }, []);
 
-  return { events, resources, generate } as const;
+  return { stories, generate } as const;
 };
