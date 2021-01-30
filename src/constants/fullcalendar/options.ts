@@ -1,4 +1,4 @@
-import { FIELD_NAME, NAME_OF_GROUP_ID } from "./settings";
+import { FIELD_NAME, NAME_OF_GROUP_ID, NAME_OF_ORDER } from "./settings";
 
 export const MY_TIME_LINE_NAME = "MY_TIME_LINE_NAME";
 
@@ -44,11 +44,11 @@ const nowIndicator = {
   nowIndicator: true,
 } as const;
 
-const resourceGroupLabelContent = {
+const resourceConfigs = {
   resourceGroupLabelContent({ groupValue }: { groupValue: string }) {
     return `Story [ID:${groupValue}]`;
   },
-  resourceOrder: "order",
+  resourceOrder: NAME_OF_ORDER,
 } as const;
 
 export const FULL_CALENDAR_CONFIGS = {
@@ -60,5 +60,5 @@ export const FULL_CALENDAR_CONFIGS = {
   ...resourceGroupField,
   ...schedulerLicenseKey,
   ...nowIndicator,
-  ...resourceGroupLabelContent,
+  ...resourceConfigs,
 } as const;

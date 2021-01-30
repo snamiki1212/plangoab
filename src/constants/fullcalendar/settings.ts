@@ -6,6 +6,7 @@ export const FIELD_NAME = {
 
 // keys
 export const NAME_OF_GROUP_ID = "groupId";
+export const NAME_OF_ORDER = "order";
 export const RESOURCE_NAME_KEY = "RESOURCE_NAME_KEY";
 
 // resouce ID
