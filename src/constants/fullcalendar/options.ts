@@ -48,6 +48,7 @@ const resourceGroupLabelContent = {
   resourceGroupLabelContent({ groupValue }: { groupValue: string }) {
     return `Story [ID:${groupValue}]`;
   },
+  resourceOrder: "order",
 } as const;
 
 export const FULL_CALENDAR_CONFIGS = {
