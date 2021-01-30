@@ -87,8 +87,8 @@ export class CommunityCollegeAfterwardsWorkingHolidayStory
     const studentStatusVisa = {
       id: uuid(),
       resourceId: studentStatusResourceId,
-      start: addMonths(startDate, 12 * 2),
-      end: addMonths(startDate, 12 * 3),
+      start: startDate,
+      end: addMonths(startDate, 12 * 2),
       [NAME_OF_ORDER]: 4,
     };
 
@@ -103,7 +103,7 @@ export class CommunityCollegeAfterwardsWorkingHolidayStory
     const workerStatusVisa = {
       id: uuid(),
       resourceId: workerStatusResourceId,
-      start: addMonths(startDate, 12 * 2),
+      start: addMonths(startDate, 12 * 1),
       end: addMonths(startDate, 12 * 3),
       [NAME_OF_ORDER]: 5,
     };
