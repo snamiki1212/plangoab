@@ -5,7 +5,7 @@ export const FIELD_NAME = {
 } as const;
 
 // keys
-export const GROUP_ID_KEY = "GROUP_ID_KEY";
+export const NAME_OF_GROUP_ID = "groupId";
 export const RESOURCE_NAME_KEY = "RESOURCE_NAME_KEY";
 
 // resouce ID

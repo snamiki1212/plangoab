@@ -1,6 +1,6 @@
 import React from "react";
 import { EventInput } from "@fullcalendar/react";
-import {addYears} from 'date-fns'
+import {addYears, addMonths} from 'date-fns'
 import { CommunityCollegeAfterwardsWorkingHolidayStory } from "../core/story/CommunityCollegeAfterwardsWorkingHolidayStory";
 import {communityCollegeExample1} from '../constants/school';
 
@@ -15,8 +15,10 @@ export const useStoryList = () => {
   const generate = React.useCallback((_birth: string) => {
     const birth = new Date(_birth);
     const startDate = addYears(birth, 27) // TODO:
-    const story = new CommunityCollegeAfterwardsWorkingHolidayStory(startDate)
-    setStories([story])
+    
+    const startDatesInYear = startMonths.map(month => addMonths(startDate, month));
+    const _stories = startDatesInYear.map(startDate => new CommunityCollegeAfterwardsWorkingHolidayStory(startDate))
+    setStories(_stories)
   }, []);
 
   return { stories, generate } as const;

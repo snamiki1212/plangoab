@@ -1,4 +1,4 @@
-import { FIELD_NAME, GROUP_ID_KEY } from "./settings";
+import { FIELD_NAME, NAME_OF_GROUP_ID } from "./settings";
 
 export const MY_TIME_LINE_NAME = "MY_TIME_LINE_NAME";
 
@@ -12,7 +12,7 @@ const headerToolbar = {
 
 const initialView = { initialView: MY_TIME_LINE_NAME } as const;
 
-const resourceGroupField = { resourceGroupField: GROUP_ID_KEY } as const;
+const resourceGroupField = { resourceGroupField: NAME_OF_GROUP_ID } as const;
 
 const resourceAreaColumns = [
   {
@@ -40,7 +40,7 @@ const views = {
 
 const nowIndicator = {
   nowIndicator: true,
-};
+} as const;
 
 export const FULL_CALENDAR_CONFIGS = {
   resourceAreaColumns,

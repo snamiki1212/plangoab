@@ -2,7 +2,7 @@ import {
   FIELD_NAME,
   RESOURCE_ID__SHARED__AGE,
   RESOURCE_ID__SHARED__LIMIT,
-  GROUP_ID_KEY,
+  NAME_OF_GROUP_ID,
 } from "./settings";
 
 const DARK_BLUE = "#00008b";
@@ -52,14 +52,14 @@ export const DEPRECATED_SHARED__RESOURCES = [
     id: RESOURCE_ID__SHARED__AGE,
     [FIELD_NAME["H1"]]: FIELD__H1__LIST["SHARED"],
     [FIELD_NAME["H2"]]: "Age",
-    [GROUP_ID_KEY]: GROUP_ID__ALL,
+    [NAME_OF_GROUP_ID]: GROUP_ID__ALL,
     eventBorderColor: DARK_BLUE,
   },
   {
     id: RESOURCE_ID__SHARED__LIMIT,
     [FIELD_NAME["H1"]]: FIELD__H1__LIST["SHARED"],
     [FIELD_NAME["H2"]]: "Working Holiday Application Limit",
-    [GROUP_ID_KEY]: GROUP_ID__ALL,
+    [NAME_OF_GROUP_ID]: GROUP_ID__ALL,
     eventBorderColor: DARK_BLUE,
   },
 ];
