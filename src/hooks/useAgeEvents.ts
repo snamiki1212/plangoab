@@ -35,43 +35,47 @@ const createWorkingHolidayLimitEvent = (birthday: Date) => {
   return _event;
 };
 
+const generate = (startDate: Date) => {
+  // get year num
+  const endYear = getLastYear();
+  const startYear = new Date(startDate).getFullYear();
+
+  // create years list
+  const years = getRangeNumbers(startYear, endYear);
+
+  const workingHolidayLimitEvent = createWorkingHolidayLimitEvent(startDate);
+
+  // create EventInput obj
+  const ageEventList = years.map<EventInput>((year, index) => {
+    const start = (() => {
+      startDate.setFullYear(year);
+      const isoStr = startDate.toISOString();
+      const str = convertIsoToDateTime(isoStr);
+      return str;
+    })();
+
+    const isoStr = addMonths(new Date(start), +11).toISOString();
+    const end = convertIsoToDateTime(isoStr);
+
+    return {
+      id: uuid(),
+      resourceId: RESOURCE_ID__SHARED__AGE,
+      title: `Aage:${index}`,
+      start,
+      end,
+    };
+  });
+
+  return [workingHolidayLimitEvent, ...ageEventList];
+};
+
 export const useAgeEvents = () => {
   const [ageEvents, setAgeEvents] = React.useState<EventInput[]>([]);
 
   const calc = React.useCallback((birthday: string | Date) => {
     const birthDate = new Date(birthday);
-
-    // get year num
-    const endYear = getLastYear();
-    const startYear = new Date(birthday).getFullYear();
-
-    // create years list
-    const years = getRangeNumbers(startYear, endYear);
-
-    const workingHolidayLimitEvent = createWorkingHolidayLimitEvent(birthDate);
-
-    // create EventInput obj
-    const ageEventList = years.map<EventInput>((year, index) => {
-      const start = (() => {
-        birthDate.setFullYear(year);
-        const isoStr = birthDate.toISOString();
-        const str = convertIsoToDateTime(isoStr);
-        return str;
-      })();
-
-      const isoStr = addMonths(new Date(start), +11).toISOString();
-      const end = convertIsoToDateTime(isoStr);
-
-      return {
-        id: uuid(),
-        resourceId: RESOURCE_ID__SHARED__AGE,
-        title: `Aage:${index}`,
-        start,
-        end,
-      };
-    });
-
-    setAgeEvents([workingHolidayLimitEvent, ...ageEventList]);
+    const _events = generate(birthDate);
+    setAgeEvents(_events);
   }, []);
 
   return [ageEvents, calc] as const;
