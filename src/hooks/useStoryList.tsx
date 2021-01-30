@@ -1,5 +1,4 @@
 import React from "react";
-import { EventInput } from "@fullcalendar/react";
 import { addYears, addMonths } from "date-fns";
 import { CommunityCollegeAfterwardsWorkingHolidayStory } from "../core/story/CommunityCollegeAfterwardsWorkingHolidayStory";
 import { communityCollegeExample1 } from "../constants/school";
@@ -7,7 +6,6 @@ import { AGE_OF_START_STORY } from "../constants/fullcalendar/options";
 import { WORKING_HOLIDAY_APPLICATION_LIMITATION_AGE } from "../constants/visa";
 import { range } from "../lib/util";
 
-type Resources = any;
 type Story = any;
 
 const addingNumbers = range(
