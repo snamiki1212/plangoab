@@ -42,8 +42,6 @@ export const FullCalendar = () => {
     calcAgeEvents(birth);
   }, [birth, calcAgeEvents]);
 
-  console.log("events", events, "resources", _resources);
-
   return (
     <FullCalendarLib
       selectable={true}

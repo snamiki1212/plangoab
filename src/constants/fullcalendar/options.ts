@@ -44,6 +44,12 @@ const nowIndicator = {
   nowIndicator: true,
 } as const;
 
+const resourceGroupLabelContent = {
+  resourceGroupLabelContent({ groupValue }: { groupValue: string }) {
+    return `Story [ID:${groupValue}]`;
+  },
+} as const;
+
 export const FULL_CALENDAR_CONFIGS = {
   resourceAreaColumns,
   views,
@@ -53,4 +59,5 @@ export const FULL_CALENDAR_CONFIGS = {
   ...resourceGroupField,
   ...schedulerLicenseKey,
   ...nowIndicator,
+  ...resourceGroupLabelContent,
 } as const;
