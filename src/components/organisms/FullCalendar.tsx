@@ -24,7 +24,7 @@ export const FullCalendar = () => {
     [storyResources]
   );
 
-  const tmpAllEvents = React.useMemo(() => [...ageEvents, ...storyEvents], [
+  const _events = React.useMemo(() => [...ageEvents, ...storyEvents], [
     ageEvents,
     storyEvents,
   ]);
@@ -35,8 +35,8 @@ export const FullCalendar = () => {
   }, [generate, birth]);
 
   React.useEffect(() => {
-    setEvents(tmpAllEvents);
-  }, [tmpAllEvents, setEvents]);
+    setEvents(_events);
+  }, [_events, setEvents]);
 
   React.useEffect(() => {
     calcAgeEvents(birth);
