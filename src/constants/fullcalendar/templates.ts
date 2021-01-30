@@ -53,12 +53,6 @@ export const DEPRECATED_SHARED__RESOURCES = [
     [FIELD_NAME["H1"]]: FIELD__H1__LIST["SHARED"],
     [FIELD_NAME["H2"]]: "Age",
     [NAME_OF_GROUP_ID]: GROUP_ID__ALL,
-    resourceGroupLabelContent: {
-      eventContent: (event: any) => {
-        console.log("event", event);
-        return "aaiu";
-      },
-    },
     eventBorderColor: DARK_BLUE,
   },
   {
@@ -66,7 +60,6 @@ export const DEPRECATED_SHARED__RESOURCES = [
     [FIELD_NAME["H1"]]: FIELD__H1__LIST["SHARED"],
     [FIELD_NAME["H2"]]: "Working Holiday Application Limit",
     [NAME_OF_GROUP_ID]: GROUP_ID__ALL,
-    resourceGroupLabelContent: "ads",
     eventBorderColor: DARK_BLUE,
   },
 ];
