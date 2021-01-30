@@ -1,4 +1,4 @@
-import { FIELD_NAME, NAME_OF_GROUP_ID, NAME_OF_ORDER } from "./settings";
+import { FIELD_NAME, NAME_OF_STORY_ID, NAME_OF_ORDER } from "./settings";
 
 export const MY_TIME_LINE_NAME = "MY_TIME_LINE_NAME";
 
@@ -14,7 +14,7 @@ const headerToolbar = {
 
 const initialView = { initialView: MY_TIME_LINE_NAME } as const;
 
-const resourceGroupField = { resourceGroupField: NAME_OF_GROUP_ID } as const;
+const resourceGroupField = { resourceGroupField: NAME_OF_STORY_ID } as const;
 
 const resourceAreaColumns = [
   {

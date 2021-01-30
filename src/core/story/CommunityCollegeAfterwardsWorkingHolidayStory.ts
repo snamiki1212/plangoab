@@ -9,7 +9,7 @@ import {
   RESOURCE_TEMPLATE__WORKER_STATUS,
 } from "../../constants/fullcalendar/templates";
 import {
-  NAME_OF_GROUP_ID,
+  NAME_OF_STORY_ID,
   NAME_OF_ORDER,
 } from "../../constants/fullcalendar/settings";
 
@@ -18,22 +18,22 @@ export class CommunityCollegeAfterwardsWorkingHolidayStory
   private _periodMonths = 12 * 2 + 12 * 1; // schoolePeriod + WorkingholidayPeroid
   private _events;
   private _resources;
-  private _groupId;
+  private _storyId;
 
   constructor(startDate: Date) {
-    this._groupId = uuid();
-    const [resources, events] = this.createStory(this._groupId, startDate);
+    this._storyId = uuid();
+    const [resources, events] = this.createStory(this._storyId, startDate);
     this._resources = resources;
     this._events = events;
   }
 
-  private createStory(groupId: string, startDate: Date) {
+  private createStory(storyId: string, startDate: Date) {
     // Coop Visa
     const coopVisaResourceId = uuid();
     const coopVisaResource = {
       ...RESOURCE_TEMPLATE__VISA_COOP,
       id: coopVisaResourceId,
-      [NAME_OF_GROUP_ID]: groupId,
+      [NAME_OF_STORY_ID]: storyId,
       [NAME_OF_ORDER]: 1,
     };
     const coopVisaEvent = {
@@ -49,7 +49,7 @@ export class CommunityCollegeAfterwardsWorkingHolidayStory
     const studyVisaResource = {
       ...RESOURCE_TEMPLATE__VISA_STUDY,
       id: studyVisaResourceId,
-      [NAME_OF_GROUP_ID]: groupId,
+      [NAME_OF_STORY_ID]: storyId,
       [NAME_OF_ORDER]: 2,
     };
     const studyVisaEvent = {
@@ -65,7 +65,7 @@ export class CommunityCollegeAfterwardsWorkingHolidayStory
     const workingholidayResource = {
       ...RESOURCE_TEMPLATE__WORKING_HOLIDAY_COOP,
       id: workingholidayResourceId,
-      [NAME_OF_GROUP_ID]: groupId,
+      [NAME_OF_STORY_ID]: storyId,
       [NAME_OF_ORDER]: 3,
     };
     const workingholidayVisa = {
@@ -81,7 +81,7 @@ export class CommunityCollegeAfterwardsWorkingHolidayStory
     const studentStatusResource = {
       ...RESOURCE_TEMPLATE__STUDENT_STATUS,
       id: studentStatusResourceId,
-      [NAME_OF_GROUP_ID]: groupId,
+      [NAME_OF_STORY_ID]: storyId,
       [NAME_OF_ORDER]: 4,
     };
     const studentStatusVisa = {
@@ -97,7 +97,7 @@ export class CommunityCollegeAfterwardsWorkingHolidayStory
     const workerStatusResource = {
       ...RESOURCE_TEMPLATE__WORKER_STATUS,
       id: workerStatusResourceId,
-      [NAME_OF_GROUP_ID]: groupId,
+      [NAME_OF_STORY_ID]: storyId,
       [NAME_OF_ORDER]: 5,
     };
     const workerStatusVisa = {
