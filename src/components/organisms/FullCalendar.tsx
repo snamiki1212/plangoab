@@ -3,16 +3,15 @@ import FullCalendarLib from "@fullcalendar/react";
 import resourceTimelinePlugin from "@fullcalendar/resource-timeline";
 import listPlugin from "@fullcalendar/list";
 import interactionPlugin from "@fullcalendar/interaction";
-import { useAgeEvents } from "../../hooks/useAgeEvents";
+import { useSharedStory } from "../../hooks/useSharedStory";
 import { useStoryList } from "../../hooks/useStoryList";
 import { useAgeContext } from "../../hooks/useAgeContext";
 import { useEventsHandler } from "../../hooks/useEventsHandler";
 import { FULL_CALENDAR_CONFIGS } from "../../constants/fullcalendar/options";
-import { DEPRECATED_SHARED__RESOURCES } from "../../constants/fullcalendar/templates";
 
 export const FullCalendar = () => {
   const { birth } = useAgeContext();
-  const [ageEvents, calcAgeEvents] = useAgeEvents();
+  const [sharedEvents, sharedResources, generateSharedEvents] = useSharedStory();
   const { events, select, click, set: setEvents } = useEventsHandler();
   const { stories, generate } = useStoryList();
   
@@ -20,12 +19,12 @@ export const FullCalendar = () => {
   const storyEvents = React.useMemo(() => stories.reduce((prev, story) => ([...prev, ...story.events]), []), [stories]);
 
   const _resources = React.useMemo(
-    () => [...DEPRECATED_SHARED__RESOURCES, ...storyResources],
-    [storyResources]
+    () => [...sharedResources, ...storyResources],
+    [sharedResources, storyResources]
   );
 
-  const tmpAllEvents = React.useMemo(() => [...ageEvents, ...storyEvents], [
-    ageEvents,
+  const _events = React.useMemo(() => [...sharedEvents, ...storyEvents], [
+    sharedEvents,
     storyEvents,
   ]);
 
@@ -35,12 +34,12 @@ export const FullCalendar = () => {
   }, [generate, birth]);
 
   React.useEffect(() => {
-    setEvents(tmpAllEvents);
-  }, [tmpAllEvents, setEvents]);
+    setEvents(_events);
+  }, [_events, setEvents]);
 
   React.useEffect(() => {
-    calcAgeEvents(birth);
-  }, [birth, calcAgeEvents]);
+    generateSharedEvents(birth);
+  }, [birth, generateSharedEvents]);
 
   return (
     <FullCalendarLib

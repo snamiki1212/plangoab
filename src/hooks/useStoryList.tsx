@@ -1,7 +1,7 @@
 import React from "react";
 import { addYears, addMonths } from "date-fns";
 import { CommunityCollegeAfterwardsWorkingHolidayStory } from "../core/story/CommunityCollegeAfterwardsWorkingHolidayStory";
-import { communityCollegeExample1 } from "../constants/school";
+import { COMMUNITY_COLLEGE_EXAMPLE1 } from "../constants/school";
 import { AGE_OF_START_STORY } from "../constants/fullcalendar/options";
 import { WORKING_HOLIDAY_APPLICATION_LIMITATION_AGE } from "../constants/visa";
 import { range } from "../lib/util";
@@ -13,7 +13,7 @@ const addingNumbers = range(
   WORKING_HOLIDAY_APPLICATION_LIMITATION_AGE
 );
 
-const startMonths = communityCollegeExample1.startMonths;
+const startMonths = COMMUNITY_COLLEGE_EXAMPLE1.startMonths;
 
 export const useStoryList = () => {
   const [stories, setStories] = React.useState<Story[]>([]);
