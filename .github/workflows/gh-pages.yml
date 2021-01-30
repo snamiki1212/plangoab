@@ -32,7 +32,7 @@ jobs:
         run: yarn install --frozen-lockfile
 
       - name: Test
-        run: yarn Test
+        run: CI=true yarn Test
 
       - name: Build
         run: yarn build
