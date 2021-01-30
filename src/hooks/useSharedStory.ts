@@ -9,6 +9,7 @@ import {
   RESOURCE_ID__SHARED__LIMIT,
 } from "../constants/fullcalendar/settings";
 import { WORKING_HOLIDAY_APPLICATION_LIMITATION_AGE } from "../constants/visa";
+import { DEPRECATED_SHARED__RESOURCES } from "../constants/fullcalendar/templates";
 
 const getLastYear = () => {
   const BUFFER_YEAR = 10;
@@ -35,7 +36,7 @@ const createWorkingHolidayLimitEvent = (birthday: Date) => {
   return _event;
 };
 
-const generate = (startDate: Date) => {
+const _generate = (startDate: Date) => {
   // get year num
   const endYear = getLastYear();
   const startYear = new Date(startDate).getFullYear();
@@ -69,14 +70,16 @@ const generate = (startDate: Date) => {
   return [workingHolidayLimitEvent, ...ageEventList];
 };
 
-export const useAgeEvents = () => {
-  const [ageEvents, setAgeEvents] = React.useState<EventInput[]>([]);
+export const useSharedStory = () => {
+  const [events, setEvents] = React.useState<EventInput[]>([]);
 
-  const calc = React.useCallback((birthday: string | Date) => {
+  const resources = DEPRECATED_SHARED__RESOURCES;
+
+  const generate = React.useCallback((birthday: string | Date) => {
     const birthDate = new Date(birthday);
-    const _events = generate(birthDate);
-    setAgeEvents(_events);
+    const _events = _generate(birthDate);
+    setEvents(_events);
   }, []);
 
-  return [ageEvents, calc] as const;
+  return [events, resources, generate] as const;
 };
