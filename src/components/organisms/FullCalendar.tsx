@@ -1,82 +1,57 @@
 import React from "react";
-import FullCalendarLib, {
-  DateSelectArg,
-  EventClickArg,
-} from "@fullcalendar/react";
+import FullCalendarLib from "@fullcalendar/react";
 import resourceTimelinePlugin from "@fullcalendar/resource-timeline";
 import listPlugin from "@fullcalendar/list";
 import interactionPlugin from "@fullcalendar/interaction";
-import { uuid } from "../../lib/uuid";
-import { useAgeEvents } from "../../hooks/useAgeEvents";
+import { useSharedStory } from "../../hooks/useSharedStory";
+import { useStoryList } from "../../hooks/useStoryList";
 import { useAgeContext } from "../../hooks/useAgeContext";
-import {
-  resourceAreaColumns,
-  views,
-  headerToolbar,
-  resources,
-  events,
-  slotLabelFormat,
-  MY_TIME_LINE,
-} from "../../constants/index";
+import { useEventsHandler } from "../../hooks/useEventsHandler";
+import { FULL_CALENDAR_CONFIGS } from "../../constants/fullcalendar/options";
 
 export const FullCalendar = () => {
-  const [_events, setEvents] = React.useState(events);
-
   const { birth } = useAgeContext();
-  const [ageEvents, calcAgeEvents] = useAgeEvents();
+  const [sharedEvents, sharedResources, generateSharedEvents] = useSharedStory();
+  const { events, select, click, set: setEvents } = useEventsHandler();
+  const { stories, generate } = useStoryList();
+  
+  const storyResources = React.useMemo(() => stories.reduce((prev,story) => ([...prev, ...story.resources]), []), [stories]);
+  const storyEvents = React.useMemo(() => stories.reduce((prev, story) => ([...prev, ...story.events]), []), [stories]);
+
+  const _resources = React.useMemo(
+    () => [...sharedResources, ...storyResources],
+    [sharedResources, storyResources]
+  );
+
+  const _events = React.useMemo(() => [...sharedEvents, ...storyEvents], [
+    sharedEvents,
+    storyEvents,
+  ]);
+
 
   React.useEffect(() => {
-    calcAgeEvents(birth);
-  }, [birth, calcAgeEvents]);
+    generate(birth);
+  }, [generate, birth]);
 
   React.useEffect(() => {
-    console.log("ageEvents", ageEvents);
-    const result = [...ageEvents, ...events];
-    setEvents(result);
-  }, [ageEvents]);
+    setEvents(_events);
+  }, [_events, setEvents]);
 
-  console.log("ageEvents", ageEvents);
-
-  const select = (info: DateSelectArg) => {
-    setEvents((prev) => {
-      return [
-        ...prev,
-        {
-          id: uuid(),
-          resourceId: info.resource?.id,
-          start: info.startStr,
-          end: info.endStr,
-        },
-      ];
-    });
-  };
-
-  const click = (info: EventClickArg) => {
-    if (!window.confirm("Would you like to remove this event?")) return;
-
-    const id = info.event.id;
-    setEvents((prev) => {
-      return prev.filter((e) => e.id !== id);
-    });
-  };
+  React.useEffect(() => {
+    generateSharedEvents(birth);
+  }, [birth, generateSharedEvents]);
 
   return (
     <FullCalendarLib
       selectable={true}
       editable={true}
       plugins={[interactionPlugin, resourceTimelinePlugin, listPlugin]}
-      initialView={MY_TIME_LINE}
-      headerToolbar={headerToolbar}
-      events={_events}
-      resources={resources}
-      resourceAreaColumns={resourceAreaColumns}
-      views={views}
+      events={events}
+      resources={_resources}
       select={select}
       eventClick={click}
-      slotLabelFormat={slotLabelFormat}
+      {...FULL_CALENDAR_CONFIGS}
       initialDate={"2020-06-01"}
-      // slotLabelInterval={{years: 3}}
-      schedulerLicenseKey="GPL-My-Project-Is-Open-Source"
     />
   );
 };

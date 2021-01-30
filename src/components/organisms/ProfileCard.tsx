@@ -11,7 +11,6 @@ export const ProfileCard: React.FC = () => {
   const handleDateChange = React.useCallback(
     (date: Date | null) => {
       if (!date) return;
-      console.log(date);
       setBirth(date.toISOString());
     },
     [setBirth]

@@ -1,12 +1,10 @@
 import React from 'react'
+import {addYears} from 'date-fns'
 import {calcAge} from '../lib/age'
 
 const PERSONA_AGE = 25;
 const date = new Date();
-const personaBirthYear = date.getFullYear() - PERSONA_AGE;
-date.setFullYear(personaBirthYear)
-const personaBirth = date.toISOString();
-
+const personaBirth = addYears(date, -PERSONA_AGE).toISOString();
 
 type AgeContextRawValue = {
   birth: string,
@@ -16,11 +14,12 @@ type AgeContextFunc = {
   setBirth: Function
 }
 type AgeContextValue = AgeContextRawValue & AgeContextFunc
+
 const defaultValue = {
   birth: personaBirth,
   age: PERSONA_AGE,
   setBirth: () => {throw new Error('this func should be replaced but not yet') },
-};
+} as const;
 
 const AgeContext = React.createContext<AgeContextValue>(defaultValue)
 
