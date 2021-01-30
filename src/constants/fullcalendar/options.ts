@@ -2,6 +2,8 @@ import { FIELD_NAME, NAME_OF_GROUP_ID } from "./settings";
 
 export const MY_TIME_LINE_NAME = "MY_TIME_LINE_NAME";
 
+export const AGE_OF_START_STORY = 21;
+
 const slotLabelFormat = [{ year: "numeric" }, { month: "numeric" }];
 
 const headerToolbar = {
