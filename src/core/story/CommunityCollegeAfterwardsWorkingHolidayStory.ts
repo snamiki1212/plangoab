@@ -1,6 +1,6 @@
 import { BaseStory } from "./BaseStroy";
 import { uuid } from "../../lib/uuid";
-import { addMonths } from "date-fns";
+import { addMonths, addYears, setMonth } from "date-fns";
 import {
   RESOURCE_TEMPLATE__VISA_STUDY,
   RESOURCE_TEMPLATE__VISA_COOP,
@@ -12,6 +12,10 @@ import {
   NAME_OF_STORY_ID,
   NAME_OF_ORDER,
 } from "../../constants/fullcalendar/settings";
+
+const VISA_BACKGROUND_COLOR = "#8fbc8b";
+const STATUS_BACKGROUND_COLOR = "#ffd700";
+const WH_WARN_BACKGROUND_COLOR = "#e73758";
 
 export class CommunityCollegeAfterwardsWorkingHolidayStory
   implements BaseStory {
@@ -42,6 +46,7 @@ export class CommunityCollegeAfterwardsWorkingHolidayStory
       start: startDate,
       end: addMonths(startDate, 12 * 2),
       [NAME_OF_ORDER]: 1,
+      backgroundColor: VISA_BACKGROUND_COLOR,
     };
 
     // StudyVisa
@@ -58,6 +63,7 @@ export class CommunityCollegeAfterwardsWorkingHolidayStory
       start: startDate,
       end: addMonths(startDate, 12 * 2),
       [NAME_OF_ORDER]: 2,
+      backgroundColor: VISA_BACKGROUND_COLOR,
     };
 
     // Working-holiday Visa
@@ -68,12 +74,22 @@ export class CommunityCollegeAfterwardsWorkingHolidayStory
       [NAME_OF_STORY_ID]: storyId,
       [NAME_OF_ORDER]: 3,
     };
-    const workingholidayVisa = {
+    const dateAsStartWorkingHoliday = addMonths(startDate, 12 * 2);
+    const workingHolidayVisaEvent = {
       id: uuid(),
       resourceId: workingholidayResourceId,
-      start: addMonths(startDate, 12 * 2),
-      end: addMonths(startDate, 12 * 3),
+      start: dateAsStartWorkingHoliday,
+      end: addMonths(dateAsStartWorkingHoliday, 12 * 1),
       [NAME_OF_ORDER]: 3,
+      backgroundColor: VISA_BACKGROUND_COLOR,
+    };
+    const preWorkingHolidayVisaEvent = {
+      id: uuid(),
+      resourceId: workingholidayResourceId,
+      start: setMonth(addYears(dateAsStartWorkingHoliday, -1), 8),
+      end: dateAsStartWorkingHoliday,
+      [NAME_OF_ORDER]: 3,
+      backgroundColor: WH_WARN_BACKGROUND_COLOR,
     };
 
     // student status
@@ -90,6 +106,7 @@ export class CommunityCollegeAfterwardsWorkingHolidayStory
       start: startDate,
       end: addMonths(startDate, 12 * 2),
       [NAME_OF_ORDER]: 4,
+      eventBackgroundCoor: STATUS_BACKGROUND_COLOR,
     };
 
     // worker status
@@ -106,6 +123,7 @@ export class CommunityCollegeAfterwardsWorkingHolidayStory
       start: addMonths(startDate, 12 * 1),
       end: addMonths(startDate, 12 * 3),
       [NAME_OF_ORDER]: 5,
+      eventBackgroundCoor: STATUS_BACKGROUND_COLOR,
     };
 
     const resources = [
@@ -122,7 +140,8 @@ export class CommunityCollegeAfterwardsWorkingHolidayStory
       // visa
       coopVisaEvent,
       studyVisaEvent,
-      workingholidayVisa,
+      preWorkingHolidayVisaEvent,
+      workingHolidayVisaEvent,
 
       // status
       studentStatusVisa,
