@@ -43,14 +43,12 @@ export const FullCalendar = () => {
 
   return (
     <FullCalendarLib
-      selectable={true}
-      editable={true}
+      {...FULL_CALENDAR_CONFIGS}
       plugins={[interactionPlugin, resourceTimelinePlugin, listPlugin]}
       events={events}
       resources={_resources}
       select={select}
       eventClick={click}
-      {...FULL_CALENDAR_CONFIGS}
       initialDate={"2020-06-01"}
     />
   );
