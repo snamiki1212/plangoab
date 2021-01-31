@@ -10,6 +10,19 @@ export const CalendarPage: React.VFC = () => {
 
       <h2>Calendar</h2>
       <FullCalendar />
+
+      <h2>References</h2>
+      <ul>
+        <li>
+          <a
+            href="https://github.com/snamiki1212/canada-immigration-scheduler"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Github
+          </a>
+        </li>
+      </ul>
     </div>
   );
 };
