@@ -37,7 +37,10 @@
       "react-app",
       "react-app/jest",
       "plugin:react-hooks/recommended"
-    ]
+    ],
+    "rules":{
+      "react/jsx-pascal-case": "off"
+    }
   },
   "browserslist": {
     "production": [
