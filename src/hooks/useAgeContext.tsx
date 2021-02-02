@@ -1,41 +1,19 @@
-import React, { PropsWithChildren } from "react";
-import { addYears } from "date-fns";
-import { calcAge } from "../lib/age";
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../redux/rootReducer";
+import { updateXXX } from "../redux/features/user";
 
-const PERSONA_AGE = 25;
-const date = new Date();
-const personaBirth = addYears(date, -PERSONA_AGE).toISOString();
+export const useAgeContext = () => {
+  const {birthday, age} = useSelector((state:RootState) => state.user);
+  const dispatch = useDispatch();
+  const setBirth = React.useCallback(
+    (birth: string) => dispatch(updateXXX({ birthday: birth })),
+    [dispatch]
+  );
 
-type AgeContextRawValue = {
-  birth: string;
-  age: number;
-};
-type AgeContextFunc = {
-  setBirth: Function;
-};
-type AgeContextValue = AgeContextRawValue & AgeContextFunc;
-
-const defaultValue = {
-  birth: personaBirth,
-  age: PERSONA_AGE,
-  setBirth: () => {
-    throw new Error("this func should be replaced but not yet");
-  },
-} as const;
-
-const AgeContext = React.createContext<AgeContextValue>(defaultValue);
-
-export function AgeContextProvider<T>({ children }: PropsWithChildren<T>) {
-  const [birth, setBirth] = React.useState(defaultValue.birth);
-  const age = calcAge(birth);
-
-  const value: AgeContextValue = {
-    birth,
+  return {
+    birth: birthday,
     age,
     setBirth,
   };
-
-  return <AgeContext.Provider value={value}>{children}</AgeContext.Provider>;
-}
-
-export const useAgeContext = () => React.useContext(AgeContext);
+};
