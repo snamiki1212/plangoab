@@ -1,13 +1,9 @@
 import React from "react";
-import FullCalendarLib from "@fullcalendar/react";
-import resourceTimelinePlugin from "@fullcalendar/resource-timeline";
-import listPlugin from "@fullcalendar/list";
-import interactionPlugin from "@fullcalendar/interaction";
 import { useSharedStory } from "../../hooks/useSharedStory";
 import { useStoryList } from "../../hooks/useStoryList";
 import { useAgeContext } from "../../hooks/useAgeContext";
 import { useEventsHandler } from "../../hooks/useEventsHandler";
-import { FULL_CALENDAR_CONFIGS } from "../../constants/fullcalendar/options";
+import { FullCalendarBase } from "../atoms/FullCalendarBase";
 
 export const FullCalendar = () => {
   const { birth } = useAgeContext();
@@ -42,9 +38,7 @@ export const FullCalendar = () => {
   }, [birth, generateSharedEvents]);
 
   return (
-    <FullCalendarLib
-      {...FULL_CALENDAR_CONFIGS}
-      plugins={[interactionPlugin, resourceTimelinePlugin, listPlugin]}
+    <FullCalendarBase
       events={events}
       resources={_resources}
       select={select}
