@@ -1,16 +1,15 @@
 import React from "react";
-import { Provider as ReactReduxProvier } from "react-redux";
-import store from "./redux/store";
 import ReactDOM from "react-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import { ReactReduxProvider } from './providers/ReactReduxProvider'
 
 const render = () => {
   ReactDOM.render(
     <React.StrictMode>
-      <ReactReduxProvier store={store}>
+      <ReactReduxProvider>
         <App />
-      </ReactReduxProvier>
+      </ReactReduxProvider>
     </React.StrictMode>,
     document.getElementById("root")
   );
@@ -18,6 +17,7 @@ const render = () => {
 
 render();
 
+// for redux
 if (process.env.NODE_ENV === "development" && module.hot) {
   module.hot.accept("./App", render);
 }

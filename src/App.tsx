@@ -1,5 +1,5 @@
 import React from "react";
-import { MuiPickersUtilsProvider } from "./MuiPickersUtilsProvider";
+import { MuiPickersUtilsProvider } from "./providers/MuiPickersUtilsProvider";
 import { CalendarPage } from "./components/pages/CalendarPage";
 
 function App() {
