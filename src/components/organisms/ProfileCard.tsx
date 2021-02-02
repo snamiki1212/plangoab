@@ -7,7 +7,7 @@ import TextField from "@material-ui/core/TextField";
 
 import { useAgeContext } from "../../hooks/useAgeContext";
 
-export const ProfileCard: React.FC = () => {
+export function ProfileCard() {
   const { birth, age, setBirth } = useAgeContext();
 
   const handleDateChange = React.useCallback(
