@@ -1,6 +1,7 @@
 import React from "react";
 import { ProfileCard } from "../organisms/ProfileCard";
 import { FullCalendar } from "../organisms/FullCalendar";
+import { Footer } from "../molecules/Footer";
 
 export const CalendarPage: React.VFC = () => {
   return (
@@ -12,17 +13,7 @@ export const CalendarPage: React.VFC = () => {
       <FullCalendar />
 
       <h2>References</h2>
-      <ul>
-        <li>
-          <a
-            href="https://github.com/snamiki1212/canada-immigration-scheduler"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Github
-          </a>
-        </li>
-      </ul>
+      <Footer />
     </div>
   );
 };
