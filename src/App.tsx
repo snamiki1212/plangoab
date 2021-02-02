@@ -1,7 +1,6 @@
 import React from "react";
-
 import { Provider } from "./Provider";
-import {CalendarPage} from './components/pages/CalendarPage'
+import { CalendarPage } from "./components/pages/CalendarPage";
 
 function App() {
   return (
