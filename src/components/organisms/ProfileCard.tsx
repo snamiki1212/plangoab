@@ -5,10 +5,10 @@ import Avatar from "@material-ui/core/Avatar";
 import Card from "@material-ui/core/Card";
 import TextField from "@material-ui/core/TextField";
 
-import { useAgeContext } from "../../hooks/useAgeContext";
+import { useUser } from "../../hooks/useUser";
 
 export function ProfileCard() {
-  const { birth, age, setBirth } = useAgeContext();
+  const { birth, age, setBirth } = useUser();
 
   const handleDateChange = React.useCallback(
     (date: Date | null) => {

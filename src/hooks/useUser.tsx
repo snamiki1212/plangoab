@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../redux/rootReducer";
 import { updateXXX } from "../redux/features/user";
 
-export const useAgeContext = () => {
+export const useUser = () => {
   const {birthday, age} = useSelector((state:RootState) => state.user);
   const dispatch = useDispatch();
   const setBirth = React.useCallback(
