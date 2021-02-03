@@ -1,18 +1,18 @@
 import React from "react";
 import { useSharedStory } from "../../hooks/useSharedStory";
 import { useStoryList } from "../../hooks/useStoryList";
-import { useAgeContext } from "../../hooks/useAgeContext";
+import { useUser } from "../../hooks/useUser";
 import { useEventsHandler } from "../../hooks/useEventsHandler";
 import { FullCalendarBase } from "../atoms/FullCalendarBase";
 
 export const FullCalendar = () => {
-  const { birth } = useAgeContext();
+  const { birth } = useUser();
   const [sharedEvents, sharedResources, generateSharedEvents] = useSharedStory();
   const { events, select, click, set: setEvents } = useEventsHandler();
   const { stories, generate } = useStoryList();
   
-  const storyResources = React.useMemo(() => stories.reduce((prev,story) => ([...prev, ...story.resources]), []), [stories]);
-  const storyEvents = React.useMemo(() => stories.reduce((prev, story) => ([...prev, ...story.events]), []), [stories]);
+  const storyResources = React.useMemo(() => stories.reduce((prev,story) => ([...prev, ...story.resources]), [] as any[]), [stories]);
+  const storyEvents = React.useMemo(() => stories.reduce((prev, story) => ([...prev, ...story.events]), [] as any[]), [stories]);
 
   const _resources = React.useMemo(
     () => [...sharedResources, ...storyResources],
