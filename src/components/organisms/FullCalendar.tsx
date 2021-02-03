@@ -11,8 +11,8 @@ export const FullCalendar = () => {
   const { events, select, click, set: setEvents } = useEventsHandler();
   const { stories, generate } = useStoryList();
   
-  const storyResources = React.useMemo(() => stories.reduce((prev,story) => ([...prev, ...story.resources]), []), [stories]);
-  const storyEvents = React.useMemo(() => stories.reduce((prev, story) => ([...prev, ...story.events]), []), [stories]);
+  const storyResources = React.useMemo(() => stories.reduce((prev,story) => ([...prev, ...story.resources]), [] as any[]), [stories]);
+  const storyEvents = React.useMemo(() => stories.reduce((prev, story) => ([...prev, ...story.events]), [] as any[]), [stories]);
 
   const _resources = React.useMemo(
     () => [...sharedResources, ...storyResources],
