@@ -161,4 +161,8 @@ export class CommunityCollegeAfterwardsWorkingHolidayStory
   get periodMonths() {
     return this._periodMonths;
   }
+
+  get id() {
+    return this._storyId;
+  }
 }

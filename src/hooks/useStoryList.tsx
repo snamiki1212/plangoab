@@ -1,7 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../redux/rootReducer";
-import { generate as generateAction } from "../redux/features/stories";
+import { generate as generateAction, selectAllStories } from "../redux/features/stories";
 
 export const useStoryList = () => {
   const dispatch = useDispatch();
@@ -13,7 +12,7 @@ export const useStoryList = () => {
     [dispatch]
   );
 
-  const {stories} = useSelector((state: RootState) => state.stories);
+  const stories = useSelector(selectAllStories);
 
   return { stories, generate } as const;
 };
