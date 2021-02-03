@@ -14,8 +14,9 @@ const addingNumbers = range(
 );
 
 type GeneratePayload = {
-  birth: string;
+  birth: Date;
 };
+
 const storiesSlice = createSlice({
   name: "stories",
   initialState: {
@@ -23,24 +24,19 @@ const storiesSlice = createSlice({
   },
   reducers: {
     generate(state, action: PayloadAction<GeneratePayload>) {
-      const { birth: _birth } = action.payload;
+      const { birth } = action.payload;
 
-      // TODO: goto outside. don't create object here.
-      const birth = new Date(_birth);
-
-      const startDates = addingNumbers
+      const _stories = addingNumbers
         .map((num) => addYears(birth, num))
         .flatMap((startDate) => {
           const datesInYear = startMonths.map((month) =>
             addMonths(startDate, month)
           );
           return datesInYear;
+        })
+        .map((startDate) => {
+          return new CommunityCollegeAfterwardsWorkingHolidayStory(startDate);
         });
-
-      const _stories = startDates.map(
-        (startDate) =>
-          new CommunityCollegeAfterwardsWorkingHolidayStory(startDate)
-      );
 
       state.stories = _stories;
     },

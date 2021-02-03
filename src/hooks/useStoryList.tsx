@@ -6,7 +6,8 @@ import { generate as generateAction } from "../redux/features/stories";
 export const useStoryList = () => {
   const dispatch = useDispatch();
   const generate = React.useCallback(
-    (birth: string) => {
+    (_birth: string) => {
+      const birth = new Date(_birth)
       dispatch(generateAction({ birth }));
     },
     [dispatch]
