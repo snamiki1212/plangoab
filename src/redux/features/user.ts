@@ -16,7 +16,7 @@ const userSlice = createSlice({
     age: PERSONA_AGE,
   },
   reducers: {
-    updateXXX(state, action: PayloadAction<UpdatePayload>) {
+    updateBirthday(state, action: PayloadAction<UpdatePayload>) {
       const { birthday } = action.payload;
       state.birthday = birthday;
       state.age = calcAge(birthday);
@@ -24,6 +24,6 @@ const userSlice = createSlice({
   },
 });
 
-export const { updateXXX } = userSlice.actions;
+export const { updateBirthday } = userSlice.actions;
 
 export default userSlice.reducer;

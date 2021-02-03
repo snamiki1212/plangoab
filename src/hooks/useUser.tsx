@@ -1,15 +1,16 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../redux/rootReducer";
-import { updateXXX } from "../redux/features/user";
+import { updateBirthday } from "../redux/features/user";
 
 export const useUser = () => {
-  const {birthday, age} = useSelector((state:RootState) => state.user);
   const dispatch = useDispatch();
   const setBirth = React.useCallback(
-    (birth: string) => dispatch(updateXXX({ birthday: birth })),
+    (birth: string) => dispatch(updateBirthday({ birthday: birth })),
     [dispatch]
   );
+
+  const { birthday, age } = useSelector((state: RootState) => state.user);
 
   return {
     birth: birthday,
