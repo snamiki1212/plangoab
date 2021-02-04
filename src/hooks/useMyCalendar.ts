@@ -11,8 +11,9 @@ export const useMyCalendar = () => {
     setCalendar(calendar);
   }, []);
 
+  const stories = React.useMemo(() => calendar?.stories ?? [], [calendar]);
   const events = React.useMemo(() => calendar?.events ?? [], [calendar]);
   const resources = React.useMemo(() => calendar?.resources ?? [], [calendar]);
 
-  return [events, resources, init] as const;
+  return { calendar, stories, events, resources, init } as const;
 };

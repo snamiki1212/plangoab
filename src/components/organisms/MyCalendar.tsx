@@ -7,7 +7,11 @@ import { FullCalendarWithConfigs } from "../atoms/FullCalendarWithConfigs";
 export const MyCalendar = function () {
   const { birth } = useUser();
   const { events, select, click, set: setEvents } = useEventsHandler();
-  const [_events, _resources, initMyCalendar] = useMyCalendar();
+  const {
+    events: _events,
+    resources: _resources,
+    init: initMyCalendar,
+  } = useMyCalendar();
 
   React.useEffect(() => {
     initMyCalendar(birth);
