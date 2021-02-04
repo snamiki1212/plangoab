@@ -1,5 +1,5 @@
 import React from "react";
-import { useProfileStory } from "../../hooks/useProfileStory";
+import { useMyCalendar } from "../../hooks/useMyCalendar";
 import { useStoryList } from "../../hooks/useStoryList";
 import { useUser } from "../../hooks/useUser";
 import { useEventsHandler } from "../../hooks/useEventsHandler";
@@ -8,23 +8,20 @@ import { FullCalendarWithConfigs } from "../atoms/FullCalendarWithConfigs";
 const MyCalendar = function () {
   const { birth } = useUser();
   const { events, select, click, set: setEvents } = useEventsHandler();
-  const [
-    sharedEvents,
-    sharedResources,
-    generateSharedEvents,
-  ] = useProfileStory();
+  const [_events, _resources, initMyCalendar] = useMyCalendar();
 
   React.useEffect(() => {
-    generateSharedEvents(birth);
-  }, [birth, generateSharedEvents]);
+    initMyCalendar(birth);
+  }, [birth, initMyCalendar]);
+
   React.useEffect(() => {
-    setEvents(sharedEvents);
-  }, [setEvents, sharedEvents]);
+    setEvents(_events);
+  }, [setEvents, _events]);
 
   return (
     <FullCalendarWithConfigs
       events={events}
-      resources={sharedResources}
+      resources={_resources}
       select={select}
       eventClick={click}
       initialDate={"2020-06-01"}
