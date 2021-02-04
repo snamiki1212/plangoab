@@ -19,7 +19,7 @@ const WH_WARN_BACKGROUND_COLOR = "#e73758";
 
 export class CommunityCollegeAfterwardsWorkingHolidayStory
   implements BaseStory {
-  private _periodMonths = 12 * 2 + 12 * 1; // schoolePeriod + WorkingholidayPeroid
+  // private _periodMonths = 12 * 2 + 12 * 1; // schoolePeriod + WorkingholidayPeroid
   private _events;
   private _resources;
   private _storyId;
@@ -158,7 +158,7 @@ export class CommunityCollegeAfterwardsWorkingHolidayStory
     return this._resources;
   }
 
-  get periodMonths() {
-    return this._periodMonths;
-  }
+  // get periodMonths() {
+  //   return this._periodMonths;
+  // }
 }

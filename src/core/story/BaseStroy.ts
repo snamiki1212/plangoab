@@ -4,13 +4,14 @@
 type _Event = {
   id: string;
   resourceId: string;
-  start: Date;
-  end: Date;
+  title?: string;
+  start: Date | string;
+  end: Date | string;
 }; // TODO: maybe should not use fullcalendar type.
 type _Resource = any; // TODO:
 
 export interface BaseStory {
-  periodMonths: number;
+  // periodMonths: number;
   // constraints: unknown; // TODO: e.g. workingholiday should apply by age of 31.
   events: _Event[];
   resources: _Resource[];

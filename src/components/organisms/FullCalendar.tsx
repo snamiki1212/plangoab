@@ -1,5 +1,5 @@
 import React from "react";
-import { useSharedStory } from "../../hooks/useSharedStory";
+import { useProfileStory } from "../../hooks/useProfileStory";
 import { useStoryList } from "../../hooks/useStoryList";
 import { useUser } from "../../hooks/useUser";
 import { useEventsHandler } from "../../hooks/useEventsHandler";
@@ -12,7 +12,7 @@ const MyCalendar = function () {
     sharedEvents,
     sharedResources,
     generateSharedEvents,
-  ] = useSharedStory();
+  ] = useProfileStory();
 
   React.useEffect(() => {
     generateSharedEvents(birth);
