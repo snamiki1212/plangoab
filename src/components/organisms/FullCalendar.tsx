@@ -5,45 +5,77 @@ import { useUser } from "../../hooks/useUser";
 import { useEventsHandler } from "../../hooks/useEventsHandler";
 import { FullCalendarWithConfigs } from "../atoms/FullCalendarWithConfigs";
 
-export const FullCalendar = () => {
+const MyCalendar = function () {
   const { birth } = useUser();
-  const [sharedEvents, sharedResources, generateSharedEvents] = useSharedStory();
+  const { events, select, click, set: setEvents } = useEventsHandler();
+  const [
+    sharedEvents,
+    sharedResources,
+    generateSharedEvents,
+  ] = useSharedStory();
+
+  React.useEffect(() => {
+    generateSharedEvents(birth);
+  }, [birth, generateSharedEvents]);
+  React.useEffect(() => {
+    setEvents(sharedEvents);
+  }, [setEvents, sharedEvents]);
+
+  return (
+    <FullCalendarWithConfigs
+      events={events}
+      resources={sharedResources}
+      select={select}
+      eventClick={click}
+      initialDate={"2020-06-01"}
+    />
+  );
+};
+
+function GeneratedCalendar() {
+  const { birth } = useUser();
+
   const { events, select, click, set: setEvents } = useEventsHandler();
   const { stories, generate } = useStoryList();
-  
-  const storyResources = React.useMemo(() => stories.reduce((prev,story) => ([...prev, ...story.resources]), [] as any[]), [stories]);
-  const storyEvents = React.useMemo(() => stories.reduce((prev, story) => ([...prev, ...story.events]), [] as any[]), [stories]);
 
-  const _resources = React.useMemo(
-    () => [...sharedResources, ...storyResources],
-    [sharedResources, storyResources]
+  const storyResources = React.useMemo(
+    () =>
+      stories.reduce(
+        (prev, story) => [...prev, ...story.resources],
+        [] as any[]
+      ),
+    [stories]
   );
-
-  const _events = React.useMemo(() => [...sharedEvents, ...storyEvents], [
-    sharedEvents,
-    storyEvents,
-  ]);
-
+  const storyEvents = React.useMemo(
+    () =>
+      stories.reduce((prev, story) => [...prev, ...story.events], [] as any[]),
+    [stories]
+  );
 
   React.useEffect(() => {
     generate(birth);
   }, [generate, birth]);
 
   React.useEffect(() => {
-    setEvents(_events);
-  }, [_events, setEvents]);
-
-  React.useEffect(() => {
-    generateSharedEvents(birth);
-  }, [birth, generateSharedEvents]);
+    setEvents(storyEvents);
+  }, [storyEvents, setEvents]);
 
   return (
     <FullCalendarWithConfigs
       events={events}
-      resources={_resources}
+      resources={storyResources}
       select={select}
       eventClick={click}
       initialDate={"2020-06-01"}
     />
+  );
+}
+
+export const FullCalendar = () => {
+  return (
+    <div>
+      <MyCalendar />
+      <GeneratedCalendar />
+    </div>
   );
 };
