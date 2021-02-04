@@ -3,7 +3,7 @@ import { useSharedStory } from "../../hooks/useSharedStory";
 import { useStoryList } from "../../hooks/useStoryList";
 import { useUser } from "../../hooks/useUser";
 import { useEventsHandler } from "../../hooks/useEventsHandler";
-import { FullCalendarBase } from "../atoms/FullCalendarBase";
+import { FullCalendarWithConfigs } from "../atoms/FullCalendarWithConfigs";
 
 export const FullCalendar = () => {
   const { birth } = useUser();
@@ -38,7 +38,7 @@ export const FullCalendar = () => {
   }, [birth, generateSharedEvents]);
 
   return (
-    <FullCalendarBase
+    <FullCalendarWithConfigs
       events={events}
       resources={_resources}
       select={select}
