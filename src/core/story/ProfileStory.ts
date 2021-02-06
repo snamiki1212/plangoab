@@ -81,6 +81,11 @@ export class ProfileStory implements BaseStory {
     return _event;
   };
 
+  removeEvent(eventId: string) {
+    this._events = this._events.filter((event) => event.id !== eventId);
+    console.log("this._events", this._events);
+  }
+
   get events() {
     return this._events;
   }

@@ -15,4 +15,5 @@ export interface BaseStory {
   // constraints: unknown; // TODO: e.g. workingholiday should apply by age of 31.
   events: _Event[];
   resources: _Resource[];
+  removeEvent(eventId: string): void;
 }

@@ -150,6 +150,10 @@ export class CommunityCollegeAfterwardsWorkingHolidayStory
     return [resources, events] as const;
   }
 
+  removeEvent(eventId: string) {
+    this._events = this._events.filter((event) => event.id !== eventId);
+  }
+
   get events() {
     return this._events;
   }

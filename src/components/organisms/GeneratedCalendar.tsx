@@ -1,13 +1,13 @@
 import React from "react";
 import { useStoryList } from "../../hooks/useStoryList";
 import { useUser } from "../../hooks/useUser";
-import { useEventsHandler } from "../../hooks/useEventsHandler";
+import { DEPRECATED_useEventsHandler } from "../../hooks/DEPRECATED_useEventsHandler";
 import { FullCalendarWithConfigs } from "../atoms/FullCalendarWithConfigs";
 
 export function GeneratedCalendar() {
   const { birth } = useUser();
 
-  const { events, select, click, set: setEvents } = useEventsHandler();
+  const { events, select, click, set: setEvents } = DEPRECATED_useEventsHandler();
   const { stories, generate } = useStoryList();
 
   const storyResources = React.useMemo(
