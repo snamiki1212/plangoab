@@ -3,12 +3,13 @@ import { useCommunityCollegeAfterwardsWorkingHolidayCalendar } from "../hooks/us
 import { useUser } from "../hooks/useUser";
 import { DEPRECATED_useEventsHandler } from "../hooks/DEPRECATED_useEventsHandler";
 import { BaseCalendarContainer } from "./BaseCalendarContainer";
+import { useResourceGroupLabelContentInTemplateCalendar } from "../hooks/useResourceGroupLabelContentInTemplateCalendar";
 
-export function GeneratedCalendarContainer() {
+export function TemplateCalendarContainer() {
   const { birth } = useUser();
-
   const { events, select, click, set: setEvents } = DEPRECATED_useEventsHandler();
   const { stories, generate } = useCommunityCollegeAfterwardsWorkingHolidayCalendar();
+  const {resourceGroupLabelContent} = useResourceGroupLabelContentInTemplateCalendar()
 
   const storyResources = React.useMemo(
     () =>
@@ -39,6 +40,7 @@ export function GeneratedCalendarContainer() {
       select={select}
       eventClick={click}
       initialDate={"2020-06-01"}
+      resourceGroupLabelContent={resourceGroupLabelContent}
     />
   );
 }

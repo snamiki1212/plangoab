@@ -1,5 +1,5 @@
-import { BaseStory } from "../story/BaseStroy";
-import { removeEvent as removeEventInStory } from "../story/BaseStroy";
+import { BaseStory } from "../story/BaseStory";
+import { removeEvent as removeEventInStory } from "../story/BaseStory";
 
 export type BaseCalendar = {
   id: string;

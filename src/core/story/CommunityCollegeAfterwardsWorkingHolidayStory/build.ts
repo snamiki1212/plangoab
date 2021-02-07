@@ -12,7 +12,7 @@ import {
 } from "../../../constants/fullcalendar/settings";
 import { uuid } from "../../../lib/uuid";
 import { CommunityCollegeAfterwardsWorkingHolidayStory } from "./model";
-import { createStoryName } from "../BaseStroy";
+import { createStoryName } from "../BaseStory";
 
 const VISA_BACKGROUND_COLOR = "#8fbc8b";
 const STATUS_BACKGROUND_COLOR = "#ffd700";
