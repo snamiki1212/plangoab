@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { MyCalendar } from "./MyCalendar";
 import { GeneratedCalendar } from "./GeneratedCalendar";
 
-export const FullCalendar = () => {
+export function CalendarList() {
   return (
     <Container>
       <div>
@@ -18,7 +18,7 @@ export const FullCalendar = () => {
       </div>
     </Container>
   );
-};
+}
 
 const Container = styled.div`
   padding: 3rem;

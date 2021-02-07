@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import { ProfileCard } from "../organisms/ProfileCard";
-import { FullCalendar } from "../organisms/FullCalendar";
+import { CalendarList } from "../organisms/CalendarList";
 import { Footer } from "../molecules/Footer";
 
-export const CalendarPage: React.VFC = () => {
+export function CalendarPage () {
   return (
     <Container>
       <div>
@@ -14,7 +14,7 @@ export const CalendarPage: React.VFC = () => {
 
       <div>
         <SubTitle>Calendar</SubTitle>
-        <FullCalendar />
+        <CalendarList />
       </div>
 
       <div>
