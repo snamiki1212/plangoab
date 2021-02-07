@@ -1,20 +1,33 @@
-import { BaseStory } from "../BaseStroy";
-import { DEPRECATED_SHARED__RESOURCES } from "../../../constants/fullcalendar/templates";
-import { getRangeNumbers } from "../../../lib/age";
-import { addMonths, addYears } from "date-fns";
-import { uuid } from "../../../lib/uuid";
-import { convertIsoToDateTime } from "../../../lib/date";
+import { ProfileStory } from "./model";
 import {
   PROFILE_ID,
   RESOURCE_ID__SHARED__AGE,
   RESOURCE_ID__SHARED__LIMIT,
 } from "../../../constants/fullcalendar/settings";
-import { WORKING_HOLIDAY_APPLICATION_LIMITATION_AGE } from "../../../constants/visa";
+import { DEPRECATED_SHARED__RESOURCES } from "../../../constants/fullcalendar/templates";
 import { createStoryName } from "../BaseStroy";
+import { addMonths, addYears } from "date-fns";
+import { getRangeNumbers } from "../../../lib/age";
+import { uuid } from "../../../lib/uuid";
+import { convertIsoToDateTime } from "../../../lib/date";
+import { WORKING_HOLIDAY_APPLICATION_LIMITATION_AGE } from "../../../constants/visa";
 
-export type ProfileStory = BaseStory;
+export const createProfileStory = ({
+  birth,
+}: {
+  birth: string | Date;
+}): ProfileStory => {
+  const _birth = new Date(birth);
 
-export const generateEvents = (startDate: Date) => {
+  return {
+    id: PROFILE_ID,
+    name: createStoryName(_birth),
+    resources: DEPRECATED_SHARED__RESOURCES,
+    events: generateEvents(_birth),
+  };
+};
+
+const generateEvents = (startDate: Date) => {
   // get year num
   const endYear = getLastYear();
   const startYear = new Date(startDate).getFullYear();
@@ -52,21 +65,6 @@ const getLastYear = () => {
   const BUFFER_YEAR = 10;
   const date = new Date();
   return addYears(date, BUFFER_YEAR).getFullYear();
-};
-
-export const createProfileStory = ({
-  birth,
-}: {
-  birth: string | Date;
-}): ProfileStory => {
-  const _birth = new Date(birth);
-
-  return {
-    id: PROFILE_ID,
-    name: createStoryName(_birth),
-    resources: DEPRECATED_SHARED__RESOURCES,
-    events: generateEvents(_birth),
-  };
 };
 
 const createWorkingHolidayLimitEvent = (birthday: Date) => {

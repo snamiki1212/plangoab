@@ -1,17 +1,32 @@
 import React from "react";
-
-import { RootState } from "../redux/rootReducer";
 import { useSelector } from "react-redux";
 
-export type Table = {[key: string]: string}
+import { selectUserCalendar } from "../redux/features/userCalendars";
+import { selectTable } from "../redux/features/templateCalendarTable";
+import { BaseCalendar } from "../core/calendar/BaseCalendar";
+
+export type Table = { [key: string]: string };
 
 export const useStoryIdNameTable = () => {
-  const calendars = useSelector(
-    (state: RootState) => state.calendars.calendars
+  const userCalendars = useSelector(selectUserCalendar);
+  const templateCalendarTable = useSelector(selectTable);
+
+  const templateCalendars = React.useMemo(
+    () =>
+      Object.entries(templateCalendarTable).reduce((prev, table) => {
+        const [, value] = table;
+        return !!value ? [...prev, value] : prev;
+      }, [] as BaseCalendar[]),
+    [templateCalendarTable]
+  );
+
+  const allCalendars = React.useMemo(
+    () => [...userCalendars, ...templateCalendars],
+    [userCalendars, templateCalendars]
   );
 
   const storyIdNameTable = React.useMemo(() => {
-    const table = calendars.reduce((prev, calendar) => {
+    const table = allCalendars.reduce((prev, calendar) => {
       const _table = calendar.stories.reduce(
         (prev, story) => ({ ...prev, [story.id]: story.name }),
         {} as Table
@@ -20,7 +35,7 @@ export const useStoryIdNameTable = () => {
     }, {} as Table);
 
     return table;
-  }, [calendars]);
+  }, [allCalendars]);
 
   return storyIdNameTable;
 };
