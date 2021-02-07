@@ -11,6 +11,7 @@ export const createMyCalendar = ({
   stories?: Story[];
 }): MyCalendar => {
   return {
+    id: "todo", // TODO: change name
     stories,
   };
 };
