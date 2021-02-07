@@ -47,7 +47,7 @@ const calendarsSlice = createSlice({
 
     // TODO: rename later
     // TODO: upsert
-    generateCommunityCollegeAfterwardsWorkingHolidayStories(
+    upsertCommunityCollegeAfterwardsWorkingHolidayStories(
       state,
       action: PayloadAction<GeneratePayload>
     ) {
@@ -73,7 +73,7 @@ const calendarsSlice = createSlice({
 
 export const {
   update,
-  generateCommunityCollegeAfterwardsWorkingHolidayStories,
+  upsertCommunityCollegeAfterwardsWorkingHolidayStories,
 } = calendarsSlice.actions;
 
 export default calendarsSlice.reducer;

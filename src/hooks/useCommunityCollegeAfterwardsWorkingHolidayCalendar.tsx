@@ -1,13 +1,13 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 // import { RootState } from "../redux/rootReducer";
-import { generateCommunityCollegeAfterwardsWorkingHolidayStories, selectCalendar } from "../redux/features/calendars";
+import { upsertCommunityCollegeAfterwardsWorkingHolidayStories, selectCalendar } from "../redux/features/calendars";
 
 export const useCommunityCollegeAfterwardsWorkingHolidayCalendar = () => {
   const dispatch = useDispatch();
   const generate = React.useCallback(
     (birth: string) => {
-      dispatch(generateCommunityCollegeAfterwardsWorkingHolidayStories({ birth }));
+      dispatch(upsertCommunityCollegeAfterwardsWorkingHolidayStories({ birth }));
     },
     [dispatch]
   );
