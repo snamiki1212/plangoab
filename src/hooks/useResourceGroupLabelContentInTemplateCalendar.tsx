@@ -9,9 +9,7 @@ type Props = {
   groupValue: string;
 };
 
-const calendarId = MY_CALENDAR_ID; // TODO:
-
-export const useResourceGroupLabelContent = () => {
+export const useResourceGroupLabelContentInTemplateCalendar = () => {
   const dispatch = useDispatch();
   const calendar = useSelector(
     selectCommunityCollegeAfterwardsWorkingHolidayCalendar
@@ -40,11 +38,11 @@ export const useResourceGroupLabelContent = () => {
       const onClick = () => {
         if (!window.confirm("Copy to my calendar?")) return;
         console.log("clicked");
-        dispatch(addStory({ calendarId, story }));
+        dispatch(addStory({ calendarId: MY_CALENDAR_ID, story }));
       };
 
       const nameElement = document.createElement('i')
-      nameElement.innerHTML = name + ' '
+      nameElement.innerHTML = name + ' ' // NOTE: space is for design, so not good way
 
       const buttonElement = document.createElement('button')
       buttonElement.innerHTML = 'copy'
@@ -56,5 +54,5 @@ export const useResourceGroupLabelContent = () => {
     [dispatch, calendar]
   );
 
-  return resourceGroupLabelContent;
+  return {resourceGroupLabelContent};
 };

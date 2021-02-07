@@ -3,10 +3,19 @@ import { useUserCalendar } from "../hooks/useUserCalendar";
 import { useUser } from "../hooks/useUser";
 import { DEPRECATED_useEventsHandler } from "../hooks/DEPRECATED_useEventsHandler";
 import { BaseCalendarContainer } from "./BaseCalendarContainer";
+import { useResourceGroupLabelContentInUserCalendar } from "../hooks/useResourceGroupLabelContentInUserCalendar";
 
-export function UserCalendarContainer () {
+export function UserCalendarContainer() {
+  const {
+    resourceGroupLabelContent,
+  } = useResourceGroupLabelContentInUserCalendar();
   const { birth } = useUser();
-  const { events, select, click, set: setEvents } = DEPRECATED_useEventsHandler();
+  const {
+    events,
+    select,
+    click,
+    set: setEvents,
+  } = DEPRECATED_useEventsHandler();
   const {
     events: _events,
     resources: _resources,
@@ -28,6 +37,7 @@ export function UserCalendarContainer () {
       select={select}
       eventClick={click}
       initialDate={"2020-06-01"}
+      resourceGroupLabelContent={resourceGroupLabelContent}
     />
   );
-};
+}
