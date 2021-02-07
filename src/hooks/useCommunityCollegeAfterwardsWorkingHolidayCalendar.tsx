@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { BaseEvent } from "../core/event/BaseEvent";
 import { BaseResource } from "../core/resource/BaseResource";
 import {
-  upsertCommunityCollegeAfterwardsWorkingHolidayStories,
+  upsertCommunityCollegeAfterwardsWorkingHolidayStoriesAction,
   selectCommunityCollegeAfterwardsWorkingHolidayCalendar,
 } from "../redux/features/templateCalendarTable";
 
@@ -12,7 +12,7 @@ export const useCommunityCollegeAfterwardsWorkingHolidayCalendar = () => {
   const generate = React.useCallback(
     (birth: string) => {
       dispatch(
-        upsertCommunityCollegeAfterwardsWorkingHolidayStories({ birth })
+        upsertCommunityCollegeAfterwardsWorkingHolidayStoriesAction({ birth })
       );
     },
     [dispatch]

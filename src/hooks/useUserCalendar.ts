@@ -5,9 +5,9 @@ import { uuid } from "../lib/uuid";
 import { createProfileStory } from "../core/story/ProfileStory/createProfileStory";
 import { createUserCalendar } from "../core/calendar/UserCalendar/createUserCalendar";
 import {
-  update as updateAction,
-  addEvent as addEventAction,
-  removeEvent as removeEventAction,
+  updateAction,
+  addEventAction,
+  removeEventAction,
   selectUserCalendar,
 } from "../redux/features/userCalendars";
 

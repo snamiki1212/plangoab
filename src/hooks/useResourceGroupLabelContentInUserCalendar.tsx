@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { removeStory } from "../redux/features/userCalendars";
+import { removeStoryAction } from "../redux/features/userCalendars";
 import { selectUserCalendar } from "../redux/features/userCalendars";
 import { MY_CALENDAR_ID } from "../constants/fullcalendar/settings";
 
@@ -39,7 +39,7 @@ export const useResourceGroupLabelContentInUserCalendar = () => {
 
       const onClick = () => {
         if (!window.confirm("Remove this story?")) return;
-        dispatch(removeStory({ calendarId: MY_CALENDAR_ID, storyId }));
+        dispatch(removeStoryAction({ calendarId: MY_CALENDAR_ID, storyId }));
       };
 
       const nameElement = document.createElement('i')

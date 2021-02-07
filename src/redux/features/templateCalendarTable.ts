@@ -4,7 +4,7 @@ import { calendarId as CommunityCollegeAfterwardsWorkingHolidayCalendarId } from
 import { BaseCalendar } from "../../core/calendar/BaseCalendar";
 import { RootState } from "../rootReducer";
 
-type GeneratePayload = {
+type UpsertCommunityCollegeAfterwardsWorkingHolidayStoriesPayload = {
   birth: string;
 };
 
@@ -18,7 +18,7 @@ const templateCalendarTable = createSlice({
   reducers: {
     upsertCommunityCollegeAfterwardsWorkingHolidayStories(
       state,
-      action: PayloadAction<GeneratePayload>
+      action: PayloadAction<UpsertCommunityCollegeAfterwardsWorkingHolidayStoriesPayload>
     ) {
       const { birth } = action.payload;
       const _calendar = createCalendar({ birth: new Date(birth) });
@@ -30,10 +30,8 @@ const templateCalendarTable = createSlice({
 export default templateCalendarTable.reducer;
 
 export const {
-  upsertCommunityCollegeAfterwardsWorkingHolidayStories,
+  upsertCommunityCollegeAfterwardsWorkingHolidayStories: upsertCommunityCollegeAfterwardsWorkingHolidayStoriesAction,
 } = templateCalendarTable.actions;
-
-export const selectTable = (state: RootState) => state.templateCalendar;
 
 export const selectCommunityCollegeAfterwardsWorkingHolidayCalendar = (
   state: RootState

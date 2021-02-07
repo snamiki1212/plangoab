@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addStory } from "../redux/features/userCalendars";
+import { addStoryAction } from "../redux/features/userCalendars";
 import { selectCommunityCollegeAfterwardsWorkingHolidayCalendar } from "../redux/features/templateCalendarTable";
 import { MY_CALENDAR_ID } from "../constants/fullcalendar/settings";
 
@@ -38,7 +38,7 @@ export const useResourceGroupLabelContentInTemplateCalendar = () => {
       const onClick = () => {
         if (!window.confirm("Copy to my calendar?")) return;
         console.log("clicked");
-        dispatch(addStory({ calendarId: MY_CALENDAR_ID, story }));
+        dispatch(addStoryAction({ calendarId: MY_CALENDAR_ID, story }));
       };
 
       const nameElement = document.createElement('i')

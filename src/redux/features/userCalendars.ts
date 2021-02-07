@@ -114,11 +114,11 @@ const userCalendarsSlice = createSlice({
 });
 
 export const {
-  update,
-  addStory,
-  removeStory,
-  addEvent,
-  removeEvent,
+  update: updateAction,
+  addStory: addStoryAction,
+  removeStory: removeStoryAction,
+  addEvent: addEventAction,
+  removeEvent: removeEventAction,
 } = userCalendarsSlice.actions;
 
 export default userCalendarsSlice.reducer;
