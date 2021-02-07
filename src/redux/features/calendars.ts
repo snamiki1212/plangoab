@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { MyCalendar } from "../../core/calendar/MyCalendar";
+import { MyCalendar } from "../../core/calendar/MyCalendar/MyCalendar";
 
 type Calendar = MyCalendar;
 type SetAction = { calendars: Calendar[] };

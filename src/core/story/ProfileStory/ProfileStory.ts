@@ -1,14 +1,14 @@
-import { BaseStory } from "./BaseStroy";
-import { DEPRECATED_SHARED__RESOURCES } from "../../constants/fullcalendar/templates";
-import { getRangeNumbers } from "../../lib/age";
+import { BaseStory } from "../BaseStroy";
+import { DEPRECATED_SHARED__RESOURCES } from "../../../constants/fullcalendar/templates";
+import { getRangeNumbers } from "../../../lib/age";
 import { addMonths, addYears } from "date-fns";
-import { uuid } from "../../lib/uuid";
-import { convertIsoToDateTime } from "../../lib/date";
+import { uuid } from "../../../lib/uuid";
+import { convertIsoToDateTime } from "../../../lib/date";
 import {
   RESOURCE_ID__SHARED__AGE,
   RESOURCE_ID__SHARED__LIMIT,
-} from "../../constants/fullcalendar/settings";
-import { WORKING_HOLIDAY_APPLICATION_LIMITATION_AGE } from "../../constants/visa";
+} from "../../../constants/fullcalendar/settings";
+import { WORKING_HOLIDAY_APPLICATION_LIMITATION_AGE } from "../../../constants/visa";
 
 export type ProfileStory = BaseStory;
 

@@ -1,8 +1,7 @@
 import React from "react";
 import { DateSelectArg, EventClickArg, EventInput } from "@fullcalendar/react";
 import { uuid } from "../lib/uuid";
-import { BaseCalendar } from "../core/calendar/BaseCalendar";
-import { removeEvent } from "../core/calendar/MyCalendar";
+import { BaseCalendar, removeEvent } from "../core/calendar/BaseCalendar";
 
 export const useEventsHandler = () => {
   // const [events, setEvents] = React.useState<EventInput[]>([]);

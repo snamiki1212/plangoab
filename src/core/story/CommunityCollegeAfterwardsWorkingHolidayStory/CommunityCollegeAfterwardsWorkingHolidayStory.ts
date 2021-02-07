@@ -1,5 +1,5 @@
-import { BaseStory } from "./BaseStroy";
-import { uuid } from "../../lib/uuid";
+import { BaseStory } from "../BaseStroy";
+import { uuid } from "../../../lib/uuid";
 import { addMonths, addYears, setMonth } from "date-fns";
 import {
   RESOURCE_TEMPLATE__VISA_STUDY,
@@ -7,11 +7,11 @@ import {
   RESOURCE_TEMPLATE__WORKING_HOLIDAY_COOP,
   RESOURCE_TEMPLATE__STUDENT_STATUS,
   RESOURCE_TEMPLATE__WORKER_STATUS,
-} from "../../constants/fullcalendar/templates";
+} from "../../../constants/fullcalendar/templates";
 import {
   NAME_OF_STORY_ID,
   NAME_OF_ORDER,
-} from "../../constants/fullcalendar/settings";
+} from "../../../constants/fullcalendar/settings";
 
 const VISA_BACKGROUND_COLOR = "#8fbc8b";
 const STATUS_BACKGROUND_COLOR = "#ffd700";

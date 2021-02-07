@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createProfileStory } from "../core/story/ProfileStory";
-import { createMyCalendar } from "../core/calendar/MyCalendar";
+import { createProfileStory } from "../core/story/ProfileStory/ProfileStory";
+import { createMyCalendar } from "../core/calendar/MyCalendar/MyCalendar";
 import { RootState } from "../redux/rootReducer";
 import { update as updateAction } from "../redux/features/calendars";
 
