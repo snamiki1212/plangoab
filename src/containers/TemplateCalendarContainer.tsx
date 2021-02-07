@@ -7,36 +7,22 @@ import { useResourceGroupLabelContentInTemplateCalendar } from "../hooks/useReso
 
 export function TemplateCalendarContainer() {
   const { birth } = useUser();
-  const { events, select, click, set: setEvents } = DEPRECATED_useEventsHandler();
-  const { stories, generate } = useCommunityCollegeAfterwardsWorkingHolidayCalendar();
+  const { events: _events, select, click, set: setEvents } = DEPRECATED_useEventsHandler();
+  const { resources, events, generate } = useCommunityCollegeAfterwardsWorkingHolidayCalendar();
   const {resourceGroupLabelContent} = useResourceGroupLabelContentInTemplateCalendar()
-
-  const storyResources = React.useMemo(
-    () =>
-      stories.reduce(
-        (prev, story) => [...prev, ...story.resources],
-        [] as any[]
-      ),
-    [stories]
-  );
-  const storyEvents = React.useMemo(
-    () =>
-      stories.reduce((prev, story) => [...prev, ...story.events], [] as any[]),
-    [stories]
-  );
 
   React.useEffect(() => {
     generate(birth);
   }, [generate, birth]);
 
   React.useEffect(() => {
-    setEvents(storyEvents);
-  }, [storyEvents, setEvents]);
+    setEvents(events);
+  }, [events, setEvents]);
 
   return (
     <BaseCalendarContainer
-      events={events}
-      resources={storyResources}
+      events={_events}
+      resources={resources}
       select={select}
       eventClick={click}
       initialDate={"2020-06-01"}

@@ -1,19 +1,46 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { upsertCommunityCollegeAfterwardsWorkingHolidayStories, selectCommunityCollegeAfterwardsWorkingHolidayCalendar } from "../redux/features/templateCalendarTable";
+import { BaseEvent } from "../core/event/BaseEvent";
+import { BaseResource } from "../core/resource/BaseResource";
+import {
+  upsertCommunityCollegeAfterwardsWorkingHolidayStories,
+  selectCommunityCollegeAfterwardsWorkingHolidayCalendar,
+} from "../redux/features/templateCalendarTable";
 
 export const useCommunityCollegeAfterwardsWorkingHolidayCalendar = () => {
   const dispatch = useDispatch();
   const generate = React.useCallback(
     (birth: string) => {
-      dispatch(upsertCommunityCollegeAfterwardsWorkingHolidayStories({ birth }));
+      dispatch(
+        upsertCommunityCollegeAfterwardsWorkingHolidayStories({ birth })
+      );
     },
     [dispatch]
   );
 
-  const calendar = useSelector(selectCommunityCollegeAfterwardsWorkingHolidayCalendar);
+  const calendar = useSelector(
+    selectCommunityCollegeAfterwardsWorkingHolidayCalendar
+  );
 
-  const stories = React.useMemo(() => calendar?.stories ?? [], [calendar])
+  const stories = React.useMemo(() => calendar?.stories ?? [], [calendar]);
 
-  return { stories, generate } as const;
+  const resources = React.useMemo(
+    () =>
+      stories.reduce<BaseResource[]>(
+        (prev, story) => [...prev, ...story.resources],
+        []
+      ),
+    [stories]
+  );
+
+  const events = React.useMemo(
+    () =>
+      stories.reduce<BaseEvent[]>(
+        (prev, story) => [...prev, ...story.events],
+        [] as any[]
+      ),
+    [stories]
+  );
+
+  return { stories, generate, resources, events } as const;
 };
