@@ -1,13 +1,10 @@
-import {
-  ProfileStory,
-  removeEvent as removeEventInStory,
-} from "../story/ProfileStory";
+import { BaseCalendar } from "./BaseCalendar";
+import { ProfileStory } from "../story/ProfileStory";
+import { removeEvent as removeEventInStory } from "../story/BaseStroy";
 
 type Story = ProfileStory;
 
-export type MyCalendar = {
-  stories: Story[];
-};
+export type MyCalendar = BaseCalendar;
 
 export const createMyCalendar = ({
   stories = [],

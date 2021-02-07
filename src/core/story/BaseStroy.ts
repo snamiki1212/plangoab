@@ -1,19 +1,23 @@
 // import { EventInput } from "@fullcalendar/react";
 
 // type _Date = Date | string;
-type _Event = {
-  id: string;
-  resourceId: string;
-  title?: string;
-  start: Date | string;
-  end: Date | string;
-}; // TODO: maybe should not use fullcalendar type.
-type _Resource = any; // TODO:
+// type _Event = {
+//   id: string;
+//   resourceId: string;
+//   title?: string;
+//   start: Date | string;
+//   end: Date | string;
+// }; // TODO: maybe should not use fullcalendar type.
 
-export interface BaseStory {
-  // periodMonths: number;
-  // constraints: unknown; // TODO: e.g. workingholiday should apply by age of 31.
-  events: _Event[];
-  resources: _Resource[];
-  removeEvent(eventId: string): void;
-}
+type Event = any;
+type Resource = any; // TODO:
+
+export type BaseStory = {
+  events: Event[];
+  resources: Resource[];
+};
+
+export const removeEvent = (story: BaseStory, eventId: string): BaseStory => {
+  const newEvents = story.events.filter((event) => event.id !== eventId);
+  return { ...story, events: newEvents };
+};

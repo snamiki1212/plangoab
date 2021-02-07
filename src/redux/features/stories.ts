@@ -1,6 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { addYears, addMonths } from "date-fns";
-import { CommunityCollegeAfterwardsWorkingHolidayStory } from "../../core/story/CommunityCollegeAfterwardsWorkingHolidayStory";
+import {
+  CommunityCollegeAfterwardsWorkingHolidayStory,
+  build,
+} from "../../core/story/CommunityCollegeAfterwardsWorkingHolidayStory";
 import { AGE_OF_START_STORY } from "../../constants/fullcalendar/options";
 import { WORKING_HOLIDAY_APPLICATION_LIMITATION_AGE } from "../../constants/visa";
 import { COMMUNITY_COLLEGE_EXAMPLE1 } from "../../constants/school";
@@ -35,7 +38,7 @@ const storiesSlice = createSlice({
           return datesInYear;
         })
         .map((startDate) => {
-          return new CommunityCollegeAfterwardsWorkingHolidayStory(startDate);
+          return build({ startDate });
         });
 
       state.stories = _stories;

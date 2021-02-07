@@ -10,21 +10,7 @@ import {
 } from "../../constants/fullcalendar/settings";
 import { WORKING_HOLIDAY_APPLICATION_LIMITATION_AGE } from "../../constants/visa";
 
-type Event = any; // TODO:
-type Resource = any; // TODO:
-
-export type ProfileStory = {
-  events: Event[];
-  resources: Resource[];
-};
-
-export const removeEvent = (
-  story: ProfileStory,
-  eventId: string
-): ProfileStory => {
-  const newEvents = story.events.filter((event) => event.id !== eventId);
-  return { ...story, events: newEvents };
-};
+export type ProfileStory = BaseStory;
 
 export const generateEvents = (startDate: Date) => {
   // get year num
@@ -81,7 +67,7 @@ export const createProfileStory = ({
   };
 };
 
-const createWorkingHolidayLimitEvent = (birthday: Date): Event => {
+const createWorkingHolidayLimitEvent = (birthday: Date) => {
   const lastYearDate = addYears(
     birthday,
     WORKING_HOLIDAY_APPLICATION_LIMITATION_AGE

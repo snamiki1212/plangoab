@@ -1,7 +1,8 @@
 import React from "react";
 import { DateSelectArg, EventClickArg, EventInput } from "@fullcalendar/react";
 import { uuid } from "../lib/uuid";
-import { BaseCalendar } from '../core/calendar/BaseCalendar'
+import { BaseCalendar } from "../core/calendar/BaseCalendar";
+import { removeEvent } from "../core/calendar/MyCalendar";
 
 export const useEventsHandler = () => {
   // const [events, setEvents] = React.useState<EventInput[]>([]);
@@ -17,18 +18,21 @@ export const useEventsHandler = () => {
   //   setEvents((prev) => [...prev, newEvent]);
   // }, []);
 
-  const click = React.useCallback((calendar: BaseCalendar| undefined) => (info: EventClickArg) => {
-    if (!calendar) return null;
-    if (!window.confirm("Would you like to remove this event?")) return null;
-    const id = info.event.id;
-    if(!id) {
-      console.error("cannot find id in event.")
-      return null
-    }
+  const click = React.useCallback(
+    (calendar: BaseCalendar | undefined) => (info: EventClickArg) => {
+      if (!calendar) return null;
+      if (!window.confirm("Would you like to remove this event?")) return null;
+      const id = info.event.id;
+      if (!id) {
+        console.error("cannot find id in event.");
+        return null;
+      }
 
-    calendar.removeEvent(id)
-    return calendar
-  }, []);
+      const newCalendar = removeEvent(calendar, id);
+      return newCalendar;
+    },
+    []
+  );
 
-  return { click};
+  return { click };
 };
