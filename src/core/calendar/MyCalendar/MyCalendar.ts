@@ -1,8 +1,10 @@
 import { BaseCalendar } from "../BaseCalendar";
 import { ProfileStory } from "../../story/ProfileStory/ProfileStory";
+import { MY_CALENDAR_ID } from "../../../constants/fullcalendar/settings";
 
 type Story = ProfileStory;
 
+export const calendarId = MY_CALENDAR_ID;
 export type MyCalendar = BaseCalendar;
 
 export const createMyCalendar = ({
@@ -11,7 +13,7 @@ export const createMyCalendar = ({
   stories?: Story[];
 }): MyCalendar => {
   return {
-    id: "todo", // TODO: change name
+    id: calendarId,
     stories,
   };
 };

@@ -6,7 +6,8 @@ import { COMMUNITY_COLLEGE_EXAMPLE1 } from "../../constants/school";
 import { range } from "../../lib/util";
 import { addYears, addMonths } from "date-fns";
 import { build } from "../../core/story/CommunityCollegeAfterwardsWorkingHolidayStory/CommunityCollegeAfterwardsWorkingHolidayStory";
-import { CALENDAR_ID as CommunityCollegeAfterwardsWorkingHolidayCalendarId } from "../../core/calendar/CommunityCollegeAfterwardsWorkingHolidayCalendar/CommunityCollegeAfterwardsWorkingHolidayCalendar";
+import { calendarId as CommunityCollegeAfterwardsWorkingHolidayCalendarId } from "../../core/calendar/CommunityCollegeAfterwardsWorkingHolidayCalendar/CommunityCollegeAfterwardsWorkingHolidayCalendar";
+import { calendarId as MyCalendarId } from "../../core/calendar/MyCalendar/MyCalendar";
 import { RootState } from "../rootReducer";
 
 type Calendar = BaseCalendar;
@@ -23,7 +24,7 @@ const addingNumbers = range(
 );
 
 const CALENDAR_ID_MAP = {
-  MY_CALENDAR: "",
+  MY_CALENDAR: MyCalendarId,
   COMMUNITY_COLLEGE_AFTERWARDS_WORKING_HOLIDAY: CommunityCollegeAfterwardsWorkingHolidayCalendarId,
 } as const;
 

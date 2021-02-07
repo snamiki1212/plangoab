@@ -2,41 +2,37 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createProfileStory } from "../core/story/ProfileStory/ProfileStory";
 import { createMyCalendar } from "../core/calendar/MyCalendar/MyCalendar";
-import { RootState } from "../redux/rootReducer";
-import { update as updateAction } from "../redux/features/calendars";
+import {
+  update as updateAction,
+  selectCalendar,
+} from "../redux/features/calendars";
 
 export const useMyCalendar = () => {
   const dispatch = useDispatch();
-  const calendars = useSelector(
-    (state: RootState) => state.calendars.calendars
-  );
-  const calendar = calendars[0]; // TODO: pick my calendar
+  const calendar = useSelector(selectCalendar("MY_CALENDAR"));
+
   const init = React.useCallback(
     (birthday: string | Date) => {
-      console.log("birthday", birthday);
-      console.log("step1");
       const story = createProfileStory({ birth: birthday });
-      console.log("step2");
       const calendar = createMyCalendar({ stories: [story] });
       const _calendars = [calendar];
-
-      console.log("step3", _calendars);
       dispatch(updateAction({ calendars: _calendars }));
     },
     [dispatch]
   );
 
   const stories = React.useMemo(() => calendar?.stories ?? [], [calendar]);
+
   const events = React.useMemo(
     () => calendar?.stories.flatMap((story) => story.events) ?? [],
     [calendar]
   );
+
   const resources = React.useMemo(
     () => calendar?.stories.flatMap((story) => story.resources) ?? [],
     [calendar]
   );
 
-  console.log("stories", stories, "events", events, "resources", resources);
   // const { click } = useEventsHandler();
 
   // const click = React.useCallback(
