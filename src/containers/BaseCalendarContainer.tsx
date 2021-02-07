@@ -1,5 +1,5 @@
 import React from "react";
-import { FullCalendarWithConfigs } from "../components/atoms/FullCalendarWithConfigs";
+import { BaseFullCalendar } from "../components/atoms/BaseFullCalendar";
 import { useStoryIdNameTable } from "../hooks/useStoryIdNameTable";
 import { useResourceGroupLabelContent } from "../hooks/useResourceGroupLabelContent";
 
@@ -13,5 +13,5 @@ export function BaseCalendarContainer(props: any) {
     resourceGroupLabelContent,
   };
 
-  return <FullCalendarWithConfigs {...props} {...args} />;
+  return <BaseFullCalendar {...props} {...args} />;
 }

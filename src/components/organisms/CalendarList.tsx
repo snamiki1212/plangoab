@@ -1,20 +1,20 @@
 import React from "react";
 import styled from "styled-components";
-import { MyCalendar } from "./MyCalendar";
-import { GeneratedCalendar } from "./GeneratedCalendar";
+import { MyCalendarContainer } from "../../containers/MyCalendarContainer";
+import { GeneratedCalendarContainer } from "../../containers/GeneratedCalendarContainer";
 
 export function CalendarList() {
   return (
     <Container>
       <div>
         <h2>MyCalendar</h2>
-        <MyCalendar />
+        <MyCalendarContainer />
       </div>
 
       <hr />
       <div>
         <h2>CommunityCollegeAfterwardsWorkingHolidayStory</h2>
-        <GeneratedCalendar />
+        <GeneratedCalendarContainer />
       </div>
     </Container>
   );
