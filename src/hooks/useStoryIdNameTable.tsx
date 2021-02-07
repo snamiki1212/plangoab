@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 import { selectUserCalendar } from "../redux/features/userCalendars";
-import { selectTable } from "../redux/features/templateCalendarMap";
+import { selectTable } from "../redux/features/templateCalendarTable";
 import { BaseCalendar } from "../core/calendar/BaseCalendar";
 
 export type Table = { [key: string]: string };

@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { upsertCommunityCollegeAfterwardsWorkingHolidayStories, selectCommunityCollegeAfterwardsWorkingHolidayCalendar } from "../redux/features/templateCalendarMap";
+import { upsertCommunityCollegeAfterwardsWorkingHolidayStories, selectCommunityCollegeAfterwardsWorkingHolidayCalendar } from "../redux/features/templateCalendarTable";
 
 export const useCommunityCollegeAfterwardsWorkingHolidayCalendar = () => {
   const dispatch = useDispatch();

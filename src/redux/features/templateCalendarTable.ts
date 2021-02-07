@@ -8,8 +8,8 @@ type GeneratePayload = {
   birth: string;
 };
 
-const templateCalendarMap = createSlice({
-  name: "templateCalendarMap",
+const templateCalendarTable = createSlice({
+  name: "templateCalendarTable",
   initialState: {
     [CommunityCollegeAfterwardsWorkingHolidayCalendarId]: undefined as
       | BaseCalendar
@@ -27,11 +27,11 @@ const templateCalendarMap = createSlice({
   },
 });
 
-export default templateCalendarMap.reducer;
+export default templateCalendarTable.reducer;
 
 export const {
   upsertCommunityCollegeAfterwardsWorkingHolidayStories,
-} = templateCalendarMap.actions;
+} = templateCalendarTable.actions;
 
 export const selectTable = (state: RootState) => state.templateCalendar;
 
