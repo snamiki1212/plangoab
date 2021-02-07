@@ -1,12 +1,25 @@
 import React from "react";
-import {MyCalendar} from './MyCalendar'
-import {GeneratedCalendar} from './GeneratedCalendar'
+import styled from "styled-components";
+import { MyCalendar } from "./MyCalendar";
+import { GeneratedCalendar } from "./GeneratedCalendar";
 
 export const FullCalendar = () => {
   return (
-    <div>
-      <MyCalendar />
-      <GeneratedCalendar />
-    </div>
+    <Container>
+      <div>
+        <h2>MyCalendar</h2>
+        <MyCalendar />
+      </div>
+
+      <hr />
+      <div>
+        <h2>CommunityCollegeAfterwardsWorkingHolidayStory</h2>
+        <GeneratedCalendar />
+      </div>
+    </Container>
   );
 };
+
+const Container = styled.div`
+  padding: 3rem;
+`;
