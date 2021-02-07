@@ -1,3 +1,3 @@
-import { BaseStory } from "../BaseStroy";
+import { BaseStory } from "../BaseStory";
 
 export type ProfileStory = BaseStory;

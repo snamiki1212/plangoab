@@ -5,7 +5,7 @@ import {
   RESOURCE_ID__SHARED__LIMIT,
 } from "../../../constants/fullcalendar/settings";
 import { DEPRECATED_SHARED__RESOURCES } from "../../../constants/fullcalendar/templates";
-import { createStoryName } from "../BaseStroy";
+import { createStoryName } from "../BaseStory";
 import { addMonths, addYears } from "date-fns";
 import { getRangeNumbers } from "../../../lib/age";
 import { uuid } from "../../../lib/uuid";
