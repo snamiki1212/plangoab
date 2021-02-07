@@ -10,86 +10,92 @@ import {
 } from "../../constants/fullcalendar/settings";
 import { WORKING_HOLIDAY_APPLICATION_LIMITATION_AGE } from "../../constants/visa";
 
-export class ProfileStory implements BaseStory {
-  private _events;
-  private _resources;
+type Event = any; // TODO:
+type Resource = any; // TODO:
 
-  constructor(_birth: string | Date) {
-    const birth = new Date(_birth);
-    this._resources = DEPRECATED_SHARED__RESOURCES;
-    this._events = this.generateEvents(birth);
-  }
+export type ProfileStory = {
+  events: Event[];
+  resources: Resource[];
+};
 
-  private generateEvents = (startDate: Date) => {
-    // get year num
-    const endYear = this.getLastYear();
-    const startYear = new Date(startDate).getFullYear();
+export const removeEvent = (
+  story: ProfileStory,
+  eventId: string
+): ProfileStory => {
+  const newEvents = story.events.filter((event) => event.id !== eventId);
+  return { ...story, events: newEvents };
+};
 
-    // create years list
-    const years = getRangeNumbers(startYear, endYear);
+export const generateEvents = (startDate: Date) => {
+  // get year num
+  const endYear = getLastYear();
+  const startYear = new Date(startDate).getFullYear();
 
-    const workingHolidayLimitEvent = this.createWorkingHolidayLimitEvent(
-      startDate
-    );
+  // create years list
+  const years = getRangeNumbers(startYear, endYear);
 
-    // create EventInput obj
-    const ageEventList = years.map((year, index) => {
-      const start = (() => {
-        startDate.setFullYear(year);
-        const isoStr = startDate.toISOString();
-        const str = convertIsoToDateTime(isoStr);
-        return str;
-      })();
+  const workingHolidayLimitEvent = createWorkingHolidayLimitEvent(startDate);
 
-      const isoStr = addMonths(new Date(start), +11).toISOString();
-      const end = convertIsoToDateTime(isoStr);
+  // create EventInput obj
+  const ageEventList = years.map((year, index) => {
+    const start = (() => {
+      startDate.setFullYear(year);
+      const isoStr = startDate.toISOString();
+      const str = convertIsoToDateTime(isoStr);
+      return str;
+    })();
 
-      return {
-        id: uuid(),
-        resourceId: RESOURCE_ID__SHARED__AGE,
-        title: `Aage:${index}`,
-        start,
-        end,
-      };
-    });
+    const isoStr = addMonths(new Date(start), +11).toISOString();
+    const end = convertIsoToDateTime(isoStr);
 
-    return [workingHolidayLimitEvent, ...ageEventList];
-  };
-
-  private getLastYear = () => {
-    const BUFFER_YEAR = 10;
-    const date = new Date();
-    return addYears(date, BUFFER_YEAR).getFullYear();
-  };
-
-  private createWorkingHolidayLimitEvent = (birthday: Date) => {
-    const lastYearDate = addYears(
-      birthday,
-      WORKING_HOLIDAY_APPLICATION_LIMITATION_AGE
-    );
-    const endDate = addMonths(lastYearDate, +11);
-    const end = convertIsoToDateTime(endDate.toISOString());
-
-    const start = convertIsoToDateTime(birthday.toISOString());
-    const _event = {
+    return {
       id: uuid(),
-      resourceId: RESOURCE_ID__SHARED__LIMIT,
-      title: "Limitation till WorkingHoliday",
+      resourceId: RESOURCE_ID__SHARED__AGE,
+      title: `Aage:${index}`,
       start,
       end,
     };
-    return _event;
+  });
+
+  return [workingHolidayLimitEvent, ...ageEventList];
+};
+
+const getLastYear = () => {
+  const BUFFER_YEAR = 10;
+  const date = new Date();
+  return addYears(date, BUFFER_YEAR).getFullYear();
+};
+
+export const createProfileStory = ({
+  birth,
+}: {
+  birth: string | Date;
+}): ProfileStory => {
+  const _birth = new Date(birth);
+  // this._resources = DEPRECATED_SHARED__RESOURCES;
+  // this._events = this.generateEvents(birth);
+
+  return {
+    resources: DEPRECATED_SHARED__RESOURCES,
+    events: generateEvents(_birth),
   };
+};
 
-  removeEvent(eventId: string) {
-    this._events = this._events.filter((event) => event.id !== eventId);
-    console.log("this._events", this._events);
-  }
+const createWorkingHolidayLimitEvent = (birthday: Date): Event => {
+  const lastYearDate = addYears(
+    birthday,
+    WORKING_HOLIDAY_APPLICATION_LIMITATION_AGE
+  );
+  const endDate = addMonths(lastYearDate, +11);
+  const end = convertIsoToDateTime(endDate.toISOString());
 
-  get events() {
-    return this._events;
-  }
-  get resources() {
-    return this._resources;
-  }
-}
+  const start = convertIsoToDateTime(birthday.toISOString());
+  const _event = {
+    id: uuid(),
+    resourceId: RESOURCE_ID__SHARED__LIMIT,
+    title: "Limitation till WorkingHoliday",
+    start,
+    end,
+  };
+  return _event;
+};

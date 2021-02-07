@@ -1,21 +1,42 @@
 import React from "react";
-import { ProfileStory } from "../core/story/ProfileStory";
-import { MyCalendar } from "../core/calendar/MyCalendar";
-// import { useEventsHandler } from "./useEventsHandler";
+import { useDispatch, useSelector } from "react-redux";
+import { createProfileStory } from "../core/story/ProfileStory";
+import { createMyCalendar } from "../core/calendar/MyCalendar";
+import { RootState } from "../redux/rootReducer";
+import { update as updateAction } from "../redux/features/calendars";
 
 export const useMyCalendar = () => {
-  const [calendar, setCalendar] = React.useState<MyCalendar>();
+  const dispatch = useDispatch();
+  const calendars = useSelector(
+    (state: RootState) => state.calendars.calendars
+  );
+  const calendar = calendars[0]; // TODO: pick my calendar
+  const init = React.useCallback(
+    (birthday: string | Date) => {
+      console.log("birthday", birthday);
+      console.log("step1");
+      const story = createProfileStory({ birth: birthday });
+      console.log("step2");
+      const calendar = createMyCalendar({ stories: [story] });
+      const _calendars = [calendar];
 
-  const init = React.useCallback((birthday: string | Date) => {
-    const story = new ProfileStory(birthday);
-    const calendar = new MyCalendar([story]);
-    setCalendar(calendar);
-  }, []);
+      console.log("step3", _calendars);
+      dispatch(updateAction({ calendars: _calendars }));
+    },
+    [dispatch]
+  );
 
   const stories = React.useMemo(() => calendar?.stories ?? [], [calendar]);
-  const events = React.useMemo(() => calendar?.events ?? [], [calendar]);
-  const resources = React.useMemo(() => calendar?.resources ?? [], [calendar]);
+  const events = React.useMemo(
+    () => calendar?.stories.flatMap((story) => story.events) ?? [],
+    [calendar]
+  );
+  const resources = React.useMemo(
+    () => calendar?.stories.flatMap((story) => story.resources) ?? [],
+    [calendar]
+  );
 
+  console.log("stories", stories, "events", events, "resources", resources);
   // const { click } = useEventsHandler();
 
   // const click = React.useCallback(

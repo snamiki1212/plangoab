@@ -1,32 +1,28 @@
-import { BaseStory } from "../story/BaseStroy";
-import { BaseCalendar } from "../calendar/BaseCalendar";
+import {
+  ProfileStory,
+  removeEvent as removeEventInStory,
+} from "../story/ProfileStory";
 
-type Story = BaseStory;
+type Story = ProfileStory;
 
-export class MyCalendar implements BaseCalendar {
-  #stories: Story[];
-  constructor(initialStories: Story[]) {
-    this.#stories = initialStories;
-  }
+export type MyCalendar = {
+  stories: Story[];
+};
 
-  add(story: Story) {}
+export const createMyCalendar = ({
+  stories = [],
+}: {
+  stories?: Story[];
+}): MyCalendar => {
+  return {
+    stories,
+  };
+};
 
-  removeEvent(eventId: string) {
-    this.#stories = this.#stories.map((story) => {
-      story.removeEvent(eventId);
-      return story;
-    });
-  }
-
-  get stories() {
-    return this.#stories;
-  }
-
-  get events() {
-    return this.#stories.flatMap((story) => story.events);
-  }
-
-  get resources() {
-    return this.#stories.flatMap((story) => story.resources);
-  }
-}
+export const removeEvent = (obj: MyCalendar, eventId: string): MyCalendar => {
+  const newStories = obj.stories.map<Story>((story) => {
+    const newStory = removeEventInStory(story, eventId);
+    return newStory;
+  });
+  return { ...obj, stories: newStories };
+};
