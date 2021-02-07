@@ -1,5 +1,5 @@
-import { uuid } from "../../../lib/uuid";
 import { addMonths, addYears, setMonth } from "date-fns";
+import { uuid } from "../../../lib/uuid";
 import {
   RESOURCE_TEMPLATE__VISA_STUDY,
   RESOURCE_TEMPLATE__VISA_COOP,

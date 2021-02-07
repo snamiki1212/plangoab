@@ -2,7 +2,7 @@ import { BaseStory } from "../story/BaseStroy";
 import { removeEvent as removeEventInStory } from "../story/BaseStroy";
 
 export type BaseCalendar = {
-  id: string; // TODO: must
+  id: string;
   stories: BaseStory[];
 };
 
