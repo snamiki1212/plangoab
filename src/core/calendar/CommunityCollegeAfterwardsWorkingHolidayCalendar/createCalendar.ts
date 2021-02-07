@@ -8,6 +8,7 @@ import { WORKING_HOLIDAY_APPLICATION_LIMITATION_AGE } from "../../../constants/v
 import { COMMUNITY_COLLEGE_EXAMPLE1 } from "../../../constants/school";
 import { range } from "../../../lib/util";
 import { build } from "../../story/CommunityCollegeAfterwardsWorkingHolidayStory/build";
+import { BaseStory } from "../../story/BaseStory";
 
 const startMonths = COMMUNITY_COLLEGE_EXAMPLE1.startMonths;
 
@@ -16,7 +17,7 @@ const addingNumbers = range(
   WORKING_HOLIDAY_APPLICATION_LIMITATION_AGE
 );
 
-const generateStoryList = (birth: Date) => {
+const generateStoryList = (birth: Date): BaseStory[] => {
   return addingNumbers
     .map((num) => addYears(birth, num))
     .flatMap((startDate) => {

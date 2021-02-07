@@ -1,3 +1,4 @@
+import { addMonths, addYears } from "date-fns";
 import { ProfileStory } from "./model";
 import {
   PROFILE_ID,
@@ -6,11 +7,11 @@ import {
 } from "../../../constants/fullcalendar/settings";
 import { DEPRECATED_SHARED__RESOURCES } from "../../../constants/fullcalendar/templates";
 import { createStoryName } from "../BaseStory";
-import { addMonths, addYears } from "date-fns";
 import { getRangeNumbers } from "../../../lib/age";
 import { uuid } from "../../../lib/uuid";
 import { convertIsoToDateTime } from "../../../lib/date";
 import { WORKING_HOLIDAY_APPLICATION_LIMITATION_AGE } from "../../../constants/visa";
+import { BaseEvent } from "../../event/BaseEvent";
 
 export const createProfileStory = ({
   birth,
@@ -19,15 +20,17 @@ export const createProfileStory = ({
 }): ProfileStory => {
   const _birth = new Date(birth);
 
+  const storyId = PROFILE_ID;
+
   return {
-    id: PROFILE_ID,
+    id: storyId,
     name: createStoryName(_birth),
     resources: DEPRECATED_SHARED__RESOURCES,
-    events: generateEvents(_birth),
+    events: generateEvents(_birth, storyId),
   };
 };
 
-const generateEvents = (startDate: Date) => {
+const generateEvents = (startDate: Date, storyId: string): BaseEvent[] => {
   // get year num
   const endYear = getLastYear();
   const startYear = new Date(startDate).getFullYear();
@@ -35,7 +38,10 @@ const generateEvents = (startDate: Date) => {
   // create years list
   const years = getRangeNumbers(startYear, endYear);
 
-  const workingHolidayLimitEvent = createWorkingHolidayLimitEvent(startDate);
+  const workingHolidayLimitEvent = createWorkingHolidayLimitEvent(
+    startDate,
+    storyId
+  );
 
   // create EventInput obj
   const ageEventList = years.map((year, index) => {
@@ -53,6 +59,7 @@ const generateEvents = (startDate: Date) => {
       id: uuid(),
       resourceId: RESOURCE_ID__SHARED__AGE,
       title: `Aage:${index}`,
+      storyId,
       start,
       end,
     };
@@ -67,7 +74,10 @@ const getLastYear = () => {
   return addYears(date, BUFFER_YEAR).getFullYear();
 };
 
-const createWorkingHolidayLimitEvent = (birthday: Date) => {
+const createWorkingHolidayLimitEvent = (
+  birthday: Date,
+  storyId: string
+): BaseEvent => {
   const lastYearDate = addYears(
     birthday,
     WORKING_HOLIDAY_APPLICATION_LIMITATION_AGE
@@ -80,6 +90,7 @@ const createWorkingHolidayLimitEvent = (birthday: Date) => {
     id: uuid(),
     resourceId: RESOURCE_ID__SHARED__LIMIT,
     title: "Limitation till WorkingHoliday",
+    storyId,
     start,
     end,
   };

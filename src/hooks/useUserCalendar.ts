@@ -1,9 +1,13 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { DateSelectArg, EventClickArg } from "@fullcalendar/react";
+import { uuid } from "../lib/uuid";
 import { createProfileStory } from "../core/story/ProfileStory/createProfileStory";
 import { createUserCalendar } from "../core/calendar/UserCalendar/createUserCalendar";
 import {
-  update as updateAction,
+  updateAction,
+  addEventAction,
+  removeEventAction,
   selectUserCalendar,
 } from "../redux/features/userCalendars";
 
@@ -22,6 +26,47 @@ export const useUserCalendar = () => {
     [dispatch]
   );
 
+  const select = React.useCallback(
+    (info: DateSelectArg) => {
+      if (!info.resource) {
+        console.warn("Unexpected data that info does not have resource.");
+        return;
+      }
+      const storyId = info.resource.extendedProps.storyId;
+      if (!storyId) {
+        console.warn("Unexpected data not including storyId.");
+        return;
+      }
+
+      const calendarId = calendar.id;
+      const newEvent = {
+        id: uuid(),
+        resourceId: info.resource.id,
+        start: info.startStr,
+        end: info.endStr,
+      };
+
+      dispatch(addEventAction({ event: newEvent, calendarId, storyId }));
+    },
+    [calendar, dispatch]
+  );
+
+  const click = React.useCallback(
+    (info: EventClickArg) => {
+      if (!window.confirm("Would you like to remove this event?")) return;
+
+      const calendarId = calendar.id;
+      const eventId = info.event.id;
+      if (!eventId) {
+        console.warn("Unexpected data. cannot find event id.");
+        return;
+      }
+
+      dispatch(removeEventAction({ calendarId, eventId }));
+    },
+    [dispatch, calendar]
+  );
+
   const stories = React.useMemo(() => calendar?.stories ?? [], [calendar]);
 
   const events = React.useMemo(
@@ -34,34 +79,5 @@ export const useUserCalendar = () => {
     [calendar]
   );
 
-  // const { click } = useEventsHandler();
-
-  // const click = React.useCallback(
-  //   (arg) => {
-  //     console.log("[click]1, arg", arg);
-  //     // const newCalendar = _click(calendar)(arg);
-
-  //     const info = arg;
-  //     if (!calendar) return null;
-  //     if (!window.confirm("Would you like to remove this event?")) return null;
-  //     const id = info.event.id;
-  //     if (!id) {
-  //       console.error("cannot find id in event.");
-  //       return null;
-  //     }
-
-  //     const newCalendar = calendar;
-  //     console.log("[click]1.2, newCalendar", newCalendar, id);
-  //     newCalendar.removeEvent(id);
-  //     // return calendar
-
-  //     console.log("[click]2, newCalendar", newCalendar);
-  //     if (!newCalendar) return;
-  //     console.log("[click]3");
-  //     setCalendar(newCalendar as UserCalendar);
-  //   },
-  //   [calendar]
-  // );
-
-  return { calendar, stories, events, resources, init /* click */ } as const;
+  return { calendar, stories, events, resources, init, click, select } as const;
 };

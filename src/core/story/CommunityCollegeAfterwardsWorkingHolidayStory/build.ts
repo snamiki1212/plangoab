@@ -13,6 +13,8 @@ import {
 import { uuid } from "../../../lib/uuid";
 import { CommunityCollegeAfterwardsWorkingHolidayStory } from "./model";
 import { createStoryName } from "../BaseStory";
+import { BaseEvent } from "../../event/BaseEvent";
+import { BaseResource } from "../../resource/BaseResource";
 
 const VISA_BACKGROUND_COLOR = "#8fbc8b";
 const STATUS_BACKGROUND_COLOR = "#ffd700";
@@ -46,6 +48,7 @@ const generateStory = (storyId: string, startDate: Date) => {
   const coopVisaEvent = {
     id: uuid(),
     resourceId: coopVisaResourceId,
+    storyId,
     start: startDate.toISOString(),
     end: addMonths(startDate, 12 * 2).toISOString(),
     [NAME_OF_ORDER]: 1,
@@ -63,6 +66,7 @@ const generateStory = (storyId: string, startDate: Date) => {
   const studyVisaEvent = {
     id: uuid(),
     resourceId: studyVisaResourceId,
+    storyId,
     start: startDate.toISOString(),
     end: addMonths(startDate, 12 * 2).toISOString(),
     [NAME_OF_ORDER]: 2,
@@ -81,6 +85,7 @@ const generateStory = (storyId: string, startDate: Date) => {
   const workingHolidayVisaEvent = {
     id: uuid(),
     resourceId: workingholidayResourceId,
+    storyId,
     start: dateAsStartWorkingHoliday.toISOString(),
     end: addMonths(dateAsStartWorkingHoliday, 12 * 1).toISOString(),
     [NAME_OF_ORDER]: 3,
@@ -89,6 +94,7 @@ const generateStory = (storyId: string, startDate: Date) => {
   const preWorkingHolidayVisaEvent = {
     id: uuid(),
     resourceId: workingholidayResourceId,
+    storyId,
     start: setMonth(addYears(dateAsStartWorkingHoliday, -1), 8).toISOString(),
     end: dateAsStartWorkingHoliday.toISOString(),
     [NAME_OF_ORDER]: 3,
@@ -103,9 +109,10 @@ const generateStory = (storyId: string, startDate: Date) => {
     [NAME_OF_STORY_ID]: storyId,
     [NAME_OF_ORDER]: 4,
   };
-  const studentStatusVisa = {
+  const studentStatusVisaEvent = {
     id: uuid(),
     resourceId: studentStatusResourceId,
+    storyId,
     start: startDate.toISOString(),
     end: addMonths(startDate, 12 * 2).toISOString(),
     [NAME_OF_ORDER]: 4,
@@ -120,9 +127,10 @@ const generateStory = (storyId: string, startDate: Date) => {
     [NAME_OF_STORY_ID]: storyId,
     [NAME_OF_ORDER]: 5,
   };
-  const workerStatusVisa = {
+  const workerStatusVisaEvent = {
     id: uuid(),
     resourceId: workerStatusResourceId,
+    storyId,
     start: addMonths(startDate, 12 * 1).toISOString(),
     end: addMonths(startDate, 12 * 3).toISOString(),
     [NAME_OF_ORDER]: 5,
@@ -147,8 +155,8 @@ const generateStory = (storyId: string, startDate: Date) => {
     workingHolidayVisaEvent,
 
     // status
-    studentStatusVisa,
-    workerStatusVisa,
+    studentStatusVisaEvent,
+    workerStatusVisaEvent,
   ];
-  return [resources, events] as const;
+  return [resources, events] as [BaseResource[], BaseEvent[]];
 };

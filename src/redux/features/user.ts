@@ -25,7 +25,7 @@ const userSlice = createSlice({
   },
 });
 
-export const { updateBirthday } = userSlice.actions;
+export const { updateBirthday: updateBirthdayAction } = userSlice.actions;
 
 export default userSlice.reducer;
 

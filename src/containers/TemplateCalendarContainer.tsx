@@ -1,46 +1,36 @@
 import React from "react";
 import { useCommunityCollegeAfterwardsWorkingHolidayCalendar } from "../hooks/useCommunityCollegeAfterwardsWorkingHolidayCalendar";
 import { useUser } from "../hooks/useUser";
-import { DEPRECATED_useEventsHandler } from "../hooks/DEPRECATED_useEventsHandler";
 import { BaseCalendarContainer } from "./BaseCalendarContainer";
 import { useResourceGroupLabelContentInTemplateCalendar } from "../hooks/useResourceGroupLabelContentInTemplateCalendar";
 
+const ableConfis = {
+  selectable: false,
+  editable: false,
+} as const;
+
 export function TemplateCalendarContainer() {
   const { birth } = useUser();
-  const { events, select, click, set: setEvents } = DEPRECATED_useEventsHandler();
-  const { stories, generate } = useCommunityCollegeAfterwardsWorkingHolidayCalendar();
-  const {resourceGroupLabelContent} = useResourceGroupLabelContentInTemplateCalendar()
-
-  const storyResources = React.useMemo(
-    () =>
-      stories.reduce(
-        (prev, story) => [...prev, ...story.resources],
-        [] as any[]
-      ),
-    [stories]
-  );
-  const storyEvents = React.useMemo(
-    () =>
-      stories.reduce((prev, story) => [...prev, ...story.events], [] as any[]),
-    [stories]
-  );
+  const {
+    resources,
+    events,
+    generate,
+  } = useCommunityCollegeAfterwardsWorkingHolidayCalendar();
+  const {
+    resourceGroupLabelContent,
+  } = useResourceGroupLabelContentInTemplateCalendar();
 
   React.useEffect(() => {
     generate(birth);
   }, [generate, birth]);
 
-  React.useEffect(() => {
-    setEvents(storyEvents);
-  }, [storyEvents, setEvents]);
-
   return (
     <BaseCalendarContainer
       events={events}
-      resources={storyResources}
-      select={select}
-      eventClick={click}
+      resources={resources}
       initialDate={"2020-06-01"}
       resourceGroupLabelContent={resourceGroupLabelContent}
+      {...ableConfis}
     />
   );
 }
