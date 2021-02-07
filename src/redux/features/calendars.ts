@@ -1,11 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { BaseCalendar } from "../../core/calendar/BaseCalendar";
-import { AGE_OF_START_STORY } from "../../constants/fullcalendar/options";
-import { WORKING_HOLIDAY_APPLICATION_LIMITATION_AGE } from "../../constants/visa";
-import { COMMUNITY_COLLEGE_EXAMPLE1 } from "../../constants/school";
-import { range } from "../../lib/util";
-import { addYears, addMonths } from "date-fns";
-import { build } from "../../core/story/CommunityCollegeAfterwardsWorkingHolidayStory/CommunityCollegeAfterwardsWorkingHolidayStory";
+import { generate } from "../../core/calendar/CommunityCollegeAfterwardsWorkingHolidayCalendar/generate";
 import { calendarId as CommunityCollegeAfterwardsWorkingHolidayCalendarId } from "../../core/calendar/CommunityCollegeAfterwardsWorkingHolidayCalendar/CommunityCollegeAfterwardsWorkingHolidayCalendar";
 import { calendarId as MyCalendarId } from "../../core/calendar/MyCalendar/MyCalendar";
 import { RootState } from "../rootReducer";
@@ -15,13 +10,6 @@ type SetAction = { calendars: Calendar[] };
 type GeneratePayload = {
   birth: Date;
 };
-
-const startMonths = COMMUNITY_COLLEGE_EXAMPLE1.startMonths;
-
-const addingNumbers = range(
-  AGE_OF_START_STORY,
-  WORKING_HOLIDAY_APPLICATION_LIMITATION_AGE
-);
 
 const CALENDAR_ID_MAP = {
   MY_CALENDAR: MyCalendarId,
@@ -64,21 +52,8 @@ const calendarsSlice = createSlice({
       action: PayloadAction<GeneratePayload>
     ) {
       const { birth } = action.payload;
-      console.log("ok");
 
-      // generate
-      // TODO: move to core logic
-      const _stories = addingNumbers
-        .map((num) => addYears(birth, num))
-        .flatMap((startDate) => {
-          const datesInYear = startMonths.map((month) =>
-            addMonths(startDate, month)
-          );
-          return datesInYear;
-        })
-        .map((startDate) => {
-          return build({ startDate });
-        });
+      const _stories = generate(birth);
 
       const _calendars = state.calendars;
       const calendarId =
