@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { createCalendar } from "../../core/calendar/CommunityCollegeAfterwardsWorkingHolidayCalendar/createCalendar";
-import { calendarId as CommunityCollegeAfterwardsWorkingHolidayCalendarId } from "../../core/calendar/CommunityCollegeAfterwardsWorkingHolidayCalendar/CommunityCollegeAfterwardsWorkingHolidayCalendar";
+import { calendarId as CommunityCollegeAfterwardsWorkingHolidayCalendarId } from "../../core/calendar/CommunityCollegeAfterwardsWorkingHolidayCalendar/model";
 import { BaseCalendar } from "../../core/calendar/BaseCalendar";
 import { RootState } from "../rootReducer";
 
