@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { calcAge } from "../../lib/age";
 import { addYears } from "date-fns";
+import { RootState } from "../rootReducer";
 
 const PERSONA_AGE = 25;
 const personaBirth = addYears(new Date(), -PERSONA_AGE).toISOString();
@@ -27,3 +28,5 @@ const userSlice = createSlice({
 export const { updateBirthday } = userSlice.actions;
 
 export default userSlice.reducer;
+
+export const selectUser = (state: RootState) => state.user;

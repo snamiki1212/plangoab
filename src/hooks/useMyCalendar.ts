@@ -2,14 +2,15 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createProfileStory } from "../core/story/ProfileStory/ProfileStory";
 import { createMyCalendar } from "../core/calendar/MyCalendar/MyCalendar";
-import {
-  update as updateAction,
-  selectCalendar,
-} from "../redux/features/calendars";
+import { update as updateAction } from "../redux/features/userCalendars";
+import { RootState } from "../redux/rootReducer";
 
 export const useMyCalendar = () => {
   const dispatch = useDispatch();
-  const calendar = useSelector(selectCalendar("MY_CALENDAR"));
+  const calendars = useSelector(
+    (state: RootState) => state.userCalendars.calendars
+  );
+  const calendar = calendars[0]; // TODO: later there is plan to become list.
 
   const init = React.useCallback(
     (birthday: string | Date) => {

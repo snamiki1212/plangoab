@@ -2,11 +2,15 @@ import { combineReducers } from "@reduxjs/toolkit";
 
 // reducers
 import userReducer from "./features/user";
-import calendarsReducer from "./features/calendars";
+import templateCalendarMapReducer from "./features/templateCalendarMap";
+import userCalendarsReducer from "./features/userCalendars";
 
 const rootReducer = combineReducers({
   user: userReducer,
-  calendars: calendarsReducer,
+
+  // Calendars
+  templateCalendar: templateCalendarMapReducer,
+  userCalendars: userCalendarsReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

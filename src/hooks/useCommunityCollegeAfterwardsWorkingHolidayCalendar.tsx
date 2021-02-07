@@ -1,7 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { RootState } from "../redux/rootReducer";
-import { upsertCommunityCollegeAfterwardsWorkingHolidayStories, selectCalendar } from "../redux/features/calendars";
+import { upsertCommunityCollegeAfterwardsWorkingHolidayStories, selectCommunityCollegeAfterwardsWorkingHolidayCalendar } from "../redux/features/templateCalendarMap";
 
 export const useCommunityCollegeAfterwardsWorkingHolidayCalendar = () => {
   const dispatch = useDispatch();
@@ -12,7 +11,7 @@ export const useCommunityCollegeAfterwardsWorkingHolidayCalendar = () => {
     [dispatch]
   );
 
-  const calendar = useSelector(selectCalendar('COMMUNITY_COLLEGE_AFTERWARDS_WORKING_HOLIDAY'));
+  const calendar = useSelector(selectCommunityCollegeAfterwardsWorkingHolidayCalendar);
 
   const stories = React.useMemo(() => calendar?.stories ?? [], [calendar])
 
