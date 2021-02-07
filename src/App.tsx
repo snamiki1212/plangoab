@@ -1,14 +1,13 @@
 import React from "react";
-
-import { Provider } from "./Provider";
-import {CalendarPage} from './components/pages/CalendarPage'
+import { MuiPickersUtilsProvider } from "./providers/MuiPickersUtilsProvider";
+import { CalendarPage } from "./components/pages/CalendarPage";
 
 function App() {
   return (
     <div className="App">
-      <Provider>
+      <MuiPickersUtilsProvider>
         <CalendarPage />
-      </Provider>
+      </MuiPickersUtilsProvider>
     </div>
   );
 }

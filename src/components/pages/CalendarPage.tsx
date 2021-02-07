@@ -1,28 +1,38 @@
 import React from "react";
+import styled from "styled-components";
 import { ProfileCard } from "../organisms/ProfileCard";
-import { FullCalendar } from "../organisms/FullCalendar";
+import { CalendarList } from "../organisms/CalendarList";
+import { Footer } from "../molecules/Footer";
 
-export const CalendarPage: React.VFC = () => {
+export function CalendarPage () {
   return (
-    <div>
-      <h2>Your Profile Data</h2>
-      <ProfileCard />
+    <Container>
+      <div>
+        <SubTitle>Your Profile Data</SubTitle>
+        <ProfileCard />
+      </div>
 
-      <h2>Calendar</h2>
-      <FullCalendar />
+      <div>
+        <SubTitle>Calendar</SubTitle>
+        <CalendarList />
+      </div>
 
-      <h2>References</h2>
-      <ul>
-        <li>
-          <a
-            href="https://github.com/snamiki1212/canada-immigration-scheduler"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Github
-          </a>
-        </li>
-      </ul>
-    </div>
+      <div>
+        <SubTitle>References</SubTitle>
+        <Footer />
+      </div>
+    </Container>
   );
 };
+
+const SubTitle = styled.div`
+  background: darkblue;
+  color: white;
+  font-size: 4rem;
+`;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+`;

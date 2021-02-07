@@ -9,6 +9,14 @@ export const NAME_OF_STORY_ID = "storyId";
 export const NAME_OF_ORDER = "order";
 export const RESOURCE_NAME_KEY = "RESOURCE_NAME_KEY";
 
+// calendar ID
+export const MY_CALENDAR_ID = "MY_CALENDAR_ID";
+export const COMMUNITY_COLLEGE_AFTERWARDS_WORKING_HOLIDAY_CALENDAR_ID =
+  "CCAWH_CALENDAR_ID";
+
+// story ID
+export const PROFILE_ID = "PROFILE_ID";
+
 // resouce ID
 export const RESOURCE_ID__SHARED__AGE = "RESOURCE_ID__SHARED__AGE";
 export const RESOURCE_ID__SHARED__LIMIT = "RESOURCE_ID__SHARED__LIMIT";

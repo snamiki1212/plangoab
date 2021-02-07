@@ -33,7 +33,6 @@ const schedulerLicenseKey = {
 
 const views = {
   [MY_TIME_LINE_NAME]: {
-    name: "timeline",
     type: "resourceTimelineYear",
     duration: { year: 15 },
     buttonText: "TIME_LINE",
@@ -45,15 +44,8 @@ const nowIndicator = {
 } as const;
 
 const resourceConfigs = {
-  resourceGroupLabelContent({ groupValue }: { groupValue: string }) {
-    return `Story [ID:${groupValue}]`;
-  },
   resourceOrder: NAME_OF_ORDER,
-} as const;
-
-const ableConfis = {
-  selectable: true,
-  editable: true,
+  resourcesInitiallyExpanded: false,
 } as const;
 
 export const FULL_CALENDAR_CONFIGS = {
@@ -61,7 +53,6 @@ export const FULL_CALENDAR_CONFIGS = {
   views,
   headerToolbar,
   slotLabelFormat,
-  ...ableConfis,
   ...initialView,
   ...resourceGroupField,
   ...schedulerLicenseKey,

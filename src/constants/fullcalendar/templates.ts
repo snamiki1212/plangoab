@@ -3,6 +3,7 @@ import {
   RESOURCE_ID__SHARED__AGE,
   RESOURCE_ID__SHARED__LIMIT,
   NAME_OF_STORY_ID,
+  PROFILE_ID,
 } from "./settings";
 
 const DARK_BLUE = "#00008b";
@@ -41,22 +42,19 @@ export const RESOURCE_TEMPLATE__WORKER_STATUS = {
   eventBorderColor: DARK_BLUE,
 };
 
-const STORY_ID__ALL = "ALL";
-
 export const DEPRECATED_SHARED__RESOURCES = [
-  // SHARED
   {
     id: RESOURCE_ID__SHARED__AGE,
     [FIELD_NAME["H1"]]: FIELD__H1__SHARED,
     [FIELD_NAME["H2"]]: "Age",
-    [NAME_OF_STORY_ID]: STORY_ID__ALL,
+    [NAME_OF_STORY_ID]: PROFILE_ID,
     eventBorderColor: DARK_BLUE,
   },
   {
     id: RESOURCE_ID__SHARED__LIMIT,
     [FIELD_NAME["H1"]]: FIELD__H1__SHARED,
     [FIELD_NAME["H2"]]: "Working Holiday Application Limit",
-    [NAME_OF_STORY_ID]: STORY_ID__ALL,
+    [NAME_OF_STORY_ID]: PROFILE_ID,
     eventBorderColor: DARK_BLUE,
   },
 ];
