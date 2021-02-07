@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { UserCalendarContainer } from "../../containers/UserCalendarContainer";
-import { GeneratedCalendarContainer } from "../../containers/GeneratedCalendarContainer";
+import { TemplateCalendarContainer } from "../../containers/TemplateCalendarContainer";
 
 export function CalendarList() {
   return (
@@ -14,7 +14,7 @@ export function CalendarList() {
       <hr />
       <div>
         <h2>CommunityCollegeAfterwardsWorkingHolidayStory</h2>
-        <GeneratedCalendarContainer />
+        <TemplateCalendarContainer />
       </div>
     </Container>
   );

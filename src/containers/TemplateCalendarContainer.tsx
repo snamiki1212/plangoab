@@ -4,7 +4,7 @@ import { useUser } from "../hooks/useUser";
 import { DEPRECATED_useEventsHandler } from "../hooks/DEPRECATED_useEventsHandler";
 import { BaseCalendarContainer } from "./BaseCalendarContainer";
 
-export function GeneratedCalendarContainer() {
+export function TemplateCalendarContainer() {
   const { birth } = useUser();
 
   const { events, select, click, set: setEvents } = DEPRECATED_useEventsHandler();
