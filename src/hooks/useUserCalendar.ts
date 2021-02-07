@@ -1,13 +1,13 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createProfileStory } from "../core/story/ProfileStory/ProfileStory";
-import { createMyCalendar } from "../core/calendar/MyCalendar/MyCalendar";
+import { createUserCalendar } from "../core/calendar/UserCalendar/createUserCalendar";
 import {
   update as updateAction,
   selectUserCalendar,
 } from "../redux/features/userCalendars";
 
-export const useMyCalendar = () => {
+export const useUserCalendar = () => {
   const dispatch = useDispatch();
   const calendars = useSelector(selectUserCalendar);
   const calendar = calendars[0]; // TODO: later there is plan to become list.
@@ -15,7 +15,7 @@ export const useMyCalendar = () => {
   const init = React.useCallback(
     (birthday: string | Date) => {
       const story = createProfileStory({ birth: birthday });
-      const calendar = createMyCalendar({ stories: [story] });
+      const calendar = createUserCalendar({ stories: [story] });
       const _calendars = [calendar];
       dispatch(updateAction({ calendars: _calendars }));
     },
@@ -58,7 +58,7 @@ export const useMyCalendar = () => {
   //     console.log("[click]2, newCalendar", newCalendar);
   //     if (!newCalendar) return;
   //     console.log("[click]3");
-  //     setCalendar(newCalendar as MyCalendar);
+  //     setCalendar(newCalendar as UserCalendar);
   //   },
   //   [calendar]
   // );

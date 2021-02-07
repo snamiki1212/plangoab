@@ -1,21 +1,21 @@
 import React from "react";
-import { useMyCalendar } from "../hooks/useMyCalendar";
+import { useUserCalendar } from "../hooks/useUserCalendar";
 import { useUser } from "../hooks/useUser";
 import { DEPRECATED_useEventsHandler } from "../hooks/DEPRECATED_useEventsHandler";
 import { BaseCalendarContainer } from "./BaseCalendarContainer";
 
-export function MyCalendarContainer () {
+export function UserCalendarContainer () {
   const { birth } = useUser();
   const { events, select, click, set: setEvents } = DEPRECATED_useEventsHandler();
   const {
     events: _events,
     resources: _resources,
-    init: initMyCalendar,
-  } = useMyCalendar();
+    init: initUserCalendar,
+  } = useUserCalendar();
 
   React.useEffect(() => {
-    initMyCalendar(birth);
-  }, [birth, initMyCalendar]);
+    initUserCalendar(birth);
+  }, [birth, initUserCalendar]);
 
   React.useEffect(() => {
     setEvents(_events);
