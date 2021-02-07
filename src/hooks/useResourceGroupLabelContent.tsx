@@ -20,11 +20,15 @@ export const useResourceGroupLabelContent = () => {
   const resourceGroupLabelContent = React.useCallback(
     ({ groupValue: storyId }: Props) => {
       if (!calendar) return;
+
+      // story validation
       const story = calendar.stories.find((story) => story.id === storyId);
       if (!story) {
         console.warn("cannot find story", storyId);
         return;
       }
+
+      // name handler
       let name: string;
       if (story.name) {
         name = story.name;
@@ -34,11 +38,20 @@ export const useResourceGroupLabelContent = () => {
       }
 
       const onClick = () => {
+        if (!window.confirm("Copy to my calendar?")) return;
         console.log("clicked");
         dispatch(addStory({ calendarId, story }));
       };
 
-      return { html: `<i><button onClick=${onClick}>${name}</button></i>` };
+      const nameElement = document.createElement('i')
+      nameElement.innerHTML = name + ' '
+
+      const buttonElement = document.createElement('button')
+      buttonElement.innerHTML = 'copy'
+      buttonElement.onclick = onClick
+
+      const arrayOfDomNodes = [nameElement, buttonElement];
+      return { domNodes: arrayOfDomNodes };
     },
     [dispatch, calendar]
   );
