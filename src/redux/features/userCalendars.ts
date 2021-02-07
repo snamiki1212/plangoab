@@ -2,11 +2,21 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../rootReducer";
 import { BaseCalendar } from "../../core/calendar/BaseCalendar";
 import { BaseStory } from "../../core/story/BaseStory";
+import { BaseEvent } from "../../core/event/BaseEvent";
 
 type Calendar = BaseCalendar;
 type UpdatePayload = { calendars: Calendar[] };
 type AddStoryPayload = { calendarId: string; story: BaseStory };
 type RemoveStoryPayload = { calendarId: string; storyId: string };
+type AddEventPayload = {
+  calendarId: string;
+  storyId: string;
+  event: BaseEvent;
+};
+type RemoveEventPayload = {
+  calendarId: string;
+  eventId: string;
+};
 
 const userCalendarsSlice = createSlice({
   name: "userCalendars",
@@ -37,17 +47,79 @@ const userCalendarsSlice = createSlice({
       );
       const cannotFind = idx === -1;
       if (cannotFind) {
-        console.warn("cannot find calendar on addStory", calendarId);
+        console.warn("cannot find calendar on removeStory", calendarId);
         return;
       }
       state.calendars[idx].stories = state.calendars[idx].stories.filter(
         (story) => story.id !== storyId
       );
     },
+    addEvent(state, action: PayloadAction<AddEventPayload>) {
+      const { calendarId, storyId, event } = action.payload;
+
+      // calendar
+      const calendarIdx = state.calendars.findIndex(
+        (calendar) => calendar.id === calendarId
+      );
+      const cannotFindCalendar = calendarIdx === -1;
+      if (cannotFindCalendar) {
+        console.warn("cannot find calendar on addEvent", calendarId);
+        return;
+      }
+
+      // story
+      const storyIdx = state.calendars[calendarIdx].stories.findIndex(
+        (story) => story.id === storyId
+      );
+      const cannotFindStory = storyIdx === -1;
+      if (cannotFindStory) {
+        console.warn("cannot find calendar on addEvent", calendarId);
+        return;
+      }
+
+      // addd
+      state.calendars[calendarIdx].stories[storyIdx].events.push(event);
+    },
+    removeEvent(state, action: PayloadAction<RemoveEventPayload>) {
+      const { calendarId, eventId } = action.payload;
+
+      // calendar
+      const calendarIdx = state.calendars.findIndex(
+        (calendar) => calendar.id === calendarId
+      );
+      const cannotFindCalendar = calendarIdx === -1;
+      if (cannotFindCalendar) {
+        console.warn("cannot find calendar on addEvent", calendarId);
+        return;
+      }
+
+      // story
+      const storyIdx = state.calendars[calendarIdx].stories.findIndex(
+        (story) => {
+          return story.events.some((_event) => _event.id === eventId);
+        }
+      );
+      const cannotFindStory = storyIdx === -1;
+      if (cannotFindStory) {
+        console.warn("cannot find calendar on removeEvent", storyIdx);
+        return;
+      }
+
+      // remove
+      state.calendars[calendarIdx].stories[storyIdx].events = state.calendars[
+        calendarIdx
+      ].stories[storyIdx].events.filter((_event) => _event.id !== eventId);
+    },
   },
 });
 
-export const { update, addStory, removeStory } = userCalendarsSlice.actions;
+export const {
+  update,
+  addStory,
+  removeStory,
+  addEvent,
+  removeEvent,
+} = userCalendarsSlice.actions;
 
 export default userCalendarsSlice.reducer;
 
