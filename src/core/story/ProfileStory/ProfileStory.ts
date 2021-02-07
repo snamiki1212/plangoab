@@ -5,10 +5,12 @@ import { addMonths, addYears } from "date-fns";
 import { uuid } from "../../../lib/uuid";
 import { convertIsoToDateTime } from "../../../lib/date";
 import {
+  PROFILE_ID,
   RESOURCE_ID__SHARED__AGE,
   RESOURCE_ID__SHARED__LIMIT,
 } from "../../../constants/fullcalendar/settings";
 import { WORKING_HOLIDAY_APPLICATION_LIMITATION_AGE } from "../../../constants/visa";
+import { createStoryName } from "../BaseStroy";
 
 export type ProfileStory = BaseStory;
 
@@ -58,10 +60,10 @@ export const createProfileStory = ({
   birth: string | Date;
 }): ProfileStory => {
   const _birth = new Date(birth);
-  // this._resources = DEPRECATED_SHARED__RESOURCES;
-  // this._events = this.generateEvents(birth);
 
   return {
+    id: PROFILE_ID,
+    name: createStoryName(_birth),
     resources: DEPRECATED_SHARED__RESOURCES,
     events: generateEvents(_birth),
   };

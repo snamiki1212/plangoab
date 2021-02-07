@@ -1,10 +1,10 @@
 import React from "react";
-import { useCommunityCollegeAfterwardsWorkingHolidayCalendar } from "../../hooks/useCommunityCollegeAfterwardsWorkingHolidayCalendar";
-import { useUser } from "../../hooks/useUser";
-import { DEPRECATED_useEventsHandler } from "../../hooks/DEPRECATED_useEventsHandler";
-import { FullCalendarWithConfigs } from "../atoms/FullCalendarWithConfigs";
+import { useCommunityCollegeAfterwardsWorkingHolidayCalendar } from "../hooks/useCommunityCollegeAfterwardsWorkingHolidayCalendar";
+import { useUser } from "../hooks/useUser";
+import { DEPRECATED_useEventsHandler } from "../hooks/DEPRECATED_useEventsHandler";
+import { BaseCalendarContainer } from "./BaseCalendarContainer";
 
-export function GeneratedCalendar() {
+export function GeneratedCalendarContainer() {
   const { birth } = useUser();
 
   const { events, select, click, set: setEvents } = DEPRECATED_useEventsHandler();
@@ -33,7 +33,7 @@ export function GeneratedCalendar() {
   }, [storyEvents, setEvents]);
 
   return (
-    <FullCalendarWithConfigs
+    <BaseCalendarContainer
       events={events}
       resources={storyResources}
       select={select}
