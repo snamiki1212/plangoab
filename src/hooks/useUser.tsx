@@ -1,7 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "../redux/rootReducer";
-import { updateBirthday } from "../redux/features/user";
+import { updateBirthday, selectUser } from "../redux/features/user";
 
 export const useUser = () => {
   const dispatch = useDispatch();
@@ -10,7 +9,7 @@ export const useUser = () => {
     [dispatch]
   );
 
-  const { birthday, age } = useSelector((state: RootState) => state.user);
+  const { birthday, age } = useSelector(selectUser);
 
   return {
     birth: birthday,
