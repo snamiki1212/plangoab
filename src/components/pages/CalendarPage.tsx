@@ -1,19 +1,38 @@
 import React from "react";
+import styled from "styled-components";
 import { ProfileCard } from "../organisms/ProfileCard";
 import { FullCalendar } from "../organisms/FullCalendar";
 import { Footer } from "../molecules/Footer";
 
 export const CalendarPage: React.VFC = () => {
   return (
-    <div>
-      <h2>Your Profile Data</h2>
-      <ProfileCard />
+    <Container>
+      <div>
+        <SubTitle>Your Profile Data</SubTitle>
+        <ProfileCard />
+      </div>
 
-      <h2>Calendar</h2>
-      <FullCalendar />
+      <div>
+        <SubTitle>Calendar</SubTitle>
+        <FullCalendar />
+      </div>
 
-      <h2>References</h2>
-      <Footer />
-    </div>
+      <div>
+        <SubTitle>References</SubTitle>
+        <Footer />
+      </div>
+    </Container>
   );
 };
+
+const SubTitle = styled.div`
+  background: darkblue;
+  color: white;
+  font-size: 4rem;
+`;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+`;

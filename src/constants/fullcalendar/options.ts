@@ -33,7 +33,6 @@ const schedulerLicenseKey = {
 
 const views = {
   [MY_TIME_LINE_NAME]: {
-    name: "timeline",
     type: "resourceTimelineYear",
     duration: { year: 15 },
     buttonText: "TIME_LINE",
