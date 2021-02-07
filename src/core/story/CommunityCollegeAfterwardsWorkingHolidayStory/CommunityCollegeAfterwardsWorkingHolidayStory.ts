@@ -32,8 +32,8 @@ const generateStory = (storyId: string, startDate: Date) => {
   const coopVisaEvent = {
     id: uuid(),
     resourceId: coopVisaResourceId,
-    start: startDate,
-    end: addMonths(startDate, 12 * 2),
+    start: startDate.toISOString(),
+    end: addMonths(startDate, 12 * 2).toISOString(),
     [NAME_OF_ORDER]: 1,
     backgroundColor: VISA_BACKGROUND_COLOR,
   };
@@ -49,8 +49,8 @@ const generateStory = (storyId: string, startDate: Date) => {
   const studyVisaEvent = {
     id: uuid(),
     resourceId: studyVisaResourceId,
-    start: startDate,
-    end: addMonths(startDate, 12 * 2),
+    start: startDate.toISOString(),
+    end: addMonths(startDate, 12 * 2).toISOString(),
     [NAME_OF_ORDER]: 2,
     backgroundColor: VISA_BACKGROUND_COLOR,
   };
@@ -67,16 +67,16 @@ const generateStory = (storyId: string, startDate: Date) => {
   const workingHolidayVisaEvent = {
     id: uuid(),
     resourceId: workingholidayResourceId,
-    start: dateAsStartWorkingHoliday,
-    end: addMonths(dateAsStartWorkingHoliday, 12 * 1),
+    start: dateAsStartWorkingHoliday.toISOString(),
+    end: addMonths(dateAsStartWorkingHoliday, 12 * 1).toISOString(),
     [NAME_OF_ORDER]: 3,
     backgroundColor: VISA_BACKGROUND_COLOR,
   };
   const preWorkingHolidayVisaEvent = {
     id: uuid(),
     resourceId: workingholidayResourceId,
-    start: setMonth(addYears(dateAsStartWorkingHoliday, -1), 8),
-    end: dateAsStartWorkingHoliday,
+    start: setMonth(addYears(dateAsStartWorkingHoliday, -1), 8).toISOString(),
+    end: dateAsStartWorkingHoliday.toISOString(),
     [NAME_OF_ORDER]: 3,
     backgroundColor: WH_WARN_BACKGROUND_COLOR,
   };
@@ -92,8 +92,8 @@ const generateStory = (storyId: string, startDate: Date) => {
   const studentStatusVisa = {
     id: uuid(),
     resourceId: studentStatusResourceId,
-    start: startDate,
-    end: addMonths(startDate, 12 * 2),
+    start: startDate.toISOString(),
+    end: addMonths(startDate, 12 * 2).toISOString(),
     [NAME_OF_ORDER]: 4,
     eventBackgroundCoor: STATUS_BACKGROUND_COLOR,
   };
@@ -109,8 +109,8 @@ const generateStory = (storyId: string, startDate: Date) => {
   const workerStatusVisa = {
     id: uuid(),
     resourceId: workerStatusResourceId,
-    start: addMonths(startDate, 12 * 1),
-    end: addMonths(startDate, 12 * 3),
+    start: addMonths(startDate, 12 * 1).toISOString(),
+    end: addMonths(startDate, 12 * 3).toISOString(),
     [NAME_OF_ORDER]: 5,
     eventBackgroundCoor: STATUS_BACKGROUND_COLOR,
   };

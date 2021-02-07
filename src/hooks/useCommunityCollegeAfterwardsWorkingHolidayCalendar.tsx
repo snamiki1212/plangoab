@@ -6,8 +6,7 @@ import { generateCommunityCollegeAfterwardsWorkingHolidayStories, selectCalendar
 export const useCommunityCollegeAfterwardsWorkingHolidayCalendar = () => {
   const dispatch = useDispatch();
   const generate = React.useCallback(
-    (_birth: string) => {
-      const birth = new Date(_birth)
+    (birth: string) => {
       dispatch(generateCommunityCollegeAfterwardsWorkingHolidayStories({ birth }));
     },
     [dispatch]

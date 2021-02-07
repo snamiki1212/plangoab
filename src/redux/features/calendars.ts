@@ -8,7 +8,7 @@ import { RootState } from "../rootReducer";
 type Calendar = BaseCalendar;
 type SetAction = { calendars: Calendar[] };
 type GeneratePayload = {
-  birth: Date;
+  birth: string;
 };
 
 const CALENDAR_ID_MAP = {
@@ -53,7 +53,7 @@ const calendarsSlice = createSlice({
     ) {
       const { birth } = action.payload;
 
-      const _stories = generate(birth);
+      const _stories = generate(new Date(birth));
 
       const _calendars = state.calendars;
       const calendarId =
