@@ -1,5 +1,5 @@
 import { UserCalendar, calendarId } from "./model";
-import { ProfileStory } from "../../story/ProfileStory/ProfileStory";
+import { ProfileStory } from "../../story/ProfileStory/model";
 
 type Story = ProfileStory;
 

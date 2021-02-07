@@ -1,5 +1,4 @@
 import { addMonths, addYears, setMonth } from "date-fns";
-import { uuid } from "../../../lib/uuid";
 import {
   RESOURCE_TEMPLATE__VISA_STUDY,
   RESOURCE_TEMPLATE__VISA_COOP,
@@ -11,13 +10,29 @@ import {
   NAME_OF_STORY_ID,
   NAME_OF_ORDER,
 } from "../../../constants/fullcalendar/settings";
-import { BaseStory, createStoryName } from "../BaseStroy";
+import { uuid } from "../../../lib/uuid";
+import { CommunityCollegeAfterwardsWorkingHolidayStory } from "./model";
+import { createStoryName } from "../BaseStroy";
 
 const VISA_BACKGROUND_COLOR = "#8fbc8b";
 const STATUS_BACKGROUND_COLOR = "#ffd700";
 const WH_WARN_BACKGROUND_COLOR = "#e73758";
 
-export type CommunityCollegeAfterwardsWorkingHolidayStory = BaseStory;
+export const build = ({
+  startDate,
+}: {
+  startDate: Date;
+}): CommunityCollegeAfterwardsWorkingHolidayStory => {
+  const storyId = uuid();
+  const name = createStoryName(startDate);
+  const [resources, events] = generateStory(storyId, startDate);
+  return {
+    id: storyId,
+    name,
+    events,
+    resources,
+  };
+};
 
 const generateStory = (storyId: string, startDate: Date) => {
   // Coop Visa
@@ -136,20 +151,4 @@ const generateStory = (storyId: string, startDate: Date) => {
     workerStatusVisa,
   ];
   return [resources, events] as const;
-};
-
-export const build = ({
-  startDate,
-}: {
-  startDate: Date;
-}): CommunityCollegeAfterwardsWorkingHolidayStory => {
-  const storyId = uuid();
-  const name = createStoryName(startDate);
-  const [resources, events] = generateStory(storyId, startDate);
-  return {
-    id: storyId,
-    name,
-    events,
-    resources,
-  };
 };
