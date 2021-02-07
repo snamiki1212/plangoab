@@ -48,17 +48,11 @@ const resourceConfigs = {
   resourcesInitiallyExpanded: false,
 } as const;
 
-const ableConfis = {
-  selectable: true,
-  editable: true,
-} as const;
-
 export const FULL_CALENDAR_CONFIGS = {
   resourceAreaColumns,
   views,
   headerToolbar,
   slotLabelFormat,
-  ...ableConfis,
   ...initialView,
   ...resourceGroupField,
   ...schedulerLicenseKey,

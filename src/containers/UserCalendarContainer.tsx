@@ -5,6 +5,11 @@ import { DEPRECATED_useEventsHandler } from "../hooks/DEPRECATED_useEventsHandle
 import { BaseCalendarContainer } from "./BaseCalendarContainer";
 import { useResourceGroupLabelContentInUserCalendar } from "../hooks/useResourceGroupLabelContentInUserCalendar";
 
+const ableConfis = {
+  selectable: true,
+  editable: true,
+} as const;
+
 export function UserCalendarContainer() {
   const {
     resourceGroupLabelContent,
@@ -38,6 +43,7 @@ export function UserCalendarContainer() {
       eventClick={click}
       initialDate={"2020-06-01"}
       resourceGroupLabelContent={resourceGroupLabelContent}
+      {...ableConfis}
     />
   );
 }
