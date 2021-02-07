@@ -1,4 +1,3 @@
-import { BaseStory } from "../BaseStroy";
 import { uuid } from "../../../lib/uuid";
 import { addMonths, addYears, setMonth } from "date-fns";
 import {
