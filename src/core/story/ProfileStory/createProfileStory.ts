@@ -1,3 +1,4 @@
+import { addMonths, addYears } from "date-fns";
 import { ProfileStory } from "./model";
 import {
   PROFILE_ID,
@@ -6,11 +7,11 @@ import {
 } from "../../../constants/fullcalendar/settings";
 import { DEPRECATED_SHARED__RESOURCES } from "../../../constants/fullcalendar/templates";
 import { createStoryName } from "../BaseStory";
-import { addMonths, addYears } from "date-fns";
 import { getRangeNumbers } from "../../../lib/age";
 import { uuid } from "../../../lib/uuid";
 import { convertIsoToDateTime } from "../../../lib/date";
 import { WORKING_HOLIDAY_APPLICATION_LIMITATION_AGE } from "../../../constants/visa";
+import { BaseEvent } from "../../event/BaseEvent";
 
 export const createProfileStory = ({
   birth,
@@ -27,7 +28,7 @@ export const createProfileStory = ({
   };
 };
 
-const generateEvents = (startDate: Date) => {
+const generateEvents = (startDate: Date): BaseEvent[] => {
   // get year num
   const endYear = getLastYear();
   const startYear = new Date(startDate).getFullYear();
@@ -67,7 +68,7 @@ const getLastYear = () => {
   return addYears(date, BUFFER_YEAR).getFullYear();
 };
 
-const createWorkingHolidayLimitEvent = (birthday: Date) => {
+const createWorkingHolidayLimitEvent = (birthday: Date): BaseEvent => {
   const lastYearDate = addYears(
     birthday,
     WORKING_HOLIDAY_APPLICATION_LIMITATION_AGE

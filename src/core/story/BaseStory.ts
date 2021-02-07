@@ -1,23 +1,11 @@
 import { convertIsoToYearAndMonth } from "../../lib/date";
-
-// import { EventInput } from "@fullcalendar/react";
-
-// type _Date = Date | string;
-// type _Event = {
-//   id: string;
-//   resourceId: string;
-//   title?: string;
-//   start: Date | string;
-//   end: Date | string;
-// }; // TODO: maybe should not use fullcalendar type.
-
-type Event = any;
-type Resource = any; // TODO:
+import { BaseEvent } from "../event/BaseEvent";
+import { BaseResource } from "../resource/BaseResource";
 
 export type BaseStory = {
   id: string;
-  events: Event[];
-  resources: Resource[];
+  events: BaseEvent[];
+  resources: BaseResource[];
   name: string;
 };
 

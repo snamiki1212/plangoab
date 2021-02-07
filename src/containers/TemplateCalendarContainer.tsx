@@ -7,9 +7,20 @@ import { useResourceGroupLabelContentInTemplateCalendar } from "../hooks/useReso
 
 export function TemplateCalendarContainer() {
   const { birth } = useUser();
-  const { events: _events, select, click, set: setEvents } = DEPRECATED_useEventsHandler();
-  const { resources, events, generate } = useCommunityCollegeAfterwardsWorkingHolidayCalendar();
-  const {resourceGroupLabelContent} = useResourceGroupLabelContentInTemplateCalendar()
+  const {
+    events: _events,
+    select,
+    click,
+    set: setEvents,
+  } = DEPRECATED_useEventsHandler();
+  const {
+    resources,
+    events,
+    generate,
+  } = useCommunityCollegeAfterwardsWorkingHolidayCalendar();
+  const {
+    resourceGroupLabelContent,
+  } = useResourceGroupLabelContentInTemplateCalendar();
 
   React.useEffect(() => {
     generate(birth);
