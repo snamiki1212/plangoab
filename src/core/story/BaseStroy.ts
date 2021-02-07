@@ -1,3 +1,5 @@
+import { convertIsoToYearAndMonth } from "../../lib/date";
+
 // import { EventInput } from "@fullcalendar/react";
 
 // type _Date = Date | string;
@@ -13,11 +15,17 @@ type Event = any;
 type Resource = any; // TODO:
 
 export type BaseStory = {
+  id: string;
   events: Event[];
   resources: Resource[];
+  name: string;
 };
 
 export const removeEvent = (story: BaseStory, eventId: string): BaseStory => {
   const newEvents = story.events.filter((event) => event.id !== eventId);
   return { ...story, events: newEvents };
+};
+
+export const createStoryName = (birth: Date) => {
+  return convertIsoToYearAndMonth(birth.toISOString());
 };

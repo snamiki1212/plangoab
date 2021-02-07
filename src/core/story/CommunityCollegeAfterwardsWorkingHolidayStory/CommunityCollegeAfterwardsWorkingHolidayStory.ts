@@ -11,13 +11,13 @@ import {
   NAME_OF_STORY_ID,
   NAME_OF_ORDER,
 } from "../../../constants/fullcalendar/settings";
+import { BaseStory, createStoryName } from "../BaseStroy";
 
 const VISA_BACKGROUND_COLOR = "#8fbc8b";
 const STATUS_BACKGROUND_COLOR = "#ffd700";
 const WH_WARN_BACKGROUND_COLOR = "#e73758";
 
-type Event = any;
-type Resource = any;
+export type CommunityCollegeAfterwardsWorkingHolidayStory = BaseStory;
 
 const generateStory = (storyId: string, startDate: Date) => {
   // Coop Visa
@@ -138,21 +138,17 @@ const generateStory = (storyId: string, startDate: Date) => {
   return [resources, events] as const;
 };
 
-export type CommunityCollegeAfterwardsWorkingHolidayStory = {
-  storyId: string;
-  events: Event[];
-  resources: Resource[];
-};
-
 export const build = ({
   startDate,
 }: {
   startDate: Date;
 }): CommunityCollegeAfterwardsWorkingHolidayStory => {
   const storyId = uuid();
+  const name = createStoryName(startDate);
   const [resources, events] = generateStory(storyId, startDate);
   return {
-    storyId,
+    id: storyId,
+    name,
     events,
     resources,
   };

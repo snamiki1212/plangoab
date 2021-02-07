@@ -44,9 +44,6 @@ const nowIndicator = {
 } as const;
 
 const resourceConfigs = {
-  resourceGroupLabelContent({ groupValue }: { groupValue: string }) {
-    return `Story [ID:${groupValue}]`;
-  },
   resourceOrder: NAME_OF_ORDER,
 } as const;
 

@@ -2,7 +2,7 @@ import React from "react";
 import { useMyCalendar } from "../../hooks/useMyCalendar";
 import { useUser } from "../../hooks/useUser";
 import { DEPRECATED_useEventsHandler } from "../../hooks/DEPRECATED_useEventsHandler";
-import { FullCalendarWithConfigs } from "../atoms/FullCalendarWithConfigs";
+import { BaseCalendarContainer } from "../../containers/BaseCalendarContainer";
 
 export const MyCalendar = function () {
   const { birth } = useUser();
@@ -22,7 +22,7 @@ export const MyCalendar = function () {
   }, [setEvents, _events]);
 
   return (
-    <FullCalendarWithConfigs
+    <BaseCalendarContainer
       events={events}
       resources={_resources}
       select={select}
