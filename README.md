@@ -45,6 +45,11 @@ $ yarn start #=> open http://local:3000
 
 TODO:
 
+### Principle
+
+- No Class, but Function
+- Atomic Design
+
 ## Tech Stack
 
 - React / Redux
