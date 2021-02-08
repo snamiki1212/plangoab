@@ -1,16 +1,14 @@
-# Name
+# Plgoad
 
-<b>Name</b> is helping you to plan schedule you would stay in Canada.
+<b>Plgoad</b> is web calendar tool to help you to plan go abroad.
+
+(Plgoad stands for 'plan to go abroad')
 
 ## Description
 
 TODO:
 
 ## Demo
-
-TODO:
-
-## Usage
 
 TODO:
 
@@ -42,4 +40,4 @@ TODO:
 
 ## Author
 
-[@snamiki1212](https://github.com/snamiki1212)
+- [snamiki1212](https://github.com/snamiki1212)
