@@ -1,6 +1,6 @@
 <p>
   <a href="https://plangoab.snamiki1212.vercel.app">
-	<img alt="Plangoab is web tool calendar to help you to plan going abroad." src="https://user-images.githubusercontent.com/26793088/107184750-0253f680-6996-11eb-8b5f-1f6960d741e8.png">
+	<img alt="Plangoab is web tool calendar to help you to plan going abroad." src="https://user-images.githubusercontent.com/26793088/107297947-404e2a80-6a29-11eb-92ec-cce1d5c50a6e.png">
   </a>
   <a href="https://github.com/snamiki1212/plangoab/blob/master/LICENSE.md">
     <!-- <img src="https://img.shields.io/discord/457912077277855764?label=chat&logo=discord" alt="Chat"> -->
