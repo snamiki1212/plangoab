@@ -2,6 +2,7 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 import styled from "styled-components";
 import { AboutModal } from "../atoms/AboutModal";
+import { LogoImage } from "../atoms/LogoImage";
 
 export function Header() {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -18,6 +19,7 @@ export function Header() {
   return (
     <>
       <Container>
+        <LogoImage />
         <Title>Plangoab</Title>
         <Button onClick={handleClick}>About Plangoab</Button>
       </Container>
