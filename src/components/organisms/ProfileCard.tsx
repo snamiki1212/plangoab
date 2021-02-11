@@ -50,4 +50,5 @@ export function ProfileCard() {
 const _Card = styled(Card)`
   display: flex;
   gap: 1rem;
+  padding: 2rem;
 `;

@@ -3,36 +3,30 @@ import styled from "styled-components";
 import { ProfileCard } from "../organisms/ProfileCard";
 import { CalendarList } from "../organisms/CalendarList";
 import { Footer } from "../molecules/Footer";
+import { Header } from "../molecules/Header";
 
-export function CalendarPage () {
+export function CalendarPage() {
   return (
     <Container>
-      <div>
-        <SubTitle>Your Profile Data</SubTitle>
+      <Header />
+      <ContentWrapper>
         <ProfileCard />
-      </div>
-
-      <div>
-        <SubTitle>Calendar</SubTitle>
         <CalendarList />
-      </div>
+      </ContentWrapper>
 
-      <div>
-        <SubTitle>References</SubTitle>
-        <Footer />
-      </div>
+      <Footer />
     </Container>
   );
-};
-
-const SubTitle = styled.div`
-  background: darkblue;
-  color: white;
-  font-size: 4rem;
-`;
+}
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 2rem;
+`;
+
+const ContentWrapper = styled.div`
+  padding: 0 3rem;
+  display: grid;
   gap: 5rem;
 `;
