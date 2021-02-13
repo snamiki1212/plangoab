@@ -21,21 +21,31 @@ export function Header() {
       <Container>
         <LogoImage />
         <Title>Plangoab</Title>
-        <Button onClick={handleClick}>About Plangoab</Button>
+        <ButtonContainer>
+          <Button onClick={handleClick}>About Plangoab</Button>
+        </ButtonContainer>
       </Container>
-      <AboutModal isOpen={isOpen} onClose={handleClose} />
 
-      {/*  */}
+      {/* Modal */}
+      <AboutModal isOpen={isOpen} onClose={handleClose} />
     </>
   );
 }
 
 const Container = styled.div`
-  height: 4rem;
+  display: flex;
+  align-items: center;
+  height: 6rem;
   background: var(--main-color);
+  padding: 1rem;
 `;
 
 const Title = styled.span`
   color: white;
   font-size: 3rem;
+  padding: 1rem;
 `;
+
+const ButtonContainer = styled.div`
+  margin-left: auto;
+`

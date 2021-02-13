@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 export function LogoImage(){
   return(
-    <Img src={process.env.PUBLIC_URL + '/logo330.png'} alt="img" />
+    <Img src={process.env.PUBLIC_URL + '/logo457_transparent.png'} alt="img" />
   )
 }
 
@@ -11,4 +11,6 @@ const Img = styled.img`
   display: inline-block;
   height: 100%;
   object-fit: contain;
+  background: white;
+  padding: .3rem;
 `
