@@ -1,6 +1,6 @@
-<p>
+<p align="center">
   <a href="https://plangoab.snamiki1212.vercel.app">
-	<img alt="Plangoab is web tool calendar to help you to plan going abroad." src="https://user-images.githubusercontent.com/26793088/107297947-404e2a80-6a29-11eb-92ec-cce1d5c50a6e.png">
+	<img alt="Plangoab is a online web calendar for a person going abroad." src="https://user-images.githubusercontent.com/26793088/107297947-404e2a80-6a29-11eb-92ec-cce1d5c50a6e.png">
   </a>
   <a href="https://github.com/snamiki1212/plangoab/blob/master/LICENSE.md">
     <img src="https://img.shields.io/badge/License-GPLv3-blue.svg" alt="License:GPLv3">
@@ -9,19 +9,20 @@
 
 # Plangoab
 
-<b><a href="https://plangoab.snamiki1212.vercel.app">Plangoab</a></b> is web calendar tool to help you to plan go abroad.
+<b><a href="https://plangoab.snamiki1212.vercel.app">Plangoab</a></b> is a online web calendar for a person going abroad.
 
-(Plangoab stands for 'plan to go abroad')
+(Plangoab stands for '<b>plan</b> to <b>go ab</b>road')
 
-## Description
+## Features
 
-TODO:
+- Customize your schedule
+- Generating a plan by your age
+- TODO: Share a schedule
+- TODO: Save a schedule(local or remote)
 
 ## Demo
 
-TODO:
-
-[Try Now ➞](https://plangoab.snamiki1212.vercel.app)
+[👉Try Now](https://plangoab.snamiki1212.vercel.app)
 
 ## Install
 
@@ -33,24 +34,33 @@ $ yarn start #=> open http://local:3000
 
 ## Architecture
 
+Here is managed [issues](https://github.com/snamiki1212/plangoab/issues/11).
+
 ### Data Object / Explain Display
 
 ![architecture-img](https://user-images.githubusercontent.com/26793088/106835692-a5320b00-664c-11eb-8fc6-6eba324c9f2c.jpg)
 
-<a href="https://github.com/snamiki1212/plangoab/issues/11">MORE DETAIL...</a>
-
 ### Dependency Flow
 
-TODO:
+<p align="center">
+<img src="https://user-images.githubusercontent.com/26793088/107864305-de6a3800-6e0f-11eb-9d2f-f12a88414018.jpg" alt="dependency flow" />
+</p>
 
 ### Principle
 
 - No Class, but Function
 - Atomic Design
 
-## Tech Stack
+### Tech Stack
 
-- React / Redux
+- App
+  - React
+  - Redux (Redux Toolkit)
+  - styled-components
+  - Material-UI
+- CI/CD
+  - Github Actions
+  - GitHub Pages
 
 ## Contribution
 
@@ -60,10 +70,12 @@ TODO:
 
 [GPL-3.0](https://github.com/snamiki1212/plangoab/blob/master/LICENSE.md)
 
+Using [Fullcalendar Premium open-source project license](https://fullcalendar.io/license) makes this license GPL-3.0.
+
 ## Sponser
 
 TODO:
 
 ## Author
 
-[snamiki1212](https://github.com/snamiki1212)
+[GitHub: snamiki1212](https://github.com/snamiki1212)
