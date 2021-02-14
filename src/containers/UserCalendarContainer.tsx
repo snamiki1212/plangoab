@@ -3,8 +3,15 @@ import { useUserCalendar } from "../hooks/useUserCalendar";
 import { useUser } from "../hooks/useUser";
 import { BaseCalendarContainer } from "./BaseCalendarContainer";
 import { useResourceGroupLabelContentInUserCalendar } from "../hooks/useResourceGroupLabelContentInUserCalendar";
-import {FIELD_NAME} from '../constants/fullcalendar/settings'
-import {ResourceModal} from '../components/molecules/ResourceModal'
+//
+import { FIELD_NAME, MY_CALENDAR_ID } from "../constants/fullcalendar/settings";
+import { ResourceModal } from "../components/molecules/ResourceModal";
+import {
+  pushAction,
+  popAction,
+  selectIsOpen,
+} from "../redux/ui/resourceModal";
+import { useDispatch, useSelector } from "react-redux";
 
 const ableConfis = {
   selectable: true,
@@ -12,6 +19,29 @@ const ableConfis = {
 } as const;
 
 export function UserCalendarContainer() {
+  const dispatch = useDispatch();
+
+  const push = React.useCallback(
+    ({
+      resourceId,
+      storyId,
+      calendarId,
+    }: {
+      resourceId: string;
+      storyId: string;
+      calendarId: string;
+    }) => {
+      dispatch(pushAction({ calendarId, resourceId, storyId }));
+    },
+    [dispatch]
+  );
+
+  const pop = React.useCallback(() => {
+    dispatch(popAction());
+  }, [dispatch]);
+
+  const isOpen = useSelector(selectIsOpen);
+
   const { birth } = useUser();
 
   const {
@@ -31,41 +61,42 @@ export function UserCalendarContainer() {
     initUserCalendar(birth);
   }, [birth, initUserCalendar]);
 
-const resourceAreaColumns = [
-  {
-    field: FIELD_NAME["H1"],
-    headerContent: "Category",
-  },
-  {
-    field: FIELD_NAME["H2"],
-    headerContent: "Event",
-    cellContent: function (arg: any) {
-      // MEMO:
-      // const props = arg.resource.extendedProps;
-      // const stroyId = props["storyId"]
-      // const h1 = props["FIELD__H1"]
-      // const h2 = props["FIELD__H2"]
-      // const resourceId = arg.resource.id;
-
-      let message = arg.fieldValue;
-      console.log("RENDER", arg);
-      message += "!!!";
-
-      const containerEl = document.createElement("div");
-
-      const messageEl = document.createElement("span");
-      messageEl.innerHTML = message;
-      containerEl.appendChild(messageEl);
-
-      const buttonEl = document.createElement("button");
-      buttonEl.innerHTML = "ok";
-      containerEl.appendChild(buttonEl);
-
-      const arrayOfDomNodes = [containerEl];
-      return { domNodes: arrayOfDomNodes };
+  const resourceAreaColumns = [
+    {
+      field: FIELD_NAME["H1"],
+      headerContent: "Category",
     },
-  },
-];
+    {
+      field: FIELD_NAME["H2"],
+      headerContent: "Event",
+      cellContent: function (arg: any) {
+        const props = arg.resource.extendedProps;
+        const storyId = props["storyId"]
+        // const h1 = props["FIELD__H1"]
+        // const h2 = props["FIELD__H2"]
+        const resourceId = arg.resource.id;
+        const calendarId = MY_CALENDAR_ID;
+
+        let message = arg.fieldValue;
+        console.log("RENDER", arg);
+        message += "!!!";
+
+        const containerEl = document.createElement("div");
+
+        const messageEl = document.createElement("span");
+        messageEl.innerHTML = message;
+        containerEl.appendChild(messageEl);
+
+        const buttonEl = document.createElement("button");
+        buttonEl.innerHTML = "ok";
+        buttonEl.onclick = () => push({calendarId, storyId, resourceId});
+        containerEl.appendChild(buttonEl);
+
+        const arrayOfDomNodes = [containerEl];
+        return { domNodes: arrayOfDomNodes };
+      },
+    },
+  ];
 
   return (
     <>
@@ -80,12 +111,10 @@ const resourceAreaColumns = [
           resourceAreaColumns={resourceAreaColumns}
           {...ableConfis}
         />
-        <button>resource:add</button>
-        <button>resource:remove</button>
-        <button>resource:modify</button>
+        {/* <button onClick={push}>resource:open</button> */}
         <button onClick={createStory}>story:add</button>
       </div>
-      <ResourceModal isOpen={isOpen} onClose={onClose}/>
+      <ResourceModal isOpen={isOpen} onClose={pop} />
     </>
   );
 }
