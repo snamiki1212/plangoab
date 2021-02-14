@@ -37,8 +37,39 @@ const slice = createSlice({
 export const selectIsOpen = (state: RootState) =>
   !!state.resourceModal.resource;
 
-export const selectResource = (state: RootState) =>
+export const selectResourceModal = (state: RootState) =>
   state.resourceModal.resource;
+
+export const selectResource = (state: RootState) => {
+  const _resource = state.resourceModal.resource;
+  if (!_resource) return null;
+  const { calendarId, storyId, resourceId } = _resource;
+
+  // calendar
+  const calendarIdx = state.userCalendars.calendars.findIndex(
+    (calendar) => calendar.id === calendarId
+  );
+  const cannotFind = calendarIdx === -1;
+  if (cannotFind) {
+    console.warn("cannot find calendar on removeResource", calendarId);
+    return;
+  }
+
+  // story
+  const storyIdx = state.userCalendars.calendars[calendarIdx].stories.findIndex(
+    (story) => story.id === storyId
+  );
+  const cannotFindStory = storyIdx === -1;
+  if (cannotFindStory) {
+    console.warn("cannot find story on removeResource", calendarId);
+    return;
+  }
+
+  //
+  return state.userCalendars.calendars[calendarIdx].stories[
+    storyIdx
+  ].resources.find((resource) => resource.id === resourceId);
+};
 
 export const { push: pushAction, pop: popAction } = slice.actions;
 

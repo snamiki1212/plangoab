@@ -29,3 +29,25 @@ export const initResource = (
     [FIELD_NAME["H2"]]: field2 ?? "H2",
   };
 };
+
+export const updateResource = (
+  resource: BaseResource,
+  params: Partial<Omit<BaseResource, "id" | "storyId">>
+): BaseResource => {
+  const order = params[NAME_OF_ORDER];
+  const field1 = params[H1];
+  const field2 = params[H2];
+
+  const orderKey = NAME_OF_ORDER;
+  const field1Key = FIELD_NAME["H1"];
+  const field2Key = FIELD_NAME["H2"];
+
+  const newResource = Object.assign(
+    { ...resource },
+    order !== undefined && { [orderKey]: order },
+    field1 !== undefined && { [field1Key]: field1 },
+    field2 !== undefined && { [field2Key]: field2 }
+  );
+
+  return newResource;
+};

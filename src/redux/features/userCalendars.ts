@@ -3,9 +3,20 @@ import { RootState } from "../rootReducer";
 import { BaseCalendar } from "../../core/calendar/BaseCalendar";
 import { BaseStory } from "../../core/story/BaseStory";
 import { BaseEvent } from "../../core/event/BaseEvent";
+import { BaseResource } from "../../core/resource/BaseResource";
 
 type Calendar = BaseCalendar;
 type UpdatePayload = { calendars: Calendar[] };
+type UpdateResourcePayload = {
+  calendarId: string;
+  storyId: string;
+  newResource: BaseResource;
+};
+type RemoveResourcePayload = {
+  calendarId: string;
+  storyId: string;
+  resourceId: string;
+};
 type AddStoryPayload = { calendarId: string; story: BaseStory };
 type RemoveStoryPayload = { calendarId: string; storyId: string };
 type AddEventPayload = {
@@ -27,6 +38,72 @@ const userCalendarsSlice = createSlice({
     update(state, action: PayloadAction<UpdatePayload>) {
       const { calendars } = action.payload;
       state.calendars = calendars;
+    },
+    updateResource(state, action: PayloadAction<UpdateResourcePayload>) {
+      const { calendarId, storyId, newResource } = action.payload;
+
+      // calendar
+      const calendarIdx = state.calendars.findIndex(
+        (calendar) => calendar.id === calendarId
+      );
+      const cannotFind = calendarIdx === -1;
+      if (cannotFind) {
+        console.warn("cannot find calendar on updateResource", calendarId);
+        return;
+      }
+
+      // story
+      const storyIdx = state.calendars[calendarIdx].stories.findIndex(
+        (story) => story.id === storyId
+      );
+      const cannotFindStory = storyIdx === -1;
+      if (cannotFindStory) {
+        console.warn("cannot find story on updateResource", calendarId);
+        return;
+      }
+
+      // query
+      const resourceIdx = state.calendars[calendarIdx].stories[
+        storyIdx
+      ].resources.findIndex((resource) => resource.id === newResource.id);
+      const cannotFindResource = resourceIdx === -1;
+      if (cannotFindResource) {
+        console.warn("cannot find resource on updateResource", calendarId);
+        return;
+      }
+      state.calendars[calendarIdx].stories[storyIdx].resources[
+        resourceIdx
+      ] = newResource;
+    },
+    removeResource(state, action: PayloadAction<RemoveResourcePayload>) {
+      const { calendarId, resourceId, storyId } = action.payload;
+
+      // calendar
+      const calendarIdx = state.calendars.findIndex(
+        (calendar) => calendar.id === calendarId
+      );
+      const cannotFind = calendarIdx === -1;
+      if (cannotFind) {
+        console.warn("cannot find calendar on removeResource", calendarId);
+        return;
+      }
+
+      // story
+      const storyIdx = state.calendars[calendarIdx].stories.findIndex(
+        (story) => story.id === storyId
+      );
+      const cannotFindStory = storyIdx === -1;
+      if (cannotFindStory) {
+        console.warn("cannot find story on removeResource", calendarId);
+        return;
+      }
+
+      // query
+      state.calendars[calendarIdx].stories[
+        storyIdx
+      ].resources = state.calendars[calendarIdx].stories[
+        storyIdx
+      ].resources.filter((resource) => resource.id !== resourceId);
     },
     addStory(state, action: PayloadAction<AddStoryPayload>) {
       const { calendarId, story } = action.payload;
@@ -73,7 +150,7 @@ const userCalendarsSlice = createSlice({
       );
       const cannotFindStory = storyIdx === -1;
       if (cannotFindStory) {
-        console.warn("cannot find calendar on addEvent", calendarId);
+        console.warn("cannot find story on addEvent", calendarId);
         return;
       }
 
@@ -89,7 +166,7 @@ const userCalendarsSlice = createSlice({
       );
       const cannotFindCalendar = calendarIdx === -1;
       if (cannotFindCalendar) {
-        console.warn("cannot find calendar on addEvent", calendarId);
+        console.warn("cannot find calendar on removeEvent", calendarId);
         return;
       }
 
@@ -101,7 +178,7 @@ const userCalendarsSlice = createSlice({
       );
       const cannotFindStory = storyIdx === -1;
       if (cannotFindStory) {
-        console.warn("cannot find calendar on removeEvent", storyIdx);
+        console.warn("cannot find story on removeEvent", storyIdx);
         return;
       }
 
@@ -116,7 +193,8 @@ const userCalendarsSlice = createSlice({
 export const {
   // TODO: rename updateCalendar
   update: updateAction,
-
+  updateResource: updateResourceAction,
+  removeResource: removeResourceAction,
   addStory: addStoryAction,
   removeStory: removeStoryAction,
   addEvent: addEventAction,

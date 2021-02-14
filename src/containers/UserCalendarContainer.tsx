@@ -58,14 +58,14 @@ export function UserCalendarContainer() {
 
           const containerEl = document.createElement("div");
 
-          const messageEl = document.createElement("span");
-          messageEl.innerHTML = message;
-          containerEl.appendChild(messageEl);
-
           const buttonEl = document.createElement("button");
           buttonEl.innerHTML = "︙";
           buttonEl.onclick = () => push({ calendarId, storyId, resourceId });
           containerEl.appendChild(buttonEl);
+
+          const messageEl = document.createElement("span");
+          messageEl.innerHTML = message;
+          containerEl.appendChild(messageEl);
 
           const arrayOfDomNodes = [containerEl];
           return { domNodes: arrayOfDomNodes };
