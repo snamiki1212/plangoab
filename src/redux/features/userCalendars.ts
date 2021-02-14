@@ -114,7 +114,9 @@ const userCalendarsSlice = createSlice({
 });
 
 export const {
+  // TODO: rename updateCalendar
   update: updateAction,
+
   addStory: addStoryAction,
   removeStory: removeStoryAction,
   addEvent: addEventAction,
