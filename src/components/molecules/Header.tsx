@@ -7,14 +7,13 @@ import { LogoImage } from "../atoms/LogoImage";
 export function Header() {
   const [isOpen, setIsOpen] = React.useState(false);
 
-  const handleClick = () => {
-    console.log("handle click");
+  const handleClick = React.useCallback(() => {
     setIsOpen(true);
-  };
+  }, []);
 
-  const handleClose = () => {
+  const handleClose = React.useCallback(() => {
     setIsOpen(false);
-  };
+  }, []);
 
   return (
     <>
