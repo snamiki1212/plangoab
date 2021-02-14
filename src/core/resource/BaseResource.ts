@@ -5,8 +5,17 @@ import {
   FIELD_NAME,
 } from "../../constants/fullcalendar/settings";
 
-// TODO: define specific type
-export type BaseResource = any;
+const H1 = FIELD_NAME["H1"];
+const H2 = FIELD_NAME["H2"];
+
+export type BaseResource = {
+  id: string;
+  [H1]: string;
+  [H2]: string;
+  [NAME_OF_STORY_ID]: string;
+  [NAME_OF_ORDER]?: number;
+  eventBorderColor?: string;
+};
 
 export const initResource = (
   props?: Partial<BaseResource & { field1?: string; field2: string }>
