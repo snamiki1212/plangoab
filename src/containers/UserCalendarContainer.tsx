@@ -22,6 +22,7 @@ export function UserCalendarContainer() {
     init: initUserCalendar,
     click,
     select,
+    createStory,
   } = useUserCalendar();
 
   React.useEffect(() => {
@@ -29,6 +30,7 @@ export function UserCalendarContainer() {
   }, [birth, initUserCalendar]);
 
   return (
+    <div>
     <BaseCalendarContainer
       events={events}
       resources={resources}
@@ -38,5 +40,10 @@ export function UserCalendarContainer() {
       resourceGroupLabelContent={resourceGroupLabelContent}
       {...ableConfis}
     />
+    <button>resource:add</button>
+    <button>resource:remove</button>
+    <button>resource:modify</button>
+    <button onClick={createStory}>story:add</button>
+    </div>
   );
 }

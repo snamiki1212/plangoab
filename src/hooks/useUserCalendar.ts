@@ -3,13 +3,22 @@ import { useDispatch, useSelector } from "react-redux";
 import { DateSelectArg, EventClickArg } from "@fullcalendar/react";
 import { uuid } from "../lib/uuid";
 import { createProfileStory } from "../core/story/ProfileStory/createProfileStory";
+import { initStory } from "../core/story/BaseStory";
 import { createUserCalendar } from "../core/calendar/UserCalendar/createUserCalendar";
 import {
+  // events
   updateAction,
   addEventAction,
   removeEventAction,
+
+  // storeis
+  addStoryAction,
+  // resources
+
+  // selector
   selectUserCalendar,
 } from "../redux/features/userCalendars";
+import { MY_CALENDAR_ID } from "../constants/fullcalendar/settings";
 
 export const useUserCalendar = () => {
   const dispatch = useDispatch();
@@ -67,6 +76,12 @@ export const useUserCalendar = () => {
     [dispatch, calendar]
   );
 
+  const createStory = React.useCallback(() => {
+    const calendarId = MY_CALENDAR_ID; // TODO: select from redux
+    const story = initStory();
+    dispatch(addStoryAction({ calendarId, story }));
+  }, [dispatch]);
+
   const stories = React.useMemo(() => calendar?.stories ?? [], [calendar]);
 
   const events = React.useMemo(
@@ -79,5 +94,14 @@ export const useUserCalendar = () => {
     [calendar]
   );
 
-  return { calendar, stories, events, resources, init, click, select } as const;
+  return {
+    calendar,
+    stories,
+    events,
+    resources,
+    init,
+    click,
+    select,
+    createStory,
+  } as const;
 };
