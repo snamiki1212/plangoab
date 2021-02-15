@@ -34,7 +34,7 @@ export function TemplateCalendarContainer() {
       if (!window.confirm("Copy to my calendar?")) return;
       dispatch(addStoryAction({ calendarId, story }));
     },
-    [addStoryAction]
+    [dispatch]
   );
 
   const {

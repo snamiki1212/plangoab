@@ -53,7 +53,7 @@ export const useResourceGroupLabelContentInTemplateCalendar = ({
       const arrayOfDomNodes = [nameElement, buttonElement];
       return { domNodes: arrayOfDomNodes };
     },
-    [dispatch, calendar]
+    [dispatch, calendar, createClickHandel]
   );
 
   return { resourceGroupLabelContent };
