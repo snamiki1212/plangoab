@@ -23,7 +23,7 @@ import { MY_CALENDAR_ID } from "../constants/fullcalendar/settings";
 export const useUserCalendar = () => {
   const dispatch = useDispatch();
   const calendars = useSelector(selectUserCalendar);
-  const calendar = calendars[0]; // TODO: later there is plan to become list.
+  const calendar = calendars[0]; // NOTE: now calendars have only 1 calendar.
 
   const init = React.useCallback(
     (birthday: string | Date) => {
@@ -81,10 +81,10 @@ export const useUserCalendar = () => {
   );
 
   const createStory = React.useCallback(() => {
-    const calendarId = MY_CALENDAR_ID; // TODO: select from redux
+    const calendarId = calendar.id;
     const story = initStory({ calendarId });
     dispatch(addStoryAction({ calendarId, story }));
-  }, [dispatch]);
+  }, [dispatch, calendar]);
 
   const stories = React.useMemo(() => calendar?.stories ?? [], [calendar]);
 
