@@ -9,6 +9,7 @@ import {
   FIELD1,
   FIELD2,
   NAME_OF_STORY_ID,
+  NAME_OF_ORDER,
 } from "../../../constants/fullcalendar/settings";
 import { DARK_BLUE } from "../../../constants/fullcalendar/templates";
 import { createStoryName } from "../BaseStory";
@@ -50,6 +51,7 @@ export const createResources = ({
     [FIELD1]: "",
     [FIELD2]: "Age",
     [NAME_OF_STORY_ID]: storyId,
+    [NAME_OF_ORDER]: 0,
     calendarId,
     eventBorderColor: DARK_BLUE,
   },
@@ -58,6 +60,7 @@ export const createResources = ({
     [FIELD1]: "",
     [FIELD2]: "Working Holiday Application Limit",
     [NAME_OF_STORY_ID]: storyId,
+    [NAME_OF_ORDER]: 1,
     calendarId,
     eventBorderColor: DARK_BLUE,
   },

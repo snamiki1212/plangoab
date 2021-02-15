@@ -16,11 +16,9 @@ type ContentProps = {
 
 export const useResourceGroupLabelContentInUserCalendar = ({createOpenHandle}: Props) => {
   // const dispatch = useDispatch();
-  const calendars = useSelector(
+  const calendar = useSelector(
     selectUserCalendar
   );
-
-  const calendar = calendars[0] // TODO: 
 
   const resourceGroupLabelContent = React.useCallback(
     ({ groupValue: storyId }: ContentProps) => {

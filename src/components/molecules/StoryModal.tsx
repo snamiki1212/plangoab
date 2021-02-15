@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { selectStoryModal } from "../../redux/ui/storyModal";
 // import { FIELD1, FIELD2 } from "../../constants/fullcalendar/settings";
 import { useStory } from "../../hooks/useStory";
+import { useResource } from "../../hooks/useResource";
 
 type Props = {
   isOpen: boolean;
@@ -20,6 +21,7 @@ export function StoryModal({ isOpen, onClose }: Props) {
   // const field2 = (resource && resource[FIELD2]) ?? "";
 
   const { remove } = useStory();
+  const { push: pushResource} = useResource();
 
   const handleRemove = React.useCallback(() => {
     if (!storyModal) {
@@ -28,6 +30,14 @@ export function StoryModal({ isOpen, onClose }: Props) {
     remove(storyModal);
     onClose();
   }, [storyModal, remove, onClose]);
+
+  const handleAddResource = React.useCallback(() => {
+    if(!storyModal){
+      return console.warn("Invalid data status when to add resource.");
+    }
+    pushResource(storyModal)
+    onClose();
+  }, [storyModal])
 
   // const onUpdate = React.useCallback(
   //   (data: { [FIELD1]: string; [FIELD2]: string }) => {
@@ -50,6 +60,7 @@ export function StoryModal({ isOpen, onClose }: Props) {
       <DialogContent dividers={true}>
         <div>Hello world</div>
         <button onClick={handleRemove}>remove</button>
+        <button onClick={handleAddResource}>add resource</button>
         {/* <form onSubmit={handleSubmit(onUpdate)}>
           <input ref={register} name={FIELD1} defaultValue={field1} />
           <input ref={register} name={FIELD2} defaultValue={field2} />
