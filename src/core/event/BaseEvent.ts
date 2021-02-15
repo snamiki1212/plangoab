@@ -19,7 +19,7 @@ export const initEvent = (props?: Partial<BaseEvent>): BaseEvent => {
     resourceId: resourceId ?? uuid(),
     storyId: storyId ?? uuid(),
     title,
-    start: start ?? new Date(),
-    end: end ?? new Date(),
+    start: start ?? new Date().toISOString(),
+    end: end ?? new Date().toISOString(),
   };
 };
