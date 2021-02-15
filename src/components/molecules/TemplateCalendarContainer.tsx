@@ -1,9 +1,9 @@
 import React from "react";
-import { BaseCalendarContainer } from "./BaseCalendarContainer";
-import { useCommunityCollegeCalendar } from "../hooks/useCommunityCollegeCalendar";
-import { useUser } from "../hooks/useUser";
-import { useResourceGroupLabelContentInTemplateCalendar } from "../hooks/useResourceGroupLabelContentInTemplateCalendar";
-import { FIELD1, FIELD2 } from "../constants/fullcalendar/settings";
+import { BaseCalendarContainer } from "../../components/atoms/BaseCalendarContainer";
+import { useCommunityCollegeCalendar } from "../../hooks/useCommunityCollegeCalendar";
+import { useUser } from "../../hooks/useUser";
+import { useResourceGroupLabelContentInTemplateCalendar } from "../../hooks/useResourceGroupLabelContentInTemplateCalendar";
+import { FIELD1, FIELD2 } from "../../constants/fullcalendar/settings";
 
 const ableConfis = {
   selectable: false,

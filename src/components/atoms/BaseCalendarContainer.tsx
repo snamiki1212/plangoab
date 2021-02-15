@@ -1,5 +1,5 @@
 import React from "react";
-import { BaseFullCalendar } from "../components/atoms/BaseFullCalendar";
+import { BaseFullCalendar } from "./BaseFullCalendar";
 
 export function BaseCalendarContainer(props: any) {
   const args = {

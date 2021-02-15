@@ -1,15 +1,15 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { useUserCalendar } from "../hooks/useUserCalendar";
-import { useUser } from "../hooks/useUser";
-import { BaseCalendarContainer } from "./BaseCalendarContainer";
-import { useResourceGroupLabelContentInUserCalendar } from "../hooks/useResourceGroupLabelContentInUserCalendar";
-import { useResourceModal } from "../hooks/useResourceModal";
-import { useStoryModal } from "../hooks/useStoryModal";
-import { pushAction } from "../redux/ui/storyModal";
-import { FIELD1, FIELD2 } from "../constants/fullcalendar/settings";
-import { ResourceModal } from "../components/molecules/ResourceModal";
-import { StoryModal } from "../components/molecules/StoryModal";
+import { useUserCalendar } from "../../hooks/useUserCalendar";
+import { useUser } from "../../hooks/useUser";
+import { BaseCalendarContainer } from "../../components/atoms/BaseCalendarContainer";
+import { useResourceGroupLabelContentInUserCalendar } from "../../hooks/useResourceGroupLabelContentInUserCalendar";
+import { useResourceModal } from "../../hooks/useResourceModal";
+import { useStoryModal } from "../../hooks/useStoryModal";
+import { pushAction } from "../../redux/ui/storyModal";
+import { FIELD1, FIELD2 } from "../../constants/fullcalendar/settings";
+import { ResourceModal } from "../../components/molecules/ResourceModal";
+import { StoryModal } from "../../components/molecules/StoryModal";
 
 const ableConfis = {
   selectable: true,
