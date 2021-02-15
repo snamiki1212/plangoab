@@ -6,7 +6,7 @@ import { BaseEvent } from "../../core/event/BaseEvent";
 import { BaseResource } from "../../core/resource/BaseResource";
 
 type Calendar = BaseCalendar;
-type UpdatePayload = { calendars: Calendar[] };
+type UpdateCalendarsPayload = { calendars: Calendar[] };
 type UpdateResourcePayload = {
   calendarId: string;
   storyId: string;
@@ -35,7 +35,7 @@ const userCalendarsSlice = createSlice({
     calendars: [] as Calendar[],
   },
   reducers: {
-    update(state, action: PayloadAction<UpdatePayload>) {
+    updateCalendars(state, action: PayloadAction<UpdateCalendarsPayload>) {
       const { calendars } = action.payload;
       state.calendars = calendars;
     },
@@ -191,8 +191,7 @@ const userCalendarsSlice = createSlice({
 });
 
 export const {
-  // TODO: rename updateCalendar
-  update: updateAction,
+  updateCalendars: updateCalendarsAction,
   updateResource: updateResourceAction,
   removeResource: removeResourceAction,
   addStory: addStoryAction,

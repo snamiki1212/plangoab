@@ -7,7 +7,7 @@ import { initStory } from "../core/story/BaseStory";
 import { createUserCalendar } from "../core/calendar/UserCalendar/createUserCalendar";
 import {
   // events
-  updateAction,
+  updateCalendarsAction,
   addEventAction,
   removeEventAction,
 
@@ -34,7 +34,7 @@ export const useUserCalendar = () => {
         stories: [story],
       });
       const _calendars = [_calendar];
-      dispatch(updateAction({ calendars: _calendars }));
+      dispatch(updateCalendarsAction({ calendars: _calendars }));
     },
     [dispatch]
   );
