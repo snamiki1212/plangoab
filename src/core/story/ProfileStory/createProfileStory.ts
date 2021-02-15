@@ -1,4 +1,4 @@
-import { addMonths, addYears } from "date-fns";
+import { addMonths, addYears, setMonth } from "date-fns";
 import { ProfileStory } from "./model";
 import {
   PROFILE_ID,
@@ -74,7 +74,7 @@ const generateEvents = (startDate: Date, storyId: string): BaseEvent[] => {
   // create years list
   const years = getRangeNumbers(startYear, endYear);
 
-  const workingHolidayLimitEvent = createWorkingHolidayLimitEvent(
+  const workingHolidayLimitEvents = createWorkingHolidayLimitEvents(
     startDate,
     storyId
   );
@@ -101,7 +101,7 @@ const generateEvents = (startDate: Date, storyId: string): BaseEvent[] => {
     };
   });
 
-  return [workingHolidayLimitEvent, ...ageEventList];
+  return [...workingHolidayLimitEvents, ...ageEventList];
 };
 
 const getLastYear = () => {
@@ -110,25 +110,37 @@ const getLastYear = () => {
   return addYears(date, BUFFER_YEAR).getFullYear();
 };
 
-const createWorkingHolidayLimitEvent = (
+const createWorkingHolidayLimitEvents = (
   birthday: Date,
   storyId: string
-): BaseEvent => {
+): BaseEvent[] => {
   const lastYearDate = addYears(
     birthday,
     WORKING_HOLIDAY_APPLICATION_LIMITATION_AGE
   );
-  const endDate = addMonths(lastYearDate, +11);
-  const end = convertIsoToDateTime(endDate.toISOString());
-
   const start = convertIsoToDateTime(birthday.toISOString());
-  const _event = {
+  const endDate = addMonths(lastYearDate, +11);
+  const endOfLimit = convertIsoToDateTime(endDate.toISOString());
+  const endOfApplication = convertIsoToDateTime(
+    addYears(setMonth(endDate, +6), -1).toISOString()
+  );
+
+  const limitation = {
     id: uuid(),
     resourceId: RESOURCE_ID__SHARED__LIMIT,
     title: "Limitation till WorkingHoliday",
     storyId,
     start,
-    end,
+    end: endOfLimit,
   };
-  return _event;
+
+  const application = {
+    id: uuid(),
+    resourceId: RESOURCE_ID__SHARED__LIMIT,
+    title: "Application Limit",
+    storyId,
+    start,
+    end: endOfApplication,
+  };
+  return [limitation, application];
 };
