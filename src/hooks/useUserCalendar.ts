@@ -22,8 +22,7 @@ import { MY_CALENDAR_ID } from "../constants/fullcalendar/settings";
 
 export const useUserCalendar = () => {
   const dispatch = useDispatch();
-  const calendars = useSelector(selectUserCalendar);
-  const calendar = calendars[0]; // NOTE: now calendars have only 1 calendar.
+  const calendar = useSelector(selectUserCalendar);
 
   const init = React.useCallback(
     (birthday: string | Date) => {

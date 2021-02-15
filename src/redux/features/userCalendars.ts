@@ -7,6 +7,11 @@ import { BaseResource } from "../../core/resource/BaseResource";
 
 type Calendar = BaseCalendar;
 type UpdateCalendarsPayload = { calendars: Calendar[] };
+type PushRsourceAction = {
+  calendarId: string;
+  storyId: string;
+  resource: BaseResource;
+};
 type UpdateResourcePayload = {
   calendarId: string;
   storyId: string;
@@ -38,6 +43,32 @@ const userCalendarsSlice = createSlice({
     updateCalendars(state, action: PayloadAction<UpdateCalendarsPayload>) {
       const { calendars } = action.payload;
       state.calendars = calendars;
+    },
+    pushResource(state, action: PayloadAction<PushRsourceAction>) {
+      const { calendarId, storyId, resource } = action.payload;
+
+      // calendar
+      const calendarIdx = state.calendars.findIndex(
+        (calendar) => calendar.id === calendarId
+      );
+      const cannotFind = calendarIdx === -1;
+      if (cannotFind) {
+        console.warn("cannot find calendar on updateResource", calendarId);
+        return;
+      }
+
+      // story
+      const storyIdx = state.calendars[calendarIdx].stories.findIndex(
+        (story) => story.id === storyId
+      );
+      const cannotFindStory = storyIdx === -1;
+      if (cannotFindStory) {
+        console.warn("cannot find story on updateResource", calendarId);
+        return;
+      }
+
+      // process
+      state.calendars[calendarIdx].stories[storyIdx].resources.push(resource);
     },
     updateResource(state, action: PayloadAction<UpdateResourcePayload>) {
       const { calendarId, storyId, newResource } = action.payload;
@@ -192,6 +223,7 @@ const userCalendarsSlice = createSlice({
 
 export const {
   updateCalendars: updateCalendarsAction,
+  pushResource: pushResourceAction,
   updateResource: updateResourceAction,
   removeResource: removeResourceAction,
   addStory: addStoryAction,
@@ -202,5 +234,8 @@ export const {
 
 export default userCalendarsSlice.reducer;
 
+// export const selectUserCalendars = (state: RootState) =>
+//   state.userCalendars.calendars;
+
 export const selectUserCalendar = (state: RootState) =>
-  state.userCalendars.calendars;
+  state.userCalendars.calendars[0]; // NOTE: now calendars have only 1 calendar.
