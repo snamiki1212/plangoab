@@ -4,6 +4,8 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
 import Typography from "@material-ui/core/Typography";
 //
+import { useForm } from "react-hook-form";
+//
 import { useDispatch, useSelector } from "react-redux";
 import {
   pushAction,
@@ -22,6 +24,9 @@ import {
   FIELD_NAME,
 } from "../../constants/fullcalendar/settings";
 
+const H1 = FIELD_NAME["H1"];
+const H2 = FIELD_NAME["H2"];
+
 type Props = {
   isOpen: boolean;
   onClose: () => void;
@@ -31,13 +36,6 @@ export function ResourceModal({ isOpen, onClose }: Props) {
   const dispatch = useDispatch();
   const resourceModal = useSelector(selectResourceModal);
   const resource = useSelector(selectResource);
-  const [editing, setEditing] = React.useState<Partial<BaseResource>>(
-    resource ?? {}
-  );
-
-  React.useEffect(() => {
-    setEditing(resource ?? {});
-  }, [resource]);
 
   const calendarId = MY_CALENDAR_ID;
 
@@ -56,22 +54,32 @@ export function ResourceModal({ isOpen, onClose }: Props) {
     onClose();
   }, [resourceModal, onClose]);
 
-  const update = React.useCallback(() => {
-    if (!resourceModal)
-      return console.warn("Invalid data status when to update resource.");
-    if (!resource)
-      return console.warn("Invalid data status when to update resource.");
+  const update = React.useCallback(
+    (params: Partial<BaseResource>) => {
+      if (!resourceModal)
+        return console.warn("Invalid data status when to update resource.");
+      if (!resource)
+        return console.warn("Invalid data status when to update resource.");
 
-    const newResource = updateResource(resource, editing);
-    dispatch(
-      updateResourceAction({
-        calendarId,
-        storyId: resourceModal.storyId,
-        newResource,
-      })
-    );
-    onClose();
-  }, [resource, resourceModal, editing, onClose]);
+      const newResource = updateResource(resource, params);
+      dispatch(
+        updateResourceAction({
+          calendarId,
+          storyId: resourceModal.storyId,
+          newResource,
+        })
+      );
+      onClose();
+    },
+    [resource, resourceModal, onClose]
+  );
+
+  const { register, handleSubmit, errors } = useForm();
+
+  const onSubmit = (data: { [H1]: string; [H2]: string }) => {
+    console.log("data", data);
+    update(data);
+  };
 
   return (
     <Dialog onClose={onClose} open={isOpen}>
@@ -80,35 +88,13 @@ export function ResourceModal({ isOpen, onClose }: Props) {
         <Typography>this is content</Typography>
         <Typography>this is content</Typography>
         <div>{resourceModal?.storyId}</div>
-
-        {/*  */}
-        <div>
-          <span>{FIELD_NAME["H1"]}</span>
-          <input
-            value={editing[FIELD_NAME["H1"]]}
-            onChange={(e) => {
-              setEditing((prev) => ({
-                ...prev,
-                [FIELD_NAME["H1"]]: e.target.value,
-              }));
-            }}
-          />
-        </div>
-        {/*  */}
-        <div>
-          <span>{FIELD_NAME["H2"]}</span>
-          <input
-            value={editing[FIELD_NAME["H2"]]}
-            onChange={(e) => {
-              setEditing((prev) => ({
-                ...prev,
-                [FIELD_NAME["H2"]]: e.target.value,
-              }));
-            }}
-          />
-        </div>
         <button onClick={remove}>resource:remove</button>
-        <button onClick={update}>resource:modify</button>
+        {/*  */}
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <input ref={register} name={FIELD_NAME["H1"]} />
+          <input ref={register} name={FIELD_NAME["H2"]} />
+          <input type="submit" value="update" />
+        </form>
       </DialogContent>
     </Dialog>
   );
