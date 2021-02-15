@@ -11,7 +11,7 @@ import {
   NAME_OF_ORDER,
 } from "../../../constants/fullcalendar/settings";
 import { uuid } from "../../../lib/uuid";
-import { CommunityCollegeAfterwardsWorkingHolidayStory } from "./model";
+import { CommunityCollegeStory } from "./model";
 import { createStoryName } from "../BaseStory";
 import { BaseEvent } from "../../event/BaseEvent";
 import { BaseResource } from "../../resource/BaseResource";
@@ -26,7 +26,7 @@ export const build = ({
 }: {
   startDate: Date;
   calendarId: string;
-}): CommunityCollegeAfterwardsWorkingHolidayStory => {
+}): CommunityCollegeStory => {
   const storyId = uuid();
   const name = createStoryName(startDate);
   const [resources, events] = generateStory({ calendarId, storyId, startDate });

@@ -1,28 +1,26 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { createCalendar } from "../../core/calendar/CommunityCollegeAfterwardsWorkingHolidayCalendar/createCalendar";
-import { calendarId as CommunityCollegeAfterwardsWorkingHolidayCalendarId } from "../../core/calendar/CommunityCollegeAfterwardsWorkingHolidayCalendar/model";
+import { createCalendar } from "../../core/calendar/CommunityCollegeCalendar/createCalendar";
+import { calendarId as CommunityCollegeCalendarId } from "../../core/calendar/CommunityCollegeCalendar/model";
 import { BaseCalendar } from "../../core/calendar/BaseCalendar";
 import { RootState } from "../rootReducer";
 
-type UpsertCommunityCollegeAfterwardsWorkingHolidayStoriesPayload = {
+type upsertCommunityCollegeStoriesPayload = {
   birth: string;
 };
 
 const templateCalendarTable = createSlice({
   name: "templateCalendarTable",
   initialState: {
-    [CommunityCollegeAfterwardsWorkingHolidayCalendarId]: undefined as
-      | BaseCalendar
-      | undefined,
+    [CommunityCollegeCalendarId]: undefined as BaseCalendar | undefined,
   },
   reducers: {
-    upsertCommunityCollegeAfterwardsWorkingHolidayStories(
+    upsertCommunityCollegeStories(
       state,
-      action: PayloadAction<UpsertCommunityCollegeAfterwardsWorkingHolidayStoriesPayload>
+      action: PayloadAction<upsertCommunityCollegeStoriesPayload>
     ) {
       const { birth } = action.payload;
       const _calendar = createCalendar({ birth: new Date(birth) });
-      state[CommunityCollegeAfterwardsWorkingHolidayCalendarId] = _calendar;
+      state[CommunityCollegeCalendarId] = _calendar;
     },
   },
 });
@@ -30,12 +28,8 @@ const templateCalendarTable = createSlice({
 export default templateCalendarTable.reducer;
 
 export const {
-  upsertCommunityCollegeAfterwardsWorkingHolidayStories: upsertCommunityCollegeAfterwardsWorkingHolidayStoriesAction,
+  upsertCommunityCollegeStories: upsertCommunityCollegeStoriesAction,
 } = templateCalendarTable.actions;
 
-export const selectCommunityCollegeAfterwardsWorkingHolidayCalendar = (
-  state: RootState
-) =>
-  state.features.templateCalendar[
-    CommunityCollegeAfterwardsWorkingHolidayCalendarId
-  ];
+export const selectCommunityCollegeCalendar = (state: RootState) =>
+  state.features.templateCalendar[CommunityCollegeCalendarId];

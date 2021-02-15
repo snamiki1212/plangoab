@@ -1,6 +1,6 @@
 import React from "react";
 import { BaseCalendarContainer } from "./BaseCalendarContainer";
-import { useCommunityCollegeAfterwardsWorkingHolidayCalendar } from "../hooks/useCommunityCollegeAfterwardsWorkingHolidayCalendar";
+import { useCommunityCollegeCalendar } from "../hooks/useCommunityCollegeCalendar";
 import { useUser } from "../hooks/useUser";
 import { useResourceGroupLabelContentInTemplateCalendar } from "../hooks/useResourceGroupLabelContentInTemplateCalendar";
 import { FIELD1, FIELD2 } from "../constants/fullcalendar/settings";
@@ -27,7 +27,7 @@ export function TemplateCalendarContainer() {
     resources,
     events,
     generate,
-  } = useCommunityCollegeAfterwardsWorkingHolidayCalendar();
+  } = useCommunityCollegeCalendar();
   const {
     resourceGroupLabelContent,
   } = useResourceGroupLabelContentInTemplateCalendar();

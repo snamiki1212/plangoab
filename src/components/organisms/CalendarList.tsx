@@ -13,7 +13,7 @@ export function CalendarList() {
 
       <hr />
       <div>
-        <h2>CommunityCollegeAfterwardsWorkingHolidayStory</h2>
+        <h2>CommunityCollege</h2>
         <TemplateCalendarContainer />
       </div>
     </Container>

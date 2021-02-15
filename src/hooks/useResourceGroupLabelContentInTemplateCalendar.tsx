@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addStoryAction } from "../redux/features/userCalendars";
-import { selectCommunityCollegeAfterwardsWorkingHolidayCalendar } from "../redux/features/templateCalendarTable";
+import { selectCommunityCollegeCalendar } from "../redux/features/templateCalendarTable";
 import { MY_CALENDAR_ID } from "../constants/fullcalendar/settings";
 
 type Props = {
@@ -12,7 +12,7 @@ type Props = {
 export const useResourceGroupLabelContentInTemplateCalendar = () => {
   const dispatch = useDispatch();
   const calendar = useSelector(
-    selectCommunityCollegeAfterwardsWorkingHolidayCalendar
+    selectCommunityCollegeCalendar
   );
 
   const resourceGroupLabelContent = React.useCallback(

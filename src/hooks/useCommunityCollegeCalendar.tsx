@@ -3,23 +3,23 @@ import { useDispatch, useSelector } from "react-redux";
 import { BaseEvent } from "../core/event/BaseEvent";
 import { BaseResource } from "../core/resource/BaseResource";
 import {
-  upsertCommunityCollegeAfterwardsWorkingHolidayStoriesAction,
-  selectCommunityCollegeAfterwardsWorkingHolidayCalendar,
+  upsertCommunityCollegeStoriesAction,
+  selectCommunityCollegeCalendar,
 } from "../redux/features/templateCalendarTable";
 
-export const useCommunityCollegeAfterwardsWorkingHolidayCalendar = () => {
+export const useCommunityCollegeCalendar = () => {
   const dispatch = useDispatch();
   const generate = React.useCallback(
     (birth: string) => {
       dispatch(
-        upsertCommunityCollegeAfterwardsWorkingHolidayStoriesAction({ birth })
+        upsertCommunityCollegeStoriesAction({ birth })
       );
     },
     [dispatch]
   );
 
   const calendar = useSelector(
-    selectCommunityCollegeAfterwardsWorkingHolidayCalendar
+    selectCommunityCollegeCalendar
   );
 
   const stories = React.useMemo(() => calendar?.stories ?? [], [calendar]);
