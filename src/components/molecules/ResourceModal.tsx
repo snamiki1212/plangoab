@@ -49,7 +49,8 @@ export function ResourceModal({ isOpen, onClose }: Props) {
   );
 
   // TODO: error handler
-  const { register, handleSubmit, errors } = useForm();
+  // const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit } = useForm();
 
   return (
     <Dialog onClose={onClose} open={isOpen}>
