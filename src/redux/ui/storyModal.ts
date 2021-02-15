@@ -16,7 +16,7 @@ type PushPayload = {
 type PopPayload = undefined;
 
 const slice = createSlice({
-  name: "sotryModal",
+  name: "storyModal",
   initialState: {
     story: null,
   } as State,
