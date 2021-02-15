@@ -54,7 +54,7 @@ export function UserCalendarContainer() {
           if(!resourceId) {
             return console.warn("Invalid data that extended props doesn't resourceId.")
           }
-          const calendarId = arg.resource.calendarId;
+          const calendarId = props["calendarId"];
           if(!calendarId) {
             return console.warn("Invalid data that extended props doesn't calendarId.")
           }
