@@ -15,16 +15,23 @@ export function CalendarList() {
   return (
     <>
       <Container>
-        <button onClick={openCommunityCollege}>Community College</button>
+        <div>
+          <h2>Templates</h2>
+          <button onClick={openCommunityCollege}>Community College</button>
+        </div>
         <hr />
         <div>
           <h2>User Calendar</h2>
           <UserCalendarContainer />
         </div>
       </Container>
-      
+
       {/* Modal */}
-      <Dialog fullScreen open={isOpenCommunityCollege} onClose={closeCommunityCollege}>
+      <Dialog
+        fullScreen
+        open={isOpenCommunityCollege}
+        onClose={closeCommunityCollege}
+      >
         <button onClick={closeCommunityCollege}>Close</button>
         <TemplateCalendarContainer />
       </Dialog>
@@ -32,4 +39,7 @@ export function CalendarList() {
   );
 }
 
-const Container = styled.div``;
+const Container = styled.div`
+  display: grid;
+  gap: 1rem;
+`;
