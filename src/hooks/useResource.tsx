@@ -27,7 +27,7 @@ export const useResource = () => {
         })
       );
     },
-    []
+    [dispatch]
   );
 
   const update = React.useCallback(
@@ -45,7 +45,7 @@ export const useResource = () => {
         })
       );
     },
-    [resource]
+    [dispatch, resource]
   );
 
   return { remove, update } as const;
