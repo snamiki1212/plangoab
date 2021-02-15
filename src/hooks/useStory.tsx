@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { removeStoryAction } from "../redux/features/userCalendars";
+import { removeStoryAction, updateStoryAction } from "../redux/features/userCalendars";
+import { BaseStory,updateStory } from "../core/story/BaseStory";
 
 type IdSet = { calendarId: string; storyId: string };
 
@@ -20,5 +21,13 @@ export const useStory = () => {
     [dispatch]
   );
 
-  return { remove } as const;
+  const update = React.useCallback(
+    (idSet:IdSet, story: BaseStory, data: any) => {
+      const newStory = updateStory(story, data);
+      dispatch(updateStoryAction({ ...idSet, newStory }));
+    },
+    [updateStory, updateStoryAction, dispatch]
+  );
+
+  return { remove, update } as const;
 };

@@ -4,13 +4,11 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
 // import { useForm } from "react-hook-form";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { selectStoryModal, selectStory } from "../../redux/ui/storyModal";
-import { updateStoryAction } from "../../redux/features/userCalendars";
 // import { FIELD1, FIELD2 } from "../../constants/fullcalendar/settings";
 import { useStory } from "../../hooks/useStory";
 import { useResource } from "../../hooks/useResource";
-import { updateStory } from "../../core/story/BaseStory";
 
 type Props = {
   isOpen: boolean;
@@ -18,13 +16,12 @@ type Props = {
 };
 
 export function StoryModal({ isOpen, onClose }: Props) {
-  const dispatch = useDispatch();
   const storyModal = useSelector(selectStoryModal);
   const story = useSelector(selectStory);
   // const field1 = (resource && resource[FIELD1]) ?? "";
   // const field2 = (resource && resource[FIELD2]) ?? "";
 
-  const { remove: removeStory } = useStory();
+  const { remove: removeStory, update: updateStory } = useStory();
   const { push: pushResource } = useResource();
 
   const handleRemove = React.useCallback(() => {
@@ -44,27 +41,17 @@ export function StoryModal({ isOpen, onClose }: Props) {
   }, [storyModal, pushResource, onClose]);
 
   const { register, handleSubmit } = useForm();
+
   const onSubmit = React.useCallback(
     (data: any) => {
       if (!storyModal || !story) {
         return console.warn("Invalid data status when to update story.");
       }
-      const newStory = updateStory(story, data);
-      dispatch(updateStoryAction({ ...storyModal, newStory }));
+      updateStory(storyModal, story, data);
+      onClose();
     },
-    [storyModal, story, updateStory, updateStoryAction, dispatch]
+    [updateStory, storyModal, story, onClose]
   );
-
-  // const onUpdate = React.useCallback(
-  //   (data: { [FIELD1]: string; [FIELD2]: string }) => {
-  //     if (!storyModal) {
-  //       return console.warn("Invalid data status when to remove resource.");
-  //     }
-  //     update(storyModal, data);
-  //     onClose();
-  //   },
-  //   [storyModal, update, onClose]
-  // );
 
   // // TODO: error handler
   // // const { register, handleSubmit, errors } = useForm();
