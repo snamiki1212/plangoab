@@ -15,6 +15,7 @@ const userSlice = createSlice({
   initialState: {
     birthday: personaBirth,
     age: PERSONA_AGE,
+    canWorkingholiday: true,
   },
   reducers: {
     updateBirthday(state, action: PayloadAction<UpdatePayload>) {
@@ -22,10 +23,16 @@ const userSlice = createSlice({
       state.birthday = birthday;
       state.age = calcAge(birthday);
     },
+    toggleWorkingholiday(state, _action: PayloadAction<undefined>) {
+      state.canWorkingholiday = !state.canWorkingholiday;
+    },
   },
 });
 
-export const { updateBirthday: updateBirthdayAction } = userSlice.actions;
+export const {
+  updateBirthday: updateBirthdayAction,
+  toggleWorkingholiday: toggleWorkingholidayAction,
+} = userSlice.actions;
 
 export default userSlice.reducer;
 
