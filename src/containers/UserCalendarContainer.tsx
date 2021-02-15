@@ -5,7 +5,7 @@ import { BaseCalendarContainer } from "./BaseCalendarContainer";
 import { useResourceGroupLabelContentInUserCalendar } from "../hooks/useResourceGroupLabelContentInUserCalendar";
 import { useResourceModal } from "../hooks/useResourceModal";
 //
-import { FIELD1, FIELD2, MY_CALENDAR_ID } from "../constants/fullcalendar/settings";
+import { FIELD1, FIELD2 } from "../constants/fullcalendar/settings";
 import { ResourceModal } from "../components/molecules/ResourceModal";
 
 const ableConfis = {
@@ -47,10 +47,18 @@ export function UserCalendarContainer() {
         cellContent: function (arg: any) {
           const props = arg.resource.extendedProps;
           const storyId = props["storyId"];
+          if(!storyId) {
+            return console.warn("Invalid data that extended props doesn't storyId.")
+          }
           const resourceId = arg.resource.id;
-          console.log("resource", arg.resource);
-          // TODO: expect to get selected calendarId from extendedProps
-          const calendarId = MY_CALENDAR_ID;
+          if(!resourceId) {
+            return console.warn("Invalid data that extended props doesn't resourceId.")
+          }
+          const calendarId = arg.resource.calendarId;
+          if(!calendarId) {
+            return console.warn("Invalid data that extended props doesn't calendarId.")
+          }
+          
 
           let message = arg.fieldValue;
           console.log("RENDER", arg);
