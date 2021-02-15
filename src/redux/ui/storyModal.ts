@@ -31,12 +31,12 @@ const slice = createSlice({
   },
 });
 
-export const selectIsOpen = (state: RootState) => !!state.storyModal.story;
+export const selectIsOpen = (state: RootState) => !!state.ui.storyModal.story;
 
-export const selectStoryModal = (state: RootState) => state.storyModal.story;
+export const selectStoryModal = (state: RootState) => state.ui.storyModal.story;
 
 export const selectStory = (state: RootState) => {
-  const _story = state.storyModal.story;
+  const _story = state.ui.storyModal.story;
   if (!_story) return null;
   const { calendarId, storyId } = _story;
 

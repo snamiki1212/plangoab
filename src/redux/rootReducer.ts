@@ -7,6 +7,11 @@ import userCalendarsReducer from "./features/userCalendars";
 import resourceModalReducer from "./ui/resourceModal";
 import storyModalReducer from "./ui/storyModal";
 
+const uiReducer = combineReducers({
+  resourceModal: resourceModalReducer,
+  storyModal: storyModalReducer,
+});
+
 const rootReducer = combineReducers({
   user: userReducer,
 
@@ -14,9 +19,7 @@ const rootReducer = combineReducers({
   templateCalendar: templateCalendarTableReducer,
   userCalendars: userCalendarsReducer,
 
-  // UIs
-  resourceModal: resourceModalReducer,
-  storyModal: storyModalReducer,
+  ui: uiReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

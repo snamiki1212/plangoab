@@ -34,13 +34,13 @@ const slice = createSlice({
 });
 
 export const selectIsOpen = (state: RootState) =>
-  !!state.resourceModal.resource;
+  !!state.ui.resourceModal.resource;
 
 export const selectResourceModal = (state: RootState) =>
-  state.resourceModal.resource;
+  state.ui.resourceModal.resource;
 
 export const selectResource = (state: RootState) => {
-  const _resource = state.resourceModal.resource;
+  const _resource = state.ui.resourceModal.resource;
   if (!_resource) return null;
   const { calendarId, storyId, resourceId } = _resource;
 
