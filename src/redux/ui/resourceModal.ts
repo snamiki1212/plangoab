@@ -24,7 +24,6 @@ const slice = createSlice({
   } as State,
   reducers: {
     push(state, action: PayloadAction<PushPayload>) {
-      console.log("start push", action);
       const _payload = action.payload;
       state.resource = _payload;
     },

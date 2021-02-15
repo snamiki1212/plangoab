@@ -37,7 +37,6 @@ export const useResourceGroupLabelContentInTemplateCalendar = () => {
 
       const onClick = () => {
         if (!window.confirm("Copy to my calendar?")) return;
-        console.log("clicked");
         dispatch(addStoryAction({ calendarId: MY_CALENDAR_ID, story }));
       };
 

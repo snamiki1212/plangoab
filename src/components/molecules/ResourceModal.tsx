@@ -22,8 +22,6 @@ export function ResourceModal({ isOpen, onClose }: Props) {
   const field1 = (resource && resource[FIELD1]) ?? "";
   const field2 = (resource && resource[FIELD2]) ?? "";
 
-  console.log("resource", resource);
-
   const { remove, update } = useResource();
 
   const onRemove = React.useCallback(() => {
