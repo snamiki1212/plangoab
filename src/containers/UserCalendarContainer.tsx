@@ -5,7 +5,7 @@ import { BaseCalendarContainer } from "./BaseCalendarContainer";
 import { useResourceGroupLabelContentInUserCalendar } from "../hooks/useResourceGroupLabelContentInUserCalendar";
 import { useResourceModal } from "../hooks/useResourceModal";
 //
-import { FIELD_NAME, MY_CALENDAR_ID } from "../constants/fullcalendar/settings";
+import { FIELD1, FIELD2, MY_CALENDAR_ID } from "../constants/fullcalendar/settings";
 import { ResourceModal } from "../components/molecules/ResourceModal";
 
 const ableConfis = {
@@ -38,11 +38,11 @@ export function UserCalendarContainer() {
   const resourceAreaColumns = React.useMemo(
     () => [
       {
-        field: FIELD_NAME["H1"],
+        field: FIELD1,
         headerContent: "Category",
       },
       {
-        field: FIELD_NAME["H2"],
+        field: FIELD2,
         headerContent: "Event",
         cellContent: function (arg: any) {
           const props = arg.resource.extendedProps;

@@ -3,7 +3,7 @@ import { BaseCalendarContainer } from "./BaseCalendarContainer";
 import { useCommunityCollegeAfterwardsWorkingHolidayCalendar } from "../hooks/useCommunityCollegeAfterwardsWorkingHolidayCalendar";
 import { useUser } from "../hooks/useUser";
 import { useResourceGroupLabelContentInTemplateCalendar } from "../hooks/useResourceGroupLabelContentInTemplateCalendar";
-import { FIELD_NAME } from "../constants/fullcalendar/settings";
+import { FIELD1, FIELD2 } from "../constants/fullcalendar/settings";
 
 const ableConfis = {
   selectable: false,
@@ -12,11 +12,11 @@ const ableConfis = {
 
 const resourceAreaColumns = [
   {
-    field: FIELD_NAME["H1"],
+    field: FIELD1,
     headerContent: "Category",
   },
   {
-    field: FIELD_NAME["H2"],
+    field: FIELD2,
     headerContent: "Event",
   },
 ];

@@ -2,16 +2,14 @@ import { uuid } from "../../lib/uuid";
 import {
   NAME_OF_ORDER,
   NAME_OF_STORY_ID,
-  FIELD_NAME,
+  FIELD1,
+  FIELD2,
 } from "../../constants/fullcalendar/settings";
-
-const H1 = FIELD_NAME["H1"];
-const H2 = FIELD_NAME["H2"];
 
 export type BaseResource = {
   id: string;
-  [H1]: string;
-  [H2]: string;
+  [FIELD1]: string;
+  [FIELD2]: string;
   [NAME_OF_STORY_ID]: string;
   [NAME_OF_ORDER]?: number;
   eventBorderColor?: string;
@@ -25,8 +23,8 @@ export const initResource = (
     id: id ?? uuid(),
     [NAME_OF_STORY_ID]: storyId ?? uuid(),
     [NAME_OF_ORDER]: 1,
-    [FIELD_NAME["H1"]]: field1 ?? "No Field Name",
-    [FIELD_NAME["H2"]]: field2 ?? "H2",
+    [FIELD1]: field1 ?? "No Field Name",
+    [FIELD2]: field2 ?? "H2",
   };
 };
 
@@ -35,12 +33,12 @@ export const updateResource = (
   params: Partial<Omit<BaseResource, "id" | "storyId">>
 ): BaseResource => {
   const order = params[NAME_OF_ORDER];
-  const field1 = params[H1];
-  const field2 = params[H2];
+  const field1 = params[FIELD1];
+  const field2 = params[FIELD2];
 
   const orderKey = NAME_OF_ORDER;
-  const field1Key = FIELD_NAME["H1"];
-  const field2Key = FIELD_NAME["H2"];
+  const field1Key = FIELD1;
+  const field2Key = FIELD2;
 
   const newResource = Object.assign(
     { ...resource },

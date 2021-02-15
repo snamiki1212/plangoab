@@ -10,11 +10,8 @@ import {
   selectResourceModal,
   selectResource,
 } from "../../redux/ui/resourceModal";
-import { FIELD_NAME } from "../../constants/fullcalendar/settings";
+import { FIELD1, FIELD2 } from "../../constants/fullcalendar/settings";
 import { useResource } from "../../hooks/useResource";
-
-const H1 = FIELD_NAME["H1"];
-const H2 = FIELD_NAME["H2"];
 
 type Props = {
   isOpen: boolean;
@@ -24,8 +21,8 @@ type Props = {
 export function ResourceModal({ isOpen, onClose }: Props) {
   const resourceModal = useSelector(selectResourceModal);
   const resource = useSelector(selectResource);
-  const h1 = (resource && resource[H1]) ?? "";
-  const h2 = (resource && resource[H2]) ?? "";
+  const h1 = (resource && resource[FIELD1]) ?? "";
+  const h2 = (resource && resource[FIELD2]) ?? "";
 
   const { remove, update } = useResource();
 
@@ -38,7 +35,7 @@ export function ResourceModal({ isOpen, onClose }: Props) {
   }, [resourceModal, remove, onClose]);
 
   const onUpdate = React.useCallback(
-    (data: { [H1]: string; [H2]: string }) => {
+    (data: { [FIELD1]: string; [FIELD2]: string }) => {
       if (!resourceModal) {
         return console.warn("Invalid data status when to remove resource.");
       }
@@ -57,8 +54,8 @@ export function ResourceModal({ isOpen, onClose }: Props) {
       <DialogTitle>Resource</DialogTitle>
       <DialogContent dividers={true}>
         <form onSubmit={handleSubmit(onUpdate)}>
-          <input ref={register} name={FIELD_NAME["H1"]} defaultValue={h1} />
-          <input ref={register} name={FIELD_NAME["H2"]} defaultValue={h2} />
+          <input ref={register} name={FIELD1} defaultValue={h1} />
+          <input ref={register} name={FIELD2} defaultValue={h2} />
           <input type="submit" value="Update" />
         </form>
         <hr />
