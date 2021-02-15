@@ -2,9 +2,7 @@ import React from "react";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
-//
 import { useForm } from "react-hook-form";
-//
 import { useSelector } from "react-redux";
 import {
   selectResourceModal,
@@ -21,8 +19,10 @@ type Props = {
 export function ResourceModal({ isOpen, onClose }: Props) {
   const resourceModal = useSelector(selectResourceModal);
   const resource = useSelector(selectResource);
-  const h1 = (resource && resource[FIELD1]) ?? "";
-  const h2 = (resource && resource[FIELD2]) ?? "";
+  const field1 = (resource && resource[FIELD1]) ?? "";
+  const field2 = (resource && resource[FIELD2]) ?? "";
+
+  console.log("resource", resource);
 
   const { remove, update } = useResource();
 
@@ -54,8 +54,8 @@ export function ResourceModal({ isOpen, onClose }: Props) {
       <DialogTitle>Resource</DialogTitle>
       <DialogContent dividers={true}>
         <form onSubmit={handleSubmit(onUpdate)}>
-          <input ref={register} name={FIELD1} defaultValue={h1} />
-          <input ref={register} name={FIELD2} defaultValue={h2} />
+          <input ref={register} name={FIELD1} defaultValue={field1} />
+          <input ref={register} name={FIELD2} defaultValue={field2} />
           <input type="submit" value="Update" />
         </form>
         <hr />

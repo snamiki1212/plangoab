@@ -61,7 +61,6 @@ export function UserCalendarContainer() {
           
 
           let message = arg.fieldValue;
-          console.log("RENDER", arg);
           message += "!!!";
 
           const containerEl = document.createElement("div");
