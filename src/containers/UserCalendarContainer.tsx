@@ -47,9 +47,9 @@ export function UserCalendarContainer() {
         cellContent: function (arg: any) {
           const props = arg.resource.extendedProps;
           const storyId = props["storyId"];
-          // const h1 = props["FIELD__H1"]
-          // const h2 = props["FIELD__H2"]
           const resourceId = arg.resource.id;
+          console.log("resource", arg.resource);
+          // TODO: expect to get selected calendarId from extendedProps
           const calendarId = MY_CALENDAR_ID;
 
           let message = arg.fieldValue;

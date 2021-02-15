@@ -21,16 +21,17 @@ export const createStoryName = (birth: Date) => {
 };
 
 export const initStory = (props?: Partial<BaseStory>): BaseStory => {
-  const { id, calendarId, events, resources, name } = props ?? {};
+  const { id, calendarId: _calendarId, events, resources, name } = props ?? {};
+
   const storyId = id ?? uuid();
-  const _calendarId = calendarId ?? uuid();
+  const calendarId = _calendarId ?? uuid();
   const eventId = uuid();
   const _events = events ?? [initEvent({ id: eventId, storyId })];
-  const _resources = resources ?? [initResource({ storyId })];
+  const _resources = resources ?? [initResource({ calendarId, storyId })];
 
   return {
     id: storyId,
-    calendarId: _calendarId,
+    calendarId,
     events: _events,
     resources: _resources,
     name: name ?? "No Name",

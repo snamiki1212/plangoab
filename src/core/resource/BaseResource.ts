@@ -8,6 +8,7 @@ import {
 
 export type BaseResource = {
   id: string;
+  calendarId: string;
   [FIELD1]: string;
   [FIELD2]: string;
   [NAME_OF_STORY_ID]: string;
@@ -15,16 +16,15 @@ export type BaseResource = {
   eventBorderColor?: string;
 };
 
-export const initResource = (
-  props?: Partial<BaseResource & { field1?: string; field2: string }>
-): BaseResource => {
-  const { id, storyId, field1, field2 } = props ?? {};
+export const initResource = (props?: Partial<BaseResource>): BaseResource => {
+  const { id, calendarId, storyId } = props ?? {};
   return {
     id: id ?? uuid(),
+    calendarId: calendarId ?? uuid(),
     [NAME_OF_STORY_ID]: storyId ?? uuid(),
     [NAME_OF_ORDER]: 1,
-    [FIELD1]: field1 ?? "No Field Name",
-    [FIELD2]: field2 ?? "H2",
+    [FIELD1]: "Field1",
+    [FIELD2]: "Field2",
   };
 };
 
