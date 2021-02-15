@@ -58,7 +58,6 @@ export function StoryModal({ isOpen, onClose }: Props) {
     <Dialog onClose={onClose} open={isOpen}>
       <DialogTitle>Resource</DialogTitle>
       <DialogContent dividers={true}>
-        <div>Hello world</div>
         <button onClick={handleRemove}>remove</button>
         <button onClick={handleAddResource}>add resource</button>
         {/* <form onSubmit={handleSubmit(onUpdate)}>
