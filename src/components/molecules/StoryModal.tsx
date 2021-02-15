@@ -20,16 +20,16 @@ export function StoryModal({ isOpen, onClose }: Props) {
   // const field1 = (resource && resource[FIELD1]) ?? "";
   // const field2 = (resource && resource[FIELD2]) ?? "";
 
-  const { remove } = useStory();
+  const { remove: removeStory } = useStory();
   const { push: pushResource} = useResource();
 
   const handleRemove = React.useCallback(() => {
     if (!storyModal) {
       return console.warn("Invalid data status when to update resource.");
     }
-    remove(storyModal);
+    removeStory(storyModal);
     onClose();
-  }, [storyModal, remove, onClose]);
+  }, [storyModal, removeStory, onClose]);
 
   const handleAddResource = React.useCallback(() => {
     if(!storyModal){
@@ -37,7 +37,7 @@ export function StoryModal({ isOpen, onClose }: Props) {
     }
     pushResource(storyModal)
     onClose();
-  }, [storyModal])
+  }, [storyModal, pushResource, onClose])
 
   // const onUpdate = React.useCallback(
   //   (data: { [FIELD1]: string; [FIELD2]: string }) => {
