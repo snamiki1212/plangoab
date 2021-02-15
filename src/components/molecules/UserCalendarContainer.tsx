@@ -132,6 +132,8 @@ export function UserCalendarContainer() {
         {/* <button onClick={pushResourceModal}>resource:open</button> */}
         <button onClick={createStory}>story:add</button>
       </div>
+
+      {/* Modal */}
       <ResourceModal isOpen={isOpenResourceModal} onClose={popResourceModal} />
       <StoryModal isOpen={isOpenStoryModal} onClose={popStoryModal} />
     </>
