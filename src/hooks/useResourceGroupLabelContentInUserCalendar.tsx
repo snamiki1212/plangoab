@@ -1,16 +1,21 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { removeStoryAction } from "../redux/features/userCalendars";
+// import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { selectUserCalendar } from "../redux/features/userCalendars";
 import { MY_CALENDAR_ID } from "../constants/fullcalendar/settings";
 
+
 type Props = {
+  createOpenHandle: Function;
+}
+
+type ContentProps = {
   // REF: https://fullcalendar.io/docs/resource-group-render-hooks
   groupValue: string;
 };
 
-export const useResourceGroupLabelContentInUserCalendar = () => {
-  const dispatch = useDispatch();
+export const useResourceGroupLabelContentInUserCalendar = ({createOpenHandle}: Props) => {
+  // const dispatch = useDispatch();
   const calendars = useSelector(
     selectUserCalendar
   );
@@ -18,7 +23,7 @@ export const useResourceGroupLabelContentInUserCalendar = () => {
   const calendar = calendars[0] // TODO: 
 
   const resourceGroupLabelContent = React.useCallback(
-    ({ groupValue: storyId }: Props) => {
+    ({ groupValue: storyId }: ContentProps) => {
       if (!calendar) return;
 
       // story validation
@@ -37,22 +42,20 @@ export const useResourceGroupLabelContentInUserCalendar = () => {
         name = "No Name";
       }
 
-      const onClick = () => {
-        if (!window.confirm("Remove this story?")) return;
-        dispatch(removeStoryAction({ calendarId: MY_CALENDAR_ID, storyId }));
-      };
+      const calendarId = MY_CALENDAR_ID;
+      const openHandle = createOpenHandle({calendarId, storyId})
 
       const nameElement = document.createElement('i')
       nameElement.innerHTML = name + ' ' // NOTE: space is for design, so not good way
 
       const buttonElement = document.createElement('button')
-      buttonElement.innerHTML = 'remove'
-      buttonElement.onclick = onClick
+      buttonElement.innerHTML = '︙'
+      buttonElement.onclick = openHandle
 
       const arrayOfDomNodes = [nameElement, buttonElement];
       return { domNodes: arrayOfDomNodes };
     },
-    [dispatch, calendar]
+    [calendar, createOpenHandle]
   );
 
   return {resourceGroupLabelContent};
