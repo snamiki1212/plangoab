@@ -5,7 +5,7 @@ import { BaseCalendarContainer } from "./BaseCalendarContainer";
 import { useResourceGroupLabelContentInUserCalendar } from "../hooks/useResourceGroupLabelContentInUserCalendar";
 import { useResourceModal } from "../hooks/useResourceModal";
 //
-import { FIELD_NAME, MY_CALENDAR_ID } from "../constants/fullcalendar/settings";
+import { FIELD1, FIELD2 } from "../constants/fullcalendar/settings";
 import { ResourceModal } from "../components/molecules/ResourceModal";
 
 const ableConfis = {
@@ -38,19 +38,27 @@ export function UserCalendarContainer() {
   const resourceAreaColumns = React.useMemo(
     () => [
       {
-        field: FIELD_NAME["H1"],
+        field: FIELD1,
         headerContent: "Category",
       },
       {
-        field: FIELD_NAME["H2"],
+        field: FIELD2,
         headerContent: "Event",
         cellContent: function (arg: any) {
           const props = arg.resource.extendedProps;
           const storyId = props["storyId"];
-          // const h1 = props["FIELD__H1"]
-          // const h2 = props["FIELD__H2"]
+          if(!storyId) {
+            return console.warn("Invalid data that extended props doesn't storyId.")
+          }
           const resourceId = arg.resource.id;
-          const calendarId = MY_CALENDAR_ID;
+          if(!resourceId) {
+            return console.warn("Invalid data that extended props doesn't resourceId.")
+          }
+          const calendarId = arg.resource.calendarId;
+          if(!calendarId) {
+            return console.warn("Invalid data that extended props doesn't calendarId.")
+          }
+          
 
           let message = arg.fieldValue;
           console.log("RENDER", arg);

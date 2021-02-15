@@ -29,7 +29,7 @@ export const build = ({
 }): CommunityCollegeAfterwardsWorkingHolidayStory => {
   const storyId = uuid();
   const name = createStoryName(startDate);
-  const [resources, events] = generateStory(storyId, startDate);
+  const [resources, events] = generateStory({ calendarId, storyId, startDate });
   return {
     id: storyId,
     calendarId,
@@ -39,12 +39,21 @@ export const build = ({
   };
 };
 
-const generateStory = (storyId: string, startDate: Date) => {
+const generateStory = ({
+  calendarId,
+  storyId,
+  startDate,
+}: {
+  calendarId: string;
+  storyId: string;
+  startDate: Date;
+}) => {
   // Coop Visa
   const coopVisaResourceId = uuid();
   const coopVisaResource = {
     ...RESOURCE_TEMPLATE__VISA_COOP,
     id: coopVisaResourceId,
+    calendarId,
     [NAME_OF_STORY_ID]: storyId,
     [NAME_OF_ORDER]: 1,
   };
@@ -63,6 +72,7 @@ const generateStory = (storyId: string, startDate: Date) => {
   const studyVisaResource = {
     ...RESOURCE_TEMPLATE__VISA_STUDY,
     id: studyVisaResourceId,
+    calendarId,
     [NAME_OF_STORY_ID]: storyId,
     [NAME_OF_ORDER]: 2,
   };
@@ -81,6 +91,7 @@ const generateStory = (storyId: string, startDate: Date) => {
   const workingholidayResource = {
     ...RESOURCE_TEMPLATE__WORKING_HOLIDAY_COOP,
     id: workingholidayResourceId,
+    calendarId,
     [NAME_OF_STORY_ID]: storyId,
     [NAME_OF_ORDER]: 3,
   };
@@ -109,6 +120,7 @@ const generateStory = (storyId: string, startDate: Date) => {
   const studentStatusResource = {
     ...RESOURCE_TEMPLATE__STUDENT_STATUS,
     id: studentStatusResourceId,
+    calendarId,
     [NAME_OF_STORY_ID]: storyId,
     [NAME_OF_ORDER]: 4,
   };
@@ -127,6 +139,7 @@ const generateStory = (storyId: string, startDate: Date) => {
   const workerStatusResource = {
     ...RESOURCE_TEMPLATE__WORKER_STATUS,
     id: workerStatusResourceId,
+    calendarId,
     [NAME_OF_STORY_ID]: storyId,
     [NAME_OF_ORDER]: 5,
   };

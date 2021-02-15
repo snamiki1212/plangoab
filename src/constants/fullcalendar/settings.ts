@@ -1,8 +1,6 @@
 // field name
-export const FIELD_NAME = {
-  H1: "FIELD__H1",
-  H2: "FIELD__H2",
-} as const;
+export const FIELD1 = "FIELD1";
+export const FIELD2 = "FIELD2";
 
 // keys
 export const NAME_OF_STORY_ID = "storyId";
