@@ -6,6 +6,7 @@ import { RootState } from "../rootReducer";
 
 type upsertCommunityCollegeStoriesPayload = {
   birth: string;
+  canWorkingholiday: boolean;
 };
 
 const templateCalendarTable = createSlice({
@@ -18,8 +19,11 @@ const templateCalendarTable = createSlice({
       state,
       action: PayloadAction<upsertCommunityCollegeStoriesPayload>
     ) {
-      const { birth } = action.payload;
-      const _calendar = createCalendar({ birth: new Date(birth) });
+      const { birth, canWorkingholiday } = action.payload;
+      const _calendar = createCalendar({
+        birth: new Date(birth),
+        canWorkingholiday,
+      });
       state[CommunityCollegeCalendarId] = _calendar;
     },
   },

@@ -17,9 +17,11 @@ const addingNumbers = range(
 const generateStoryList = ({
   birth,
   calendarId,
+  canWorkingholiday,
 }: {
   birth: Date;
   calendarId: string;
+  canWorkingholiday: boolean;
 }): BaseStory[] => {
   return addingNumbers
     .map((num) => addYears(birth, num))
@@ -30,16 +32,18 @@ const generateStoryList = ({
       return datesInYear;
     })
     .map((startDate) => {
-      return build({ startDate, calendarId });
+      return build({ startDate, calendarId, canWorkingholiday });
     });
 };
 
 export const createCalendar = ({
   birth,
+  canWorkingholiday,
 }: {
   birth: Date;
+  canWorkingholiday: boolean;
 }): CommunityCollegeCalendar => {
-  const stories = generateStoryList({ birth, calendarId });
+  const stories = generateStoryList({ birth, calendarId, canWorkingholiday });
   return {
     id: calendarId,
     stories,

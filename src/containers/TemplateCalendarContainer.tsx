@@ -22,7 +22,8 @@ const resourceAreaColumns = [
 ];
 
 export function TemplateCalendarContainer() {
-  const { birth } = useUser();
+  const { birth, canWorkingholiday } = useUser();
+
   const {
     resources,
     events,
@@ -33,8 +34,8 @@ export function TemplateCalendarContainer() {
   } = useResourceGroupLabelContentInTemplateCalendar();
 
   React.useEffect(() => {
-    generate(birth);
-  }, [generate, birth]);
+    generate({birth, canWorkingholiday});
+  }, [generate, birth, canWorkingholiday]);
 
   return (
     <BaseCalendarContainer

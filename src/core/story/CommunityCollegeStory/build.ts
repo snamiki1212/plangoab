@@ -23,13 +23,20 @@ const WH_WARN_BACKGROUND_COLOR = "#e73758";
 export const build = ({
   startDate,
   calendarId,
+  canWorkingholiday,
 }: {
   startDate: Date;
   calendarId: string;
+  canWorkingholiday: boolean;
 }): CommunityCollegeStory => {
   const storyId = uuid();
   const name = createStoryName(startDate);
-  const [resources, events] = generateStory({ calendarId, storyId, startDate });
+  const [resources, events] = generateStory({
+    calendarId,
+    storyId,
+    startDate,
+    canWorkingholiday,
+  });
   return {
     id: storyId,
     calendarId,
@@ -43,40 +50,48 @@ const generateStory = ({
   calendarId,
   storyId,
   startDate,
+  canWorkingholiday,
 }: {
   calendarId: string;
   storyId: string;
   startDate: Date;
+  canWorkingholiday: boolean;
 }) => {
-  // Coop Visa
-  const coopVisaResourceId = uuid();
-  const coopVisaResource = {
-    ...RESOURCE_TEMPLATE__VISA_COOP,
-    id: coopVisaResourceId,
-    calendarId,
-    [NAME_OF_STORY_ID]: storyId,
-    [NAME_OF_ORDER]: 1,
-  };
-  const coopVisaEvent = {
-    id: uuid(),
-    resourceId: coopVisaResourceId,
-    storyId,
-    start: startDate.toISOString(),
-    end: addMonths(startDate, 12 * 2).toISOString(),
-    [NAME_OF_ORDER]: 1,
-    backgroundColor: VISA_BACKGROUND_COLOR,
-  };
+  let resources = [] as BaseResource[];
+  let events = [] as BaseEvent[];
+  const withCoop = true; // TODO:
+
+  if (withCoop) {
+    // Coop Visa
+    const coopVisaResourceId = uuid();
+    resources.push({
+      ...RESOURCE_TEMPLATE__VISA_COOP,
+      id: coopVisaResourceId,
+      calendarId,
+      [NAME_OF_STORY_ID]: storyId,
+      [NAME_OF_ORDER]: 1,
+    });
+    events.push({
+      id: uuid(),
+      resourceId: coopVisaResourceId,
+      storyId,
+      start: startDate.toISOString(),
+      end: addMonths(startDate, 12 * 2).toISOString(),
+      [NAME_OF_ORDER]: 1,
+      backgroundColor: VISA_BACKGROUND_COLOR,
+    });
+  }
 
   // StudyVisa
   const studyVisaResourceId = uuid();
-  const studyVisaResource = {
+  resources.push({
     ...RESOURCE_TEMPLATE__VISA_STUDY,
     id: studyVisaResourceId,
     calendarId,
     [NAME_OF_STORY_ID]: storyId,
     [NAME_OF_ORDER]: 2,
-  };
-  const studyVisaEvent = {
+  });
+  events.push({
     id: uuid(),
     resourceId: studyVisaResourceId,
     storyId,
@@ -84,47 +99,69 @@ const generateStory = ({
     end: addMonths(startDate, 12 * 2).toISOString(),
     [NAME_OF_ORDER]: 2,
     backgroundColor: VISA_BACKGROUND_COLOR,
-  };
+  });
 
-  // Working-holiday Visa
-  const workingholidayResourceId = uuid();
-  const workingholidayResource = {
-    ...RESOURCE_TEMPLATE__WORKING_HOLIDAY_COOP,
-    id: workingholidayResourceId,
-    calendarId,
-    [NAME_OF_STORY_ID]: storyId,
-    [NAME_OF_ORDER]: 3,
-  };
-  const dateAsStartWorkingHoliday = addMonths(startDate, 12 * 2);
-  const workingHolidayVisaEvent = {
-    id: uuid(),
-    resourceId: workingholidayResourceId,
-    storyId,
-    start: dateAsStartWorkingHoliday.toISOString(),
-    end: addMonths(dateAsStartWorkingHoliday, 12 * 1).toISOString(),
-    [NAME_OF_ORDER]: 3,
-    backgroundColor: VISA_BACKGROUND_COLOR,
-  };
-  const preWorkingHolidayVisaEvent = {
-    id: uuid(),
-    resourceId: workingholidayResourceId,
-    storyId,
-    start: setMonth(addYears(dateAsStartWorkingHoliday, -1), 8).toISOString(),
-    end: dateAsStartWorkingHoliday.toISOString(),
-    [NAME_OF_ORDER]: 3,
-    backgroundColor: WH_WARN_BACKGROUND_COLOR,
-  };
+  if (canWorkingholiday) {
+    const workingholidayResourceId = uuid();
+    resources.push({
+      ...RESOURCE_TEMPLATE__WORKING_HOLIDAY_COOP,
+      id: workingholidayResourceId,
+      calendarId,
+      [NAME_OF_STORY_ID]: storyId,
+      [NAME_OF_ORDER]: 3,
+    });
+    const dateAsStartWorkingHoliday = addMonths(startDate, 12 * 2);
+    events.push({
+      // workingHolidayVisaEvent
+      id: uuid(),
+      resourceId: workingholidayResourceId,
+      storyId,
+      start: dateAsStartWorkingHoliday.toISOString(),
+      end: addMonths(dateAsStartWorkingHoliday, 12 * 1).toISOString(),
+      [NAME_OF_ORDER]: 3,
+      backgroundColor: VISA_BACKGROUND_COLOR,
+    });
+    events.push({
+      // preWorkingHolidayVisaEvent
+      id: uuid(),
+      resourceId: workingholidayResourceId,
+      storyId,
+      start: setMonth(addYears(dateAsStartWorkingHoliday, -1), 8).toISOString(),
+      end: dateAsStartWorkingHoliday.toISOString(),
+      [NAME_OF_ORDER]: 3,
+      backgroundColor: WH_WARN_BACKGROUND_COLOR,
+    });
+
+    // worker status
+    const workerStatusResourceId = uuid();
+    resources.push({
+      ...RESOURCE_TEMPLATE__WORKER_STATUS,
+      id: workerStatusResourceId,
+      calendarId,
+      [NAME_OF_STORY_ID]: storyId,
+      [NAME_OF_ORDER]: 5,
+    });
+    events.push({
+      id: uuid(),
+      resourceId: workerStatusResourceId,
+      storyId,
+      start: addMonths(startDate, 12 * 1).toISOString(),
+      end: addMonths(startDate, 12 * 3).toISOString(),
+      [NAME_OF_ORDER]: 5,
+      eventBackgroundCoor: STATUS_BACKGROUND_COLOR,
+    });
+  }
 
   // student status
   const studentStatusResourceId = uuid();
-  const studentStatusResource = {
+  resources.push({
     ...RESOURCE_TEMPLATE__STUDENT_STATUS,
     id: studentStatusResourceId,
     calendarId,
     [NAME_OF_STORY_ID]: storyId,
     [NAME_OF_ORDER]: 4,
-  };
-  const studentStatusVisaEvent = {
+  });
+  events.push({
     id: uuid(),
     resourceId: studentStatusResourceId,
     storyId,
@@ -132,47 +169,7 @@ const generateStory = ({
     end: addMonths(startDate, 12 * 2).toISOString(),
     [NAME_OF_ORDER]: 4,
     eventBackgroundCoor: STATUS_BACKGROUND_COLOR,
-  };
+  });
 
-  // worker status
-  const workerStatusResourceId = uuid();
-  const workerStatusResource = {
-    ...RESOURCE_TEMPLATE__WORKER_STATUS,
-    id: workerStatusResourceId,
-    calendarId,
-    [NAME_OF_STORY_ID]: storyId,
-    [NAME_OF_ORDER]: 5,
-  };
-  const workerStatusVisaEvent = {
-    id: uuid(),
-    resourceId: workerStatusResourceId,
-    storyId,
-    start: addMonths(startDate, 12 * 1).toISOString(),
-    end: addMonths(startDate, 12 * 3).toISOString(),
-    [NAME_OF_ORDER]: 5,
-    eventBackgroundCoor: STATUS_BACKGROUND_COLOR,
-  };
-
-  const resources = [
-    // visa
-    coopVisaResource,
-    studyVisaResource,
-    workingholidayResource,
-
-    // status
-    studentStatusResource,
-    workerStatusResource,
-  ];
-  const events = [
-    // visa
-    coopVisaEvent,
-    studyVisaEvent,
-    preWorkingHolidayVisaEvent,
-    workingHolidayVisaEvent,
-
-    // status
-    studentStatusVisaEvent,
-    workerStatusVisaEvent,
-  ];
-  return [resources, events] as [BaseResource[], BaseEvent[]];
+  return [[...resources], [...events]] as [BaseResource[], BaseEvent[]];
 };

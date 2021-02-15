@@ -10,17 +10,21 @@ import {
 export const useCommunityCollegeCalendar = () => {
   const dispatch = useDispatch();
   const generate = React.useCallback(
-    (birth: string) => {
+    ({
+      birth,
+      canWorkingholiday,
+    }: {
+      birth: string;
+      canWorkingholiday: boolean;
+    }) => {
       dispatch(
-        upsertCommunityCollegeStoriesAction({ birth })
+        upsertCommunityCollegeStoriesAction({ birth, canWorkingholiday })
       );
     },
     [dispatch]
   );
 
-  const calendar = useSelector(
-    selectCommunityCollegeCalendar
-  );
+  const calendar = useSelector(selectCommunityCollegeCalendar);
 
   const stories = React.useMemo(() => calendar?.stories ?? [], [calendar]);
 
