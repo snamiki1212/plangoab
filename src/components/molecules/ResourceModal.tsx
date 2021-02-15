@@ -23,6 +23,7 @@ import {
   NAME_OF_STORY_ID,
   FIELD_NAME,
 } from "../../constants/fullcalendar/settings";
+import { useResource } from "../../hooks/useResource";
 
 const H1 = FIELD_NAME["H1"];
 const H2 = FIELD_NAME["H2"];
@@ -33,53 +34,33 @@ type Props = {
 };
 
 export function ResourceModal({ isOpen, onClose }: Props) {
-  const dispatch = useDispatch();
   const resourceModal = useSelector(selectResourceModal);
   const resource = useSelector(selectResource);
+  const h1 = (resource && resource[H1]) ?? ""
+  const h2 = (resource && resource[H2]) ?? ""
 
-  const calendarId = MY_CALENDAR_ID;
+  const { remove, update } = useResource();
 
-  const remove = React.useCallback(() => {
-    if (!resourceModal)
-      return console.warn("Invalid data status when to remove resource.");
-    if (!window.confirm("Do you remove this resource?")) return;
-
-    dispatch(
-      removeResourceAction({
-        resourceId: resourceModal.resourceId,
-        storyId: resourceModal.storyId,
-        calendarId,
-      })
-    );
+  const onRemove = React.useCallback(() => {
+    if (!resourceModal) {
+      return console.warn("Invalid data status when to update resource.");
+    }
+    remove(resourceModal);
     onClose();
-  }, [resourceModal, onClose]);
+  }, [resourceModal, remove, onClose]);
 
-  const update = React.useCallback(
-    (params: Partial<BaseResource>) => {
-      if (!resourceModal)
-        return console.warn("Invalid data status when to update resource.");
-      if (!resource)
-        return console.warn("Invalid data status when to update resource.");
-
-      const newResource = updateResource(resource, params);
-      dispatch(
-        updateResourceAction({
-          calendarId,
-          storyId: resourceModal.storyId,
-          newResource,
-        })
-      );
+  const onUpdate = React.useCallback(
+    (data: { [H1]: string; [H2]: string }) => {
+      if (!resourceModal) {
+        return console.warn("Invalid data status when to remove resource.");
+      }
+      update(resourceModal, data);
       onClose();
     },
-    [resource, resourceModal, onClose]
+    [resourceModal, update, onClose]
   );
 
   const { register, handleSubmit, errors } = useForm();
-
-  const onSubmit = (data: { [H1]: string; [H2]: string }) => {
-    console.log("data", data);
-    update(data);
-  };
 
   return (
     <Dialog onClose={onClose} open={isOpen}>
@@ -88,11 +69,19 @@ export function ResourceModal({ isOpen, onClose }: Props) {
         <Typography>this is content</Typography>
         <Typography>this is content</Typography>
         <div>{resourceModal?.storyId}</div>
-        <button onClick={remove}>resource:remove</button>
+        <button onClick={onRemove}>resource:remove</button>
         {/*  */}
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <input ref={register} name={FIELD_NAME["H1"]} />
-          <input ref={register} name={FIELD_NAME["H2"]} />
+        <form onSubmit={handleSubmit(onUpdate)}>
+          <input
+            ref={register}
+            name={FIELD_NAME["H1"]}
+            defaultValue={h1}
+          />
+          <input
+            ref={register}
+            name={FIELD_NAME["H2"]}
+            defaultValue={h2}
+          />
           <input type="submit" value="update" />
         </form>
       </DialogContent>
