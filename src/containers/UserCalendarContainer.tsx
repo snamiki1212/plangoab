@@ -43,7 +43,7 @@ export function UserCalendarContainer() {
       dispatch(pushAction({ calendarId, storyId }));
       pushStoryModal({ calendarId, storyId });
     },
-    []
+    [pushStoryModal, dispatch]
   );
 
   const {

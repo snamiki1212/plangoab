@@ -53,7 +53,7 @@ export const useResource = () => {
 
       dispatch(pushResourceAction({ calendarId, storyId, resource:_resource }));
     },
-    [calendar]
+    [dispatch, calendar]
   );
 
   const remove = React.useCallback(
