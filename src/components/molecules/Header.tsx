@@ -3,17 +3,10 @@ import Button from "@material-ui/core/Button";
 import styled from "styled-components";
 import { AboutModal } from "../atoms/AboutModal";
 import { LogoImage } from "../atoms/LogoImage";
+import { useModal } from '../../hooks/useModal'
 
 export function Header() {
-  const [isOpen, setIsOpen] = React.useState(false);
-
-  const handleClick = React.useCallback(() => {
-    setIsOpen(true);
-  }, []);
-
-  const handleClose = React.useCallback(() => {
-    setIsOpen(false);
-  }, []);
+  const {isOpen, open, close} = useModal()
 
   return (
     <>
@@ -21,12 +14,12 @@ export function Header() {
         <LogoImage />
         <Title>Plangoab</Title>
         <ButtonContainer>
-          <Button onClick={handleClick}>About Plangoab</Button>
+          <Button onClick={open}>About Plangoab</Button>
         </ButtonContainer>
       </Container>
 
       {/* Modal */}
-      <AboutModal isOpen={isOpen} onClose={handleClose} />
+      <AboutModal isOpen={isOpen} onClose={close} />
     </>
   );
 }
