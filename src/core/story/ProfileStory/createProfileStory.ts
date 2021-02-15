@@ -15,8 +15,10 @@ import { BaseEvent } from "../../event/BaseEvent";
 
 export const createProfileStory = ({
   birth,
+  calendarId,
 }: {
   birth: string | Date;
+  calendarId: string;
 }): ProfileStory => {
   const _birth = new Date(birth);
 
@@ -24,6 +26,7 @@ export const createProfileStory = ({
 
   return {
     id: storyId,
+    calendarId,
     name: createStoryName(_birth),
     resources: DEPRECATED_SHARED__RESOURCES,
     events: generateEvents(_birth, storyId),

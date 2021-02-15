@@ -22,14 +22,17 @@ const WH_WARN_BACKGROUND_COLOR = "#e73758";
 
 export const build = ({
   startDate,
+  calendarId,
 }: {
   startDate: Date;
+  calendarId: string;
 }): CommunityCollegeAfterwardsWorkingHolidayStory => {
   const storyId = uuid();
   const name = createStoryName(startDate);
   const [resources, events] = generateStory(storyId, startDate);
   return {
     id: storyId,
+    calendarId,
     name,
     events,
     resources,

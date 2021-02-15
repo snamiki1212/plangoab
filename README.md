@@ -56,8 +56,10 @@ Here is managed [issues](https://github.com/snamiki1212/plangoab/issues/11).
 - App
   - React
   - Redux (Redux Toolkit)
-  - styled-components
-  - Material-UI
+  - FullCalendar
+  - [CSS] Styled-components
+  - [UI] Material-UI
+  - [form] React-Hook-Form
 - CI/CD
   - Github Actions
   - GitHub Pages

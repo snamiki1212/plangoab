@@ -1,4 +1,4 @@
-import { FIELD_NAME, NAME_OF_STORY_ID, NAME_OF_ORDER } from "./settings";
+import { NAME_OF_STORY_ID, NAME_OF_ORDER } from "./settings";
 
 export const MY_TIME_LINE_NAME = "MY_TIME_LINE_NAME";
 
@@ -15,17 +15,6 @@ const headerToolbar = {
 const initialView = { initialView: MY_TIME_LINE_NAME } as const;
 
 const resourceGroupField = { resourceGroupField: NAME_OF_STORY_ID } as const;
-
-const resourceAreaColumns = [
-  {
-    field: FIELD_NAME["H1"],
-    headerContent: "Category",
-  },
-  {
-    field: FIELD_NAME["H2"],
-    headerContent: "Event",
-  },
-];
 
 const schedulerLicenseKey = {
   schedulerLicenseKey: "GPL-My-Project-Is-Open-Source",
@@ -49,7 +38,6 @@ const resourceConfigs = {
 } as const;
 
 export const FULL_CALENDAR_CONFIGS = {
-  resourceAreaColumns,
   views,
   headerToolbar,
   slotLabelFormat,

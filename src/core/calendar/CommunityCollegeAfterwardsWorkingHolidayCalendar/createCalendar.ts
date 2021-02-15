@@ -17,7 +17,13 @@ const addingNumbers = range(
   WORKING_HOLIDAY_APPLICATION_LIMITATION_AGE
 );
 
-const generateStoryList = (birth: Date): BaseStory[] => {
+const generateStoryList = ({
+  birth,
+  calendarId,
+}: {
+  birth: Date;
+  calendarId: string;
+}): BaseStory[] => {
   return addingNumbers
     .map((num) => addYears(birth, num))
     .flatMap((startDate) => {
@@ -27,7 +33,7 @@ const generateStoryList = (birth: Date): BaseStory[] => {
       return datesInYear;
     })
     .map((startDate) => {
-      return build({ startDate });
+      return build({ startDate, calendarId });
     });
 };
 
@@ -36,7 +42,7 @@ export const createCalendar = ({
 }: {
   birth: Date;
 }): CommunityCollegeAfterwardsWorkingHolidayCalendar => {
-  const stories = generateStoryList(birth);
+  const stories = generateStoryList({ birth, calendarId });
   return {
     id: calendarId,
     stories,

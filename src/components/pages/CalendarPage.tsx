@@ -13,7 +13,6 @@ export function CalendarPage() {
         <ProfileCard />
         <CalendarList />
       </ContentWrapper>
-
       <Footer />
     </Container>
   );

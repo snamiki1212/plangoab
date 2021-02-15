@@ -3,24 +3,37 @@ import { useDispatch, useSelector } from "react-redux";
 import { DateSelectArg, EventClickArg } from "@fullcalendar/react";
 import { uuid } from "../lib/uuid";
 import { createProfileStory } from "../core/story/ProfileStory/createProfileStory";
+import { initStory } from "../core/story/BaseStory";
 import { createUserCalendar } from "../core/calendar/UserCalendar/createUserCalendar";
 import {
+  // events
   updateAction,
   addEventAction,
   removeEventAction,
+
+  // storeis
+  addStoryAction,
+  // resources
+
+  // selector
   selectUserCalendar,
 } from "../redux/features/userCalendars";
+import { MY_CALENDAR_ID } from "../constants/fullcalendar/settings";
 
 export const useUserCalendar = () => {
   const dispatch = useDispatch();
   const calendars = useSelector(selectUserCalendar);
-  const calendar = calendars[0]; // TODO: later there is plan to become list.
+  const calendar = calendars[0]; // NOTE: now calendars have only 1 calendar.
 
   const init = React.useCallback(
     (birthday: string | Date) => {
-      const story = createProfileStory({ birth: birthday });
-      const calendar = createUserCalendar({ stories: [story] });
-      const _calendars = [calendar];
+      const calendarId = MY_CALENDAR_ID;
+      const story = createProfileStory({ birth: birthday, calendarId });
+      const _calendar = createUserCalendar({
+        id: calendarId,
+        stories: [story],
+      });
+      const _calendars = [_calendar];
       dispatch(updateAction({ calendars: _calendars }));
     },
     [dispatch]
@@ -67,6 +80,12 @@ export const useUserCalendar = () => {
     [dispatch, calendar]
   );
 
+  const createStory = React.useCallback(() => {
+    const calendarId = calendar.id;
+    const story = initStory({ calendarId });
+    dispatch(addStoryAction({ calendarId, story }));
+  }, [dispatch, calendar]);
+
   const stories = React.useMemo(() => calendar?.stories ?? [], [calendar]);
 
   const events = React.useMemo(
@@ -79,5 +98,14 @@ export const useUserCalendar = () => {
     [calendar]
   );
 
-  return { calendar, stories, events, resources, init, click, select } as const;
+  return {
+    calendar,
+    stories,
+    events,
+    resources,
+    init,
+    click,
+    select,
+    createStory,
+  } as const;
 };
