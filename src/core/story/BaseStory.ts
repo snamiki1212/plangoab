@@ -5,6 +5,7 @@ import { uuid } from "../../lib/uuid";
 
 export type BaseStory = {
   id: string;
+  calendarId: string;
   events: BaseEvent[];
   resources: BaseResource[];
   name: string;
@@ -20,14 +21,16 @@ export const createStoryName = (birth: Date) => {
 };
 
 export const initStory = (props?: Partial<BaseStory>): BaseStory => {
-  const { id, events, resources, name } = props ?? {};
+  const { id, calendarId, events, resources, name } = props ?? {};
   const storyId = id ?? uuid();
+  const _calendarId = calendarId ?? uuid();
   const eventId = uuid();
   const _events = events ?? [initEvent({ id: eventId, storyId })];
   const _resources = resources ?? [initResource({ storyId })];
 
   return {
     id: storyId,
+    calendarId: _calendarId,
     events: _events,
     resources: _resources,
     name: name ?? "No Name",

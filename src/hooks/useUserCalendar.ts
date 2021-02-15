@@ -27,9 +27,13 @@ export const useUserCalendar = () => {
 
   const init = React.useCallback(
     (birthday: string | Date) => {
-      const story = createProfileStory({ birth: birthday });
-      const calendar = createUserCalendar({ stories: [story] });
-      const _calendars = [calendar];
+      const calendarId = MY_CALENDAR_ID;
+      const story = createProfileStory({ birth: birthday, calendarId });
+      const _calendar = createUserCalendar({
+        id: calendarId,
+        stories: [story],
+      });
+      const _calendars = [_calendar];
       dispatch(updateAction({ calendars: _calendars }));
     },
     [dispatch]
@@ -78,7 +82,7 @@ export const useUserCalendar = () => {
 
   const createStory = React.useCallback(() => {
     const calendarId = MY_CALENDAR_ID; // TODO: select from redux
-    const story = initStory();
+    const story = initStory({ calendarId });
     dispatch(addStoryAction({ calendarId, story }));
   }, [dispatch]);
 
