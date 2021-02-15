@@ -9,7 +9,7 @@ export const RESOURCE_NAME_KEY = "RESOURCE_NAME_KEY";
 
 // calendar ID
 export const MY_CALENDAR_ID = "MY_CALENDAR_ID";
-export const COMMUNITY_COLLEGE_CALENDAR_ID = "CCAWH_CALENDAR_ID";
+export const COMMUNITY_COLLEGE_CALENDAR_ID = "COMMUNITY_COLLEGE";
 
 // story ID
 export const PROFILE_ID = "PROFILE_ID";
