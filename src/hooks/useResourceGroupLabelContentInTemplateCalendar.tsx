@@ -1,22 +1,25 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addStoryAction } from "../redux/features/userCalendars";
 import { selectCommunityCollegeCalendar } from "../redux/features/templateCalendarTable";
 import { MY_CALENDAR_ID } from "../constants/fullcalendar/settings";
 
-type Props = {
+type ResourceContentProps = {
   // REF: https://fullcalendar.io/docs/resource-group-render-hooks
   groupValue: string;
 };
 
-export const useResourceGroupLabelContentInTemplateCalendar = () => {
+type Props = {
+  createClickHandel: Function;
+};
+
+export const useResourceGroupLabelContentInTemplateCalendar = ({
+  createClickHandel,
+}: Props) => {
   const dispatch = useDispatch();
-  const calendar = useSelector(
-    selectCommunityCollegeCalendar
-  );
+  const calendar = useSelector(selectCommunityCollegeCalendar);
 
   const resourceGroupLabelContent = React.useCallback(
-    ({ groupValue: storyId }: Props) => {
+    ({ groupValue: storyId }: ResourceContentProps) => {
       if (!calendar) return;
 
       // story validation
@@ -35,17 +38,17 @@ export const useResourceGroupLabelContentInTemplateCalendar = () => {
         name = "No Name";
       }
 
-      const onClick = () => {
-        if (!window.confirm("Copy to my calendar?")) return;
-        dispatch(addStoryAction({ calendarId: MY_CALENDAR_ID, story }));
-      };
+      const clickHandle = createClickHandel({
+        calendarId: MY_CALENDAR_ID,
+        story,
+      });
 
-      const nameElement = document.createElement('i')
-      nameElement.innerHTML = name + ' ' // NOTE: space is for design, so not good way
+      const nameElement = document.createElement("i");
+      nameElement.innerHTML = name + " "; // NOTE: space is for design, so not good way
 
-      const buttonElement = document.createElement('button')
-      buttonElement.innerHTML = 'copy'
-      buttonElement.onclick = onClick
+      const buttonElement = document.createElement("button");
+      buttonElement.innerHTML = "copy";
+      buttonElement.onclick = clickHandle;
 
       const arrayOfDomNodes = [nameElement, buttonElement];
       return { domNodes: arrayOfDomNodes };
@@ -53,5 +56,5 @@ export const useResourceGroupLabelContentInTemplateCalendar = () => {
     [dispatch, calendar]
   );
 
-  return {resourceGroupLabelContent};
+  return { resourceGroupLabelContent };
 };

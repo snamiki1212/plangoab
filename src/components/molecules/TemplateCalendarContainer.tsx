@@ -1,9 +1,12 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { BaseCalendarContainer } from "../../components/atoms/BaseCalendarContainer";
 import { useCommunityCollegeCalendar } from "../../hooks/useCommunityCollegeCalendar";
 import { useUser } from "../../hooks/useUser";
 import { useResourceGroupLabelContentInTemplateCalendar } from "../../hooks/useResourceGroupLabelContentInTemplateCalendar";
 import { FIELD1, FIELD2 } from "../../constants/fullcalendar/settings";
+import { addStoryAction } from "../../redux/features/userCalendars";
+import { BaseStory } from "../../core/story/BaseStory";
 
 const ableConfis = {
   selectable: false,
@@ -22,19 +25,24 @@ const resourceAreaColumns = [
 ];
 
 export function TemplateCalendarContainer() {
+  const dispatch = useDispatch();
   const { birth, canWorkingholiday } = useUser();
+  const { resources, events, generate } = useCommunityCollegeCalendar();
 
-  const {
-    resources,
-    events,
-    generate,
-  } = useCommunityCollegeCalendar();
+  const createClickHandel = React.useCallback(
+    ({ story, calendarId }: { story: BaseStory; calendarId: string }) => () => {
+      if (!window.confirm("Copy to my calendar?")) return;
+      dispatch(addStoryAction({ calendarId, story }));
+    },
+    [addStoryAction]
+  );
+
   const {
     resourceGroupLabelContent,
-  } = useResourceGroupLabelContentInTemplateCalendar();
+  } = useResourceGroupLabelContentInTemplateCalendar({ createClickHandel });
 
   React.useEffect(() => {
-    generate({birth, canWorkingholiday});
+    generate({ birth, canWorkingholiday });
   }, [generate, birth, canWorkingholiday]);
 
   return (
