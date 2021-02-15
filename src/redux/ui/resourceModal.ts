@@ -45,7 +45,7 @@ export const selectResource = (state: RootState) => {
   const { calendarId, storyId, resourceId } = _resource;
 
   // calendar
-  const calendarIdx = state.userCalendars.calendars.findIndex(
+  const calendarIdx = state.features.userCalendars.calendars.findIndex(
     (calendar) => calendar.id === calendarId
   );
   const cannotFind = calendarIdx === -1;
@@ -55,9 +55,9 @@ export const selectResource = (state: RootState) => {
   }
 
   // story
-  const storyIdx = state.userCalendars.calendars[calendarIdx].stories.findIndex(
-    (story) => story.id === storyId
-  );
+  const storyIdx = state.features.userCalendars.calendars[
+    calendarIdx
+  ].stories.findIndex((story) => story.id === storyId);
   const cannotFindStory = storyIdx === -1;
   if (cannotFindStory) {
     console.warn("cannot find story on removeResource", calendarId);
@@ -65,7 +65,7 @@ export const selectResource = (state: RootState) => {
   }
 
   //
-  return state.userCalendars.calendars[calendarIdx].stories[
+  return state.features.userCalendars.calendars[calendarIdx].stories[
     storyIdx
   ].resources.find((resource) => resource.id === resourceId);
 };

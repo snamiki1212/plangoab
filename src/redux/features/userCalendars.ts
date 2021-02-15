@@ -238,4 +238,4 @@ export default userCalendarsSlice.reducer;
 //   state.userCalendars.calendars;
 
 export const selectUserCalendar = (state: RootState) =>
-  state.userCalendars.calendars[0]; // NOTE: now calendars have only 1 calendar.
+  state.features.userCalendars.calendars[0]; // NOTE: now calendars have only 1 calendar.

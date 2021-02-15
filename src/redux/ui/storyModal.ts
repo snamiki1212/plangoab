@@ -41,7 +41,7 @@ export const selectStory = (state: RootState) => {
   const { calendarId, storyId } = _story;
 
   // calendar
-  const calendarIdx = state.userCalendars.calendars.findIndex(
+  const calendarIdx = state.features.userCalendars.calendars.findIndex(
     (calendar) => calendar.id === calendarId
   );
   const cannotFind = calendarIdx === -1;
@@ -51,7 +51,7 @@ export const selectStory = (state: RootState) => {
   }
 
   // story
-  return state.userCalendars.calendars[calendarIdx].stories.find(
+  return state.features.userCalendars.calendars[calendarIdx].stories.find(
     (story) => story.id === storyId
   );
 };

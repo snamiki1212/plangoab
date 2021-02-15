@@ -35,4 +35,7 @@ export const {
 
 export const selectCommunityCollegeAfterwardsWorkingHolidayCalendar = (
   state: RootState
-) => state.templateCalendar[CommunityCollegeAfterwardsWorkingHolidayCalendarId];
+) =>
+  state.features.templateCalendar[
+    CommunityCollegeAfterwardsWorkingHolidayCalendarId
+  ];
