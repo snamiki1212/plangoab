@@ -13,7 +13,7 @@ describe("func: getRangeNumbers", () => {
   });
   it("invalid value", () => {
     const result = getRangeNumbers(2, 1);
-    const expected = [];
+    const expected = [] as number[];
     expect(result).toEqual(expected);
   });
 });

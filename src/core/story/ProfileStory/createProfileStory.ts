@@ -1,11 +1,17 @@
-import { addMonths, addYears } from "date-fns";
+import { addMonths, addYears, setMonth } from "date-fns";
 import { ProfileStory } from "./model";
 import {
   PROFILE_ID,
   RESOURCE_ID__SHARED__AGE,
   RESOURCE_ID__SHARED__LIMIT,
 } from "../../../constants/fullcalendar/settings";
-import { DEPRECATED_SHARED__RESOURCES } from "../../../constants/fullcalendar/templates";
+import {
+  FIELD1,
+  FIELD2,
+  NAME_OF_STORY_ID,
+  NAME_OF_ORDER,
+} from "../../../constants/fullcalendar/settings";
+import { DARK_BLUE } from "../../../constants/fullcalendar/templates";
 import { createStoryName } from "../BaseStory";
 import { getRangeNumbers } from "../../../lib/age";
 import { uuid } from "../../../lib/uuid";
@@ -15,8 +21,10 @@ import { BaseEvent } from "../../event/BaseEvent";
 
 export const createProfileStory = ({
   birth,
+  calendarId,
 }: {
   birth: string | Date;
+  calendarId: string;
 }): ProfileStory => {
   const _birth = new Date(birth);
 
@@ -24,11 +32,39 @@ export const createProfileStory = ({
 
   return {
     id: storyId,
+    calendarId,
     name: createStoryName(_birth),
-    resources: DEPRECATED_SHARED__RESOURCES,
+    resources: createResources({ calendarId, storyId }),
     events: generateEvents(_birth, storyId),
   };
 };
+
+export const createResources = ({
+  calendarId,
+  storyId,
+}: {
+  calendarId: string;
+  storyId: string;
+}) => [
+  {
+    id: RESOURCE_ID__SHARED__AGE,
+    [FIELD1]: "",
+    [FIELD2]: "Age",
+    [NAME_OF_STORY_ID]: storyId,
+    [NAME_OF_ORDER]: 0,
+    calendarId,
+    eventBorderColor: DARK_BLUE,
+  },
+  {
+    id: RESOURCE_ID__SHARED__LIMIT,
+    [FIELD1]: "",
+    [FIELD2]: "Working Holiday Application Limit",
+    [NAME_OF_STORY_ID]: storyId,
+    [NAME_OF_ORDER]: 1,
+    calendarId,
+    eventBorderColor: DARK_BLUE,
+  },
+];
 
 const generateEvents = (startDate: Date, storyId: string): BaseEvent[] => {
   // get year num
@@ -38,7 +74,7 @@ const generateEvents = (startDate: Date, storyId: string): BaseEvent[] => {
   // create years list
   const years = getRangeNumbers(startYear, endYear);
 
-  const workingHolidayLimitEvent = createWorkingHolidayLimitEvent(
+  const workingHolidayLimitEvents = createWorkingHolidayLimitEvents(
     startDate,
     storyId
   );
@@ -65,7 +101,7 @@ const generateEvents = (startDate: Date, storyId: string): BaseEvent[] => {
     };
   });
 
-  return [workingHolidayLimitEvent, ...ageEventList];
+  return [...workingHolidayLimitEvents, ...ageEventList];
 };
 
 const getLastYear = () => {
@@ -74,25 +110,37 @@ const getLastYear = () => {
   return addYears(date, BUFFER_YEAR).getFullYear();
 };
 
-const createWorkingHolidayLimitEvent = (
+const createWorkingHolidayLimitEvents = (
   birthday: Date,
   storyId: string
-): BaseEvent => {
+): BaseEvent[] => {
   const lastYearDate = addYears(
     birthday,
     WORKING_HOLIDAY_APPLICATION_LIMITATION_AGE
   );
-  const endDate = addMonths(lastYearDate, +11);
-  const end = convertIsoToDateTime(endDate.toISOString());
-
   const start = convertIsoToDateTime(birthday.toISOString());
-  const _event = {
+  const endDate = addMonths(lastYearDate, +11);
+  const endOfLimit = convertIsoToDateTime(endDate.toISOString());
+  const endOfApplication = convertIsoToDateTime(
+    addYears(setMonth(endDate, +6), -1).toISOString()
+  );
+
+  const limitation = {
     id: uuid(),
     resourceId: RESOURCE_ID__SHARED__LIMIT,
     title: "Limitation till WorkingHoliday",
     storyId,
     start,
-    end,
+    end: endOfLimit,
   };
-  return _event;
+
+  const application = {
+    id: uuid(),
+    resourceId: RESOURCE_ID__SHARED__LIMIT,
+    title: "Application Limit",
+    storyId,
+    start,
+    end: endOfApplication,
+  };
+  return [limitation, application];
 };

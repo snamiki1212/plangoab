@@ -20,6 +20,4 @@ export function CalendarList() {
   );
 }
 
-const Container = styled.div`
-  padding: 3rem;
-`;
+const Container = styled.div``;
