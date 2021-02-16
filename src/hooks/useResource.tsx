@@ -18,7 +18,7 @@ type IdSet = { calendarId: string; resourceId: string; storyId: string };
 export const useResource = () => {
   const dispatch = useDispatch();
 
-  // TODO: remoove this line and get from arg in each function
+  // TODO: remoove this line and get params as arg in each function
   const resource = useSelector(selectResource);
   const calendar = useSelector(selectUserCalendar);
 
@@ -58,6 +58,8 @@ export const useResource = () => {
 
   const remove = React.useCallback(
     ({ calendarId, resourceId, storyId }: IdSet) => {
+
+      // TODO: Move outside
       if (!window.confirm("Do you remove this resource?")) return;
 
       dispatch(

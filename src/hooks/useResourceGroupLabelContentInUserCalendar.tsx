@@ -1,5 +1,4 @@
 import React from "react";
-// import { useDispatch, useSelector } from "react-redux";
 import { useSelector } from "react-redux";
 import { selectUserCalendar } from "../redux/features/userCalendars";
 import { MY_CALENDAR_ID } from "../constants/fullcalendar/settings";
@@ -15,7 +14,6 @@ type ContentProps = {
 };
 
 export const useResourceGroupLabelContentInUserCalendar = ({createOpenHandle}: Props) => {
-  // const dispatch = useDispatch();
   const calendar = useSelector(
     selectUserCalendar
   );

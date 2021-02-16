@@ -13,6 +13,7 @@ export const useStory = () => {
   const dispatch = useDispatch();
 
   const remove = React.useCallback(({ calendarId, storyId }: IdSet) => {
+    // TODO: move this line outside
     if (!window.confirm("Do you remove this story?")) return;
     dispatch(
       removeStoryAction({
