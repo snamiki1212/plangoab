@@ -2,9 +2,9 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import {
   removeEventAction,
-  // updateEventAction,
+  updateEventAction,
 } from "../redux/features/userCalendars";
-// import { BaseStory, updateStory } from "../core/story/BaseStory";
+import { BaseEvent, updateEvent } from "../core/event/BaseEvent";
 
 type IdSet = { calendarId: string; storyId: string; eventId: string };
 
@@ -25,16 +25,16 @@ export const useEvent = () => {
     [dispatch]
   );
 
-  // const update = React.useCallback(
-  //   (idSet: IdSet, story: BaseStory, data: any) => {
-  //     const newStory = updateStory(story, data);
-  //     dispatch(updateEventAction({ ...idSet, newStory }));
-  //   },
-  //   [dispatch]
-  // );
+  const update = React.useCallback(
+    (idSet: IdSet, event: BaseEvent, data: any) => {
+      const newEvent = updateEvent(event, data);
+      dispatch(updateEventAction({ ...idSet, newEvent }));
+    },
+    [dispatch]
+  );
 
   return {
     remove,
-    // update
+    update
   } as const;
 };

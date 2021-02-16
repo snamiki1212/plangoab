@@ -8,8 +8,8 @@ import {
   selectEventModal,
   selectEvent,
 } from "../../redux/ui/eventModal";
-import { FIELD1, FIELD2 } from "../../constants/fullcalendar/settings";
 import { useEvent } from "../../hooks/useEvent";
+import {BaseEvent} from '../../core/event/BaseEvent'
 
 type Props = {
   isOpen: boolean;
@@ -18,9 +18,9 @@ type Props = {
 
 export function EventModal({ isOpen, onClose }: Props) {
   const eventModal = useSelector(selectEventModal);
-  // const event = useSelector(selectEvent);
+  const event = useSelector(selectEvent);
 
-  const { remove } = useEvent();
+  const { remove, update } = useEvent();
 
   const onRemove = React.useCallback(() => {
     if (!eventModal) {
@@ -30,29 +30,28 @@ export function EventModal({ isOpen, onClose }: Props) {
     onClose();
   }, [eventModal, remove, onClose]);
 
-  // const onUpdate = React.useCallback(
-  //   (data: { [FIELD1]: string; [FIELD2]: string }) => {
-  //     if (!eventModal) {
-  //       return console.warn("Invalid data status when to remove event.");
-  //     }
-  //     update(eventModal, data);
-  //     onClose();
-  //   },
-  //   [eventModal, update, onClose]
-  // );
+  const onUpdate = React.useCallback(
+    (data: Partial<BaseEvent>) => {
+      if (!eventModal || !event) {
+        return console.warn("Invalid data status when to remove event.");
+      }
+      update(eventModal, event, data);
+      onClose();
+    },
+    [eventModal, event, update, onClose]
+  );
 
   // TODO: error handler
-  // const { register, handleSubmit } = useForm();
+  const { register, handleSubmit } = useForm();
 
   return (
     <Dialog onClose={onClose} open={isOpen}>
       <DialogTitle>Resource</DialogTitle>
       <DialogContent dividers={true}>
-        {/* <form onSubmit={handleSubmit(onUpdate)}>
-          <input ref={register} name={FIELD1} defaultValue={field1} />
-          <input ref={register} name={FIELD2} defaultValue={field2} />
-          <input type="submit" value="Update" />
-        </form> */}
+        <form onSubmit={handleSubmit(onUpdate)}>
+          <input ref={register} name={'title'} defaultValue={event?.title} />
+          <input type="submit" value="rename" />
+        </form>
         <hr />
         <button onClick={onRemove}>Remove</button>
       </DialogContent>

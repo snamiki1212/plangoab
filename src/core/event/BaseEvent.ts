@@ -37,3 +37,16 @@ export const initEvent = (props?: Partial<BaseEvent>): BaseEvent => {
     },
   };
 };
+
+export const updateEvent = (
+  event: BaseEvent,
+  params: Partial<Omit<BaseEvent, "id" | "storyId">>
+): BaseEvent => {
+  const title = params.title;
+  const newEvent = Object.assign(
+    { ...event },
+    title !== undefined && { title }
+  );
+
+  return newEvent;
+};

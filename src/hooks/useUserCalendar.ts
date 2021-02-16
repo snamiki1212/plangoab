@@ -69,7 +69,7 @@ export const useUserCalendar = () => {
 
       dispatch(addEventAction({ event: newEvent, calendarId, storyId }));
     },
-    [calendar, dispatch]
+    [dispatch]
   );
 
   // TODO: move useStory

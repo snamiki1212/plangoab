@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useUserCalendar } from "../../hooks/useUserCalendar";
 import { useUser } from "../../hooks/useUser";
 import { BaseCalendarContainer } from "../../components/atoms/BaseCalendarContainer";
@@ -34,7 +34,6 @@ export function UserCalendarContainer() {
   } = useStoryModal();
 
   const {
-    push: pushEventModal,
     pop: popEventModal,
     isOpen: isOpenEventModal,
   } = useEventModal();
