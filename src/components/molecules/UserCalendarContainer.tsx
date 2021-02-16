@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useUserCalendar } from "../../hooks/useUserCalendar";
 import { useUser } from "../../hooks/useUser";
+import { useStory } from "../../hooks/useStory";
 import { BaseCalendarContainer } from "../../components/atoms/BaseCalendarContainer";
 import { useResourceGroupLabelContentInUserCalendar } from "../../hooks/useResourceGroupLabelContentInUserCalendar";
 import { useResourceModal } from "../../hooks/useResourceModal";
@@ -14,6 +15,7 @@ import { StoryModal } from "../../components/molecules/StoryModal";
 import { EventModal } from "../../components/molecules/EventModal";
 import { EventClickArg } from "@fullcalendar/react";
 import { pushAction as pushEventModalAction } from "../../redux/ui/eventModal";
+import { MY_CALENDAR_ID } from "../../constants/fullcalendar/settings";
 
 const ableConfis = {
   selectable: true,
@@ -33,10 +35,7 @@ export function UserCalendarContainer() {
     isOpen: isOpenStoryModal,
   } = useStoryModal();
 
-  const {
-    pop: popEventModal,
-    isOpen: isOpenEventModal,
-  } = useEventModal();
+  const { pop: popEventModal, isOpen: isOpenEventModal } = useEventModal();
 
   const { birth } = useUser();
   const dispatch = useDispatch();
@@ -65,10 +64,16 @@ export function UserCalendarContainer() {
     events,
     resources,
     init: initUserCalendar,
-    // click,
     select,
-    createStory,
   } = useUserCalendar();
+
+  const { create: createStory } = useStory();
+
+  const calendarId = MY_CALENDAR_ID;
+  const handleCreateStory = React.useCallback(() => {
+    const doCreateStroy = () => createStory({ calendarId });
+    return doCreateStroy;
+  }, [createStory, calendarId]);
 
   const click = React.useCallback(
     (info: EventClickArg) => {
@@ -170,7 +175,7 @@ export function UserCalendarContainer() {
           resourceAreaColumns={resourceAreaColumns}
           {...ableConfis}
         />
-        <button onClick={createStory}>story:add</button>
+        <button onClick={handleCreateStory}>story:add</button>
       </div>
 
       {/* Modal */}

@@ -3,9 +3,10 @@ import { useDispatch } from "react-redux";
 import {
   removeStoryAction,
   updateStoryAction,
+  addStoryAction,
 } from "../redux/features/userCalendars";
 import { BaseStory, updateStory } from "../core/story/BaseStory";
-
+import { initStory } from "../core/story/BaseStory";
 type IdSet = { calendarId: string; storyId: string };
 
 export const useStory = () => {
@@ -29,5 +30,10 @@ export const useStory = () => {
     [dispatch]
   );
 
-  return { remove, update } as const;
+  const create  = React.useCallback(({calendarId}: {calendarId: string}, params?: Partial<BaseStory>) => {
+    const story = initStory({ calendarId });
+    dispatch(addStoryAction({ calendarId, story }));
+  }, [dispatch]);
+
+  return { remove, update, create } as const;
 };
