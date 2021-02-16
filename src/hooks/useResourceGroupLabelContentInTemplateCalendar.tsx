@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { selectCommunityCollegeCalendar } from "../redux/features/templateCalendarTable";
 import { MY_CALENDAR_ID } from "../constants/fullcalendar/settings";
 
@@ -15,7 +15,6 @@ type Props = {
 export const useResourceGroupLabelContentInTemplateCalendar = ({
   createClickHandel,
 }: Props) => {
-  const dispatch = useDispatch();
   const calendar = useSelector(selectCommunityCollegeCalendar);
 
   const resourceGroupLabelContent = React.useCallback(
