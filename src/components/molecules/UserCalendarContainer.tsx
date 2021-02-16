@@ -6,10 +6,14 @@ import { BaseCalendarContainer } from "../../components/atoms/BaseCalendarContai
 import { useResourceGroupLabelContentInUserCalendar } from "../../hooks/useResourceGroupLabelContentInUserCalendar";
 import { useResourceModal } from "../../hooks/useResourceModal";
 import { useStoryModal } from "../../hooks/useStoryModal";
-import { pushAction } from "../../redux/ui/storyModal";
+import { useEventModal } from "../../hooks/useEventModal";
+import { pushAction as pushStoryModalAction } from "../../redux/ui/storyModal";
 import { FIELD1, FIELD2 } from "../../constants/fullcalendar/settings";
 import { ResourceModal } from "../../components/molecules/ResourceModal";
 import { StoryModal } from "../../components/molecules/StoryModal";
+import { EventModal } from "../../components/molecules/EventModal";
+import { EventClickArg } from "@fullcalendar/react";
+import { pushAction as pushEventModalAction } from "../../redux/ui/eventModal";
 
 const ableConfis = {
   selectable: true,
@@ -29,6 +33,11 @@ export function UserCalendarContainer() {
     isOpen: isOpenStoryModal,
   } = useStoryModal();
 
+  const {
+    pop: popEventModal,
+    isOpen: isOpenEventModal,
+  } = useEventModal();
+
   const { birth } = useUser();
   const dispatch = useDispatch();
 
@@ -40,7 +49,7 @@ export function UserCalendarContainer() {
       calendarId: string;
       storyId: string;
     }) => () => {
-      dispatch(pushAction({ calendarId, storyId }));
+      dispatch(pushStoryModalAction({ calendarId, storyId }));
       pushStoryModal({ calendarId, storyId });
     },
     [pushStoryModal, dispatch]
@@ -48,16 +57,48 @@ export function UserCalendarContainer() {
 
   const {
     resourceGroupLabelContent,
-  } = useResourceGroupLabelContentInUserCalendar({ createOpenHandle:createOpenStoryHandle });
+  } = useResourceGroupLabelContentInUserCalendar({
+    createOpenHandle: createOpenStoryHandle,
+  });
 
   const {
     events,
     resources,
     init: initUserCalendar,
-    click,
+    // click,
     select,
     createStory,
   } = useUserCalendar();
+
+  const click = React.useCallback(
+    (info: EventClickArg) => {
+      const calendarId = info.event.extendedProps.calendarId as
+        | string
+        | undefined;
+      if (!calendarId) {
+        return console.warn("Invalid data. cannot find calendarId.");
+      }
+
+      const eventId = info.event.id;
+      if (!eventId) {
+        return console.warn("Invalid data. cannot find eventId.");
+      }
+
+      const storyId = info.event.extendedProps.storyId as string | undefined;
+      if (!storyId) {
+        return console.warn("Invalid data. cannot find storyId.");
+      }
+
+      const idSet = {
+        calendarId,
+        eventId,
+        storyId,
+      };
+
+      dispatch(pushEventModalAction(idSet));
+    },
+    [dispatch]
+  );
 
   React.useEffect(() => {
     initUserCalendar(birth);
@@ -129,13 +170,13 @@ export function UserCalendarContainer() {
           resourceAreaColumns={resourceAreaColumns}
           {...ableConfis}
         />
-        {/* <button onClick={pushResourceModal}>resource:open</button> */}
         <button onClick={createStory}>story:add</button>
       </div>
 
       {/* Modal */}
       <ResourceModal isOpen={isOpenResourceModal} onClose={popResourceModal} />
       <StoryModal isOpen={isOpenStoryModal} onClose={popStoryModal} />
+      <EventModal isOpen={isOpenEventModal} onClose={popEventModal} />
     </>
   );
 }

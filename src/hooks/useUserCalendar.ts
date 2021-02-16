@@ -1,19 +1,18 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { DateSelectArg, EventClickArg } from "@fullcalendar/react";
+import { DateSelectArg } from "@fullcalendar/react";
 import { uuid } from "../lib/uuid";
 import { createProfileStory } from "../core/story/ProfileStory/createProfileStory";
 import { initStory } from "../core/story/BaseStory";
+import { initEvent } from "../core/event/BaseEvent";
 import { createUserCalendar } from "../core/calendar/UserCalendar/createUserCalendar";
 import {
   // events
   updateCalendarsAction,
   addEventAction,
-  removeEventAction,
 
   // storeis
   addStoryAction,
-  // resources
 
   // selector
   selectUserCalendar,
@@ -44,41 +43,36 @@ export const useUserCalendar = () => {
         console.warn("Unexpected data that info does not have resource.");
         return;
       }
+
+      // storyId
       const storyId = info.resource.extendedProps.storyId;
       if (!storyId) {
         console.warn("Unexpected data not including storyId.");
         return;
       }
 
-      const calendarId = calendar.id;
-      const newEvent = {
-        id: uuid(),
-        resourceId: info.resource.id,
-        start: info.startStr,
-        end: info.endStr,
-      };
-
-      dispatch(addEventAction({ event: newEvent, calendarId, storyId }));
-    },
-    [calendar, dispatch]
-  );
-
-  const click = React.useCallback(
-    (info: EventClickArg) => {
-      if (!window.confirm("Would you like to remove this event?")) return;
-
-      const calendarId = calendar.id;
-      const eventId = info.event.id;
-      if (!eventId) {
-        console.warn("Unexpected data. cannot find event id.");
+      // calendarId
+      const calendarId = info.resource.extendedProps.calendarId;
+      if (!calendarId) {
+        console.warn("Unexpected data not including calendarId.");
         return;
       }
 
-      dispatch(removeEventAction({ calendarId, eventId }));
+      const newEvent = initEvent({
+        id: uuid(),
+        resourceId: info.resource.id,
+        calendarId,
+        storyId,
+        start: info.startStr,
+        end: info.endStr,
+      });
+
+      dispatch(addEventAction({ event: newEvent, calendarId, storyId }));
     },
-    [dispatch, calendar]
+    [dispatch]
   );
 
+  // TODO: move useStory
   const createStory = React.useCallback(() => {
     const calendarId = calendar.id;
     const story = initStory({ calendarId });
@@ -103,7 +97,6 @@ export const useUserCalendar = () => {
     events,
     resources,
     init,
-    click,
     select,
     createStory,
   } as const;
