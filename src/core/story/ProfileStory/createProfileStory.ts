@@ -10,7 +10,6 @@ import {
   FIELD2,
   NAME_OF_STORY_ID,
   NAME_OF_ORDER,
-  MY_CALENDAR_ID,
 } from "../../../constants/fullcalendar/settings";
 import { DARK_BLUE } from "../../../constants/fullcalendar/templates";
 import { createStoryName } from "../BaseStory";
@@ -87,7 +86,8 @@ const generateEvents = ({
 
   const workingHolidayLimitEvents = createWorkingHolidayLimitEvents(
     startDate,
-    storyId
+    storyId,
+    calendarId
   );
 
   // create EventInput obj
@@ -129,7 +129,8 @@ const getLastYear = () => {
 // TODO: move event file
 const createWorkingHolidayLimitEvents = (
   birthday: Date,
-  storyId: string
+  storyId: string,
+  calendarId: string
 ): BaseEvent[] => {
   const lastYearDate = addYears(
     birthday,
@@ -142,8 +143,6 @@ const createWorkingHolidayLimitEvents = (
     addYears(setMonth(endDate, +6), -1).toISOString()
   );
 
-  // TODO: id should be injected
-  const calendarId = MY_CALENDAR_ID;
   const limitation = {
     id: uuid(),
     title: "Limitation till WorkingHoliday",

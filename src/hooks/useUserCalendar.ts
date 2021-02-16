@@ -12,7 +12,6 @@ import {
 
   // storeis
   addStoryAction,
-  // resources
 
   // selector
   selectUserCalendar,
@@ -87,7 +86,6 @@ export const useUserCalendar = () => {
     events,
     resources,
     init,
-    // click,
     select,
     createStory,
   } as const;
