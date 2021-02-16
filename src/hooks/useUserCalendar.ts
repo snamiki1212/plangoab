@@ -4,6 +4,7 @@ import { DateSelectArg } from "@fullcalendar/react";
 import { uuid } from "../lib/uuid";
 import { createProfileStory } from "../core/story/ProfileStory/createProfileStory";
 import { initStory } from "../core/story/BaseStory";
+import { initEvent } from "../core/event/BaseEvent";
 import { createUserCalendar } from "../core/calendar/UserCalendar/createUserCalendar";
 import {
   // events
@@ -42,19 +43,29 @@ export const useUserCalendar = () => {
         console.warn("Unexpected data that info does not have resource.");
         return;
       }
+
+      // storyId
       const storyId = info.resource.extendedProps.storyId;
       if (!storyId) {
         console.warn("Unexpected data not including storyId.");
         return;
       }
 
-      const calendarId = calendar.id;
-      const newEvent = {
+      // calendarId
+      const calendarId = info.resource.extendedProps.calendarId;
+      if (!calendarId) {
+        console.warn("Unexpected data not including calendarId.");
+        return;
+      }
+
+      const newEvent = initEvent({
         id: uuid(),
         resourceId: info.resource.id,
+        calendarId,
+        storyId,
         start: info.startStr,
         end: info.endStr,
-      };
+      });
 
       dispatch(addEventAction({ event: newEvent, calendarId, storyId }));
     },
