@@ -1,16 +1,7 @@
 import { EventInput } from "@fullcalendar/react";
 import { uuid } from "../../lib/uuid";
 
-type MyEvent = {
-  id: string;
-  resourceId: string;
-  storyId: string;
-  title?: string;
-  start: Date | string;
-  end: Date | string;
-};
-
-export type BaseEvent = MyEvent | EventInput;
+export type BaseEvent = EventInput;
 
 export const initEvent = (props?: Partial<BaseEvent>): BaseEvent => {
   const { id, resourceId, storyId, title, start, end } = props ?? {};
