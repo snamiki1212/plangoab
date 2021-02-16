@@ -79,6 +79,11 @@ const generateStory = ({
       end: addMonths(startDate, 12 * 2).toISOString(),
       [NAME_OF_ORDER]: 1,
       backgroundColor: VISA_BACKGROUND_COLOR,
+      extendedProps: {
+        resourceId: coopVisaResourceId,
+        calendarId,
+        storyId,
+      },
     });
   }
 
@@ -99,6 +104,11 @@ const generateStory = ({
     end: addMonths(startDate, 12 * 2).toISOString(),
     [NAME_OF_ORDER]: 2,
     backgroundColor: VISA_BACKGROUND_COLOR,
+    extendedProps: {
+      resourceId: studyVisaResourceId,
+      calendarId,
+      storyId,
+    },
   });
 
   if (canWorkingholiday) {
@@ -120,6 +130,11 @@ const generateStory = ({
       end: addMonths(dateAsStartWorkingHoliday, 12 * 1).toISOString(),
       [NAME_OF_ORDER]: 3,
       backgroundColor: VISA_BACKGROUND_COLOR,
+      extendedProps: {
+        resourceId: workingholidayResourceId,
+        calendarId,
+        storyId,
+      },
     });
     events.push({
       // preWorkingHolidayVisaEvent
@@ -130,6 +145,11 @@ const generateStory = ({
       end: dateAsStartWorkingHoliday.toISOString(),
       [NAME_OF_ORDER]: 3,
       backgroundColor: WH_WARN_BACKGROUND_COLOR,
+      extendedProps: {
+        resourceId: workingholidayResourceId,
+        calendarId,
+        storyId,
+      },
     });
 
     // worker status
@@ -149,6 +169,11 @@ const generateStory = ({
       end: addMonths(startDate, 12 * 3).toISOString(),
       [NAME_OF_ORDER]: 5,
       eventBackgroundCoor: STATUS_BACKGROUND_COLOR,
+      extendedProps: {
+        resourceId: workerStatusResourceId,
+        calendarId,
+        storyId,
+      },
     });
   }
 
@@ -169,6 +194,11 @@ const generateStory = ({
     end: addMonths(startDate, 12 * 2).toISOString(),
     [NAME_OF_ORDER]: 4,
     eventBackgroundCoor: STATUS_BACKGROUND_COLOR,
+    extendedProps: {
+      resourceId: studentStatusResourceId,
+      calendarId,
+      storyId,
+    },
   });
 
   return [[...resources], [...events]] as [BaseResource[], BaseEvent[]];

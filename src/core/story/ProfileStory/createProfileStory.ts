@@ -35,10 +35,11 @@ export const createProfileStory = ({
     calendarId,
     name: createStoryName(_birth),
     resources: createResources({ calendarId, storyId }),
-    events: generateEvents(_birth, storyId),
+    events: generateEvents({ calendarId, storyId, startDate: _birth }),
   };
 };
 
+// TODO: move resource file
 export const createResources = ({
   calendarId,
   storyId,
@@ -66,10 +67,19 @@ export const createResources = ({
   },
 ];
 
-const generateEvents = (startDate: Date, storyId: string): BaseEvent[] => {
+// TODO: move evnet file
+const generateEvents = ({
+  startDate,
+  storyId,
+  calendarId,
+}: {
+  startDate: Date;
+  storyId: string;
+  calendarId: string;
+}): BaseEvent[] => {
   // get year num
-  const endYear = getLastYear();
   const startYear = new Date(startDate).getFullYear();
+  const endYear = getLastYear();
 
   // create years list
   const years = getRangeNumbers(startYear, endYear);
@@ -93,11 +103,16 @@ const generateEvents = (startDate: Date, storyId: string): BaseEvent[] => {
 
     return {
       id: uuid(),
-      resourceId: RESOURCE_ID__SHARED__AGE,
       title: `Aage:${index}`,
-      storyId,
       start,
       end,
+      storyId,
+      resourceId: RESOURCE_ID__SHARED__AGE,
+      extendedProps: {
+        resourceId: RESOURCE_ID__SHARED__AGE,
+        calendarId,
+        storyId,
+      },
     };
   });
 
@@ -110,6 +125,7 @@ const getLastYear = () => {
   return addYears(date, BUFFER_YEAR).getFullYear();
 };
 
+// TODO: move event file
 const createWorkingHolidayLimitEvents = (
   birthday: Date,
   storyId: string
@@ -125,22 +141,33 @@ const createWorkingHolidayLimitEvents = (
     addYears(setMonth(endDate, +6), -1).toISOString()
   );
 
+  const calendarId = "TODO";
   const limitation = {
     id: uuid(),
-    resourceId: RESOURCE_ID__SHARED__LIMIT,
     title: "Limitation till WorkingHoliday",
-    storyId,
     start,
     end: endOfLimit,
+    resourceId: RESOURCE_ID__SHARED__LIMIT,
+    storyId,
+    extendedProps: {
+      resourceId: RESOURCE_ID__SHARED__LIMIT,
+      storyId,
+      calendarId,
+    },
   };
 
   const application = {
     id: uuid(),
-    resourceId: RESOURCE_ID__SHARED__LIMIT,
     title: "Application Limit",
-    storyId,
     start,
     end: endOfApplication,
+    storyId,
+    resourceId: RESOURCE_ID__SHARED__LIMIT,
+    extendedProps: {
+      storyId,
+      resourceId: RESOURCE_ID__SHARED__LIMIT,
+      calendarId,
+    },
   };
   return [limitation, application];
 };
