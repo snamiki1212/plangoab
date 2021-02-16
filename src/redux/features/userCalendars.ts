@@ -36,6 +36,7 @@ type AddEventPayload = {
 };
 type RemoveEventPayload = {
   calendarId: string;
+  storyId: string;
   eventId: string;
 };
 
@@ -219,7 +220,7 @@ const userCalendarsSlice = createSlice({
       state.calendars[calendarIdx].stories[storyIdx].events.push(event);
     },
     removeEvent(state, action: PayloadAction<RemoveEventPayload>) {
-      const { calendarId, eventId } = action.payload;
+      const { calendarId, storyId, eventId } = action.payload;
 
       // calendar
       const calendarIdx = state.calendars.findIndex(
@@ -233,9 +234,7 @@ const userCalendarsSlice = createSlice({
 
       // story
       const storyIdx = state.calendars[calendarIdx].stories.findIndex(
-        (story) => {
-          return story.events.some((_event) => _event.id === eventId);
-        }
+        (story) => story.id === storyId
       );
       const cannotFindStory = storyIdx === -1;
       if (cannotFindStory) {

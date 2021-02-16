@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { DateSelectArg, EventClickArg } from "@fullcalendar/react";
+import { DateSelectArg } from "@fullcalendar/react";
 import { uuid } from "../lib/uuid";
 import { createProfileStory } from "../core/story/ProfileStory/createProfileStory";
 import { initStory } from "../core/story/BaseStory";
@@ -9,7 +9,6 @@ import {
   // events
   updateCalendarsAction,
   addEventAction,
-  removeEventAction,
 
   // storeis
   addStoryAction,
@@ -63,22 +62,7 @@ export const useUserCalendar = () => {
     [calendar, dispatch]
   );
 
-  const click = React.useCallback(
-    (info: EventClickArg) => {
-      if (!window.confirm("Would you like to remove this event?")) return;
-
-      const calendarId = calendar.id;
-      const eventId = info.event.id;
-      if (!eventId) {
-        console.warn("Unexpected data. cannot find event id.");
-        return;
-      }
-
-      dispatch(removeEventAction({ calendarId, eventId }));
-    },
-    [dispatch, calendar]
-  );
-
+  // TODO: move useStory
   const createStory = React.useCallback(() => {
     const calendarId = calendar.id;
     const story = initStory({ calendarId });
@@ -103,7 +87,7 @@ export const useUserCalendar = () => {
     events,
     resources,
     init,
-    click,
+    // click,
     select,
     createStory,
   } as const;

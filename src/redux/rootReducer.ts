@@ -4,11 +4,13 @@ import userReducer from "./features/user";
 import templateCalendarTableReducer from "./features/templateCalendarTable";
 import userCalendarsReducer from "./features/userCalendars";
 import resourceModalReducer from "./ui/resourceModal";
+import eventModalReducer from "./ui/eventModal";
 import storyModalReducer from "./ui/storyModal";
 
 const uiReducer = combineReducers({
   resourceModal: resourceModalReducer,
   storyModal: storyModalReducer,
+  eventModal: eventModalReducer,
 });
 
 const featuresReducer = combineReducers({
