@@ -16,7 +16,7 @@ type PushPayload = {
 type PopPayload = undefined;
 
 const slice = createSlice({
-  name: "sotryModal",
+  name: "storyModal",
   initialState: {
     story: null,
   } as State,
@@ -31,17 +31,17 @@ const slice = createSlice({
   },
 });
 
-export const selectIsOpen = (state: RootState) => !!state.storyModal.story;
+export const selectIsOpen = (state: RootState) => !!state.ui.storyModal.story;
 
-export const selectStoryModal = (state: RootState) => state.storyModal.story;
+export const selectStoryModal = (state: RootState) => state.ui.storyModal.story;
 
 export const selectStory = (state: RootState) => {
-  const _story = state.storyModal.story;
+  const _story = state.ui.storyModal.story;
   if (!_story) return null;
   const { calendarId, storyId } = _story;
 
   // calendar
-  const calendarIdx = state.userCalendars.calendars.findIndex(
+  const calendarIdx = state.features.userCalendars.calendars.findIndex(
     (calendar) => calendar.id === calendarId
   );
   const cannotFind = calendarIdx === -1;
@@ -51,7 +51,7 @@ export const selectStory = (state: RootState) => {
   }
 
   // story
-  return state.userCalendars.calendars[calendarIdx].stories.find(
+  return state.features.userCalendars.calendars[calendarIdx].stories.find(
     (story) => story.id === storyId
   );
 };

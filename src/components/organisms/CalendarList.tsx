@@ -1,23 +1,47 @@
 import React from "react";
 import styled from "styled-components";
-import { UserCalendarContainer } from "../../containers/UserCalendarContainer";
-import { TemplateCalendarContainer } from "../../containers/TemplateCalendarContainer";
+import Dialog from "@material-ui/core/Dialog";
+import { UserCalendarContainer } from "../molecules/UserCalendarContainer";
+import { TemplateCalendarContainer } from "../molecules/TemplateCalendarContainer";
+import { useModal } from "../../hooks/useModal";
 
 export function CalendarList() {
-  return (
-    <Container>
-      <div>
-        <h2>UserCalendar</h2>
-        <UserCalendarContainer />
-      </div>
+  const {
+    open: openCommunityCollege,
+    close: closeCommunityCollege,
+    isOpen: isOpenCommunityCollege,
+  } = useModal();
 
-      <hr />
-      <div>
-        <h2>CommunityCollegeAfterwardsWorkingHolidayStory</h2>
+  return (
+    <>
+      <Container>
+        <div>
+          <h2>Templates</h2>
+          <button onClick={openCommunityCollege}>Private College</button>
+          <button>TODO: Public College</button>
+          <button>TODO: ESL</button>
+        </div>
+        <hr />
+        <div>
+          <h2>User Calendar</h2>
+          <UserCalendarContainer />
+        </div>
+      </Container>
+
+      {/* Modal */}
+      <Dialog
+        fullScreen
+        open={isOpenCommunityCollege}
+        onClose={closeCommunityCollege}
+      >
+        <button onClick={closeCommunityCollege}>Close</button>
         <TemplateCalendarContainer />
-      </div>
-    </Container>
+      </Dialog>
+    </>
   );
 }
 
-const Container = styled.div``;
+const Container = styled.div`
+  display: grid;
+  gap: 1rem;
+`;

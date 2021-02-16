@@ -24,6 +24,11 @@ type RemoveResourcePayload = {
 };
 type AddStoryPayload = { calendarId: string; story: BaseStory };
 type RemoveStoryPayload = { calendarId: string; storyId: string };
+type UpdateStoryPayload = {
+  calendarId: string;
+  storyId: string;
+  newStory: BaseStory;
+};
 type AddEventPayload = {
   calendarId: string;
   storyId: string;
@@ -31,7 +36,14 @@ type AddEventPayload = {
 };
 type RemoveEventPayload = {
   calendarId: string;
+  storyId: string;
   eventId: string;
+};
+type UpdateEventPayload = {
+  calendarId: string;
+  storyId: string;
+  eventId: string;
+  newEvent: BaseEvent;
 };
 
 const userCalendarsSlice = createSlice({
@@ -162,6 +174,31 @@ const userCalendarsSlice = createSlice({
         (story) => story.id !== storyId
       );
     },
+    updateStory(state, action: PayloadAction<UpdateStoryPayload>) {
+      const { calendarId, storyId, newStory } = action.payload;
+      // calendar
+      const calendarIdx = state.calendars.findIndex(
+        (calendar) => calendar.id === calendarId
+      );
+      const cannotFindCalendar = calendarIdx === -1;
+      if (cannotFindCalendar) {
+        console.warn("cannot find calendar on updateStory", calendarId);
+        return;
+      }
+
+      // story
+      const storyIdx = state.calendars[calendarIdx].stories.findIndex(
+        (story) => story.id === storyId
+      );
+      const cannotFindStory = storyIdx === -1;
+      if (cannotFindStory) {
+        console.warn("cannot find story on updateStory", calendarId);
+        return;
+      }
+
+      // prcess
+      state.calendars[calendarIdx].stories[storyIdx] = newStory;
+    },
     addEvent(state, action: PayloadAction<AddEventPayload>) {
       const { calendarId, storyId, event } = action.payload;
 
@@ -189,7 +226,7 @@ const userCalendarsSlice = createSlice({
       state.calendars[calendarIdx].stories[storyIdx].events.push(event);
     },
     removeEvent(state, action: PayloadAction<RemoveEventPayload>) {
-      const { calendarId, eventId } = action.payload;
+      const { calendarId, storyId, eventId } = action.payload;
 
       // calendar
       const calendarIdx = state.calendars.findIndex(
@@ -203,9 +240,7 @@ const userCalendarsSlice = createSlice({
 
       // story
       const storyIdx = state.calendars[calendarIdx].stories.findIndex(
-        (story) => {
-          return story.events.some((_event) => _event.id === eventId);
-        }
+        (story) => story.id === storyId
       );
       const cannotFindStory = storyIdx === -1;
       if (cannotFindStory) {
@@ -218,18 +253,64 @@ const userCalendarsSlice = createSlice({
         calendarIdx
       ].stories[storyIdx].events.filter((_event) => _event.id !== eventId);
     },
+    updateEvent(state, action: PayloadAction<UpdateEventPayload>) {
+      const { calendarId, storyId, eventId, newEvent } = action.payload;
+
+      // calendar
+      const calendarIdx = state.calendars.findIndex(
+        (calendar) => calendar.id === calendarId
+      );
+      const cannotFindCalendar = calendarIdx === -1;
+      if (cannotFindCalendar) {
+        console.warn("cannot find calendar on updateStory", calendarId);
+        return;
+      }
+
+      // story
+      const storyIdx = state.calendars[calendarIdx].stories.findIndex(
+        (story) => story.id === storyId
+      );
+      const cannotFindStory = storyIdx === -1;
+      if (cannotFindStory) {
+        console.warn("cannot find story on updateStory", calendarId);
+        return;
+      }
+
+      // event
+      const eventIdx = state.calendars[calendarIdx].stories[
+        storyIdx
+      ].events.findIndex((event) => event.id === eventId);
+      const cannotFindEvent = eventIdx === -1;
+      if (cannotFindEvent) {
+        console.warn("cannot find event on updateEvent");
+        return;
+      }
+
+      // prcess
+      state.calendars[calendarIdx].stories[storyIdx].events[
+        eventIdx
+      ] = newEvent;
+    },
   },
 });
 
 export const {
   updateCalendars: updateCalendarsAction,
+
+  // resources
   pushResource: pushResourceAction,
   updateResource: updateResourceAction,
   removeResource: removeResourceAction,
+
+  // story
   addStory: addStoryAction,
   removeStory: removeStoryAction,
+  updateStory: updateStoryAction,
+
+  // event
   addEvent: addEventAction,
   removeEvent: removeEventAction,
+  updateEvent: updateEventAction,
 } = userCalendarsSlice.actions;
 
 export default userCalendarsSlice.reducer;
@@ -238,4 +319,4 @@ export default userCalendarsSlice.reducer;
 //   state.userCalendars.calendars;
 
 export const selectUserCalendar = (state: RootState) =>
-  state.userCalendars.calendars[0]; // NOTE: now calendars have only 1 calendar.
+  state.features.userCalendars.calendars[0]; // NOTE: now calendars have only 1 calendar.

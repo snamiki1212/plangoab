@@ -1,19 +1,21 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { pushAction, popAction, selectIsOpen } from "../redux/ui/resourceModal";
+import { pushAction, popAction, selectIsOpen } from "../redux/ui/eventModal";
 
-type IdSet = {
-  resourceId: string;
-  storyId: string;
-  calendarId: string;
-};
-
-export const useResourceModal = () => {
+export const useEventModal = () => {
   const dispatch = useDispatch();
 
   const push = React.useCallback(
-    ({ resourceId, storyId, calendarId }: IdSet) => {
-      dispatch(pushAction({ calendarId, resourceId, storyId }));
+    ({
+      eventId,
+      storyId,
+      calendarId,
+    }: {
+      eventId: string;
+      storyId: string;
+      calendarId: string;
+    }) => {
+      dispatch(pushAction({ calendarId, eventId, storyId }));
     },
     [dispatch]
   );

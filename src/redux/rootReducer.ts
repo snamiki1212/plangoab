@@ -1,22 +1,27 @@
 import { combineReducers } from "@reduxjs/toolkit";
 
-// reducers
 import userReducer from "./features/user";
 import templateCalendarTableReducer from "./features/templateCalendarTable";
 import userCalendarsReducer from "./features/userCalendars";
 import resourceModalReducer from "./ui/resourceModal";
+import eventModalReducer from "./ui/eventModal";
 import storyModalReducer from "./ui/storyModal";
 
-const rootReducer = combineReducers({
-  user: userReducer,
-
-  // Calendars
-  templateCalendar: templateCalendarTableReducer,
-  userCalendars: userCalendarsReducer,
-
-  // UIs
+const uiReducer = combineReducers({
   resourceModal: resourceModalReducer,
   storyModal: storyModalReducer,
+  eventModal: eventModalReducer,
+});
+
+const featuresReducer = combineReducers({
+  templateCalendar: templateCalendarTableReducer,
+  userCalendars: userCalendarsReducer,
+  user: userReducer,
+});
+
+const rootReducer = combineReducers({
+  features: featuresReducer,
+  ui: uiReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

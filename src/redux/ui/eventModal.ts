@@ -2,47 +2,45 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../rootReducer";
 
 type State = {
-  resource: null | {
+  event: null | {
     calendarId: string;
     storyId: string;
-    resourceId: string;
+    eventId: string;
   };
 };
 
 type PushPayload = {
   calendarId: string;
   storyId: string;
-  resourceId: string;
+  eventId: string;
 };
 
 type PopPayload = undefined;
 
 const slice = createSlice({
-  name: "resourceModal",
+  name: "eventModal",
   initialState: {
-    resource: null,
+    event: null,
   } as State,
   reducers: {
     push(state, action: PayloadAction<PushPayload>) {
       const _payload = action.payload;
-      state.resource = _payload;
+      state.event = _payload;
     },
     pop(state, _action: PayloadAction<PopPayload>) {
-      state.resource = null;
+      state.event = null;
     },
   },
 });
 
-export const selectIsOpen = (state: RootState) =>
-  !!state.ui.resourceModal.resource;
+export const selectIsOpen = (state: RootState) => !!state.ui.eventModal.event;
 
-export const selectResourceModal = (state: RootState) =>
-  state.ui.resourceModal.resource;
+export const selectEventModal = (state: RootState) => state.ui.eventModal.event;
 
-export const selectResource = (state: RootState) => {
-  const _resource = state.ui.resourceModal.resource;
-  if (!_resource) return null;
-  const { calendarId, storyId, resourceId } = _resource;
+export const selectEvent = (state: RootState) => {
+  const event = state.ui.eventModal.event;
+  if (!event) return null;
+  const { calendarId, storyId, eventId } = event;
 
   // calendar
   const calendarIdx = state.features.userCalendars.calendars.findIndex(
@@ -67,7 +65,7 @@ export const selectResource = (state: RootState) => {
   //
   return state.features.userCalendars.calendars[calendarIdx].stories[
     storyIdx
-  ].resources.find((resource) => resource.id === resourceId);
+  ].events.find((event) => event.id === eventId);
 };
 
 export const { push: pushAction, pop: popAction } = slice.actions;
