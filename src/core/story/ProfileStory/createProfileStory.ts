@@ -5,19 +5,13 @@ import {
   RESOURCE_ID__SHARED__AGE,
   RESOURCE_ID__SHARED__LIMIT,
 } from "../../../constants/fullcalendar/settings";
-import {
-  FIELD1,
-  FIELD2,
-  NAME_OF_STORY_ID,
-  NAME_OF_ORDER,
-} from "../../../constants/fullcalendar/settings";
-import { DARK_BLUE } from "../../../constants/fullcalendar/templates";
 import { createStoryName } from "../BaseStory";
 import { getRangeNumbers } from "../../../lib/age";
 import { uuid } from "../../../lib/uuid";
 import { convertIsoToDateTime } from "../../../lib/date";
 import { WORKING_HOLIDAY_APPLICATION_LIMITATION_AGE } from "../../../constants/visa";
 import { BaseEvent } from "../../event/BaseEvent";
+import { createProfileResources } from "../../resource/createProfileResources";
 
 export const createProfileStory = ({
   birth,
@@ -34,41 +28,13 @@ export const createProfileStory = ({
     id: storyId,
     calendarId,
     name: createStoryName(_birth),
-    resources: createResources({ calendarId, storyId }),
-    events: generateEvents({ calendarId, storyId, startDate: _birth }),
+    resources: createProfileResources({ calendarId, storyId }),
+    events: createProfileEvents({ calendarId, storyId, startDate: _birth }),
   };
 };
 
-// TODO: move resource file
-export const createResources = ({
-  calendarId,
-  storyId,
-}: {
-  calendarId: string;
-  storyId: string;
-}) => [
-  {
-    id: RESOURCE_ID__SHARED__AGE,
-    [FIELD1]: "",
-    [FIELD2]: "Age",
-    [NAME_OF_STORY_ID]: storyId,
-    [NAME_OF_ORDER]: 0,
-    calendarId,
-    eventBorderColor: DARK_BLUE,
-  },
-  {
-    id: RESOURCE_ID__SHARED__LIMIT,
-    [FIELD1]: "",
-    [FIELD2]: "Working Holiday Application Limit",
-    [NAME_OF_STORY_ID]: storyId,
-    [NAME_OF_ORDER]: 1,
-    calendarId,
-    eventBorderColor: DARK_BLUE,
-  },
-];
-
 // TODO: move evnet file
-const generateEvents = ({
+const createProfileEvents = ({
   startDate,
   storyId,
   calendarId,
