@@ -17,7 +17,9 @@ export function CalendarList() {
       <Container>
         <div>
           <h2>Templates</h2>
-          <button onClick={openCommunityCollege}>Community College</button>
+          <button onClick={openCommunityCollege}>Private College</button>
+          <button>TODO: Public College</button>
+          <button>TODO: ESL</button>
         </div>
         <hr />
         <div>
