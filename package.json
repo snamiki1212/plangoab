@@ -33,7 +33,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "graph:dot": "yarn depcruise --include-only '^src' --output-type dot ./src --output-to dependencygraph.dot",
+    "graph:svg": "dot dependencygraph.dot -T svg > dependencygraph.svg"
   },
   "eslintConfig": {
     "extends": [
@@ -63,6 +65,7 @@
     "@types/styled-components": "^5.1.7",
     "@types/uuid": "^8.3.0",
     "@types/webpack-env": "^1.16.0",
+    "dependency-cruiser": "^9.23.1",
     "eslint-plugin-react-hooks": "^4.2.0"
   }
 }

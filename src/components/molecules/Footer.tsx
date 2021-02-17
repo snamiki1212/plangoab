@@ -1,16 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 import { LogoImage } from "../atoms/LogoImage";
-
-const THIS_GITHUB_URL =
-  "https://github.com/snamiki1212/canada-immigration-scheduler";
+import {THIS_GITHUB_URL} from '../../constants/meta'
 
 export function Footer() {
   return (
     <Container>
       <LogoText>
         <LogoImageContainer>
-
         <LogoImage />
         </LogoImageContainer>
         <span>Plangoab</span>

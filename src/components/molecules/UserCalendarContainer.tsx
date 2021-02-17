@@ -70,9 +70,9 @@ export function UserCalendarContainer() {
   const { create: createStory } = useStory();
 
   const calendarId = MY_CALENDAR_ID;
+
   const handleCreateStory = React.useCallback(() => {
-    const doCreateStroy = () => createStory({ calendarId });
-    return doCreateStroy;
+    createStory({ calendarId });
   }, [createStory, calendarId]);
 
   const click = React.useCallback(

@@ -46,6 +46,17 @@ Here is managed [issues](https://github.com/snamiki1212/plangoab/issues/11).
 <img src="https://user-images.githubusercontent.com/26793088/107864305-de6a3800-6e0f-11eb-9d2f-f12a88414018.jpg" alt="dependency flow" />
 </p>
 
+```zsh
+# Build dot file
+$ yarn graph:dot
+
+# Build svg file from dot file
+$ brwe install graphviz # prerequirements
+$ yarn graph:svg
+```
+
+TODO: inplement in CI and automatically save this doc in /doc dir
+
 ### Principle
 
 - No Class, but Function
@@ -72,7 +83,7 @@ TODO:
 
 [GPL-3.0](https://github.com/snamiki1212/plangoab/blob/master/LICENSE.md)
 
-Using [Fullcalendar Premium open-source project license](https://fullcalendar.io/license) makes this license GPL-3.0.
+Because of using [Fullcalendar Premium open-source project license](https://fullcalendar.io/license) as GPL-3.0. That makes a plangoab's license the same license.
 
 ## Sponser
 

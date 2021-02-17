@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { selectCommunityCollegeCalendar } from "../redux/features/templateCalendarTable";
+import { selectPrivateCollegeCalendar } from "../redux/features/templateCalendarTable";
 import { MY_CALENDAR_ID } from "../constants/fullcalendar/settings";
 
 type ResourceContentProps = {
@@ -15,7 +15,7 @@ type Props = {
 export const useResourceGroupLabelContentInTemplateCalendar = ({
   createClickHandel,
 }: Props) => {
-  const calendar = useSelector(selectCommunityCollegeCalendar);
+  const calendar = useSelector(selectPrivateCollegeCalendar);
 
   const resourceGroupLabelContent = React.useCallback(
     ({ groupValue: storyId }: ResourceContentProps) => {

@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { createCalendar } from "../../core/calendar/CommunityCollegeCalendar/createCalendar";
-import { calendarId as CommunityCollegeCalendarId } from "../../core/calendar/CommunityCollegeCalendar/model";
+import { createCalendar } from "../../core/calendar/PrivateCollegeCalendar/createCalendar";
+import { calendarId as PrivateCollegeCalendarId } from "../../core/calendar/PrivateCollegeCalendar/model";
 import { BaseCalendar } from "../../core/calendar/BaseCalendar";
 import { RootState } from "../rootReducer";
 
-type upsertCommunityCollegeStoriesPayload = {
+type upsertPrivateCollegeStoriesPayload = {
   birth: string;
   canWorkingholiday: boolean;
 };
@@ -12,19 +12,19 @@ type upsertCommunityCollegeStoriesPayload = {
 const templateCalendarTable = createSlice({
   name: "templateCalendarTable",
   initialState: {
-    [CommunityCollegeCalendarId]: undefined as BaseCalendar | undefined,
+    [PrivateCollegeCalendarId]: undefined as BaseCalendar | undefined,
   },
   reducers: {
-    upsertCommunityCollegeStories(
+    upsertPrivateCollegeStories(
       state,
-      action: PayloadAction<upsertCommunityCollegeStoriesPayload>
+      action: PayloadAction<upsertPrivateCollegeStoriesPayload>
     ) {
       const { birth, canWorkingholiday } = action.payload;
       const _calendar = createCalendar({
         birth: new Date(birth),
         canWorkingholiday,
       });
-      state[CommunityCollegeCalendarId] = _calendar;
+      state[PrivateCollegeCalendarId] = _calendar;
     },
   },
 });
@@ -32,8 +32,8 @@ const templateCalendarTable = createSlice({
 export default templateCalendarTable.reducer;
 
 export const {
-  upsertCommunityCollegeStories: upsertCommunityCollegeStoriesAction,
+  upsertPrivateCollegeStories: upsertPrivateCollegeStoriesAction,
 } = templateCalendarTable.actions;
 
-export const selectCommunityCollegeCalendar = (state: RootState) =>
-  state.features.templateCalendar[CommunityCollegeCalendarId];
+export const selectPrivateCollegeCalendar = (state: RootState) =>
+  state.features.templateCalendar[PrivateCollegeCalendarId];
