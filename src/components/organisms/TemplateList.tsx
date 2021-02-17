@@ -6,8 +6,9 @@ import Dialog from "@material-ui/core/Dialog";
 import Button from "@material-ui/core/Button";
 import { PrivateCollegeTemplate } from "../molecules/PrivateCollegeTemplate";
 import { useModal } from "../../hooks/useModal";
+import { TemplateOptionCard } from '../molecules/TemplateOptionCard'
+import { ProfileCard } from './ProfileCard'
 
-const MAX_PERIOD_MONTH = 12 * 5;
 export function TemplateList() {
   const {
     open: openPrivateCollege,
@@ -31,42 +32,7 @@ export function TemplateList() {
               TODO: ESL
             </Button>
           </ButtonsContainer>
-          
-          <OptionContainer>
-            <h2>Options(TODO: not working yet)</h2>
-            <div>
-              <label>School Period(Month)</label>
-              <input
-                type="range"
-                min="0"
-                max={MAX_PERIOD_MONTH}
-                id="schoolPeriod"
-              />
-            </div>
-            <div>
-              <label>Co-op Period(Month)</label>
-              <input
-                type="range"
-                min="0"
-                max={MAX_PERIOD_MONTH}
-                id="schoolPeriod"
-              />
-            </div>
-            <div>
-              <span>Start From (Month)</span>
-              <span>
-                {Array.from({ length: 12 }).map((_, idx) => {
-                  const month = idx + 1;
-                  return (
-                    <CheckboxListItem>
-                      <label>{month}</label>
-                      <input type="checkbox" value={month} />
-                    </CheckboxListItem>
-                  );
-                })}
-              </span>
-            </div>
-          </OptionContainer>
+          <TemplateOptionCard />
         </CardContent>
       </Card>
 
@@ -78,6 +44,10 @@ export function TemplateList() {
       >
         <ModalInnerContainer>
           <button onClick={closePrivateCollege}>Close</button>
+          <ModalInnerController>
+            <ProfileCard />
+            <TemplateOptionCard />
+          </ModalInnerController>
           <PrivateCollegeTemplate />
         </ModalInnerContainer>
       </Dialog>
@@ -95,9 +65,8 @@ const ModalInnerContainer = styled.div`
   padding: 3rem;
 `;
 
-const CheckboxListItem = styled.div`
-  display: inline-block;
-  margin-right: 0.5rem;
-`;
-
-const OptionContainer = styled.div``;
+const ModalInnerController = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+`
