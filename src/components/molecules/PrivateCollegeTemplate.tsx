@@ -1,6 +1,6 @@
 import React from "react";
-import { TemplateCalendarContainer } from "./TemplateCalendarContainer";
 import { useCommunityCollegeCalendar } from "../../hooks/useCommunityCollegeCalendar";
+import { BaseTemplate } from "./BaseTemplate";
 import { useUser } from "../../hooks/useUser";
 
 export function PrivateCollegeTemplate() {
@@ -11,5 +11,5 @@ export function PrivateCollegeTemplate() {
     generate({ birth, canWorkingholiday });
   }, [generate, birth, canWorkingholiday]);
 
-  return <TemplateCalendarContainer events={events} resources={resources} />;
+  return <BaseTemplate events={events} resources={resources} />;
 }

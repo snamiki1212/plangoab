@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { BaseCalendarContainer } from "../../components/atoms/BaseCalendarContainer";
+import { BaseCalendarContainer } from "../atoms/BaseCalendarContainer";
 import { useResourceGroupLabelContentInTemplateCalendar } from "../../hooks/useResourceGroupLabelContentInTemplateCalendar";
 import { FIELD1, FIELD2 } from "../../constants/fullcalendar/settings";
 import { addStoryAction } from "../../redux/features/userCalendars";
@@ -22,7 +22,7 @@ const resourceAreaColumns = [
   },
 ];
 
-export function TemplateCalendarContainer(props: any) {
+export function BaseTemplate(props: any) {
   const dispatch = useDispatch();
 
   const createClickHandel = React.useCallback(
