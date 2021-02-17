@@ -47,10 +47,10 @@ Here is managed [issues](https://github.com/snamiki1212/plangoab/issues/11).
 </p>
 
 ```zsh
-# build dot file
+# Build dot file
 $ yarn graph:dot
 
-# build svg file from dot file
+# Build svg file from dot file
 $ brwe install graphviz # prerequirements
 $ yarn graph:svg
 ```
@@ -83,7 +83,7 @@ TODO:
 
 [GPL-3.0](https://github.com/snamiki1212/plangoab/blob/master/LICENSE.md)
 
-Using [Fullcalendar Premium open-source project license](https://fullcalendar.io/license) makes this license GPL-3.0.
+Because of using [Fullcalendar Premium open-source project license](https://fullcalendar.io/license) as GPL-3.0. That makes a plangoab's license the same license.
 
 ## Sponser
 
