@@ -4,7 +4,7 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Dialog from "@material-ui/core/Dialog";
 import Button from "@material-ui/core/Button";
-import { TemplateCalendarContainer } from "../molecules/TemplateCalendarContainer";
+import { PrivateCollegeTemplate } from "../molecules/PrivateCollegeTemplate";
 import { useModal } from "../../hooks/useModal";
 
 export function TemplateList() {
@@ -34,7 +34,7 @@ export function TemplateList() {
         onClose={closeCommunityCollege}
       >
         <button onClick={closeCommunityCollege}>Close</button>
-        <TemplateCalendarContainer />
+        <PrivateCollegeTemplate />
       </Dialog>
     </>
   );

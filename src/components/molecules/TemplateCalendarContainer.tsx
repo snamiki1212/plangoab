@@ -1,8 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { BaseCalendarContainer } from "../../components/atoms/BaseCalendarContainer";
-import { useCommunityCollegeCalendar } from "../../hooks/useCommunityCollegeCalendar";
-import { useUser } from "../../hooks/useUser";
 import { useResourceGroupLabelContentInTemplateCalendar } from "../../hooks/useResourceGroupLabelContentInTemplateCalendar";
 import { FIELD1, FIELD2 } from "../../constants/fullcalendar/settings";
 import { addStoryAction } from "../../redux/features/userCalendars";
@@ -24,10 +22,8 @@ const resourceAreaColumns = [
   },
 ];
 
-export function TemplateCalendarContainer() {
+export function TemplateCalendarContainer(props: any) {
   const dispatch = useDispatch();
-  const { birth, canWorkingholiday } = useUser();
-  const { resources, events, generate } = useCommunityCollegeCalendar();
 
   const createClickHandel = React.useCallback(
     ({ story, calendarId }: { story: BaseStory; calendarId: string }) => () => {
@@ -41,14 +37,9 @@ export function TemplateCalendarContainer() {
     resourceGroupLabelContent,
   } = useResourceGroupLabelContentInTemplateCalendar({ createClickHandel });
 
-  React.useEffect(() => {
-    generate({ birth, canWorkingholiday });
-  }, [generate, birth, canWorkingholiday]);
-
   return (
     <BaseCalendarContainer
-      events={events}
-      resources={resources}
+      {...props}
       initialDate={"2020-06-01"}
       resourceGroupLabelContent={resourceGroupLabelContent}
       resourceAreaColumns={resourceAreaColumns}
