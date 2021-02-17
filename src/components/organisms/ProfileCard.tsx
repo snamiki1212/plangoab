@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { DatePicker } from "@material-ui/pickers";
 import Avatar from "@material-ui/core/Avatar";
 import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
 import TextField from "@material-ui/core/TextField";
 import Checkbox from "@material-ui/core/Checkbox";
 
@@ -30,42 +31,47 @@ export function ProfileCard() {
   }, [toggleWorkingholiday]);
 
   return (
-    <_Card>
-      <Avatar alt="you" />
-      <TextField
-        id="age-text"
-        label="Your Age"
-        disabled
-        InputProps={{
-          readOnly: true,
-        }}
-        InputLabelProps={{
-          shrink: true,
-        }}
-        type="number"
-        value={age}
-      />
-      <DatePicker
-        disableFuture
-        openTo="year"
-        format="yyyy-MM-dd"
-        label="Date of birth"
-        views={["year", "month", "date"]}
-        value={birth}
-        onChange={handleDateChange}
-      />
-      <div>
-        <span>with working holiday</span>
-        <Checkbox
-          checked={canWorkingholiday}
-          onChange={handleToggleWorkingholiday}
-        />
-      </div>
-    </_Card>
+    <Card>
+      <CardContent>
+        <h2>Profile</h2>
+        <InnerContainer>
+          <Avatar alt="you" />
+          <TextField
+            id="age-text"
+            label="Your Age"
+            disabled
+            InputProps={{
+              readOnly: true,
+            }}
+            InputLabelProps={{
+              shrink: true,
+            }}
+            type="number"
+            value={age}
+          />
+          <DatePicker
+            disableFuture
+            openTo="year"
+            format="yyyy-MM-dd"
+            label="Date of birth"
+            views={["year", "month", "date"]}
+            value={birth}
+            onChange={handleDateChange}
+          />
+          <div>
+            <span>with working holiday</span>
+            <Checkbox
+              checked={canWorkingholiday}
+              onChange={handleToggleWorkingholiday}
+            />
+          </div>
+        </InnerContainer>
+      </CardContent>
+    </Card>
   );
 }
 
-const _Card = styled(Card)`
+const InnerContainer = styled.div`
   display: flex;
   gap: 1rem;
   padding: 2rem;

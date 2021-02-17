@@ -1,4 +1,5 @@
 import React from "react";
+import styled from 'styled-components'
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Dialog from "@material-ui/core/Dialog";
@@ -18,9 +19,11 @@ export function TemplateList() {
       <Card>
         <CardContent>
           <h2>Templates</h2>
-          <Button variant="contained" onClick={openCommunityCollege}>Private College</Button>
-          <Button variant="contained">TODO: Public College</Button>
-          <Button variant="contained">TODO: ESL</Button>
+          <ButtonsContainer>
+            <Button variant="contained" onClick={openCommunityCollege}>Private College</Button>
+            <Button disabled variant="contained">TODO: Public College</Button>
+            <Button disabled variant="contained">TODO: ESL</Button>
+          </ButtonsContainer>
         </CardContent>
       </Card>
 
@@ -36,3 +39,8 @@ export function TemplateList() {
     </>
   );
 }
+
+
+const ButtonsContainer = styled.div`
+  display: flex;
+`

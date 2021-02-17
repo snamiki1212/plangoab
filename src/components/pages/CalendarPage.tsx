@@ -10,11 +10,13 @@ export function CalendarPage() {
   return (
     <Container>
       <Header />
-      <ContentWrapper>
-        <ProfileCard />
-        <TemplateList />
+      <ContentContainer>
+        <ControllerContainer>
+          <ProfileCard />
+          <TemplateList />
+        </ControllerContainer>
         <UserCalendarContainer />
-      </ContentWrapper>
+      </ContentContainer>
       <Footer />
     </Container>
   );
@@ -26,8 +28,14 @@ const Container = styled.div`
   gap: 2rem;
 `;
 
-const ContentWrapper = styled.div`
+const ContentContainer = styled.div`
   padding: 0 3rem;
   display: grid;
   gap: 5rem;
+`;
+
+const ControllerContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
 `;
