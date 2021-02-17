@@ -46,6 +46,17 @@ Here is managed [issues](https://github.com/snamiki1212/plangoab/issues/11).
 <img src="https://user-images.githubusercontent.com/26793088/107864305-de6a3800-6e0f-11eb-9d2f-f12a88414018.jpg" alt="dependency flow" />
 </p>
 
+```zsh
+# build dot file
+$ yarn graph:dot
+
+# build svg file from dot file
+$ brwe install graphviz # prerequirements
+$ yarn graph:svg
+```
+
+TODO: inplement in CI and automatically save this doc in /doc dir
+
 ### Principle
 
 - No Class, but Function

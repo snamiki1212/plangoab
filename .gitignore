@@ -46,3 +46,6 @@ cypress/screenshots
 .env.development.local
 .env.test.local
 .env.production.local
+
+# dependecy-graph
+dependencygraph.*
