@@ -7,6 +7,7 @@ import Button from "@material-ui/core/Button";
 import { PrivateCollegeTemplate } from "../molecules/PrivateCollegeTemplate";
 import { useModal } from "../../hooks/useModal";
 
+const MAX_PERIOD_MONTH = 12 * 5;
 export function TemplateList() {
   const {
     open: openPrivateCollege,
@@ -30,6 +31,42 @@ export function TemplateList() {
               TODO: ESL
             </Button>
           </ButtonsContainer>
+          
+          <OptionContainer>
+            <h2>Options(TODO: not working yet)</h2>
+            <div>
+              <label>School Period(Month)</label>
+              <input
+                type="range"
+                min="0"
+                max={MAX_PERIOD_MONTH}
+                id="schoolPeriod"
+              />
+            </div>
+            <div>
+              <label>Co-op Period(Month)</label>
+              <input
+                type="range"
+                min="0"
+                max={MAX_PERIOD_MONTH}
+                id="schoolPeriod"
+              />
+            </div>
+            <div>
+              <span>Start From (Month)</span>
+              <span>
+                {Array.from({ length: 12 }).map((_, idx) => {
+                  const month = idx + 1;
+                  return (
+                    <CheckboxListItem>
+                      <label>{month}</label>
+                      <input type="checkbox" value={month} />
+                    </CheckboxListItem>
+                  );
+                })}
+              </span>
+            </div>
+          </OptionContainer>
         </CardContent>
       </Card>
 
@@ -57,3 +94,10 @@ const ModalInnerContainer = styled.div`
   gap: 2rem;
   padding: 3rem;
 `;
+
+const CheckboxListItem = styled.div`
+  display: inline-block;
+  margin-right: 0.5rem;
+`;
+
+const OptionContainer = styled.div``;
