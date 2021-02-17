@@ -9,9 +9,9 @@ import { useModal } from "../../hooks/useModal";
 
 export function TemplateList() {
   const {
-    open: openCommunityCollege,
-    close: closeCommunityCollege,
-    isOpen: isOpenCommunityCollege,
+    open: openPrivateCollege,
+    close: closePrivateCollege,
+    isOpen: isOpenPrivateCollege,
   } = useModal();
 
   return (
@@ -20,7 +20,7 @@ export function TemplateList() {
         <CardContent>
           <h2>Templates</h2>
           <ButtonsContainer>
-            <Button variant="contained" onClick={openCommunityCollege}>Private College</Button>
+            <Button variant="contained" onClick={openPrivateCollege}>Private College</Button>
             <Button disabled variant="contained">TODO: Public College</Button>
             <Button disabled variant="contained">TODO: ESL</Button>
           </ButtonsContainer>
@@ -30,10 +30,10 @@ export function TemplateList() {
       {/* Modal */}
       <Dialog
         fullScreen
-        open={isOpenCommunityCollege}
-        onClose={closeCommunityCollege}
+        open={isOpenPrivateCollege}
+        onClose={closePrivateCollege}
       >
-        <button onClick={closeCommunityCollege}>Close</button>
+        <button onClick={closePrivateCollege}>Close</button>
         <PrivateCollegeTemplate />
       </Dialog>
     </>
