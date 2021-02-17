@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { ProfileCard } from "../organisms/ProfileCard";
-import { CalendarList } from "../organisms/CalendarList";
+import { TemplateList } from "../organisms/TemplateList";
+import { UserCalendarContainer } from "../molecules/UserCalendarContainer";
 import { Footer } from "../molecules/Footer";
 import { Header } from "../molecules/Header";
 
@@ -11,7 +12,8 @@ export function CalendarPage() {
       <Header />
       <ContentWrapper>
         <ProfileCard />
-        <CalendarList />
+        <TemplateList />
+        <UserCalendarContainer />
       </ContentWrapper>
       <Footer />
     </Container>

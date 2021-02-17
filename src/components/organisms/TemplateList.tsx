@@ -1,11 +1,12 @@
 import React from "react";
-import styled from "styled-components";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
 import Dialog from "@material-ui/core/Dialog";
-import { UserCalendarContainer } from "../molecules/UserCalendarContainer";
+import Button from "@material-ui/core/Button";
 import { TemplateCalendarContainer } from "../molecules/TemplateCalendarContainer";
 import { useModal } from "../../hooks/useModal";
 
-export function CalendarList() {
+export function TemplateList() {
   const {
     open: openCommunityCollege,
     close: closeCommunityCollege,
@@ -14,19 +15,14 @@ export function CalendarList() {
 
   return (
     <>
-      <Container>
-        <div>
+      <Card>
+        <CardContent>
           <h2>Templates</h2>
-          <button onClick={openCommunityCollege}>Private College</button>
-          <button>TODO: Public College</button>
-          <button>TODO: ESL</button>
-        </div>
-        <hr />
-        <div>
-          <h2>User Calendar</h2>
-          <UserCalendarContainer />
-        </div>
-      </Container>
+          <Button variant="contained" onClick={openCommunityCollege}>Private College</Button>
+          <Button variant="contained">TODO: Public College</Button>
+          <Button variant="contained">TODO: ESL</Button>
+        </CardContent>
+      </Card>
 
       {/* Modal */}
       <Dialog
@@ -40,8 +36,3 @@ export function CalendarList() {
     </>
   );
 }
-
-const Container = styled.div`
-  display: grid;
-  gap: 1rem;
-`;
