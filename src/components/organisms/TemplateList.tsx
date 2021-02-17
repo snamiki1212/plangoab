@@ -1,5 +1,5 @@
 import React from "react";
-import styled from 'styled-components'
+import styled from "styled-components";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Dialog from "@material-ui/core/Dialog";
@@ -20,9 +20,15 @@ export function TemplateList() {
         <CardContent>
           <h2>Templates</h2>
           <ButtonsContainer>
-            <Button variant="contained" onClick={openPrivateCollege}>Private College</Button>
-            <Button disabled variant="contained">TODO: Public College</Button>
-            <Button disabled variant="contained">TODO: ESL</Button>
+            <Button variant="contained" onClick={openPrivateCollege}>
+              Private College
+            </Button>
+            <Button disabled variant="contained">
+              TODO: Public College
+            </Button>
+            <Button disabled variant="contained">
+              TODO: ESL
+            </Button>
           </ButtonsContainer>
         </CardContent>
       </Card>
@@ -33,14 +39,21 @@ export function TemplateList() {
         open={isOpenPrivateCollege}
         onClose={closePrivateCollege}
       >
-        <button onClick={closePrivateCollege}>Close</button>
-        <PrivateCollegeTemplate />
+        <ModalInnerContainer>
+          <button onClick={closePrivateCollege}>Close</button>
+          <PrivateCollegeTemplate />
+        </ModalInnerContainer>
       </Dialog>
     </>
   );
 }
 
-
 const ButtonsContainer = styled.div`
   display: flex;
-`
+`;
+
+const ModalInnerContainer = styled.div`
+  display: grid;
+  gap: 2rem;
+  padding: 3rem;
+`;

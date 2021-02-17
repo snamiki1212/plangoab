@@ -8,7 +8,6 @@ export function Footer() {
     <Container>
       <LogoText>
         <LogoImageContainer>
-
         <LogoImage />
         </LogoImageContainer>
         <span>Plangoab</span>
