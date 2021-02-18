@@ -2,7 +2,6 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useUserCalendar } from "../../hooks/useUserCalendar";
 import { useUser } from "../../hooks/useUser";
-import { useStory } from "../../hooks/useStory";
 import { BaseCalendarContainer } from "../../components/atoms/BaseCalendarContainer";
 import { useResourceGroupLabelContentInUserCalendar } from "../../hooks/useResourceGroupLabelContentInUserCalendar";
 import { useResourceModal } from "../../hooks/useResourceModal";
@@ -15,7 +14,6 @@ import { StoryModal } from "../../components/molecules/StoryModal";
 import { EventModal } from "../../components/molecules/EventModal";
 import { EventClickArg } from "@fullcalendar/react";
 import { pushAction as pushEventModalAction } from "../../redux/ui/eventModal";
-import { MY_CALENDAR_ID } from "../../constants/fullcalendar/settings";
 
 const ableConfis = {
   selectable: true,
@@ -66,14 +64,6 @@ export function UserCalendarContainer() {
     init: initUserCalendar,
     select,
   } = useUserCalendar();
-
-  const { create: createStory } = useStory();
-
-  const calendarId = MY_CALENDAR_ID;
-
-  const handleCreateStory = React.useCallback(() => {
-    createStory({ calendarId });
-  }, [createStory, calendarId]);
 
   const click = React.useCallback(
     (info: EventClickArg) => {
@@ -164,19 +154,16 @@ export function UserCalendarContainer() {
 
   return (
     <>
-      <div>
-        <BaseCalendarContainer
-          events={events}
-          resources={resources}
-          select={select}
-          eventClick={click}
-          initialDate={"2020-06-01"}
-          resourceGroupLabelContent={resourceGroupLabelContent}
-          resourceAreaColumns={resourceAreaColumns}
-          {...ableConfis}
-        />
-        <button onClick={handleCreateStory}>story:add</button>
-      </div>
+      <BaseCalendarContainer
+        events={events}
+        resources={resources}
+        select={select}
+        eventClick={click}
+        initialDate={"2020-06-01"}
+        resourceGroupLabelContent={resourceGroupLabelContent}
+        resourceAreaColumns={resourceAreaColumns}
+        {...ableConfis}
+      />
 
       {/* Modal */}
       <ResourceModal isOpen={isOpenResourceModal} onClose={popResourceModal} />

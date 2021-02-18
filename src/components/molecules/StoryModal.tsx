@@ -10,18 +10,28 @@ import { selectStoryModal, selectStory } from "../../redux/ui/storyModal";
 // import { FIELD1, FIELD2 } from "../../constants/fullcalendar/settings";
 import { useStory } from "../../hooks/useStory";
 import { useResource } from "../../hooks/useResource";
-import { FIELD1, FIELD2 } from "../../constants/fullcalendar/settings";
+import {
+  FIELD1,
+  FIELD2,
+  MY_CALENDAR_ID,
+} from "../../constants/fullcalendar/settings";
 
 type Props = {
   isOpen: boolean;
   onClose: () => void;
 };
 
+const calendarId = MY_CALENDAR_ID;
+
 export function StoryModal({ isOpen, onClose }: Props) {
   const storyModal = useSelector(selectStoryModal);
   const story = useSelector(selectStory);
   const { register, handleSubmit } = useForm();
-  const { remove: removeStory, update: updateStory } = useStory();
+  const {
+    create: createStory,
+    remove: removeStory,
+    update: updateStory,
+  } = useStory();
   const { push: pushResource } = useResource();
 
   const handleRemoveStory = React.useCallback(() => {
@@ -46,8 +56,8 @@ export function StoryModal({ isOpen, onClose }: Props) {
   }, [storyModal, pushResource, onClose]);
 
   const handleNewStory = React.useCallback(() => {
-    alert("TODO: new story");
-  }, []);
+    createStory({ calendarId });
+  }, [calendarId]);
 
   const onSubmit = React.useCallback(
     (data: any) => {
