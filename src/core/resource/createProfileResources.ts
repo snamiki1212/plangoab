@@ -31,7 +31,7 @@ export const createProfileResources = ({
   {
     id: RESOURCE_ID__SHARED__LIMIT,
     [FIELD1]: "",
-    [FIELD2]: "Working Holiday Application Limit",
+    [FIELD2]: "Working Holiday",
     [NAME_OF_STORY_ID]: storyId,
     [NAME_OF_ORDER]: 1,
     calendarId,

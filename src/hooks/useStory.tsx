@@ -7,6 +7,7 @@ import {
 } from "../redux/features/userCalendars";
 import { BaseStory, updateStory } from "../core/story/BaseStory";
 import { initStory } from "../core/story/BaseStory";
+
 type IdSet = { calendarId: string; storyId: string };
 
 export const useStory = () => {
@@ -24,7 +25,7 @@ export const useStory = () => {
   }, [dispatch]);
 
   const update = React.useCallback(
-    (idSet: IdSet, story: BaseStory, data: any) => {
+    (idSet: IdSet, story: BaseStory, data: Partial<BaseStory>) => {
       const newStory = updateStory(story, data);
       dispatch(updateStoryAction({ ...idSet, newStory }));
     },

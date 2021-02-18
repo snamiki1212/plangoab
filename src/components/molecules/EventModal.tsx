@@ -2,14 +2,14 @@ import React from "react";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
+import DialogActions from "@material-ui/core/DialogActions";
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
-import {
-  selectEventModal,
-  selectEvent,
-} from "../../redux/ui/eventModal";
+import { selectEventModal, selectEvent } from "../../redux/ui/eventModal";
 import { useEvent } from "../../hooks/useEvent";
-import {BaseEvent} from '../../core/event/BaseEvent'
+import { BaseEvent } from "../../core/event/BaseEvent";
 
 type Props = {
   isOpen: boolean;
@@ -46,15 +46,24 @@ export function EventModal({ isOpen, onClose }: Props) {
 
   return (
     <Dialog onClose={onClose} open={isOpen}>
-      <DialogTitle>Resource</DialogTitle>
+      <DialogTitle>Event</DialogTitle>
       <DialogContent dividers={true}>
         <form onSubmit={handleSubmit(onUpdate)}>
-          <input ref={register} name={'title'} defaultValue={event?.title} />
-          <input type="submit" value="rename" />
+          <TextField
+            inputRef={register}
+            name={"title"}
+            defaultValue={event?.title}
+            label="Title"
+            variant="outlined"
+          />
+          <Button type="submit">rename</Button>
         </form>
-        <hr />
-        <button onClick={onRemove}>Remove</button>
       </DialogContent>
+      <DialogActions>
+        <Button onClick={onRemove} variant="contained" color="secondary">
+          Remove
+        </Button>
+      </DialogActions>
     </Dialog>
   );
 }

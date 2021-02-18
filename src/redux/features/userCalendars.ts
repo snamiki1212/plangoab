@@ -12,10 +12,10 @@ type PushRsourceAction = {
   storyId: string;
   resource: BaseResource;
 };
-type UpdateResourcePayload = {
+type UpdateResourcesPayload = {
   calendarId: string;
   storyId: string;
-  newResource: BaseResource;
+  newResources: BaseResource[];
 };
 type RemoveResourcePayload = {
   calendarId: string;
@@ -82,8 +82,8 @@ const userCalendarsSlice = createSlice({
       // process
       state.calendars[calendarIdx].stories[storyIdx].resources.push(resource);
     },
-    updateResource(state, action: PayloadAction<UpdateResourcePayload>) {
-      const { calendarId, storyId, newResource } = action.payload;
+    updateResources(state, action: PayloadAction<UpdateResourcesPayload>) {
+      const { calendarId, storyId, newResources } = action.payload;
 
       // calendar
       const calendarIdx = state.calendars.findIndex(
@@ -106,17 +106,7 @@ const userCalendarsSlice = createSlice({
       }
 
       // query
-      const resourceIdx = state.calendars[calendarIdx].stories[
-        storyIdx
-      ].resources.findIndex((resource) => resource.id === newResource.id);
-      const cannotFindResource = resourceIdx === -1;
-      if (cannotFindResource) {
-        console.warn("cannot find resource on updateResource", calendarId);
-        return;
-      }
-      state.calendars[calendarIdx].stories[storyIdx].resources[
-        resourceIdx
-      ] = newResource;
+      state.calendars[calendarIdx].stories[storyIdx].resources = newResources;
     },
     removeResource(state, action: PayloadAction<RemoveResourcePayload>) {
       const { calendarId, resourceId, storyId } = action.payload;
@@ -299,7 +289,7 @@ export const {
 
   // resources
   pushResource: pushResourceAction,
-  updateResource: updateResourceAction,
+  updateResources: updateResourcesAction,
   removeResource: removeResourceAction,
 
   // story

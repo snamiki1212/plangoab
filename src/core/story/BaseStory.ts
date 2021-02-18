@@ -39,5 +39,26 @@ export const initStory = (props?: Partial<BaseStory>): BaseStory => {
 };
 
 export const updateStory = (story: BaseStory, params: Partial<BaseStory>) => {
-  return { ...story, ...params };
+  if (!!params.name) story = { ...story, name: params.name };
+  if (!!params.resources) {
+    const newResources = params.resources.reduce((prev, curr) => {
+      const idx = story.resources.findIndex(
+        (resource) => resource.id === curr.id
+      );
+
+      const shouldCreate = idx === -1;
+      if (shouldCreate) {
+        // TODO: create case
+        console.warn("not upsert feature on story yet");
+        return prev;
+      }
+
+      // Update case
+      const resource = story.resources[idx];
+      const newResource = { ...resource, ...curr };
+      return [...prev, newResource];
+    }, [] as BaseResource[]);
+    story = { ...story, resources: newResources };
+  }
+  return story;
 };

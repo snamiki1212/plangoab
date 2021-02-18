@@ -14,11 +14,11 @@ const ableConfis = {
 const resourceAreaColumns = [
   {
     field: FIELD1,
-    headerContent: "Category",
+    headerContent: "Field1",
   },
   {
     field: FIELD2,
-    headerContent: "Event",
+    headerContent: "Field2",
   },
 ];
 
@@ -27,7 +27,7 @@ export function BaseTemplate(props: any) {
 
   const createClickHandel = React.useCallback(
     ({ story, calendarId }: { story: BaseStory; calendarId: string }) => () => {
-      if (!window.confirm("Copy to my calendar?")) return;
+      if (!window.confirm("Do you copy this story to My Calendar?")) return;
       dispatch(addStoryAction({ calendarId, story }));
     },
     [dispatch]
