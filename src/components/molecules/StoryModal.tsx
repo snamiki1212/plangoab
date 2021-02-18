@@ -1,10 +1,12 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import styled from 'styled-components'
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogActions from "@material-ui/core/DialogActions";
 import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
 // import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { selectStoryModal, selectStory } from "../../redux/ui/storyModal";
@@ -67,9 +69,8 @@ export function StoryModal({ isOpen, onClose }: Props) {
       }
       console.log('data', data, story)
       updateStory(storyModal, story, data);
-      onClose();
     },
-    [updateStory, storyModal, story, onClose]
+    [updateStory, storyModal, story]
   );
 
   // // TODO: error handler
@@ -82,31 +83,33 @@ export function StoryModal({ isOpen, onClose }: Props) {
     <Dialog onClose={onClose} open={isOpen}>
       <DialogTitle>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <label>Story Name</label>
-          <input ref={register} name="name" defaultValue={story.name} />
+          <DialogTitleInner>
+          <label>Story Name:</label>
+          <TextField inputRef={register} name="name" defaultValue={story.name} variant="outlined" />
+          </DialogTitleInner>
         </form>
       </DialogTitle>
 
       <DialogContent dividers={true}>
         <div>
-          <h2>Resources</h2>
           <form onSubmit={handleSubmit(onSubmit)}>
+            <FieldsetHeader>
+            <span>Category</span>
+            <span>Event</span>
+            </FieldsetHeader>
             {story.resources.map((resource, idx) => {
               const fieldName = `resources[${idx}]`;
               return (
-                <fieldset name={fieldName} key={fieldName}>
+                <Fieldset name={fieldName} key={fieldName}>
                   <input type="hidden" name={`${fieldName}.id`} ref={register} value={resource.id} />
-                  <label>FIELD1</label>
-                  <input
+                  <TextField
                     defaultValue={resource[FIELD1]}
-                    ref={register}
+                    inputRef={register}
                     name={`${fieldName}.${FIELD1}`}
                   />
-
-                  <label>FIELD2</label>
-                  <input
+                  <TextField
                     defaultValue={resource[FIELD2]}
-                    ref={register}
+                    inputRef={register}
                     name={`${fieldName}.${FIELD2}`}
                   />
                   <Button
@@ -116,17 +119,22 @@ export function StoryModal({ isOpen, onClose }: Props) {
                   >
                     Delete
                   </Button>
-                </fieldset>
+                </Fieldset>
               );
             })}
-            <Button
-              onClick={handleAddResource}
-              variant="contained"
-              color="primary"
-            >
-              + Add Resource
-            </Button>
-            <input type="submit" value="Update" />
+            <AddResourceButtonContainer>
+              <Button
+                onClick={handleAddResource}
+                variant="outlined"
+                color="primary"
+              >
+                + Add Resource
+              </Button>
+            </AddResourceButtonContainer>
+
+            <UpdateButtonContainer>
+              <Button type="submit" variant="contained" color="primary">Update</Button>
+            </UpdateButtonContainer>
           </form>
         </div>
       </DialogContent>
@@ -136,7 +144,7 @@ export function StoryModal({ isOpen, onClose }: Props) {
           color="secondary"
           variant="contained"
         >
-          Delete
+          Delete this story
         </Button>
         <Button onClick={handleNewStory} color="primary">
           Add New Story
@@ -145,3 +153,35 @@ export function StoryModal({ isOpen, onClose }: Props) {
     </Dialog>
   );
 }
+
+const DialogTitleInner = styled.div`
+  display: flex;
+  align-items: center;
+`
+
+const FieldsetHeader = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+  padding: 1rem;
+  /*  */
+  justify-items: center;
+  font-weight: 900;
+  font-size: 1.3rem;
+`
+
+const Fieldset = styled.fieldset`
+  border:none;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+  padding: 1rem;
+`
+const AddResourceButtonContainer = styled.div`
+  padding: 1rem;
+`
+
+const UpdateButtonContainer = styled.div`
+  padding: 1rem;
+  text-align: right;
+`
