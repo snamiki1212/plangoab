@@ -41,14 +41,20 @@ export const useResourceGroupLabelContentInUserCalendar = ({createOpenHandle}: P
       const calendarId = MY_CALENDAR_ID;
       const openHandle = createOpenHandle({calendarId, storyId})
 
+      const containerEl = document.createElement('span')
+      containerEl.style.display = 'flex'
+      containerEl.style.justifyContent = 'space-between'
+
       const nameElement = document.createElement('i')
       nameElement.innerHTML = name + ' ' // NOTE: space is for design, so not good way
+      containerEl.appendChild(nameElement)
 
       const buttonElement = document.createElement('button')
       buttonElement.innerHTML = '︙'
       buttonElement.onclick = openHandle
+      containerEl.appendChild(buttonElement)
 
-      const arrayOfDomNodes = [nameElement, buttonElement];
+      const arrayOfDomNodes = [containerEl];
       return { domNodes: arrayOfDomNodes };
     },
     [calendar, createOpenHandle]
