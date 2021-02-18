@@ -4,12 +4,9 @@ import { useUserCalendar } from "../../hooks/useUserCalendar";
 import { useUser } from "../../hooks/useUser";
 import { BaseCalendarContainer } from "../../components/atoms/BaseCalendarContainer";
 import { useResourceGroupLabelContentInUserCalendar } from "../../hooks/useResourceGroupLabelContentInUserCalendar";
-import { useResourceModal } from "../../hooks/useResourceModal";
 import { useStoryModal } from "../../hooks/useStoryModal";
 import { useEventModal } from "../../hooks/useEventModal";
 import { pushAction as pushStoryModalAction } from "../../redux/ui/storyModal";
-import { FIELD1, FIELD2 } from "../../constants/fullcalendar/settings";
-import { ResourceModal } from "../../components/molecules/ResourceModal";
 import { StoryModal } from "../../components/molecules/StoryModal";
 import { EventModal } from "../../components/molecules/EventModal";
 import { EventClickArg } from "@fullcalendar/react";
@@ -21,12 +18,6 @@ const ableConfis = {
 } as const;
 
 export function UserCalendarContainer() {
-  const {
-    push: pushResourceModal,
-    pop: popResourceModal,
-    isOpen: isOpenResourceModal,
-  } = useResourceModal();
-
   const {
     push: pushStoryModal,
     pop: popStoryModal,
@@ -99,59 +90,6 @@ export function UserCalendarContainer() {
     initUserCalendar(birth);
   }, [birth, initUserCalendar]);
 
-  const resourceAreaColumns = React.useMemo(
-    () => [
-      {
-        field: FIELD1,
-        headerContent: "Category",
-      },
-      {
-        field: FIELD2,
-        headerContent: "Event",
-        cellContent: function (arg: any) {
-          const props = arg.resource.extendedProps;
-          const storyId = props["storyId"];
-          if (!storyId) {
-            return console.warn(
-              "Invalid data that extended props doesn't storyId."
-            );
-          }
-          const resourceId = arg.resource.id;
-          if (!resourceId) {
-            return console.warn(
-              "Invalid data that extended props doesn't resourceId."
-            );
-          }
-          const calendarId = props["calendarId"];
-          if (!calendarId) {
-            return console.warn(
-              "Invalid data that extended props doesn't calendarId."
-            );
-          }
-
-          const message = arg.fieldValue;
-
-          // elements
-          const containerEl = document.createElement("div");
-
-          const buttonEl = document.createElement("button");
-          buttonEl.innerHTML = "︙";
-          buttonEl.onclick = () =>
-            pushResourceModal({ calendarId, storyId, resourceId });
-          containerEl.appendChild(buttonEl);
-
-          const messageEl = document.createElement("span");
-          messageEl.innerHTML = message;
-          containerEl.appendChild(messageEl);
-
-          const arrayOfDomNodes = [containerEl];
-          return { domNodes: arrayOfDomNodes };
-        },
-      },
-    ],
-    [pushResourceModal]
-  );
-
   return (
     <>
       <BaseCalendarContainer
@@ -161,12 +99,10 @@ export function UserCalendarContainer() {
         eventClick={click}
         initialDate={"2020-06-01"}
         resourceGroupLabelContent={resourceGroupLabelContent}
-        resourceAreaColumns={resourceAreaColumns}
         {...ableConfis}
       />
 
       {/* Modal */}
-      <ResourceModal isOpen={isOpenResourceModal} onClose={popResourceModal} />
       <StoryModal isOpen={isOpenStoryModal} onClose={popStoryModal} />
       <EventModal isOpen={isOpenEventModal} onClose={popEventModal} />
     </>

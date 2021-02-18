@@ -1,17 +1,11 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectResource } from "../redux/ui/resourceModal";
 import { selectUserCalendar } from "../redux/features/userCalendars";
 import {
   removeResourceAction,
-  updateResourceAction,
   pushResourceAction,
 } from "../redux/features/userCalendars";
-import {
-  BaseResource,
-  initResource,
-  updateResource,
-} from "../core/resource/BaseResource";
+import { initResource } from "../core/resource/BaseResource";
 
 type IdSet = { calendarId: string; resourceId: string; storyId: string };
 
@@ -19,7 +13,6 @@ export const useResource = () => {
   const dispatch = useDispatch();
 
   // TODO: remoove this line and get params as arg in each function
-  const resource = useSelector(selectResource);
   const calendar = useSelector(selectUserCalendar);
 
   const push = React.useCallback(
@@ -51,14 +44,15 @@ export const useResource = () => {
         order: lastResource.order + 1,
       });
 
-      dispatch(pushResourceAction({ calendarId, storyId, resource:_resource }));
+      dispatch(
+        pushResourceAction({ calendarId, storyId, resource: _resource })
+      );
     },
     [dispatch, calendar]
   );
 
   const remove = React.useCallback(
     ({ calendarId, resourceId, storyId }: IdSet) => {
-
       // TODO: Move outside
       if (!window.confirm("Do you remove this resource?")) return;
 
@@ -73,23 +67,5 @@ export const useResource = () => {
     [dispatch]
   );
 
-  const update = React.useCallback(
-    ({ calendarId, storyId }: IdSet, params: Partial<BaseResource>) => {
-      if (!resource) {
-        return console.warn("Invalid data status when to update resource.");
-      }
-
-      const newResource = updateResource(resource, params);
-      dispatch(
-        updateResourceAction({
-          calendarId,
-          storyId: storyId,
-          newResource,
-        })
-      );
-    },
-    [dispatch, resource]
-  );
-
-  return { remove, update, push } as const;
+  return { remove, push } as const;
 };

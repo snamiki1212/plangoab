@@ -12,11 +12,6 @@ type PushRsourceAction = {
   storyId: string;
   resource: BaseResource;
 };
-type UpdateResourcePayload = {
-  calendarId: string;
-  storyId: string;
-  newResource: BaseResource;
-};
 type UpdateResourcesPayload = {
   calendarId: string;
   storyId: string;
@@ -86,42 +81,6 @@ const userCalendarsSlice = createSlice({
 
       // process
       state.calendars[calendarIdx].stories[storyIdx].resources.push(resource);
-    },
-    updateResource(state, action: PayloadAction<UpdateResourcePayload>) {
-      const { calendarId, storyId, newResource } = action.payload;
-
-      // calendar
-      const calendarIdx = state.calendars.findIndex(
-        (calendar) => calendar.id === calendarId
-      );
-      const cannotFind = calendarIdx === -1;
-      if (cannotFind) {
-        console.warn("cannot find calendar on updateResource", calendarId);
-        return;
-      }
-
-      // story
-      const storyIdx = state.calendars[calendarIdx].stories.findIndex(
-        (story) => story.id === storyId
-      );
-      const cannotFindStory = storyIdx === -1;
-      if (cannotFindStory) {
-        console.warn("cannot find story on updateResource", calendarId);
-        return;
-      }
-
-      // query
-      const resourceIdx = state.calendars[calendarIdx].stories[
-        storyIdx
-      ].resources.findIndex((resource) => resource.id === newResource.id);
-      const cannotFindResource = resourceIdx === -1;
-      if (cannotFindResource) {
-        console.warn("cannot find resource on updateResource", calendarId);
-        return;
-      }
-      state.calendars[calendarIdx].stories[storyIdx].resources[
-        resourceIdx
-      ] = newResource;
     },
     updateResources(state, action: PayloadAction<UpdateResourcesPayload>) {
       const { calendarId, storyId, newResources } = action.payload;
@@ -330,7 +289,6 @@ export const {
 
   // resources
   pushResource: pushResourceAction,
-  updateResource: updateResourceAction,
   updateResources: updateResourcesAction,
   removeResource: removeResourceAction,
 

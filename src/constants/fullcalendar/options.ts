@@ -1,4 +1,4 @@
-import { NAME_OF_STORY_ID, NAME_OF_ORDER } from "./settings";
+import { NAME_OF_STORY_ID, NAME_OF_ORDER, FIELD1, FIELD2 } from "./settings";
 
 export const MY_TIME_LINE_NAME = "MY_TIME_LINE_NAME";
 
@@ -41,10 +41,22 @@ const styleConfigs = {
   height: 700,
 };
 
+const resourceAreaColumns = [
+  {
+    field: FIELD1,
+    headerContent: "Category",
+  },
+  {
+    field: FIELD2,
+    headerContent: "Event",
+  },
+];
+
 export const FULL_CALENDAR_CONFIGS = {
   views,
   headerToolbar,
   slotLabelFormat,
+  resourceAreaColumns,
   ...initialView,
   ...resourceGroupField,
   ...schedulerLicenseKey,
