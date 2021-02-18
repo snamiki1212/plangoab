@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
+import TextField from "@material-ui/core/TextField";
 
 const MAX_PERIOD_MONTH = 12 * 5;
 
@@ -10,11 +11,17 @@ export function TemplateOptionCard() {
   const [coopPeriod, setCoopPeriod] = React.useState(12);
 
   const handleChangeSchoolPeriod = React.useCallback((e) => {
-    setSchoolPeriod(e.target.value);
+    const value = (e.target.value);
+    const maybeNum = value === "" ? 0 : parseInt(value)
+    if (!Number.isInteger(maybeNum)) return;
+    setSchoolPeriod(maybeNum);
   }, []);
 
   const handleChangeCoopPeriod = React.useCallback((e) => {
-    setCoopPeriod(e.target.value);
+    const value = (e.target.value);
+    const maybeNum = value === "" ? 0 : parseInt(value)
+    if (!Number.isInteger(maybeNum)) return;
+    setCoopPeriod(maybeNum);
   }, []);
 
   return (
@@ -22,26 +29,31 @@ export function TemplateOptionCard() {
       <CardContent>
         <h2>Template Options(TODO: not working yet)</h2>
         <InnerContainer>
+          {/* School Period */}
           <label>School Period(Month)</label>
-          <span>{schoolPeriod}</span>
+          <TextField value={schoolPeriod} onChange={handleChangeSchoolPeriod} />
           <input
             type="range"
             min="0"
             max={MAX_PERIOD_MONTH}
             id="schoolPeriod"
             onChange={handleChangeSchoolPeriod}
-            defaultValue={schoolPeriod}
+            value={schoolPeriod}
           />
+
+          {/* Coop Period */}
           <label>Co-op Period(Month)</label>
-          <span>{coopPeriod}</span>
+          <TextField value={coopPeriod} onChange={handleChangeCoopPeriod} />
           <input
             type="range"
             min="0"
             max={MAX_PERIOD_MONTH}
             id="schoolPeriod"
             onChange={handleChangeCoopPeriod}
-            defaultValue={coopPeriod}
+            value={coopPeriod}
           />
+
+          {/* School start from */}
           <label>School start from (Month)</label>
           <span>{/* EMPTY */}</span>
           <div>
@@ -70,6 +82,6 @@ const InnerContainer = styled.div`
   display: grid;
   gap: 1rem;
   padding: 0.3rem;
-  grid-template-columns: auto auto 1fr;
+  grid-template-columns: auto 2rem 1fr;
   grid-template-rows: auto;
 `;
