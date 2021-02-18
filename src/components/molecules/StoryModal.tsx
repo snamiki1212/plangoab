@@ -83,12 +83,12 @@ export function StoryModal({ isOpen, onClose }: Props) {
       <DialogTitle>
         <form onSubmit={handleSubmit(onSubmit)}>
           <DialogTitleInner>
-            <label>Story Name:</label>
             <TextField
               inputRef={register}
               name="name"
               defaultValue={story.name}
               variant="outlined"
+              label="Story Name"
             />
           </DialogTitleInner>
         </form>
@@ -97,10 +97,6 @@ export function StoryModal({ isOpen, onClose }: Props) {
       <DialogContent dividers={true}>
         <div>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <FieldsetHeader>
-              <span>Category</span>
-              <span>Event</span>
-            </FieldsetHeader>
             {story.resources.map((resource, idx) => {
               const fieldName = `resources[${idx}]`;
               return (
@@ -115,11 +111,13 @@ export function StoryModal({ isOpen, onClose }: Props) {
                     defaultValue={resource[FIELD1]}
                     inputRef={register}
                     name={`${fieldName}.${FIELD1}`}
+                    label="Field1"
                   />
                   <TextField
                     defaultValue={resource[FIELD2]}
                     inputRef={register}
                     name={`${fieldName}.${FIELD2}`}
+                    label="Field2"
                   />
                   <Button
                     onClick={handleRemoveResource(resource.id)}
@@ -170,23 +168,14 @@ const DialogTitleInner = styled.div`
   align-items: center;
 `;
 
-const FieldsetHeader = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 1rem;
-  padding: 1rem;
-  /*  */
-  justify-items: center;
-  font-weight: 900;
-  font-size: 1.3rem;
-`;
-
 const Fieldset = styled.fieldset`
   border: none;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 1rem;
   padding: 1rem;
+  margin: 1rem;
+  border: 1px solid lightgray;
 `;
 
 const AddResourceButtonContainer = styled.div`
