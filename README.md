@@ -68,7 +68,7 @@ TODO: inplement in CI and automatically save this doc in /doc dir
   - React
   - Redux (Redux Toolkit)
   - FullCalendar
-  - [CSS] Styled-components
+  - [CSS] styled-components
   - [UI] Material-UI
   - [form] React-Hook-Form
 - CI/CD
@@ -83,7 +83,7 @@ TODO:
 
 [GPL-3.0](https://github.com/snamiki1212/plangoab/blob/master/LICENSE.md)
 
-Because of using [Fullcalendar Premium open-source project license](https://fullcalendar.io/license) as GPL-3.0. That makes a plangoab's license the same license.
+Because of using [Fullcalendar Premium open-source project license](https://fullcalendar.io/license) as GPL-3.0. That makes a plangoab's license a same license.
 
 ## Sponser
 
