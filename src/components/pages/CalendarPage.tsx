@@ -1,21 +1,23 @@
 import React from "react";
 import styled from "styled-components";
 import { ProfileCard } from "../organisms/ProfileCard";
-import { TemplateList } from "../organisms/TemplateList";
-import { UserCalendarContainer } from "../molecules/UserCalendarContainer";
+import { TemplateList } from "../templates/TemplateList";
 import { Footer } from "../molecules/Footer";
 import { Header } from "../molecules/Header";
+import { UserCalendarContainer } from "../molecules/UserCalendarContainer";
+import { TemplateOptionCard } from "../molecules/TemplateOptionCard";
 
 export function CalendarPage() {
   return (
     <Container>
       <Header />
       <ContentContainer>
+        <UserCalendarContainer />
         <ControllerContainer>
           <ProfileCard />
-          <TemplateList />
+          <TemplateOptionCard />
         </ControllerContainer>
-        <UserCalendarContainer />
+        <TemplateList />
       </ContentContainer>
       <Footer />
     </Container>

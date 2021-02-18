@@ -1,5 +1,5 @@
 import React from "react";
-import { BaseTemplate } from "./BaseTemplate";
+import { BaseTemplate } from "../molecules/BaseTemplate";
 import { usePrivateCollegeCalendar } from "../../hooks/usePrivateCollegeCalendar";
 import { useUser } from "../../hooks/useUser";
 
