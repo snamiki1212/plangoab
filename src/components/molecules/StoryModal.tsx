@@ -66,10 +66,10 @@ export function StoryModal({ isOpen, onClose }: Props) {
       if (!storyModal || !story) {
         return console.warn("Invalid data status when to update story.");
       }
-      console.log("data", data, story);
       updateStory(storyModal, story, data);
+      onClose();
     },
-    [updateStory, storyModal, story]
+    [updateStory, storyModal, story, onClose]
   );
 
   // // TODO: error handler
@@ -188,6 +188,7 @@ const Fieldset = styled.fieldset`
   gap: 1rem;
   padding: 1rem;
 `;
+
 const AddResourceButtonContainer = styled.div`
   padding: 1rem;
 `;

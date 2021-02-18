@@ -27,7 +27,7 @@ export function BaseTemplate(props: any) {
 
   const createClickHandel = React.useCallback(
     ({ story, calendarId }: { story: BaseStory; calendarId: string }) => () => {
-      if (!window.confirm("Copy to my calendar?")) return;
+      if (!window.confirm("Do you copy this story to My Calendar?")) return;
       dispatch(addStoryAction({ calendarId, story }));
     },
     [dispatch]
