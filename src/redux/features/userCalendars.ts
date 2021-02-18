@@ -17,6 +17,11 @@ type UpdateResourcePayload = {
   storyId: string;
   newResource: BaseResource;
 };
+type UpdateResourcesPayload = {
+  calendarId: string;
+  storyId: string;
+  newResources: BaseResource[];
+};
 type RemoveResourcePayload = {
   calendarId: string;
   storyId: string;
@@ -117,6 +122,32 @@ const userCalendarsSlice = createSlice({
       state.calendars[calendarIdx].stories[storyIdx].resources[
         resourceIdx
       ] = newResource;
+    },
+    updateResources(state, action: PayloadAction<UpdateResourcesPayload>) {
+      const { calendarId, storyId, newResources } = action.payload;
+
+      // calendar
+      const calendarIdx = state.calendars.findIndex(
+        (calendar) => calendar.id === calendarId
+      );
+      const cannotFind = calendarIdx === -1;
+      if (cannotFind) {
+        console.warn("cannot find calendar on updateResource", calendarId);
+        return;
+      }
+
+      // story
+      const storyIdx = state.calendars[calendarIdx].stories.findIndex(
+        (story) => story.id === storyId
+      );
+      const cannotFindStory = storyIdx === -1;
+      if (cannotFindStory) {
+        console.warn("cannot find story on updateResource", calendarId);
+        return;
+      }
+
+      // query
+      state.calendars[calendarIdx].stories[storyIdx].resources = newResources;
     },
     removeResource(state, action: PayloadAction<RemoveResourcePayload>) {
       const { calendarId, resourceId, storyId } = action.payload;
@@ -300,6 +331,7 @@ export const {
   // resources
   pushResource: pushResourceAction,
   updateResource: updateResourceAction,
+  updateResources: updateResourcesAction,
   removeResource: removeResourceAction,
 
   // story

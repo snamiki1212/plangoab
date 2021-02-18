@@ -65,6 +65,7 @@ export function StoryModal({ isOpen, onClose }: Props) {
       if (!storyModal || !story) {
         return console.warn("Invalid data status when to update story.");
       }
+      console.log('data', data, story)
       updateStory(storyModal, story, data);
       onClose();
     },
@@ -81,8 +82,8 @@ export function StoryModal({ isOpen, onClose }: Props) {
     <Dialog onClose={onClose} open={isOpen}>
       <DialogTitle>
         <form onSubmit={handleSubmit(onSubmit)}>
+          <label>Story Name</label>
           <input ref={register} name="name" defaultValue={story.name} />
-          <input type="submit" value="Rename" />
         </form>
       </DialogTitle>
 
@@ -90,14 +91,24 @@ export function StoryModal({ isOpen, onClose }: Props) {
         <div>
           <h2>Resources</h2>
           <form onSubmit={handleSubmit(onSubmit)}>
-            {story.resources.map((resource) => {
+            {story.resources.map((resource, idx) => {
+              const fieldName = `resources[${idx}]`;
               return (
-                <div>
+                <fieldset name={fieldName} key={fieldName}>
+                  <input type="hidden" name={`${fieldName}.id`} ref={register} value={resource.id} />
                   <label>FIELD1</label>
-                  <input defaultValue={resource[FIELD1]} />
+                  <input
+                    defaultValue={resource[FIELD1]}
+                    ref={register}
+                    name={`${fieldName}.${FIELD1}`}
+                  />
 
                   <label>FIELD2</label>
-                  <input defaultValue={resource[FIELD2]} />
+                  <input
+                    defaultValue={resource[FIELD2]}
+                    ref={register}
+                    name={`${fieldName}.${FIELD2}`}
+                  />
                   <Button
                     onClick={handleRemoveResource(resource.id)}
                     color="secondary"
@@ -105,10 +116,16 @@ export function StoryModal({ isOpen, onClose }: Props) {
                   >
                     Delete
                   </Button>
-                </div>
+                </fieldset>
               );
             })}
-            <Button onClick={handleAddResource}  variant="contained" color="primary">+ Add Resource</Button>
+            <Button
+              onClick={handleAddResource}
+              variant="contained"
+              color="primary"
+            >
+              + Add Resource
+            </Button>
             <input type="submit" value="Update" />
           </form>
         </div>
@@ -121,7 +138,9 @@ export function StoryModal({ isOpen, onClose }: Props) {
         >
           Delete
         </Button>
-        <Button onClick={handleNewStory} color="primary">Add New Story</Button>
+        <Button onClick={handleNewStory} color="primary">
+          Add New Story
+        </Button>
       </DialogActions>
     </Dialog>
   );

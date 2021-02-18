@@ -25,7 +25,7 @@ export const useStory = () => {
   }, [dispatch]);
 
   const update = React.useCallback(
-    (idSet: IdSet, story: BaseStory, data: any) => {
+    (idSet: IdSet, story: BaseStory, data: Partial<BaseStory>) => {
       const newStory = updateStory(story, data);
       dispatch(updateStoryAction({ ...idSet, newStory }));
     },
