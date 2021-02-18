@@ -30,7 +30,7 @@ export function TemplateOptionCard() {
             {Array.from({ length: 12 }).map((_, idx) => {
               const month = idx + 1;
               return (
-                <CheckboxListItem>
+                <CheckboxListItem key={month}>
                   <label>{month}</label>
                   <input type="checkbox" value={month} />
                 </CheckboxListItem>

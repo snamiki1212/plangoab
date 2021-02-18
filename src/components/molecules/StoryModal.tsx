@@ -1,16 +1,15 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
-import styled from 'styled-components'
+import styled from "styled-components";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogActions from "@material-ui/core/DialogActions";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-// import { useForm } from "react-hook-form";
-import { useSelector } from "react-redux";
+// 
 import { selectStoryModal, selectStory } from "../../redux/ui/storyModal";
-// import { FIELD1, FIELD2 } from "../../constants/fullcalendar/settings";
 import { useStory } from "../../hooks/useStory";
 import { useResource } from "../../hooks/useResource";
 import { FIELD1, FIELD2 } from "../../constants/fullcalendar/settings";
@@ -60,14 +59,14 @@ export function StoryModal({ isOpen, onClose }: Props) {
   const handleNewStory = React.useCallback(() => {
     if (!calendarId) return;
     createStory({ calendarId });
-  }, [calendarId]);
+  }, [createStory, calendarId]);
 
   const onSubmit = React.useCallback(
     (data: any) => {
       if (!storyModal || !story) {
         return console.warn("Invalid data status when to update story.");
       }
-      console.log('data', data, story)
+      console.log("data", data, story);
       updateStory(storyModal, story, data);
     },
     [updateStory, storyModal, story]
@@ -84,8 +83,13 @@ export function StoryModal({ isOpen, onClose }: Props) {
       <DialogTitle>
         <form onSubmit={handleSubmit(onSubmit)}>
           <DialogTitleInner>
-          <label>Story Name:</label>
-          <TextField inputRef={register} name="name" defaultValue={story.name} variant="outlined" />
+            <label>Story Name:</label>
+            <TextField
+              inputRef={register}
+              name="name"
+              defaultValue={story.name}
+              variant="outlined"
+            />
           </DialogTitleInner>
         </form>
       </DialogTitle>
@@ -94,14 +98,19 @@ export function StoryModal({ isOpen, onClose }: Props) {
         <div>
           <form onSubmit={handleSubmit(onSubmit)}>
             <FieldsetHeader>
-            <span>Category</span>
-            <span>Event</span>
+              <span>Category</span>
+              <span>Event</span>
             </FieldsetHeader>
             {story.resources.map((resource, idx) => {
               const fieldName = `resources[${idx}]`;
               return (
                 <Fieldset name={fieldName} key={fieldName}>
-                  <input type="hidden" name={`${fieldName}.id`} ref={register} value={resource.id} />
+                  <input
+                    type="hidden"
+                    name={`${fieldName}.id`}
+                    ref={register}
+                    value={resource.id}
+                  />
                   <TextField
                     defaultValue={resource[FIELD1]}
                     inputRef={register}
@@ -133,7 +142,9 @@ export function StoryModal({ isOpen, onClose }: Props) {
             </AddResourceButtonContainer>
 
             <UpdateButtonContainer>
-              <Button type="submit" variant="contained" color="primary">Update</Button>
+              <Button type="submit" variant="contained" color="primary">
+                Update
+              </Button>
             </UpdateButtonContainer>
           </form>
         </div>
@@ -157,7 +168,7 @@ export function StoryModal({ isOpen, onClose }: Props) {
 const DialogTitleInner = styled.div`
   display: flex;
   align-items: center;
-`
+`;
 
 const FieldsetHeader = styled.div`
   display: grid;
@@ -168,20 +179,20 @@ const FieldsetHeader = styled.div`
   justify-items: center;
   font-weight: 900;
   font-size: 1.3rem;
-`
+`;
 
 const Fieldset = styled.fieldset`
-  border:none;
+  border: none;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 1rem;
   padding: 1rem;
-`
+`;
 const AddResourceButtonContainer = styled.div`
   padding: 1rem;
-`
+`;
 
 const UpdateButtonContainer = styled.div`
   padding: 1rem;
   text-align: right;
-`
+`;
