@@ -6,27 +6,45 @@ import CardContent from "@material-ui/core/CardContent";
 const MAX_PERIOD_MONTH = 12 * 5;
 
 export function TemplateOptionCard() {
+  const [schoolPeriod, setSchoolPeriod] = React.useState(12 * 2);
+  const [coopPeriod, setCoopPeriod] = React.useState(12);
+
+  const handleChangeSchoolPeriod = React.useCallback((e) => {
+    setSchoolPeriod(e.target.value);
+  }, []);
+
+  const handleChangeCoopPeriod = React.useCallback((e) => {
+    setCoopPeriod(e.target.value);
+  }, []);
+
   return (
     <Card>
       <CardContent>
         <h2>Template Options(TODO: not working yet)</h2>
         <InnerContainer>
-          <SchoolPeriodLabel>School Period(Month)</SchoolPeriodLabel>
-          <SchoolPeriodInput
+          <label>School Period(Month)</label>
+          <span>{schoolPeriod}</span>
+          <input
             type="range"
             min="0"
             max={MAX_PERIOD_MONTH}
             id="schoolPeriod"
+            onChange={handleChangeSchoolPeriod}
+            defaultValue={schoolPeriod}
           />
-          <CoopPeriodLabel>Co-op Period(Month)</CoopPeriodLabel>
-          <CoopPeriodInput
+          <label>Co-op Period(Month)</label>
+          <span>{coopPeriod}</span>
+          <input
             type="range"
             min="0"
             max={MAX_PERIOD_MONTH}
             id="schoolPeriod"
+            onChange={handleChangeCoopPeriod}
+            defaultValue={coopPeriod}
           />
-          <StartSchoolFrom>Start From (Month)</StartSchoolFrom>
-          <StartSchoolOptions>
+          <label>School start from (Month)</label>
+          <span>{/* EMPTY */}</span>
+          <div>
             {Array.from({ length: 12 }).map((_, idx) => {
               const month = idx + 1;
               return (
@@ -36,7 +54,7 @@ export function TemplateOptionCard() {
                 </CheckboxListItem>
               );
             })}
-          </StartSchoolOptions>
+          </div>
         </InnerContainer>
       </CardContent>
     </Card>
@@ -45,39 +63,13 @@ export function TemplateOptionCard() {
 
 const CheckboxListItem = styled.div`
   display: inline-block;
-  margin-right: 0.5rem;
+  margin-right: 1rem;
 `;
 
 const InnerContainer = styled.div`
   display: grid;
   gap: 1rem;
-  padding: 0.5rem;
-  grid-template-areas:
-    "schoolPeriodLabel schoolPeriodInput"
-    "coopPeriodLabel coopPeriodInput"
-    "startSchoolFrom startSchoolOptions";
-`;
-
-const SchoolPeriodLabel = styled.label`
-  grid-area: schoolPeriodLabel;
-`;
-
-const SchoolPeriodInput = styled.input`
-  grid-area: schoolPeriodInput;
-`;
-
-const CoopPeriodLabel = styled.label`
-  grid-area: coopPeriodLabel;
-`;
-
-const CoopPeriodInput = styled.input`
-  grid-area: coopPeriodInput;
-`;
-
-const StartSchoolFrom = styled.div`
-  grid-area: startSchoolFrom;
-`;
-
-const StartSchoolOptions = styled.div`
-  grid-area: startSchoolOptions;
+  padding: 0.3rem;
+  grid-template-columns: auto auto 1fr;
+  grid-template-rows: auto;
 `;
