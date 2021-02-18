@@ -4,6 +4,7 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogActions from "@material-ui/core/DialogActions";
+import Button from "@material-ui/core/Button";
 // import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { selectStoryModal, selectStory } from "../../redux/ui/storyModal";
@@ -52,8 +53,7 @@ export function StoryModal({ isOpen, onClose }: Props) {
       return console.warn("Invalid data status when to add resource.");
     }
     pushResource(storyModal);
-    onClose();
-  }, [storyModal, pushResource, onClose]);
+  }, [storyModal, pushResource]);
 
   const handleNewStory = React.useCallback(() => {
     if (!calendarId) return;
@@ -98,20 +98,30 @@ export function StoryModal({ isOpen, onClose }: Props) {
 
                   <label>FIELD2</label>
                   <input defaultValue={resource[FIELD2]} />
-                  <button onClick={handleRemoveResource(resource.id)}>
-                    - Remove
-                  </button>
+                  <Button
+                    onClick={handleRemoveResource(resource.id)}
+                    color="secondary"
+                    variant="contained"
+                  >
+                    Delete
+                  </Button>
                 </div>
               );
             })}
-            <button onClick={handleAddResource}>+ Add Resource</button>
+            <Button onClick={handleAddResource}  variant="contained" color="primary">+ Add Resource</Button>
             <input type="submit" value="Update" />
           </form>
         </div>
       </DialogContent>
       <DialogActions>
-        <button onClick={handleRemoveStory}>Remove</button>
-        <button onClick={handleNewStory}>Add New Story</button>
+        <Button
+          onClick={handleRemoveStory}
+          color="secondary"
+          variant="contained"
+        >
+          Delete
+        </Button>
+        <Button onClick={handleNewStory} color="primary">Add New Story</Button>
       </DialogActions>
     </Dialog>
   );
