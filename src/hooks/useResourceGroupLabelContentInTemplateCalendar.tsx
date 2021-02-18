@@ -44,9 +44,11 @@ export const useResourceGroupLabelContentInTemplateCalendar = ({
 
       const nameElement = document.createElement("i");
       nameElement.innerHTML = name + " "; // NOTE: space is for design, so not good way
+      nameElement.style.marginLeft = '1rem'
 
       const buttonElement = document.createElement("button");
-      buttonElement.innerHTML = "copy";
+      buttonElement.innerHTML = "Copy to my calendar";
+      buttonElement.style.marginLeft = '1rem'
       buttonElement.onclick = clickHandle;
 
       const arrayOfDomNodes = [nameElement, buttonElement];

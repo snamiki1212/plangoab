@@ -37,6 +37,10 @@ const resourceConfigs = {
   resourcesInitiallyExpanded: false,
 } as const;
 
+const styleConfigs = {
+  height: 700,
+};
+
 export const FULL_CALENDAR_CONFIGS = {
   views,
   headerToolbar,
@@ -46,4 +50,5 @@ export const FULL_CALENDAR_CONFIGS = {
   ...schedulerLicenseKey,
   ...nowIndicator,
   ...resourceConfigs,
+  ...styleConfigs,
 } as const;

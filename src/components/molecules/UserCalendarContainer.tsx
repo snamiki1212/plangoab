@@ -139,9 +139,9 @@ export function UserCalendarContainer() {
             );
           }
 
-          let message = arg.fieldValue;
-          message += "!!!";
+          const message = arg.fieldValue;
 
+          // elements
           const containerEl = document.createElement("div");
 
           const buttonEl = document.createElement("button");

@@ -6,7 +6,7 @@ const MAX_PERIOD_MONTH = 12 * 5;
 export function TemplateOptionCard() {
   return (
     <Container>
-      <h2>Options(TODO: not working yet)</h2>
+      <h2>Template Options(TODO: not working yet)</h2>
       <div>
         <label>School Period(Month)</label>
         <input type="range" min="0" max={MAX_PERIOD_MONTH} id="schoolPeriod" />
