@@ -44,11 +44,11 @@ const styleConfigs = {
 const resourceAreaColumns = [
   {
     field: FIELD1,
-    headerContent: "Category",
+    headerContent: "Field1",
   },
   {
     field: FIELD2,
-    headerContent: "Event",
+    headerContent: "Field2",
   },
 ];
 
