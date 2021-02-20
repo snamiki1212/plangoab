@@ -1,10 +1,18 @@
 import { addMonths, addYears, setMonth } from "date-fns";
 import {
+  // resources
   RESOURCE_TEMPLATE__VISA_STUDY,
   RESOURCE_TEMPLATE__VISA_COOP,
   RESOURCE_TEMPLATE__WORKING_HOLIDAY_COOP,
   RESOURCE_TEMPLATE__STUDENT_STATUS,
   RESOURCE_TEMPLATE__WORKER_STATUS,
+  // events
+  EVENT_TEMPLATE__VISA_COOP,
+  EVENT_TEMPLATE__VISA_STUDY,
+  EVENT_TEMPLATE__VISA_READY_WORKING_HOLIDAY,
+  EVENT_TEMPLATE__VISA_WORKING_HOLIDAY,
+  EVENT_TEMPLATE__STATUS_STATUS,
+  EVENT_TEMPLATE__STATUS_WORKER,
 } from "../../../constants/fullcalendar/templates";
 import {
   NAME_OF_STORY_ID,
@@ -18,10 +26,6 @@ import { TemplateOption } from "../../calendar/BaseCalendar";
 import { BaseEvent, initEvent } from "../../event/BaseEvent";
 import { BaseResource, initResource } from "../../resource/BaseResource";
 import { convertIsoToYearAndMonth } from "../../../lib/date";
-
-const VISA_BACKGROUND_COLOR = "#8fbc8b";
-const STATUS_BACKGROUND_COLOR = "#ffd700";
-const WH_WARN_BACKGROUND_COLOR = "#e73758";
 
 export const createPrivateCollegeStory = (
   {
@@ -77,7 +81,6 @@ const generateStory = (
   const withCoop = coopPeriod > 0;
 
   if (withCoop) {
-    // Coop Visa
     const coopVisaResourceId = uuid();
     resources.push(
       initResource({
@@ -90,15 +93,14 @@ const generateStory = (
     );
     events.push(
       initEvent({
+        ...EVENT_TEMPLATE__VISA_COOP,
         id: uuid(),
         resourceId: coopVisaResourceId,
         storyId,
-        title: "Co-op VISA",
         start: convertIsoToYearAndMonth(startDate.toISOString()),
         end: convertIsoToYearAndMonth(
           addMonths(startDate, coopPeriod).toISOString()
         ),
-        backgroundColor: VISA_BACKGROUND_COLOR,
         extendedProps: {
           resourceId: coopVisaResourceId,
           calendarId,
@@ -121,15 +123,14 @@ const generateStory = (
   );
   events.push(
     initEvent({
+      ...EVENT_TEMPLATE__VISA_STUDY,
       id: uuid(),
       resourceId: studyVisaResourceId,
       storyId,
-      title: "Study VISA",
       start: convertIsoToYearAndMonth(startDate.toISOString()),
       end: convertIsoToYearAndMonth(
         addMonths(startDate, schoolPeriod).toISOString()
       ),
-      backgroundColor: VISA_BACKGROUND_COLOR,
       extendedProps: {
         resourceId: studyVisaResourceId,
         calendarId,
@@ -152,10 +153,10 @@ const generateStory = (
     const dateAsStartWorkingHoliday = addMonths(startDate, schoolPeriod);
     events.push(
       initEvent({
+        ...EVENT_TEMPLATE__VISA_WORKING_HOLIDAY,
         id: uuid(),
         resourceId: workingholidayResourceId,
         storyId,
-        title: "Working Holiday VISA",
         start: convertIsoToYearAndMonth(
           dateAsStartWorkingHoliday.toISOString()
         ),
@@ -165,7 +166,6 @@ const generateStory = (
             workingholidayPeriod
           ).toISOString()
         ),
-        backgroundColor: VISA_BACKGROUND_COLOR,
         extendedProps: {
           resourceId: workingholidayResourceId,
           calendarId,
@@ -175,6 +175,7 @@ const generateStory = (
     );
     events.push(
       initEvent({
+        ...EVENT_TEMPLATE__VISA_READY_WORKING_HOLIDAY,
         id: uuid(),
         resourceId: workingholidayResourceId,
         storyId,
@@ -186,7 +187,6 @@ const generateStory = (
           ).toISOString()
         ),
         end: convertIsoToYearAndMonth(dateAsStartWorkingHoliday.toISOString()),
-        backgroundColor: WH_WARN_BACKGROUND_COLOR,
         extendedProps: {
           resourceId: workingholidayResourceId,
           calendarId,
@@ -208,10 +208,10 @@ const generateStory = (
     );
     events.push(
       initEvent({
+        ...EVENT_TEMPLATE__STATUS_WORKER,
         id: uuid(),
         resourceId: workerStatusResourceId,
         storyId,
-        title: "Status: Worker",
         start: convertIsoToYearAndMonth(
           addMonths(startDate, schoolPeriod).toISOString()
         ),
@@ -221,7 +221,6 @@ const generateStory = (
             schoolPeriod + workingholidayPeriod
           ).toISOString()
         ),
-        eventBackgroundCoor: STATUS_BACKGROUND_COLOR,
         extendedProps: {
           resourceId: workerStatusResourceId,
           calendarId,
@@ -244,15 +243,14 @@ const generateStory = (
   );
   events.push(
     initEvent({
+      ...EVENT_TEMPLATE__STATUS_STATUS,
       id: uuid(),
       resourceId: studentStatusResourceId,
       storyId,
-      title: "Status: Student",
       start: convertIsoToYearAndMonth(startDate.toISOString()),
       end: convertIsoToYearAndMonth(
         addMonths(startDate, schoolPeriod).toISOString()
       ),
-      eventBackgroundCoor: STATUS_BACKGROUND_COLOR,
       extendedProps: {
         resourceId: studentStatusResourceId,
         calendarId,
