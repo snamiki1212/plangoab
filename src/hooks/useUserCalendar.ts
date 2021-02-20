@@ -18,7 +18,7 @@ export const useUserCalendar = () => {
 
   const init = React.useCallback(
     (birthday: string | Date) => {
-      const calendarId = MY_CALENDAR_ID;
+      const calendarId = MY_CALENDAR_ID; // TODO: use selected my calendar id not constant value
       const story = createProfileStory({ birth: birthday, calendarId });
       const _calendar = createUserCalendar({
         id: calendarId,
