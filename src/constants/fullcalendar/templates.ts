@@ -16,7 +16,13 @@ export const RESOURCE_TEMPLATE__VISA_COOP = {
 };
 
 export const RESOURCE_TEMPLATE__WORKING_HOLIDAY_COOP = {
+  // TODO: rename
   [FIELD]: "Working Holiday VISA",
+  eventBorderColor: DARK_BLUE,
+};
+
+export const RESOURCE_TEMPLATE__VISA_PGWP = {
+  [FIELD]: "PGWP VISA",
   eventBorderColor: DARK_BLUE,
 };
 
@@ -37,6 +43,11 @@ export const EVENT_TEMPLATE__VISA_COOP = {
 
 export const EVENT_TEMPLATE__VISA_STUDY = {
   title: "Study VISA",
+  backgroundColor: GREEN,
+};
+
+export const EVENT_TEMPLATE__VISA_PGWP = {
+  title: "PGWP VISA",
   backgroundColor: GREEN,
 };
 

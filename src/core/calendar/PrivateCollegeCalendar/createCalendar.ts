@@ -1,9 +1,14 @@
 import { addYears, setMonth, compareAsc } from "date-fns";
-import { PrivateCollegeCalendar, calendarId } from "./model";
+import {
+  PrivateCollegeCalendar,
+  PRIVATE_COLLEGE_CALENDAR_ID,
+  PUBLIC_COLLEGE_CALENDAR_ID,
+} from "./model";
 import { AGE_OF_START_STORY } from "../../../constants/fullcalendar/options";
 import { WORKING_HOLIDAY_APPLICATION_LIMITATION_AGE } from "../../../constants/visa";
 import { range } from "../../../lib/util";
 import { createPrivateCollegeStory } from "../../story/PrivateCollegeStory/createPrivateCollegeStory";
+import { createPublicCollegeStory } from "../../story/PublicCollegeStory/createPublicCollegeStory";
 import { BaseStory } from "../../story/BaseStory";
 import { TemplateOption } from "../BaseCalendar";
 
@@ -15,15 +20,17 @@ const scopeAges = range(
 const shouldViewPast = false;
 const now = new Date();
 
-const generateStoryList = (
+const createStoryList = (
   {
     birth,
     calendarId,
     canWorkingholiday,
+    storyCreater,
   }: {
     birth: Date;
     calendarId: string;
     canWorkingholiday: boolean;
+    storyCreater: Function;
   },
   options: TemplateOption
 ): BaseStory[] => {
@@ -44,10 +51,11 @@ const generateStoryList = (
     })
     .map((startDate) => {
       const params = { startDate, calendarId, canWorkingholiday };
-      return createPrivateCollegeStory(params, options);
+      return storyCreater(params, options);
     });
 };
 
+// TODO: rename
 export const createCalendar = (
   {
     birth,
@@ -58,10 +66,38 @@ export const createCalendar = (
   },
   options: TemplateOption
 ): PrivateCollegeCalendar => {
-  const params = { birth, calendarId, canWorkingholiday };
-  const stories = generateStoryList(params, options);
+  const params = {
+    birth,
+    calendarId: PRIVATE_COLLEGE_CALENDAR_ID,
+    canWorkingholiday,
+    storyCreater: createPrivateCollegeStory,
+  };
+  const stories = createStoryList(params, options);
   return {
-    id: calendarId,
+    id: PRIVATE_COLLEGE_CALENDAR_ID,
+    stories,
+  };
+};
+
+export const createPublicCollegeCalendar = (
+  {
+    birth,
+    canWorkingholiday,
+  }: {
+    birth: Date;
+    canWorkingholiday: boolean;
+  },
+  options: TemplateOption
+): PrivateCollegeCalendar => {
+  const params = {
+    birth,
+    calendarId: PUBLIC_COLLEGE_CALENDAR_ID,
+    canWorkingholiday,
+    storyCreater: createPublicCollegeStory,
+  };
+  const stories = createStoryList(params, options);
+  return {
+    id: PUBLIC_COLLEGE_CALENDAR_ID,
     stories,
   };
 };

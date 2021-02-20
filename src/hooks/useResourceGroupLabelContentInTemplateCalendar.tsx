@@ -1,6 +1,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { selectPrivateCollegeCalendar } from "../redux/features/templateCalendarTable";
+import {
+  selectPrivateCollegeCalendar,
+  selectPublicCollegeCalendar,
+} from "../redux/features/templateCalendarTable";
 import { selectUserCalendar } from "../redux/features/userCalendars";
 import { updateStory } from "../core/story/BaseStory";
 
@@ -16,16 +19,12 @@ type Props = {
 export const useResourceGroupLabelContentInTemplateCalendar = ({
   createClickHandel,
 }: Props) => {
-  const templateCalendar = useSelector(selectPrivateCollegeCalendar);
+  const privateCollegeTemplate = useSelector(selectPrivateCollegeCalendar);
+  const publicCollegeTemplate = useSelector(selectPublicCollegeCalendar);
   const myCalendar = useSelector(selectUserCalendar);
 
   const resourceGroupLabelContent = React.useCallback(
     ({ groupValue: storyId }: ResourceContentProps) => {
-      if (!templateCalendar) {
-        console.warn("cannot find selected templateCalendar");
-        return;
-      }
-      
       if (!myCalendar) {
         console.warn("cannot find selected myCalendar");
         return;
@@ -33,8 +32,16 @@ export const useResourceGroupLabelContentInTemplateCalendar = ({
 
       const myCalendarId = myCalendar.id;
 
+      if (!privateCollegeTemplate && !publicCollegeTemplate) {
+        console.warn("cannot find selected template calendar");
+        return;
+      }
+
       // story validation
-      const story = templateCalendar.stories.find((story) => story.id === storyId);
+      const story = [
+        ...(privateCollegeTemplate?.stories ?? []),
+        ...(publicCollegeTemplate?.stories ?? []),
+      ].find((story) => story.id === storyId);
       if (!story) {
         console.warn("cannot find story", storyId);
         return;
@@ -68,7 +75,7 @@ export const useResourceGroupLabelContentInTemplateCalendar = ({
       const arrayOfDomNodes = [nameElement, buttonElement];
       return { domNodes: arrayOfDomNodes };
     },
-    [templateCalendar, myCalendar, createClickHandel]
+    [myCalendar, privateCollegeTemplate, publicCollegeTemplate, createClickHandel]
   );
 
   return { resourceGroupLabelContent };
