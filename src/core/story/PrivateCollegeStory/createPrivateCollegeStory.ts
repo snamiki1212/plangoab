@@ -95,7 +95,6 @@ const generateStory = (
       end: convertIsoToYearAndMonth(
         addMonths(startDate, coopPeriod).toISOString()
       ),
-      [NAME_OF_ORDER]: 1,
       backgroundColor: VISA_BACKGROUND_COLOR,
       extendedProps: {
         resourceId: coopVisaResourceId,
@@ -123,7 +122,6 @@ const generateStory = (
     end: convertIsoToYearAndMonth(
       addMonths(startDate, schoolPeriod).toISOString()
     ),
-    [NAME_OF_ORDER]: 2,
     backgroundColor: VISA_BACKGROUND_COLOR,
     extendedProps: {
       resourceId: studyVisaResourceId,
@@ -151,7 +149,6 @@ const generateStory = (
       end: convertIsoToYearAndMonth(
         addMonths(dateAsStartWorkingHoliday, workingholidayPeriod).toISOString()
       ),
-      [NAME_OF_ORDER]: 3,
       backgroundColor: VISA_BACKGROUND_COLOR,
       extendedProps: {
         resourceId: workingholidayResourceId,
@@ -171,7 +168,6 @@ const generateStory = (
         ).toISOString()
       ),
       end: convertIsoToYearAndMonth(dateAsStartWorkingHoliday.toISOString()),
-      [NAME_OF_ORDER]: 3,
       backgroundColor: WH_WARN_BACKGROUND_COLOR,
       extendedProps: {
         resourceId: workingholidayResourceId,
@@ -200,7 +196,6 @@ const generateStory = (
       end: convertIsoToYearAndMonth(
         addMonths(startDate, schoolPeriod + workingholidayPeriod).toISOString()
       ),
-      [NAME_OF_ORDER]: 5,
       eventBackgroundCoor: STATUS_BACKGROUND_COLOR,
       extendedProps: {
         resourceId: workerStatusResourceId,
@@ -228,7 +223,6 @@ const generateStory = (
     end: convertIsoToYearAndMonth(
       addMonths(startDate, schoolPeriod).toISOString()
     ),
-    [NAME_OF_ORDER]: 4,
     eventBackgroundCoor: STATUS_BACKGROUND_COLOR,
     extendedProps: {
       resourceId: studentStatusResourceId,
