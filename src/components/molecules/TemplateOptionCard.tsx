@@ -4,33 +4,42 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
+import Checkbox from "@material-ui/core/Checkbox";
 import { useTemplateOptions } from "../../hooks/useTemplateOptions";
 
 export function TemplateOptionCard() {
-  const [schoolPeriod, setSchoolPeriod] = React.useState(12 * 2);
-  const [coopPeriod, setCoopPeriod] = React.useState(12);
-  const { update: updateOption } = useTemplateOptions(); // TODO:  Update update-method in redux
+  const { update: updateOption, options } = useTemplateOptions();
+  const { schoolPeriod, coopPeriod, monthsOfStartSchool } = options;
 
   const handleChangeSchoolPeriod = React.useCallback(
-    (e) => {
-      const value = e.target.value;
+    (_event) => {
+      const value = _event.target.value;
       const maybeNum = value === "" ? 0 : parseInt(value);
       if (!Number.isInteger(maybeNum)) return;
-      setSchoolPeriod(maybeNum);
       updateOption({ schoolPeriod: maybeNum });
     },
     [updateOption]
   );
 
   const handleChangeCoopPeriod = React.useCallback(
-    (e) => {
-      const value = e.target.value;
+    (_event) => {
+      const value = _event.target.value;
       const maybeNum = value === "" ? 0 : parseInt(value);
       if (!Number.isInteger(maybeNum)) return;
-      setCoopPeriod(maybeNum);
       updateOption({ coopPeriod: maybeNum });
     },
     [updateOption]
+  );
+
+  const handleCheck = React.useCallback(
+    (_event) => {
+      const month = parseInt(_event.target.value);
+      const newMonthsOfStartSchool = monthsOfStartSchool.includes(month)
+        ? monthsOfStartSchool.filter((_month) => _month === month)
+        : [...monthsOfStartSchool, month];
+      updateOption({ monthsOfStartSchool: newMonthsOfStartSchool });
+    },
+    [updateOption, monthsOfStartSchool]
   );
 
   return (
@@ -67,10 +76,15 @@ export function TemplateOptionCard() {
             <div>
               {Array.from({ length: 12 }).map((_, idx) => {
                 const month = idx + 1;
+                const isChecked = monthsOfStartSchool.includes(month);
                 return (
                   <CheckboxListItem key={month}>
                     <label>{month}</label>
-                    <input type="checkbox" value={month} />
+                    <Checkbox
+                      value={month}
+                      checked={isChecked}
+                      onChange={handleCheck}
+                    />
                   </CheckboxListItem>
                 );
               })}

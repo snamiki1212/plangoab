@@ -21,4 +21,5 @@ export type TemplateOption = {
   schoolPeriod: number;
   coopPeriod: number;
   workingholidayPeriod: number;
+  monthsOfStartSchool: number[];
 };

@@ -5,6 +5,7 @@ type UpdatePayload = {
   schoolPeriod: number;
   coopPeriod: number;
   workingholidayPeriod: number;
+  monthsOfStartSchool: number[];
 };
 
 const slices = createSlice({
@@ -14,6 +15,7 @@ const slices = createSlice({
       schoolPeriod: 12 * 2,
       coopPeriod: 12 * 2,
       workingholidayPeriod: 12,
+      monthsOfStartSchool: [1, 5, 9],
     },
   },
   reducers: {
