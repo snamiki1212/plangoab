@@ -1,20 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 import { LogoImage } from "../atoms/LogoImage";
-import {THIS_GITHUB_URL} from '../../constants/meta'
 
 export function Footer() {
   return (
     <Container>
       <LogoText>
         <LogoImageContainer>
-        <LogoImage />
+          <LogoImage />
         </LogoImageContainer>
         <span>Plangoab</span>
       </LogoText>
-      <a href={THIS_GITHUB_URL} target="_blank" rel="noreferrer">
-        Github
-      </a>
     </Container>
   );
 }
@@ -29,7 +25,7 @@ const Container = styled.div`
 const LogoImageContainer = styled.div`
   height: 4rem;
   width: 4rem;
-`
+`;
 
 const LogoText = styled.div`
   display: flex;
