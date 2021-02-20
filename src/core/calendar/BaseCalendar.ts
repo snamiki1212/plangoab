@@ -20,6 +20,7 @@ export const removeEvent = (
 export type TemplateOption = {
   schoolPeriod: number;
   coopPeriod: number;
+  pgwpPeriod: number;
   workingholidayPeriod: number;
   monthsOfStartSchool: number[];
 };

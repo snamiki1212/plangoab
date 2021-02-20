@@ -4,6 +4,7 @@ import { RootState } from "../rootReducer";
 type UpdatePayload = {
   schoolPeriod: number;
   coopPeriod: number;
+  pgwpPeriod: number;
   workingholidayPeriod: number;
   monthsOfStartSchool: number[];
 };
@@ -14,6 +15,7 @@ const slices = createSlice({
     option: {
       schoolPeriod: 12 * 2,
       coopPeriod: 12 * 2,
+      pgwpPeriod: 12 * 3,
       workingholidayPeriod: 12,
       monthsOfStartSchool: [1, 5, 9],
     },

@@ -9,7 +9,7 @@ import { useTemplateOptions } from "../../hooks/useTemplateOptions";
 
 export function TemplateOptionCard() {
   const { update: updateOption, options } = useTemplateOptions();
-  const { schoolPeriod, coopPeriod, monthsOfStartSchool } = options;
+  const { schoolPeriod, coopPeriod, monthsOfStartSchool, pgwpPeriod } = options;
 
   const handleChangeSchoolPeriod = React.useCallback(
     (_event) => {
@@ -27,6 +27,16 @@ export function TemplateOptionCard() {
       const maybeNum = value === "" ? 0 : parseInt(value);
       if (!Number.isInteger(maybeNum)) return;
       updateOption({ coopPeriod: maybeNum });
+    },
+    [updateOption]
+  );
+
+  const handleChangePgwpPeriod = React.useCallback(
+    (_event) => {
+      const value = _event.target.value;
+      const maybeNum = value === "" ? 0 : parseInt(value);
+      if (!Number.isInteger(maybeNum)) return;
+      updateOption({ pgwpPeriod: maybeNum });
     },
     [updateOption]
   );
@@ -58,11 +68,20 @@ export function TemplateOptionCard() {
                 ),
               }}
             />
-
             <TextField
               value={coopPeriod}
               onChange={handleChangeCoopPeriod}
               label="Co-op Period"
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">Month</InputAdornment>
+                ),
+              }}
+            />
+            <TextField
+              value={pgwpPeriod}
+              onChange={handleChangePgwpPeriod}
+              label="PWGP Period"
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">Month</InputAdornment>
@@ -103,7 +122,7 @@ const CheckboxListItem = styled.div`
 
 const PeriodContainer = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 2rem;
   margin-bottom: 1rem;
 `;
