@@ -1,2 +1,2 @@
-// working holiday have to be applied by age of 31.
 export const WORKING_HOLIDAY_APPLICATION_LIMITATION_AGE = 31;
+export const MONTH_OF_WORKING_HOLIDAY_APPLICATION_LIMIT = 8;

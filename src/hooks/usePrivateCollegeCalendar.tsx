@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BaseEvent } from "../core/event/BaseEvent";
 import { BaseResource } from "../core/resource/BaseResource";
+import { TemplateOption } from "../core/calendar/BaseCalendar";
 import {
   upsertPrivateCollegeStoriesAction,
   selectPrivateCollegeCalendar,
@@ -13,12 +14,14 @@ export const usePrivateCollegeCalendar = () => {
     ({
       birth,
       canWorkingholiday,
+      options,
     }: {
       birth: string;
       canWorkingholiday: boolean;
+      options: TemplateOption;
     }) => {
       dispatch(
-        upsertPrivateCollegeStoriesAction({ birth, canWorkingholiday })
+        upsertPrivateCollegeStoriesAction({ birth, canWorkingholiday, options })
       );
     },
     [dispatch]

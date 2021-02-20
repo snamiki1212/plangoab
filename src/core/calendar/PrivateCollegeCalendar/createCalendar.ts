@@ -6,6 +6,7 @@ import { COMMUNITY_COLLEGE_EXAMPLE1 } from "../../../constants/school";
 import { range } from "../../../lib/util";
 import { build } from "../../story/PrivateCollegeStory/build";
 import { BaseStory } from "../../story/BaseStory";
+import { TemplateOption } from "../BaseCalendar";
 
 const startMonths = COMMUNITY_COLLEGE_EXAMPLE1.startMonths;
 
@@ -14,15 +15,18 @@ const addingNumbers = range(
   WORKING_HOLIDAY_APPLICATION_LIMITATION_AGE
 );
 
-const generateStoryList = ({
-  birth,
-  calendarId,
-  canWorkingholiday,
-}: {
-  birth: Date;
-  calendarId: string;
-  canWorkingholiday: boolean;
-}): BaseStory[] => {
+const generateStoryList = (
+  {
+    birth,
+    calendarId,
+    canWorkingholiday,
+  }: {
+    birth: Date;
+    calendarId: string;
+    canWorkingholiday: boolean;
+  },
+  options: TemplateOption
+): BaseStory[] => {
   return addingNumbers
     .map((num) => addYears(birth, num))
     .flatMap((startDate) => {
@@ -32,18 +36,23 @@ const generateStoryList = ({
       return datesInYear;
     })
     .map((startDate) => {
-      return build({ startDate, calendarId, canWorkingholiday });
+      const params = { startDate, calendarId, canWorkingholiday };
+      return build(params, options);
     });
 };
 
-export const createCalendar = ({
-  birth,
-  canWorkingholiday,
-}: {
-  birth: Date;
-  canWorkingholiday: boolean;
-}): PrivateCollegeCalendar => {
-  const stories = generateStoryList({ birth, calendarId, canWorkingholiday });
+export const createCalendar = (
+  {
+    birth,
+    canWorkingholiday,
+  }: {
+    birth: Date;
+    canWorkingholiday: boolean;
+  },
+  options: TemplateOption
+): PrivateCollegeCalendar => {
+  const params = { birth, calendarId, canWorkingholiday };
+  const stories = generateStoryList(params, options);
   return {
     id: calendarId,
     stories,
