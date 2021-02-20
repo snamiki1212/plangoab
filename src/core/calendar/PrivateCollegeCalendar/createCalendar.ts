@@ -1,4 +1,4 @@
-import { addYears, addMonths } from "date-fns";
+import { addYears, setMonth } from "date-fns";
 import { PrivateCollegeCalendar, calendarId } from "./model";
 import { AGE_OF_START_STORY } from "../../../constants/fullcalendar/options";
 import { WORKING_HOLIDAY_APPLICATION_LIMITATION_AGE } from "../../../constants/visa";
@@ -30,7 +30,7 @@ const generateStoryList = (
     .map((num) => addYears(birth, num))
     .flatMap((startDate) => {
       const startDateListInYear = monthsOfStartSchool.map((month) =>
-        addMonths(startDate, month)
+        setMonth(startDate, month - 1)
       );
       return startDateListInYear;
     })
