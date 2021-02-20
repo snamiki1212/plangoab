@@ -1,5 +1,6 @@
 import { EventInput } from "@fullcalendar/react";
 import { uuid } from "../../lib/uuid";
+import { convertIsoToYearAndMonth } from "../../lib/date";
 
 export type BaseEvent = EventInput & {
   extendedProps: {
@@ -15,21 +16,23 @@ export const initEvent = (props?: Partial<BaseEvent>): BaseEvent => {
     resourceId: _resourceId,
     storyId: _storyId,
     title: _title,
-    start,
-    end,
+    start: _start,
+    end: _end,
   } = props ?? {};
 
   const storyId = _storyId ?? uuid();
   const resourceId = _resourceId ?? uuid();
   const title = _title ?? "New Event";
+  const start = _start ? convertIsoToYearAndMonth(_start as Date) : undefined;
+  const end = _end ? convertIsoToYearAndMonth(_end as Date) : undefined;
 
   return {
     id: id ?? uuid(),
     resourceId,
     storyId,
     title,
-    start: start ?? new Date().toISOString(),
-    end: end ?? new Date().toISOString(),
+    start,
+    end,
     extendedProps: {
       calendarId,
       storyId,
@@ -43,8 +46,13 @@ export const updateEvent = (
   params: Partial<Omit<BaseEvent, "id" | "storyId">>
 ): BaseEvent => {
   const title = params.title;
-  const start = params.start;
-  const end = params.end;
+  const start = params.start
+    ? convertIsoToYearAndMonth(params.start as Date)
+    : undefined;
+  const end = params.end
+    ? convertIsoToYearAndMonth(params.end as Date)
+    : undefined;
+
   const newEvent = Object.assign(
     { ...event },
     title !== undefined && { title },
