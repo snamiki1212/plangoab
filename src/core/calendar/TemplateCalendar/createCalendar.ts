@@ -55,8 +55,7 @@ const createStoryList = (
     });
 };
 
-// TODO: rename
-export const createCalendar = (
+export const createPrivateCollegeCalendar = (
   {
     birth,
     canWorkingholiday,

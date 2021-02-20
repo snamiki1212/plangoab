@@ -1,12 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import {
-  createCalendar,
+  createPrivateCollegeCalendar,
   createPublicCollegeCalendar,
-} from "../../core/calendar/PrivateCollegeCalendar/createCalendar";
+} from "../../core/calendar/TemplateCalendar/createCalendar";
 import {
   PRIVATE_COLLEGE_CALENDAR_ID,
   PUBLIC_COLLEGE_CALENDAR_ID,
-} from "../../core/calendar/PrivateCollegeCalendar/model";
+} from "../../core/calendar/TemplateCalendar/model";
 import { BaseCalendar, TemplateOption } from "../../core/calendar/BaseCalendar";
 import { RootState } from "../rootReducer";
 
@@ -36,9 +36,9 @@ const templateCalendarTable = createSlice({
       const { birth, canWorkingholiday, options } = action.payload;
 
       // TODO: for private
-      const _calendar = createCalendar(
+      const _calendar = createPrivateCollegeCalendar(
         {
-          birth: new Date(birth),
+          birth: new Date(birth), // TODO: don't new here
           canWorkingholiday,
         },
         options
@@ -53,7 +53,7 @@ const templateCalendarTable = createSlice({
 
       const _calendar = createPublicCollegeCalendar(
         {
-          birth: new Date(birth),
+          birth: new Date(birth), // TODO: don't new here
           canWorkingholiday,
         },
         options
