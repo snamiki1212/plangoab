@@ -43,9 +43,13 @@ export const updateEvent = (
   params: Partial<Omit<BaseEvent, "id" | "storyId">>
 ): BaseEvent => {
   const title = params.title;
+  const start = params.start;
+  const end = params.end;
   const newEvent = Object.assign(
     { ...event },
-    title !== undefined && { title }
+    title !== undefined && { title },
+    start !== undefined && { start },
+    end !== undefined && { end }
   );
 
   return newEvent;

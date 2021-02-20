@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import {
   removeEventAction,
   updateEventAction,
+  updateEventByIdAction,
 } from "../redux/features/userCalendars";
 import { BaseEvent, updateEvent } from "../core/event/BaseEvent";
 
@@ -26,15 +27,23 @@ export const useEvent = () => {
   );
 
   const update = React.useCallback(
-    (idSet: IdSet, event: BaseEvent, data: any) => {
-      const newEvent = updateEvent(event, data);
+    (idSet: IdSet, event: BaseEvent, params: any) => {
+      const newEvent = updateEvent(event, params);
       dispatch(updateEventAction({ ...idSet, newEvent }));
+    },
+    [dispatch]
+  );
+
+  const updateById = React.useCallback(
+    (idSet: IdSet, params: Partial<BaseEvent>) => {
+      dispatch(updateEventByIdAction({ ...idSet, params }));
     },
     [dispatch]
   );
 
   return {
     remove,
-    update
+    update,
+    updateById
   } as const;
 };
