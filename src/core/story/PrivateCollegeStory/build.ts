@@ -10,9 +10,11 @@ import {
   NAME_OF_STORY_ID,
   NAME_OF_ORDER,
 } from "../../../constants/fullcalendar/settings";
+import { MONTH_OF_WORKING_HOLIDAY_APPLICATION_LIMIT } from "../../../constants/visa";
 import { uuid } from "../../../lib/uuid";
 import { PrivateCollegeStory } from "./model";
 import { createStoryName } from "../BaseStory";
+import { TemplateOption } from "../../calendar/BaseCalendar";
 import { BaseEvent } from "../../event/BaseEvent";
 import { BaseResource } from "../../resource/BaseResource";
 
@@ -20,23 +22,30 @@ const VISA_BACKGROUND_COLOR = "#8fbc8b";
 const STATUS_BACKGROUND_COLOR = "#ffd700";
 const WH_WARN_BACKGROUND_COLOR = "#e73758";
 
-export const build = ({
-  startDate,
-  calendarId,
-  canWorkingholiday,
-}: {
-  startDate: Date;
-  calendarId: string;
-  canWorkingholiday: boolean;
-}): PrivateCollegeStory => {
+export const build = (
+  {
+    startDate,
+    calendarId,
+    canWorkingholiday,
+  }: {
+    startDate: Date;
+    calendarId: string;
+    canWorkingholiday: boolean;
+  },
+  options: TemplateOption
+): PrivateCollegeStory => {
   const storyId = uuid();
   const name = createStoryName(startDate);
-  const [resources, events] = generateStory({
-    calendarId,
-    storyId,
-    startDate,
-    canWorkingholiday,
-  });
+
+  const [resources, events] = generateStory(
+    {
+      calendarId,
+      storyId,
+      startDate,
+      canWorkingholiday,
+    },
+    options
+  );
   return {
     id: storyId,
     calendarId,
@@ -46,20 +55,25 @@ export const build = ({
   };
 };
 
-const generateStory = ({
-  calendarId,
-  storyId,
-  startDate,
-  canWorkingholiday,
-}: {
-  calendarId: string;
-  storyId: string;
-  startDate: Date;
-  canWorkingholiday: boolean;
-}) => {
+const generateStory = (
+  {
+    calendarId,
+    storyId,
+    startDate,
+    canWorkingholiday,
+  }: {
+    calendarId: string;
+    storyId: string;
+    startDate: Date;
+    canWorkingholiday: boolean;
+  },
+  options: TemplateOption
+) => {
   let resources = [] as BaseResource[];
   let events = [] as BaseEvent[];
-  const withCoop = true; // TODO:
+
+  const { schoolPeriod, coopPeriod, workingholidayPeriod } = options;
+  const withCoop = coopPeriod > 0;
 
   if (withCoop) {
     // Coop Visa
@@ -76,7 +90,7 @@ const generateStory = ({
       resourceId: coopVisaResourceId,
       storyId,
       start: startDate.toISOString(),
-      end: addMonths(startDate, 12 * 2).toISOString(),
+      end: addMonths(startDate, coopPeriod).toISOString(),
       [NAME_OF_ORDER]: 1,
       backgroundColor: VISA_BACKGROUND_COLOR,
       extendedProps: {
@@ -101,7 +115,7 @@ const generateStory = ({
     resourceId: studyVisaResourceId,
     storyId,
     start: startDate.toISOString(),
-    end: addMonths(startDate, 12 * 2).toISOString(),
+    end: addMonths(startDate, schoolPeriod).toISOString(),
     [NAME_OF_ORDER]: 2,
     backgroundColor: VISA_BACKGROUND_COLOR,
     extendedProps: {
@@ -120,14 +134,17 @@ const generateStory = ({
       [NAME_OF_STORY_ID]: storyId,
       [NAME_OF_ORDER]: 3,
     });
-    const dateAsStartWorkingHoliday = addMonths(startDate, 12 * 2);
+    const dateAsStartWorkingHoliday = addMonths(startDate, schoolPeriod);
     events.push({
       // workingHolidayVisaEvent
       id: uuid(),
       resourceId: workingholidayResourceId,
       storyId,
       start: dateAsStartWorkingHoliday.toISOString(),
-      end: addMonths(dateAsStartWorkingHoliday, 12 * 1).toISOString(),
+      end: addMonths(
+        dateAsStartWorkingHoliday,
+        workingholidayPeriod
+      ).toISOString(),
       [NAME_OF_ORDER]: 3,
       backgroundColor: VISA_BACKGROUND_COLOR,
       extendedProps: {
@@ -141,7 +158,10 @@ const generateStory = ({
       id: uuid(),
       resourceId: workingholidayResourceId,
       storyId,
-      start: setMonth(addYears(dateAsStartWorkingHoliday, -1), 8).toISOString(),
+      start: setMonth(
+        addYears(dateAsStartWorkingHoliday, -1),
+        MONTH_OF_WORKING_HOLIDAY_APPLICATION_LIMIT
+      ).toISOString(),
       end: dateAsStartWorkingHoliday.toISOString(),
       [NAME_OF_ORDER]: 3,
       backgroundColor: WH_WARN_BACKGROUND_COLOR,
@@ -165,8 +185,11 @@ const generateStory = ({
       id: uuid(),
       resourceId: workerStatusResourceId,
       storyId,
-      start: addMonths(startDate, 12 * 1).toISOString(),
-      end: addMonths(startDate, 12 * 3).toISOString(),
+      start: addMonths(startDate, schoolPeriod).toISOString(),
+      end: addMonths(
+        startDate,
+        schoolPeriod + workingholidayPeriod
+      ).toISOString(),
       [NAME_OF_ORDER]: 5,
       eventBackgroundCoor: STATUS_BACKGROUND_COLOR,
       extendedProps: {
@@ -191,7 +214,7 @@ const generateStory = ({
     resourceId: studentStatusResourceId,
     storyId,
     start: startDate.toISOString(),
-    end: addMonths(startDate, 12 * 2).toISOString(),
+    end: addMonths(startDate, schoolPeriod).toISOString(),
     [NAME_OF_ORDER]: 4,
     eventBackgroundCoor: STATUS_BACKGROUND_COLOR,
     extendedProps: {
