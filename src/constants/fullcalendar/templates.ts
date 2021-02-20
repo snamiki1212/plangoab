@@ -15,8 +15,7 @@ export const RESOURCE_TEMPLATE__VISA_COOP = {
   eventBorderColor: DARK_BLUE,
 };
 
-export const RESOURCE_TEMPLATE__WORKING_HOLIDAY_COOP = {
-  // TODO: rename
+export const RESOURCE_TEMPLATE__VISA_WORKING_HOLIDAY = {
   [FIELD]: "Working Holiday VISA",
   eventBorderColor: DARK_BLUE,
 };

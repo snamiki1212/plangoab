@@ -2,7 +2,7 @@ import { addMonths, addYears, setMonth } from "date-fns";
 import {
   // resources
   RESOURCE_TEMPLATE__VISA_STUDY,
-  RESOURCE_TEMPLATE__WORKING_HOLIDAY_COOP,
+  RESOURCE_TEMPLATE__VISA_WORKING_HOLIDAY,
   RESOURCE_TEMPLATE__VISA_PGWP,
   RESOURCE_TEMPLATE__STUDENT_STATUS,
   RESOURCE_TEMPLATE__WORKER_STATUS,
@@ -145,7 +145,7 @@ const generateStory = (
     const workingholidayResourceId = uuid();
     resources.push(
       initResource({
-        ...RESOURCE_TEMPLATE__WORKING_HOLIDAY_COOP,
+        ...RESOURCE_TEMPLATE__VISA_WORKING_HOLIDAY,
         id: workingholidayResourceId,
         calendarId,
         [NAME_OF_STORY_ID]: storyId,
