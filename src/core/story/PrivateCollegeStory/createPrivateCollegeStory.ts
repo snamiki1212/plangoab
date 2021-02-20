@@ -23,7 +23,7 @@ const VISA_BACKGROUND_COLOR = "#8fbc8b";
 const STATUS_BACKGROUND_COLOR = "#ffd700";
 const WH_WARN_BACKGROUND_COLOR = "#e73758";
 
-export const build = (
+export const createPrivateCollegeStory = (
   {
     startDate,
     calendarId,

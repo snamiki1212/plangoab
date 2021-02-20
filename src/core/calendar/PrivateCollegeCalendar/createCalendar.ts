@@ -3,7 +3,7 @@ import { PrivateCollegeCalendar, calendarId } from "./model";
 import { AGE_OF_START_STORY } from "../../../constants/fullcalendar/options";
 import { WORKING_HOLIDAY_APPLICATION_LIMITATION_AGE } from "../../../constants/visa";
 import { range } from "../../../lib/util";
-import { build } from "../../story/PrivateCollegeStory/build";
+import { createPrivateCollegeStory } from "../../story/PrivateCollegeStory/createPrivateCollegeStory";
 import { BaseStory } from "../../story/BaseStory";
 import { TemplateOption } from "../BaseCalendar";
 
@@ -44,7 +44,7 @@ const generateStoryList = (
     })
     .map((startDate) => {
       const params = { startDate, calendarId, canWorkingholiday };
-      return build(params, options);
+      return createPrivateCollegeStory(params, options);
     });
 };
 
