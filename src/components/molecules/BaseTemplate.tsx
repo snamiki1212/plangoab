@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { BaseCalendarContainer } from "../atoms/BaseCalendarContainer";
 import { useResourceGroupLabelContentInTemplateCalendar } from "../../hooks/useResourceGroupLabelContentInTemplateCalendar";
-import { FIELD1, FIELD2 } from "../../constants/fullcalendar/settings";
+import { FIELD } from "../../constants/fullcalendar/settings";
 import { addStoryAction } from "../../redux/features/userCalendars";
 import { BaseStory } from "../../core/story/BaseStory";
 
@@ -13,12 +13,8 @@ const ableConfis = {
 
 const resourceAreaColumns = [
   {
-    field: FIELD1,
-    headerContent: "Field1",
-  },
-  {
-    field: FIELD2,
-    headerContent: "Field2",
+    field: FIELD,
+    headerContent: "Field",
   },
 ];
 

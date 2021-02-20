@@ -1,4 +1,4 @@
-import { NAME_OF_STORY_ID, NAME_OF_ORDER, FIELD1, FIELD2 } from "./settings";
+import { NAME_OF_STORY_ID, NAME_OF_ORDER, FIELD } from "./settings";
 
 export const MY_TIME_LINE_NAME = "MY_TIME_LINE_NAME";
 
@@ -43,12 +43,8 @@ const styleConfigs = {
 
 const resourceAreaColumns = [
   {
-    field: FIELD1,
-    headerContent: "Field1",
-  },
-  {
-    field: FIELD2,
-    headerContent: "Field2",
+    field: FIELD,
+    headerContent: "Field",
   },
 ];
 
