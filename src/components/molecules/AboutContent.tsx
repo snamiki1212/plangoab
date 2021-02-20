@@ -1,15 +1,39 @@
 import React from "react";
+import styled from "styled-components";
 import * as AuthorInfo from "../../constants/meta";
 
 export function AboutContent() {
   return (
-    <div>
+    <Container>
       <div>
         <h2>About</h2>
         <p>
-          A web calendar for a person going abroad, generating a suitable
-          schedule and customizable. Using React, Redux(Redux Toolkit), and
-          Fullcalendar.
+          A web calendar for a person going abroad. Generating a suitable
+          schedule and customizable.
+        </p>
+      </div>
+
+      <div>
+        <h2>How to use</h2>
+        <p>
+          There are three sections.
+          <br />
+          <li>1. My calendar</li>
+          <li>2. Profile + Template Options</li>
+          <li>3. Template calendars</li>
+        </p>
+        <p>
+          <p>Instruction</p>
+          <li>
+            First, pick appropriate plans from a template calendar. Choose tab
+            and story in a template calendar and clicking "Copy to my calendar"
+            button.
+          </li>
+          <li>
+            And then stories are copied from a template calendar into my
+            calendar.
+          </li>
+          <li>Edit my story and events in my calendar.</li>
         </p>
       </div>
 
@@ -38,6 +62,11 @@ export function AboutContent() {
           <a href={AuthorInfo.THIS_GITHUB_URL}>GitHub</a>.
         </span>
       </div>
-    </div>
+    </Container>
   );
 }
+
+const Container = styled.div`
+  display: grid;
+  gap: 2rem;
+`;

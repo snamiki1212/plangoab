@@ -7,9 +7,9 @@ export const AGE_OF_START_STORY = 21;
 const slotLabelFormat = [{ year: "numeric" }, { month: "numeric" }];
 
 const headerToolbar = {
-  left: "today prev,next",
+  left: "",
   center: "title",
-  right: `${MY_TIME_LINE_NAME},listMonth`,
+  right: "prev,next",
 } as const;
 
 const initialView = { initialView: MY_TIME_LINE_NAME } as const;
