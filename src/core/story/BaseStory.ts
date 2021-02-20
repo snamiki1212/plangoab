@@ -60,5 +60,19 @@ export const updateStory = (story: BaseStory, params: Partial<BaseStory>) => {
     }, [] as BaseResource[]);
     story = { ...story, resources: newResources };
   }
+  if (!!params.calendarId) {
+    story = {
+      ...story,
+      calendarId: params.calendarId,
+      events: story.events.map((event) => ({
+        ...event,
+        calendarId: params.calendarId,
+      })),
+      resources: story.resources.map((resource) => ({
+        ...resource,
+        calendarId: params.calendarId as string,
+      })),
+    };
+  }
   return story;
 };

@@ -19,8 +19,9 @@ const resourceAreaColumns = [
 ];
 
 export function BaseTemplate(props: any) {
-  const dispatch = useDispatch();
 
+  // TODO: move to custom hooks
+  const dispatch = useDispatch();
   const createClickHandel = React.useCallback(
     ({ story, calendarId }: { story: BaseStory; calendarId: string }) => () => {
       if (!window.confirm("Do you copy this story to My Calendar?")) return;
