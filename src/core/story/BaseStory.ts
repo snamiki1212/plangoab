@@ -48,7 +48,7 @@ export const updateStory = (story: BaseStory, params: Partial<BaseStory>) => {
 
       const shouldCreate = idx === -1;
       if (shouldCreate) {
-        // TODO: create case
+        // NOTE: no create case
         console.warn("not upsert feature on story yet");
         return prev;
       }
