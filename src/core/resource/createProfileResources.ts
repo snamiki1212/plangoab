@@ -1,7 +1,6 @@
 import { DARK_BLUE } from "../../constants/fullcalendar/templates";
 import {
-  FIELD1,
-  FIELD2,
+  FIELD,
   NAME_OF_STORY_ID,
   NAME_OF_ORDER,
 } from "../../constants/fullcalendar/settings";
@@ -21,8 +20,7 @@ export const createProfileResources = ({
 }): BaseResource[] => [
   {
     id: RESOURCE_ID__SHARED__AGE,
-    [FIELD1]: "",
-    [FIELD2]: "Age",
+    [FIELD]: "Age",
     [NAME_OF_STORY_ID]: storyId,
     [NAME_OF_ORDER]: 0,
     calendarId,
@@ -30,8 +28,7 @@ export const createProfileResources = ({
   },
   {
     id: RESOURCE_ID__SHARED__LIMIT,
-    [FIELD1]: "",
-    [FIELD2]: "Working Holiday",
+    [FIELD]: "Working Holiday",
     [NAME_OF_STORY_ID]: storyId,
     [NAME_OF_ORDER]: 1,
     calendarId,

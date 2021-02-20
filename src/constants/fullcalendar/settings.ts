@@ -1,6 +1,5 @@
 // field name
-export const FIELD1 = "FIELD1";
-export const FIELD2 = "FIELD2";
+export const FIELD = "FIELD";
 
 // keys
 export const NAME_OF_STORY_ID = "storyId";

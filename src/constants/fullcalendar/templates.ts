@@ -1,36 +1,28 @@
-import { FIELD1, FIELD2 } from "./settings";
+import { FIELD } from "./settings";
 
 export const DARK_BLUE = "#00008b";
 
-const FIELD__H1__VISA = "VISA";
-const FIELD__H1__STATUS = "STATUS";
-
 export const RESOURCE_TEMPLATE__VISA_STUDY = {
-  [FIELD1]: FIELD__H1__VISA,
-  [FIELD2]: "Study VISA",
+  [FIELD]: "Study VISA",
   eventBorderColor: DARK_BLUE,
 };
 
 export const RESOURCE_TEMPLATE__VISA_COOP = {
-  [FIELD1]: FIELD__H1__VISA,
-  [FIELD2]: "Co-op VISA",
+  [FIELD]: "Co-op VISA",
   eventBorderColor: DARK_BLUE,
 };
 
 export const RESOURCE_TEMPLATE__WORKING_HOLIDAY_COOP = {
-  [FIELD1]: FIELD__H1__VISA,
-  [FIELD2]: "Working Holiday VISA",
+  [FIELD]: "Working Holiday VISA",
   eventBorderColor: DARK_BLUE,
 };
 
 export const RESOURCE_TEMPLATE__STUDENT_STATUS = {
-  [FIELD1]: FIELD__H1__STATUS,
-  [FIELD2]: "Student",
+  [FIELD]: "Student",
   eventBorderColor: DARK_BLUE,
 };
 
 export const RESOURCE_TEMPLATE__WORKER_STATUS = {
-  [FIELD1]: FIELD__H1__STATUS,
-  [FIELD2]: "Worker",
+  [FIELD]: "Worker",
   eventBorderColor: DARK_BLUE,
 };
