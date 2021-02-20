@@ -179,7 +179,6 @@ const generateStory = (
         id: uuid(),
         resourceId: workingholidayResourceId,
         storyId,
-        title: "Ready for Working Holiday VISA",
         start: convertIsoToYearAndMonth(
           setMonth(
             addYears(dateAsStartWorkingHoliday, -1),
