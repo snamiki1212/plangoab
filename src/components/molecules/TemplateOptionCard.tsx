@@ -45,7 +45,7 @@ export function TemplateOptionCard() {
   return (
     <Card>
       <CardContent>
-        <h2>Template Options(TODO: not working yet)</h2>
+        <h2>Template Options</h2>
         <InnerContainer>
           <PeriodContainer>
             <TextField
