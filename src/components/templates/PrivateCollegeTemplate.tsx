@@ -2,17 +2,12 @@ import React from "react";
 import { BaseTemplate } from "../molecules/BaseTemplate";
 import { usePrivateCollegeCalendar } from "../../hooks/usePrivateCollegeCalendar";
 import { useUser } from "../../hooks/useUser";
+import { useTemplateOptions } from "../../hooks/useTemplateOptions";
 
 export function PrivateCollegeTemplate() {
   const { birth, canWorkingholiday } = useUser();
   const { resources, events, generate } = usePrivateCollegeCalendar();
-
-  // TODO: receive through arg
-  const options = React.useMemo(() => ({
-    schoolPeriod: 12 * 2,
-    coopPeriod: 12 * 2,
-    workingholidayPeriod: 12,
-  }), []);
+  const { options } = useTemplateOptions();
 
   React.useEffect(() => {
     generate({ birth, canWorkingholiday, options });
