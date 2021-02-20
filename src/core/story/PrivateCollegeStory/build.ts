@@ -17,6 +17,7 @@ import { createStoryName } from "../BaseStory";
 import { TemplateOption } from "../../calendar/BaseCalendar";
 import { BaseEvent } from "../../event/BaseEvent";
 import { BaseResource } from "../../resource/BaseResource";
+import { convertIsoToYearAndMonth } from "../../../lib/date";
 
 const VISA_BACKGROUND_COLOR = "#8fbc8b";
 const STATUS_BACKGROUND_COLOR = "#ffd700";
@@ -89,8 +90,11 @@ const generateStory = (
       id: uuid(),
       resourceId: coopVisaResourceId,
       storyId,
-      start: startDate.toISOString(),
-      end: addMonths(startDate, coopPeriod).toISOString(),
+      title: "Co-op VISA",
+      start: convertIsoToYearAndMonth(startDate.toISOString()),
+      end: convertIsoToYearAndMonth(
+        addMonths(startDate, coopPeriod).toISOString()
+      ),
       [NAME_OF_ORDER]: 1,
       backgroundColor: VISA_BACKGROUND_COLOR,
       extendedProps: {
@@ -114,8 +118,11 @@ const generateStory = (
     id: uuid(),
     resourceId: studyVisaResourceId,
     storyId,
-    start: startDate.toISOString(),
-    end: addMonths(startDate, schoolPeriod).toISOString(),
+    title: "Study VISA",
+    start: convertIsoToYearAndMonth(startDate.toISOString()),
+    end: convertIsoToYearAndMonth(
+      addMonths(startDate, schoolPeriod).toISOString()
+    ),
     [NAME_OF_ORDER]: 2,
     backgroundColor: VISA_BACKGROUND_COLOR,
     extendedProps: {
@@ -136,15 +143,14 @@ const generateStory = (
     });
     const dateAsStartWorkingHoliday = addMonths(startDate, schoolPeriod);
     events.push({
-      // workingHolidayVisaEvent
       id: uuid(),
       resourceId: workingholidayResourceId,
       storyId,
-      start: dateAsStartWorkingHoliday.toISOString(),
-      end: addMonths(
-        dateAsStartWorkingHoliday,
-        workingholidayPeriod
-      ).toISOString(),
+      title: "Working Holiday VISA",
+      start: convertIsoToYearAndMonth(dateAsStartWorkingHoliday.toISOString()),
+      end: convertIsoToYearAndMonth(
+        addMonths(dateAsStartWorkingHoliday, workingholidayPeriod).toISOString()
+      ),
       [NAME_OF_ORDER]: 3,
       backgroundColor: VISA_BACKGROUND_COLOR,
       extendedProps: {
@@ -154,15 +160,17 @@ const generateStory = (
       },
     });
     events.push({
-      // preWorkingHolidayVisaEvent
       id: uuid(),
       resourceId: workingholidayResourceId,
       storyId,
-      start: setMonth(
-        addYears(dateAsStartWorkingHoliday, -1),
-        MONTH_OF_WORKING_HOLIDAY_APPLICATION_LIMIT
-      ).toISOString(),
-      end: dateAsStartWorkingHoliday.toISOString(),
+      title: "Ready for Working Holiday VISA",
+      start: convertIsoToYearAndMonth(
+        setMonth(
+          addYears(dateAsStartWorkingHoliday, -1),
+          MONTH_OF_WORKING_HOLIDAY_APPLICATION_LIMIT
+        ).toISOString()
+      ),
+      end: convertIsoToYearAndMonth(dateAsStartWorkingHoliday.toISOString()),
       [NAME_OF_ORDER]: 3,
       backgroundColor: WH_WARN_BACKGROUND_COLOR,
       extendedProps: {
@@ -185,11 +193,13 @@ const generateStory = (
       id: uuid(),
       resourceId: workerStatusResourceId,
       storyId,
-      start: addMonths(startDate, schoolPeriod).toISOString(),
-      end: addMonths(
-        startDate,
-        schoolPeriod + workingholidayPeriod
-      ).toISOString(),
+      title: "Status: Worker",
+      start: convertIsoToYearAndMonth(
+        addMonths(startDate, schoolPeriod).toISOString()
+      ),
+      end: convertIsoToYearAndMonth(
+        addMonths(startDate, schoolPeriod + workingholidayPeriod).toISOString()
+      ),
       [NAME_OF_ORDER]: 5,
       eventBackgroundCoor: STATUS_BACKGROUND_COLOR,
       extendedProps: {
@@ -213,8 +223,11 @@ const generateStory = (
     id: uuid(),
     resourceId: studentStatusResourceId,
     storyId,
-    start: startDate.toISOString(),
-    end: addMonths(startDate, schoolPeriod).toISOString(),
+    title: "Status: Student",
+    start: convertIsoToYearAndMonth(startDate.toISOString()),
+    end: convertIsoToYearAndMonth(
+      addMonths(startDate, schoolPeriod).toISOString()
+    ),
     [NAME_OF_ORDER]: 4,
     eventBackgroundCoor: STATUS_BACKGROUND_COLOR,
     extendedProps: {
