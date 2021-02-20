@@ -36,7 +36,7 @@ export function TemplateOptionCard() {
       const month = parseInt(_event.target.value);
       const newMonthsOfStartSchool = monthsOfStartSchool.includes(month)
         ? monthsOfStartSchool.filter((_month) => _month === month)
-        : [...monthsOfStartSchool, month];
+        : [...monthsOfStartSchool, month].sort((a, b) => a - b);
       updateOption({ monthsOfStartSchool: newMonthsOfStartSchool });
     },
     [updateOption, monthsOfStartSchool]
