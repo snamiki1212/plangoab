@@ -1,4 +1,4 @@
-import { addYears, setMonth } from "date-fns";
+import { addYears, setMonth, compareAsc } from "date-fns";
 import { PrivateCollegeCalendar, calendarId } from "./model";
 import { AGE_OF_START_STORY } from "../../../constants/fullcalendar/options";
 import { WORKING_HOLIDAY_APPLICATION_LIMITATION_AGE } from "../../../constants/visa";
@@ -7,10 +7,13 @@ import { build } from "../../story/PrivateCollegeStory/build";
 import { BaseStory } from "../../story/BaseStory";
 import { TemplateOption } from "../BaseCalendar";
 
-const addingNumbers = range(
+const scopeAges = range(
   AGE_OF_START_STORY,
   WORKING_HOLIDAY_APPLICATION_LIMITATION_AGE
 );
+
+const shouldViewPast = false;
+const now = new Date();
 
 const generateStoryList = (
   {
@@ -26,8 +29,13 @@ const generateStoryList = (
 ): BaseStory[] => {
   const monthsOfStartSchool = options.monthsOfStartSchool;
 
-  return addingNumbers
+  return scopeAges
     .map((num) => addYears(birth, num))
+    .filter((date) => {
+      if (shouldViewPast) return true;
+      const isPastPeriod = compareAsc(now, date) !== -1;
+      return !isPastPeriod;
+    })
     .flatMap((startDate) => {
       const startDateListInYear = monthsOfStartSchool.map((month) =>
         setMonth(startDate, month - 1)
