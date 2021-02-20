@@ -42,7 +42,7 @@ export const createPrivateCollegeStory = (
   const storyId = uuid();
   const name = createStoryName(startDate);
 
-  const [resources, events] = generateStory(
+  const [resources, events] = doCreateStory(
     {
       calendarId,
       storyId,
@@ -60,7 +60,7 @@ export const createPrivateCollegeStory = (
   };
 };
 
-const generateStory = (
+const doCreateStory = (
   {
     calendarId,
     storyId,
