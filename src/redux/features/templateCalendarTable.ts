@@ -7,7 +7,11 @@ import {
   PRIVATE_COLLEGE_CALENDAR_ID,
   PUBLIC_COLLEGE_CALENDAR_ID,
 } from "../../core/calendar/TemplateCalendar/model";
-import { BaseCalendar, TemplateOption } from "../../core/calendar/BaseCalendar";
+import { TemplateOption } from "../../core/calendar/BaseCalendar";
+import {
+  PrivateCollegeCalendar,
+  PublicCollegeCalendar,
+} from "../../core/calendar/TemplateCalendar/model";
 import { RootState } from "../rootReducer";
 
 type UpsertPrivateCollegeStoriesPayload = {
@@ -25,8 +29,12 @@ type UpsertPublicCollegeStoriesPayload = {
 const templateCalendarTable = createSlice({
   name: "templateCalendarTable",
   initialState: {
-    [PRIVATE_COLLEGE_CALENDAR_ID]: undefined as BaseCalendar | undefined, // TODO: not base calendar
-    [PUBLIC_COLLEGE_CALENDAR_ID]: undefined as BaseCalendar | undefined, // TODO: not base calendar
+    [PRIVATE_COLLEGE_CALENDAR_ID]: undefined as
+      | PrivateCollegeCalendar
+      | undefined,
+    [PUBLIC_COLLEGE_CALENDAR_ID]: undefined as
+      | PublicCollegeCalendar
+      | undefined,
   },
   reducers: {
     upsertPrivateCollegeStories(
@@ -35,7 +43,6 @@ const templateCalendarTable = createSlice({
     ) {
       const { birth, canWorkingholiday, options } = action.payload;
 
-      // TODO: for private
       const _calendar = createPrivateCollegeCalendar(
         {
           birth: new Date(birth), // TODO: don't new here
