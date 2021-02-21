@@ -1,8 +1,9 @@
-import { configureStore } from "@reduxjs/toolkit";
-import rootReducer from "./rootReducer";
+import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
+import { persistedReducer } from "./store/persistedReducer";
 
 const store = configureStore({
-  reducer: rootReducer,
+  reducer: persistedReducer,
+  middleware: getDefaultMiddleware({ serializableCheck: false }),
 });
 
 if (process.env.NODE_ENV === "development" && module.hot) {
