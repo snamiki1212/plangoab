@@ -18,6 +18,7 @@ export const initEvent = (props?: Partial<BaseEvent>): BaseEvent => {
     title: _title,
     start: _start,
     end: _end,
+    ...rest
   } = props ?? {};
 
   const storyId = _storyId ?? uuid();
@@ -38,6 +39,7 @@ export const initEvent = (props?: Partial<BaseEvent>): BaseEvent => {
       storyId,
       resourceId,
     },
+    ...rest,
   };
 };
 

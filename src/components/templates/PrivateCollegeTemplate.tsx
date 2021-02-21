@@ -9,6 +9,7 @@ export function PrivateCollegeTemplate() {
   const { resources, events, generate } = usePrivateCollegeCalendar();
   const { options } = useTemplateOptions();
 
+  // TODO: prevent re-rendering when to select tab again
   React.useEffect(() => {
     generate({ birth, canWorkingholiday, options });
   }, [generate, birth, canWorkingholiday, options]);
