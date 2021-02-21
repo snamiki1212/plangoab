@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { BaseCalendarContainer } from "../atoms/BaseCalendarContainer";
 import { useResourceGroupLabelContentInTemplateCalendar } from "../../hooks/useResourceGroupLabelContentInTemplateCalendar";
-import { FIELD1, FIELD2 } from "../../constants/fullcalendar/settings";
+import { FIELD } from "../../constants/fullcalendar/settings";
 import { addStoryAction } from "../../redux/features/userCalendars";
 import { BaseStory } from "../../core/story/BaseStory";
 
@@ -13,18 +13,15 @@ const ableConfis = {
 
 const resourceAreaColumns = [
   {
-    field: FIELD1,
-    headerContent: "Field1",
-  },
-  {
-    field: FIELD2,
-    headerContent: "Field2",
+    field: FIELD,
+    headerContent: "Field",
   },
 ];
 
 export function BaseTemplate(props: any) {
-  const dispatch = useDispatch();
 
+  // TODO: move to custom hooks
+  const dispatch = useDispatch();
   const createClickHandel = React.useCallback(
     ({ story, calendarId }: { story: BaseStory; calendarId: string }) => () => {
       if (!window.confirm("Do you copy this story to My Calendar?")) return;

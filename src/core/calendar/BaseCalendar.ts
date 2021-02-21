@@ -16,3 +16,11 @@ export const removeEvent = (
   });
   return { ...obj, stories: newStories };
 };
+
+export type TemplateOption = {
+  schoolPeriod: number;
+  coopPeriod: number;
+  pgwpPeriod: number;
+  workingholidayPeriod: number;
+  monthsOfStartSchool: number[];
+};

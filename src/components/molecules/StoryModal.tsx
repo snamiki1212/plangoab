@@ -12,7 +12,7 @@ import TextField from "@material-ui/core/TextField";
 import { selectStoryModal, selectStory } from "../../redux/ui/storyModal";
 import { useStory } from "../../hooks/useStory";
 import { useResource } from "../../hooks/useResource";
-import { FIELD1, FIELD2 } from "../../constants/fullcalendar/settings";
+import { FIELD } from "../../constants/fullcalendar/settings";
 
 type Props = {
   isOpen: boolean;
@@ -108,16 +108,10 @@ export function StoryModal({ isOpen, onClose }: Props) {
                     value={resource.id}
                   />
                   <TextField
-                    defaultValue={resource[FIELD1]}
+                    defaultValue={resource[FIELD]}
                     inputRef={register}
-                    name={`${fieldName}.${FIELD1}`}
-                    label="Field1"
-                  />
-                  <TextField
-                    defaultValue={resource[FIELD2]}
-                    inputRef={register}
-                    name={`${fieldName}.${FIELD2}`}
-                    label="Field2"
+                    name={`${fieldName}.${FIELD}`}
+                    label="Field"
                   />
                   <Button
                     onClick={handleRemoveResource(resource.id)}

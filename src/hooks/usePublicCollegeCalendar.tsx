@@ -4,30 +4,24 @@ import { BaseEvent } from "../core/event/BaseEvent";
 import { BaseResource } from "../core/resource/BaseResource";
 import { TemplateOption } from "../core/calendar/BaseCalendar";
 import {
-  upsertPrivateCollegeStoriesAction,
-  selectPrivateCollegeCalendar,
+  upsertPublicCollegeStoriesAction,
+  selectPublicCollegeCalendar,
 } from "../redux/features/templateCalendarTable";
 
-export const usePrivateCollegeCalendar = () => {
+export const usePublicCollegeCalendar = () => {
   const dispatch = useDispatch();
   const generate = React.useCallback(
-    ({
-      birth,
-      canWorkingholiday,
-      options,
-    }: {
+    (args: {
       birth: string;
       canWorkingholiday: boolean;
       options: TemplateOption;
     }) => {
-      dispatch(
-        upsertPrivateCollegeStoriesAction({ birth, canWorkingholiday, options })
-      );
+      dispatch(upsertPublicCollegeStoriesAction(args));
     },
     [dispatch]
   );
 
-  const calendar = useSelector(selectPrivateCollegeCalendar);
+  const calendar = useSelector(selectPublicCollegeCalendar);
 
   const stories = React.useMemo(() => calendar?.stories ?? [], [calendar]);
 

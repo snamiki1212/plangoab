@@ -3,69 +3,111 @@ import styled from "styled-components";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import TextField from "@material-ui/core/TextField";
-
-const MAX_PERIOD_MONTH = 12 * 5;
+import InputAdornment from "@material-ui/core/InputAdornment";
+import Checkbox from "@material-ui/core/Checkbox";
+import { useTemplateOptions } from "../../hooks/useTemplateOptions";
 
 export function TemplateOptionCard() {
-  const [schoolPeriod, setSchoolPeriod] = React.useState(12 * 2);
-  const [coopPeriod, setCoopPeriod] = React.useState(12);
+  const { update: updateOption, options } = useTemplateOptions();
+  const { schoolPeriod, coopPeriod, monthsOfStartSchool, pgwpPeriod } = options;
 
-  const handleChangeSchoolPeriod = React.useCallback((e) => {
-    const value = (e.target.value);
-    const maybeNum = value === "" ? 0 : parseInt(value)
-    if (!Number.isInteger(maybeNum)) return;
-    setSchoolPeriod(maybeNum);
-  }, []);
+  const handleChangeSchoolPeriod = React.useCallback(
+    (_event) => {
+      const value = _event.target.value;
+      const maybeNum = value === "" ? 0 : parseInt(value);
+      if (!Number.isInteger(maybeNum)) return;
+      updateOption({ schoolPeriod: maybeNum });
+    },
+    [updateOption]
+  );
 
-  const handleChangeCoopPeriod = React.useCallback((e) => {
-    const value = (e.target.value);
-    const maybeNum = value === "" ? 0 : parseInt(value)
-    if (!Number.isInteger(maybeNum)) return;
-    setCoopPeriod(maybeNum);
-  }, []);
+  const handleChangeCoopPeriod = React.useCallback(
+    (_event) => {
+      const value = _event.target.value;
+      const maybeNum = value === "" ? 0 : parseInt(value);
+      if (!Number.isInteger(maybeNum)) return;
+      updateOption({ coopPeriod: maybeNum });
+    },
+    [updateOption]
+  );
+
+  const handleChangePgwpPeriod = React.useCallback(
+    (_event) => {
+      const value = _event.target.value;
+      const maybeNum = value === "" ? 0 : parseInt(value);
+      if (!Number.isInteger(maybeNum)) return;
+      updateOption({ pgwpPeriod: maybeNum });
+    },
+    [updateOption]
+  );
+
+  const handleCheck = React.useCallback(
+    (_event) => {
+      const month = parseInt(_event.target.value);
+      const newMonthsOfStartSchool = monthsOfStartSchool.includes(month)
+        ? monthsOfStartSchool.filter((_month) => _month !== month)
+        : [...monthsOfStartSchool, month].sort((a, b) => a - b);
+      updateOption({ monthsOfStartSchool: newMonthsOfStartSchool });
+    },
+    [updateOption, monthsOfStartSchool]
+  );
 
   return (
     <Card>
       <CardContent>
-        <h2>Template Options(TODO: not working yet)</h2>
+        <h2>Template Options</h2>
         <InnerContainer>
-          {/* School Period */}
-          <label>School Period(Month)</label>
-          <TextField value={schoolPeriod} onChange={handleChangeSchoolPeriod} />
-          <input
-            type="range"
-            min="0"
-            max={MAX_PERIOD_MONTH}
-            id="schoolPeriod"
-            onChange={handleChangeSchoolPeriod}
-            value={schoolPeriod}
-          />
+          <PeriodContainer>
+            <TextField
+              value={schoolPeriod}
+              onChange={handleChangeSchoolPeriod}
+              label="School Period"
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">Month</InputAdornment>
+                ),
+              }}
+            />
+            <TextField
+              value={coopPeriod}
+              onChange={handleChangeCoopPeriod}
+              label="Co-op Period"
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">Month</InputAdornment>
+                ),
+              }}
+            />
+            <TextField
+              value={pgwpPeriod}
+              onChange={handleChangePgwpPeriod}
+              label="PWGP Period"
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">Month</InputAdornment>
+                ),
+              }}
+            />
+          </PeriodContainer>
 
-          {/* Coop Period */}
-          <label>Co-op Period(Month)</label>
-          <TextField value={coopPeriod} onChange={handleChangeCoopPeriod} />
-          <input
-            type="range"
-            min="0"
-            max={MAX_PERIOD_MONTH}
-            id="schoolPeriod"
-            onChange={handleChangeCoopPeriod}
-            value={coopPeriod}
-          />
-
-          {/* School start from */}
-          <label>School start from (Month)</label>
-          <span>{/* EMPTY */}</span>
           <div>
-            {Array.from({ length: 12 }).map((_, idx) => {
-              const month = idx + 1;
-              return (
-                <CheckboxListItem key={month}>
-                  <label>{month}</label>
-                  <input type="checkbox" value={month} />
-                </CheckboxListItem>
-              );
-            })}
+            <label>School start from (Month)</label>
+            <div>
+              {Array.from({ length: 12 }).map((_, idx) => {
+                const month = idx + 1;
+                const isChecked = monthsOfStartSchool.includes(month);
+                return (
+                  <CheckboxListItem key={month}>
+                    <label>{month}</label>
+                    <Checkbox
+                      value={month}
+                      checked={isChecked}
+                      onChange={handleCheck}
+                    />
+                  </CheckboxListItem>
+                );
+              })}
+            </div>
           </div>
         </InnerContainer>
       </CardContent>
@@ -78,10 +120,10 @@ const CheckboxListItem = styled.div`
   margin-right: 1rem;
 `;
 
-const InnerContainer = styled.div`
+const PeriodContainer = styled.div`
   display: grid;
-  gap: 1rem;
-  padding: 0.3rem;
-  grid-template-columns: auto 2rem 1fr;
-  grid-template-rows: auto;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 1rem;
 `;
+const InnerContainer = styled.div``;

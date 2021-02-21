@@ -1,6 +1,5 @@
 // field name
-export const FIELD1 = "FIELD1";
-export const FIELD2 = "FIELD2";
+export const FIELD = "FIELD";
 
 // keys
 export const NAME_OF_STORY_ID = "storyId";
@@ -9,7 +8,8 @@ export const RESOURCE_NAME_KEY = "RESOURCE_NAME_KEY";
 
 // calendar ID
 export const MY_CALENDAR_ID = "MY_CALENDAR_ID";
-export const COMMUNITY_COLLEGE_CALENDAR_ID = "COMMUNITY_COLLEGE";
+export const PRIVATE_COLLEGE_CALENDAR_ID = "PRIVATE_COLLEGE_CALENDAR_ID";
+export const PUBLIC_COLLEGE_CALENDAR_ID = "PUBLIC_COLLEGE_CALENDAR_ID";
 
 // story ID
 export const PROFILE_ID = "PROFILE_ID";

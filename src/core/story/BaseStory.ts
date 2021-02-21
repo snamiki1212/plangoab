@@ -48,7 +48,7 @@ export const updateStory = (story: BaseStory, params: Partial<BaseStory>) => {
 
       const shouldCreate = idx === -1;
       if (shouldCreate) {
-        // TODO: create case
+        // NOTE: no create case
         console.warn("not upsert feature on story yet");
         return prev;
       }
@@ -59,6 +59,20 @@ export const updateStory = (story: BaseStory, params: Partial<BaseStory>) => {
       return [...prev, newResource];
     }, [] as BaseResource[]);
     story = { ...story, resources: newResources };
+  }
+  if (!!params.calendarId) {
+    story = {
+      ...story,
+      calendarId: params.calendarId,
+      events: story.events.map((event) => ({
+        ...event,
+        calendarId: params.calendarId,
+      })),
+      resources: story.resources.map((resource) => ({
+        ...resource,
+        calendarId: params.calendarId as string,
+      })),
+    };
   }
   return story;
 };

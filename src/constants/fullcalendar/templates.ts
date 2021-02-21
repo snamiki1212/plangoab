@@ -1,36 +1,71 @@
-import { FIELD1, FIELD2 } from "./settings";
+import { FIELD } from "./settings";
 
 export const DARK_BLUE = "#00008b";
-
-const FIELD__H1__VISA = "VISA";
-const FIELD__H1__STATUS = "STATUS";
+const GREEN = "#8fbc8b";
+const YELLOW = "#ffd700";
+const RED = "#e73758";
 
 export const RESOURCE_TEMPLATE__VISA_STUDY = {
-  [FIELD1]: FIELD__H1__VISA,
-  [FIELD2]: "Study VISA",
+  [FIELD]: "Study VISA",
   eventBorderColor: DARK_BLUE,
 };
 
 export const RESOURCE_TEMPLATE__VISA_COOP = {
-  [FIELD1]: FIELD__H1__VISA,
-  [FIELD2]: "Co-op VISA",
+  [FIELD]: "Co-op VISA",
   eventBorderColor: DARK_BLUE,
 };
 
-export const RESOURCE_TEMPLATE__WORKING_HOLIDAY_COOP = {
-  [FIELD1]: FIELD__H1__VISA,
-  [FIELD2]: "Working Holiday VISA",
+export const RESOURCE_TEMPLATE__VISA_WORKING_HOLIDAY = {
+  [FIELD]: "Working Holiday VISA",
+  eventBorderColor: DARK_BLUE,
+};
+
+export const RESOURCE_TEMPLATE__VISA_PGWP = {
+  [FIELD]: "PGWP VISA",
   eventBorderColor: DARK_BLUE,
 };
 
 export const RESOURCE_TEMPLATE__STUDENT_STATUS = {
-  [FIELD1]: FIELD__H1__STATUS,
-  [FIELD2]: "Student",
+  [FIELD]: "Student",
   eventBorderColor: DARK_BLUE,
 };
 
 export const RESOURCE_TEMPLATE__WORKER_STATUS = {
-  [FIELD1]: FIELD__H1__STATUS,
-  [FIELD2]: "Worker",
+  [FIELD]: "Worker",
   eventBorderColor: DARK_BLUE,
+};
+
+export const EVENT_TEMPLATE__VISA_COOP = {
+  title: "Co-op VISA",
+  backgroundColor: GREEN,
+};
+
+export const EVENT_TEMPLATE__VISA_STUDY = {
+  title: "Study VISA",
+  backgroundColor: GREEN,
+};
+
+export const EVENT_TEMPLATE__VISA_PGWP = {
+  title: "PGWP VISA",
+  backgroundColor: GREEN,
+};
+
+export const EVENT_TEMPLATE__VISA_WORKING_HOLIDAY = {
+  title: "Working Holiday VISA",
+  backgroundColor: GREEN,
+};
+
+export const EVENT_TEMPLATE__VISA_READY_WORKING_HOLIDAY = {
+  title: "Ready for Working Holiday VISA",
+  backgroundColor: RED,
+};
+
+export const EVENT_TEMPLATE__STATUS_WORKER = {
+  title: "Status: Worker",
+  eventBackgroundCoor: YELLOW,
+};
+
+export const EVENT_TEMPLATE__STATUS_STATUS = {
+  title: "Status: Student",
+  eventBackgroundCoor: YELLOW,
 };
