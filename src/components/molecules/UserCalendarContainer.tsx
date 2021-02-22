@@ -7,8 +7,10 @@ import { useResourceGroupLabelContentInUserCalendar } from "../../hooks/useResou
 import { useStoryModal } from "../../hooks/useStoryModal";
 import { useEventModal } from "../../hooks/useEventModal";
 import { useEvent } from "../../hooks/useEvent";
+import { useStory } from "../../hooks/useStory";
 import { StoryModal } from "../../components/molecules/StoryModal";
 import { EventModal } from "../../components/molecules/EventModal";
+import { createProfileStory } from "../../core/story/ProfileStory/createProfileStory";
 
 export function UserCalendarContainer() {
   const {
@@ -41,7 +43,7 @@ export function UserCalendarContainer() {
   const {
     events,
     resources,
-    init: initUserCalendar,
+    // init: initUserCalendar,
     select,
   } = useUserCalendar();
 
@@ -84,7 +86,7 @@ export function UserCalendarContainer() {
       }
       const start = data.event.start;
       const end = data.event.end;
-      const idSet = {...data.event.extendedProps, eventId: data.event.id};
+      const idSet = { ...data.event.extendedProps, eventId: data.event.id };
 
       const params = { start, end };
       updateById(idSet, params);
@@ -93,9 +95,20 @@ export function UserCalendarContainer() {
     [updateById]
   );
 
+  const { updateById: updateStoryById, profileStoryId } = useStory();
+
+  // React.useEffect(() => {
+  //   initUserCalendar(birth);
+  // }, [birth, initUserCalendar]);
+
+  const { calendar } = useUserCalendar();
+  const calendarId = calendar.id;
+
   React.useEffect(() => {
-    initUserCalendar(birth);
-  }, [birth, initUserCalendar]);
+    const idSet = { calendarId, storyId: profileStoryId };
+    const story = createProfileStory({ birth, calendarId });
+    updateStoryById(idSet, story);
+  }, [updateStoryById, calendarId, profileStoryId, birth]);
 
   return (
     <>

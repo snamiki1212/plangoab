@@ -9,7 +9,6 @@ export function LoadingPage() {
       <LogoContainer>
         <LogoImage />
       </LogoContainer>
-      <span>- Loading -</span>
       <div>
         <CircularProgress />
       </div>
