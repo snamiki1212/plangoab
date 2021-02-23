@@ -61,6 +61,7 @@ TODO: inplement in CI and automatically save this doc in /doc dir
 
 - No Class, but Function
 - Atomic Design
+- Prefer explainable name and code even if long
 
 ### Tech Stack
 
