@@ -62,6 +62,7 @@ TODO: inplement in CI and automatically save this doc in /doc dir
 - No Class, but Function
 - Atomic Design
 - Don't use an arrow function when creating Function Components because of no name // TODO: create eslint rule
+- Prefer explainable name and code even if long
 
 ### Tech Stack
 

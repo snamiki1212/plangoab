@@ -21,6 +21,7 @@ export class ErrorBoundary extends React.Component<any, { hasError: boolean }> {
     if (this.state.hasError) {
       return <ErrorPage />;
     }
+
     return this.props.children;
   }
 }
