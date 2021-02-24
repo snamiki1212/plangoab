@@ -8,8 +8,9 @@ import { createUserCalendar } from "../core/calendar/UserCalendar/createUserCale
 import {
   updateCalendarsAction,
   addEventAction,
-  selectUserCalendar,
 } from "../redux/features/userCalendars";
+import { updateAction as updateUserProfileStoryAction } from "../redux/features/userProfileStory";
+import { selectUserCalendar } from "../redux/selectors";
 import { MY_CALENDAR_ID } from "../constants/fullcalendar/settings";
 
 export const useUserCalendar = () => {
@@ -19,13 +20,14 @@ export const useUserCalendar = () => {
   const init = React.useCallback(
     (birthday: string | Date) => {
       const calendarId = MY_CALENDAR_ID; // TODO: use selected my calendar id not constant value
-      const story = createProfileStory({ birth: birthday, calendarId });
+      const story = createProfileStory({ birth: birthday });
       const _calendar = createUserCalendar({
         id: calendarId,
-        stories: [story],
+        stories: [],
       });
       const _calendars = [_calendar];
       dispatch(updateCalendarsAction({ calendars: _calendars }));
+      dispatch(updateUserProfileStoryAction({ story }));
     },
     [dispatch]
   );

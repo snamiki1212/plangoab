@@ -7,7 +7,7 @@ import {
 
 export type BaseResource = {
   id: string;
-  calendarId: string;
+  calendarId?: string;
   [FIELD]: string;
   [NAME_OF_STORY_ID]: string;
   [NAME_OF_ORDER]?: number;

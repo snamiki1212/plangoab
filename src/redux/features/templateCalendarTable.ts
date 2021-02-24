@@ -26,6 +26,7 @@ type UpsertPublicCollegeStoriesPayload = {
   options: TemplateOption;
 };
 
+// TODO: rename to remove table. it expresses data type but not appropriate as name.
 const templateCalendarTable = createSlice({
   name: "templateCalendarTable",
   initialState: {

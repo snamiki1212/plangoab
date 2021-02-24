@@ -17,7 +17,7 @@ export const createProfileEvents = ({
 }: {
   startDate: Date;
   storyId: string;
-  calendarId: string;
+  calendarId: string | undefined;
 }): BaseEvent[] => {
   // get year num
   const startYear = new Date(startDate).getFullYear();
@@ -71,7 +71,7 @@ const getLastYear = () => {
 const createWorkingHolidayLimitEvents = (
   birthday: Date,
   storyId: string,
-  calendarId: string
+  calendarId: string | undefined
 ): BaseEvent[] => {
   const lastYearDate = addYears(
     birthday,

@@ -6,18 +6,20 @@ import { createProfileEvents } from "../../event/createProfileEvents";
 
 export const createProfileStory = ({
   birth,
-  calendarId,
 }: {
   birth: string | Date;
-  calendarId: string;
 }): ProfileStory => {
   const _birth = new Date(birth);
   const storyId = PROFILE_ID;
   return {
     id: storyId,
-    calendarId,
+    calendarId: undefined,
     name: createStoryName(_birth),
-    resources: createProfileResources({ calendarId, storyId }),
-    events: createProfileEvents({ calendarId, storyId, startDate: _birth }),
+    resources: createProfileResources({ storyId }),
+    events: createProfileEvents({
+      calendarId: undefined,
+      storyId,
+      startDate: _birth,
+    }),
   };
 };

@@ -12,10 +12,8 @@ import {
 import { BaseResource } from "./BaseResource";
 
 export const createProfileResources = ({
-  calendarId,
   storyId,
 }: {
-  calendarId: string;
   storyId: string;
 }): BaseResource[] => [
   {
@@ -23,7 +21,7 @@ export const createProfileResources = ({
     [FIELD]: "Age",
     [NAME_OF_STORY_ID]: storyId,
     [NAME_OF_ORDER]: 0,
-    calendarId,
+    calendarId: undefined,
     eventBorderColor: DARK_BLUE,
   },
   {
@@ -31,7 +29,7 @@ export const createProfileResources = ({
     [FIELD]: "Working Holiday",
     [NAME_OF_STORY_ID]: storyId,
     [NAME_OF_ORDER]: 1,
-    calendarId,
+    calendarId: undefined,
     eventBorderColor: DARK_BLUE,
   },
 ];

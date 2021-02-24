@@ -4,7 +4,7 @@ import { convertIsoToYearAndMonth } from "../../lib/date";
 
 export type BaseEvent = EventInput & {
   extendedProps: {
-    calendarId: string;
+    calendarId: string | undefined;
     storyId: string;
   };
 };

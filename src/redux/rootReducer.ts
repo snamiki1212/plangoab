@@ -4,6 +4,7 @@ import userReducer from "./features/user";
 import templateCalendarTableReducer from "./features/templateCalendarTable";
 import templateOptionReducer from "./features/templateOption";
 import userCalendarsReducer from "./features/userCalendars";
+import userProfileStoryReducer from "./features/userProfileStory";
 import eventModalReducer from "./ui/eventModal";
 import storyModalReducer from "./ui/storyModal";
 
@@ -16,6 +17,7 @@ const featuresReducer = combineReducers({
   templateCalendar: templateCalendarTableReducer,
   templateOption: templateOptionReducer,
   userCalendars: userCalendarsReducer,
+  userProfileStory: userProfileStoryReducer,
   user: userReducer,
 });
 

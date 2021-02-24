@@ -5,7 +5,7 @@ import { uuid } from "../../lib/uuid";
 
 export type BaseStory = {
   id: string;
-  calendarId: string;
+  calendarId: string | undefined;
   events: BaseEvent[];
   resources: BaseResource[];
   name: string;
