@@ -2,6 +2,7 @@
   <a href="https://plangoab.snamiki1212.vercel.app">
 	<img alt="Plangoab is a online web calendar for a person going abroad." src="https://user-images.githubusercontent.com/26793088/107297947-404e2a80-6a29-11eb-92ec-cce1d5c50a6e.png">
   </a>
+  <p>TODO: here demo movie</p>
   <a href="https://github.com/snamiki1212/plangoab/blob/master/LICENSE.md">
     <img src="https://img.shields.io/badge/License-GPLv3-blue.svg" alt="License:GPLv3">
   </a>
@@ -12,6 +13,10 @@
 <b><a href="https://plangoab.snamiki1212.vercel.app">Plangoab</a></b> is a online web calendar for a person going abroad.
 
 (Plangoab stands for '<b>plan</b> to <b>go ab</b>road')
+
+## Why I created
+
+TODO:
 
 ## Features
 
@@ -57,11 +62,11 @@ $ yarn graph:svg
 
 TODO: inplement in CI and automatically save this doc in /doc dir
 
-### Principle
+### Development Principles
 
 - No Class, but Function
 - Atomic Design
-- Prefer explainable name and code even if long
+- Prefer explainable code
 
 ### Tech Stack
 
