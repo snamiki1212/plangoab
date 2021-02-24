@@ -12,7 +12,7 @@ export const useCustomButtons = () => {
     if (!calendar) return;
     const calendarId = calendar.id;
     createStory({ calendarId });
-  }, [calendar]);
+  }, [calendar, createStory]);
 
   const customButtons = React.useMemo(
     () => ({
