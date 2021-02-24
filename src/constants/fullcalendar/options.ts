@@ -38,7 +38,6 @@ const styleConfigs = {
 const resourceAreaColumns = [
   {
     field: FIELD,
-    headerContent: "Field",
   },
 ];
 

@@ -2,7 +2,6 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { BaseCalendarContainer } from "../atoms/BaseCalendarContainer";
 import { useResourceGroupLabelContentInTemplateCalendar } from "../../hooks/useResourceGroupLabelContentInTemplateCalendar";
-import { FIELD } from "../../constants/fullcalendar/settings";
 import { addStoryAction } from "../../redux/features/userCalendars";
 import { BaseStory } from "../../core/story/BaseStory";
 
@@ -10,13 +9,6 @@ const ableConfis = {
   selectable: false,
   editable: false,
 } as const;
-
-const resourceAreaColumns = [
-  {
-    field: FIELD,
-    headerContent: "Field",
-  },
-];
 
 const headerToolbar = {
   left: "",
@@ -45,7 +37,6 @@ export function BaseTemplate(props: any) {
       {...props}
       initialDate={"2020-06-01"}
       resourceGroupLabelContent={resourceGroupLabelContent}
-      resourceAreaColumns={resourceAreaColumns}
       headerToolbar={headerToolbar}
       {...ableConfis}
     />
