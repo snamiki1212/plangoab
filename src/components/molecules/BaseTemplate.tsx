@@ -18,6 +18,12 @@ const resourceAreaColumns = [
   },
 ];
 
+const headerToolbar = {
+  left: "",
+  center: "title",
+  right: "prev,next",
+} as const;
+
 export function BaseTemplate(props: any) {
 
   // TODO: move to custom hooks
@@ -40,6 +46,7 @@ export function BaseTemplate(props: any) {
       initialDate={"2020-06-01"}
       resourceGroupLabelContent={resourceGroupLabelContent}
       resourceAreaColumns={resourceAreaColumns}
+      headerToolbar={headerToolbar}
       {...ableConfis}
     />
   );
