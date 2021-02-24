@@ -6,12 +6,12 @@ import { useResourceGroupLabelContentInUserCalendar } from "../../hooks/useResou
 import { useStoryModal } from "../../hooks/useStoryModal";
 import { useEventModal } from "../../hooks/useEventModal";
 import { useEvent } from "../../hooks/useEvent";
-import { useCustomButtons, ADD_STORY_BUTTON } from "../../hooks/useCustomButtons";
+import { useCustomButtons, ADD_STORY_BUTTON, REMOVE_CALENDAR_BUTTON } from "../../hooks/useCustomButtons";
 import { StoryModal } from "../../components/molecules/StoryModal";
 import { EventModal } from "../../components/molecules/EventModal";
 
 const headerToolbar = {
-  left: `${ADD_STORY_BUTTON}`,
+  left: `${ADD_STORY_BUTTON},${REMOVE_CALENDAR_BUTTON}`,
   center: "title",
   right: "prev,next",
 } as const;

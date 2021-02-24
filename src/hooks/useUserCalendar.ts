@@ -7,6 +7,7 @@ import { initEvent } from "../core/event/BaseEvent";
 import { createUserCalendar } from "../core/calendar/UserCalendar/createUserCalendar";
 import {
   updateCalendarsAction,
+  removeCalendarAction,
   addEventAction,
   selectUserCalendar,
 } from "../redux/features/userCalendars";
@@ -65,6 +66,13 @@ export const useUserCalendar = () => {
     [dispatch]
   );
 
+  const remove = React.useCallback(
+    (calendarId: string) => {
+      dispatch(removeCalendarAction({ calendarId }));
+    },
+    [dispatch]
+  );
+
   const stories = React.useMemo(() => calendar?.stories ?? [], [calendar]);
 
   const events = React.useMemo(
@@ -78,11 +86,15 @@ export const useUserCalendar = () => {
   );
 
   return {
+    // callbacks
+    init,
+    select,
+    remove,
+
+    // params
     calendar,
     stories,
     events,
     resources,
-    init,
-    select,
   } as const;
 };
