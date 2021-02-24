@@ -1,7 +1,6 @@
 import React from "react";
 import { EventClickArg } from "@fullcalendar/react";
 import { useUserCalendar } from "../../hooks/useUserCalendar";
-import { useUser } from "../../hooks/useUser";
 import { BaseCalendarContainer } from "../../components/atoms/BaseCalendarContainer";
 import { useResourceGroupLabelContentInUserCalendar } from "../../hooks/useResourceGroupLabelContentInUserCalendar";
 import { useStoryModal } from "../../hooks/useStoryModal";
@@ -30,8 +29,6 @@ export function UserCalendarContainer() {
     isOpen: isOpenEventModal,
   } = useEventModal();
 
-  const { birth } = useUser();
-
   const createOpenStoryHandle = React.useCallback(
     (idSet: { calendarId: string; storyId: string }) => () => {
       pushStoryModal(idSet);
@@ -48,7 +45,6 @@ export function UserCalendarContainer() {
   const {
     events,
     resources,
-    init: initUserCalendar,
     select,
   } = useUserCalendar();
 
@@ -101,10 +97,6 @@ export function UserCalendarContainer() {
   );
 
   const {customButtons} = useCustomButtons()
-
-  React.useEffect(() => {
-    initUserCalendar(birth);
-  }, [birth, initUserCalendar]);
 
   return (
     <>

@@ -1,20 +1,18 @@
 import React from "react";
 import styled from "styled-components";
 import { ProfileCard } from "../organisms/ProfileCard";
-import { TemplateList } from "../templates/TemplateList";
 import { Footer } from "../molecules/Footer";
 import { Header } from "../molecules/Header";
-import { UserCalendarContainer } from "../molecules/UserCalendarContainer";
+import { UserCalendarArea } from "../organisms/UserCalendarArea";
 import { TemplateOptionCard } from "../molecules/TemplateOptionCard";
-
-const TemplateHeader = () => <h2>Temapltes</h2>
+import { TemplateCalendarArea } from '../organisms/TemplateCalendarArea';
 
 export function CalendarPage() {
   return (
     <Container>
       <Header />
       <ContentContainer>
-        <UserCalendarContainer />
+        <UserCalendarArea />
 
         <ControllerContainer>
           <ProfileCard />
@@ -22,8 +20,7 @@ export function CalendarPage() {
         </ControllerContainer>
         
         <TemplateContainer>
-          <TemplateHeader />
-          <TemplateList />
+          <TemplateCalendarArea />
         </TemplateContainer>
       </ContentContainer>
       <Footer />
