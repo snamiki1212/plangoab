@@ -70,6 +70,7 @@ TODO: inplement in CI and automatically save this doc in /doc dir
 - Atomic Design
 - Prefer explainable code
 - Never use `this` and `prototype`
+- Use function component with general define syntax because of nameful
 
 ### Tech Stack
 

@@ -26,11 +26,11 @@ export const useUserCalendarCustomButtons = () => {
   const customButtons = React.useMemo(
     () => ({
       [ADD_STORY_BUTTON]: {
-        text: "Add story",
+        text: "📝Add story",
         click: handleAddStory,
       },
       [REMOVE_CALENDAR_BUTTON]: {
-        text: "Remove Calendar",
+        text: "💥Remove Calendar",
         click: handleRemoveCalendar,
       },
     }),

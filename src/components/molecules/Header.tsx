@@ -15,7 +15,9 @@ export function Header() {
         <LogoImage />
         <Title>Plangoab</Title>
         <ButtonContainer>
-          <Button variant="contained" onClick={open}>About Plangoab</Button>
+          <Button variant="contained" onClick={open}>
+            ✈️About Plangoab
+          </Button>
         </ButtonContainer>
       </Container>
 

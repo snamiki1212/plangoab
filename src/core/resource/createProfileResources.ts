@@ -23,7 +23,7 @@ export const createProfileResources = ({
   const list = [
     {
       id: RESOURCE_ID__SHARED__AGE,
-      [FIELD]: "Age",
+      [FIELD]: "🔢Age",
       [NAME_OF_STORY_ID]: storyId,
       [NAME_OF_ORDER]: 0,
       calendarId,
@@ -34,7 +34,7 @@ export const createProfileResources = ({
   if (withWorkingholiday) {
     list.push({
       id: RESOURCE_ID__SHARED__LIMIT,
-      [FIELD]: "Working Holiday",
+      [FIELD]: "🌎Working Holiday",
       [NAME_OF_STORY_ID]: storyId,
       [NAME_OF_ORDER]: 1,
       calendarId,

@@ -6,7 +6,7 @@ export function AboutContent() {
   return (
     <Container>
       <div>
-        <h2>About</h2>
+        <h2>🔑About</h2>
         <p>
           A web calendar for a person going abroad. Generating a suitable
           schedule and customizable.
@@ -14,7 +14,7 @@ export function AboutContent() {
       </div>
 
       <div>
-        <h2>How to use</h2>
+        <h2>📝How to use</h2>
         <p>
           There are three sections.
           <br />
@@ -38,12 +38,12 @@ export function AboutContent() {
       </div>
 
       <div>
-        <h2>License</h2>
+        <h2>📜License</h2>
         <li>GPL-3.0</li>
       </div>
 
       <div>
-        <h2>Author</h2>
+        <h2>😎Author</h2>
         <li>
           <a href={AuthorInfo.MY_GITHUB_URL}>GitHub:snamiki1212</a>
         </li>
@@ -56,10 +56,11 @@ export function AboutContent() {
       </div>
 
       <div>
-        <h2>Source</h2>
+        <h2>🧑‍💻Source Code</h2>
         <span>
-          This page is managed at{" "}
-          <a href={AuthorInfo.THIS_GITHUB_URL}>GitHub</a>.
+          Plangoab is OSS managed at{" "}
+          <a href={AuthorInfo.THIS_GITHUB_URL}>GitHub</a> so you can check all
+          of code.
         </span>
       </div>
     </Container>

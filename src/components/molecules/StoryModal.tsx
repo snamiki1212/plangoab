@@ -8,7 +8,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogActions from "@material-ui/core/DialogActions";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-// 
+//
 import { selectStoryModal, selectStory } from "../../redux/ui/storyModal";
 import { useStory } from "../../hooks/useStory";
 import { useResource } from "../../hooks/useResource";
@@ -21,14 +21,9 @@ type Props = {
 
 export function StoryModal({ isOpen, onClose }: Props) {
   const storyModal = useSelector(selectStoryModal);
-  const calendarId = storyModal?.calendarId;
   const story = useSelector(selectStory);
   const { register, handleSubmit } = useForm();
-  const {
-    create: createStory,
-    remove: removeStory,
-    update: updateStory,
-  } = useStory();
+  const { remove: removeStory, update: updateStory } = useStory();
   const { push: pushResource, remove: removeResource } = useResource();
 
   const handleRemoveStory = React.useCallback(() => {
@@ -55,11 +50,6 @@ export function StoryModal({ isOpen, onClose }: Props) {
     }
     pushResource(storyModal);
   }, [storyModal, pushResource]);
-
-  const handleNewStory = React.useCallback(() => {
-    if (!calendarId) return;
-    createStory({ calendarId });
-  }, [createStory, calendarId]);
 
   const onSubmit = React.useCallback(
     (data: any) => {
@@ -149,9 +139,6 @@ export function StoryModal({ isOpen, onClose }: Props) {
         >
           Delete this story
         </Button>
-        <Button onClick={handleNewStory} color="primary">
-          Add New Story
-        </Button>
       </DialogActions>
     </Dialog>
   );
@@ -165,7 +152,7 @@ const DialogTitleInner = styled.div`
 const Fieldset = styled.fieldset`
   border: none;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 2fr 1fr;
   gap: 1rem;
   padding: 1rem;
   margin: 1rem;
