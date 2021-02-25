@@ -1,7 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Checkbox from "@material-ui/core/Checkbox";
@@ -23,7 +21,7 @@ const MONTHS = [
 ] as const;
 
 // TODO: Use react-hook-form because of reducing render cost
-export function TemplateOptionCard() {
+export function TemplateOption() {
   const { update: updateOption, options } = useTemplateOptions();
   const {
     schoolPeriod,
@@ -85,77 +83,66 @@ export function TemplateOptionCard() {
   );
 
   return (
-    <Card>
-      <CardContent>
-        <h2>Template Options</h2>
-        <InnerContainer>
-          <PeriodContainer>
-            <TextField
-              value={schoolPeriod}
-              onChange={handleChangeSchoolPeriod}
-              label="School Period"
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">Month</InputAdornment>
-                ),
-              }}
-            />
-            <TextField
-              value={coopPeriod}
-              onChange={handleChangeCoopPeriod}
-              label="Co-op Period"
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">Month</InputAdornment>
-                ),
-              }}
-            />
-            <TextField
-              value={pgwpPeriod}
-              onChange={handleChangePgwpPeriod}
-              label="PWGP Period"
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">Month</InputAdornment>
-                ),
-              }}
-            />
-            <TextField
-              value={workingholidayPeriod}
-              onChange={handleChangeWorkingholidayPeriod}
-              label="Working Holiday Period"
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">Month</InputAdornment>
-                ),
-              }}
-            />
-          </PeriodContainer>
+    <Container>
+      <PeriodContainer>
+        <TextField
+          value={schoolPeriod}
+          onChange={handleChangeSchoolPeriod}
+          label="School Period"
+          InputProps={{
+            endAdornment: <InputAdornment position="end">Month</InputAdornment>,
+          }}
+        />
+        <TextField
+          value={coopPeriod}
+          onChange={handleChangeCoopPeriod}
+          label="Co-op Period"
+          InputProps={{
+            endAdornment: <InputAdornment position="end">Month</InputAdornment>,
+          }}
+        />
+        <TextField
+          value={pgwpPeriod}
+          onChange={handleChangePgwpPeriod}
+          label="PWGP Period"
+          InputProps={{
+            endAdornment: <InputAdornment position="end">Month</InputAdornment>,
+          }}
+        />
+        <TextField
+          value={workingholidayPeriod}
+          onChange={handleChangeWorkingholidayPeriod}
+          label="Working Holiday Period"
+          InputProps={{
+            endAdornment: <InputAdornment position="end">Month</InputAdornment>,
+          }}
+        />
+      </PeriodContainer>
 
-          <div>
-            <label>School start from (Month)</label>
-            <div>
-              {MONTHS.map((month, idx) => {
-                const monthNum = idx + 1;
-                const isChecked = monthsOfStartSchool.includes(monthNum);
-                return (
-                  <CheckboxListItem key={month}>
-                    <label>{month}</label>
-                    <Checkbox
-                      value={monthNum}
-                      checked={isChecked}
-                      onChange={handleCheck}
-                    />
-                  </CheckboxListItem>
-                );
-              })}
-            </div>
-          </div>
-        </InnerContainer>
-      </CardContent>
-    </Card>
+      <div>
+        <label>School start from (Month)</label>
+        <div>
+          {MONTHS.map((month, idx) => {
+            const monthNum = idx + 1;
+            const isChecked = monthsOfStartSchool.includes(monthNum);
+            return (
+              <CheckboxListItem key={month}>
+                <label>{month}</label>
+                <Checkbox
+                  value={monthNum}
+                  checked={isChecked}
+                  onChange={handleCheck}
+                />
+              </CheckboxListItem>
+            );
+          })}
+        </div>
+      </div>
+    </Container>
   );
 }
+
+const Container = styled.div``;
 
 const CheckboxListItem = styled.div`
   display: inline-block;
@@ -168,4 +155,3 @@ const PeriodContainer = styled.div`
   gap: 2rem;
   margin-bottom: 1rem;
 `;
-const InnerContainer = styled.div``;
