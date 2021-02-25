@@ -32,7 +32,7 @@ const resourceConfigs = {
 } as const;
 
 const styleConfigs = {
-  height: 700,
+  height: 600,
 };
 
 const resourceAreaColumns = [
