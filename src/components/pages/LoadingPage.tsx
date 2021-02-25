@@ -6,6 +6,7 @@ import { LogoImage } from "../atoms/LogoImage";
 export function LoadingPage() {
   return (
     <Container>
+      <AppName />
       <LogoContainer>
         <LogoImage />
       </LogoContainer>
@@ -16,11 +17,14 @@ export function LoadingPage() {
   );
 }
 
+const AppName = () => <h2>Plangoab</h2>;
+
 const Container = styled.div`
   height: 100vh;
   display: grid;
   place-items: center;
   align-content: center;
+  gap: 2rem;
 `;
 
 const LogoContainer = styled.div`

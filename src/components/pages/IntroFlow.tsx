@@ -30,9 +30,17 @@ export function IntroFlow() {
 
   return (
     <Dialog open={isOpen}>
-      <DialogTitle>😎Input your birthday!</DialogTitle>
+      <DialogTitle>Welcome to Plangoab🐱</DialogTitle>
       <DialogContent>
-        <div>Plangoab would create some plans by your information.</div>
+        <p>
+          hi👋👋
+          <br />
+          <br />
+          Plangoab helps you to create awesome plan to go abroad!
+          <br />
+          <br />
+          Let's input your birthday and create your plans✈️
+        </p>
         <ProfileOption />
         <PolicyExplanation />
       </DialogContent>
