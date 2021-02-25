@@ -1,5 +1,5 @@
 import React from "react";
-import styled from 'styled-components'
+import styled from "styled-components";
 import Button from "@material-ui/core/Button";
 import { useUserCalendar } from "../../hooks/useUserCalendar";
 import { useUser } from "../../hooks/useUser";
@@ -24,8 +24,8 @@ export function UserCalendarCreater() {
 }
 
 const Container = styled.div`
-  height: 30vh;
+  height: 50vh;
   background: lightblue;
   display: grid;
   place-items: center;
-`
+`;
