@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://plangoab.snamiki1212.vercel.app">
-	<img alt="Plangoab is a online web calendar for a person going abroad." src="https://user-images.githubusercontent.com/26793088/107297947-404e2a80-6a29-11eb-92ec-cce1d5c50a6e.png">
+	  <img alt="Plangoab is a online web calendar for a person going abroad." src="https://user-images.githubusercontent.com/26793088/107297947-404e2a80-6a29-11eb-92ec-cce1d5c50a6e.png">
   </a>
   <p>TODO: here demo movie</p>
   <a href="https://github.com/snamiki1212/plangoab/blob/master/LICENSE.md">
@@ -80,6 +80,10 @@ TODO: inplement in CI and automatically save this doc in /doc dir
 - CI/CD
   - Github Actions
   - GitHub Pages
+
+### Color Pallete
+
+TODO:
 
 ## Contribution
 

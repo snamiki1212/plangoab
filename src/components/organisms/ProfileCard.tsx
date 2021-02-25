@@ -59,7 +59,7 @@ export function ProfileCard() {
             onChange={handleDateChange}
           />
           <div>
-            <span>with working holiday</span>
+            <span>with working holiday(TODO: move to template options)</span>
             <Checkbox
               checked={canWorkingholiday}
               onChange={handleToggleWorkingholiday}

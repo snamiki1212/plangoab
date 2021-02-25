@@ -1,33 +1,35 @@
 import React from "react";
 import styled from "styled-components";
 import { ProfileCard } from "../organisms/ProfileCard";
-import { TemplateList } from "../templates/TemplateList";
 import { Footer } from "../molecules/Footer";
 import { Header } from "../molecules/Header";
-import { UserCalendarContainer } from "../molecules/UserCalendarContainer";
+import { UserCalendarArea } from "../organisms/UserCalendarArea";
 import { TemplateOptionCard } from "../molecules/TemplateOptionCard";
-
-const TemplateHeader = () => <h2>Temapltes</h2>
+import { TemplateCalendarArea } from "../organisms/TemplateCalendarArea";
+import { IntroFlow } from "./IntroFlow";
 
 export function CalendarPage() {
   return (
-    <Container>
-      <Header />
-      <ContentContainer>
-        <UserCalendarContainer />
+    <>
+      <Container>
+        <Header />
+        <ContentContainer>
+          <UserCalendarArea />
 
-        <ControllerContainer>
-          <ProfileCard />
-          <TemplateOptionCard />
-        </ControllerContainer>
-        
-        <TemplateContainer>
-          <TemplateHeader />
-          <TemplateList />
-        </TemplateContainer>
-      </ContentContainer>
-      <Footer />
-    </Container>
+          <ControllerContainer>
+            <ProfileCard />
+            <TemplateOptionCard />
+          </ControllerContainer>
+
+          <TemplateContainer>
+            <TemplateCalendarArea />
+          </TemplateContainer>
+        </ContentContainer>
+        <Footer />
+      </Container>
+
+      <IntroFlow />
+    </>
   );
 }
 
@@ -49,4 +51,4 @@ const ControllerContainer = styled.div`
   gap: 2rem;
 `;
 
-const TemplateContainer = styled.div``
+const TemplateContainer = styled.div``;
