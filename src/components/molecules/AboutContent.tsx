@@ -1,8 +1,17 @@
 import React from "react";
 import styled from "styled-components";
+import Button from "@material-ui/core/Button";
+import { useResetAllData } from "../../hooks/useResetAllData";
 import * as AuthorInfo from "../../constants/meta";
 
 export function AboutContent() {
+  const { reset } = useResetAllData();
+
+  const handleResetAllData = React.useCallback(() => {
+    if (!window.confirm("Would you remove all data in Plangoab?")) return;
+    reset();
+  }, [reset]);
+
   return (
     <Container>
       <div>
@@ -35,6 +44,20 @@ export function AboutContent() {
           </li>
           <li>Edit my story and events in my calendar.</li>
         </p>
+      </div>
+
+      <div>
+        <h2>💥Reset All Data</h2>
+        <div>
+          <p>Would you like to reset all data in Plangoab?</p>
+          <Button
+            onClick={handleResetAllData}
+            variant="outlined"
+            color="secondary"
+          >
+            RESET ALL DATA
+          </Button>
+        </div>
       </div>
 
       <div>

@@ -58,12 +58,15 @@ type UpdateEventByIdPayload = {
   params: Partial<BaseEvent>;
 };
 
+const initialState = {
+  calendars: [] as Calendar[],
+};
+
 const userCalendarsSlice = createSlice({
   name: "userCalendars",
-  initialState: {
-    calendars: [] as Calendar[],
-  },
+  initialState,
   reducers: {
+    reset: () => initialState,
     removeCalendar(state, action: PayloadAction<RemoveCalendarPayload>) {
       const { calendarId } = action.payload;
       state.calendars = state.calendars.filter(
@@ -371,6 +374,8 @@ const userCalendarsSlice = createSlice({
 });
 
 export const {
+  reset: resetAction,
+
   // calendars
   removeCalendar: removeCalendarAction,
   updateCalendars: updateCalendarsAction,

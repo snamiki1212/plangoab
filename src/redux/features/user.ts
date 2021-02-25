@@ -9,14 +9,15 @@ const personaBirth = addYears(new Date(), -PERSONA_AGE).toISOString();
 type UpdatePayload = {
   birthday: string;
 };
-
+const initialState = {
+  birthday: personaBirth,
+  age: PERSONA_AGE, // TODO: should not save here. only select.
+};
 const userSlice = createSlice({
   name: "user",
-  initialState: {
-    birthday: personaBirth,
-    age: PERSONA_AGE, // TODO: should not save here. only select.
-  },
+  initialState,
   reducers: {
+    reset: () => initialState,
     updateBirthday(state, action: PayloadAction<UpdatePayload>) {
       const { birthday } = action.payload;
       state.birthday = birthday;
@@ -25,7 +26,10 @@ const userSlice = createSlice({
   },
 });
 
-export const { updateBirthday: updateBirthdayAction } = userSlice.actions;
+export const {
+  updateBirthday: updateBirthdayAction,
+  reset: resetAction,
+} = userSlice.actions;
 
 export default userSlice.reducer;
 

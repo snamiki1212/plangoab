@@ -26,17 +26,17 @@ type UpsertPublicCollegeStoriesPayload = {
   options: TemplateOption;
 };
 
+const initialState = {
+  [PRIVATE_COLLEGE_CALENDAR_ID]: undefined as
+    | PrivateCollegeCalendar
+    | undefined,
+  [PUBLIC_COLLEGE_CALENDAR_ID]: undefined as PublicCollegeCalendar | undefined,
+};
 const templateCalendarTable = createSlice({
   name: "templateCalendarTable",
-  initialState: {
-    [PRIVATE_COLLEGE_CALENDAR_ID]: undefined as
-      | PrivateCollegeCalendar
-      | undefined,
-    [PUBLIC_COLLEGE_CALENDAR_ID]: undefined as
-      | PublicCollegeCalendar
-      | undefined,
-  },
+  initialState,
   reducers: {
+    reset: () => initialState,
     upsertPrivateCollegeStories(
       state,
       action: PayloadAction<UpsertPrivateCollegeStoriesPayload>
@@ -73,6 +73,7 @@ const templateCalendarTable = createSlice({
 export default templateCalendarTable.reducer;
 
 export const {
+  reset: resetAction,
   upsertPrivateCollegeStories: upsertPrivateCollegeStoriesAction,
   upsertPublicCollegeStories: upsertPublicCollegeStoriesAction,
 } = templateCalendarTable.actions;
