@@ -11,7 +11,11 @@ import {
 export const usePublicCollegeCalendar = () => {
   const dispatch = useDispatch();
   const generate = React.useCallback(
-    (args: { birth: string; options: TemplateOption }) => {
+    (args: {
+      birth: string;
+      canWorkingholiday: boolean;
+      options: TemplateOption;
+    }) => {
       dispatch(upsertPublicCollegeStoriesAction(args));
     },
     [dispatch]

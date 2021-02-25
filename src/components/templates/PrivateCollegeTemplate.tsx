@@ -7,15 +7,15 @@ import { useTemplateCustomButtons } from "../../hooks/useTemplateCustomButtons";
 import { TemplateOptionModal } from "../molecules/TemplateOptionModal";
 
 export function PrivateCollegeTemplate() {
-  const { birth } = useUser();
+  const { birth, canWorkingholiday } = useUser();
   const { resources, events, generate } = usePrivateCollegeCalendar();
   const { options } = useTemplateOptions();
   const { customButtons, close, isOpen } = useTemplateCustomButtons();
 
   // TODO: prevent re-rendering when to select tab again
   React.useEffect(() => {
-    generate({ birth, options });
-  }, [generate, birth, options]);
+    generate({ birth, canWorkingholiday, options });
+  }, [generate, birth, canWorkingholiday, options]);
 
   return (
     <>

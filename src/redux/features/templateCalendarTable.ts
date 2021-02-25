@@ -16,11 +16,13 @@ import { RootState } from "../rootReducer";
 
 type UpsertPrivateCollegeStoriesPayload = {
   birth: string;
+  canWorkingholiday: boolean;
   options: TemplateOption;
 };
 
 type UpsertPublicCollegeStoriesPayload = {
   birth: string;
+  canWorkingholiday: boolean;
   options: TemplateOption;
 };
 
@@ -39,11 +41,12 @@ const templateCalendarTable = createSlice({
       state,
       action: PayloadAction<UpsertPrivateCollegeStoriesPayload>
     ) {
-      const { birth, options } = action.payload;
+      const { birth, canWorkingholiday, options } = action.payload;
 
       const _calendar = createPrivateCollegeCalendar(
         {
           birth: new Date(birth), // TODO: don't new here
+          canWorkingholiday,
         },
         options
       );
@@ -53,11 +56,12 @@ const templateCalendarTable = createSlice({
       state,
       action: PayloadAction<UpsertPublicCollegeStoriesPayload>
     ) {
-      const { birth, options } = action.payload;
+      const { birth, canWorkingholiday, options } = action.payload;
 
       const _calendar = createPublicCollegeCalendar(
         {
           birth: new Date(birth), // TODO: don't new here
+          canWorkingholiday,
         },
         options
       );
