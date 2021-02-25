@@ -5,7 +5,7 @@ import { useStory } from "./useStory";
 export const ADD_STORY_BUTTON = "ADD_STORY_BUTTON";
 export const REMOVE_CALENDAR_BUTTON = "REMOVE_CALENDAR_BUTTON";
 
-export const useCustomButtons = () => {
+export const useUserCalendarCustomButtons = () => {
   const { calendar, remove: removeUserCalendar } = useUserCalendar();
   const { create: createStory } = useStory();
 
@@ -18,8 +18,8 @@ export const useCustomButtons = () => {
   const handleRemoveCalendar = React.useCallback(() => {
     if (!calendar) return;
     const calendarId = calendar.id;
-    
-    if(!window.confirm('Do you want to delete this calendar?'))return;
+
+    if (!window.confirm("Do you want to delete this calendar?")) return;
     removeUserCalendar(calendarId);
   }, [removeUserCalendar, calendar]);
 
