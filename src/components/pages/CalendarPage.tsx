@@ -5,26 +5,31 @@ import { Footer } from "../molecules/Footer";
 import { Header } from "../molecules/Header";
 import { UserCalendarArea } from "../organisms/UserCalendarArea";
 import { TemplateOptionCard } from "../molecules/TemplateOptionCard";
-import { TemplateCalendarArea } from '../organisms/TemplateCalendarArea';
+import { TemplateCalendarArea } from "../organisms/TemplateCalendarArea";
+import { IntroFlow } from "./IntroFlow";
 
 export function CalendarPage() {
   return (
-    <Container>
-      <Header />
-      <ContentContainer>
-        <UserCalendarArea />
+    <>
+      <Container>
+        <Header />
+        <ContentContainer>
+          <UserCalendarArea />
 
-        <ControllerContainer>
-          <ProfileCard />
-          <TemplateOptionCard />
-        </ControllerContainer>
-        
-        <TemplateContainer>
-          <TemplateCalendarArea />
-        </TemplateContainer>
-      </ContentContainer>
-      <Footer />
-    </Container>
+          <ControllerContainer>
+            <ProfileCard />
+            <TemplateOptionCard />
+          </ControllerContainer>
+
+          <TemplateContainer>
+            <TemplateCalendarArea />
+          </TemplateContainer>
+        </ContentContainer>
+        <Footer />
+      </Container>
+
+      <IntroFlow />
+    </>
   );
 }
 
@@ -46,4 +51,4 @@ const ControllerContainer = styled.div`
   gap: 2rem;
 `;
 
-const TemplateContainer = styled.div``
+const TemplateContainer = styled.div``;
