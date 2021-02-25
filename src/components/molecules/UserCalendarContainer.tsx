@@ -6,7 +6,11 @@ import { useResourceGroupLabelContentInUserCalendar } from "../../hooks/useResou
 import { useStoryModal } from "../../hooks/useStoryModal";
 import { useEventModal } from "../../hooks/useEventModal";
 import { useEvent } from "../../hooks/useEvent";
-import { useCustomButtons, ADD_STORY_BUTTON, REMOVE_CALENDAR_BUTTON } from "../../hooks/useCustomButtons";
+import {
+  useUserCalendarCustomButtons,
+  ADD_STORY_BUTTON,
+  REMOVE_CALENDAR_BUTTON,
+} from "../../hooks/useUserCalendarCustomButtons";
 import { StoryModal } from "../../components/molecules/StoryModal";
 import { EventModal } from "../../components/molecules/EventModal";
 
@@ -42,11 +46,7 @@ export function UserCalendarContainer() {
     createOpenHandle: createOpenStoryHandle,
   });
 
-  const {
-    events,
-    resources,
-    select,
-  } = useUserCalendar();
+  const { events, resources, select } = useUserCalendar();
 
   const click = React.useCallback(
     (info: EventClickArg) => {
@@ -87,7 +87,7 @@ export function UserCalendarContainer() {
       }
       const start = data.event.start;
       const end = data.event.end;
-      const idSet = {...data.event.extendedProps, eventId: data.event.id};
+      const idSet = { ...data.event.extendedProps, eventId: data.event.id };
 
       const params = { start, end };
       updateById(idSet, params);
@@ -96,7 +96,7 @@ export function UserCalendarContainer() {
     [updateById]
   );
 
-  const {customButtons} = useCustomButtons()
+  const { customButtons } = useUserCalendarCustomButtons();
 
   return (
     <>

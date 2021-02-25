@@ -1,10 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { ProfileCard } from "../organisms/ProfileCard";
 import { Footer } from "../molecules/Footer";
 import { Header } from "../molecules/Header";
 import { UserCalendarArea } from "../organisms/UserCalendarArea";
-import { TemplateOptionCard } from "../molecules/TemplateOptionCard";
 import { TemplateCalendarArea } from "../organisms/TemplateCalendarArea";
 import { IntroFlow } from "./IntroFlow";
 
@@ -15,15 +13,7 @@ export function CalendarPage() {
         <Header />
         <ContentContainer>
           <UserCalendarArea />
-
-          <ControllerContainer>
-            <ProfileCard />
-            <TemplateOptionCard />
-          </ControllerContainer>
-
-          <TemplateContainer>
-            <TemplateCalendarArea />
-          </TemplateContainer>
+          <TemplateCalendarArea />
         </ContentContainer>
         <Footer />
       </Container>
@@ -44,11 +34,3 @@ const ContentContainer = styled.div`
   display: grid;
   gap: 5rem;
 `;
-
-const ControllerContainer = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-`;
-
-const TemplateContainer = styled.div``;
