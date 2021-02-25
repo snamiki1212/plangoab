@@ -14,25 +14,28 @@ export const createProfileEvents = ({
   startDate,
   storyId,
   calendarId,
+  withWorkingholiday,
+  workingholidayPeriod,
 }: {
   startDate: Date;
   storyId: string;
   calendarId: string;
+  withWorkingholiday: boolean;
+  workingholidayPeriod: number;
 }): BaseEvent[] => {
-  // get year num
+  const workingHolidayLimitEvents = withWorkingholiday
+    ? createWorkingHolidayLimitEvents({
+        startDate,
+        storyId,
+        calendarId,
+        workingholidayPeriod,
+      })
+    : [];
+
+  // create age events
   const startYear = new Date(startDate).getFullYear();
   const endYear = getLastYear();
-
-  // create years list
   const years = getRangeNumbers(startYear, endYear);
-
-  const workingHolidayLimitEvents = createWorkingHolidayLimitEvents(
-    startDate,
-    storyId,
-    calendarId
-  );
-
-  // create EventInput obj
   const ageEventList = years.map((year, index) => {
     const start = (() => {
       startDate.setFullYear(year);
@@ -68,17 +71,23 @@ const getLastYear = () => {
   return addYears(date, BUFFER_YEAR).getFullYear();
 };
 
-const createWorkingHolidayLimitEvents = (
-  birthday: Date,
-  storyId: string,
-  calendarId: string
-): BaseEvent[] => {
+const createWorkingHolidayLimitEvents = ({
+  startDate,
+  storyId,
+  calendarId,
+  workingholidayPeriod,
+}: {
+  startDate: Date;
+  storyId: string;
+  calendarId: string;
+  workingholidayPeriod: number;
+}): BaseEvent[] => {
   const lastYearDate = addYears(
-    birthday,
+    startDate,
     WORKING_HOLIDAY_APPLICATION_LIMITATION_AGE
   );
-  const start = convertIsoToDateTime(birthday.toISOString());
-  const endDate = addMonths(lastYearDate, +11);
+  const start = convertIsoToDateTime(startDate.toISOString());
+  const endDate = addMonths(lastYearDate, workingholidayPeriod);
   const endOfLimit = convertIsoToDateTime(endDate.toISOString());
   const endOfApplication = convertIsoToDateTime(
     addYears(setMonth(endDate, +6), -1).toISOString()
@@ -86,7 +95,7 @@ const createWorkingHolidayLimitEvents = (
 
   const limitation = {
     id: uuid(),
-    title: "Limitation till WorkingHoliday",
+    title: "Available Scope of WorkingHoliday",
     start,
     end: endOfLimit,
     resourceId: RESOURCE_ID__SHARED__LIMIT,

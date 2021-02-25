@@ -8,16 +8,22 @@ import { useModal } from "../../hooks/useModal";
 import { useUserCalendar } from "../../hooks/useUserCalendar";
 import { useUser } from "../../hooks/useUser";
 import { ProfileCard } from "../organisms/ProfileCard";
+import { useTemplateOptions } from "../../hooks/useTemplateOptions";
 
 export function IntroFlow() {
   const { isOpen, close } = useModal(true);
   const { init: initUserCalendar } = useUserCalendar();
   const { birth } = useUser();
+  const { options } = useTemplateOptions();
+  const workingholidayPeriod = React.useMemo(
+    () => options.workingholidayPeriod,
+    [options.workingholidayPeriod]
+  );
 
   const handleFinish = React.useCallback(() => {
-    initUserCalendar(birth);
+    initUserCalendar({ birthday: birth, workingholidayPeriod });
     close();
-  }, [close, initUserCalendar, birth]);
+  }, [close, initUserCalendar, birth, workingholidayPeriod]);
 
   return (
     <Dialog open={isOpen}>
