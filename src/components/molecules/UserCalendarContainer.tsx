@@ -1,14 +1,20 @@
 import React from "react";
 import { EventClickArg } from "@fullcalendar/react";
 import { useUserCalendar } from "../../hooks/useUserCalendar";
-import { useUser } from "../../hooks/useUser";
 import { BaseCalendarContainer } from "../../components/atoms/BaseCalendarContainer";
 import { useResourceGroupLabelContentInUserCalendar } from "../../hooks/useResourceGroupLabelContentInUserCalendar";
 import { useStoryModal } from "../../hooks/useStoryModal";
 import { useEventModal } from "../../hooks/useEventModal";
 import { useEvent } from "../../hooks/useEvent";
+import { useCustomButtons, ADD_STORY_BUTTON, REMOVE_CALENDAR_BUTTON } from "../../hooks/useCustomButtons";
 import { StoryModal } from "../../components/molecules/StoryModal";
 import { EventModal } from "../../components/molecules/EventModal";
+
+const headerToolbar = {
+  left: `${ADD_STORY_BUTTON},${REMOVE_CALENDAR_BUTTON}`,
+  center: "title",
+  right: "prev,next",
+} as const;
 
 export function UserCalendarContainer() {
   const {
@@ -22,8 +28,6 @@ export function UserCalendarContainer() {
     pop: popEventModal,
     isOpen: isOpenEventModal,
   } = useEventModal();
-
-  const { birth } = useUser();
 
   const createOpenStoryHandle = React.useCallback(
     (idSet: { calendarId: string; storyId: string }) => () => {
@@ -41,7 +45,6 @@ export function UserCalendarContainer() {
   const {
     events,
     resources,
-    init: initUserCalendar,
     select,
   } = useUserCalendar();
 
@@ -93,9 +96,7 @@ export function UserCalendarContainer() {
     [updateById]
   );
 
-  React.useEffect(() => {
-    initUserCalendar(birth);
-  }, [birth, initUserCalendar]);
+  const {customButtons} = useCustomButtons()
 
   return (
     <>
@@ -112,8 +113,10 @@ export function UserCalendarContainer() {
         eventResize={updateEvent}
         eventDrop={updateEvent}
         // etc
-        initialDate={"2020-06-01"}
+        initialDate={"2020-06-01"} // TODO: change dynamically
         resourceGroupLabelContent={resourceGroupLabelContent}
+        customButtons={customButtons}
+        headerToolbar={headerToolbar}
       />
 
       {/* Modal */}

@@ -7,10 +7,10 @@ import { initEvent } from "../core/event/BaseEvent";
 import { createUserCalendar } from "../core/calendar/UserCalendar/createUserCalendar";
 import {
   updateCalendarsAction,
+  removeCalendarAction,
   addEventAction,
   selectUserCalendar,
 } from "../redux/features/userCalendars";
-import { MY_CALENDAR_ID } from "../constants/fullcalendar/settings";
 
 export const useUserCalendar = () => {
   const dispatch = useDispatch();
@@ -18,7 +18,7 @@ export const useUserCalendar = () => {
 
   const init = React.useCallback(
     (birthday: string | Date) => {
-      const calendarId = MY_CALENDAR_ID; // TODO: use selected my calendar id not constant value
+      const calendarId = uuid();
       const story = createProfileStory({ birth: birthday, calendarId });
       const _calendar = createUserCalendar({
         id: calendarId,
@@ -65,6 +65,13 @@ export const useUserCalendar = () => {
     [dispatch]
   );
 
+  const remove = React.useCallback(
+    (calendarId: string) => {
+      dispatch(removeCalendarAction({ calendarId }));
+    },
+    [dispatch]
+  );
+
   const stories = React.useMemo(() => calendar?.stories ?? [], [calendar]);
 
   const events = React.useMemo(
@@ -78,11 +85,15 @@ export const useUserCalendar = () => {
   );
 
   return {
+    // callbacks
+    init,
+    select,
+    remove,
+
+    // params
     calendar,
     stories,
     events,
     resources,
-    init,
-    select,
   } as const;
 };
