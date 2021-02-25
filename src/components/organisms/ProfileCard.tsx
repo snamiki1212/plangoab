@@ -5,18 +5,16 @@ import Avatar from "@material-ui/core/Avatar";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import TextField from "@material-ui/core/TextField";
-import Checkbox from "@material-ui/core/Checkbox";
+import InputAdornment from "@material-ui/core/InputAdornment";
 
 import { useUser } from "../../hooks/useUser";
+import { useTemplateOptions } from "../../hooks/useTemplateOptions";
 
+// TODO: Use react-hook-form because of reducing render cost
 export function ProfileCard() {
-  const {
-    birth,
-    age,
-    setBirth,
-    toggleWorkingholiday,
-    canWorkingholiday,
-  } = useUser();
+  const { birth, setBirth } = useUser();
+  const { update: updateOption, options } = useTemplateOptions();
+  const { workingholidayPeriod } = options;
 
   const handleDateChange = React.useCallback(
     (date: Date | null) => {
@@ -26,29 +24,21 @@ export function ProfileCard() {
     [setBirth]
   );
 
-  const handleToggleWorkingholiday = React.useCallback(() => {
-    toggleWorkingholiday();
-  }, [toggleWorkingholiday]);
+  const handleChangeWorkingholidayPeriod = React.useCallback(
+    (_event) => {
+      const value = _event.target.value;
+      const maybeNum = value === "" ? 0 : parseInt(value);
+      if (!Number.isInteger(maybeNum)) return;
+      updateOption({ workingholidayPeriod: maybeNum });
+    },
+    [updateOption]
+  );
 
   return (
     <Card>
       <CardContent>
-        <h2>Profile</h2>
         <InnerContainer>
           <Avatar alt="you" />
-          <TextField
-            id="age-text"
-            label="Your Age"
-            disabled
-            InputProps={{
-              readOnly: true,
-            }}
-            InputLabelProps={{
-              shrink: true,
-            }}
-            type="number"
-            value={age}
-          />
           <DatePicker
             disableFuture
             openTo="year"
@@ -58,13 +48,16 @@ export function ProfileCard() {
             value={birth}
             onChange={handleDateChange}
           />
-          <div>
-            <span>with working holiday(TODO: move to template options)</span>
-            <Checkbox
-              checked={canWorkingholiday}
-              onChange={handleToggleWorkingholiday}
-            />
-          </div>
+          <TextField
+            value={workingholidayPeriod}
+            onChange={handleChangeWorkingholidayPeriod}
+            label="Working Holiday Period"
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">Month</InputAdornment>
+              ),
+            }}
+          />
         </InnerContainer>
       </CardContent>
     </Card>
