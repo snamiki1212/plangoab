@@ -28,7 +28,6 @@ const nowIndicator = {
 
 const resourceConfigs = {
   resourceOrder: NAME_OF_ORDER,
-  resourcesInitiallyExpanded: false,
 } as const;
 
 const styleConfigs = {

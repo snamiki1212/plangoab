@@ -14,6 +14,10 @@ import {
 import { StoryModal } from "../../components/molecules/StoryModal";
 import { EventModal } from "../../components/molecules/EventModal";
 
+const configs = {
+  resourcesInitiallyExpanded: true,
+} as const;
+
 const headerToolbar = {
   left: `${ADD_STORY_BUTTON},${REMOVE_CALENDAR_BUTTON}`,
   center: "title",
@@ -117,6 +121,7 @@ export function UserCalendarContainer() {
         resourceGroupLabelContent={resourceGroupLabelContent}
         customButtons={customButtons}
         headerToolbar={headerToolbar}
+        {...configs}
       />
 
       {/* Modal */}

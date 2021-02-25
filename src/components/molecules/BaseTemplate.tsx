@@ -6,9 +6,12 @@ import { addStoryAction } from "../../redux/features/userCalendars";
 import { BaseStory } from "../../core/story/BaseStory";
 import { OPEN_OPTION_BUTTON } from "../../hooks/useTemplateCustomButtons";
 
-const ableConfis = {
+const configs = {
+  // ables
   selectable: false,
   editable: false,
+  // resources
+  resourcesInitiallyExpanded: false,
 } as const;
 
 const headerToolbar = {
@@ -38,7 +41,7 @@ export function BaseTemplate(props: any) {
       initialDate={"2020-06-01"}
       resourceGroupLabelContent={resourceGroupLabelContent}
       headerToolbar={headerToolbar}
-      {...ableConfis}
+      {...configs}
     />
   );
 }
