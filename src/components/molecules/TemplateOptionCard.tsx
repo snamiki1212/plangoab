@@ -7,6 +7,21 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import Checkbox from "@material-ui/core/Checkbox";
 import { useTemplateOptions } from "../../hooks/useTemplateOptions";
 
+const MONTHS = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+] as const;
+
 // TODO: Use react-hook-form because of reducing render cost
 export function TemplateOptionCard() {
   const { update: updateOption, options } = useTemplateOptions();
@@ -120,14 +135,14 @@ export function TemplateOptionCard() {
           <div>
             <label>School start from (Month)</label>
             <div>
-              {Array.from({ length: 12 }).map((_, idx) => {
-                const month = idx + 1;
-                const isChecked = monthsOfStartSchool.includes(month);
+              {MONTHS.map((month, idx) => {
+                const monthNum = idx + 1;
+                const isChecked = monthsOfStartSchool.includes(monthNum);
                 return (
                   <CheckboxListItem key={month}>
                     <label>{month}</label>
                     <Checkbox
-                      value={month}
+                      value={monthNum}
                       checked={isChecked}
                       onChange={handleCheck}
                     />
