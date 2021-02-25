@@ -17,9 +17,19 @@ export const useUserCalendar = () => {
   const calendar = useSelector(selectUserCalendar);
 
   const init = React.useCallback(
-    (birthday: string | Date) => {
+    ({
+      birthday,
+      workingholidayPeriod,
+    }: {
+      birthday: string | Date;
+      workingholidayPeriod: number;
+    }) => {
       const calendarId = uuid();
-      const story = createProfileStory({ birth: birthday, calendarId });
+      const story = createProfileStory({
+        birth: birthday,
+        calendarId,
+        workingholidayPeriod,
+      });
       const _calendar = createUserCalendar({
         id: calendarId,
         stories: [story],
