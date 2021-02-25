@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../rootReducer";
 import { BaseCalendar } from "../../core/calendar/BaseCalendar";
-import { BaseStory } from "../../core/story/BaseStory";
+import { BaseStory, updateStory } from "../../core/story/BaseStory";
 import { BaseEvent, updateEvent } from "../../core/event/BaseEvent";
 import { BaseResource } from "../../core/resource/BaseResource";
 
@@ -30,6 +30,11 @@ type UpdateStoryPayload = {
   storyId: string;
   newStory: BaseStory;
 };
+type UpdateStoryByIdPayload = {
+  calendarId: string;
+  storyId: string;
+  params: Partial<BaseStory>;
+};
 type AddEventPayload = {
   calendarId: string;
   storyId: string;
@@ -53,12 +58,15 @@ type UpdateEventByIdPayload = {
   params: Partial<BaseEvent>;
 };
 
+const initialState = {
+  calendars: [] as Calendar[],
+};
+
 const userCalendarsSlice = createSlice({
   name: "userCalendars",
-  initialState: {
-    calendars: [] as Calendar[],
-  },
+  initialState,
   reducers: {
+    reset: () => initialState,
     removeCalendar(state, action: PayloadAction<RemoveCalendarPayload>) {
       const { calendarId } = action.payload;
       state.calendars = state.calendars.filter(
@@ -202,6 +210,33 @@ const userCalendarsSlice = createSlice({
       // prcess
       state.calendars[calendarIdx].stories[storyIdx] = newStory;
     },
+    updateStoryById(state, action: PayloadAction<UpdateStoryByIdPayload>) {
+      const { calendarId, storyId, params } = action.payload;
+      // calendar
+      const calendarIdx = state.calendars.findIndex(
+        (calendar) => calendar.id === calendarId
+      );
+      const cannotFindCalendar = calendarIdx === -1;
+      if (cannotFindCalendar) {
+        console.warn("cannot find calendar on updateStory", calendarId);
+        return;
+      }
+
+      // story
+      const storyIdx = state.calendars[calendarIdx].stories.findIndex(
+        (story) => story.id === storyId
+      );
+      const cannotFindStory = storyIdx === -1;
+      if (cannotFindStory) {
+        console.warn("cannot find story on updateStory", calendarId);
+        return;
+      }
+
+      // update
+      const _story = state.calendars[calendarIdx].stories[storyIdx];
+      const newStory = updateStory({ ..._story }, params);
+      state.calendars[calendarIdx].stories[storyIdx] = newStory;
+    },
     addEvent(state, action: PayloadAction<AddEventPayload>) {
       const { calendarId, storyId, event } = action.payload;
 
@@ -339,6 +374,8 @@ const userCalendarsSlice = createSlice({
 });
 
 export const {
+  reset: resetAction,
+
   // calendars
   removeCalendar: removeCalendarAction,
   updateCalendars: updateCalendarsAction,
@@ -352,6 +389,7 @@ export const {
   addStory: addStoryAction,
   removeStory: removeStoryAction,
   updateStory: updateStoryAction,
+  updateStoryById: updateStoryByIdAction,
 
   // event
   addEvent: addEventAction,

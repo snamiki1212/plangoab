@@ -3,26 +3,31 @@ import { useDispatch } from "react-redux";
 import {
   removeStoryAction,
   updateStoryAction,
+  updateStoryByIdAction,
   addStoryAction,
 } from "../redux/features/userCalendars";
 import { BaseStory, updateStory } from "../core/story/BaseStory";
 import { initStory } from "../core/story/BaseStory";
+import {PROFILE_ID} from '../constants/fullcalendar/settings'
 
 type IdSet = { calendarId: string; storyId: string };
 
 export const useStory = () => {
   const dispatch = useDispatch();
 
-  const remove = React.useCallback(({ calendarId, storyId }: IdSet) => {
-    // TODO: move this line outside
-    if (!window.confirm("Do you remove this story?")) return;
-    dispatch(
-      removeStoryAction({
-        storyId,
-        calendarId,
-      })
-    );
-  }, [dispatch]);
+  const remove = React.useCallback(
+    ({ calendarId, storyId }: IdSet) => {
+      // TODO: move this line outside
+      if (!window.confirm("Do you remove this story?")) return;
+      dispatch(
+        removeStoryAction({
+          storyId,
+          calendarId,
+        })
+      );
+    },
+    [dispatch]
+  );
 
   const update = React.useCallback(
     (idSet: IdSet, story: BaseStory, data: Partial<BaseStory>) => {
@@ -32,10 +37,20 @@ export const useStory = () => {
     [dispatch]
   );
 
-  const create  = React.useCallback(({calendarId}: {calendarId: string}, params?: Partial<BaseStory>) => {
-    const story = initStory({ calendarId });
-    dispatch(addStoryAction({ calendarId, story }));
-  }, [dispatch]);
+  const updateById = React.useCallback(
+    (idSet: IdSet, params: Partial<BaseStory>) => {
+      dispatch(updateStoryByIdAction({ ...idSet, params }));
+    },
+    [dispatch]
+  );
 
-  return { remove, update, create } as const;
+  const create = React.useCallback(
+    ({ calendarId }: { calendarId: string }, params?: Partial<BaseStory>) => {
+      const story = initStory({ calendarId });
+      dispatch(addStoryAction({ calendarId, story }));
+    },
+    [dispatch]
+  );
+
+  return { remove, update, updateById, create, profileStoryId: PROFILE_ID } as const;
 };

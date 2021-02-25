@@ -12,7 +12,9 @@ import { ProfileOption } from "../organisms/ProfileOption";
 import { useTemplateOptions } from "../../hooks/useTemplateOptions";
 
 export function IntroFlow() {
-  const { isOpen, close } = useModal(true);
+  const { calendar } = useUserCalendar();
+  const shouldSkipIntroFlow = !!calendar;
+  const { isOpen, close } = useModal(!shouldSkipIntroFlow);
   const { init: initUserCalendar } = useUserCalendar();
   const { birth } = useUser();
   const { options } = useTemplateOptions();
