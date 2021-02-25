@@ -28,7 +28,7 @@ export function IntroFlow() {
 
   return (
     <Dialog open={isOpen}>
-      <DialogTitle>Input your birthday!</DialogTitle>
+      <DialogTitle>😎Input your birthday!</DialogTitle>
       <DialogContent>
         <div>Plangoab would create some plans by your information.</div>
         <ProfileOption />
@@ -36,7 +36,7 @@ export function IntroFlow() {
       </DialogContent>
       <DialogActions>
         <Button onClick={handleFinish} variant="contained" color="primary">
-          Create Calendar
+          ✈️Create Calendar
         </Button>
       </DialogActions>
     </Dialog>

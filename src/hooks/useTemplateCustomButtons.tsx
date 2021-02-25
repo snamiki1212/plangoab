@@ -13,7 +13,7 @@ export const useTemplateCustomButtons = () => {
   const customButtons = React.useMemo(
     () => ({
       [OPEN_OPTION_BUTTON]: {
-        text: "Change Options",
+        text: "⚙️Change Options",
         click: handleOpenOption,
       },
     }),
