@@ -1,7 +1,8 @@
 <p align="center">
   <a href="https://plangoab.snamiki1212.vercel.app">
-	<img alt="Plangoab is a online web calendar for a person going abroad." src="https://user-images.githubusercontent.com/26793088/107297947-404e2a80-6a29-11eb-92ec-cce1d5c50a6e.png">
+	  <img alt="Plangoab is a online web calendar for a person going abroad." src="https://user-images.githubusercontent.com/26793088/107297947-404e2a80-6a29-11eb-92ec-cce1d5c50a6e.png">
   </a>
+  <p>TODO: here demo movie</p>
   <a href="https://github.com/snamiki1212/plangoab/blob/master/LICENSE.md">
     <img src="https://img.shields.io/badge/License-GPLv3-blue.svg" alt="License:GPLv3">
   </a>
@@ -12,6 +13,10 @@
 <b><a href="https://plangoab.snamiki1212.vercel.app">Plangoab</a></b> is a online web calendar for a person going abroad.
 
 (Plangoab stands for '<b>plan</b> to <b>go ab</b>road')
+
+## Why I created
+
+TODO:
 
 ## Features
 
@@ -46,6 +51,8 @@ Here is managed [issues](https://github.com/snamiki1212/plangoab/issues/11).
 <img src="https://user-images.githubusercontent.com/26793088/107864305-de6a3800-6e0f-11eb-9d2f-f12a88414018.jpg" alt="dependency flow" />
 </p>
 
+- Redux feature must call through custom hooks
+
 ```zsh
 # Build dot file
 $ yarn graph:dot
@@ -57,12 +64,13 @@ $ yarn graph:svg
 
 TODO: inplement in CI and automatically save this doc in /doc dir
 
-### Principle
+### Development Principles
 
 - No Class, but Function
 - Atomic Design
-- Don't use an arrow function when creating Function Components because of no name // TODO: create eslint rule
-- Prefer explainable name and code even if long
+- Prefer explainable code
+- Never use `this` and `prototype`
+- Use function component with general define syntax because of nameful // TODO: create eslint rule
 
 ### Tech Stack
 
@@ -76,6 +84,10 @@ TODO: inplement in CI and automatically save this doc in /doc dir
 - CI/CD
   - Github Actions
   - GitHub Pages
+
+### Color Pallete
+
+TODO:
 
 ## Contribution
 

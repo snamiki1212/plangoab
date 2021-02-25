@@ -1,22 +1,20 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { selectUserCalendar } from "../redux/features/userCalendars";
-import { MY_CALENDAR_ID } from "../constants/fullcalendar/settings";
-
 
 type Props = {
   createOpenHandle: Function;
-}
+};
 
 type ContentProps = {
   // REF: https://fullcalendar.io/docs/resource-group-render-hooks
   groupValue: string;
 };
 
-export const useResourceGroupLabelContentInUserCalendar = ({createOpenHandle}: Props) => {
-  const calendar = useSelector(
-    selectUserCalendar
-  );
+export const useResourceGroupLabelContentInUserCalendar = ({
+  createOpenHandle,
+}: Props) => {
+  const calendar = useSelector(selectUserCalendar);
 
   const resourceGroupLabelContent = React.useCallback(
     ({ groupValue: storyId }: ContentProps) => {
@@ -38,21 +36,21 @@ export const useResourceGroupLabelContentInUserCalendar = ({createOpenHandle}: P
         name = "No Name";
       }
 
-      const calendarId = MY_CALENDAR_ID;
-      const openHandle = createOpenHandle({calendarId, storyId})
+      const calendarId = calendar.id;
+      const openHandle = createOpenHandle({ calendarId, storyId });
 
-      const containerEl = document.createElement('span')
-      containerEl.style.display = 'flex'
-      containerEl.style.justifyContent = 'space-between'
+      const containerEl = document.createElement("span");
+      containerEl.style.display = "flex";
+      containerEl.style.justifyContent = "space-between";
 
-      const nameElement = document.createElement('i')
-      nameElement.innerHTML = name + ' ' // NOTE: space is for design, so not good way
-      containerEl.appendChild(nameElement)
+      const nameElement = document.createElement("i");
+      nameElement.innerHTML = name + " "; // NOTE: space is for design, so not good way
+      containerEl.appendChild(nameElement);
 
-      const buttonElement = document.createElement('button')
-      buttonElement.innerHTML = '︙'
-      buttonElement.onclick = openHandle
-      containerEl.appendChild(buttonElement)
+      const buttonElement = document.createElement("button");
+      buttonElement.innerHTML = "✏️";
+      buttonElement.onclick = openHandle;
+      containerEl.appendChild(buttonElement);
 
       const arrayOfDomNodes = [containerEl];
       return { domNodes: arrayOfDomNodes };
@@ -60,5 +58,5 @@ export const useResourceGroupLabelContentInUserCalendar = ({createOpenHandle}: P
     [calendar, createOpenHandle]
   );
 
-  return {resourceGroupLabelContent};
+  return { resourceGroupLabelContent };
 };

@@ -6,12 +6,6 @@ export const AGE_OF_START_STORY = 21;
 
 const slotLabelFormat = [{ year: "numeric" }, { month: "numeric" }];
 
-const headerToolbar = {
-  left: "",
-  center: "title",
-  right: "prev,next",
-} as const;
-
 const initialView = { initialView: MY_TIME_LINE_NAME } as const;
 
 const resourceGroupField = { resourceGroupField: NAME_OF_STORY_ID } as const;
@@ -38,19 +32,17 @@ const resourceConfigs = {
 } as const;
 
 const styleConfigs = {
-  height: 700,
+  height: 600,
 };
 
 const resourceAreaColumns = [
   {
     field: FIELD,
-    headerContent: "Field",
   },
 ];
 
 export const FULL_CALENDAR_CONFIGS = {
   views,
-  headerToolbar,
   slotLabelFormat,
   resourceAreaColumns,
   ...initialView,

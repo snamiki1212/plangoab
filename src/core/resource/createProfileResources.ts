@@ -14,24 +14,33 @@ import { BaseResource } from "./BaseResource";
 export const createProfileResources = ({
   calendarId,
   storyId,
+  withWorkingholiday,
 }: {
   calendarId: string;
   storyId: string;
-}): BaseResource[] => [
-  {
-    id: RESOURCE_ID__SHARED__AGE,
-    [FIELD]: "Age",
-    [NAME_OF_STORY_ID]: storyId,
-    [NAME_OF_ORDER]: 0,
-    calendarId,
-    eventBorderColor: DARK_BLUE,
-  },
-  {
-    id: RESOURCE_ID__SHARED__LIMIT,
-    [FIELD]: "Working Holiday",
-    [NAME_OF_STORY_ID]: storyId,
-    [NAME_OF_ORDER]: 1,
-    calendarId,
-    eventBorderColor: DARK_BLUE,
-  },
-];
+  withWorkingholiday: boolean;
+}): BaseResource[] => {
+  const list = [
+    {
+      id: RESOURCE_ID__SHARED__AGE,
+      [FIELD]: "🔢Age",
+      [NAME_OF_STORY_ID]: storyId,
+      [NAME_OF_ORDER]: 0,
+      calendarId,
+      eventBorderColor: DARK_BLUE,
+    },
+  ];
+
+  if (withWorkingholiday) {
+    list.push({
+      id: RESOURCE_ID__SHARED__LIMIT,
+      [FIELD]: "🌎Working Holiday",
+      [NAME_OF_STORY_ID]: storyId,
+      [NAME_OF_ORDER]: 1,
+      calendarId,
+      eventBorderColor: DARK_BLUE,
+    });
+  }
+
+  return list;
+};

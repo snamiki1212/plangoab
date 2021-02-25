@@ -6,6 +6,7 @@ import { BaseEvent, updateEvent } from "../../core/event/BaseEvent";
 import { BaseResource } from "../../core/resource/BaseResource";
 
 type Calendar = BaseCalendar;
+type RemoveCalendarPayload = { calendarId: string };
 type UpdateCalendarsPayload = { calendars: Calendar[] };
 type PushRsourceAction = {
   calendarId: string;
@@ -63,6 +64,12 @@ const userCalendarsSlice = createSlice({
     calendars: [] as Calendar[],
   },
   reducers: {
+    removeCalendar(state, action: PayloadAction<RemoveCalendarPayload>) {
+      const { calendarId } = action.payload;
+      state.calendars = state.calendars.filter(
+        (calendar) => calendar.id !== calendarId
+      );
+    },
     updateCalendars(state, action: PayloadAction<UpdateCalendarsPayload>) {
       const { calendars } = action.payload;
       state.calendars = calendars;
@@ -364,6 +371,8 @@ const userCalendarsSlice = createSlice({
 });
 
 export const {
+  // calendars
+  removeCalendar: removeCalendarAction,
   updateCalendars: updateCalendarsAction,
 
   // resources
