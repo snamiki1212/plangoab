@@ -11,18 +11,8 @@ import {
 export const usePrivateCollegeCalendar = () => {
   const dispatch = useDispatch();
   const generate = React.useCallback(
-    ({
-      birth,
-      canWorkingholiday,
-      options,
-    }: {
-      birth: string;
-      canWorkingholiday: boolean;
-      options: TemplateOption;
-    }) => {
-      dispatch(
-        upsertPrivateCollegeStoriesAction({ birth, canWorkingholiday, options })
-      );
+    ({ birth, options }: { birth: string; options: TemplateOption }) => {
+      dispatch(upsertPrivateCollegeStoriesAction({ birth, options }));
     },
     [dispatch]
   );

@@ -31,11 +31,9 @@ export const createPublicCollegeStory = (
   {
     startDate,
     calendarId,
-    canWorkingholiday,
   }: {
     startDate: Date;
     calendarId: string;
-    canWorkingholiday: boolean;
   },
   options: TemplateOption
 ): PrivateCollegeStory => {
@@ -47,7 +45,6 @@ export const createPublicCollegeStory = (
       calendarId,
       storyId,
       startDate,
-      canWorkingholiday,
     },
     options
   );
@@ -65,12 +62,10 @@ const doCreateStory = (
     calendarId,
     storyId,
     startDate,
-    canWorkingholiday,
   }: {
     calendarId: string;
     storyId: string;
     startDate: Date;
-    canWorkingholiday: boolean;
   },
   options: TemplateOption
 ) => {
@@ -141,98 +136,91 @@ const doCreateStory = (
     })
   );
 
-  if (canWorkingholiday) {
-    const workingholidayResourceId = uuid();
-    resources.push(
-      initResource({
-        ...RESOURCE_TEMPLATE__VISA_WORKING_HOLIDAY,
-        id: workingholidayResourceId,
+  const workingholidayResourceId = uuid();
+  resources.push(
+    initResource({
+      ...RESOURCE_TEMPLATE__VISA_WORKING_HOLIDAY,
+      id: workingholidayResourceId,
+      calendarId,
+      [NAME_OF_STORY_ID]: storyId,
+      [NAME_OF_ORDER]: 3,
+    })
+  );
+  const dateAsStartWorkingHoliday = addMonths(
+    startDate,
+    schoolPeriod + pgwpPeriod
+  );
+  events.push(
+    initEvent({
+      ...EVENT_TEMPLATE__VISA_WORKING_HOLIDAY,
+      id: uuid(),
+      resourceId: workingholidayResourceId,
+      storyId,
+      start: convertIsoToYearAndMonth(dateAsStartWorkingHoliday.toISOString()),
+      end: convertIsoToYearAndMonth(
+        addMonths(dateAsStartWorkingHoliday, workingholidayPeriod).toISOString()
+      ),
+      extendedProps: {
+        resourceId: workingholidayResourceId,
         calendarId,
-        [NAME_OF_STORY_ID]: storyId,
-        [NAME_OF_ORDER]: 3,
-      })
-    );
-    const dateAsStartWorkingHoliday = addMonths(
-      startDate,
-      schoolPeriod + pgwpPeriod
-    );
-    events.push(
-      initEvent({
-        ...EVENT_TEMPLATE__VISA_WORKING_HOLIDAY,
-        id: uuid(),
-        resourceId: workingholidayResourceId,
         storyId,
-        start: convertIsoToYearAndMonth(
-          dateAsStartWorkingHoliday.toISOString()
-        ),
-        end: convertIsoToYearAndMonth(
-          addMonths(
-            dateAsStartWorkingHoliday,
-            workingholidayPeriod
-          ).toISOString()
-        ),
-        extendedProps: {
-          resourceId: workingholidayResourceId,
-          calendarId,
-          storyId,
-        },
-      })
-    );
-    events.push(
-      initEvent({
-        ...EVENT_TEMPLATE__VISA_READY_WORKING_HOLIDAY,
-        id: uuid(),
+      },
+    })
+  );
+  events.push(
+    initEvent({
+      ...EVENT_TEMPLATE__VISA_READY_WORKING_HOLIDAY,
+      id: uuid(),
+      resourceId: workingholidayResourceId,
+      storyId,
+      start: convertIsoToYearAndMonth(
+        setMonth(
+          addYears(dateAsStartWorkingHoliday, -1),
+          MONTH_OF_WORKING_HOLIDAY_APPLICATION_LIMIT
+        ).toISOString()
+      ),
+      end: convertIsoToYearAndMonth(dateAsStartWorkingHoliday.toISOString()),
+      extendedProps: {
         resourceId: workingholidayResourceId,
+        calendarId,
         storyId,
-        start: convertIsoToYearAndMonth(
-          setMonth(
-            addYears(dateAsStartWorkingHoliday, -1),
-            MONTH_OF_WORKING_HOLIDAY_APPLICATION_LIMIT
-          ).toISOString()
-        ),
-        end: convertIsoToYearAndMonth(dateAsStartWorkingHoliday.toISOString()),
-        extendedProps: {
-          resourceId: workingholidayResourceId,
-          calendarId,
-          storyId,
-        },
-      })
-    );
+      },
+    })
+  );
 
-    // worker status
-    const workerStatusResourceId = uuid();
-    resources.push(
-      initResource({
-        ...RESOURCE_TEMPLATE__WORKER_STATUS,
-        id: workerStatusResourceId,
-        calendarId,
-        [NAME_OF_STORY_ID]: storyId,
-        [NAME_OF_ORDER]: 5,
-      })
-    );
-    events.push(
-      initEvent({
-        ...EVENT_TEMPLATE__STATUS_WORKER,
-        id: uuid(),
+  // worker status
+  const workerStatusResourceId = uuid();
+  resources.push(
+    initResource({
+      ...RESOURCE_TEMPLATE__WORKER_STATUS,
+      id: workerStatusResourceId,
+      calendarId,
+      [NAME_OF_STORY_ID]: storyId,
+      [NAME_OF_ORDER]: 5,
+    })
+  );
+  events.push(
+    initEvent({
+      ...EVENT_TEMPLATE__STATUS_WORKER,
+      id: uuid(),
+      resourceId: workerStatusResourceId,
+      storyId,
+      start: convertIsoToYearAndMonth(
+        addMonths(startDate, schoolPeriod).toISOString()
+      ),
+      end: convertIsoToYearAndMonth(
+        addMonths(
+          startDate,
+          schoolPeriod + pgwpPeriod + workingholidayPeriod
+        ).toISOString()
+      ),
+      extendedProps: {
         resourceId: workerStatusResourceId,
+        calendarId,
         storyId,
-        start: convertIsoToYearAndMonth(
-          addMonths(startDate, schoolPeriod).toISOString()
-        ),
-        end: convertIsoToYearAndMonth(
-          addMonths(
-            startDate,
-            schoolPeriod + pgwpPeriod + workingholidayPeriod
-          ).toISOString()
-        ),
-        extendedProps: {
-          resourceId: workerStatusResourceId,
-          calendarId,
-          storyId,
-        },
-      })
-    );
-  }
+      },
+    })
+  );
 
   // student status
   const studentStatusResourceId = uuid();
