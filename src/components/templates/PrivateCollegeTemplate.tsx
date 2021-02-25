@@ -5,14 +5,14 @@ import { useUser } from "../../hooks/useUser";
 import { useTemplateOptions } from "../../hooks/useTemplateOptions";
 
 export function PrivateCollegeTemplate() {
-  const { birth, canWorkingholiday } = useUser();
+  const { birth } = useUser();
   const { resources, events, generate } = usePrivateCollegeCalendar();
   const { options } = useTemplateOptions();
 
   // TODO: prevent re-rendering when to select tab again
   React.useEffect(() => {
-    generate({ birth, canWorkingholiday, options });
-  }, [generate, birth, canWorkingholiday, options]);
+    generate({ birth, options });
+  }, [generate, birth, options]);
 
   return <BaseTemplate events={events} resources={resources} />;
 }

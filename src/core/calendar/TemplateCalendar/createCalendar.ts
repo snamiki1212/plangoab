@@ -24,12 +24,10 @@ const createStoryList = (
   {
     birth,
     calendarId,
-    canWorkingholiday,
     storyCreater,
   }: {
     birth: Date;
     calendarId: string;
-    canWorkingholiday: boolean;
     storyCreater: Function;
   },
   options: TemplateOption
@@ -50,7 +48,7 @@ const createStoryList = (
       return startDateListInYear;
     })
     .map((startDate) => {
-      const params = { startDate, calendarId, canWorkingholiday };
+      const params = { startDate, calendarId };
       return storyCreater(params, options);
     });
 };
@@ -58,17 +56,14 @@ const createStoryList = (
 export const createPrivateCollegeCalendar = (
   {
     birth,
-    canWorkingholiday,
   }: {
     birth: Date;
-    canWorkingholiday: boolean;
   },
   options: TemplateOption
 ): PrivateCollegeCalendar => {
   const params = {
     birth,
     calendarId: PRIVATE_COLLEGE_CALENDAR_ID,
-    canWorkingholiday,
     storyCreater: createPrivateCollegeStory,
   };
   const stories = createStoryList(params, options);
@@ -81,17 +76,14 @@ export const createPrivateCollegeCalendar = (
 export const createPublicCollegeCalendar = (
   {
     birth,
-    canWorkingholiday,
   }: {
     birth: Date;
-    canWorkingholiday: boolean;
   },
   options: TemplateOption
 ): PrivateCollegeCalendar => {
   const params = {
     birth,
     calendarId: PUBLIC_COLLEGE_CALENDAR_ID,
-    canWorkingholiday,
     storyCreater: createPublicCollegeStory,
   };
   const stories = createStoryList(params, options);

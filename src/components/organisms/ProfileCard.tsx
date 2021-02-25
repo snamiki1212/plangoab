@@ -5,18 +5,11 @@ import Avatar from "@material-ui/core/Avatar";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import TextField from "@material-ui/core/TextField";
-import Checkbox from "@material-ui/core/Checkbox";
 
 import { useUser } from "../../hooks/useUser";
 
 export function ProfileCard() {
-  const {
-    birth,
-    age,
-    setBirth,
-    toggleWorkingholiday,
-    canWorkingholiday,
-  } = useUser();
+  const { birth, age, setBirth } = useUser();
 
   const handleDateChange = React.useCallback(
     (date: Date | null) => {
@@ -25,10 +18,6 @@ export function ProfileCard() {
     },
     [setBirth]
   );
-
-  const handleToggleWorkingholiday = React.useCallback(() => {
-    toggleWorkingholiday();
-  }, [toggleWorkingholiday]);
 
   return (
     <Card>
@@ -58,13 +47,6 @@ export function ProfileCard() {
             value={birth}
             onChange={handleDateChange}
           />
-          <div>
-            <span>with working holiday(TODO: move to template options)</span>
-            <Checkbox
-              checked={canWorkingholiday}
-              onChange={handleToggleWorkingholiday}
-            />
-          </div>
         </InnerContainer>
       </CardContent>
     </Card>
