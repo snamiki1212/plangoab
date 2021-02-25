@@ -2,8 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Footer } from "../molecules/Footer";
 import { Header } from "../molecules/Header";
-import { UserCalendarArea } from "../organisms/UserCalendarArea";
-import { TemplateCalendarArea } from "../organisms/TemplateCalendarArea";
+import { CalendarPageContent } from "../templates/CalendarPageContent";
 import { IntroFlow } from "./IntroFlow";
 
 export function CalendarPage() {
@@ -12,12 +11,12 @@ export function CalendarPage() {
       <Container>
         <Header />
         <ContentContainer>
-          <UserCalendarArea />
-          <TemplateCalendarArea />
+          <CalendarPageContent />
         </ContentContainer>
         <Footer />
       </Container>
 
+      {/* Modal */}
       <IntroFlow />
     </>
   );
