@@ -30,6 +30,9 @@ const slices = createSlice({
 export const selectTemplateOption = (state: RootState) =>
   state.features.templateOption.option;
 
+export const selectWithWorkingholiday = (state: RootState) =>
+  state.features.templateOption.option.workingholidayPeriod > 0;
+
 export const { update: updateAction } = slices.actions;
 
 export default slices.reducer;

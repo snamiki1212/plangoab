@@ -9,8 +9,15 @@ import { useTemplateOptions } from "../../hooks/useTemplateOptions";
 
 export function TemplateOptionCard() {
   const { update: updateOption, options } = useTemplateOptions();
-  const { schoolPeriod, coopPeriod, monthsOfStartSchool, pgwpPeriod } = options;
+  const {
+    schoolPeriod,
+    coopPeriod,
+    monthsOfStartSchool,
+    pgwpPeriod,
+    workingholidayPeriod,
+  } = options;
 
+  // TODO: Use react-hook-form because of reducing render cost
   const handleChangeSchoolPeriod = React.useCallback(
     (_event) => {
       const value = _event.target.value;
@@ -37,6 +44,16 @@ export function TemplateOptionCard() {
       const maybeNum = value === "" ? 0 : parseInt(value);
       if (!Number.isInteger(maybeNum)) return;
       updateOption({ pgwpPeriod: maybeNum });
+    },
+    [updateOption]
+  );
+
+  const handleChangeWorkingholidayPeriod = React.useCallback(
+    (_event) => {
+      const value = _event.target.value;
+      const maybeNum = value === "" ? 0 : parseInt(value);
+      if (!Number.isInteger(maybeNum)) return;
+      updateOption({ workingholidayPeriod: maybeNum });
     },
     [updateOption]
   );
@@ -82,6 +99,16 @@ export function TemplateOptionCard() {
               value={pgwpPeriod}
               onChange={handleChangePgwpPeriod}
               label="PWGP Period"
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">Month</InputAdornment>
+                ),
+              }}
+            />
+            <TextField
+              value={workingholidayPeriod}
+              onChange={handleChangeWorkingholidayPeriod}
+              label="Working Holiday Period"
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">Month</InputAdornment>
