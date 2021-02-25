@@ -11,7 +11,6 @@ import {
   addEventAction,
   selectUserCalendar,
 } from "../redux/features/userCalendars";
-import { MY_CALENDAR_ID } from "../constants/fullcalendar/settings";
 
 export const useUserCalendar = () => {
   const dispatch = useDispatch();
@@ -19,7 +18,7 @@ export const useUserCalendar = () => {
 
   const init = React.useCallback(
     (birthday: string | Date) => {
-      const calendarId = MY_CALENDAR_ID; // TODO: use selected my calendar id not constant value
+      const calendarId = uuid();
       const story = createProfileStory({ birth: birthday, calendarId });
       const _calendar = createUserCalendar({
         id: calendarId,

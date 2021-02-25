@@ -1,8 +1,9 @@
 import { ProfileStory } from "./model";
 import { PROFILE_ID } from "../../../constants/fullcalendar/settings";
-import { createStoryName } from "../BaseStory";
 import { createProfileResources } from "../../resource/createProfileResources";
 import { createProfileEvents } from "../../event/createProfileEvents";
+
+const STORY_NAME = "Profile";
 
 export const createProfileStory = ({
   birth,
@@ -16,7 +17,7 @@ export const createProfileStory = ({
   return {
     id: storyId,
     calendarId,
-    name: createStoryName(_birth),
+    name: STORY_NAME,
     resources: createProfileResources({ calendarId, storyId }),
     events: createProfileEvents({ calendarId, storyId, startDate: _birth }),
   };
