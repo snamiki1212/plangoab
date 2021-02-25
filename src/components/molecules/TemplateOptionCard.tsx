@@ -7,6 +7,7 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import Checkbox from "@material-ui/core/Checkbox";
 import { useTemplateOptions } from "../../hooks/useTemplateOptions";
 
+// TODO: Use react-hook-form because of reducing render cost
 export function TemplateOptionCard() {
   const { update: updateOption, options } = useTemplateOptions();
   const {
@@ -17,7 +18,6 @@ export function TemplateOptionCard() {
     workingholidayPeriod,
   } = options;
 
-  // TODO: Use react-hook-form because of reducing render cost
   const handleChangeSchoolPeriod = React.useCallback(
     (_event) => {
       const value = _event.target.value;
