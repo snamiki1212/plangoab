@@ -25,13 +25,8 @@ export const RESOURCE_TEMPLATE__VISA_PGWP = {
   eventBorderColor: DARK_BLUE,
 };
 
-export const RESOURCE_TEMPLATE__STUDENT_STATUS = {
-  [FIELD]: "💁Status:Student",
-  eventBorderColor: DARK_BLUE,
-};
-
-export const RESOURCE_TEMPLATE__WORKER_STATUS = {
-  [FIELD]: "💁Status:Worker",
+export const RESOURCE_TEMPLATE__STATUS = {
+  [FIELD]: "💁Status",
   eventBorderColor: DARK_BLUE,
 };
 

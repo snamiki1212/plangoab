@@ -4,8 +4,7 @@ import {
   RESOURCE_TEMPLATE__VISA_STUDY,
   RESOURCE_TEMPLATE__VISA_COOP,
   RESOURCE_TEMPLATE__VISA_WORKING_HOLIDAY,
-  RESOURCE_TEMPLATE__STUDENT_STATUS,
-  RESOURCE_TEMPLATE__WORKER_STATUS,
+  RESOURCE_TEMPLATE__STATUS,
   // events
   EVENT_TEMPLATE__VISA_COOP,
   EVENT_TEMPLATE__VISA_STUDY,
@@ -195,11 +194,11 @@ const doCreateStory = (
     );
 
     // worker status
-    const workerStatusResourceId = uuid();
+    const statusResourceId = uuid();
     resources.push(
       initResource({
-        ...RESOURCE_TEMPLATE__WORKER_STATUS,
-        id: workerStatusResourceId,
+        ...RESOURCE_TEMPLATE__STATUS,
+        id: statusResourceId,
         calendarId,
         [NAME_OF_STORY_ID]: storyId,
         [NAME_OF_ORDER]: 5,
@@ -209,7 +208,7 @@ const doCreateStory = (
       initEvent({
         ...EVENT_TEMPLATE__STATUS_WORKER,
         id: uuid(),
-        resourceId: workerStatusResourceId,
+        resourceId: statusResourceId,
         storyId,
         start: convertIsoToYearAndMonth(
           addMonths(startDate, schoolPeriod).toISOString()
@@ -221,42 +220,28 @@ const doCreateStory = (
           ).toISOString()
         ),
         extendedProps: {
-          resourceId: workerStatusResourceId,
+          resourceId: statusResourceId,
+          calendarId,
+          storyId,
+        },
+      }),
+      initEvent({
+        ...EVENT_TEMPLATE__STATUS_STATUS,
+        id: uuid(),
+        resourceId: statusResourceId,
+        storyId,
+        start: convertIsoToYearAndMonth(startDate.toISOString()),
+        end: convertIsoToYearAndMonth(
+          addMonths(startDate, schoolPeriod).toISOString()
+        ),
+        extendedProps: {
+          resourceId: statusResourceId,
           calendarId,
           storyId,
         },
       })
     );
   }
-
-  // student status
-  const studentStatusResourceId = uuid();
-  resources.push(
-    initResource({
-      ...RESOURCE_TEMPLATE__STUDENT_STATUS,
-      id: studentStatusResourceId,
-      calendarId,
-      [NAME_OF_STORY_ID]: storyId,
-      [NAME_OF_ORDER]: 4,
-    })
-  );
-  events.push(
-    initEvent({
-      ...EVENT_TEMPLATE__STATUS_STATUS,
-      id: uuid(),
-      resourceId: studentStatusResourceId,
-      storyId,
-      start: convertIsoToYearAndMonth(startDate.toISOString()),
-      end: convertIsoToYearAndMonth(
-        addMonths(startDate, schoolPeriod).toISOString()
-      ),
-      extendedProps: {
-        resourceId: studentStatusResourceId,
-        calendarId,
-        storyId,
-      },
-    })
-  );
 
   return [[...resources], [...events]] as [BaseResource[], BaseEvent[]];
 };
