@@ -13,19 +13,19 @@
 
 (Plangoab stands for '<b>plan</b> to <b>go ab</b>road')
 
-## Features
+### Features
 
 - 📝 Customize your schedule
 - ⚙️ Generate plans with many options
 - 💁‍♂️ Share a schedule(TODO: Up comming)
 - 💻 Save plans on local automatically
 
-## Demo
+### Demo
 
 <table align="center">
   <tr align="center">
     <td>
-      <p>Customizable</p>
+      <p>📝 Customize your plan</p>
       <a href="https://plangoab.snamiki1212.vercel.app">
         <img
         src="https://user-images.githubusercontent.com/26793088/109248982-b37ecd00-779b-11eb-835a-21ba4d9e9e92.gif"
@@ -33,7 +33,7 @@
       </a>
     </td>
     <td>
-      <p>Generate Plan</p>
+      <p>⚙️ Generate Plan</p>
       <a href="https://plangoab.snamiki1212.vercel.app">
         <img src="https://user-images.githubusercontent.com/26793088/109247952-b8428180-7799-11eb-906f-44156c01746c.gif"
         alt="example-generating-plans">
