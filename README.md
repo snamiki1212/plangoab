@@ -59,10 +59,10 @@ I pursued to design this app about data models and workflow that has the capabil
 
 ## Features
 
-- Customize your schedule
-- Generating a plan by your age
-- TODO: Share a schedule
-- TODO: Save a schedule(local or remote)
+- Customized your schedule
+- Generated plans with many options
+- TODO: Shared a schedule
+- Saved plans on local
 
 ## Install
 
@@ -78,7 +78,7 @@ Here is managed [issues](https://github.com/snamiki1212/plangoab/issues/11).
 
 ### Data Object / Explain Display
 
-![architecture-img](https://user-images.githubusercontent.com/26793088/106835692-a5320b00-664c-11eb-8fc6-6eba324c9f2c.jpg)
+<img align="center" src="https://user-images.githubusercontent.com/26793088/106835692-a5320b00-664c-11eb-8fc6-6eba324c9f2c.jpg" alt="architecture-img">
 
 ### Dependency Flow
 
