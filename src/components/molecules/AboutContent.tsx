@@ -15,7 +15,7 @@ export function AboutContent() {
   return (
     <Container>
       <div>
-        <h2>🔑About</h2>
+        <h2>🐱About</h2>
         <p>
           A web calendar for a person going abroad. Generating a suitable
           schedule and customizable.
@@ -44,6 +44,12 @@ export function AboutContent() {
           </li>
           <li>Edit my story and events in my calendar.</li>
         </p>
+      </div>
+
+      <div>
+        <h2>🔑Tips</h2>
+        <li>Zoom in: [Command] + [-]</li>
+        <li>Zoom out: [Command] + [+]</li>
       </div>
 
       <div>
