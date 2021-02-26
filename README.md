@@ -2,9 +2,8 @@
   <a href="https://plangoab.snamiki1212.vercel.app">
 	  <img alt="Plangoab is a online web calendar for a person going abroad." src="https://user-images.githubusercontent.com/26793088/107297947-404e2a80-6a29-11eb-92ec-cce1d5c50a6e.png">
   </a>
-  <p>TODO: here demo movie</p>
   <a href="https://github.com/snamiki1212/plangoab/blob/master/LICENSE.md">
-    <img src="https://img.shields.io/badge/License-GPLv3-blue.svg" alt="License:GPLv3">
+    <img src="https://img.shields.io/badge/License-GPLv3-blue.svg" alt="License:GPLv3" align="center">
   </a>
 </p>
 
@@ -13,6 +12,30 @@
 <b><a href="https://plangoab.snamiki1212.vercel.app">Plangoab</a></b> is a online web calendar for a person going abroad.
 
 (Plangoab stands for '<b>plan</b> to <b>go ab</b>road')
+
+## Demo
+
+<table align="center">
+  <tr align="center">
+    <td>
+      <p>Customizable</p>
+      <a href="https://plangoab.snamiki1212.vercel.app">
+        <img
+        src="https://user-images.githubusercontent.com/26793088/109248982-b37ecd00-779b-11eb-835a-21ba4d9e9e92.gif"
+        alt="customize-plans">
+      </a>
+    </td>
+    <td>
+      <p>Generate Plan</p>
+      <a href="https://plangoab.snamiki1212.vercel.app">
+        <img src="https://user-images.githubusercontent.com/26793088/109247952-b8428180-7799-11eb-906f-44156c01746c.gif"
+        alt="example-generating-plans">
+      </a>
+    </td>
+  </tr>
+</table>
+
+[👉Try Now](https://plangoab.snamiki1212.vercel.app)
 
 ## Why I created
 
@@ -24,10 +47,6 @@ TODO:
 - Generating a plan by your age
 - TODO: Share a schedule
 - TODO: Save a schedule(local or remote)
-
-## Demo
-
-[👉Try Now](https://plangoab.snamiki1212.vercel.app)
 
 ## Install
 
