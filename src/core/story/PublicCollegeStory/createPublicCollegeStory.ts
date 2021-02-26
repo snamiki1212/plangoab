@@ -197,56 +197,56 @@ const doCreateStory = (
         },
       })
     );
-
-    // worker status
-    const statusResourceId = uuid();
-    resources.push(
-      initResource({
-        ...RESOURCE_TEMPLATE__STATUS,
-        id: statusResourceId,
-        calendarId,
-        [NAME_OF_STORY_ID]: storyId,
-        [NAME_OF_ORDER]: 5,
-      })
-    );
-    events.push(
-      initEvent({
-        ...EVENT_TEMPLATE__STATUS_WORKER,
-        id: uuid(),
-        resourceId: statusResourceId,
-        storyId,
-        start: convertIsoToYearAndMonth(
-          addMonths(startDate, schoolPeriod).toISOString()
-        ),
-        end: convertIsoToYearAndMonth(
-          addMonths(
-            startDate,
-            schoolPeriod + pgwpPeriod + workingholidayPeriod
-          ).toISOString()
-        ),
-        extendedProps: {
-          resourceId: statusResourceId,
-          calendarId,
-          storyId,
-        },
-      }),
-      initEvent({
-        ...EVENT_TEMPLATE__STATUS_STATUS,
-        id: uuid(),
-        resourceId: statusResourceId,
-        storyId,
-        start: convertIsoToYearAndMonth(startDate.toISOString()),
-        end: convertIsoToYearAndMonth(
-          addMonths(startDate, schoolPeriod).toISOString()
-        ),
-        extendedProps: {
-          resourceId: statusResourceId,
-          calendarId,
-          storyId,
-        },
-      })
-    );
   }
+
+  // worker status
+  const statusResourceId = uuid();
+  resources.push(
+    initResource({
+      ...RESOURCE_TEMPLATE__STATUS,
+      id: statusResourceId,
+      calendarId,
+      [NAME_OF_STORY_ID]: storyId,
+      [NAME_OF_ORDER]: 5,
+    })
+  );
+  events.push(
+    initEvent({
+      ...EVENT_TEMPLATE__STATUS_WORKER,
+      id: uuid(),
+      resourceId: statusResourceId,
+      storyId,
+      start: convertIsoToYearAndMonth(
+        addMonths(startDate, schoolPeriod).toISOString()
+      ),
+      end: convertIsoToYearAndMonth(
+        addMonths(
+          startDate,
+          schoolPeriod + pgwpPeriod + workingholidayPeriod
+        ).toISOString()
+      ),
+      extendedProps: {
+        resourceId: statusResourceId,
+        calendarId,
+        storyId,
+      },
+    }),
+    initEvent({
+      ...EVENT_TEMPLATE__STATUS_STATUS,
+      id: uuid(),
+      resourceId: statusResourceId,
+      storyId,
+      start: convertIsoToYearAndMonth(startDate.toISOString()),
+      end: convertIsoToYearAndMonth(
+        addMonths(startDate, schoolPeriod).toISOString()
+      ),
+      extendedProps: {
+        resourceId: statusResourceId,
+        calendarId,
+        storyId,
+      },
+    })
+  );
 
   return [[...resources], [...events]] as [BaseResource[], BaseEvent[]];
 };
