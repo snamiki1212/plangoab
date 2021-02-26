@@ -48,7 +48,7 @@ export const useResourceGroupLabelContentInUserCalendar = ({
       containerEl.appendChild(nameElement);
 
       const buttonElement = document.createElement("button");
-      buttonElement.innerHTML = "︙";
+      buttonElement.innerHTML = "✏️";
       buttonElement.onclick = openHandle;
       containerEl.appendChild(buttonElement);
 

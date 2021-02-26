@@ -49,7 +49,7 @@ export const createProfileEvents = ({
 
     return {
       id: uuid(),
-      title: `Aage:${index}`,
+      title: `🔢Age:${index}`,
       start,
       end,
       storyId,
@@ -95,7 +95,7 @@ const createWorkingHolidayLimitEvents = ({
 
   const limitation = {
     id: uuid(),
-    title: "Available Scope of WorkingHoliday",
+    title: "🌍Available Scope of WorkingHoliday",
     start,
     end: endOfLimit,
     resourceId: RESOURCE_ID__SHARED__LIMIT,
@@ -109,7 +109,7 @@ const createWorkingHolidayLimitEvents = ({
 
   const application = {
     id: uuid(),
-    title: "Application Limit",
+    title: "🌍Application Limit",
     start,
     end: endOfApplication,
     storyId,

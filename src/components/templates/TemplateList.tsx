@@ -29,8 +29,8 @@ export function TemplateList() {
   return (
     <div>
       <Tabs value={selectedIdx} onChange={handleChange}>
-        <Tab label="Private College" />
-        <Tab label="Public College" />
+        <Tab label="🏫Private College" />
+        <Tab label="🎓Public College" />
       </Tabs>
       <TabPanel shouldShow={selectedIdx === 0}>
         <PrivateCollegeTemplate />

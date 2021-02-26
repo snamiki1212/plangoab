@@ -28,11 +28,10 @@ const nowIndicator = {
 
 const resourceConfigs = {
   resourceOrder: NAME_OF_ORDER,
-  resourcesInitiallyExpanded: false,
 } as const;
 
 const styleConfigs = {
-  height: 700,
+  height: 600,
 };
 
 const resourceAreaColumns = [

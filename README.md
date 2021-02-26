@@ -51,6 +51,8 @@ Here is managed [issues](https://github.com/snamiki1212/plangoab/issues/11).
 <img src="https://user-images.githubusercontent.com/26793088/107864305-de6a3800-6e0f-11eb-9d2f-f12a88414018.jpg" alt="dependency flow" />
 </p>
 
+- Redux feature must call through custom hooks
+
 ```zsh
 # Build dot file
 $ yarn graph:dot
@@ -67,6 +69,8 @@ TODO: inplement in CI and automatically save this doc in /doc dir
 - No Class, but Function
 - Atomic Design
 - Prefer explainable code
+- Never use `this` and `prototype`
+- Use function component with general define syntax because of nameful // TODO: create eslint rule
 
 ### Tech Stack
 

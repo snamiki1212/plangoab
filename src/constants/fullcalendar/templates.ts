@@ -6,66 +6,61 @@ const YELLOW = "#ffd700";
 const RED = "#e73758";
 
 export const RESOURCE_TEMPLATE__VISA_STUDY = {
-  [FIELD]: "Study VISA",
+  [FIELD]: "✍️Study VISA",
   eventBorderColor: DARK_BLUE,
 };
 
 export const RESOURCE_TEMPLATE__VISA_COOP = {
-  [FIELD]: "Co-op VISA",
+  [FIELD]: "🎓Co-op VISA",
   eventBorderColor: DARK_BLUE,
 };
 
 export const RESOURCE_TEMPLATE__VISA_WORKING_HOLIDAY = {
-  [FIELD]: "Working Holiday VISA",
+  [FIELD]: "🌎Working Holiday VISA",
   eventBorderColor: DARK_BLUE,
 };
 
 export const RESOURCE_TEMPLATE__VISA_PGWP = {
-  [FIELD]: "PGWP VISA",
+  [FIELD]: "🎓PGWP VISA",
   eventBorderColor: DARK_BLUE,
 };
 
-export const RESOURCE_TEMPLATE__STUDENT_STATUS = {
-  [FIELD]: "Student",
-  eventBorderColor: DARK_BLUE,
-};
-
-export const RESOURCE_TEMPLATE__WORKER_STATUS = {
-  [FIELD]: "Worker",
+export const RESOURCE_TEMPLATE__STATUS = {
+  [FIELD]: "💁Status",
   eventBorderColor: DARK_BLUE,
 };
 
 export const EVENT_TEMPLATE__VISA_COOP = {
-  title: "Co-op VISA",
+  title: "🎓Co-op VISA",
   backgroundColor: GREEN,
 };
 
 export const EVENT_TEMPLATE__VISA_STUDY = {
-  title: "Study VISA",
+  title: "✍️Study VISA",
   backgroundColor: GREEN,
 };
 
 export const EVENT_TEMPLATE__VISA_PGWP = {
-  title: "PGWP VISA",
+  title: "🎓PGWP VISA",
   backgroundColor: GREEN,
 };
 
 export const EVENT_TEMPLATE__VISA_WORKING_HOLIDAY = {
-  title: "Working Holiday VISA",
+  title: "🌎Working Holiday VISA",
   backgroundColor: GREEN,
 };
 
 export const EVENT_TEMPLATE__VISA_READY_WORKING_HOLIDAY = {
-  title: "Ready for Working Holiday VISA",
+  title: "🏃‍♂️Ready for Working Holiday VISA",
   backgroundColor: RED,
 };
 
 export const EVENT_TEMPLATE__STATUS_WORKER = {
-  title: "Status: Worker",
+  title: "🧑🏻‍💼Worker",
   eventBackgroundCoor: YELLOW,
 };
 
 export const EVENT_TEMPLATE__STATUS_STATUS = {
-  title: "Status: Student",
+  title: "🧑‍🎓Student",
   eventBackgroundCoor: YELLOW,
 };

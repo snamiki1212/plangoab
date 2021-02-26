@@ -68,14 +68,22 @@ export const useResourceGroupLabelContentInTemplateCalendar = ({
       nameElement.style.marginLeft = "1rem";
 
       const buttonElement = document.createElement("button");
-      buttonElement.innerHTML = "Copy to my calendar";
+      buttonElement.innerHTML = "🗒Copy to my calendar";
       buttonElement.style.marginLeft = "1rem";
+      buttonElement.style.background = "white";
+      buttonElement.style.borderRadius = "5px";
+      buttonElement.style.cursor = "pointer";
       buttonElement.onclick = clickHandle;
 
       const arrayOfDomNodes = [nameElement, buttonElement];
       return { domNodes: arrayOfDomNodes };
     },
-    [myCalendar, privateCollegeTemplate, publicCollegeTemplate, createClickHandel]
+    [
+      myCalendar,
+      privateCollegeTemplate,
+      publicCollegeTemplate,
+      createClickHandel,
+    ]
   );
 
   return { resourceGroupLabelContent };

@@ -1,11 +1,10 @@
-import { addMonths, addYears, setMonth } from "date-fns";
+import { addMonths, addYears, setMonth, getMonth } from "date-fns";
 import {
   // resources
   RESOURCE_TEMPLATE__VISA_STUDY,
   RESOURCE_TEMPLATE__VISA_COOP,
   RESOURCE_TEMPLATE__VISA_WORKING_HOLIDAY,
-  RESOURCE_TEMPLATE__STUDENT_STATUS,
-  RESOURCE_TEMPLATE__WORKER_STATUS,
+  RESOURCE_TEMPLATE__STATUS,
   // events
   EVENT_TEMPLATE__VISA_COOP,
   EVENT_TEMPLATE__VISA_STUDY,
@@ -97,10 +96,8 @@ const doCreateStory = (
         id: uuid(),
         resourceId: coopVisaResourceId,
         storyId,
-        start: convertIsoToYearAndMonth(startDate.toISOString()),
-        end: convertIsoToYearAndMonth(
-          addMonths(startDate, coopPeriod).toISOString()
-        ),
+        start: convertIsoToYearAndMonth(startDate),
+        end: convertIsoToYearAndMonth(addMonths(startDate, coopPeriod)),
         extendedProps: {
           resourceId: coopVisaResourceId,
           calendarId,
@@ -127,10 +124,8 @@ const doCreateStory = (
       id: uuid(),
       resourceId: studyVisaResourceId,
       storyId,
-      start: convertIsoToYearAndMonth(startDate.toISOString()),
-      end: convertIsoToYearAndMonth(
-        addMonths(startDate, schoolPeriod).toISOString()
-      ),
+      start: convertIsoToYearAndMonth(startDate),
+      end: convertIsoToYearAndMonth(addMonths(startDate, schoolPeriod)),
       extendedProps: {
         resourceId: studyVisaResourceId,
         calendarId,
@@ -157,14 +152,9 @@ const doCreateStory = (
         id: uuid(),
         resourceId: workingholidayResourceId,
         storyId,
-        start: convertIsoToYearAndMonth(
-          dateAsStartWorkingHoliday.toISOString()
-        ),
+        start: convertIsoToYearAndMonth(dateAsStartWorkingHoliday),
         end: convertIsoToYearAndMonth(
-          addMonths(
-            dateAsStartWorkingHoliday,
-            workingholidayPeriod
-          ).toISOString()
+          addMonths(dateAsStartWorkingHoliday, workingholidayPeriod)
         ),
         extendedProps: {
           resourceId: workingholidayResourceId,
@@ -183,9 +173,9 @@ const doCreateStory = (
           setMonth(
             addYears(dateAsStartWorkingHoliday, -1),
             MONTH_OF_WORKING_HOLIDAY_APPLICATION_LIMIT
-          ).toISOString()
+          )
         ),
-        end: convertIsoToYearAndMonth(dateAsStartWorkingHoliday.toISOString()),
+        end: convertIsoToYearAndMonth(dateAsStartWorkingHoliday),
         extendedProps: {
           resourceId: workingholidayResourceId,
           calendarId,
@@ -193,70 +183,52 @@ const doCreateStory = (
         },
       })
     );
-
-    // worker status
-    const workerStatusResourceId = uuid();
-    resources.push(
-      initResource({
-        ...RESOURCE_TEMPLATE__WORKER_STATUS,
-        id: workerStatusResourceId,
-        calendarId,
-        [NAME_OF_STORY_ID]: storyId,
-        [NAME_OF_ORDER]: 5,
-      })
-    );
-    events.push(
-      initEvent({
-        ...EVENT_TEMPLATE__STATUS_WORKER,
-        id: uuid(),
-        resourceId: workerStatusResourceId,
-        storyId,
-        start: convertIsoToYearAndMonth(
-          addMonths(startDate, schoolPeriod).toISOString()
-        ),
-        end: convertIsoToYearAndMonth(
-          addMonths(
-            startDate,
-            schoolPeriod + workingholidayPeriod
-          ).toISOString()
-        ),
-        extendedProps: {
-          resourceId: workerStatusResourceId,
-          calendarId,
-          storyId,
-        },
-      })
-    );
   }
 
-  // student status
-  const studentStatusResourceId = uuid();
+  // worker status
+  const statusResourceId = uuid();
   resources.push(
     initResource({
-      ...RESOURCE_TEMPLATE__STUDENT_STATUS,
-      id: studentStatusResourceId,
+      ...RESOURCE_TEMPLATE__STATUS,
+      id: statusResourceId,
       calendarId,
       [NAME_OF_STORY_ID]: storyId,
-      [NAME_OF_ORDER]: 4,
+      [NAME_OF_ORDER]: 5,
     })
   );
   events.push(
     initEvent({
-      ...EVENT_TEMPLATE__STATUS_STATUS,
+      ...EVENT_TEMPLATE__STATUS_WORKER,
       id: uuid(),
-      resourceId: studentStatusResourceId,
+      resourceId: statusResourceId,
       storyId,
-      start: convertIsoToYearAndMonth(startDate.toISOString()),
+      start: convertIsoToYearAndMonth(addMonths(startDate, schoolPeriod)),
       end: convertIsoToYearAndMonth(
-        addMonths(startDate, schoolPeriod).toISOString()
+        addMonths(startDate, schoolPeriod + workingholidayPeriod)
       ),
       extendedProps: {
-        resourceId: studentStatusResourceId,
+        resourceId: statusResourceId,
+        calendarId,
+        storyId,
+      },
+    }),
+    initEvent({
+      ...EVENT_TEMPLATE__STATUS_STATUS,
+      id: uuid(),
+      resourceId: statusResourceId,
+      storyId,
+      start: convertIsoToYearAndMonth(startDate),
+      end: convertIsoToYearAndMonth(addMonths(startDate, schoolPeriod)),
+      extendedProps: {
+        resourceId: statusResourceId,
         calendarId,
         storyId,
       },
     })
   );
+
+  console.log(">>", startDate, ">>", getMonth(startDate));
+  // debugger;
 
   return [[...resources], [...events]] as [BaseResource[], BaseEvent[]];
 };
