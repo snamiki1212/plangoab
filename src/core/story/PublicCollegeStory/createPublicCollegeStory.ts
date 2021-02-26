@@ -96,11 +96,9 @@ const doCreateStory = (
         id: uuid(),
         resourceId: pgwpVisaResourceId,
         storyId,
-        start: convertIsoToYearAndMonth(
-          addMonths(startDate, schoolPeriod).toISOString()
-        ),
+        start: convertIsoToYearAndMonth(addMonths(startDate, schoolPeriod)),
         end: convertIsoToYearAndMonth(
-          addMonths(startDate, schoolPeriod + pgwpPeriod).toISOString()
+          addMonths(startDate, schoolPeriod + pgwpPeriod)
         ),
         extendedProps: {
           resourceId: pgwpVisaResourceId,
@@ -128,10 +126,8 @@ const doCreateStory = (
       id: uuid(),
       resourceId: studyVisaResourceId,
       storyId,
-      start: convertIsoToYearAndMonth(startDate.toISOString()),
-      end: convertIsoToYearAndMonth(
-        addMonths(startDate, schoolPeriod).toISOString()
-      ),
+      start: convertIsoToYearAndMonth(startDate),
+      end: convertIsoToYearAndMonth(addMonths(startDate, schoolPeriod)),
       extendedProps: {
         resourceId: studyVisaResourceId,
         calendarId,
@@ -161,14 +157,9 @@ const doCreateStory = (
         id: uuid(),
         resourceId: workingholidayResourceId,
         storyId,
-        start: convertIsoToYearAndMonth(
-          dateAsStartWorkingHoliday.toISOString()
-        ),
+        start: convertIsoToYearAndMonth(dateAsStartWorkingHoliday),
         end: convertIsoToYearAndMonth(
-          addMonths(
-            dateAsStartWorkingHoliday,
-            workingholidayPeriod
-          ).toISOString()
+          addMonths(dateAsStartWorkingHoliday, workingholidayPeriod)
         ),
         extendedProps: {
           resourceId: workingholidayResourceId,
@@ -187,9 +178,9 @@ const doCreateStory = (
           setMonth(
             addYears(dateAsStartWorkingHoliday, -1),
             MONTH_OF_WORKING_HOLIDAY_APPLICATION_LIMIT
-          ).toISOString()
+          )
         ),
-        end: convertIsoToYearAndMonth(dateAsStartWorkingHoliday.toISOString()),
+        end: convertIsoToYearAndMonth(dateAsStartWorkingHoliday),
         extendedProps: {
           resourceId: workingholidayResourceId,
           calendarId,
@@ -216,14 +207,9 @@ const doCreateStory = (
       id: uuid(),
       resourceId: statusResourceId,
       storyId,
-      start: convertIsoToYearAndMonth(
-        addMonths(startDate, schoolPeriod).toISOString()
-      ),
+      start: convertIsoToYearAndMonth(addMonths(startDate, schoolPeriod)),
       end: convertIsoToYearAndMonth(
-        addMonths(
-          startDate,
-          schoolPeriod + pgwpPeriod + workingholidayPeriod
-        ).toISOString()
+        addMonths(startDate, schoolPeriod + pgwpPeriod + workingholidayPeriod)
       ),
       extendedProps: {
         resourceId: statusResourceId,
@@ -236,10 +222,8 @@ const doCreateStory = (
       id: uuid(),
       resourceId: statusResourceId,
       storyId,
-      start: convertIsoToYearAndMonth(startDate.toISOString()),
-      end: convertIsoToYearAndMonth(
-        addMonths(startDate, schoolPeriod).toISOString()
-      ),
+      start: convertIsoToYearAndMonth(startDate),
+      end: convertIsoToYearAndMonth(addMonths(startDate, schoolPeriod)),
       extendedProps: {
         resourceId: statusResourceId,
         calendarId,

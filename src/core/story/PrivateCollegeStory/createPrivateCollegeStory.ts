@@ -1,4 +1,4 @@
-import { addMonths, addYears, setMonth } from "date-fns";
+import { addMonths, addYears, setMonth, getMonth } from "date-fns";
 import {
   // resources
   RESOURCE_TEMPLATE__VISA_STUDY,
@@ -96,10 +96,8 @@ const doCreateStory = (
         id: uuid(),
         resourceId: coopVisaResourceId,
         storyId,
-        start: convertIsoToYearAndMonth(startDate.toISOString()),
-        end: convertIsoToYearAndMonth(
-          addMonths(startDate, coopPeriod).toISOString()
-        ),
+        start: convertIsoToYearAndMonth(startDate),
+        end: convertIsoToYearAndMonth(addMonths(startDate, coopPeriod)),
         extendedProps: {
           resourceId: coopVisaResourceId,
           calendarId,
@@ -126,10 +124,8 @@ const doCreateStory = (
       id: uuid(),
       resourceId: studyVisaResourceId,
       storyId,
-      start: convertIsoToYearAndMonth(startDate.toISOString()),
-      end: convertIsoToYearAndMonth(
-        addMonths(startDate, schoolPeriod).toISOString()
-      ),
+      start: convertIsoToYearAndMonth(startDate),
+      end: convertIsoToYearAndMonth(addMonths(startDate, schoolPeriod)),
       extendedProps: {
         resourceId: studyVisaResourceId,
         calendarId,
@@ -156,14 +152,9 @@ const doCreateStory = (
         id: uuid(),
         resourceId: workingholidayResourceId,
         storyId,
-        start: convertIsoToYearAndMonth(
-          dateAsStartWorkingHoliday.toISOString()
-        ),
+        start: convertIsoToYearAndMonth(dateAsStartWorkingHoliday),
         end: convertIsoToYearAndMonth(
-          addMonths(
-            dateAsStartWorkingHoliday,
-            workingholidayPeriod
-          ).toISOString()
+          addMonths(dateAsStartWorkingHoliday, workingholidayPeriod)
         ),
         extendedProps: {
           resourceId: workingholidayResourceId,
@@ -182,9 +173,9 @@ const doCreateStory = (
           setMonth(
             addYears(dateAsStartWorkingHoliday, -1),
             MONTH_OF_WORKING_HOLIDAY_APPLICATION_LIMIT
-          ).toISOString()
+          )
         ),
-        end: convertIsoToYearAndMonth(dateAsStartWorkingHoliday.toISOString()),
+        end: convertIsoToYearAndMonth(dateAsStartWorkingHoliday),
         extendedProps: {
           resourceId: workingholidayResourceId,
           calendarId,
@@ -211,11 +202,9 @@ const doCreateStory = (
       id: uuid(),
       resourceId: statusResourceId,
       storyId,
-      start: convertIsoToYearAndMonth(
-        addMonths(startDate, schoolPeriod).toISOString()
-      ),
+      start: convertIsoToYearAndMonth(addMonths(startDate, schoolPeriod)),
       end: convertIsoToYearAndMonth(
-        addMonths(startDate, schoolPeriod + workingholidayPeriod).toISOString()
+        addMonths(startDate, schoolPeriod + workingholidayPeriod)
       ),
       extendedProps: {
         resourceId: statusResourceId,
@@ -228,10 +217,8 @@ const doCreateStory = (
       id: uuid(),
       resourceId: statusResourceId,
       storyId,
-      start: convertIsoToYearAndMonth(startDate.toISOString()),
-      end: convertIsoToYearAndMonth(
-        addMonths(startDate, schoolPeriod).toISOString()
-      ),
+      start: convertIsoToYearAndMonth(startDate),
+      end: convertIsoToYearAndMonth(addMonths(startDate, schoolPeriod)),
       extendedProps: {
         resourceId: statusResourceId,
         calendarId,
@@ -239,6 +226,9 @@ const doCreateStory = (
       },
     })
   );
+
+  console.log(">>", startDate, ">>", getMonth(startDate));
+  // debugger;
 
   return [[...resources], [...events]] as [BaseResource[], BaseEvent[]];
 };
