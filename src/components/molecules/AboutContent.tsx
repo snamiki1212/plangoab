@@ -25,24 +25,23 @@ export function AboutContent() {
       <div>
         <h2>📝How to use</h2>
         <p>
-          There are three sections.
+          <h3>Sections</h3>
+          There are two sections.
           <br />
           <li>1. My calendar</li>
-          <li>2. Profile + Template Options</li>
-          <li>3. Template calendars</li>
+          <li>2. Template calendars</li>
         </p>
+
         <p>
-          <p>Instruction</p>
+          <h3>Instruction</h3>
           <li>
-            First, pick appropriate plans from a template calendar. Choose tab
-            and story in a template calendar and clicking "Copy to my calendar"
-            button.
+            1. Pick appropriate plan from a template calendar to click "Copy to
+            my calendar".
           </li>
           <li>
-            And then stories are copied from a template calendar into my
-            calendar.
+            2. Stories are copied from a template calendar into my calendar.
           </li>
-          <li>Edit my story and events in my calendar.</li>
+          <li>3. Edit my story and events in my calendar.</li>
         </p>
       </div>
 
