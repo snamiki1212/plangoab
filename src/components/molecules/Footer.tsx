@@ -5,30 +5,24 @@ import { LogoImage } from "../atoms/LogoImage";
 export function Footer() {
   return (
     <Container>
-      <LogoText>
-        <LogoImageContainer>
-          <LogoImage />
-        </LogoImageContainer>
-        <span>Plangoab</span>
-      </LogoText>
+      <LogoImage />
+      <AppName>Plangoab</AppName>
     </Container>
   );
 }
 
 const Container = styled.div`
   padding: 5rem;
-  min-height: 30vh;
   background: var(--main-color);
-  color: white;
-`;
 
-const LogoImageContainer = styled.div`
-  height: 4rem;
-  width: 4rem;
-`;
-
-const LogoText = styled.div`
   display: flex;
   color: white;
-  font-size: 4rem;
+  height: 6rem;
+  min-height: 30vh;
+`;
+
+const AppName = styled.div`
+  color: white;
+  font-size: 3rem;
+  padding: 1rem;
 `;
