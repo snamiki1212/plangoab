@@ -48,7 +48,7 @@
   </tr>
 </table>
 
-[👉Try Now](https://plangoab.snamiki1212.vercel.app)
+[👉👉 Try Now](https://plangoab.snamiki1212.vercel.app)
 
 ## Why I create
 
@@ -152,4 +152,5 @@ TODO:
 
 ## Author
 
-[GitHub: snamiki1212](https://github.com/snamiki1212)
+- [GitHub: snamiki1212](https://github.com/snamiki1212)
+- [Linkedin: snamiki1212](https://www.linkedin.com/in/snamiki1212/)
