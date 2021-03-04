@@ -25,7 +25,14 @@
 <table align="center">
   <tr align="center">
     <td>
-      <p>📝 Customize your plan</p>
+      <span>📝 Customize your plan</span>
+    </td>
+    <td>
+      <span>⚙️ Generate Plan</span>
+    </td>
+  </tr>
+  <tr align="center">
+    <td>
       <a href="https://plangoab.snamiki1212.vercel.app">
         <img
         src="https://user-images.githubusercontent.com/26793088/109248982-b37ecd00-779b-11eb-835a-21ba4d9e9e92.gif"
@@ -33,7 +40,6 @@
       </a>
     </td>
     <td>
-      <p>⚙️ Generate Plan</p>
       <a href="https://plangoab.snamiki1212.vercel.app">
         <img src="https://user-images.githubusercontent.com/26793088/109247952-b8428180-7799-11eb-906f-44156c01746c.gif"
         alt="example-generating-plans">
@@ -57,9 +63,16 @@ If you want to go abroad to find jobs, you should think about many topics when y
 
 Actually, in my case, I handwrote some plans but I made some mistakes to calculate a Visa and my ages. Fortunatelly, I realized it but I almost ruined my career. (Sorry, handwrite is Japanese!)
 
-|                                                                                                                                                |                                                                                                                                   |
-| ---------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| <img alt="handwriting-screenshot" src="https://user-images.githubusercontent.com/26793088/109250828-33f2fd00-779f-11eb-8bb8-0bb8fedd0787.png"> | <img alt="handwrite" src="https://user-images.githubusercontent.com/26793088/109252814-44a57200-77a3-11eb-99c0-94c3ccfc8f9a.png"> |
+<table>
+  <tr>
+    <td>
+      <img alt="handwriting-screenshot" src="https://user-images.githubusercontent.com/26793088/109250828-33f2fd00-779f-11eb-8bb8-0bb8fedd0787.png">
+    </td>
+    <td>
+      <img alt="handwrite" src="https://user-images.githubusercontent.com/26793088/109252814-44a57200-77a3-11eb-99c0-94c3ccfc8f9a.png">
+    </td>
+  </tr>
+</table>
 
 I believe this app would help people who want to plan to go abroad, especially to find job seriously.
 
@@ -134,6 +147,10 @@ TODO:
 [GPL-3.0](https://github.com/snamiki1212/plangoab/blob/master/LICENSE.md)
 
 Because of using [Fullcalendar Premium open-source project license](https://fullcalendar.io/license) as GPL-3.0. That makes a plangoab's license a same license.
+
+## Used by
+
+TODO:
 
 ## Sponser
 
