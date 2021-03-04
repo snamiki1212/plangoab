@@ -82,17 +82,13 @@ I pursued to design this app about data models and workflow that has the capabil
 
 Here is managed [issues](https://github.com/snamiki1212/plangoab/issues/11).
 
-### Data Object / Explain Display
+### Component and logic dependency Flow
 
-<img align="center" src="https://user-images.githubusercontent.com/26793088/106835692-a5320b00-664c-11eb-8fc6-6eba324c9f2c.jpg" alt="architecture-img">
+<img src="./DATA_FLOW.svg" alt="DATA_FLOW">
 
-### Dependency Flow
+### Deps graph
 
-<p align="center">
-<img src="https://user-images.githubusercontent.com/26793088/107864305-de6a3800-6e0f-11eb-9d2f-f12a88414018.jpg" alt="dependency flow" />
-</p>
-
-- Redux feature must call through custom hooks
+TODO: inplement in CI and automatically save this doc in /doc dir
 
 ```zsh
 # Build dot file
@@ -102,8 +98,6 @@ $ yarn graph:dot
 $ brwe install graphviz # prerequirements
 $ yarn graph:svg
 ```
-
-TODO: inplement in CI and automatically save this doc in /doc dir
 
 ### Development Principles
 
