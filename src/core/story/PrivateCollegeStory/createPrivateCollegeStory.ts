@@ -227,8 +227,5 @@ const doCreateStory = (
     })
   );
 
-  console.log(">>", startDate, ">>", getMonth(startDate));
-  // debugger;
-
   return [[...resources], [...events]] as [BaseResource[], BaseEvent[]];
 };
