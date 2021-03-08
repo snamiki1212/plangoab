@@ -2,13 +2,15 @@ import React from "react";
 import styled from "styled-components";
 import Button from "@material-ui/core/Button";
 import { LogoImage } from "../atoms/LogoImage";
+import { useResetAllData } from "../../hooks/useResetAllData";
 
 export function ErrorPage() {
-  const handleReset = React.useCallback(() => {
-    if(!window.confirm('Do you reset all data?')) return;
-    // TODO: put reset function
-    console.log("reset");
-  }, []);
+  const { reset } = useResetAllData();
+
+  const handleResetAllData = React.useCallback(() => {
+    if (!window.confirm("Would you remove all data in Plangoab?")) return;
+    reset();
+  }, [reset]);
 
   return (
     <Container>
@@ -16,12 +18,17 @@ export function ErrorPage() {
         <LogoImage />
       </LogoContainer>
       <div>
-        Sorry🐱<br />
+        Sorry🐱
+        <br />
         Something error happen.
         <br />
       </div>
       <div>
-        <Button onClick={handleReset} variant="contained" color="secondary">
+        <Button
+          onClick={handleResetAllData}
+          variant="contained"
+          color="secondary"
+        >
           Reset data
         </Button>
       </div>
