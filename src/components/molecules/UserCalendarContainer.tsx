@@ -95,7 +95,6 @@ export function UserCalendarContainer() {
 
       const params = { start, end };
       updateById(idSet, params);
-      console.log("data", data);
     },
     [updateById]
   );

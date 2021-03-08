@@ -1,4 +1,4 @@
-import { addMonths, addYears, setMonth, getMonth } from "date-fns";
+import { addMonths, addYears, setMonth } from "date-fns";
 import {
   // resources
   RESOURCE_TEMPLATE__VISA_STUDY,
@@ -226,9 +226,6 @@ const doCreateStory = (
       },
     })
   );
-
-  console.log(">>", startDate, ">>", getMonth(startDate));
-  // debugger;
 
   return [[...resources], [...events]] as [BaseResource[], BaseEvent[]];
 };
