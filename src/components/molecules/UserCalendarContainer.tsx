@@ -1,4 +1,8 @@
 import React from "react";
+import styled from "styled-components";
+import Paper from "@material-ui/core/Paper";
+import Box from "@material-ui/core/Box";
+import Divider from "@material-ui/core/Divider";
 import { EventClickArg } from "@fullcalendar/react";
 import { useUserCalendar } from "../../hooks/useUserCalendar";
 import { BaseCalendarContainer } from "../../components/atoms/BaseCalendarContainer";
@@ -103,25 +107,36 @@ export function UserCalendarContainer() {
 
   return (
     <>
-      <BaseCalendarContainer
-        events={events}
-        resources={resources}
-        // click event
-        eventClick={click}
-        // select empty space
-        selectable={true}
-        select={select}
-        // drag or resize event
-        editable={true}
-        eventResize={updateEvent}
-        eventDrop={updateEvent}
-        // etc
-        initialDate={"2020-06-01"} // TODO: change dynamically
-        resourceGroupLabelContent={resourceGroupLabelContent}
-        customButtons={customButtons}
-        headerToolbar={headerToolbar}
-        {...configs}
-      />
+      <Box>
+        <Paper elevation={8}>
+          <PaperHeader>
+            <Title>My Calendar</Title>
+            <span>Let's edit your plan in my calendar.</span>
+          </PaperHeader>
+          <Divider />
+          <CalendarContainer>
+            <BaseCalendarContainer
+              events={events}
+              resources={resources}
+              // click event
+              eventClick={click}
+              // select empty space
+              selectable={true}
+              select={select}
+              // drag or resize event
+              editable={true}
+              eventResize={updateEvent}
+              eventDrop={updateEvent}
+              // etc
+              initialDate={"2020-06-01"} // TODO: change dynamically
+              resourceGroupLabelContent={resourceGroupLabelContent}
+              customButtons={customButtons}
+              headerToolbar={headerToolbar}
+              {...configs}
+            />
+          </CalendarContainer>
+        </Paper>
+      </Box>
 
       {/* Modal */}
       <StoryModal isOpen={isOpenStoryModal} onClose={popStoryModal} />
@@ -129,3 +144,17 @@ export function UserCalendarContainer() {
     </>
   );
 }
+
+const Title = styled.span`
+  font-size: 2rem;
+  font-weight: 900;
+  margin-right: 1rem;
+`;
+
+const PaperHeader = styled.div`
+  padding: 1rem 1.5rem;
+`;
+
+const CalendarContainer = styled.div`
+  padding: 1rem 1.5rem;
+`;

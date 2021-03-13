@@ -5,7 +5,7 @@ export function PolicyExplanation() {
   return (
     <Text>
       {/* TODO: Update meaning */}
-      This application(Plangoab) use local state. If you accept local data
+      This application(Plangoab) use local state. If you accept local data,
       please clicking create button.
     </Text>
   );
@@ -13,4 +13,5 @@ export function PolicyExplanation() {
 
 const Text = styled.div`
   font-size: 0.7rem;
+  color: gray;
 `;

@@ -31,7 +31,6 @@ export function UserCalendarCreater() {
 
 const Container = styled.div`
   height: 50vh;
-  background: lightblue;
   display: grid;
   place-items: center;
 `;

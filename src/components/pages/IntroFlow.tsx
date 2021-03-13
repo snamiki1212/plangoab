@@ -1,14 +1,18 @@
 import React from "react";
+import styled from "styled-components";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogActions from "@material-ui/core/DialogActions";
+import Divider from "@material-ui/core/Divider";
 import Button from "@material-ui/core/Button";
+import { DatePicker } from "@material-ui/pickers";
+import Avatar from "@material-ui/core/Avatar";
 import { PolicyExplanation } from "../atoms/PolicyExplanation";
 import { useModal } from "../../hooks/useModal";
 import { useUserCalendar } from "../../hooks/useUserCalendar";
 import { useUser } from "../../hooks/useUser";
-import { ProfileOption } from "../organisms/ProfileOption";
+import { AdvancedOptions } from "../organisms/AdvancedOptions";
 import { useTemplateOptions } from "../../hooks/useTemplateOptions";
 
 export function IntroFlow() {
@@ -16,7 +20,7 @@ export function IntroFlow() {
   const shouldSkipIntroFlow = !!calendar;
   const { isOpen, close } = useModal(!shouldSkipIntroFlow);
   const { init: initUserCalendar } = useUserCalendar();
-  const { birth } = useUser();
+  const { birth, setBirth } = useUser();
   const { options } = useTemplateOptions();
   const workingholidayPeriod = React.useMemo(
     () => options.workingholidayPeriod,
@@ -28,12 +32,20 @@ export function IntroFlow() {
     close();
   }, [close, initUserCalendar, birth, workingholidayPeriod]);
 
+  const handleDateChange = React.useCallback(
+    (date: Date | null) => {
+      if (!date) return;
+      setBirth(date.toISOString());
+    },
+    [setBirth]
+  );
+
   return (
     <Dialog open={isOpen}>
       <DialogTitle>Welcome to Plangoab🐱</DialogTitle>
       <DialogContent>
         <p>
-          hi👋👋
+          hi 👋
           <br />
           <br />
           Plangoab helps you to create awesome plan to go abroad!
@@ -41,14 +53,47 @@ export function IntroFlow() {
           <br />
           Let's input your birthday and create your plans✈️
         </p>
-        <ProfileOption />
-        <PolicyExplanation />
+        <InputContainer>
+          <Avatar alt="you" />
+          <DatePicker
+            disableFuture
+            openTo="year"
+            format="yyyy-MM-dd"
+            label="Date of birth"
+            views={["year", "month", "date"]}
+            value={birth}
+            onChange={handleDateChange}
+          />
+        </InputContainer>
+        <ButtonsContainer>
+          <Button
+            onClick={handleFinish}
+            variant="contained"
+            color="primary"
+            style={{ textTransform: "none" }}
+          >
+            ✈️Create Calendar
+          </Button>
+          <AdvancedOptions />
+        </ButtonsContainer>
       </DialogContent>
+      <Divider />
       <DialogActions>
-        <Button onClick={handleFinish} variant="contained" color="primary">
-          ✈️Create Calendar
-        </Button>
+        <PolicyExplanation />
       </DialogActions>
     </Dialog>
   );
 }
+
+const InputContainer = styled.div`
+  display: flex;
+  gap: 1rem;
+  padding: 2rem;
+`;
+
+const ButtonsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
