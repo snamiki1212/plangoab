@@ -1,4 +1,7 @@
 import React from "react";
+import styled from "styled-components";
+import Paper from "@material-ui/core/Paper";
+import Box from "@material-ui/core/Box";
 import { EventClickArg } from "@fullcalendar/react";
 import { useUserCalendar } from "../../hooks/useUserCalendar";
 import { BaseCalendarContainer } from "../../components/atoms/BaseCalendarContainer";
@@ -103,25 +106,31 @@ export function UserCalendarContainer() {
 
   return (
     <>
-      <BaseCalendarContainer
-        events={events}
-        resources={resources}
-        // click event
-        eventClick={click}
-        // select empty space
-        selectable={true}
-        select={select}
-        // drag or resize event
-        editable={true}
-        eventResize={updateEvent}
-        eventDrop={updateEvent}
-        // etc
-        initialDate={"2020-06-01"} // TODO: change dynamically
-        resourceGroupLabelContent={resourceGroupLabelContent}
-        customButtons={customButtons}
-        headerToolbar={headerToolbar}
-        {...configs}
-      />
+      <Box>
+        <Header>My Calendar</Header>
+        <div>Let's edit your plan in my calendar.</div>
+        <Paper style={{ padding: "1.5rem" }}>
+          <BaseCalendarContainer
+            events={events}
+            resources={resources}
+            // click event
+            eventClick={click}
+            // select empty space
+            selectable={true}
+            select={select}
+            // drag or resize event
+            editable={true}
+            eventResize={updateEvent}
+            eventDrop={updateEvent}
+            // etc
+            initialDate={"2020-06-01"} // TODO: change dynamically
+            resourceGroupLabelContent={resourceGroupLabelContent}
+            customButtons={customButtons}
+            headerToolbar={headerToolbar}
+            {...configs}
+          />
+        </Paper>
+      </Box>
 
       {/* Modal */}
       <StoryModal isOpen={isOpenStoryModal} onClose={popStoryModal} />
@@ -129,3 +138,8 @@ export function UserCalendarContainer() {
     </>
   );
 }
+
+const Header = styled.div`
+  font-size: 2rem;
+  font-weight: 900;
+`;
