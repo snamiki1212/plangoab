@@ -4,6 +4,7 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogActions from "@material-ui/core/DialogActions";
+import Divider from "@material-ui/core/Divider";
 import Button from "@material-ui/core/Button";
 import { DatePicker } from "@material-ui/pickers";
 import Avatar from "@material-ui/core/Avatar";
@@ -64,14 +65,21 @@ export function IntroFlow() {
             onChange={handleDateChange}
           />
         </InputContainer>
-
-        <PolicyExplanation />
+        <ButtonsContainer>
+          <Button
+            onClick={handleFinish}
+            variant="contained"
+            color="primary"
+            style={{ textTransform: "none" }}
+          >
+            ✈️Create Calendar
+          </Button>
+          <AdvancedOptions />
+        </ButtonsContainer>
       </DialogContent>
+      <Divider />
       <DialogActions>
-        <AdvancedOptions />
-        <Button onClick={handleFinish} variant="contained" color="primary">
-          ✈️Create Calendar
-        </Button>
+        <PolicyExplanation />
       </DialogActions>
     </Dialog>
   );
@@ -81,4 +89,11 @@ const InputContainer = styled.div`
   display: flex;
   gap: 1rem;
   padding: 2rem;
+`;
+
+const ButtonsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;

@@ -25,8 +25,12 @@ export function AdvancedOptions() {
 
   return (
     <Container>
-      <Button onClick={toggle} size="small">
-        open advanced options
+      <Button
+        onClick={toggle}
+        size="small"
+        style={{ textTransform: "none", color: "gray" }}
+      >
+        Advanced Options
       </Button>
       {opens && (
         <TextField
@@ -43,7 +47,7 @@ export function AdvancedOptions() {
 }
 
 const Container = styled.div`
-  display: gap;
+  display: grid;
   gap: 1rem;
   padding: 2rem;
 `;
