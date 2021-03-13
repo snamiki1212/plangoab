@@ -1,5 +1,7 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
 import styled from "styled-components";
 import { AboutModal } from "../atoms/AboutModal";
 import { LogoImage } from "../atoms/LogoImage";
@@ -11,15 +13,19 @@ export function Header() {
 
   return (
     <>
-      <Container>
-        <LogoImage />
-        <Title>Plangoab</Title>
-        <ButtonContainer>
-          <Button variant="contained" onClick={open}>
-            ✈️About Plangoab
-          </Button>
-        </ButtonContainer>
-      </Container>
+      <AppBar position="static">
+        <Toolbar>
+          <div style={{ width: "100px", height: "100px" }}>
+            <LogoImage />
+          </div>
+          <Title>Plangoab</Title>
+          <ButtonContainer>
+            <Button variant="contained" onClick={open}>
+              ✈️About Plangoab
+            </Button>
+          </ButtonContainer>
+        </Toolbar>
+      </AppBar>
 
       {/* Modal */}
       <AboutModal isOpen={isOpen} onClose={close}>
