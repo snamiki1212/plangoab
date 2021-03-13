@@ -20,7 +20,11 @@ export function Header() {
           </div>
           <Title>Plangoab</Title>
           <ButtonContainer>
-            <Button variant="contained" onClick={open}>
+            <Button
+              variant="contained"
+              onClick={open}
+              style={{ background: "white" }}
+            >
               ✈️About Plangoab
             </Button>
           </ButtonContainer>
