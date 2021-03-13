@@ -30,17 +30,18 @@ export function TemplateList() {
 
   return (
     <Box>
-      <Header>Templates</Header>
-      <Description>
-        You can pick good template story from here to above calendar.
-      </Description>
-      <Paper>
+      <Paper elevation={8}>
+        <PaperHeader>
+          <Title>Templates</Title>
+          <Description>
+            You can pick good template story from here to above calendar.
+          </Description>
+        </PaperHeader>
         <Tabs
           value={selectedIdx}
           onChange={handleChange}
           textColor="primary"
           indicatorColor="primary"
-          style={{ backgroundColor: "lightblue" }}
         >
           <Tab
             icon={<Icon>🏫</Icon>}
@@ -64,14 +65,17 @@ export function TemplateList() {
   );
 }
 
-const Header = styled.div`
-  font-size: 3rem;
-  font-weight: 900;
+const PaperHeader = styled.div`
+  padding: 2rem;
 `;
 
-const Description = styled.span`
-  font-size: 1.3rem;
+const Title = styled.span`
+  font-size: 3rem;
+  font-weight: 900;
+  margin-right: 1rem;
 `;
+
+const Description = styled.span``;
 
 const Icon = styled.span`
   font-size: 2rem;

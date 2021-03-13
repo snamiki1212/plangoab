@@ -107,9 +107,11 @@ export function UserCalendarContainer() {
   return (
     <>
       <Box>
-        <Header>My Calendar</Header>
-        <div>Let's edit your plan in my calendar.</div>
-        <Paper style={{ padding: "1.5rem" }}>
+        <Paper elevation={8} style={{ padding: "1.5rem" }}>
+          <PaperHeader>
+            <Title>My Calendar</Title>
+            <span>Let's edit your plan in my calendar.</span>
+          </PaperHeader>
           <BaseCalendarContainer
             events={events}
             resources={resources}
@@ -139,7 +141,12 @@ export function UserCalendarContainer() {
   );
 }
 
-const Header = styled.div`
+const Title = styled.span`
   font-size: 2rem;
   font-weight: 900;
+  margin-right: 1rem;
+`;
+
+const PaperHeader = styled.div`
+  padding: 1rem 0;
 `;

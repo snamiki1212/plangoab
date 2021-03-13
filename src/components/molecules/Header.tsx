@@ -13,9 +13,9 @@ export function Header() {
 
   return (
     <>
-      <AppBar position="static">
+      <AppBar position="static" style={{ background: "#fff", color: "#000" }}>
         <Toolbar>
-          <div style={{ width: "100px", height: "100px" }}>
+          <div style={{ width: "50px", height: "50px" }}>
             <LogoImage />
           </div>
           <Title>Plangoab</Title>
@@ -35,17 +35,8 @@ export function Header() {
   );
 }
 
-const Container = styled.div`
-  display: flex;
-  align-items: center;
-  height: 6rem;
-  background: var(--main-color);
-  padding: 1rem;
-`;
-
 const Title = styled.span`
-  color: white;
-  font-size: 3rem;
+  font-size: 2rem;
   padding: 1rem;
 `;
 
