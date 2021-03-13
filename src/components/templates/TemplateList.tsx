@@ -1,5 +1,6 @@
 import React, { PropsWithChildren } from "react";
 import styled from "styled-components";
+import Divider from "@material-ui/core/Divider";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Box from "@material-ui/core/Box";
@@ -37,6 +38,7 @@ export function TemplateList() {
             You can pick good template story from here to above calendar.
           </Description>
         </PaperHeader>
+        <Divider />
         <Tabs
           value={selectedIdx}
           onChange={handleChange}
