@@ -7,9 +7,17 @@ import { AboutModal } from "../atoms/AboutModal";
 import { LogoImage } from "../atoms/LogoImage";
 import { AboutContent } from "./AboutContent";
 import { useModal } from "../../hooks/useModal";
+import { StepperModal } from "../templates/StepperModal";
 
 export function Header() {
-  const { isOpen, open, close } = useModal();
+  const {
+    isOpen: isOpenAbout,
+    open: openAbout,
+    close: closeAbout,
+  } = useModal();
+  const { isOpen: isOpenHowTo, open: openHowTo, close: closeHowTo } = useModal(
+    true
+  );
 
   return (
     <>
@@ -22,7 +30,14 @@ export function Header() {
           <ButtonContainer>
             <Button
               variant="contained"
-              onClick={open}
+              onClick={openHowTo}
+              style={{ background: "white" }}
+            >
+              HowTo
+            </Button>
+            <Button
+              variant="contained"
+              onClick={openAbout}
               style={{ background: "white" }}
             >
               ✈️About Plangoab
@@ -32,9 +47,10 @@ export function Header() {
       </AppBar>
 
       {/* Modal */}
-      <AboutModal isOpen={isOpen} onClose={close}>
+      <AboutModal isOpen={isOpenAbout} onClose={closeAbout}>
         <AboutContent />
       </AboutModal>
+      <StepperModal isOpen={isOpenHowTo} onClose={closeHowTo} />
     </>
   );
 }
