@@ -8,6 +8,7 @@ import { LogoImage } from "../atoms/LogoImage";
 import { AboutContent } from "./AboutContent";
 import { useModal } from "../../hooks/useModal";
 import { StepperModal } from "../templates/StepperModal";
+import { useStepper } from "../../hooks/useStepper";
 
 export function Header() {
   const {
@@ -15,9 +16,8 @@ export function Header() {
     open: openAbout,
     close: closeAbout,
   } = useModal();
-  const { isOpen: isOpenHowTo, open: openHowTo, close: closeHowTo } = useModal(
-    true
-  );
+
+  const { open } = useStepper();
 
   return (
     <>
@@ -30,7 +30,7 @@ export function Header() {
           <ButtonContainer>
             <Button
               variant="contained"
-              onClick={openHowTo}
+              onClick={open}
               style={{ background: "white" }}
             >
               HowTo
@@ -50,7 +50,7 @@ export function Header() {
       <AboutModal isOpen={isOpenAbout} onClose={closeAbout}>
         <AboutContent />
       </AboutModal>
-      <StepperModal isOpen={isOpenHowTo} onClose={closeHowTo} />
+      <StepperModal />
     </>
   );
 }

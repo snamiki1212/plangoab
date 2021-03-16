@@ -6,15 +6,10 @@ import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
-//
 import GIF_ChooseScool from "../../assets/choose_school.gif";
 import GIF_CopyStory from "../../assets/copy_story.gif";
 import GIF_EditCalendar from "../../assets/edit_calendar.gif";
-
-type Props = {
-  isOpen: boolean;
-  onClose: () => void;
-};
+import { useStepper } from "../../hooks/useStepper";
 
 const steps = [
   {
@@ -47,16 +42,8 @@ const steps = [
   { label: "Done!", content: <div>:D Let's Enjoy!</div> },
 ] as const;
 
-export function StepperModal({ isOpen, onClose }: Props) {
-  const [activeStepIdx, setActiveStepIdx] = React.useState<number>(0);
-  const handleNext = React.useCallback(
-    () => setActiveStepIdx((prev) => prev + 1),
-    []
-  );
-  const handleBack = React.useCallback(
-    () => setActiveStepIdx((prev) => prev - 1),
-    []
-  );
+export function StepperModal() {
+  const { activeStepIdx, isOpen, close, next, back } = useStepper();
 
   const isFirstStep = React.useMemo(() => activeStepIdx === 0, [activeStepIdx]);
   const isLastStep = React.useMemo(() => activeStepIdx === steps.length - 1, [
@@ -64,7 +51,7 @@ export function StepperModal({ isOpen, onClose }: Props) {
   ]);
 
   return (
-    <Dialog open={isOpen} onClose={onClose}>
+    <Dialog open={isOpen} onClose={close}>
       <DialogTitle>
         <span>How To Use</span>
         <Stepper activeStep={activeStepIdx} alternativeLabel>
@@ -79,17 +66,17 @@ export function StepperModal({ isOpen, onClose }: Props) {
         <div>{steps[activeStepIdx].content}</div>
       </DialogContent>
       <div>
-        <Button onClick={handleBack} disabled={isFirstStep}>
+        <Button onClick={back} disabled={isFirstStep}>
           Back
         </Button>
         {isLastStep ? (
-          <Button onClick={onClose}>Let's try!</Button>
+          <Button onClick={close}>Let's try!</Button>
         ) : (
-          <Button onClick={handleNext} color="primary" variant="contained">
+          <Button onClick={next} color="primary" variant="contained">
             Next
           </Button>
         )}
-        <Button onClick={onClose}>Close</Button>
+        <Button onClick={close}>Close</Button>
       </div>
     </Dialog>
   );

@@ -6,10 +6,12 @@ import templateOptionReducer from "./features/templateOption";
 import userCalendarsReducer from "./features/userCalendars";
 import eventModalReducer from "./ui/eventModal";
 import storyModalReducer from "./ui/storyModal";
+import stepReducer from "./ui/step";
 
 const uiReducer = combineReducers({
   storyModal: storyModalReducer,
   eventModal: eventModalReducer,
+  step: stepReducer,
 });
 
 const featuresReducer = combineReducers({
