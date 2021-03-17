@@ -1,16 +1,13 @@
 import React from "react";
-import { useDispatch } from "react-redux";
 import { BaseCalendarContainer } from "../atoms/BaseCalendarContainer";
 import { useResourceGroupLabelContentInTemplateCalendar } from "../../hooks/useResourceGroupLabelContentInTemplateCalendar";
-import { addStoryAction } from "../../redux/features/userCalendars";
+import { useStory } from "../../hooks/useStory";
 import { BaseStory } from "../../core/story/BaseStory";
 import { OPEN_OPTION_BUTTON } from "../../hooks/useTemplateCustomButtons";
 
 const configs = {
-  // ables
   selectable: false,
   editable: false,
-  // resources
   resourcesInitiallyExpanded: false,
 } as const;
 
@@ -21,14 +18,14 @@ const headerToolbar = {
 } as const;
 
 export function BaseTemplate(props: any) {
-  // TODO: move to custom hooks
-  const dispatch = useDispatch();
+  const { create: createStory } = useStory();
+
   const createClickHandel = React.useCallback(
     ({ story, calendarId }: { story: BaseStory; calendarId: string }) => () => {
       if (!window.confirm("Do you copy this story to My Calendar?")) return;
-      dispatch(addStoryAction({ calendarId, story }));
+      createStory({ calendarId }, story);
     },
-    [dispatch]
+    [createStory]
   );
 
   const {

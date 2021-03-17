@@ -8,7 +8,7 @@ import {
 } from "../redux/features/userCalendars";
 import { BaseStory, updateStory } from "../core/story/BaseStory";
 import { initStory } from "../core/story/BaseStory";
-import {PROFILE_ID} from '../constants/fullcalendar/settings'
+import { PROFILE_ID } from "../constants/fullcalendar/settings";
 
 type IdSet = { calendarId: string; storyId: string };
 
@@ -45,12 +45,18 @@ export const useStory = () => {
   );
 
   const create = React.useCallback(
-    ({ calendarId }: { calendarId: string }, params?: Partial<BaseStory>) => {
-      const story = initStory({ calendarId });
-      dispatch(addStoryAction({ calendarId, story }));
+    ({ calendarId }: { calendarId: string }, story?: BaseStory) => {
+      const _story = !!story ? story : initStory({ calendarId });
+      dispatch(addStoryAction({ calendarId, story: _story }));
     },
     [dispatch]
   );
 
-  return { remove, update, updateById, create, profileStoryId: PROFILE_ID } as const;
+  return {
+    remove,
+    update,
+    updateById,
+    create,
+    profileStoryId: PROFILE_ID,
+  } as const;
 };
