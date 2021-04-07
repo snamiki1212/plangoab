@@ -1,4 +1,6 @@
 import React from "react";
+import styled from "styled-components";
+import Divider from "@material-ui/core/Divider";
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
@@ -39,7 +41,16 @@ const steps = [
       </div>
     ),
   },
-  { label: "Done!", content: <div>:D Let's Enjoy!</div> },
+  {
+    label: "Done!",
+    content: (
+      <div>
+        You finish tutorial!
+        <br />
+        Let's Enjoy✈️
+      </div>
+    ),
+  },
 ] as const;
 
 export function StepperModal() {
@@ -53,7 +64,7 @@ export function StepperModal() {
   return (
     <Dialog open={isOpen} onClose={close}>
       <DialogTitle>
-        <span>How To Use</span>
+        <Title>How To Use</Title>
         <Stepper activeStep={activeStepIdx} alternativeLabel>
           {steps.map(({ label }) => (
             <Step key={label}>
@@ -62,22 +73,43 @@ export function StepperModal() {
           ))}
         </Stepper>
       </DialogTitle>
+      <Divider />
       <DialogContent>
-        <div>{steps[activeStepIdx].content}</div>
+        <ContentContainer>{steps[activeStepIdx].content}</ContentContainer>
       </DialogContent>
-      <div>
+      <Divider />
+      <ButtonContainer>
+        <div></div>
         <Button onClick={back} disabled={isFirstStep}>
           Back
         </Button>
         {isLastStep ? (
-          <Button onClick={close}>Let's try!</Button>
+          <Button onClick={close} color="primary" variant="contained">
+            Let's try!
+          </Button>
         ) : (
           <Button onClick={next} color="primary" variant="contained">
             Next
           </Button>
         )}
         <Button onClick={close}>Close</Button>
-      </div>
+      </ButtonContainer>
     </Dialog>
   );
 }
+
+const Title = styled.span`
+  font-weight: 900;
+`;
+
+const ButtonContainer = styled.div`
+  display: grid;
+  grid-template-columns: 0.3fr 1fr 1fr 0.3fr;
+  gap: 1rem;
+  margin: 1rem;
+`;
+
+const ContentContainer = styled.div`
+  height: 70vh;
+  width: 70vw;
+`;

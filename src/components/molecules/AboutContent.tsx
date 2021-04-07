@@ -15,7 +15,7 @@ export function AboutContent() {
   return (
     <Container>
       <div>
-        <h2>🐱About</h2>
+        <h2>🐱 About</h2>
         <p>
           A web calendar for a person going abroad. Generating a suitable
           schedule and customizable.
@@ -23,7 +23,7 @@ export function AboutContent() {
       </div>
 
       <div>
-        <h2>📝How to use</h2>
+        <h2>📝 How to use</h2>
         <p>
           <h3>Sections</h3>
           There are two sections.
@@ -31,6 +31,8 @@ export function AboutContent() {
           <li>1. My calendar</li>
           <li>2. Template calendars</li>
         </p>
+
+        <br />
 
         <p>
           <h3>Instruction</h3>
@@ -46,15 +48,16 @@ export function AboutContent() {
       </div>
 
       <div>
-        <h2>🔑Tips</h2>
+        <h2>🔑 Tips</h2>
         <li>Zoom in: [Command] + [-]</li>
         <li>Zoom out: [Command] + [+]</li>
       </div>
 
       <div>
-        <h2>💥Reset All Data</h2>
+        <h2>💥 Reset All Data</h2>
         <div>
           <p>Would you like to reset all data in Plangoab?</p>
+          <br />
           <Button
             onClick={handleResetAllData}
             variant="outlined"
@@ -66,12 +69,12 @@ export function AboutContent() {
       </div>
 
       <div>
-        <h2>📜License</h2>
+        <h2>📜 License</h2>
         <li>GPL-3.0</li>
       </div>
 
       <div>
-        <h2>😎Author</h2>
+        <h2>😎 Author</h2>
         <li>
           <a href={AuthorInfo.MY_GITHUB_URL}>GitHub:snamiki1212</a>
         </li>
@@ -84,7 +87,7 @@ export function AboutContent() {
       </div>
 
       <div>
-        <h2>🧑‍💻Source Code</h2>
+        <h2>🧑‍💻 Source Code</h2>
         <span>
           Plangoab is OSS managed at{" "}
           <a href={AuthorInfo.THIS_GITHUB_URL}>GitHub</a> so you can check all
