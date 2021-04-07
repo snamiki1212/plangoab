@@ -42,7 +42,9 @@ export function IntroFlow() {
 
   return (
     <Dialog open={isOpen}>
-      <DialogTitle>Welcome to Plangoab🐱</DialogTitle>
+      <DialogTitle>
+        <Title>Welcome to Plangoab🐱</Title>
+      </DialogTitle>
       <DialogContent>
         <p>
           hi 👋
@@ -84,6 +86,10 @@ export function IntroFlow() {
     </Dialog>
   );
 }
+
+const Title = styled.span`
+  font-weight: 900;
+`;
 
 const InputContainer = styled.div`
   display: flex;

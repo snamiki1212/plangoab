@@ -58,8 +58,12 @@ export function Header() {
 const Title = styled.span`
   font-size: 2rem;
   padding: 1rem;
+  font-weight: 600;
 `;
 
 const ButtonContainer = styled.div`
   margin-left: auto;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr 1fr;
 `;
