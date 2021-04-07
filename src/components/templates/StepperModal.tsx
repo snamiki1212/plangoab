@@ -18,7 +18,13 @@ const steps = [
     label: "Choose School Type",
     content: (
       <div>
-        <div>Choose Scool!</div>
+        <div>
+          <span>Choose school on Template section.</span>
+          <ul>
+            <li>Private college</li>
+            <li>Public college</li>
+          </ul>
+        </div>
         <img src={GIF_ChooseScool} alt="chooseScool" />
       </div>
     ),
@@ -27,7 +33,10 @@ const steps = [
     label: "Click Copy button",
     content: (
       <div>
-        <div>Click [copy] Button and then check your calendar!</div>
+        <div>Click [📝 Copy to my calendar] button.</div>
+        <br />
+        <div>Check that your calendar has copied section.</div>
+        <br />
         <img src={GIF_CopyStory} alt="CopyStory" />
       </div>
     ),
@@ -36,20 +45,14 @@ const steps = [
     label: "Edit your calendar",
     content: (
       <div>
-        <div>Edit your plan!</div>
+        <div>Edit your plan for feel free in your calendar.</div>
         <img src={GIF_EditCalendar} alt="Edit Calendar" />
       </div>
     ),
   },
   {
     label: "Done!",
-    content: (
-      <div>
-        You finish tutorial!
-        <br />
-        Let's Enjoy✈️
-      </div>
-    ),
+    content: <div>Finished tutorial! Let's Enjoy✈️</div>,
   },
 ] as const;
 
