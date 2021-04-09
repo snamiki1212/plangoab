@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://plangoab.snamiki1212.vercel.app">
-	  <img alt="Plangoab is a online web calendar for a person going abroad." src="https://user-images.githubusercontent.com/26793088/107297947-404e2a80-6a29-11eb-92ec-cce1d5c50a6e.png">
+	  <img alt="Plangoab is a online web calendar for a person going abroad." src="https://user-images.githubusercontent.com/26793088/114226819-f7332d80-9928-11eb-93f8-4f9919018bf6.png">
   </a>
   <a href="https://github.com/snamiki1212/plangoab/blob/master/LICENSE.md">
     <img src="https://img.shields.io/badge/License-GPLv3-blue.svg" alt="License:GPLv3" align="center">
