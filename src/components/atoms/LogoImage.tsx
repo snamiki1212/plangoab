@@ -3,7 +3,10 @@ import styled from "styled-components";
 
 export function LogoImage() {
   return (
-    <Img src={process.env.PUBLIC_URL + "/logo457_transparent.png"} alt="img" />
+    <Img
+      src={process.env.PUBLIC_URL + "/logo_transparent_410x410.png"}
+      alt="img"
+    />
   );
 }
 
