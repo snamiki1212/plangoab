@@ -80,10 +80,17 @@ I pursued to design this app about data models and workflow that has the capabil
 
 ## Architecture
 
-Here is managed [issues](https://github.com/snamiki1212/plangoab/issues/11).
+(Here is managed [issues](https://github.com/snamiki1212/plangoab/issues/11).)
 
 ### Component and logic dependency Flow
 
+<!--
+  [How to Modify]
+    1) open draw.io.
+    2) import this svg file
+    3) modify
+    4) export as svg file
+ -->
 <img src="./DATA_FLOW.svg" alt="DATA_FLOW">
 
 ### Deps graph
@@ -123,6 +130,11 @@ $ yarn graph:svg
 ### Color Pallete
 
 TODO:
+
+### Local Cache Management
+
+Plangoab is using localstorage with redux-persist.
+That's why we have to pay attention when to change redux data shape
 
 ## Install
 
