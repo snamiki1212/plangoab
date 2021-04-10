@@ -9,7 +9,7 @@
 
 # Plangoab
 
-<b><a href="https://plangoab.snamiki1212.vercel.app">Plangoab</a></b> is a online web calendar for a person going abroad.
+<b><a href="https://plangoab.snamiki1212.vercel.app">Plangoab</a></b> <i>(/plˈængóʊb/)</i> is a online web calendar for a person going abroad.
 
 (Plangoab stands for '<b>plan</b> to <b>go ab</b>road')
 
@@ -50,7 +50,7 @@
 
 [👉👉 Try Now](https://plangoab.snamiki1212.vercel.app)
 
-## Why I create
+## Why do I create
 
 Because I have wanted this app when I make a plan to go to Canada and then to find jobs.
 
@@ -80,10 +80,17 @@ I pursued to design this app about data models and workflow that has the capabil
 
 ## Architecture
 
-Here is managed [issues](https://github.com/snamiki1212/plangoab/issues/11).
+(Here is managed [issues](https://github.com/snamiki1212/plangoab/issues/11).)
 
 ### Component and logic dependency Flow
 
+<!--
+  [How to Modify]
+    1) open draw.io.
+    2) import this svg file
+    3) modify
+    4) export as svg file
+ -->
 <img src="./DATA_FLOW.svg" alt="DATA_FLOW">
 
 ### Deps graph
@@ -124,6 +131,11 @@ $ yarn graph:svg
 
 TODO:
 
+### Local Cache Management
+
+Plangoab is using localstorage with redux-persist.
+That's why we have to pay attention when to change redux data shape
+
 ## Install
 
 ```zsh
@@ -142,13 +154,36 @@ TODO:
 
 Because of using [Fullcalendar Premium open-source project license](https://fullcalendar.io/license) as GPL-3.0. That makes a plangoab's license a same license.
 
-## Used by
+## Collaborations
 
-TODO:
-
-## Sponser
-
-TODO:
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://frogagent.com/">
+        Frog
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://cosvancouver.com/">
+        COS
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <a href="https://frogagent.com/">
+        <img src="https://user-images.githubusercontent.com/26793088/114257682-73a02d80-9976-11eb-84cb-7b0e88658a83.png"
+          alt="logo-frog" width="80" />
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://cosvancouver.com/">
+        <img src="https://user-images.githubusercontent.com/26793088/114257709-a0544500-9976-11eb-9258-c5d6f42e5470.png"
+          alt="logo-cos" width="80" />
+      </a>
+    </td>
+  </tr>
+</table>
 
 ## Author
 

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Button from "@material-ui/core/Button";
 import { useResetAllData } from "../../hooks/useResetAllData";
 import * as AuthorInfo from "../../constants/meta";
+import { collaborations } from "../../constants/collaborations";
 
 export function AboutContent() {
   const { reset } = useResetAllData();
@@ -84,6 +85,17 @@ export function AboutContent() {
         <li>
           <a href={AuthorInfo.MY_PORTFOLIO}>Portfolio</a>
         </li>
+      </div>
+
+      <div>
+        <h2>👨‍👦‍👦 Collaborations</h2>
+        {collaborations.map(({ name, link }) => (
+          <li>
+            <a target="_blank" rel="noopener noreferrer" href={link}>
+              {name}
+            </a>
+          </li>
+        ))}
       </div>
 
       <div>
