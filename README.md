@@ -9,7 +9,7 @@
 
 # Plangoab
 
-<b><a href="https://plangoab.snamiki1212.vercel.app">Plangoab</a></b> is a online web calendar for a person going abroad.
+<b><a href="https://plangoab.snamiki1212.vercel.app">Plangoab</a></b> <i>(/plˈængóʊb/)</i> is a online web calendar for a person going abroad.
 
 (Plangoab stands for '<b>plan</b> to <b>go ab</b>road')
 
@@ -50,7 +50,7 @@
 
 [👉👉 Try Now](https://plangoab.snamiki1212.vercel.app)
 
-## Why I create
+## Why do I create
 
 Because I have wanted this app when I make a plan to go to Canada and then to find jobs.
 
