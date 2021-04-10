@@ -142,13 +142,36 @@ TODO:
 
 Because of using [Fullcalendar Premium open-source project license](https://fullcalendar.io/license) as GPL-3.0. That makes a plangoab's license a same license.
 
-## Used by
+## Collaborations
 
-TODO:
-
-## Sponser
-
-TODO:
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://frogagent.com/">
+        Frog
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://cosvancouver.com/">
+        COS
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <a href="https://frogagent.com/">
+        <img src="https://user-images.githubusercontent.com/26793088/114257682-73a02d80-9976-11eb-84cb-7b0e88658a83.png"
+          alt="logo-frog" width="80" />
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://cosvancouver.com/">
+        <img src="https://user-images.githubusercontent.com/26793088/114257709-a0544500-9976-11eb-9258-c5d6f42e5470.png"
+          alt="logo-cos" width="80" />
+      </a>
+    </td>
+  </tr>
+</table>
 
 ## Author
 
