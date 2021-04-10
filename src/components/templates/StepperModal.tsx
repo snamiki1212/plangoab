@@ -25,7 +25,7 @@ const steps = [
             <li>Public college</li>
           </ul>
         </div>
-        <img src={GIF_ChooseScool} alt="chooseScool" />
+        <img src={GIF_ChooseScool} alt="chooseScool" style={{ width: "50%" }} />
       </div>
     ),
   },
@@ -37,7 +37,7 @@ const steps = [
         <br />
         <div>Check that your calendar has copied section.</div>
         <br />
-        <img src={GIF_CopyStory} alt="CopyStory" />
+        <img src={GIF_CopyStory} alt="CopyStory" style={{ width: "50%" }} />
       </div>
     ),
   },
@@ -46,7 +46,11 @@ const steps = [
     content: (
       <div>
         <div>Edit your plan for feel free in your calendar.</div>
-        <img src={GIF_EditCalendar} alt="Edit Calendar" />
+        <img
+          src={GIF_EditCalendar}
+          alt="Edit Calendar"
+          style={{ width: "50%" }}
+        />
       </div>
     ),
   },
@@ -65,7 +69,7 @@ export function StepperModal() {
   ]);
 
   return (
-    <Dialog open={isOpen} onClose={close}>
+    <Dialog open={isOpen} onClose={close} maxWidth="lg">
       <DialogTitle>
         <Title>How To Use</Title>
         <Stepper activeStep={activeStepIdx} alternativeLabel>
