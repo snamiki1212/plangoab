@@ -9,15 +9,18 @@ type UpdateWidthPx = {
   widthPx: string;
 };
 
+const initialState: State = {
+  widthPx: undefined,
+};
+
 /**
  * Handle screen shot feature
  */
 const slice = createSlice({
   name: "capture",
-  initialState: {
-    widthPx: undefined,
-  } as State,
+  initialState,
   reducers: {
+    reset: () => initialState,
     updateWidthPx(state, action: PayloadAction<UpdateWidthPx>) {
       const { widthPx } = action.payload;
       state.widthPx = widthPx;
@@ -27,6 +30,9 @@ const slice = createSlice({
 
 export const selectWidthPx = (state: RootState) => state.ui.capture.widthPx;
 
-export const { updateWidthPx: updateWidthPxAction } = slice.actions;
+export const {
+  updateWidthPx: updateWidthPxAction,
+  reset: resetAction,
+} = slice.actions;
 
 export default slice.reducer;
