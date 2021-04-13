@@ -5,6 +5,7 @@ import { TemplateCalendarArea } from "../organisms/TemplateCalendarArea";
 import { UserCalendarCreater } from "../molecules/UserCalendarCreater";
 import { useUserCalendar } from "../../hooks/useUserCalendar";
 
+// TODO: Fix duplicate feature between here and UserCalendarArea
 export function CalendarPageContent() {
   const { calendar } = useUserCalendar();
   const existsCalendar = !!calendar;

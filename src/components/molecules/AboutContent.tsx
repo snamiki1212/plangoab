@@ -4,8 +4,15 @@ import Button from "@material-ui/core/Button";
 import { useResetAllData } from "../../hooks/useResetAllData";
 import * as AuthorInfo from "../../constants/meta";
 import { collaborations } from "../../constants/collaborations";
+import { useCaptureQuery } from "../../hooks/useCapture";
 
 export function AboutContent() {
+  const {
+    handleChange: handleChangeCapture,
+    update: updateCapture,
+    width,
+  } = useCaptureQuery();
+
   const { reset } = useResetAllData();
 
   const handleResetAllData = React.useCallback(() => {
@@ -24,7 +31,7 @@ export function AboutContent() {
       </div>
 
       <div>
-        <h2>📝 How to use</h2>
+        <h2>📝 How To Use</h2>
         <p>
           <h3>Sections</h3>
           There are two sections.
@@ -66,6 +73,39 @@ export function AboutContent() {
           >
             RESET ALL DATA
           </Button>
+        </div>
+      </div>
+
+      <div>
+        <h2>🗂 How To Capture</h2>
+        <div style={{ display: "grid", gap: "1rem" }}>
+          <p>
+            If you capture display as file, recommend to use "Google Chrome
+            Browser" and "Capture Full-screen" feature.
+          </p>
+          <p>
+            We put reference below how to capture image to use Google Chrome.
+            <br />
+            <a href="https://zapier.com/blog/full-page-screenshots-in-chrome/">
+              How to Take a Full-Page Screenshot
+            </a>
+          </p>
+          <p>
+            We provide width customize feature to display calendar's all data.
+          </p>
+        </div>
+        <div>
+          <p>
+            You customize calendar's display width size in order to capture as
+            image.
+          </p>
+          <input
+            onChange={handleChangeCapture}
+            type="number"
+            value={width}
+            placeholder="e.g. 10000"
+          />
+          <button onClick={updateCapture}>Update</button>
         </div>
       </div>
 
