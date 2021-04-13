@@ -5,7 +5,8 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
 import { useResetAllData } from "../../hooks/useResetAllData";
-import * as AuthorInfo from "../../constants/meta";
+import { THIS_GITHUB_URL } from "../../constants/meta";
+import { SNS_LIST } from "../../constants/sns";
 import { collaborations } from "../../constants/collaborations";
 import { useCaptureQuery } from "../../hooks/useCapture";
 
@@ -18,7 +19,7 @@ export function AboutModal({ isOpen, onClose }: PropsWithChildren<Props>) {
   return (
     <Dialog onClose={onClose} open={isOpen}>
       <DialogTitle>
-        <MainTitle>✈️ About Plangoab</MainTitle>
+        <MainTitle>✈️ Plangoab</MainTitle>
       </DialogTitle>
       <DialogContent dividers={true}>
         <AboutContent />
@@ -61,7 +62,7 @@ function Section({
 function AboutSection() {
   return (
     <Section
-      title="🐱 About"
+      title="🐱 About Planogoab"
       content={
         <p>
           A web calendar for a person going abroad. Generating a suitable
@@ -79,7 +80,6 @@ function HowToUseSection() {
       content={
         <div>
           <p>
-            <h3>Sections</h3>
             There are two sections.
             <br />
             <li>1. My calendar</li>
@@ -212,15 +212,13 @@ function AuthorSection() {
       title="😎 Author"
       content={
         <div>
-          <li>
-            <a href={AuthorInfo.MY_GITHUB_URL}>GitHub:snamiki1212</a>
-          </li>
-          <li>
-            <a href={AuthorInfo.MY_TWITTER_URL}>Twitter:snamiki1212</a>
-          </li>
-          <li>
-            <a href={AuthorInfo.MY_PORTFOLIO}>Portfolio</a>
-          </li>
+          {SNS_LIST.map(({ name, url }) => (
+            <li>
+              <a href={url} target="_blank" rel="noopener noreferrer">
+                {name}
+              </a>
+            </li>
+          ))}
         </div>
       }
     />
@@ -253,9 +251,8 @@ function CodeSection() {
       content={
         <div>
           <span>
-            Plangoab is OSS managed at{" "}
-            <a href={AuthorInfo.THIS_GITHUB_URL}>GitHub</a> so you can check all
-            of code.
+            Plangoab is OSS managed at <a href={THIS_GITHUB_URL}>GitHub</a> so
+            you can check all of code.
           </span>
         </div>
       }
