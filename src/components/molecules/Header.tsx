@@ -5,7 +5,6 @@ import Toolbar from "@material-ui/core/Toolbar";
 import styled from "styled-components";
 import { AboutModal } from "../atoms/AboutModal";
 import { LogoImage } from "../atoms/LogoImage";
-import { AboutContent } from "./AboutContent";
 import { useModal } from "../../hooks/useModal";
 import { StepperModal } from "../templates/StepperModal";
 import { useStepper } from "../../hooks/useStepper";
@@ -47,9 +46,7 @@ export function Header() {
       </AppBar>
 
       {/* Modal */}
-      <AboutModal isOpen={isOpenAbout} onClose={closeAbout}>
-        <AboutContent />
-      </AboutModal>
+      <AboutModal isOpen={isOpenAbout} onClose={closeAbout} />
       <StepperModal />
     </>
   );
