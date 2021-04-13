@@ -6,7 +6,7 @@ type State = {
 };
 
 type UpdateWidthPx = {
-  widthPx: string;
+  widthPx: string | undefined;
 };
 
 const initialState: State = {

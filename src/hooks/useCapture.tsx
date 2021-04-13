@@ -28,7 +28,6 @@ export const useCaptureQuery = () => {
   );
 
   const update = React.useCallback(() => {
-    if (widthPx === undefined) return;
     dispatch(updateWidthPxAction({ widthPx }));
   }, [widthPx]);
 
