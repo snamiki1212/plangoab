@@ -2,16 +2,13 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateWidthPxAction, selectWidthPx } from "../redux/ui/capture";
 
+const isInValidRange = (val: number) => val < 50_000 && val >= 0;
+
 export const useCaptureQuery = () => {
   const dispatch = useDispatch();
 
   // NOTE: this is local val for form, it's not global val
   const [width, setWidth] = React.useState<number | undefined>(undefined);
-
-  const isInValidRange = React.useCallback(
-    (val: number) => val < 50_000 && val >= 0,
-    []
-  );
 
   const handleChange = React.useCallback((event: any) => {
     const val = event.target.value;
@@ -29,7 +26,7 @@ export const useCaptureQuery = () => {
 
   const update = React.useCallback(() => {
     dispatch(updateWidthPxAction({ widthPx }));
-  }, [widthPx]);
+  }, [widthPx, dispatch]);
 
   return { handleChange, width, update };
 };
