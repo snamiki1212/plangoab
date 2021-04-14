@@ -2,6 +2,7 @@
   "name": "plangoab",
   "version": "0.2.0",
   "private": true,
+  "homepage": ".",
   "dependencies": {
     "@date-io/date-fns": "1.x",
     "@fullcalendar/interaction": "^5.5.0",
