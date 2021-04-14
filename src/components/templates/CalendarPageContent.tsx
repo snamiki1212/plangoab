@@ -1,11 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import { UserCalendarArea } from "../organisms/UserCalendarArea";
-import { TemplateCalendarArea } from "../organisms/TemplateCalendarArea";
+import { UserCalendarContainer } from "../molecules/UserCalendarContainer";
+import { TemplateList } from "../templates/TemplateList";
 import { UserCalendarCreater } from "../molecules/UserCalendarCreater";
 import { useUserCalendar } from "../../hooks/useUserCalendar";
 
-// TODO: Fix duplicate feature between here and UserCalendarArea
 export function CalendarPageContent() {
   const { calendar } = useUserCalendar();
   const existsCalendar = !!calendar;
@@ -13,8 +12,8 @@ export function CalendarPageContent() {
     <div>
       {existsCalendar ? (
         <InnerContainer>
-          <UserCalendarArea />
-          <TemplateCalendarArea />
+          <UserCalendarContainer />
+          <TemplateList />
         </InnerContainer>
       ) : (
         <UserCalendarCreater />
