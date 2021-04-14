@@ -131,6 +131,13 @@ $ yarn graph:svg
 
 TODO:
 
+### No Class, Yes Function
+
+Plangoab adopted FP way when to handle model layer.
+
+So there is no class but only Plain JavaScript & Functions in `/core` directory.
+On the otherhands, we need strictly implicit rule to handle model. We must not handle model data without function of this model layer. If happend, I assume code would become easily getting chaos.
+
 ### State Management
 
 Plangoab is using Redux for global state.
