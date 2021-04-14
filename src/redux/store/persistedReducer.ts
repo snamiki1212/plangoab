@@ -4,6 +4,7 @@ import rootReducer from "../rootReducer";
 
 const persistConfig = {
   key: "root",
+  version: 0,
   storage,
   whitelist: ["features", "ui"],
 };
