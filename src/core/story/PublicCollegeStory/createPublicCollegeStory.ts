@@ -1,18 +1,5 @@
 import { addMonths, addYears, setMonth } from "date-fns";
-import {
-  // resources
-  RESOURCE_TEMPLATE__VISA_STUDY,
-  RESOURCE_TEMPLATE__VISA_WORKING_HOLIDAY,
-  RESOURCE_TEMPLATE__VISA_PGWP,
-  RESOURCE_TEMPLATE__STATUS,
-  // events
-  EVENT_TEMPLATE__VISA_STUDY,
-  EVENT_TEMPLATE__VISA_PGWP,
-  EVENT_TEMPLATE__VISA_READY_WORKING_HOLIDAY,
-  EVENT_TEMPLATE__VISA_WORKING_HOLIDAY,
-  EVENT_TEMPLATE__STATUS_STATUS,
-  EVENT_TEMPLATE__STATUS_WORKER,
-} from "../../../constants/fullcalendar/templates";
+import { RESOURCES, EVENTS } from "../../../constants/fullcalendar/templates";
 import {
   NAME_OF_STORY_ID,
   NAME_OF_ORDER,
@@ -81,7 +68,7 @@ const doCreateStory = (
     const pgwpVisaResourceId = uuid();
     resources.push(
       initResource({
-        ...RESOURCE_TEMPLATE__VISA_PGWP,
+        ...RESOURCES.VISA.PGWP,
         id: pgwpVisaResourceId,
         calendarId,
         [NAME_OF_STORY_ID]: storyId,
@@ -90,7 +77,7 @@ const doCreateStory = (
     );
     events.push(
       initEvent({
-        ...EVENT_TEMPLATE__VISA_PGWP,
+        ...EVENTS.VISA.PGWP,
         id: uuid(),
         resourceId: pgwpVisaResourceId,
         storyId,
@@ -111,7 +98,7 @@ const doCreateStory = (
   const studyVisaResourceId = uuid();
   resources.push(
     initResource({
-      ...RESOURCE_TEMPLATE__VISA_STUDY,
+      ...RESOURCES.VISA.STUDY,
       id: studyVisaResourceId,
       calendarId,
       [NAME_OF_STORY_ID]: storyId,
@@ -120,7 +107,7 @@ const doCreateStory = (
   );
   events.push(
     initEvent({
-      ...EVENT_TEMPLATE__VISA_STUDY,
+      ...EVENTS.VISA.STUDY,
       id: uuid(),
       resourceId: studyVisaResourceId,
       storyId,
@@ -138,7 +125,7 @@ const doCreateStory = (
     const workingholidayResourceId = uuid();
     resources.push(
       initResource({
-        ...RESOURCE_TEMPLATE__VISA_WORKING_HOLIDAY,
+        ...RESOURCES.VISA.WORKING_HOLIDAY,
         id: workingholidayResourceId,
         calendarId,
         [NAME_OF_STORY_ID]: storyId,
@@ -151,7 +138,7 @@ const doCreateStory = (
     );
     events.push(
       initEvent({
-        ...EVENT_TEMPLATE__VISA_WORKING_HOLIDAY,
+        ...EVENTS.VISA.WORKING_HOLIDAY,
         id: uuid(),
         resourceId: workingholidayResourceId,
         storyId,
@@ -168,7 +155,7 @@ const doCreateStory = (
     );
     events.push(
       initEvent({
-        ...EVENT_TEMPLATE__VISA_READY_WORKING_HOLIDAY,
+        ...EVENTS.VISA.READY_WORKING_HOLIDAY,
         id: uuid(),
         resourceId: workingholidayResourceId,
         storyId,
@@ -192,7 +179,7 @@ const doCreateStory = (
   const statusResourceId = uuid();
   resources.push(
     initResource({
-      ...RESOURCE_TEMPLATE__STATUS,
+      ...RESOURCES.STATUS,
       id: statusResourceId,
       calendarId,
       [NAME_OF_STORY_ID]: storyId,
@@ -201,7 +188,7 @@ const doCreateStory = (
   );
   events.push(
     initEvent({
-      ...EVENT_TEMPLATE__STATUS_WORKER,
+      ...EVENTS.STATUS.WORKER,
       id: uuid(),
       resourceId: statusResourceId,
       storyId,
@@ -216,7 +203,7 @@ const doCreateStory = (
       },
     }),
     initEvent({
-      ...EVENT_TEMPLATE__STATUS_STATUS,
+      ...EVENTS.STATUS.STUDENTS,
       id: uuid(),
       resourceId: statusResourceId,
       storyId,
