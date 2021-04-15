@@ -14,6 +14,16 @@ const EVENT_TASK_BG = PURPLE;
  * Resources
  ************************/
 export const RESOURCES = {
+  PROFILE: {
+    AGE: {
+      [FIELD]: "🔢Age",
+      eventBorderColor: DARK_BLUE,
+    },
+    WORKING_HOLIDAY: {
+      [FIELD]: "🌎Working Holiday",
+      eventBorderColor: DARK_BLUE,
+    },
+  },
   VISA: {
     STUDY: {
       [FIELD]: "📝Study VISA",
@@ -76,6 +86,17 @@ export const RESOURCES = {
  * Events
  ************************/
 export const EVENTS = {
+  PROFILE: {
+    AGE: (age: number) => ({
+      title: `🔢Age:${age}`,
+    }),
+    WORKING_HOLIDAY: {
+      title: "🌍Available Scope of WorkingHoliday",
+    },
+    WORKING_HOLIDAY_APPLICATION_LIMIT: {
+      title: "🌍Application Limit",
+    },
+  },
   VISA: {
     COOP: {
       title: "🎓Co-op VISA",
