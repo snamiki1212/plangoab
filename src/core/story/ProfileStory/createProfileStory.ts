@@ -17,21 +17,24 @@ export const createProfileStory = ({
   const _birth = new Date(birth);
   const storyId = PROFILE_ID;
   const withWorkingholiday = workingholidayPeriod > 0;
+  const resources = createProfileResources({
+    calendarId,
+    storyId,
+    withWorkingholiday,
+  });
+  const events = createProfileEvents({
+    calendarId,
+    storyId,
+    startDate: _birth,
+    withWorkingholiday,
+    workingholidayPeriod,
+  });
+
   return {
     id: storyId,
     calendarId,
     name: STORY_NAME,
-    resources: createProfileResources({
-      calendarId,
-      storyId,
-      withWorkingholiday,
-    }),
-    events: createProfileEvents({
-      calendarId,
-      storyId,
-      startDate: _birth,
-      withWorkingholiday,
-      workingholidayPeriod,
-    }),
+    resources,
+    events,
   };
 };

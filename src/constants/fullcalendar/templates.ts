@@ -1,66 +1,190 @@
 import { FIELD } from "./settings";
 
 export const DARK_BLUE = "#00008b";
-const GREEN = "#8fbc8b";
-const YELLOW = "#ffd700";
-const RED = "#e73758";
+const GREEN = "#206a5d";
+// const YELLOW = "#ffd700";
+const RED = "#c70039";
+const PURPLE = "#440a67";
 
-export const RESOURCE_TEMPLATE__VISA_STUDY = {
-  [FIELD]: "✍️Study VISA",
-  eventBorderColor: DARK_BLUE,
+const EVENT_VISA_BG = GREEN;
+const EVENT_STATUS_BG = DARK_BLUE;
+const EVENT_TASK_BG = PURPLE;
+
+/************************
+ * Resources
+ ************************/
+export const RESOURCES = {
+  PROFILE: {
+    AGE: {
+      [FIELD]: "🔢Age",
+      eventBorderColor: DARK_BLUE,
+    },
+    WORKING_HOLIDAY: {
+      [FIELD]: "🌎Working Holiday",
+      eventBorderColor: DARK_BLUE,
+    },
+  },
+  VISA: {
+    STUDY: {
+      [FIELD]: "📝Study VISA",
+      eventBorderColor: DARK_BLUE,
+    },
+    COOP: {
+      [FIELD]: "📝Co-op VISA",
+      eventBorderColor: DARK_BLUE,
+    },
+    WORKING_HOLIDAY: {
+      [FIELD]: "📝Working Holiday VISA",
+      eventBorderColor: DARK_BLUE,
+    },
+    PGWP: {
+      [FIELD]: "📝PGWP VISA",
+      eventBorderColor: DARK_BLUE,
+    },
+    BOWP_OR_PNP: {
+      [FIELD]: "📝BOWP or PNP VISA",
+      eventBorderColor: DARK_BLUE,
+    },
+    PR: {
+      [FIELD]: "📝Permament Resident VISA",
+      eventBorderColor: DARK_BLUE,
+    },
+  },
+  TASK: {
+    COLLEGE_APPLICATION: {
+      [FIELD]: "✅College Application",
+      eventBorderColor: DARK_BLUE,
+    },
+    PAYMENT: {
+      [FIELD]: "✅Payment",
+      eventBorderColor: DARK_BLUE,
+    },
+    READY_FOR_VISA_APPLICATION: {
+      [FIELD]: "✅Ready for Visa Application",
+      eventBorderColor: DARK_BLUE,
+    },
+    BIOMETRICS: {
+      [FIELD]: "✅Biometrics",
+      eventBorderColor: DARK_BLUE,
+    },
+    READY_FOR_GOING: {
+      [FIELD]: "✅Ready for Going",
+      eventBorderColor: DARK_BLUE,
+    },
+    LAST_CHECK: {
+      [FIELD]: "✅Last Check",
+      eventBorderColor: DARK_BLUE,
+    },
+    PR_APPLICATION: {
+      [FIELD]: "✅PR Application",
+      eventBorderColor: DARK_BLUE,
+    },
+    PR_WAITING_FOR_ACCEPTANCE: {
+      [FIELD]: "✅PR Waiting for Acceptance",
+      eventBorderColor: DARK_BLUE,
+    },
+    PR_ACCEPTANCE: {
+      [FIELD]: "✅PR Acceptance",
+      eventBorderColor: DARK_BLUE,
+    },
+  },
+  STATUS: {
+    [FIELD]: "💁Status",
+    eventBorderColor: DARK_BLUE,
+  },
 };
 
-export const RESOURCE_TEMPLATE__VISA_COOP = {
-  [FIELD]: "🎓Co-op VISA",
-  eventBorderColor: DARK_BLUE,
-};
-
-export const RESOURCE_TEMPLATE__VISA_WORKING_HOLIDAY = {
-  [FIELD]: "🌎Working Holiday VISA",
-  eventBorderColor: DARK_BLUE,
-};
-
-export const RESOURCE_TEMPLATE__VISA_PGWP = {
-  [FIELD]: "🎓PGWP VISA",
-  eventBorderColor: DARK_BLUE,
-};
-
-export const RESOURCE_TEMPLATE__STATUS = {
-  [FIELD]: "💁Status",
-  eventBorderColor: DARK_BLUE,
-};
-
-export const EVENT_TEMPLATE__VISA_COOP = {
-  title: "🎓Co-op VISA",
-  backgroundColor: GREEN,
-};
-
-export const EVENT_TEMPLATE__VISA_STUDY = {
-  title: "✍️Study VISA",
-  backgroundColor: GREEN,
-};
-
-export const EVENT_TEMPLATE__VISA_PGWP = {
-  title: "🎓PGWP VISA",
-  backgroundColor: GREEN,
-};
-
-export const EVENT_TEMPLATE__VISA_WORKING_HOLIDAY = {
-  title: "🌎Working Holiday VISA",
-  backgroundColor: GREEN,
-};
-
-export const EVENT_TEMPLATE__VISA_READY_WORKING_HOLIDAY = {
-  title: "🏃‍♂️Ready for Working Holiday VISA",
-  backgroundColor: RED,
-};
-
-export const EVENT_TEMPLATE__STATUS_WORKER = {
-  title: "🧑🏻‍💼Worker",
-  eventBackgroundCoor: YELLOW,
-};
-
-export const EVENT_TEMPLATE__STATUS_STATUS = {
-  title: "🧑‍🎓Student",
-  eventBackgroundCoor: YELLOW,
+/************************
+ * Events
+ ************************/
+export const EVENTS = {
+  PROFILE: {
+    AGE: (age: number) => ({
+      title: `🔢Age:${age}`,
+    }),
+    WORKING_HOLIDAY: {
+      title: "🌍Available Scope of WorkingHoliday",
+    },
+    WORKING_HOLIDAY_APPLICATION_LIMIT: {
+      title: "🌍Application Limit",
+    },
+  },
+  VISA: {
+    COOP: {
+      title: "🎓Co-op VISA",
+      backgroundColor: EVENT_VISA_BG,
+    },
+    STUDY: {
+      title: "✍️Study VISA",
+      backgroundColor: EVENT_VISA_BG,
+    },
+    PGWP: {
+      title: "🎓PGWP VISA",
+      backgroundColor: EVENT_VISA_BG,
+    },
+    WORKING_HOLIDAY: {
+      title: "🌎Working Holiday VISA",
+      backgroundColor: EVENT_VISA_BG,
+    },
+    READY_WORKING_HOLIDAY: {
+      title: "🏃‍♂️Ready for Working Holiday VISA",
+      backgroundColor: RED,
+    },
+    BOWP_OR_PNP: {
+      title: "🌎BOWP or PNP VISA",
+      backgroundColor: EVENT_VISA_BG,
+    },
+    PR: {
+      title: "🌎Permament Resident VISA",
+      backgroundColor: EVENT_VISA_BG,
+    },
+  },
+  STATUS: {
+    WORKER: {
+      title: "🧑🏻‍💼Worker",
+      backgroundColor: EVENT_STATUS_BG,
+    },
+    STUDENTS: {
+      title: "🧑‍🎓Student",
+      backgroundColor: EVENT_STATUS_BG,
+    },
+  },
+  TASK: {
+    PR_APPLICATION: {
+      title: "✅",
+      backgroundColor: EVENT_TASK_BG,
+    },
+    PR_WAITING_FOR_APPLICATION: {
+      title: "✅Waiting for Acceptance",
+      backgroundColor: EVENT_TASK_BG,
+    },
+    PR_ACCEPTANCE: {
+      title: "✅",
+      backgroundColor: EVENT_TASK_BG,
+    },
+    COLLEGE_APPLICATION: {
+      title: "✅",
+      backgroundColor: EVENT_TASK_BG,
+    },
+    READY_FOR_GOING: {
+      title: "✅",
+      backgroundColor: EVENT_TASK_BG,
+    },
+    LAST_CHECK: {
+      title: "✅",
+      backgroundColor: EVENT_TASK_BG,
+    },
+    BIOMETORICS: {
+      title: "✅",
+      backgroundColor: EVENT_TASK_BG,
+    },
+    READY_FOR_VISA_APPLICATION: {
+      title: "✅",
+      backgroundColor: EVENT_TASK_BG,
+    },
+    PAYMENT: {
+      title: "✅",
+      backgroundColor: EVENT_TASK_BG,
+    },
+  },
 };
