@@ -64,6 +64,169 @@ const doCreateStory = (
   const { schoolPeriod, pgwpPeriod, workingholidayPeriod } = options;
   const withPgwp = pgwpPeriod > 0;
 
+  // College Application
+  const collegeApplicationId = uuid();
+  resources.push(
+    initResource({
+      ...RESOURCES.TASK.COLLEGE_APPLICATION,
+      id: collegeApplicationId,
+      calendarId,
+      [NAME_OF_STORY_ID]: storyId,
+      [NAME_OF_ORDER]: 101,
+    })
+  );
+  events.push(
+    initEvent({
+      ...EVENTS.TASK.COLLEGE_APPLICATION,
+      id: uuid(),
+      resourceId: collegeApplicationId,
+      storyId,
+      start: convertIsoToYearAndMonth(addMonths(startDate, -9)),
+      end: convertIsoToYearAndMonth(addMonths(startDate, -8)),
+      extendedProps: {
+        resourceId: collegeApplicationId,
+        calendarId,
+        storyId,
+      },
+    })
+  );
+
+  // Payment
+  const paymentId = uuid();
+  resources.push(
+    initResource({
+      ...RESOURCES.TASK.PAYMENT,
+      id: paymentId,
+      calendarId,
+      [NAME_OF_STORY_ID]: storyId,
+      [NAME_OF_ORDER]: 102,
+    })
+  );
+  events.push(
+    initEvent({
+      ...EVENTS.TASK.PAYMENT,
+      id: uuid(),
+      resourceId: paymentId,
+      storyId,
+      start: convertIsoToYearAndMonth(addMonths(startDate, -8)),
+      end: convertIsoToYearAndMonth(addMonths(startDate, -7)),
+      extendedProps: {
+        resourceId: paymentId,
+        calendarId,
+        storyId,
+      },
+    })
+  );
+
+  // Ready for Visa Application
+  const readyForVisaApplicationId = uuid();
+  resources.push(
+    initResource({
+      ...RESOURCES.TASK.READY_FOR_VISA_APPLICATION,
+      id: readyForVisaApplicationId,
+      calendarId,
+      [NAME_OF_STORY_ID]: storyId,
+      [NAME_OF_ORDER]: 103,
+    })
+  );
+  events.push(
+    initEvent({
+      ...EVENTS.TASK.READY_FOR_VISA_APPLICATION,
+      id: uuid(),
+      resourceId: readyForVisaApplicationId,
+      storyId,
+      start: convertIsoToYearAndMonth(addMonths(startDate, -7)),
+      end: convertIsoToYearAndMonth(addMonths(startDate, -6)),
+      extendedProps: {
+        resourceId: readyForVisaApplicationId,
+        calendarId,
+        storyId,
+      },
+    })
+  );
+
+  // Biometrics
+  const biometricsId = uuid();
+  resources.push(
+    initResource({
+      ...RESOURCES.TASK.BIOMETRICS,
+      id: biometricsId,
+      calendarId,
+      [NAME_OF_STORY_ID]: storyId,
+      [NAME_OF_ORDER]: 104,
+    })
+  );
+  events.push(
+    initEvent({
+      ...EVENTS.TASK.BIOMETORICS,
+      id: uuid(),
+      resourceId: biometricsId,
+      storyId,
+      start: convertIsoToYearAndMonth(addMonths(startDate, -6)),
+      end: convertIsoToYearAndMonth(addMonths(startDate, -5)),
+      extendedProps: {
+        resourceId: biometricsId,
+        calendarId,
+        storyId,
+      },
+    })
+  );
+
+  // Ready for going
+  const readyForGoingId = uuid();
+  resources.push(
+    initResource({
+      ...RESOURCES.TASK.READY_FOR_GOING,
+      id: readyForGoingId,
+      calendarId,
+      [NAME_OF_STORY_ID]: storyId,
+      [NAME_OF_ORDER]: 105,
+    })
+  );
+  events.push(
+    initEvent({
+      ...EVENTS.TASK.READY_FOR_GOING,
+      id: uuid(),
+      resourceId: readyForGoingId,
+      storyId,
+      start: convertIsoToYearAndMonth(addMonths(startDate, -5)),
+      end: convertIsoToYearAndMonth(addMonths(startDate, -4)),
+      extendedProps: {
+        resourceId: readyForGoingId,
+        calendarId,
+        storyId,
+      },
+    })
+  );
+
+  // Last Check
+  const lastCheckId = uuid();
+  resources.push(
+    initResource({
+      ...RESOURCES.TASK.LAST_CHECK,
+      id: lastCheckId,
+      calendarId,
+      [NAME_OF_STORY_ID]: storyId,
+      [NAME_OF_ORDER]: 106,
+    })
+  );
+  events.push(
+    initEvent({
+      ...EVENTS.TASK.LAST_CHECK,
+      id: uuid(),
+      resourceId: lastCheckId,
+      storyId,
+      start: convertIsoToYearAndMonth(addMonths(startDate, -4)),
+      end: convertIsoToYearAndMonth(addMonths(startDate, -3)),
+      extendedProps: {
+        resourceId: lastCheckId,
+        calendarId,
+        storyId,
+      },
+    })
+  );
+
+  // PGWP
   if (withPgwp) {
     const pgwpVisaResourceId = uuid();
     resources.push(
@@ -72,7 +235,7 @@ const doCreateStory = (
         id: pgwpVisaResourceId,
         calendarId,
         [NAME_OF_STORY_ID]: storyId,
-        [NAME_OF_ORDER]: 1,
+        [NAME_OF_ORDER]: 201,
       })
     );
     events.push(
@@ -102,7 +265,7 @@ const doCreateStory = (
       id: studyVisaResourceId,
       calendarId,
       [NAME_OF_STORY_ID]: storyId,
-      [NAME_OF_ORDER]: 2,
+      [NAME_OF_ORDER]: 202,
     })
   );
   events.push(
@@ -129,7 +292,7 @@ const doCreateStory = (
         id: workingholidayResourceId,
         calendarId,
         [NAME_OF_STORY_ID]: storyId,
-        [NAME_OF_ORDER]: 3,
+        [NAME_OF_ORDER]: 203,
       })
     );
     const dateAsStartWorkingHoliday = addMonths(
@@ -183,7 +346,7 @@ const doCreateStory = (
       id: statusResourceId,
       calendarId,
       [NAME_OF_STORY_ID]: storyId,
-      [NAME_OF_ORDER]: 5,
+      [NAME_OF_ORDER]: 205,
     })
   );
   events.push(

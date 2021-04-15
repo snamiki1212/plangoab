@@ -51,8 +51,8 @@ export const RESOURCES = {
     },
   },
   TASK: {
-    SUBMIT_APPLICATION: {
-      [FIELD]: "✅Submit Application",
+    COLLEGE_APPLICATION: {
+      [FIELD]: "✅College Application",
       eventBorderColor: DARK_BLUE,
     },
     PAYMENT: {
@@ -65,6 +65,10 @@ export const RESOURCES = {
     },
     BIOMETRICS: {
       [FIELD]: "✅Biometrics",
+      eventBorderColor: DARK_BLUE,
+    },
+    READY_FOR_GOING: {
+      [FIELD]: "✅Ready for Going",
       eventBorderColor: DARK_BLUE,
     },
     LAST_CHECK: {
@@ -148,6 +152,30 @@ export const EVENTS = {
     },
     PR_Acceptance: {
       title: "🌎Acceptance",
+      backgroundColor: EVENT_TASK_BG,
+    },
+    COLLEGE_APPLICATION: {
+      title: "✅",
+      backgroundColor: EVENT_TASK_BG,
+    },
+    READY_FOR_GOING: {
+      title: "✅",
+      backgroundColor: EVENT_TASK_BG,
+    },
+    LAST_CHECK: {
+      title: "✅",
+      backgroundColor: EVENT_TASK_BG,
+    },
+    BIOMETORICS: {
+      title: "✅",
+      backgroundColor: EVENT_TASK_BG,
+    },
+    READY_FOR_VISA_APPLICATION: {
+      title: "✅",
+      backgroundColor: EVENT_TASK_BG,
+    },
+    PAYMENT: {
+      title: "✅",
       backgroundColor: EVENT_TASK_BG,
     },
   },
