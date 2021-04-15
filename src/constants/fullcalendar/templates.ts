@@ -33,13 +33,48 @@ export const RESOURCE_TEMPLATE__VISA_PGWP = {
   eventBorderColor: DARK_BLUE,
 };
 
+export const RESOURCE_TEMPLATE__VISA_BOWP_OR_PNP = {
+  [FIELD]: "📝BOWP or PNP VISA",
+  eventBorderColor: DARK_BLUE,
+};
+
+export const RESOURCE_TEMPLATE__VISA_PR = {
+  [FIELD]: "📝Permament Resident VISA",
+  eventBorderColor: DARK_BLUE,
+};
+
 export const RESOURCE_TEMPLATE__STATUS = {
   [FIELD]: "💁Status",
   eventBorderColor: DARK_BLUE,
 };
 
-export const RESOURCE_TEMPLATE__TASK_Submit_Application = {
+export const RESOURCE_TEMPLATE__TASK_SUBMIT_APPLICATION = {
   [FIELD]: "✅Submit Application",
+  eventBorderColor: DARK_BLUE,
+};
+
+export const RESOURCE_TEMPLATE__TASK_PAYMENT = {
+  [FIELD]: "✅Payment",
+  eventBorderColor: DARK_BLUE,
+};
+
+export const RESOURCE_TEMPLATE__READY_FOR_VISA_APPLICATION = {
+  [FIELD]: "✅Ready for Visa Application",
+  eventBorderColor: DARK_BLUE,
+};
+
+export const RESOURCE_TEMPLATE__BIOMETRICS = {
+  [FIELD]: "✅Biometrics",
+  eventBorderColor: DARK_BLUE,
+};
+
+export const RESOURCE_TEMPLATE__LAST_CHECK = {
+  [FIELD]: "✅Last Check",
+  eventBorderColor: DARK_BLUE,
+};
+
+export const RESOURCE_TEMPLATE__PERMANENT_RESIDENT = {
+  [FIELD]: "✅Permanent Resident",
   eventBorderColor: DARK_BLUE,
 };
 
@@ -71,6 +106,16 @@ export const EVENT_TEMPLATE__VISA_READY_WORKING_HOLIDAY = {
   backgroundColor: RED,
 };
 
+export const EVENT_TEMPLATE__VISA_BOWP_OR_PNP = {
+  title: "🌎BOWP or PNP VISA",
+  backgroundColor: EVENT_VISA_BG,
+};
+
+export const EVENT_TEMPLATE__VISA_PR = {
+  title: "🌎Permament Resident VISA",
+  backgroundColor: EVENT_VISA_BG,
+};
+
 export const EVENT_TEMPLATE__STATUS_WORKER = {
   title: "🧑🏻‍💼Worker",
   backgroundColor: EVENT_STATUS_BG,
@@ -79,4 +124,19 @@ export const EVENT_TEMPLATE__STATUS_WORKER = {
 export const EVENT_TEMPLATE__STATUS_STATUS = {
   title: "🧑‍🎓Student",
   backgroundColor: EVENT_STATUS_BG,
+};
+
+export const EVENT_TEMPLATE__TASK_PR_APPLICATION = {
+  title: "🌎Application",
+  backgroundColor: EVENT_VISA_BG,
+};
+
+export const EVENT_TEMPLATE__TASK_PR_WAITING_FOR_APPLICATION = {
+  title: "🌎Waiting for application",
+  backgroundColor: EVENT_VISA_BG,
+};
+
+export const EVENT_TEMPLATE__TASK_PR_Acceptance = {
+  title: "🌎Acceptance",
+  backgroundColor: EVENT_VISA_BG,
 };
