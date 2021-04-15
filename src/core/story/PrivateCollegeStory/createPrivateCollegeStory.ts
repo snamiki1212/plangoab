@@ -333,6 +333,68 @@ const doCreateStory = (
     );
   }
 
+  // BOWP or PNP Visa
+  const bowpOrPnpVisa = uuid();
+  resources.push(
+    initResource({
+      ...RESOURCES.VISA.BOWP_OR_PNP,
+      id: bowpOrPnpVisa,
+      calendarId,
+      [NAME_OF_STORY_ID]: storyId,
+      [NAME_OF_ORDER]: 204,
+    })
+  );
+  events.push(
+    initEvent({
+      ...EVENTS.VISA.BOWP_OR_PNP,
+      id: uuid(),
+      resourceId: bowpOrPnpVisa,
+      storyId,
+      start: convertIsoToYearAndMonth(
+        addMonths(startDate, schoolPeriod + workingholidayPeriod - 4)
+      ),
+      end: convertIsoToYearAndMonth(
+        addMonths(startDate, schoolPeriod + workingholidayPeriod - 4 + 10)
+      ),
+      extendedProps: {
+        resourceId: bowpOrPnpVisa,
+        calendarId,
+        storyId,
+      },
+    })
+  );
+
+  // PR Visa
+  const prVisa = uuid();
+  resources.push(
+    initResource({
+      ...RESOURCES.VISA.PR,
+      id: prVisa,
+      calendarId,
+      [NAME_OF_STORY_ID]: storyId,
+      [NAME_OF_ORDER]: 205,
+    })
+  );
+  events.push(
+    initEvent({
+      ...EVENTS.VISA.PR,
+      id: uuid(),
+      resourceId: prVisa,
+      storyId,
+      start: convertIsoToYearAndMonth(
+        addMonths(startDate, schoolPeriod + workingholidayPeriod + 6)
+      ),
+      end: convertIsoToYearAndMonth(
+        addMonths(startDate, schoolPeriod + workingholidayPeriod + 6 + 12 * 2)
+      ),
+      extendedProps: {
+        resourceId: prVisa,
+        calendarId,
+        storyId,
+      },
+    })
+  );
+
   // Status
   const statusResourceId = uuid();
   resources.push(
@@ -341,7 +403,7 @@ const doCreateStory = (
       id: statusResourceId,
       calendarId,
       [NAME_OF_STORY_ID]: storyId,
-      [NAME_OF_ORDER]: 205,
+      [NAME_OF_ORDER]: 299,
     })
   );
   events.push(
@@ -352,7 +414,7 @@ const doCreateStory = (
       storyId,
       start: convertIsoToYearAndMonth(addMonths(startDate, schoolPeriod)),
       end: convertIsoToYearAndMonth(
-        addMonths(startDate, schoolPeriod + workingholidayPeriod)
+        addMonths(startDate, schoolPeriod + workingholidayPeriod + 6 + 12 * 2)
       ),
       extendedProps: {
         resourceId: statusResourceId,
@@ -371,6 +433,99 @@ const doCreateStory = (
       end: convertIsoToYearAndMonth(addMonths(startDate, schoolPeriod)),
       extendedProps: {
         resourceId: statusResourceId,
+        calendarId,
+        storyId,
+      },
+    })
+  );
+
+  // PR Application
+  const prApplicationResourceId = uuid();
+  resources.push(
+    initResource({
+      ...RESOURCES.TASK.PR_APPLICATION,
+      id: prApplicationResourceId,
+      calendarId,
+      [NAME_OF_STORY_ID]: storyId,
+      [NAME_OF_ORDER]: 301,
+    })
+  );
+  events.push(
+    initEvent({
+      ...EVENTS.TASK.PR_APPLICATION,
+      id: uuid(),
+      resourceId: prApplicationResourceId,
+      storyId,
+      start: convertIsoToYearAndMonth(
+        addMonths(startDate, schoolPeriod + workingholidayPeriod - 6)
+      ),
+      end: convertIsoToYearAndMonth(
+        addMonths(startDate, schoolPeriod + workingholidayPeriod - 6 + 2)
+      ),
+      extendedProps: {
+        resourceId: prApplicationResourceId,
+        calendarId,
+        storyId,
+      },
+    })
+  );
+
+  // PR Application
+  const prWaitingForAcceptance = uuid();
+  resources.push(
+    initResource({
+      ...RESOURCES.TASK.PR_WAITING_FOR_ACCEPTANCE,
+      id: prWaitingForAcceptance,
+      calendarId,
+      [NAME_OF_STORY_ID]: storyId,
+      [NAME_OF_ORDER]: 302,
+    })
+  );
+  events.push(
+    initEvent({
+      ...EVENTS.TASK.PR_WAITING_FOR_APPLICATION,
+      id: uuid(),
+      resourceId: prWaitingForAcceptance,
+      storyId,
+      start: convertIsoToYearAndMonth(
+        addMonths(startDate, schoolPeriod + workingholidayPeriod - 4)
+      ),
+      end: convertIsoToYearAndMonth(
+        addMonths(startDate, schoolPeriod + workingholidayPeriod - 4 + 10)
+      ),
+      extendedProps: {
+        resourceId: prWaitingForAcceptance,
+        calendarId,
+        storyId,
+      },
+    })
+  );
+
+  // PR Acceptance
+  const prAcceptance = uuid();
+  resources.push(
+    initResource({
+      ...RESOURCES.TASK.PR_ACCEPTANCE,
+      id: prAcceptance,
+      calendarId,
+      [NAME_OF_STORY_ID]: storyId,
+      [NAME_OF_ORDER]: 303,
+    })
+  );
+  events.push(
+    initEvent({
+      ...EVENTS.TASK.PR_ACCEPTANCE,
+      id: uuid(),
+      resourceId: prAcceptance,
+      storyId,
+      start: convertIsoToYearAndMonth(
+        addMonths(startDate, schoolPeriod + workingholidayPeriod + 6)
+      ),
+      end: convertIsoToYearAndMonth(
+        addMonths(startDate, schoolPeriod + workingholidayPeriod + 6)
+      ),
+      extendedProps: {
+        resourceId: prAcceptance,
         calendarId,
         storyId,
       },

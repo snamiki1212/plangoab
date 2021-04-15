@@ -75,8 +75,16 @@ export const RESOURCES = {
       [FIELD]: "✅Last Check",
       eventBorderColor: DARK_BLUE,
     },
-    PERMANENT_RESIDENT: {
-      [FIELD]: "✅Permanent Resident",
+    PR_APPLICATION: {
+      [FIELD]: "✅PR Application",
+      eventBorderColor: DARK_BLUE,
+    },
+    PR_WAITING_FOR_ACCEPTANCE: {
+      [FIELD]: "✅PR Waiting for Acceptance",
+      eventBorderColor: DARK_BLUE,
+    },
+    PR_ACCEPTANCE: {
+      [FIELD]: "✅PR Acceptance",
       eventBorderColor: DARK_BLUE,
     },
   },
@@ -143,15 +151,15 @@ export const EVENTS = {
   },
   TASK: {
     PR_APPLICATION: {
-      title: "🌎Application",
+      title: "✅",
       backgroundColor: EVENT_TASK_BG,
     },
     PR_WAITING_FOR_APPLICATION: {
-      title: "🌎Waiting for application",
+      title: "✅Waiting for Acceptance",
       backgroundColor: EVENT_TASK_BG,
     },
-    PR_Acceptance: {
-      title: "🌎Acceptance",
+    PR_ACCEPTANCE: {
+      title: "✅",
       backgroundColor: EVENT_TASK_BG,
     },
     COLLEGE_APPLICATION: {

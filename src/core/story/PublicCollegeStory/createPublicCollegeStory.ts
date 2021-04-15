@@ -226,6 +226,33 @@ const doCreateStory = (
     })
   );
 
+  // StudyVisa
+  const studyVisaResourceId = uuid();
+  resources.push(
+    initResource({
+      ...RESOURCES.VISA.STUDY,
+      id: studyVisaResourceId,
+      calendarId,
+      [NAME_OF_STORY_ID]: storyId,
+      [NAME_OF_ORDER]: 201,
+    })
+  );
+  events.push(
+    initEvent({
+      ...EVENTS.VISA.STUDY,
+      id: uuid(),
+      resourceId: studyVisaResourceId,
+      storyId,
+      start: convertIsoToYearAndMonth(startDate),
+      end: convertIsoToYearAndMonth(addMonths(startDate, schoolPeriod)),
+      extendedProps: {
+        resourceId: studyVisaResourceId,
+        calendarId,
+        storyId,
+      },
+    })
+  );
+
   // PGWP
   if (withPgwp) {
     const pgwpVisaResourceId = uuid();
@@ -235,7 +262,7 @@ const doCreateStory = (
         id: pgwpVisaResourceId,
         calendarId,
         [NAME_OF_STORY_ID]: storyId,
-        [NAME_OF_ORDER]: 201,
+        [NAME_OF_ORDER]: 202,
       })
     );
     events.push(
@@ -256,33 +283,6 @@ const doCreateStory = (
       })
     );
   }
-
-  // StudyVisa
-  const studyVisaResourceId = uuid();
-  resources.push(
-    initResource({
-      ...RESOURCES.VISA.STUDY,
-      id: studyVisaResourceId,
-      calendarId,
-      [NAME_OF_STORY_ID]: storyId,
-      [NAME_OF_ORDER]: 202,
-    })
-  );
-  events.push(
-    initEvent({
-      ...EVENTS.VISA.STUDY,
-      id: uuid(),
-      resourceId: studyVisaResourceId,
-      storyId,
-      start: convertIsoToYearAndMonth(startDate),
-      end: convertIsoToYearAndMonth(addMonths(startDate, schoolPeriod)),
-      extendedProps: {
-        resourceId: studyVisaResourceId,
-        calendarId,
-        storyId,
-      },
-    })
-  );
 
   if (canWorkingholiday) {
     const workingholidayResourceId = uuid();
@@ -338,6 +338,80 @@ const doCreateStory = (
     );
   }
 
+  // BOWP or PNP Visa
+  const bowpOrPnpVisa = uuid();
+  resources.push(
+    initResource({
+      ...RESOURCES.VISA.BOWP_OR_PNP,
+      id: bowpOrPnpVisa,
+      calendarId,
+      [NAME_OF_STORY_ID]: storyId,
+      [NAME_OF_ORDER]: 204,
+    })
+  );
+  events.push(
+    initEvent({
+      ...EVENTS.VISA.BOWP_OR_PNP,
+      id: uuid(),
+      resourceId: bowpOrPnpVisa,
+      storyId,
+      start: convertIsoToYearAndMonth(
+        addMonths(
+          startDate,
+          schoolPeriod + workingholidayPeriod + pgwpPeriod - 4
+        )
+      ),
+      end: convertIsoToYearAndMonth(
+        addMonths(
+          startDate,
+          schoolPeriod + workingholidayPeriod + pgwpPeriod - 4 + 10
+        )
+      ),
+      extendedProps: {
+        resourceId: bowpOrPnpVisa,
+        calendarId,
+        storyId,
+      },
+    })
+  );
+
+  // PR Visa
+  const prVisa = uuid();
+  resources.push(
+    initResource({
+      ...RESOURCES.VISA.PR,
+      id: prVisa,
+      calendarId,
+      [NAME_OF_STORY_ID]: storyId,
+      [NAME_OF_ORDER]: 205,
+    })
+  );
+  events.push(
+    initEvent({
+      ...EVENTS.VISA.PR,
+      id: uuid(),
+      resourceId: prVisa,
+      storyId,
+      start: convertIsoToYearAndMonth(
+        addMonths(
+          startDate,
+          schoolPeriod + workingholidayPeriod + pgwpPeriod + 6
+        )
+      ),
+      end: convertIsoToYearAndMonth(
+        addMonths(
+          startDate,
+          schoolPeriod + workingholidayPeriod + pgwpPeriod + 6 + 12 * 2
+        )
+      ),
+      extendedProps: {
+        resourceId: prVisa,
+        calendarId,
+        storyId,
+      },
+    })
+  );
+
   // status
   const statusResourceId = uuid();
   resources.push(
@@ -357,7 +431,10 @@ const doCreateStory = (
       storyId,
       start: convertIsoToYearAndMonth(addMonths(startDate, schoolPeriod)),
       end: convertIsoToYearAndMonth(
-        addMonths(startDate, schoolPeriod + pgwpPeriod + workingholidayPeriod)
+        addMonths(
+          startDate,
+          schoolPeriod + pgwpPeriod + workingholidayPeriod + 6 + 2 * 12
+        )
       ),
       extendedProps: {
         resourceId: statusResourceId,
