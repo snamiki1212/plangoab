@@ -333,7 +333,7 @@ const doCreateStory = (
     );
   }
 
-  // worker status
+  // Status
   const statusResourceId = uuid();
   resources.push(
     initResource({
@@ -359,7 +359,9 @@ const doCreateStory = (
         calendarId,
         storyId,
       },
-    }),
+    })
+  );
+  events.push(
     initEvent({
       ...EVENTS.STATUS.STUDENTS,
       id: uuid(),
