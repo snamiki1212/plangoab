@@ -40,16 +40,14 @@ export const createPublicCollegeStory = (
 ): PrivateCollegeStory => {
   const storyId = uuid();
   const name = createStoryName(startDate);
+  const props = {
+    calendarId,
+    storyId,
+    startDate,
+    canWorkingholiday,
+  };
+  const [resources, events] = doCreateStory(props, options);
 
-  const [resources, events] = doCreateStory(
-    {
-      calendarId,
-      storyId,
-      startDate,
-      canWorkingholiday,
-    },
-    options
-  );
   return {
     id: storyId,
     calendarId,

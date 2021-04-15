@@ -5,6 +5,9 @@ const GREEN = "#8fbc8b";
 const YELLOW = "#ffd700";
 const RED = "#e73758";
 
+/************************
+ * Resources
+ ************************/
 export const RESOURCE_TEMPLATE__VISA_STUDY = {
   [FIELD]: "✍️Study VISA",
   eventBorderColor: DARK_BLUE,
@@ -30,6 +33,9 @@ export const RESOURCE_TEMPLATE__STATUS = {
   eventBorderColor: DARK_BLUE,
 };
 
+/************************
+ * Events
+ ************************/
 export const EVENT_TEMPLATE__VISA_COOP = {
   title: "🎓Co-op VISA",
   backgroundColor: GREEN,

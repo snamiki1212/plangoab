@@ -40,16 +40,14 @@ export const createPrivateCollegeStory = (
 ): PrivateCollegeStory => {
   const storyId = uuid();
   const name = createStoryName(startDate);
+  const params = {
+    calendarId,
+    storyId,
+    startDate,
+    canWorkingholiday,
+  };
 
-  const [resources, events] = doCreateStory(
-    {
-      calendarId,
-      storyId,
-      startDate,
-      canWorkingholiday,
-    },
-    options
-  );
+  const [resources, events] = doCreateStory(params, options);
   return {
     id: storyId,
     calendarId,
