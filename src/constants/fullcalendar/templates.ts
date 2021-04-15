@@ -119,15 +119,15 @@ export const EVENTS = {
   TASK: {
     PR_APPLICATION: {
       title: "🌎Application",
-      backgroundColor: EVENT_VISA_BG,
+      backgroundColor: EVENT_TASK_BG,
     },
     PR_WAITING_FOR_APPLICATION: {
       title: "🌎Waiting for application",
-      backgroundColor: EVENT_VISA_BG,
+      backgroundColor: EVENT_TASK_BG,
     },
     PR_Acceptance: {
       title: "🌎Acceptance",
-      backgroundColor: EVENT_VISA_BG,
+      backgroundColor: EVENT_TASK_BG,
     },
   },
 };
