@@ -1,0 +1,7 @@
+# ------------------------------------
+# Using Netlify as Name Server
+# 
+# CONFIG REF: https://docs.netlify.com/configure-builds/file-based-configuration/#redirects
+# ------------------------------------
+
+http://plangoab.snamiki1212.com/*  https://plangoab.snamiki1212.com/:splat  301!
