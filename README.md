@@ -92,7 +92,7 @@ Read [ARCHITECTURE.md](./doc/ARCHITECTURE.md) more details.
 - [CSS] styled-components
 - [UI] Material-UI
 - [CI] Github Actions
-- [Host] GitHub Pages TODO: Netlify? Vercel?
+- [Host] GitHub Pages + Netlify
 
 ## Install
 
