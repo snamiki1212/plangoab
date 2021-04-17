@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://plangoab.snamiki1212.vercel.app">
+  <a href="https://plangoab.snamiki1212.com">
 	  <img alt="Plangoab is a online web calendar for a person going abroad." src="https://user-images.githubusercontent.com/26793088/114226819-f7332d80-9928-11eb-93f8-4f9919018bf6.png">
   </a>
   <a href="https://github.com/snamiki1212/plangoab/blob/master/LICENSE.md">
@@ -9,7 +9,7 @@
 
 # Plangoab
 
-<b><a href="https://plangoab.snamiki1212.vercel.app">Plangoab</a></b> <i>(/plˈængóʊb/)</i> is a online web calendar for a person going abroad.
+<b><a href="https://plangoab.snamiki1212.com">Plangoab</a></b> <i>(/plˈængóʊb/)</i> is a online web calendar for a person going abroad.
 
 (Plangoab stands for '<b>plan</b> to <b>go ab</b>road')
 
@@ -33,14 +33,14 @@
   </tr>
   <tr align="center">
     <td>
-      <a href="https://plangoab.snamiki1212.vercel.app">
+      <a href="https://plangoab.snamiki1212.com">
         <img
         src="https://user-images.githubusercontent.com/26793088/109248982-b37ecd00-779b-11eb-835a-21ba4d9e9e92.gif"
         alt="customize-plans">
       </a>
     </td>
     <td>
-      <a href="https://plangoab.snamiki1212.vercel.app">
+      <a href="https://plangoab.snamiki1212.com">
         <img src="https://user-images.githubusercontent.com/26793088/109247952-b8428180-7799-11eb-906f-44156c01746c.gif"
         alt="example-generating-plans">
       </a>
@@ -48,7 +48,7 @@
   </tr>
 </table>
 
-[👉👉 Try Now](https://plangoab.snamiki1212.vercel.app)
+[👉👉 Try Now](https://plangoab.snamiki1212.com)
 
 ## Why do I create
 
