@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
@@ -47,23 +48,42 @@ export function EventModal({ isOpen, onClose }: Props) {
   return (
     <Dialog onClose={onClose} open={isOpen}>
       <DialogTitle>Event</DialogTitle>
-      <DialogContent dividers={true}>
-        <form onSubmit={handleSubmit(onUpdate)}>
-          <TextField
-            inputRef={register}
-            name={"title"}
-            defaultValue={event?.title}
-            label="Title"
-            variant="outlined"
-          />
-          <Button type="submit">rename</Button>
-        </form>
-      </DialogContent>
-      <DialogActions>
-        <Button onClick={onRemove} variant="contained" color="secondary">
-          Remove
-        </Button>
-      </DialogActions>
+      <form onSubmit={handleSubmit(onUpdate)}>
+        <DialogContent dividers={true}>
+          <Flex>
+            <TextField
+              inputRef={register}
+              name={"title"}
+              defaultValue={event?.title}
+              label="Title"
+              variant="outlined"
+            />
+            <TextField
+              multiline
+              rows={3}
+              rowsMax={10}
+              inputRef={register}
+              name={"extendedProps.description"}
+              defaultValue={event?.extendedProps.description}
+              label="Description"
+              variant="outlined"
+            />
+          </Flex>
+        </DialogContent>
+        <DialogActions>
+          <Button type="submit" variant="contained" color="primary">
+            UPDATE
+          </Button>
+          <Button onClick={onRemove} variant="contained" color="secondary">
+            Remove
+          </Button>
+        </DialogActions>
+      </form>
     </Dialog>
   );
 }
+
+const Flex = styled.div`
+  display: grid;
+  gap: 2rem;
+`;

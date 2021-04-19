@@ -51,7 +51,7 @@ export const updateEvent = (
   params: Partial<Omit<BaseEvent, "id" | "storyId">>
 ): BaseEvent => {
   const title = params.title;
-  const description = params.description;
+  const extendedProps = params.extendedProps;
   const start = params.start
     ? convertIsoToYearAndMonth(params.start as Date)
     : undefined;
@@ -61,11 +61,23 @@ export const updateEvent = (
 
   const newEvent = Object.assign(
     { ...event },
-    title !== undefined && { title },
-    description !== undefined && { description },
-    start !== undefined && { start },
-    end !== undefined && { end }
+    !isUndeifned(title) && { title },
+    !isUndeifned(start) && { start },
+    !isUndeifned(end) && { end },
+
+    // extendedProps
+    !isUndeifned(extendedProps, extendedProps.description) && {
+      extendedProps: {
+        ...event.extendedProps,
+        description: extendedProps.description,
+      },
+    }
   );
 
   return newEvent;
+};
+
+const isUndeifned = (...val: any) => {
+  if (Array.isArray(val)) return val.some((item: any) => item === undefined);
+  return val === undefined;
 };
