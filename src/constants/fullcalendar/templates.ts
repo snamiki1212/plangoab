@@ -195,7 +195,7 @@ export const EVENTS = {
     },
     PR_WAITING_FOR_APPLICATION: {
       title: "✅Waiting for Acceptance",
-      decription: "Waiting for Acceptance",
+      description: "Waiting for Acceptance",
       backgroundColor: EVENT_TASK_BG,
     },
     PR_ACCEPTANCE: {

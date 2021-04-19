@@ -489,12 +489,14 @@ const doCreateStory = (
         resourceId: prApplicationResourceId,
         calendarId,
         storyId,
-        description: "",
+        description:
+          EVENTS.TASK.PR_APPLICATION.description ??
+          EVENTS.TASK.PR_APPLICATION.title,
       },
     })
   );
 
-  // PR Application
+  // PR waiting
   const prWaitingForAcceptance = uuid();
   resources.push(
     initResource({
@@ -521,7 +523,9 @@ const doCreateStory = (
         resourceId: prWaitingForAcceptance,
         calendarId,
         storyId,
-        description: "",
+        description:
+          EVENTS.TASK.PR_WAITING_FOR_APPLICATION.description ??
+          EVENTS.TASK.PR_WAITING_FOR_APPLICATION.title,
       },
     })
   );
@@ -553,7 +557,9 @@ const doCreateStory = (
         resourceId: prAcceptance,
         calendarId,
         storyId,
-        description: "",
+        description:
+          EVENTS.TASK.PR_ACCEPTANCE.description ??
+          EVENTS.TASK.PR_ACCEPTANCE.title,
       },
     })
   );
