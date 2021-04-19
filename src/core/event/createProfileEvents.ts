@@ -1,9 +1,9 @@
 import { addMonths, addYears, setMonth } from "date-fns";
-
 import {
   RESOURCE_ID__SHARED__AGE,
   RESOURCE_ID__SHARED__LIMIT,
 } from "../../constants/fullcalendar/settings";
+import { EVENTS } from "../../constants/fullcalendar/templates";
 import { getRangeNumbers } from "../../lib/age";
 import { uuid } from "../../lib/uuid";
 import { convertIsoToDateTime } from "../../lib/date";
@@ -48,8 +48,8 @@ export const createProfileEvents = ({
     const end = convertIsoToDateTime(isoStr);
 
     return {
+      ...EVENTS.PROFILE.AGE(index),
       id: uuid(),
-      title: `🔢Age:${index}`,
       start,
       end,
       storyId,
@@ -58,6 +58,7 @@ export const createProfileEvents = ({
         resourceId: RESOURCE_ID__SHARED__AGE,
         calendarId,
         storyId,
+        description: "",
       },
     };
   });
@@ -94,8 +95,8 @@ const createWorkingHolidayLimitEvents = ({
   );
 
   const limitation = {
+    ...EVENTS.PROFILE.WORKING_HOLIDAY,
     id: uuid(),
-    title: "🌍Available Scope of WorkingHoliday",
     start,
     end: endOfLimit,
     resourceId: RESOURCE_ID__SHARED__LIMIT,
@@ -104,12 +105,13 @@ const createWorkingHolidayLimitEvents = ({
       resourceId: RESOURCE_ID__SHARED__LIMIT,
       storyId,
       calendarId,
+      description: "",
     },
   };
 
   const application = {
+    ...EVENTS.PROFILE.WORKING_HOLIDAY_APPLICATION_LIMIT,
     id: uuid(),
-    title: "🌍Application Limit",
     start,
     end: endOfApplication,
     storyId,
@@ -118,6 +120,7 @@ const createWorkingHolidayLimitEvents = ({
       storyId,
       resourceId: RESOURCE_ID__SHARED__LIMIT,
       calendarId,
+      description: "",
     },
   };
   return [limitation, application];

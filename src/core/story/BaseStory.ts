@@ -17,7 +17,7 @@ export const removeEvent = (story: BaseStory, eventId: string): BaseStory => {
 };
 
 export const createStoryName = (birth: Date) => {
-  return "from " + convertIsoToYearAndMonth(birth.toISOString());
+  return "College from " + convertIsoToYearAndMonth(birth.toISOString());
 };
 
 export const initStory = (props?: Partial<BaseStory>): BaseStory => {
