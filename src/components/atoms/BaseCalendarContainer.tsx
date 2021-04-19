@@ -6,6 +6,7 @@ import Tooltip from "@material-ui/core/Tooltip";
 const eventContent = function (arg: any) {
   const text = arg.event.title ?? "";
   const description = arg.event.extendedProps.description ?? text;
+  if (description === "") return <span>{text}</span>;
   return (
     <Tooltip
       title={<span style={{ whiteSpace: "pre-line" }}>{description}</span>}
