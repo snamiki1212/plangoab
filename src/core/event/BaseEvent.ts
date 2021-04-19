@@ -6,6 +6,7 @@ export type BaseEvent = EventInput & {
   extendedProps: {
     calendarId: string;
     storyId: string;
+    description: string;
   };
 };
 
@@ -18,6 +19,7 @@ export const initEvent = (props?: Partial<BaseEvent>): BaseEvent => {
     title: _title,
     start: _start,
     end: _end,
+    description = "",
     ...rest
   } = props ?? {};
 
@@ -38,6 +40,7 @@ export const initEvent = (props?: Partial<BaseEvent>): BaseEvent => {
       calendarId,
       storyId,
       resourceId,
+      description,
     },
     ...rest,
   };
@@ -48,6 +51,7 @@ export const updateEvent = (
   params: Partial<Omit<BaseEvent, "id" | "storyId">>
 ): BaseEvent => {
   const title = params.title;
+  const description = params.description;
   const start = params.start
     ? convertIsoToYearAndMonth(params.start as Date)
     : undefined;
@@ -58,6 +62,7 @@ export const updateEvent = (
   const newEvent = Object.assign(
     { ...event },
     title !== undefined && { title },
+    description !== undefined && { description },
     start !== undefined && { start },
     end !== undefined && { end }
   );

@@ -87,6 +87,9 @@ const doCreateStory = (
         resourceId: collegeApplicationId,
         calendarId,
         storyId,
+        description:
+          EVENTS.TASK.COLLEGE_APPLICATION.description ??
+          EVENTS.TASK.COLLEGE_APPLICATION.title,
       },
     })
   );
@@ -114,6 +117,8 @@ const doCreateStory = (
         resourceId: paymentId,
         calendarId,
         storyId,
+        description:
+          EVENTS.TASK.PAYMENT.description ?? EVENTS.TASK.PAYMENT.title,
       },
     })
   );
@@ -141,6 +146,9 @@ const doCreateStory = (
         resourceId: readyForVisaApplicationId,
         calendarId,
         storyId,
+        description:
+          EVENTS.TASK.READY_FOR_VISA_APPLICATION.description ??
+          EVENTS.TASK.READY_FOR_VISA_APPLICATION.title,
       },
     })
   );
@@ -168,6 +176,8 @@ const doCreateStory = (
         resourceId: biometricsId,
         calendarId,
         storyId,
+        description:
+          EVENTS.TASK.BIOMETORICS.description ?? EVENTS.TASK.BIOMETORICS.title,
       },
     })
   );
@@ -195,6 +205,9 @@ const doCreateStory = (
         resourceId: readyForGoingId,
         calendarId,
         storyId,
+        description:
+          EVENTS.TASK.READY_FOR_GOING.description ??
+          EVENTS.TASK.READY_FOR_GOING.title,
       },
     })
   );
@@ -222,6 +235,8 @@ const doCreateStory = (
         resourceId: lastCheckId,
         calendarId,
         storyId,
+        description:
+          EVENTS.TASK.LAST_CHECK.description ?? EVENTS.TASK.LAST_CHECK.title,
       },
     })
   );
@@ -250,6 +265,7 @@ const doCreateStory = (
           resourceId: coopVisaResourceId,
           calendarId,
           storyId,
+          description: "",
         },
       })
     );
@@ -278,6 +294,7 @@ const doCreateStory = (
         resourceId: studyVisaResourceId,
         calendarId,
         storyId,
+        description: "",
       },
     })
   );
@@ -308,6 +325,7 @@ const doCreateStory = (
           resourceId: workingholidayResourceId,
           calendarId,
           storyId,
+          description: "",
         },
       })
     );
@@ -328,6 +346,7 @@ const doCreateStory = (
           resourceId: workingholidayResourceId,
           calendarId,
           storyId,
+          description: "",
         },
       })
     );
@@ -360,6 +379,7 @@ const doCreateStory = (
         resourceId: bowpOrPnpVisa,
         calendarId,
         storyId,
+        description: "",
       },
     })
   );
@@ -391,6 +411,7 @@ const doCreateStory = (
         resourceId: prVisa,
         calendarId,
         storyId,
+        description: "",
       },
     })
   );
@@ -420,6 +441,7 @@ const doCreateStory = (
         resourceId: statusResourceId,
         calendarId,
         storyId,
+        description: "",
       },
     })
   );
@@ -435,6 +457,7 @@ const doCreateStory = (
         resourceId: statusResourceId,
         calendarId,
         storyId,
+        description: "",
       },
     })
   );
@@ -466,6 +489,7 @@ const doCreateStory = (
         resourceId: prApplicationResourceId,
         calendarId,
         storyId,
+        description: "",
       },
     })
   );
@@ -497,6 +521,7 @@ const doCreateStory = (
         resourceId: prWaitingForAcceptance,
         calendarId,
         storyId,
+        description: "",
       },
     })
   );
@@ -528,6 +553,7 @@ const doCreateStory = (
         resourceId: prAcceptance,
         calendarId,
         storyId,
+        description: "",
       },
     })
   );
