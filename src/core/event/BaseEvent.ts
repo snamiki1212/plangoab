@@ -6,6 +6,7 @@ export type BaseEvent = EventInput & {
   extendedProps: {
     calendarId: string;
     storyId: string;
+    description: string;
   };
 };
 
@@ -18,6 +19,7 @@ export const initEvent = (props?: Partial<BaseEvent>): BaseEvent => {
     title: _title,
     start: _start,
     end: _end,
+    description = "",
     ...rest
   } = props ?? {};
 
@@ -38,6 +40,7 @@ export const initEvent = (props?: Partial<BaseEvent>): BaseEvent => {
       calendarId,
       storyId,
       resourceId,
+      description,
     },
     ...rest,
   };
@@ -48,6 +51,7 @@ export const updateEvent = (
   params: Partial<Omit<BaseEvent, "id" | "storyId">>
 ): BaseEvent => {
   const title = params.title;
+  const extendedProps = params.extendedProps;
   const start = params.start
     ? convertIsoToYearAndMonth(params.start as Date)
     : undefined;
@@ -57,10 +61,23 @@ export const updateEvent = (
 
   const newEvent = Object.assign(
     { ...event },
-    title !== undefined && { title },
-    start !== undefined && { start },
-    end !== undefined && { end }
+    !isUndeifned(title) && { title },
+    !isUndeifned(start) && { start },
+    !isUndeifned(end) && { end },
+
+    // extendedProps
+    !isUndeifned(extendedProps, extendedProps.description) && {
+      extendedProps: {
+        ...event.extendedProps,
+        description: extendedProps.description,
+      },
+    }
   );
 
   return newEvent;
+};
+
+const isUndeifned = (...val: any) => {
+  if (Array.isArray(val)) return val.some((item: any) => item === undefined);
+  return val === undefined;
 };

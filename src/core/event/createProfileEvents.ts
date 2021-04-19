@@ -58,6 +58,7 @@ export const createProfileEvents = ({
         resourceId: RESOURCE_ID__SHARED__AGE,
         calendarId,
         storyId,
+        description: "",
       },
     };
   });
@@ -104,6 +105,7 @@ const createWorkingHolidayLimitEvents = ({
       resourceId: RESOURCE_ID__SHARED__LIMIT,
       storyId,
       calendarId,
+      description: "",
     },
   };
 
@@ -118,6 +120,7 @@ const createWorkingHolidayLimitEvents = ({
       storyId,
       resourceId: RESOURCE_ID__SHARED__LIMIT,
       calendarId,
+      description: "",
     },
   };
   return [limitation, application];

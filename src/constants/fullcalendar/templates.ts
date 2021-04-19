@@ -51,6 +51,7 @@ export const RESOURCES = {
     },
   },
   TASK: {
+    // before coming abroad
     COLLEGE_APPLICATION: {
       [FIELD]: "✅College Application",
       eventBorderColor: DARK_BLUE,
@@ -75,6 +76,8 @@ export const RESOURCES = {
       [FIELD]: "✅Last Check",
       eventBorderColor: DARK_BLUE,
     },
+
+    // after college
     PR_APPLICATION: {
       [FIELD]: "✅PR Application",
       eventBorderColor: DARK_BLUE,
@@ -150,40 +153,54 @@ export const EVENTS = {
     },
   },
   TASK: {
-    PR_APPLICATION: {
-      title: "✅",
-      backgroundColor: EVENT_TASK_BG,
-    },
-    PR_WAITING_FOR_APPLICATION: {
-      title: "✅Waiting for Acceptance",
-      backgroundColor: EVENT_TASK_BG,
-    },
-    PR_ACCEPTANCE: {
-      title: "✅",
-      backgroundColor: EVENT_TASK_BG,
-    },
+    // before coming abroad
     COLLEGE_APPLICATION: {
       title: "✅",
+      description: "・College Application\n・Agent Application",
       backgroundColor: EVENT_TASK_BG,
     },
     READY_FOR_GOING: {
       title: "✅",
+      description:
+        "・Decide day when to go\n・Get Insurance\n・Get Airline Ticket",
       backgroundColor: EVENT_TASK_BG,
     },
     LAST_CHECK: {
       title: "✅",
+      description: "Final check before coming abroad",
       backgroundColor: EVENT_TASK_BG,
     },
     BIOMETORICS: {
       title: "✅",
+      description: "・Register bio-metrics",
       backgroundColor: EVENT_TASK_BG,
     },
     READY_FOR_VISA_APPLICATION: {
       title: "✅",
+      description:
+        "・ID Photo\n・Bank statement\n・Apply Visa\n（・Medical Checkup for only childminder）",
       backgroundColor: EVENT_TASK_BG,
     },
     PAYMENT: {
       title: "✅",
+      description: "・Payment for Agent and School",
+      backgroundColor: EVENT_TASK_BG,
+    },
+
+    // after college
+    PR_APPLICATION: {
+      title: "✅",
+      description: "PR Application",
+      backgroundColor: EVENT_TASK_BG,
+    },
+    PR_WAITING_FOR_APPLICATION: {
+      title: "✅Waiting for Acceptance",
+      description: "Waiting for Acceptance",
+      backgroundColor: EVENT_TASK_BG,
+    },
+    PR_ACCEPTANCE: {
+      title: "✅",
+      description: "PR Acceptance",
       backgroundColor: EVENT_TASK_BG,
     },
   },
