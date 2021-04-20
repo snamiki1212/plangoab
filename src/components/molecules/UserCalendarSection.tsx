@@ -5,7 +5,7 @@ import Box from "@material-ui/core/Box";
 import Divider from "@material-ui/core/Divider";
 import { EventClickArg } from "@fullcalendar/react";
 import { useUserCalendar } from "../../hooks/useUserCalendar";
-import { BaseCalendarContainer } from "../../components/atoms/BaseCalendarContainer";
+import { BaseCalendarContainer } from "../atoms/BaseCalendarContainer";
 import { useResourceGroupLabelContentInUserCalendar } from "../../hooks/useResourceGroupLabelContentInUserCalendar";
 import { useStoryModal } from "../../hooks/useStoryModal";
 import { useEventModal } from "../../hooks/useEventModal";
@@ -15,8 +15,8 @@ import {
   ADD_STORY_BUTTON,
   REMOVE_CALENDAR_BUTTON,
 } from "../../hooks/useUserCalendarCustomButtons";
-import { StoryModal } from "../../components/molecules/StoryModal";
-import { EventModal } from "../../components/molecules/EventModal";
+import { StoryModal } from "./StoryModal";
+import { EventModal } from "./EventModal";
 
 const configs = {
   resourcesInitiallyExpanded: true,
@@ -28,7 +28,7 @@ const headerToolbar = {
   right: "prev,next",
 } as const;
 
-export function UserCalendarContainer() {
+export function UserCalendarSection() {
   const {
     push: pushStoryModal,
     pop: popStoryModal,

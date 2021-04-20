@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { UserCalendarContainer } from "../molecules/UserCalendarContainer";
+import { UserCalendarSection } from "../molecules/UserCalendarSection";
 import { TemplateList } from "../templates/TemplateList";
 import { UserCalendarCreater } from "../molecules/UserCalendarCreater";
 import { useUserCalendar } from "../../hooks/useUserCalendar";
@@ -12,7 +12,7 @@ export function CalendarPageContent() {
     <div>
       {existsCalendar ? (
         <InnerContainer>
-          <UserCalendarContainer />
+          <UserCalendarSection />
           <TemplateList />
         </InnerContainer>
       ) : (
