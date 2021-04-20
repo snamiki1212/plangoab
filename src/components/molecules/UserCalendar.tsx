@@ -12,17 +12,17 @@ import { useResourceGroupLabelContentInUserCalendar } from "../../hooks/useResou
 import { useStoryModal } from "../../hooks/useStoryModal";
 import { useEventModal } from "../../hooks/useEventModal";
 
-const configs = {
-  resourcesInitiallyExpanded: true,
-} as const;
-
 const headerToolbar = {
   left: `${ADD_STORY_BUTTON},${REMOVE_CALENDAR_BUTTON}`,
   center: "title",
   right: "prev,next",
 } as const;
 
-export function UserCalendar() {
+const previewConfig = { height: 3000 } as const;
+const nonPreviewConfig = { height: 600 } as const;
+
+type Props = { isPreviewMode?: boolean };
+export function UserCalendar({ isPreviewMode = false }: Props) {
   const { push: pushStoryModal } = useStoryModal();
   const { push: pushEventModal } = useEventModal();
 
@@ -87,6 +87,8 @@ export function UserCalendar() {
 
   const { customButtons } = useUserCalendarCustomButtons();
 
+  const config = isPreviewMode ? previewConfig : nonPreviewConfig;
+
   return (
     <BaseCalendarContainer
       events={events}
@@ -105,7 +107,8 @@ export function UserCalendar() {
       resourceGroupLabelContent={resourceGroupLabelContent}
       customButtons={customButtons}
       headerToolbar={headerToolbar}
-      {...configs}
+      resourcesInitiallyExpanded
+      {...config}
     />
   );
 }

@@ -31,7 +31,6 @@ const resourceConfigs = {
 } as const;
 
 const styleConfigs = {
-  height: 600,
   resourceAreaWidth: "250px", // need this setting because of capture feature when display is horizontal long.
 };
 
