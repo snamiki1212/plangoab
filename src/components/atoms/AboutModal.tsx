@@ -39,8 +39,9 @@ function HowToPrintSection() {
           <p>
             <li>1. Go to fullscreen Calendar view.</li>
             <li>2. Ctrl + P, Ope print feature.</li>
-            <li>3. Change Scale {"[More Settings] > [Scale]"} (e.g. 20) </li>
-            <li>4. Save as PDF </li>
+            <li>3. Change Layout {"[Layout] > Landscape"} </li>
+            <li>4. Change Scale {"[More Settings] > [Scale] > 20"}</li>
+            <li>5. Save as PDF </li>
             <Button onClick={toggle} variant="outlined">
               Open Fullscreen Calendar View
             </Button>
