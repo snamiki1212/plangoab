@@ -8,6 +8,8 @@ import { useResetAllData } from "../../hooks/useResetAllData";
 import { THIS_GITHUB_URL } from "../../constants/meta";
 import { SNS_LIST } from "../../constants/sns";
 import { collaborations } from "../../constants/collaborations";
+import { usePreviewCommand } from "../../hooks/usePreview";
+import { PreviewModal } from "../molecules/PreviewModal";
 
 type Props = {
   isOpen: boolean;
@@ -27,6 +29,29 @@ export function AboutModal({ isOpen, onClose }: PropsWithChildren<Props>) {
   );
 }
 
+function HowToPrintSection() {
+  const { toggle } = usePreviewCommand();
+  return (
+    <>
+      <Section
+        title="🗂 How To Print"
+        content={
+          <p>
+            <li>1. Go to fullscreen Calendar view.</li>
+            <li>2. Ctrl + P, Ope print feature.</li>
+            <li>3. Change Scale {"[More Settings] > [Scale]"} (e.g. 20) </li>
+            <li>4. Save as PDF </li>
+            <Button onClick={toggle} variant="outlined">
+              Open Fullscreen Calendar View
+            </Button>
+          </p>
+        }
+      />
+      <PreviewModal />
+    </>
+  );
+}
+
 function AboutContent() {
   return (
     <ContentContainer>
@@ -34,7 +59,7 @@ function AboutContent() {
       <HowToUseSection />
       <TipsSection />
       <ResetSection />
-      <HowToCaptureSection />
+      <HowToPrintSection />
       <LicenseSection />
       <AuthorSection />
       <CollaborationsSection />
