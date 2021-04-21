@@ -1,6 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { selectUserCalendar } from "../redux/features/userCalendars";
+import styled from "styled-components";
+import Button from "@material-ui/core/Button";
 
 type Props = {
   createOpenHandle: Function;
@@ -39,24 +41,23 @@ export const useResourceGroupLabelContentInUserCalendar = ({
       const calendarId = calendar.id;
       const openHandle = createOpenHandle({ calendarId, storyId });
 
-      const containerEl = document.createElement("span");
-      containerEl.style.display = "flex";
-      containerEl.style.justifyContent = "space-between";
-
-      const nameElement = document.createElement("i");
-      nameElement.innerHTML = name + " "; // NOTE: space is for design, so not good way
-      containerEl.appendChild(nameElement);
-
-      const buttonElement = document.createElement("button");
-      buttonElement.innerHTML = "✏️";
-      buttonElement.onclick = openHandle;
-      containerEl.appendChild(buttonElement);
-
-      const arrayOfDomNodes = [containerEl];
-      return { domNodes: arrayOfDomNodes };
+      return (
+        <Container>
+          <i>{name}</i>
+          <Button onClick={openHandle} variant="outlined">
+            ✏️
+          </Button>
+        </Container>
+      );
     },
     [calendar, createOpenHandle]
   );
 
   return { resourceGroupLabelContent };
 };
+
+const Container = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;

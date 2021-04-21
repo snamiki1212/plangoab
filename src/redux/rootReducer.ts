@@ -7,13 +7,13 @@ import userCalendarsReducer from "./features/userCalendars";
 import eventModalReducer from "./ui/eventModal";
 import storyModalReducer from "./ui/storyModal";
 import stepReducer from "./ui/step";
-import captureReducer from "./ui/capture";
+import previewModalReducer from "./ui/previewModal";
 
 const uiReducer = combineReducers({
   storyModal: storyModalReducer,
   eventModal: eventModalReducer,
   step: stepReducer,
-  capture: captureReducer,
+  previewModal: previewModalReducer,
 });
 
 const featuresReducer = combineReducers({

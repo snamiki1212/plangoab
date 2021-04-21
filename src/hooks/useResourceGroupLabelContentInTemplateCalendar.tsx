@@ -6,6 +6,8 @@ import {
 } from "../redux/features/templateCalendarTable";
 import { selectUserCalendar } from "../redux/features/userCalendars";
 import { updateStory } from "../core/story/BaseStory";
+import styled from "styled-components";
+import Button from "@material-ui/core/Button";
 
 type ResourceContentProps = {
   // REF: https://fullcalendar.io/docs/resource-group-render-hooks
@@ -63,20 +65,22 @@ export const useResourceGroupLabelContentInTemplateCalendar = ({
         story: updatedStory,
       });
 
-      const nameElement = document.createElement("i");
-      nameElement.innerHTML = name + " "; // NOTE: space is for design, so not good way
-      nameElement.style.marginLeft = "1rem";
+      return (
+        <span>
+          <i>{name}</i>
+          <br />
 
-      const buttonElement = document.createElement("button");
-      buttonElement.innerHTML = "🗒Copy to my calendar";
-      buttonElement.style.marginLeft = "1rem";
-      buttonElement.style.background = "white";
-      buttonElement.style.borderRadius = "5px";
-      buttonElement.style.cursor = "pointer";
-      buttonElement.onclick = clickHandle;
-
-      const arrayOfDomNodes = [nameElement, buttonElement];
-      return { domNodes: arrayOfDomNodes };
+          <ButtonContainer>
+            <Button
+              onClick={clickHandle}
+              variant="outlined"
+              style={{ textTransform: "none" }}
+            >
+              🗒Copy to my calendar
+            </Button>
+          </ButtonContainer>
+        </span>
+      );
     },
     [
       myCalendar,
@@ -88,3 +92,7 @@ export const useResourceGroupLabelContentInTemplateCalendar = ({
 
   return { resourceGroupLabelContent };
 };
+
+const ButtonContainer = styled.div`
+  margin-left: 1rem;
+`;
