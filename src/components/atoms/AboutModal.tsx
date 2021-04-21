@@ -8,7 +8,6 @@ import { useResetAllData } from "../../hooks/useResetAllData";
 import { THIS_GITHUB_URL } from "../../constants/meta";
 import { SNS_LIST } from "../../constants/sns";
 import { collaborations } from "../../constants/collaborations";
-import { useCaptureQuery } from "../../hooks/useCapture";
 
 type Props = {
   isOpen: boolean;
@@ -126,52 +125,6 @@ function LicenseSection() {
       content={
         <div>
           <li>GPL-3.0</li>
-        </div>
-      }
-    />
-  );
-}
-
-function HowToCaptureSection() {
-  const {
-    handleChange: handleChangeCapture,
-    update: updateCapture,
-    width,
-  } = useCaptureQuery();
-  return (
-    <Section
-      title="🗂 How To Capture"
-      content={
-        <div>
-          <div style={{ display: "grid", gap: "1rem" }}>
-            <p>
-              If you capture display as file, recommend to use "Google Chrome
-              Browser" and "Capture Full-screen" feature.
-            </p>
-            <p>
-              We put reference below how to capture image to use Google Chrome.
-              <br />
-              <a href="https://zapier.com/blog/full-page-screenshots-in-chrome/">
-                How to Take a Full-Page Screenshot
-              </a>
-            </p>
-            <p>
-              We provide width customize feature to display calendar's all data.
-            </p>
-          </div>
-          <div>
-            <p>
-              You customize calendar's display width size in order to capture as
-              image.
-            </p>
-            <input
-              onChange={handleChangeCapture}
-              type="number"
-              value={width}
-              placeholder="e.g. 10000"
-            />
-            <button onClick={updateCapture}>Update</button>
-          </div>
         </div>
       }
     />

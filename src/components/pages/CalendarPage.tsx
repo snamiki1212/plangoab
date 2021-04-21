@@ -4,13 +4,11 @@ import { Footer } from "../molecules/Footer";
 import { Header } from "../molecules/Header";
 import { CalendarPageContent } from "../templates/CalendarPageContent";
 import { IntroFlow } from "./IntroFlow";
-import { useSelectCaputre } from "../../hooks/useCapture";
 
 export function CalendarPage() {
-  const { widthPx } = useSelectCaputre();
   return (
     <>
-      <Container widthPx={widthPx}>
+      <Container>
         <Header />
         <ContentContainer>
           <CalendarPageContent />
@@ -24,8 +22,7 @@ export function CalendarPage() {
   );
 }
 
-const Container = styled.div<{ widthPx: string | undefined }>`
-  width: ${({ widthPx }) => widthPx};
+const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
