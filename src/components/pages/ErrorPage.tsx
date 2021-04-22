@@ -20,7 +20,7 @@ export function ErrorPage() {
       <div>
         Sorry🐱
         <br />
-        Something error happen.
+        Something Error Happened🙀
         <br />
       </div>
       <div>
@@ -31,6 +31,7 @@ export function ErrorPage() {
         >
           Reset data
         </Button>
+        <div>Reset and plese reload.</div>
       </div>
     </Container>
   );
