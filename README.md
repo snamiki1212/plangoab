@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://plangoab.snamiki1212.com">
-	  <img alt="Plangoab is a online web calendar for a person going abroad." src="https://user-images.githubusercontent.com/26793088/114226819-f7332d80-9928-11eb-93f8-4f9919018bf6.png">
+	  <img alt="Plangoab is travel planning application for going abroad." src="https://user-images.githubusercontent.com/26793088/114226819-f7332d80-9928-11eb-93f8-4f9919018bf6.png">
   </a>
   <a href="https://github.com/snamiki1212/plangoab/blob/master/LICENSE.md">
     <img src="https://img.shields.io/badge/License-GPLv3-blue.svg" alt="License:GPLv3" align="center">
@@ -9,7 +9,7 @@
 
 # Plangoab
 
-<b><a href="https://plangoab.snamiki1212.com">Plangoab</a></b> <i>(/plˈængóʊb/)</i> is a online web calendar for a person going abroad.
+<b><a href="https://plangoab.snamiki1212.com">Plangoab</a></b> <i>(/plˈængóʊb/)</i> is travel planning application for going abroad.
 
 (Plangoab stands for '<b>plan</b> to <b>go ab</b>road')
 
@@ -17,8 +17,9 @@
 
 - 📝 Customize your schedule
 - ⚙️ Generate plans with many options
-- 💁‍♂️ Share a schedule(TODO: Up comming)
-- 💻 Save plans on local automatically
+- 💁‍♂️ Share schedules (TODO: Up comming)
+- 📊 Export data (TODO: Up comming)
+- 💻 Auto save feature
 
 ### Demo
 
