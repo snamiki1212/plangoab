@@ -5,9 +5,9 @@ import Box from "@material-ui/core/Box";
 import Divider from "@material-ui/core/Divider";
 import { useStoryModal } from "../../hooks/useStoryModal";
 import { useEventModal } from "../../hooks/useEventModal";
-import { StoryModal } from "./StoryModal";
-import { EventModal } from "./EventModal";
-import { UserCalendar } from "./UserCalendar";
+import { StoryEditModal } from "../molecules/StoryEditModal";
+import { EventEditModal } from "../molecules/EventEditModal";
+import { UserCalendar } from "../organisms/UserCalendar";
 
 export function UserCalendarSection() {
   const { pop: popStoryModal, isOpen: isOpenStoryModal } = useStoryModal();
@@ -28,8 +28,8 @@ export function UserCalendarSection() {
       </Box>
 
       {/* Modal */}
-      <StoryModal isOpen={isOpenStoryModal} onClose={popStoryModal} />
-      <EventModal isOpen={isOpenEventModal} onClose={popEventModal} />
+      <StoryEditModal isOpen={isOpenStoryModal} onClose={popStoryModal} />
+      <EventEditModal isOpen={isOpenEventModal} onClose={popEventModal} />
     </>
   );
 }

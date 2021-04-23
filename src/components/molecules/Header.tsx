@@ -3,10 +3,10 @@ import Button from "@material-ui/core/Button";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import styled from "styled-components";
-import { AboutModal } from "../atoms/AboutModal";
+import { AboutModal } from "../organisms/AboutModal";
 import { LogoImage } from "../atoms/LogoImage";
 import { useModal } from "../../hooks/useModal";
-import { StepperModal } from "../templates/StepperModal";
+import { TutorialModal } from "../organisms/TutorialModal";
 import { useStepper } from "../../hooks/useStepper";
 
 export function Header() {
@@ -47,7 +47,7 @@ export function Header() {
 
       {/* Modal */}
       <AboutModal isOpen={isOpenAbout} onClose={closeAbout} />
-      <StepperModal />
+      <TutorialModal />
     </>
   );
 }

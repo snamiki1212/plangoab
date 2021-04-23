@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { LogoImage } from "../atoms/LogoImage";
-import { CollaborationList } from "./CollaborationList";
+import { CollaborationsSection } from "./CollaborationsSection";
 
 export function Footer() {
   return (
@@ -15,7 +15,7 @@ export function Footer() {
         <div>
           <h3>Collcations</h3>
           <hr />
-          <CollaborationList />
+          <CollaborationsSection />
         </div>
       </Box>
     </Container>

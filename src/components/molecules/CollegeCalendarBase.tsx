@@ -1,5 +1,5 @@
 import React from "react";
-import { BaseCalendarContainer } from "../atoms/BaseCalendarContainer";
+import { CalendarBaseContainer } from "../atoms/CalendarBaseContainer";
 import { useResourceGroupLabelContentInTemplateCalendar } from "../../hooks/useResourceGroupLabelContentInTemplateCalendar";
 import { useStory } from "../../hooks/useStory";
 import { BaseStory } from "../../core/story/BaseStory";
@@ -17,7 +17,7 @@ const headerToolbar = {
   right: "prev,next",
 } as const;
 
-export function BaseTemplate(props: any) {
+export function CollegeCalendarBase(props: any) {
   const { create: createStory } = useStory();
 
   const createClickHandel = React.useCallback(
@@ -33,7 +33,7 @@ export function BaseTemplate(props: any) {
   } = useResourceGroupLabelContentInTemplateCalendar({ createClickHandel });
 
   return (
-    <BaseCalendarContainer
+    <CalendarBaseContainer
       {...props}
       initialDate={"2020-06-01"}
       resourceGroupLabelContent={resourceGroupLabelContent}

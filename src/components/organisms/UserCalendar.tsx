@@ -1,5 +1,5 @@
 import React from "react";
-import { BaseCalendarContainer } from "../atoms/BaseCalendarContainer";
+import { CalendarBaseContainer } from "../atoms/CalendarBaseContainer";
 import { useEvent } from "../../hooks/useEvent";
 import {
   useUserCalendarCustomButtons,
@@ -90,7 +90,7 @@ export function UserCalendar({ isPreviewMode = false }: Props) {
   const config = isPreviewMode ? previewConfig : nonPreviewConfig;
 
   return (
-    <BaseCalendarContainer
+    <CalendarBaseContainer
       events={events}
       resources={resources}
       // click event

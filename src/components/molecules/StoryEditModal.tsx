@@ -19,7 +19,7 @@ type Props = {
   onClose: () => void;
 };
 
-export function StoryModal({ isOpen, onClose }: Props) {
+export function StoryEditModal({ isOpen, onClose }: Props) {
   const storyModal = useSelector(selectStoryModal);
   const story = useSelector(selectStory);
   const { register, handleSubmit } = useForm();

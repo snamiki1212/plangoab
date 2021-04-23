@@ -1,5 +1,5 @@
 import React from "react";
-import { UserCalendar } from "../molecules/UserCalendar";
+import { UserCalendar } from "../organisms/UserCalendar";
 import { usePreviewQuery, usePreviewCommand } from "../../hooks/usePreview";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";

@@ -4,7 +4,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogActions from "@material-ui/core/DialogActions";
 import Button from "@material-ui/core/Button";
-import { TemplateOption } from "./TemplateOption";
+import { TemplateOptionContent } from "./TemplateOptionContent";
 
 type Props = {
   isOpen: boolean;
@@ -16,7 +16,7 @@ export function TemplateOptionModal({ onClose, isOpen }: Props) {
     <Dialog onClose={onClose} open={isOpen}>
       <DialogTitle>Template Option</DialogTitle>
       <DialogContent>
-        <TemplateOption />
+        <TemplateOptionContent />
       </DialogContent>
       <DialogActions>
         <Button onClick={onClose}>Close</Button>

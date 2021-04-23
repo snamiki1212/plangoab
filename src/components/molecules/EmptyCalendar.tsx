@@ -5,7 +5,7 @@ import { useUserCalendar } from "../../hooks/useUserCalendar";
 import { useUser } from "../../hooks/useUser";
 import { useTemplateOptions } from "../../hooks/useTemplateOptions";
 
-export function UserCalendarCreater() {
+export function EmptyCalendar() {
   const { init: initUserCalendar } = useUserCalendar();
   const { birth } = useUser();
   const { options } = useTemplateOptions();

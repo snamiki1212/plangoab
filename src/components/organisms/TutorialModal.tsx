@@ -60,7 +60,7 @@ const steps = [
   },
 ] as const;
 
-export function StepperModal() {
+export function TutorialModal() {
   const { activeStepIdx, isOpen, close, next, back } = useStepper();
 
   const isFirstStep = React.useMemo(() => activeStepIdx === 0, [activeStepIdx]);

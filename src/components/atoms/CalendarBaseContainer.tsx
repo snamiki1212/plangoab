@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { BaseFullCalendar } from "./BaseFullCalendar";
+import { CalendarBase } from "./CalendarBase";
 import Tooltip from "@material-ui/core/Tooltip";
 
 const eventContent = function (arg: any) {
@@ -16,11 +16,11 @@ const eventContent = function (arg: any) {
   );
 };
 
-export function BaseCalendarContainer(props: any) {
+export function CalendarBaseContainer(props: any) {
   const args = { eventContent };
   return (
     <StyledContainer>
-      <BaseFullCalendar {...props} {...args} />
+      <CalendarBase {...props} {...args} />
     </StyledContainer>
   );
 }

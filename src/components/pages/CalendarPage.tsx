@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Footer } from "../molecules/Footer";
 import { Header } from "../molecules/Header";
 import { CalendarPageContent } from "../templates/CalendarPageContent";
-import { IntroFlow } from "./IntroFlow";
+import { WelcomeModal } from "../organisms/WelcomeModal";
 
 export function CalendarPage() {
   return (
@@ -17,7 +17,7 @@ export function CalendarPage() {
       </Container>
 
       {/* Modal */}
-      <IntroFlow />
+      <WelcomeModal />
     </>
   );
 }

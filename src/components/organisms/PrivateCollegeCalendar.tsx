@@ -1,14 +1,14 @@
 import React from "react";
-import { BaseTemplate } from "../molecules/BaseTemplate";
-import { usePublicCollegeCalendar } from "../../hooks/usePublicCollegeCalendar";
+import { CollegeCalendarBase } from "../molecules/CollegeCalendarBase";
+import { usePrivateCollegeCalendar } from "../../hooks/usePrivateCollegeCalendar";
 import { useUser } from "../../hooks/useUser";
 import { useTemplateOptions } from "../../hooks/useTemplateOptions";
 import { useTemplateCustomButtons } from "../../hooks/useTemplateCustomButtons";
 import { TemplateOptionModal } from "../molecules/TemplateOptionModal";
 
-export function PublicCollegeTemplate() {
+export function PrivateCollegeCalendar() {
   const { birth } = useUser();
-  const { resources, events, generate } = usePublicCollegeCalendar();
+  const { resources, events, generate } = usePrivateCollegeCalendar();
   const { options, withWorkingholiday } = useTemplateOptions();
   const { customButtons, close, isOpen } = useTemplateCustomButtons();
 
@@ -19,7 +19,7 @@ export function PublicCollegeTemplate() {
 
   return (
     <>
-      <BaseTemplate
+      <CollegeCalendarBase
         events={events}
         resources={resources}
         customButtons={customButtons}

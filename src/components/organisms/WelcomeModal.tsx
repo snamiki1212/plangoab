@@ -12,10 +12,10 @@ import { PolicyExplanation } from "../atoms/PolicyExplanation";
 import { useModal } from "../../hooks/useModal";
 import { useUserCalendar } from "../../hooks/useUserCalendar";
 import { useUser } from "../../hooks/useUser";
-import { AdvancedOptions } from "../organisms/AdvancedOptions";
+import { AdvancedOptions } from "./AdvancedOptions";
 import { useTemplateOptions } from "../../hooks/useTemplateOptions";
 
-export function IntroFlow() {
+export function WelcomeModal() {
   const { calendar } = useUserCalendar();
   const shouldSkipIntroFlow = !!calendar;
   const { isOpen, close } = useModal(!shouldSkipIntroFlow);

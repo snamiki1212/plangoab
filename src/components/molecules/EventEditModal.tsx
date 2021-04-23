@@ -17,7 +17,7 @@ type Props = {
   onClose: () => void;
 };
 
-export function EventModal({ isOpen, onClose }: Props) {
+export function EventEditModal({ isOpen, onClose }: Props) {
   const eventModal = useSelector(selectEventModal);
   const event = useSelector(selectEvent);
 

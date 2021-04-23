@@ -5,9 +5,8 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Box from "@material-ui/core/Box";
 import Paper from "@material-ui/core/Paper";
-
-import { PrivateCollegeTemplate } from "./PrivateCollegeTemplate";
-import { PublicCollegeTemplate } from "./PublicCollegeTemplate";
+import { PrivateCollegeCalendar } from "../organisms/PrivateCollegeCalendar";
+import { PublicCollegeCalendar } from "../organisms/PublicCollegeCalendar";
 
 function TabPanel({
   shouldShow,
@@ -22,7 +21,7 @@ function TabPanel({
   );
 }
 
-export function TemplateList() {
+export function CollegeCalendarSection() {
   const [selectedIdx, setSelectedIdx] = React.useState(0);
 
   const handleChange = React.useCallback((_event, newValue) => {
@@ -57,10 +56,10 @@ export function TemplateList() {
           />
         </Tabs>
         <TabPanel shouldShow={selectedIdx === 0}>
-          <PrivateCollegeTemplate />
+          <PrivateCollegeCalendar />
         </TabPanel>
         <TabPanel shouldShow={selectedIdx === 1}>
-          <PublicCollegeTemplate />
+          <PublicCollegeCalendar />
         </TabPanel>
       </Paper>
     </Box>

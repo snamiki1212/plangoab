@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { collaborations } from "./../../constants/collaborations";
+import { collaborations } from "../../constants/collaborations";
 
-export function CollaborationList() {
+export function CollaborationsSection() {
   return (
     <Container>
       {collaborations.map(({ link, name, logo }) => (

@@ -21,7 +21,7 @@ const MONTHS = [
 ] as const;
 
 // TODO: Use react-hook-form because of reducing render cost
-export function TemplateOption() {
+export function TemplateOptionContent() {
   const { update: updateOption, options } = useTemplateOptions();
   const {
     schoolPeriod,
