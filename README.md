@@ -15,11 +15,11 @@
 
 ### Features
 
-- 📝 Customize your schedule
+- 📝 Customize schedule
 - ⚙️ Generate plans with many options
 - 💁‍♂️ Share schedules (TODO: Up comming)
-- 📊 Export data (TODO: Up comming)
-- 💻 Auto save feature
+- 📊 Export as PDF
+- 💻 Auto save
 
 ### Demo
 
@@ -49,20 +49,18 @@
   </tr>
 </table>
 
-[👉👉 Try Now](https://plangoab.snamiki1212.com)
+## Why create
 
-## Why do I create
+Because of reducing cost to plan schedule for going abroad.
 
-Because I have wanted this app when I make a plan to go to Canada and then to find jobs.
+If you go abroad to find jobs, you should think about some topics like below.
 
-If you want to go abroad to find jobs, you should think about many topics when you make plans.
-
-- When is the deadline to go to Canada with Working Holiday Visa?
-- How long can/should you stay in Canada?
-- Some schools have different start and term period.
+- When is the deadline to go abroad with Working Holiday Visa?
+- How long can you stay there?
+- Should you go school in order to get visa? If so, which school? when to start?
 - etc...
 
-Actually, in my case, I handwrote some plans but I made some mistakes to calculate a Visa and my ages. Fortunatelly, I realized it but I almost ruined my career. (Sorry, handwrite is Japanese!)
+Actually, in my case, I handwrote some plans but made some mistakes when to calculate a Visa and my ages. Fortunatelly, I realized it but I almost ruined my career. (Sorry, handwrite is Japanese!)
 
 <table>
   <tr>
