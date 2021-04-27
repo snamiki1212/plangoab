@@ -2,7 +2,7 @@
   <a href="https://plangoab.snamiki1212.com">
 	  <img alt="Plangoab is an immigration scheduler application for going abroad." src="https://user-images.githubusercontent.com/26793088/114226819-f7332d80-9928-11eb-93f8-4f9919018bf6.png">
   </a>
-  <a href="https://github.com/snamiki1212/plangoab/blob/master/LICENSE.md">
+  <a href="https://github.com/snamiki1212/plangoab/blob/main/LICENSE.md">
     <img src="https://img.shields.io/badge/License-GPLv3-blue.svg" alt="License:GPLv3" align="center">
   </a>
 </p>
@@ -113,7 +113,7 @@ Welcome whenever, whoever!
 
 ## Licence
 
-[GPL-3.0](https://github.com/snamiki1212/plangoab/blob/master/LICENSE.md)
+[GPL-3.0](https://github.com/snamiki1212/plangoab/blob/main/LICENSE.md)
 
 Because of using [Fullcalendar Premium open-source project license](https://fullcalendar.io/license) as GPL-3.0. That makes a plangoab's license a same license.
 
