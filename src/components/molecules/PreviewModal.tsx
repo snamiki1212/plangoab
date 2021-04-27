@@ -1,5 +1,6 @@
 import React from "react";
 import { UserCalendar } from "../organisms/UserCalendar";
+import { ExplanationSection } from "../atoms/ExplanationSection";
 import { usePreviewQuery, usePreviewCommand } from "../../hooks/usePreview";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
@@ -14,6 +15,8 @@ export function PreviewModal() {
           {"<< Back"}
         </Button>
         <UserCalendar isPreviewMode />
+        <br />
+        <ExplanationSection />
       </div>
     </Dialog>
   );
