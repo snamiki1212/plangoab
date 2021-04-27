@@ -13,6 +13,8 @@
 
 (Plangoab stands for '<b>plan</b> to <b>go ab</b>road')
 
+👉 Try here: <a href="https://plangoab.snamiki1212.com">https://plangoab.snamiki1212.com</a>
+
 ### Features
 
 - 📝 Customize schedule
@@ -49,6 +51,14 @@
   </tr>
 </table>
 
+## Who want
+
+Plangoab might help like below people
+
+- Person going abroad to find job
+- Person going abroad to go to school
+- Immigration consultant
+
 ## Why create
 
 Because of reducing cost to plan schedule for going abroad.
@@ -73,9 +83,7 @@ Actually, in my case, I handwrote some plans but made some mistakes when to calc
   </tr>
 </table>
 
-I believe this app would help people who want to plan to go abroad, especially to find job seriously.
-
-I pursued to design this app about data models and workflow that has the capability of handling for people who are from all countries and who want to go all countries.
+I believe Plangoab would help people who want to plan to go abroad, especially want to find job seriously.
 
 ## Architecture
 
@@ -103,13 +111,11 @@ $ yarn start #=> open http://local:3000
 
 ## Design
 
-TODO: Color Pallete
+(TODO: Color Pallete)
 
 ## Contribution
 
-TODO:
-
-Welcome whenever, whoever!
+Welcome, whenever, whoever, whatever! Feel Free to create PRs or issues.
 
 ## Licence
 

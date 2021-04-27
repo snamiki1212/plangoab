@@ -4,8 +4,8 @@ import styled from "styled-components";
 export function PolicyExplanation() {
   return (
     <Text>
-      This application(Plangoab) use local state. When you accept this app to
-      access to local data, please click button.
+      Plangoab use local state. When you accept Plangoab to access to local
+      data, please click button.
     </Text>
   );
 }
