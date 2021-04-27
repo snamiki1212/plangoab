@@ -178,7 +178,7 @@ export const EVENTS = {
     READY_FOR_VISA_APPLICATION: {
       title: "✅",
       description:
-        "・ID Photo\n・Bank statement\n・Apply Visa\n（・Medical Checkup for only childminder）",
+        "・ID Photo\n・Bank statement\n・Apply Visa\n（・Medical checkup for only childcare worker）",
       backgroundColor: EVENT_TASK_BG,
     },
     PAYMENT: {
