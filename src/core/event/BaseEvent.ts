@@ -66,12 +66,13 @@ export const updateEvent = (
     !isUndeifned(end) && { end },
 
     // extendedProps
-    !isUndeifned(extendedProps, extendedProps.description) && {
-      extendedProps: {
-        ...event.extendedProps,
-        description: extendedProps.description,
-      },
-    }
+    !isUndeifned(extendedProps) &&
+      !isUndeifned(extendedProps.description) && {
+        extendedProps: {
+          ...event.extendedProps,
+          description: extendedProps.description,
+        },
+      }
   );
 
   return newEvent;

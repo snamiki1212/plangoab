@@ -73,11 +73,25 @@ export function UserCalendar({ isPreviewMode = false }: Props) {
   const updateEvent = React.useCallback(
     (data: any) => {
       if (!data.event || !data.event.extendedProps) {
-        return console.warn("Invalid data. cannot find event data.");
+        return console.error("Invalid data. cannot find event data.");
       }
+      const calendarId: string | undefined =
+        data.event.extendedProps?.calendarId;
+      const storyId: string | undefined = data.event.extendedProps?.storyId;
+      const eventId: string | undefined = data.event.id;
+      if (!calendarId)
+        return console.error(
+          "Invalid data. Cannot find calendarId in extendedProps"
+        );
+      if (!storyId)
+        return console.error(
+          "Invalid data. Cannot find storyId in extendedProps"
+        );
+      if (!eventId) return console.error("Invalid data. Cannot find eventId");
+
       const start = data.event.start;
       const end = data.event.end;
-      const idSet = { ...data.event.extendedProps, eventId: data.event.id };
+      const idSet = { calendarId, storyId, eventId };
 
       const params = { start, end };
       updateById(idSet, params);
