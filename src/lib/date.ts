@@ -16,3 +16,7 @@ export const convertIsoToYearAndMonth = (_date: Date | string) => {
   const MM = paddingZero(getMonth(date) + 1);
   return `${YYYY}-${MM}`;
 };
+
+export const convertDateToIso = (_date: Date | string) => {
+  return typeof _date === "object" ? _date.toISOString() : _date;
+};
