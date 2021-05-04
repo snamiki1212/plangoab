@@ -33,9 +33,6 @@ export function CollegeCalendarSection() {
       <Paper elevation={8}>
         <PaperHeader>
           <Title>Templates</Title>
-          <Description>
-            You can pick good template story from here to above calendar.
-          </Description>
         </PaperHeader>
         <Divider />
         <Tabs
@@ -71,12 +68,10 @@ const PaperHeader = styled.div`
 `;
 
 const Title = styled.span`
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: 900;
   margin-right: 1rem;
 `;
-
-const Description = styled.span``;
 
 const Icon = styled.span`
   font-size: 2rem;
