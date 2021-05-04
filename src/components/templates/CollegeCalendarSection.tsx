@@ -68,7 +68,7 @@ const PaperHeader = styled.div`
 `;
 
 const Title = styled.span`
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: 900;
   margin-right: 1rem;
 `;
