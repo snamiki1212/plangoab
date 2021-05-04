@@ -29,7 +29,9 @@ const StyledContainer = styled.div`
     background: transparent;
     color: #000;
     border-color: lightgray;
+    transition: 0.3s;
     &:hover {
+      transition: 0.3s;
       background: transparent;
       opacity: 0.7;
       color: #000;
