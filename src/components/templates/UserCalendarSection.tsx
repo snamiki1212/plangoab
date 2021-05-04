@@ -18,7 +18,6 @@ export function UserCalendarSection() {
         <Paper elevation={8}>
           <PaperHeader>
             <Title>My Calendar</Title>
-            <span>Let's edit your plan in my calendar.</span>
           </PaperHeader>
           <Divider />
           <CalendarContainer>
