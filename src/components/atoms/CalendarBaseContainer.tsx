@@ -17,10 +17,9 @@ const eventContent = function (arg: any) {
 };
 
 export function CalendarBaseContainer(props: any) {
-  const args = { eventContent };
   return (
     <StyledContainer>
-      <CalendarBase {...props} {...args} />
+      <CalendarBase {...props} eventContent={eventContent} />
     </StyledContainer>
   );
 }
