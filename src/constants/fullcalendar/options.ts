@@ -31,7 +31,11 @@ const resourceConfigs = {
 } as const;
 
 const styleConfigs = {
-  resourceAreaWidth: "250px", // need this setting because of capture feature when display is horizontal long.
+  // NOTE: if no height props, another calendar after opening tab would become 0 height
+  height: 600,
+
+  // NOTE: Because of capture feature. When to open preview page, need this setting.
+  resourceAreaWidth: "250px",
 };
 
 const resourceAreaColumns = [
