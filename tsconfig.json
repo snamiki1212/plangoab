@@ -29,7 +29,7 @@
       "@/providers/*": ["src/providers/*"],
       "@/redux/*": ["src/redux/*"],
       "@/styles/*": ["src/styles/*"],
-      "@/assets/*": ["src/assets/*"],
+      "@/assets/*": ["src/assets/*"]
     }
   },
   "include": [
