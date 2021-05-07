@@ -2,13 +2,13 @@ import { addMonths, addYears, setMonth } from "date-fns";
 import {
   RESOURCE_ID__SHARED__AGE,
   RESOURCE_ID__SHARED__LIMIT,
-} from "../../constants/fullcalendar/settings";
-import { EVENTS } from "../../constants/fullcalendar/templates";
-import { getRangeNumbers } from "../../lib/age";
-import { uuid } from "../../lib/uuid";
-import { convertIsoToDateTime } from "../../lib/date";
-import { WORKING_HOLIDAY_APPLICATION_LIMITATION_AGE } from "../../constants/visa";
-import { BaseEvent } from "../event/BaseEvent";
+} from "@/constants/fullcalendar/settings";
+import { EVENTS } from "@/constants/fullcalendar/templates";
+import { getRangeNumbers } from "@/lib/age";
+import { uuid } from "@/lib/uuid";
+import { convertIsoToDateTime } from "@/lib/date";
+import { WORKING_HOLIDAY_APPLICATION_LIMITATION_AGE } from "@/constants/visa";
+import { BaseEvent } from "@/core/event/BaseEvent";
 
 export const createProfileEvents = ({
   startDate,

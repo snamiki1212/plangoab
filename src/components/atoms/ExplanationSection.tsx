@@ -1,5 +1,5 @@
 import React from "react";
-import { EVENTS } from "../../constants/fullcalendar/templates";
+import { EVENTS } from "@/constants/fullcalendar/templates";
 
 const { TASK } = EVENTS;
 const tasksWithDescription = Object.entries(TASK).filter(

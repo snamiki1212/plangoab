@@ -8,9 +8,9 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
-import { selectEventModal, selectEvent } from "../../redux/ui/eventModal";
-import { useEvent } from "../../hooks/useEvent";
-import { BaseEvent } from "../../core/event/BaseEvent";
+import { selectEventModal, selectEvent } from "@/redux/ui/eventModal";
+import { useEvent } from "@/hooks/useEvent";
+import { BaseEvent } from "@/core/event/BaseEvent";
 
 interface Props {
   isOpen: boolean;

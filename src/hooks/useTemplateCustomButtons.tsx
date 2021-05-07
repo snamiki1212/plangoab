@@ -1,5 +1,5 @@
 import React from "react";
-import { useModal } from "./useModal";
+import { useModal } from "@/hooks/useModal";
 
 export const OPEN_OPTION_BUTTON = "OPEN_OPTION_BUTTON";
 

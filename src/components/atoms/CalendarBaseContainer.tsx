@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { CalendarBase } from "./CalendarBase";
+import { CalendarBase } from "@/components/atoms/CalendarBase";
 import Tooltip from "@material-ui/core/Tooltip";
 
 const eventContent = function (arg: any) {

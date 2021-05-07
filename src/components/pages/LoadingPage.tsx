@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import { LogoImage } from "../atoms/LogoImage";
+import { LogoImage } from "@/components/atoms/LogoImage";
 
 export function LoadingPage() {
   return (

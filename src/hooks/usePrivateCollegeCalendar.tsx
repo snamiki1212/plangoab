@@ -1,8 +1,8 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { BaseEvent } from "../core/event/BaseEvent";
-import { BaseResource } from "../core/resource/BaseResource";
-import { TemplateOption } from "../core/calendar/BaseCalendar";
+import { BaseEvent } from "@/core/event/BaseEvent";
+import { BaseResource } from "@/core/resource/BaseResource";
+import { TemplateOption } from "@/core/calendar/BaseCalendar";
 import {
   upsertPrivateCollegeStoriesAction,
   selectPrivateCollegeCalendar,

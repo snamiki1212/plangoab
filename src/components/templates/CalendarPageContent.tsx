@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { UserCalendarSection } from "./UserCalendarSection";
 import { CollegeCalendarSection } from "./CollegeCalendarSection";
-import { EmptyCalendar } from "../molecules/EmptyCalendar";
-import { useUserCalendar } from "../../hooks/useUserCalendar";
+import { EmptyCalendar } from "@/components/molecules/EmptyCalendar";
+import { useUserCalendar } from "@/hooks/useUserCalendar";
 
 export function CalendarPageContent() {
   const { calendar } = useUserCalendar();

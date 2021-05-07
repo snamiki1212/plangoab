@@ -4,8 +4,8 @@ import {
   removeEventAction,
   updateEventAction,
   updateEventByIdAction,
-} from "../redux/features/userCalendars";
-import { BaseEvent, updateEvent } from "../core/event/BaseEvent";
+} from "@/redux/features/userCalendars";
+import { BaseEvent, updateEvent } from "@/core/event/BaseEvent";
 
 type IdSet = { calendarId: string; storyId: string; eventId: string };
 
@@ -44,6 +44,6 @@ export const useEvent = () => {
   return {
     remove,
     update,
-    updateById
+    updateById,
   } as const;
 };

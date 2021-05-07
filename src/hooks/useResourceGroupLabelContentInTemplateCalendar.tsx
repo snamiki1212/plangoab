@@ -3,9 +3,9 @@ import { useSelector } from "react-redux";
 import {
   selectPrivateCollegeCalendar,
   selectPublicCollegeCalendar,
-} from "../redux/features/templateCalendarTable";
-import { selectUserCalendar } from "../redux/features/userCalendars";
-import { updateStory } from "../core/story/BaseStory";
+} from "@/redux/features/templateCalendarTable";
+import { selectUserCalendar } from "@/redux/features/userCalendars";
+import { updateStory } from "@/core/story/BaseStory";
 import styled from "styled-components";
 import Button from "@material-ui/core/Button";
 

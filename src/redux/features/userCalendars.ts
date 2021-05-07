@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "../rootReducer";
-import { BaseCalendar } from "../../core/calendar/BaseCalendar";
-import { BaseStory, updateStory } from "../../core/story/BaseStory";
-import { BaseEvent, updateEvent } from "../../core/event/BaseEvent";
-import { BaseResource } from "../../core/resource/BaseResource";
+import { RootState } from "@/redux/rootReducer";
+import { BaseCalendar } from "@/core/calendar/BaseCalendar";
+import { BaseStory, updateStory } from "@/core/story/BaseStory";
+import { BaseEvent, updateEvent } from "@/core/event/BaseEvent";
+import { BaseResource } from "@/core/resource/BaseResource";
 
 type Calendar = BaseCalendar;
 type RemoveCalendarPayload = { calendarId: string };

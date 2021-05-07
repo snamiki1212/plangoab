@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { selectUserCalendar } from "../redux/features/userCalendars";
+import { selectUserCalendar } from "@/redux/features/userCalendars";
 import styled from "styled-components";
 import Button from "@material-ui/core/Button";
 

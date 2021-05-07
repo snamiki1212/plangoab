@@ -1,7 +1,7 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { calcAge } from "../../lib/age";
 import { addYears } from "date-fns";
-import { RootState } from "../rootReducer";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { RootState } from "@/redux/rootReducer";
+import { calcAge } from "@/lib/age";
 
 const PERSONA_AGE = 25;
 const personaBirth = addYears(new Date(), -PERSONA_AGE).toISOString();

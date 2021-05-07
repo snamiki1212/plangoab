@@ -4,12 +4,12 @@ import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
-import { useResetAllData } from "../../hooks/useResetAllData";
-import { THIS_GITHUB_URL } from "../../constants/meta";
-import { SNS_LIST } from "../../constants/sns";
-import { collaborations } from "../../constants/collaborations";
-import { usePreviewCommand } from "../../hooks/usePreview";
-import { PreviewModal } from "../molecules/PreviewModal";
+import { useResetAllData } from "@/hooks/useResetAllData";
+import { THIS_GITHUB_URL } from "@/constants/meta";
+import { SNS_LIST } from "@/constants/sns";
+import { collaborations } from "@/constants/collaborations";
+import { usePreviewCommand } from "@/hooks/usePreview";
+import { PreviewModal } from "@/components/molecules/PreviewModal";
 
 type Props = {
   isOpen: boolean;

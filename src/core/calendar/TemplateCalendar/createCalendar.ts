@@ -4,13 +4,13 @@ import {
   PRIVATE_COLLEGE_CALENDAR_ID,
   PUBLIC_COLLEGE_CALENDAR_ID,
 } from "./model";
-import { AGE_OF_START_STORY } from "../../../constants/fullcalendar/options";
-import { WORKING_HOLIDAY_APPLICATION_LIMITATION_AGE } from "../../../constants/visa";
-import { range } from "../../../lib/util";
-import { createPrivateCollegeStory } from "../../story/PrivateCollegeStory/createPrivateCollegeStory";
-import { createPublicCollegeStory } from "../../story/PublicCollegeStory/createPublicCollegeStory";
-import { BaseStory } from "../../story/BaseStory";
-import { TemplateOption } from "../BaseCalendar";
+import { AGE_OF_START_STORY } from "@/constants/fullcalendar/options";
+import { WORKING_HOLIDAY_APPLICATION_LIMITATION_AGE } from "@/constants/visa";
+import { range } from "@/lib/util";
+import { createPrivateCollegeStory } from "@/core/story/PrivateCollegeStory/createPrivateCollegeStory";
+import { createPublicCollegeStory } from "@/core/story/PublicCollegeStory/createPublicCollegeStory";
+import { BaseStory } from "@/core/story/BaseStory";
+import { TemplateOption } from "@/core/calendar/BaseCalendar";
 
 const scopeAges = range(
   AGE_OF_START_STORY,

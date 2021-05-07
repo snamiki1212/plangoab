@@ -3,7 +3,7 @@ import styled from "styled-components";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Checkbox from "@material-ui/core/Checkbox";
-import { useTemplateOptions } from "../../hooks/useTemplateOptions";
+import { useTemplateOptions } from "@/hooks/useTemplateOptions";
 
 const MONTHS = [
   "Jan",

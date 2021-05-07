@@ -3,7 +3,7 @@ import FullCalendarLib from "@fullcalendar/react";
 import resourceTimelinePlugin from "@fullcalendar/resource-timeline";
 import listPlugin from "@fullcalendar/list";
 import interactionPlugin from "@fullcalendar/interaction";
-import { FULL_CALENDAR_CONFIGS } from "../../constants/fullcalendar/options";
+import { FULL_CALENDAR_CONFIGS } from "@/constants/fullcalendar/options";
 
 export function CalendarBase<T>(props: PropsWithChildren<T>) {
   return (

@@ -1,16 +1,16 @@
 import React from "react";
-import { CalendarBaseContainer } from "../atoms/CalendarBaseContainer";
-import { useEvent } from "../../hooks/useEvent";
+import { CalendarBaseContainer } from "@/components/atoms/CalendarBaseContainer";
+import { useEvent } from "@/hooks/useEvent";
 import {
   useUserCalendarCustomButtons,
   ADD_STORY_BUTTON,
   REMOVE_CALENDAR_BUTTON,
-} from "../../hooks/useUserCalendarCustomButtons";
+} from "@/hooks/useUserCalendarCustomButtons";
 import { EventClickArg } from "@fullcalendar/react";
-import { useUserCalendar } from "../../hooks/useUserCalendar";
-import { useResourceGroupLabelContentInUserCalendar } from "../../hooks/useResourceGroupLabelContentInUserCalendar";
-import { useStoryModal } from "../../hooks/useStoryModal";
-import { useEventModal } from "../../hooks/useEventModal";
+import { useUserCalendar } from "@/hooks/useUserCalendar";
+import { useResourceGroupLabelContentInUserCalendar } from "@/hooks/useResourceGroupLabelContentInUserCalendar";
+import { useStoryModal } from "@/hooks/useStoryModal";
+import { useEventModal } from "@/hooks/useEventModal";
 
 const headerToolbar = {
   left: `${ADD_STORY_BUTTON},${REMOVE_CALENDAR_BUTTON}`,

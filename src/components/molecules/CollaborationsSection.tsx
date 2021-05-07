@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { collaborations } from "../../constants/collaborations";
+import { collaborations } from "@/constants/collaborations";
 
 export function CollaborationsSection() {
   return (
