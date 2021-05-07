@@ -1,4 +1,5 @@
 import React from "react";
+import { AppProps } from "next/app";
 
 // components
 import { MuiPickersUtilsProvider } from "../providers/MuiPickersUtilsProvider";
@@ -14,7 +15,7 @@ import "@fullcalendar/resource-timeline/main.css";
 import "../styles/reset.css";
 import "../styles/core.css";
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ErrorBoundary>
       <ReactReduxProvider>
