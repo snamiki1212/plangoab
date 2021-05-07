@@ -24,7 +24,6 @@ const SRC_PATH = "<rootDir>/";
 module.exports = {
   roots: [SRC_PATH],
   transform: {
-    "^.+\\.ts?$": "ts-jest",
     "^.+\\.tsx?$": "ts-jest",
   },
   moduleNameMapper: makeModuleNameMapper(SRC_PATH, TS_CONFIG_PATH),
