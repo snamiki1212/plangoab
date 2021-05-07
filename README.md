@@ -95,7 +95,7 @@ Read [ARCHITECTURE.md](./doc/ARCHITECTURE.md) more details.
 
 ## Tech Stack
 
-- [App] React, Redux Toolkit, FullCalendar
+- [App] Next, Redux Toolkit, FullCalendar
 - [CSS] styled-components
 - [UI] Material-UI
 - [CI] Github Actions
