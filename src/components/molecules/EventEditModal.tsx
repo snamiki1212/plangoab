@@ -12,10 +12,10 @@ import { selectEventModal, selectEvent } from "../../redux/ui/eventModal";
 import { useEvent } from "../../hooks/useEvent";
 import { BaseEvent } from "../../core/event/BaseEvent";
 
-type Props = {
+interface Props {
   isOpen: boolean;
   onClose: () => void;
-};
+}
 
 export function EventEditModal({ isOpen, onClose }: Props) {
   const eventModal = useSelector(selectEventModal);

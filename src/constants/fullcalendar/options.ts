@@ -4,7 +4,7 @@ export const MY_TIME_LINE_NAME = "MY_TIME_LINE_NAME";
 
 export const AGE_OF_START_STORY = 21;
 
-const slotLabelFormat = [{ year: "numeric" }, { month: "numeric" }];
+// const slotLabelFormat = { year: "numeric", month: "numeric" };
 
 const initialView = { initialView: MY_TIME_LINE_NAME } as const;
 
@@ -46,7 +46,7 @@ const resourceAreaColumns = [
 
 export const FULL_CALENDAR_CONFIGS = {
   views,
-  slotLabelFormat,
+  // slotLabelFormat,
   resourceAreaColumns,
   ...initialView,
   ...resourceGroupField,
