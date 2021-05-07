@@ -6,7 +6,10 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "clean": "rm -rf .next"
+    "test": "react-scripts test",
+    "clean": "rm -rf .next",
+    "graph:dot": "yarn depcruise --include-only '^src' --output-type dot ./src --output-to dependencygraph.dot",
+    "graph:svg": "dot dependencygraph.dot -T svg > dependencygraph.svg"
   },
   "dependencies": {
     "@babel/core": "^7.12.3",
