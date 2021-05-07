@@ -4,7 +4,7 @@ import { AppProps } from "next/app";
 // components
 import { MuiPickersUtilsProvider } from "@/providers/MuiPickersUtilsProvider";
 import { ReactReduxProvider } from "@/providers/ReactReduxProvider";
-import { ErrorBoundary } from "../ErrorBoundary";
+import { ErrorBoundary } from "@/providers/ErrorBoundary";
 
 // fullcalendar styles
 import "@fullcalendar/common/main.css";
