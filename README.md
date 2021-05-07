@@ -95,11 +95,32 @@ Read [ARCHITECTURE.md](./doc/ARCHITECTURE.md) more details.
 
 ## Tech Stack
 
-- [App] Next, Redux Toolkit, FullCalendar
-- [CSS] styled-components
-- [UI] Material-UI
-- [CI] Github Actions
-- [Host] GitHub Pages + Netlify
+<table>
+  <tr>
+    <td></td>
+    <td align="center"><b>Using</b></td>
+  </tr>
+  <tr>
+    <td>Core</td>
+    <td>Next, Redux, FullCalendar</td>
+  </tr>
+  <tr>
+    <td>CSS</td>
+    <td>styled-components</td>
+  </tr>
+  <tr>
+    <td>UI</td>
+    <td>Material UI</td>
+  </tr>
+  <tr>
+    <td>CI</td>
+    <td>GitHub Actions</td>
+  </tr>
+  <tr>
+    <td>Hosting</td>
+    <td>GitHub Pages + Netlify</td>
+  </tr>
+</table>
 
 ## Install
 
