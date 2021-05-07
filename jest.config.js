@@ -24,6 +24,7 @@ const SRC_PATH = "<rootDir>/";
 module.exports = {
   roots: [SRC_PATH],
   transform: {
+    "^.+\\.ts?$": "ts-jest",
     "^.+\\.tsx?$": "ts-jest",
   },
   moduleNameMapper: makeModuleNameMapper(SRC_PATH, TS_CONFIG_PATH),
@@ -54,7 +55,7 @@ module.exports = {
   // ],
 
   // Indicates which provider should be used to instrument code for coverage
-  coverageProvider: "v8",
+  coverageProvider: "babel",
 
   // A list of reporter names that Jest uses when writing coverage reports
   // coverageReporters: [
@@ -114,7 +115,7 @@ module.exports = {
   // notifyMode: "failure-change",
 
   // A preset that is used as a base for Jest's configuration
-  // preset: undefined,
+  // preset: "ts-jest",
 
   // Run tests from one or more projects
   // projects: undefined,
