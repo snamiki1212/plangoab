@@ -1,5 +1,5 @@
-import { UserCalendar } from "./model";
-import { ProfileStory } from "../../story/ProfileStory/model";
+import { UserCalendar } from "@/core/calendar/UserCalendar/model";
+import { ProfileStory } from "@/core/story/ProfileStory/model";
 
 type Story = ProfileStory;
 

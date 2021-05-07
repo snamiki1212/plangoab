@@ -1,5 +1,5 @@
 import React from "react";
-import { CalendarPage } from "../components/pages/CalendarPage";
+import { CalendarPage } from "@/components/pages/CalendarPage";
 
 const Index = () => <CalendarPage />;
 

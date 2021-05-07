@@ -1,17 +1,17 @@
 import { addMonths, addYears, setMonth } from "date-fns";
-import { RESOURCES, EVENTS } from "../../../constants/fullcalendar/templates";
+import { RESOURCES, EVENTS } from "@/constants/fullcalendar/templates";
 import {
   NAME_OF_STORY_ID,
   NAME_OF_ORDER,
-} from "../../../constants/fullcalendar/settings";
-import { MONTH_OF_WORKING_HOLIDAY_APPLICATION_LIMIT } from "../../../constants/visa";
-import { uuid } from "../../../lib/uuid";
+} from "@/constants/fullcalendar/settings";
+import { MONTH_OF_WORKING_HOLIDAY_APPLICATION_LIMIT } from "@/constants/visa";
+import { uuid } from "@/lib/uuid";
 import { PrivateCollegeStory } from "./model";
-import { createStoryName } from "../BaseStory";
-import { TemplateOption } from "../../calendar/BaseCalendar";
-import { BaseEvent, initEvent } from "../../event/BaseEvent";
-import { BaseResource, initResource } from "../../resource/BaseResource";
-import { convertIsoToYearAndMonth } from "../../../lib/date";
+import { createStoryName } from "@/core/story/BaseStory";
+import { TemplateOption } from "@/core/calendar/BaseCalendar";
+import { BaseEvent, initEvent } from "@/core/event/BaseEvent";
+import { BaseResource, initResource } from "@/core/resource/BaseResource";
+import { convertIsoToYearAndMonth } from "@/lib/date";
 
 export const createPrivateCollegeStory = (
   {

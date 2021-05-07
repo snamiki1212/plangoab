@@ -5,8 +5,8 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Box from "@material-ui/core/Box";
 import Paper from "@material-ui/core/Paper";
-import { PrivateCollegeCalendar } from "../organisms/PrivateCollegeCalendar";
-import { PublicCollegeCalendar } from "../organisms/PublicCollegeCalendar";
+import { PrivateCollegeCalendar } from "@/components/organisms/PrivateCollegeCalendar";
+import { PublicCollegeCalendar } from "@/components/organisms/PublicCollegeCalendar";
 
 function TabPanel({
   shouldShow,

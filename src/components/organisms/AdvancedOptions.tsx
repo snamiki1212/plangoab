@@ -3,7 +3,7 @@ import styled from "styled-components";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import InputAdornment from "@material-ui/core/InputAdornment";
-import { useTemplateOptions } from "../../hooks/useTemplateOptions";
+import { useTemplateOptions } from "@/hooks/useTemplateOptions";
 
 // TODO: Use react-hook-form because of reducing render cost
 // TODO: rename AdvancedOptions

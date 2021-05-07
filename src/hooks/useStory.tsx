@@ -5,10 +5,10 @@ import {
   updateStoryAction,
   updateStoryByIdAction,
   addStoryAction,
-} from "../redux/features/userCalendars";
-import { BaseStory, updateStory } from "../core/story/BaseStory";
-import { initStory } from "../core/story/BaseStory";
-import { PROFILE_ID } from "../constants/fullcalendar/settings";
+} from "@/redux/features/userCalendars";
+import { BaseStory, updateStory } from "@/core/story/BaseStory";
+import { initStory } from "@/core/story/BaseStory";
+import { PROFILE_ID } from "@/constants/fullcalendar/settings";
 
 type IdSet = { calendarId: string; storyId: string };
 

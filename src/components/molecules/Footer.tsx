@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { LogoImage } from "../atoms/LogoImage";
-import { CollaborationsSection } from "./CollaborationsSection";
+import { LogoImage } from "@/components/atoms/LogoImage";
+import { CollaborationsSection } from "@/components/molecules/CollaborationsSection";
 
 export function Footer() {
   return (

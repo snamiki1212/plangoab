@@ -8,12 +8,12 @@ import Divider from "@material-ui/core/Divider";
 import Button from "@material-ui/core/Button";
 import { DatePicker } from "@material-ui/pickers";
 import Avatar from "@material-ui/core/Avatar";
-import { PolicyExplanation } from "../atoms/PolicyExplanation";
-import { useModal } from "../../hooks/useModal";
-import { useUserCalendar } from "../../hooks/useUserCalendar";
-import { useUser } from "../../hooks/useUser";
-import { AdvancedOptions } from "./AdvancedOptions";
-import { useTemplateOptions } from "../../hooks/useTemplateOptions";
+import { PolicyExplanation } from "@/components/atoms/PolicyExplanation";
+import { useModal } from "@/hooks/useModal";
+import { useUserCalendar } from "@/hooks/useUserCalendar";
+import { useUser } from "@/hooks/useUser";
+import { AdvancedOptions } from "@/components/organisms/AdvancedOptions";
+import { useTemplateOptions } from "@/hooks/useTemplateOptions";
 
 export function WelcomeModal() {
   const { calendar } = useUserCalendar();

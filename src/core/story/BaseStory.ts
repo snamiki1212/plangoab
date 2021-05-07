@@ -1,7 +1,7 @@
-import { convertIsoToYearAndMonth } from "../../lib/date";
-import { BaseEvent, initEvent } from "../event/BaseEvent";
-import { BaseResource, initResource } from "../resource/BaseResource";
-import { uuid } from "../../lib/uuid";
+import { convertIsoToYearAndMonth } from "@/lib/date";
+import { uuid } from "@/lib/uuid";
+import { BaseEvent, initEvent } from "@/core/event/BaseEvent";
+import { BaseResource, initResource } from "@/core/resource/BaseResource";
 
 export type BaseStory = {
   id: string;

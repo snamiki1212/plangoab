@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import Button from "@material-ui/core/Button";
-import { useUserCalendar } from "../../hooks/useUserCalendar";
-import { useUser } from "../../hooks/useUser";
-import { useTemplateOptions } from "../../hooks/useTemplateOptions";
+import { useUserCalendar } from "@/hooks/useUserCalendar";
+import { useUser } from "@/hooks/useUser";
+import { useTemplateOptions } from "@/hooks/useTemplateOptions";
 
 export function EmptyCalendar() {
   const { init: initUserCalendar } = useUserCalendar();

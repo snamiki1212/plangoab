@@ -6,7 +6,7 @@ import {
   backAction,
   selectActiveStepIdx,
   selectIsOpen,
-} from "../redux/ui/step";
+} from "@/redux/ui/step";
 
 export const useStepper = () => {
   const isOpen = useSelector(selectIsOpen);

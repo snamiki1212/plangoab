@@ -3,11 +3,11 @@ import Button from "@material-ui/core/Button";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import styled from "styled-components";
-import { AboutModal } from "../organisms/AboutModal";
-import { LogoImage } from "../atoms/LogoImage";
-import { useModal } from "../../hooks/useModal";
-import { TutorialModal } from "../organisms/TutorialModal";
-import { useStepper } from "../../hooks/useStepper";
+import { AboutModal } from "@/components/organisms/AboutModal";
+import { LogoImage } from "@/components/atoms/LogoImage";
+import { TutorialModal } from "@/components/organisms/TutorialModal";
+import { useModal } from "@/hooks/useModal";
+import { useStepper } from "@/hooks/useStepper";
 
 export function Header() {
   const {

@@ -1,18 +1,18 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { RootState } from "@/redux/rootReducer";
 import {
   createPrivateCollegeCalendar,
   createPublicCollegeCalendar,
-} from "../../core/calendar/TemplateCalendar/createCalendar";
+} from "@/core/calendar/TemplateCalendar/createCalendar";
 import {
   PRIVATE_COLLEGE_CALENDAR_ID,
   PUBLIC_COLLEGE_CALENDAR_ID,
-} from "../../core/calendar/TemplateCalendar/model";
-import { TemplateOption } from "../../core/calendar/BaseCalendar";
+} from "@/core/calendar/TemplateCalendar/model";
+import { TemplateOption } from "@/core/calendar/BaseCalendar";
 import {
   PrivateCollegeCalendar,
   PublicCollegeCalendar,
-} from "../../core/calendar/TemplateCalendar/model";
-import { RootState } from "../rootReducer";
+} from "@/core/calendar/TemplateCalendar/model";
 
 type UpsertPrivateCollegeStoriesPayload = {
   birth: string;
