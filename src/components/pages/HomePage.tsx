@@ -1,15 +1,17 @@
-import Image from "next/image";
+import { WebHeader } from "@/components/molecules/WebHeader";
+import { WebFooter } from "@/components/molecules/WebFooter";
+import { LpDemoSection } from "@/components/molecules/LpDemoSection";
+import { LpSponseredSection } from "@/components/molecules/LpSponseredSection";
+import { LpHeroSection } from "@/components/molecules/LpHeroSection";
+
 export function HomePage() {
   return (
     <div>
-      <div>this is header</div>
-      <div>
-        <div>this is hero</div>
-        <Image src="/assets/airplane.png" width={680} height={382} />
-      </div>
-      <div>this is demo</div>
-      <div>this is sponsered</div>
-      <div>this is footer</div>
+      <WebHeader />
+      <LpHeroSection />
+      <LpDemoSection />
+      <LpSponseredSection />
+      <WebFooter />
     </div>
   );
 }

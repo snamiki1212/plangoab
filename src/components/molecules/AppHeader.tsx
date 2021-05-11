@@ -9,7 +9,7 @@ import { TutorialModal } from "@/components/organisms/TutorialModal";
 import { useModal } from "@/hooks/useModal";
 import { useStepper } from "@/hooks/useStepper";
 
-export function Header() {
+export function AppHeader() {
   const {
     isOpen: isOpenAbout,
     open: openAbout,

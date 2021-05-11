@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Footer } from "@/components/molecules/Footer";
-import { Header } from "@/components/molecules/Header";
+import { AppHeader } from "@/components/molecules/AppHeader";
 import { CalendarPageContent } from "@/components/templates/CalendarPageContent";
 import { WelcomeModal } from "@/components/organisms/WelcomeModal";
 
@@ -9,7 +9,7 @@ export function CalendarPage() {
   return (
     <>
       <Container>
-        <Header />
+        <AppHeader />
         <ContentContainer>
           <CalendarPageContent />
         </ContentContainer>
