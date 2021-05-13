@@ -18,7 +18,6 @@
     "@date-io/date-fns": "1.x",
     "@fullcalendar/common": "^5.4.0",
     "@fullcalendar/interaction": "^5.4.0",
-    "@fullcalendar/list": "^5.5.0",
     "@fullcalendar/react": "^5.4.0",
     "@fullcalendar/resource-timeline": "^5.4.0",
     "@fullcalendar/timeline": "^5.4.0",
