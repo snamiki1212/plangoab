@@ -51,7 +51,7 @@
   </tr>
 </table>
 
-## Who want
+### Who want
 
 Plangoab might help like below people
 
@@ -59,7 +59,7 @@ Plangoab might help like below people
 - Person going abroad to go to school
 - Immigration consultant
 
-## Why create
+### Why create
 
 Because of reducing cost to plan schedule for going abroad.
 
@@ -93,7 +93,7 @@ I believe Plangoab would help people who want to plan to go abroad, especially w
 
 Read [ARCHITECTURE.md](./doc/ARCHITECTURE.md) more details.
 
-## Tech Stack
+### Tech Stack
 
 <table>
   <tr>
