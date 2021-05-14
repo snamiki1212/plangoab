@@ -70,7 +70,7 @@ If you go abroad to find jobs, you should think about some topics like below.
 - Should you go school in order to get visa? If so, which school? when to start?
 - etc...
 
-Actually, in my case, I handwrote some plans but made some mistakes when to calculate a Visa and my ages. Fortunatelly, I realized it but I almost ruined my career. (Sorry, handwrite is Japanese!)
+Actually, in my case, I handwrote some plans but made some mistakes when to calculate a Visa and my ages. Fortunatelly, I realized it but I almost ruined my career. (Handwriting charactors are Japanese :D )
 
 <table>
   <tr>
