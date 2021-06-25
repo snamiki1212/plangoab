@@ -157,13 +157,27 @@ function LicenseSection() {
   );
 }
 
+const reloadPage = () => location.reload();
+
+const runAfterWaitOneSec = (callback) => {
+  setTimeout(callback, 1_000);
+};
+
 function ResetSection() {
   const { reset } = useResetAllData();
 
   const handleResetAllData = React.useCallback(() => {
     if (!window.confirm("Would you remove all data in Plangoab?")) return;
     reset();
+
+    /**
+     * NOTE:
+     * Hard-code because reset func is not async
+     * and I expect to reload after finishing reset all process.
+     */
+    runAfterWaitOneSec(reloadPage);
   }, [reset]);
+
   return (
     <Section
       title="💥 Reset All Data"
