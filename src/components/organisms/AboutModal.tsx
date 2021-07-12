@@ -88,10 +88,13 @@ function Section({
   return (
     <div>
       <h2>{title}</h2>
-      <div>{content}</div>
+      <SectionBody>{content}</SectionBody>
     </div>
   );
 }
+const SectionBody = styled.div`
+  margin-left: 1.5rem;
+`;
 
 function AboutSection() {
   return (
