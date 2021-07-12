@@ -1,7 +1,5 @@
 # ARCHITECTURE
 
-(Here is managed [issues](https://github.com/snamiki1212/plangoab/issues/11).)
-
 ## Component, Logic and State Dependency Flow
 
 <!--
@@ -15,9 +13,17 @@
 
 ## ER of core model
 
-`/src/core` has model data and this ER is below.
+`/src/core` has model data and ER is like below.
 
 <img src="./ER_CORE.svg" alt="ER_CODE" />
+
+```
+/src/core
+|- /calendar
+|- /story
+|- /event
+|- /resource
+```
 
 ## Deps graph
 
@@ -32,49 +38,20 @@ $ brwe install graphviz # prerequirements
 $ yarn graph:svg
 ```
 
-## Don't Use `this` and `prototype`
-
-As literal.
-
-## Use regular function component
-
-// TODO: create eslint rule
-Because arrow function doesn't have display name but regular function has.
-
-```tsx
-// NG
-const Item = () => <div>this is item</div>;
-
-// OK
-function Item() {
-  return <div>this is item</div>;
-}
-```
-
-## Explaintive / Descriptive Code
-
-```ts
-// NG
-const nl = l.map((i) => i * i);
-
-// OK
-const newList = list.map((item) => item * item);
-```
-
 ## Atomic Design
 
-Plangoab is following the way of [Atomic Design](https://bradfrost.com/blog/post/atomic-web-design/).
+Plangoab is following [Atomic Design](https://bradfrost.com/blog/post/atomic-web-design/) at `/src/components/*`
 
-## No Class, Yes Function
+## No Class, But Function
 
-Plangoab adopted FP way when to handle model layer.
+Plangoab adopted FP way when to handle model layer at `/src/core/*`.
 
 So there is no class but only Plain JavaScript & Functions in `/core` directory.
 On the otherhands, we need strictly implicit rule to handle model. We must not handle model data without function of this model layer. If happend, I assume code would become easily getting chaos.
 
 ## State Management
 
-Plangoab is using Redux for global state.
+Plangoab is using Redux for global state at `/src/redux/*`.
 
 Redux is global state management library. Plangoab handles a little complicated data structure because of having calendar feature. Additionally, there is no back-end so we need handle data on state management in only front-end somehow. That is why Plangoab is choosing Redux instead of Context API.
 

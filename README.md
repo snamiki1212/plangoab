@@ -51,23 +51,23 @@
   </tr>
 </table>
 
-### Who want
+### Who use?
 
-Plangoab might help like below people
+Plangoab might help like esipecially below people:
 
 - Person going abroad to find job
 - Person going abroad to go to school
-- Immigration consultant
+- An immigration consultant
 
-### Why create
+### Why create?
 
-Because of reducing cost to plan schedule for going abroad.
+Because of easily planning schedule for going abroad.
 
-If you go abroad to find jobs, you should think about some topics like below.
+If you go abroad to find jobs, you have to think about some topics like below.
 
 - When is the deadline to go abroad with Working Holiday Visa?
 - How long can you stay there?
-- Should you go school in order to get visa? If so, which school? when to start?
+- Should you go school in order to get visa? If so, which school? And when you should start?
 - etc...
 
 Actually, in my case, I handwrote some plans but made some mistakes when to calculate a Visa and my ages. Fortunatelly, I realized it but I almost ruined my career. (Handwriting charactors are Japanese :D )
@@ -138,12 +138,6 @@ $ yarn start #=> open http://local:3000
 
 Welcome, whenever, whoever, whatever! Feel Free to create PRs or issues.
 
-## Licence
-
-[GPL-3.0](https://github.com/snamiki1212/plangoab/blob/main/LICENSE.md)
-
-Because of using [Fullcalendar Premium open-source project license](https://fullcalendar.io/license) as GPL-3.0. That makes a plangoab's license a same license.
-
 ## Collaborations
 
 <table>
@@ -179,3 +173,9 @@ Because of using [Fullcalendar Premium open-source project license](https://full
 
 - [GitHub: snamiki1212](https://github.com/snamiki1212)
 - [Linkedin: snamiki1212](https://www.linkedin.com/in/snamiki1212/)
+
+## Licence
+
+[GPL-3.0](https://github.com/snamiki1212/plangoab/blob/main/LICENSE.md)
+
+Because of using [Fullcalendar Premium open-source project license](https://fullcalendar.io/license) as GPL-3.0. That makes a plangoab's license a same license.
