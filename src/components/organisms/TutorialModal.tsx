@@ -19,7 +19,7 @@ const steps = [
     content: (
       <div>
         <div>
-          <span>Choose school on Template section.</span>
+          <span>On 'Templates' card, choose school on Template section.</span>
           <ul>
             <li>Private college</li>
             <li>Public college</li>
@@ -33,9 +33,14 @@ const steps = [
     label: "Click Copy button",
     content: (
       <div>
-        <div>Click [📝 Copy to my calendar] button.</div>
+        <div>
+          On 'Templates' card, Click [📝 Copy to my calendar] button on the
+          section you want to use.
+        </div>
         <br />
-        <div>Check that your calendar has copied section.</div>
+        <div>
+          On 'My Calendar' card, the section your ordered to copy can display.
+        </div>
         <br />
         <img src={GIF_CopyStory} alt="CopyStory" style={{ width: "50%" }} />
       </div>
@@ -45,7 +50,7 @@ const steps = [
     label: "Edit your calendar",
     content: (
       <div>
-        <div>Edit your plan for feel free in your calendar.</div>
+        <div>On 'My Calendar' card, edit your plan.</div>
         <img
           src={GIF_EditCalendar}
           alt="Edit Calendar"
@@ -56,7 +61,12 @@ const steps = [
   },
   {
     label: "Done!",
-    content: <div>Finished tutorial! Let's Enjoy✈️</div>,
+    content: (
+      <div>
+        <div>Finished tutorial!</div>
+        <div>Let's Enjoy✈️</div>
+      </div>
+    ),
   },
 ] as const;
 
@@ -64,9 +74,10 @@ export function TutorialModal() {
   const { activeStepIdx, isOpen, close, next, back } = useStepper();
 
   const isFirstStep = React.useMemo(() => activeStepIdx === 0, [activeStepIdx]);
-  const isLastStep = React.useMemo(() => activeStepIdx === steps.length - 1, [
-    activeStepIdx,
-  ]);
+  const isLastStep = React.useMemo(
+    () => activeStepIdx === steps.length - 1,
+    [activeStepIdx]
+  );
 
   return (
     <Dialog open={isOpen} onClose={close} maxWidth="lg">

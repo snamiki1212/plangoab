@@ -11,7 +11,13 @@
     3) modify
     4) export as svg file
 -->
-<img src="./DATA_FLOW.svg" alt="DATA_FLOW">
+<img src="./DATA_FLOW.svg" alt="DATA_FLOW" />
+
+## ER of core model
+
+`/src/core` has model data and this ER is below.
+
+<img src="./ER_CORE.svg" alt="ER_CODE" />
 
 ## Deps graph
 
