@@ -4,6 +4,7 @@ import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
+import Divider from "@material-ui/core/Divider";
 import { useResetAllData } from "@/hooks/useResetAllData";
 import { THIS_GITHUB_URL } from "@/constants/meta";
 import { SNS_LIST } from "@/constants/sns";
@@ -56,15 +57,23 @@ function HowToPrintSection() {
 function AboutContent() {
   return (
     <ContentContainer>
+      {/* Description */}
       <AboutSection />
       <HowToUseSection />
+      <Divider />
+
+      {/* Peripheral */}
       <TipsSection />
-      <ResetSection />
       <HowToPrintSection />
+      <ResetSection />
+      <Divider />
+
+      {/* Meta  */}
       <LicenseSection />
       <AuthorSection />
       <CollaborationsSection />
       <CodeSection />
+      <Divider />
     </ContentContainer>
   );
 }
@@ -90,8 +99,9 @@ function AboutSection() {
       title="🐱 About Planogoab"
       content={
         <p>
-          A web calendar for a person going abroad. Generating a suitable
-          schedule and customizable.
+          A web calendar for a person going abroad.
+          <br />
+          Generating a suitable schedule and customizable.
         </p>
       }
     />
@@ -116,13 +126,14 @@ function HowToUseSection() {
           <p>
             <h3>Instruction</h3>
             <li>
-              1. Pick appropriate plan from a template calendar to click "Copy
-              to my calendar".
+              1. On 'Templates' card, pick a section and click "Copy to my
+              calendar".
             </li>
             <li>
-              2. Stories are copied from a template calendar into my calendar.
+              2. The section is copied from 'Template calendar' into 'My
+              calendar'.
             </li>
-            <li>3. Edit my story and events in my calendar.</li>
+            <li>3. On 'My Calendar', edit your plans.</li>
           </p>
         </div>
       }
@@ -184,8 +195,9 @@ function ResetSection() {
       content={
         <div>
           <div>
-            <p>Would you like to reset all data in Plangoab?</p>
-            <br />
+            <li>
+              <span>Would you like to reset all data in Plangoab?</span>
+            </li>
             <Button
               onClick={handleResetAllData}
               variant="outlined"
@@ -243,10 +255,10 @@ function CodeSection() {
       title="🧑‍💻 Source Code"
       content={
         <div>
-          <span>
+          <li>
             Plangoab is OSS managed at <a href={THIS_GITHUB_URL}>GitHub</a> so
             you can check all of code.
-          </span>
+          </li>
         </div>
       }
     />
