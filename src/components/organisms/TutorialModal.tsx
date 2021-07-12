@@ -45,7 +45,7 @@ const steps = [
     label: "Edit your calendar",
     content: (
       <div>
-        <div>Edit your plan for feel free in your calendar.</div>
+        <div>Edit your plan to feel free in your calendar.</div>
         <img
           src={GIF_EditCalendar}
           alt="Edit Calendar"
@@ -64,9 +64,10 @@ export function TutorialModal() {
   const { activeStepIdx, isOpen, close, next, back } = useStepper();
 
   const isFirstStep = React.useMemo(() => activeStepIdx === 0, [activeStepIdx]);
-  const isLastStep = React.useMemo(() => activeStepIdx === steps.length - 1, [
-    activeStepIdx,
-  ]);
+  const isLastStep = React.useMemo(
+    () => activeStepIdx === steps.length - 1,
+    [activeStepIdx]
+  );
 
   return (
     <Dialog open={isOpen} onClose={close} maxWidth="lg">
