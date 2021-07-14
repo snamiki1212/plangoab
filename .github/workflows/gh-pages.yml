@@ -37,6 +37,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Install cypress without running test
+        uses: cypress-io/github-action@v2
+        with:
+          runTests: false
+
       - name: Setup Node
         uses: actions/setup-node@v2.1.2
         with:
@@ -57,8 +62,13 @@ jobs:
       - name: Install packages
         run: yarn install --frozen-lockfile
 
-      - name: Cypress run
+      - name: E2E test
         uses: cypress-io/github-action@v2
+        with:
+          install: false
+          start: yarn dev
+          wait-on: "http://localhost:3000"
+          command: yarn e2e:run
 
   deploy:
     runs-on: ubuntu-18.04
