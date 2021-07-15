@@ -104,8 +104,8 @@ describe("selectEventModal", () => {
 
 describe("selectEvent", () => {
   // TODO: selectEvent is not testable for now so it has to refactor using reselector API. REF: https://redux-toolkit.js.org/api/createSelector
-  it("can select.", () => {});
-  it("can not select when not to find calendar.", () => {});
-  it("can not select when not to find story.", () => {});
-  it("can not select when not to find event.", () => {});
+  it.skip("can select.", () => {});
+  it.skip("can not select when not to find calendar.", () => {});
+  it.skip("can not select when not to find story.", () => {});
+  it.skip("can not select when not to find event.", () => {});
 });
