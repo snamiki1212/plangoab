@@ -103,7 +103,7 @@ describe("selectEventModal", () => {
 });
 
 describe("selectEvent", () => {
-  // TODO: research how to implement this test. this selector select multi state.
+  // TODO: selectEvent is not testable for now so it has to refactor using reselector API. REF: https://redux-toolkit.js.org/api/createSelector
   it("can select.", () => {});
   it("can not select when not to find calendar.", () => {});
   it("can not select when not to find story.", () => {});
