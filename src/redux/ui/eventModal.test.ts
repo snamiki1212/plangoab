@@ -12,48 +12,33 @@ const createRootState = (partialState: any) =>
     ui: { eventModal: partialState },
   } as RootState);
 
+const initialState = { event: null };
+
+const createDummyEvent = () => ({
+  calendarId: "calendarId",
+  storyId: "storyId",
+  eventId: "eventId",
+});
+
 describe(reducer.name, () => {
   it("can save init state", () => {
-    const initialState = { event: null };
     expect(reducer(undefined, {} as any)).toEqual(initialState);
   });
 
   describe(pushAction.name, () => {
-    const payload = {
-      calendarId: "calendarId",
-      storyId: "storyId",
-      eventId: "eventId",
-    };
     it("can work when not to have prev state.", () => {
       const prevState = { event: null };
-      expect(reducer(prevState, pushAction(payload))).toEqual({
-        event: payload,
-      });
-    });
-
-    it("can work when to have prev state.", () => {
-      const prevState = {
-        event: {
-          calendarId: "prevCalendarId",
-          storyId: "prevStoryId",
-          eventId: "prevEventId",
-        },
-      };
-      expect(reducer(prevState, pushAction(payload))).toEqual({
-        event: payload,
+      const event = createDummyEvent();
+      expect(reducer(prevState, pushAction(event))).toEqual({
+        event,
       });
     });
   });
 
   describe(popAction.name, () => {
     it("can work when to have prev state.", () => {
-      const prevState = {
-        event: {
-          calendarId: "calendarId",
-          storyId: "storyId",
-          eventId: "eventId",
-        },
-      };
+      const event = createDummyEvent();
+      const prevState = { event };
       expect(reducer(prevState, popAction())).toEqual({ event: null });
     });
   });
@@ -64,41 +49,25 @@ describe(selectIsOpen.name, () => {
     const rootState = createRootState({ event: null });
     expect(selectIsOpen(rootState)).toBe(false);
   });
+
   it("should be true when to open.", () => {
-    const rootState = createRootState({
-      event: {
-        calendarId: "calendarId",
-        eventId: "eventId",
-        storyId: "storyId",
-      },
-    });
+    const event = createDummyEvent();
+    const rootState = createRootState({ event });
     expect(selectIsOpen(rootState)).toBe(true);
   });
 });
 
 describe(selectEventModal.name, () => {
   it("should exist when to open.", () => {
-    const eventModal = {
-      event: {
-        calendarId: "calendarId",
-        eventId: "eventId",
-        storyId: "storyId",
-      },
-    };
-    const rootState = createRootState({
-      ...eventModal,
-    });
-    expect(selectEventModal(rootState)).toEqual(eventModal.event);
+    const event = createDummyEvent();
+    const rootState = createRootState({ event });
+    expect(selectEventModal(rootState)).toEqual(event);
   });
 
   it("should not exist when to close.", () => {
-    const eventModal = {
-      event: null,
-    };
-    const rootState = createRootState({
-      ...eventModal,
-    });
-    expect(selectEventModal(rootState)).toEqual(eventModal.event);
+    const event = null;
+    const rootState = createRootState({ event });
+    expect(selectEventModal(rootState)).toEqual(null);
   });
 });
 
