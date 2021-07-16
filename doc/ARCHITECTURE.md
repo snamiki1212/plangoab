@@ -44,21 +44,24 @@ Plangoab is following [Atomic Design](https://bradfrost.com/blog/post/atomic-web
 
 ## No Class, But Function
 
-Plangoab adopted FP way when to handle model layer at `/src/core/*`.
+On Model Layer, Plangoab is implemented without using Class at `/src/core/*`.
 
-So there is no class but only Plain JavaScript & Functions in `/core` directory.
-On the otherhands, we need strictly implicit rule to handle model. We must not handle model data without function of this model layer. If happend, I assume code would become easily getting chaos.
+There is no class but only plain JavaScript objects and functions.
+On the otherhands, we need a strictly implicit rule about how to handle a model.
+We must not handle a model without function of this model layer.
+If not, I assume the code would become easily getting chaos because data would be changed everywhere.
 
 ## State Management
 
 Plangoab is using Redux for global state at `/src/redux/*`.
 
-Redux is global state management library. Plangoab handles a little complicated data structure because of having calendar feature. Additionally, there is no back-end so we need handle data on state management in only front-end somehow. That is why Plangoab is choosing Redux instead of Context API.
+Redux is a global state management library. Plangoab handles a complicated structure of data because of having calendar features. Additionally, there is no back-end so we need handle data in only front-end somehow. That is why Plangoab is choosing Redux instead of Context API.
 
-Context API can handle global state esaily but trade-off is that logic become getting complicated easiliy. On this trade-off and background that Plangoab has to need Redux at least, we choose NOT to use Context API.
+Context API can easily handle a global state but trade-off is that logic become getting complicated easily as well. On this trade-off and background, Plangoab has to need Redux and We choose NOT to use Context API.
 
 ## Local Cache Management
 
-Plangoab is using localstorage with redux-persist.
+Plangoab is using local storage with `redux-persist`.
 
-That's why we have to pay attention when to change redux data shape. Now that redux-persist has `version` config so we care it when to upgrade data shape.
+That's why we have to pay attention when to change a shape of redux data.
+Now that `redux-persist` has `version` config so we care it when to upgrade a shape.

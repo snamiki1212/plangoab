@@ -57,7 +57,7 @@ Plangoab might help like esipecially below people:
 
 - Person going abroad to find job
 - Person going abroad to go to school
-- Immigration consultants
+- An Immigration consultant/agent
 
 ### Why create?
 
