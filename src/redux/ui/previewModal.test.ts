@@ -1,12 +1,12 @@
 import reducer, { toggleAction, selectIsOpen } from "./previewModal";
 import { RootState } from "../rootReducer";
 
-describe("reducer", () => {
+describe(reducer.name, () => {
   it("can init.", () => {
     expect(reducer(undefined, {} as any)).toEqual({ isOpen: false });
   });
 
-  describe("toggleAction", () => {
+  describe(toggleAction.name, () => {
     it("can turn open to close.", () => {
       const prevState = { isOpen: true };
       expect(reducer(prevState, toggleAction())).toEqual({ isOpen: false });
@@ -19,7 +19,7 @@ describe("reducer", () => {
   });
 });
 
-describe("selectIsOpen", () => {
+describe(selectIsOpen.name, () => {
   const createRootState = (partialState: any) =>
     ({ ui: { previewModal: partialState } } as RootState);
 

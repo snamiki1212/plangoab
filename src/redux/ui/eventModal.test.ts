@@ -1,7 +1,7 @@
 import reducer, {
   pushAction,
   popAction,
-  // selectEvent,
+  selectEvent,
   selectEventModal,
   selectIsOpen,
 } from "./eventModal";
@@ -12,13 +12,13 @@ const createRootState = (partialState: any) =>
     ui: { eventModal: partialState },
   } as RootState);
 
-describe("eventModal reducer", () => {
+describe(reducer.name, () => {
   it("can save init state", () => {
     const initialState = { event: null };
     expect(reducer(undefined, {} as any)).toEqual(initialState);
   });
 
-  describe("pushAction", () => {
+  describe(pushAction.name, () => {
     const payload = {
       calendarId: "calendarId",
       storyId: "storyId",
@@ -45,7 +45,7 @@ describe("eventModal reducer", () => {
     });
   });
 
-  describe("popAction", () => {
+  describe(popAction.name, () => {
     it("can work when to have prev state.", () => {
       const prevState = {
         event: {
@@ -59,7 +59,7 @@ describe("eventModal reducer", () => {
   });
 });
 
-describe("selectIsOpen", () => {
+describe(selectIsOpen.name, () => {
   it("should be false when to close.", () => {
     const rootState = createRootState({ event: null });
     expect(selectIsOpen(rootState)).toBe(false);
@@ -76,7 +76,7 @@ describe("selectIsOpen", () => {
   });
 });
 
-describe("selectEventModal", () => {
+describe(selectEventModal.name, () => {
   it("should exist when to open.", () => {
     const eventModal = {
       event: {
@@ -102,7 +102,7 @@ describe("selectEventModal", () => {
   });
 });
 
-describe("selectEvent", () => {
+describe(selectEvent.name, () => {
   // TODO: selectEvent is not testable for now so it has to refactor using reselector API. REF: https://redux-toolkit.js.org/api/createSelector
   it.skip("can select.", () => {});
   it.skip("can not select when not to find calendar.", () => {});
