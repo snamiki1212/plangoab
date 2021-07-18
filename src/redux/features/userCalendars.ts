@@ -4,6 +4,8 @@ import { BaseCalendar } from "@/core/calendar/BaseCalendar";
 import { BaseStory, updateStory } from "@/core/story/BaseStory";
 import { BaseEvent, updateEvent } from "@/core/event/BaseEvent";
 import { BaseResource } from "@/core/resource/BaseResource";
+import { memoize } from "lodash-es";
+import { createSelector } from "@reduxjs/toolkit";
 
 type Calendar = BaseCalendar;
 type RemoveCalendarPayload = { calendarId: string };
@@ -153,11 +155,10 @@ const userCalendarsSlice = createSlice({
       }
 
       // query
-      state.calendars[calendarIdx].stories[
-        storyIdx
-      ].resources = state.calendars[calendarIdx].stories[
-        storyIdx
-      ].resources.filter((resource) => resource.id !== resourceId);
+      state.calendars[calendarIdx].stories[storyIdx].resources =
+        state.calendars[calendarIdx].stories[storyIdx].resources.filter(
+          (resource) => resource.id !== resourceId
+        );
     },
     addStory(state, action: PayloadAction<AddStoryPayload>) {
       const { calendarId, story } = action.payload;
@@ -325,9 +326,8 @@ const userCalendarsSlice = createSlice({
       }
 
       // prcess
-      state.calendars[calendarIdx].stories[storyIdx].events[
-        eventIdx
-      ] = newEvent;
+      state.calendars[calendarIdx].stories[storyIdx].events[eventIdx] =
+        newEvent;
     },
     updateEventById(state, action: PayloadAction<UpdateEventByIdPayload>) {
       const { calendarId, storyId, eventId, params } = action.payload;
@@ -366,9 +366,8 @@ const userCalendarsSlice = createSlice({
       const oldEvent =
         state.calendars[calendarIdx].stories[storyIdx].events[eventIdx];
       const newEvent = updateEvent(oldEvent, params);
-      state.calendars[calendarIdx].stories[storyIdx].events[
-        eventIdx
-      ] = newEvent;
+      state.calendars[calendarIdx].stories[storyIdx].events[eventIdx] =
+        newEvent;
     },
   },
 });
@@ -402,6 +401,14 @@ export default userCalendarsSlice.reducer;
 
 // export const selectUserCalendars = (state: RootState) =>
 //   state.userCalendars.calendars;
+
+export const selectUserCalendarById = createSelector(
+  (state: RootState) => state.features.userCalendars.calendars,
+  (calendars) =>
+    memoize((calendarId: String) =>
+      calendars.find((item) => item.id === calendarId)
+    )
+);
 
 export const selectUserCalendar = (state: RootState) =>
   state.features.userCalendars.calendars[0]; // NOTE: now calendars have only 1 calendar.

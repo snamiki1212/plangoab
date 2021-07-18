@@ -1,5 +1,6 @@
 import reducer, {
   selectUserCalendar,
+  selectUserCalendarById,
   addEventAction,
   addStoryAction,
   removeEventAction,
@@ -109,5 +110,14 @@ describe(selectUserCalendar.name, () => {
     const dummyCalendar = "dummy";
     const rootState = createRootState([dummyCalendar]);
     expect(selectUserCalendar(rootState)).toEqual(dummyCalendar);
+  });
+});
+
+describe(selectUserCalendarById.name, () => {
+  it("can select.", () => {
+    const id = "dummy_id";
+    const dummyCalendar = createDummyCalendar({ id });
+    const rootState = createRootState([dummyCalendar]);
+    expect(selectUserCalendarById(rootState)(id)).toEqual(dummyCalendar);
   });
 });
