@@ -402,12 +402,32 @@ export default userCalendarsSlice.reducer;
 // export const selectUserCalendars = (state: RootState) =>
 //   state.userCalendars.calendars;
 
+const selectUserCalendars = (state: RootState) =>
+  state.features.userCalendars.calendars;
+
 export const selectUserCalendarById = createSelector(
-  (state: RootState) => state.features.userCalendars.calendars,
+  selectUserCalendars,
   (calendars) =>
     memoize((calendarId: String) =>
       calendars.find((item) => item.id === calendarId)
     )
+);
+
+export const selectStoryById = createSelector(
+  selectUserCalendars,
+  (calendars) => (calendarId: String, storyId: String) =>
+    calendars
+      .find((item) => item.id === calendarId)
+      ?.stories.find((item) => item.id === storyId)
+);
+
+export const selectEventById = createSelector(
+  selectUserCalendars,
+  (calendars) => (calendarId: String, storyId: String, eventId: String) =>
+    calendars
+      .find((item) => item.id === calendarId)
+      ?.stories.find((item) => item.id === storyId)
+      ?.events.find((item) => item.id === eventId)
 );
 
 export const selectUserCalendar = (state: RootState) =>
