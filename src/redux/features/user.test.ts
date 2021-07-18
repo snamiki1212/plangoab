@@ -1,5 +1,6 @@
-import reducer, { updateBirthdayAction, resetAction } from "./user";
+import reducer, { selectUser, updateBirthdayAction, resetAction } from "./user";
 import { addYears } from "date-fns";
+import { RootState } from "../rootReducer";
 
 const PERSONA_AGE = 25;
 const personaBirth = addYears(new Date(), -PERSONA_AGE).toISOString();
@@ -25,5 +26,16 @@ describe(reducer.name, () => {
       const aftState = { birthday: personaBirth, age: PERSONA_AGE };
       expect(reducer(befState, resetAction())).toEqual(aftState);
     });
+  });
+});
+
+const createRootState = (partialState: any) =>
+  ({ features: { user: partialState } } as RootState);
+
+describe(selectUser.name, () => {
+  it("can select.", () => {
+    const dummyUser = { birthday: "2021-01-01", age: 10 };
+    const rootState = createRootState(dummyUser);
+    expect(selectUser(rootState)).toEqual(dummyUser);
   });
 });
