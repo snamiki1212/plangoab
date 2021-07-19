@@ -11,13 +11,27 @@ type DummyCalendar = any;
 type DummyStory = any;
 type DummyEvent = any;
 
-const createDummyCalendar = ({ id }: { id: any }) => ({ id } as DummyCalendar);
-const createDummyStory = ({ id }: { id: any }) => ({ id } as DummyStory);
-const createDummyEvent = ({ id }: { id: String }) => ({ id } as DummyEvent);
+const createDummyCalendarId = (str: String | number) => `CALENDAR_${str}`;
+const createDummyStoryId = (str: String | number) => `STORY_${str}`;
+const createDummyEventId = (str: String | number) => `EVENT_${str}`;
+
+const createDummyCalendar = ({ id }: { id: any }) =>
+  ({ id: createDummyCalendarId(id) } as DummyCalendar);
+const createDummyStory = ({ id }: { id: any }) =>
+  ({ id: createDummyStoryId(id) } as DummyStory);
+const createDummyEvent = ({ id }: { id: any }) =>
+  ({ id: createDummyEventId(id) } as DummyEvent);
+
 const createDummyEventModal = () => ({
   calendarId: "calendarId",
   storyId: "storyId",
   eventId: "eventId",
+});
+
+const createSelectableDummyEventModal = () => ({
+  calendarId: createDummyCalendarId(0),
+  storyId: createDummyStoryId(1),
+  eventId: createDummyEventId(2),
 });
 
 type DummyEventModal = ReturnType<typeof createDummyEventModal>;
@@ -31,7 +45,7 @@ const createRootState = ({
 }) =>
   ({
     ui: { eventModal: { event: eventModalInfo } },
-    features: { userCalendars: { calendars } },
+    features: { userCalendars: { calendars: calendars } },
   } as any as RootState);
 
 describe(reducer.name, () => {
@@ -87,9 +101,82 @@ describe(selectEventModal.name, () => {
 });
 
 describe(selectEvent.name, () => {
-  // TODO: selectEvent is not testable for now so it has to refactor using reselector API. REF: https://redux-toolkit.js.org/api/createSelector
-  it.skip("can select.", () => {});
-  it.skip("can not select when not to find calendar.", () => {});
-  it.skip("can not select when not to find story.", () => {});
-  it.skip("can not select when not to find event.", () => {});
+  // Dummy data
+  const dummyEvents = Array.from({ length: 3 }).map((_, idx) =>
+    createDummyEvent({ id: idx })
+  );
+  const dummyStories = Array.from({ length: 3 }).map((_, idx) => {
+    let story = createDummyStory({ id: idx });
+    story.events = dummyEvents;
+    return story;
+  });
+  const dummyCalendar = (() => {
+    let item = createDummyCalendar({ id: "0" });
+    item.stories = dummyStories;
+    return item;
+  })();
+
+  it("can select.", () => {
+    const eventModalInfo = createSelectableDummyEventModal();
+    const rootState = createRootState({
+      eventModalInfo,
+      calendars: [dummyCalendar],
+    });
+    const expected = dummyEvents.find(
+      (item) => item.id === eventModalInfo.eventId
+    );
+
+    expect(selectEvent(rootState)).toEqual(expected);
+  });
+
+  it("can not select when not to find calendar.", () => {
+    const eventModalInfo = (() => {
+      const modal = createSelectableDummyEventModal();
+      modal.calendarId = "NOT_SELECTABLE_CALENDAR_ID";
+      return modal;
+    })();
+
+    const rootState = createRootState({
+      eventModalInfo,
+      calendars: [dummyCalendar],
+    });
+    const spy = jest.spyOn(global.console, "warn").mockImplementation();
+    // TODO: check that warn message is exact same.
+    expect(selectEvent(rootState)).toEqual(undefined);
+    spy.mockRestore();
+  });
+
+  it("can not select when not to find story.", () => {
+    const eventModalInfo = (() => {
+      const modal = createSelectableDummyEventModal();
+      modal.storyId = "NOT_SELECTABLE_STORY_ID";
+      return modal;
+    })();
+
+    const rootState = createRootState({
+      eventModalInfo,
+      calendars: [dummyCalendar],
+    });
+    const spy = jest.spyOn(global.console, "warn").mockImplementation();
+    // TODO: check that warn message is exact same.
+    expect(selectEvent(rootState)).toEqual(undefined);
+    spy.mockRestore();
+  });
+
+  it("can not select when not to find event.", () => {
+    const eventModalInfo = (() => {
+      const modal = createSelectableDummyEventModal();
+      modal.eventId = "NOT_SELECTABLE_EVENT_ID";
+      return modal;
+    })();
+
+    const rootState = createRootState({
+      eventModalInfo,
+      calendars: [dummyCalendar],
+    });
+    const spy = jest.spyOn(global.console, "warn").mockImplementation();
+    // TODO: check that warn message is exact same.
+    expect(selectEvent(rootState)).toEqual(undefined);
+    spy.mockRestore();
+  });
 });

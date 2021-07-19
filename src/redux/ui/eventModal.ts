@@ -48,7 +48,10 @@ export const selectEvent = (state: RootState) => {
   );
   const cannotFind = calendarIdx === -1;
   if (cannotFind) {
-    console.warn("cannot find calendar on removeResource", calendarId);
+    console.warn(
+      "cannot find calendar when to select event-modal.",
+      calendarId
+    );
     return;
   }
 
