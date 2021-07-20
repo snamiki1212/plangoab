@@ -137,8 +137,7 @@ describe(toStr({ selectEvent }), () => {
     expect(selectEvent(rootState)).toEqual(undefined);
     expect(console.warn).toBeCalledTimes(1);
     expect(console.warn).toHaveBeenLastCalledWith(
-      "cannot find calendar when to select event-modal.",
-      calendarId
+      `Cannot find calendar: ${calendarId}.`
     );
   });
 
@@ -157,8 +156,7 @@ describe(toStr({ selectEvent }), () => {
     expect(selectEvent(rootState)).toEqual(undefined);
     expect(console.warn).toBeCalledTimes(1);
     expect(console.warn).toHaveBeenLastCalledWith(
-      "cannot find story on removeResource",
-      storyId
+      `Cannot find story: ${storyId}.`
     );
   });
 
@@ -175,5 +173,9 @@ describe(toStr({ selectEvent }), () => {
       calendars: [dummyCalendar],
     });
     expect(selectEvent(rootState)).toEqual(undefined);
+    expect(console.warn).toBeCalledTimes(1);
+    expect(console.warn).toHaveBeenLastCalledWith(
+      `Cannot find event: ${eventId}.`
+    );
   });
 });
