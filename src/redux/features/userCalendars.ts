@@ -4,7 +4,7 @@ import { BaseCalendar } from "@/core/calendar/BaseCalendar";
 import { BaseStory, updateStory } from "@/core/story/BaseStory";
 import { BaseEvent, updateEvent } from "@/core/event/BaseEvent";
 import { BaseResource } from "@/core/resource/BaseResource";
-import { memoize } from "lodash-es";
+import { memoize } from "lodash";
 import { createSelector } from "@reduxjs/toolkit";
 
 type Calendar = BaseCalendar;
