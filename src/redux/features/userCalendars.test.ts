@@ -1,3 +1,4 @@
+import { toStr } from "@/testHelpers/index";
 import reducer, {
   // selectors
   selectUserCalendar,
@@ -33,28 +34,28 @@ const createRootState = (partialState: any) =>
 
 const initialState = { calendars: [] };
 
-describe(reducer.name, () => {
+describe(toStr({ reducer }), () => {
   it("can init.", () => {
     expect(reducer(undefined, {} as any)).toEqual(initialState);
   });
 
-  describe(addEventAction.name, () => {
+  describe(toStr({ addEventAction }), () => {
     it.skip("can work.", () => {});
   });
 
-  describe(addStoryAction.name, () => {
+  describe(toStr({ addStoryAction }), () => {
     it.skip("can work.", () => {});
   });
 
-  describe(removeEventAction.name, () => {
+  describe(toStr({ removeEventAction }), () => {
     it.skip("can work.", () => {});
   });
 
-  describe(removeStoryAction.name, () => {
+  describe(toStr({ removeStoryAction }), () => {
     it.skip("can work.", () => {});
   });
 
-  describe(resetAction.name, () => {
+  describe(toStr({ resetAction }), () => {
     it("can work.", () => {
       const befState = { calendars: ["dummy", "dummy"] as any[] };
       const aftState = initialState;
@@ -62,19 +63,19 @@ describe(reducer.name, () => {
     });
   });
 
-  describe(updateEventAction.name, () => {
+  describe(toStr({ updateEventAction }), () => {
     it.skip("can work.", () => {});
   });
 
-  describe(updateStoryAction.name, () => {
+  describe(toStr({ updateStoryAction }), () => {
     it.skip("can work.", () => {});
   });
 
-  describe(pushResourceAction.name, () => {
+  describe(toStr({ pushResourceAction }), () => {
     it.skip("can work.", () => {});
   });
 
-  describe(removeCalendarAction.name, () => {
+  describe(toStr({ removeCalendarAction }), () => {
     it("can work.", () => {
       const id1 = "this is dummy1";
       const id2 = "this is dummy2";
@@ -91,26 +92,26 @@ describe(reducer.name, () => {
     });
   });
 
-  describe(removeResourceAction.name, () => {
+  describe(toStr({ removeResourceAction }), () => {
     it.skip("can work.", () => {});
     it.skip("cannot work because not find calendar", () => {});
     it.skip("cannot work because not find story", () => {});
     it.skip("cannot work because not find resouce", () => {});
   });
 
-  describe(updateCalendarsAction.name, () => {
+  describe(toStr({ updateCalendarsAction }), () => {
     it.skip("can work.", () => {});
   });
 
-  describe(updateEventByIdAction.name, () => {
+  describe(toStr({ updateEventByIdAction }), () => {
     it.skip("can work.", () => {});
   });
 
-  describe(updateResourcesAction.name, () => {
+  describe(toStr({ updateResourcesAction }), () => {
     it.skip("can work.", () => {});
   });
 
-  describe(updateStoryByIdAction.name, () => {
+  describe(toStr({ updateStoryByIdAction }), () => {
     it.skip("can work.", () => {});
   });
 });
@@ -131,7 +132,7 @@ describe("Selectors of", () => {
     return item;
   })();
 
-  describe(selectUserCalendar.name, () => {
+  describe(toStr({ selectUserCalendar }), () => {
     it("can select.", () => {
       const rootState = createRootState([dummyCalendar]);
       expect(selectUserCalendar(rootState)).toEqual(dummyCalendar);
@@ -143,7 +144,7 @@ describe("Selectors of", () => {
     });
   });
 
-  describe(selectUserCalendarById.name, () => {
+  describe(toStr({ selectUserCalendarById }), () => {
     it("can select.", () => {
       const rootState = createRootState([dummyCalendar]);
       const calendarId = dummyCalendar.id;
@@ -159,7 +160,7 @@ describe("Selectors of", () => {
     });
   });
 
-  describe(selectStoryById.name, () => {
+  describe(toStr({ selectStoryById }), () => {
     it("can select.", () => {
       const rootState = createRootState([dummyCalendar]);
       const calendarId = dummyCalendar.id;
@@ -188,7 +189,7 @@ describe("Selectors of", () => {
     });
   });
 
-  describe(selectEventById.name, () => {
+  describe(toStr({ selectEventById }), () => {
     it("can select.", () => {
       const rootState = createRootState([dummyCalendar]);
       const calendarId = dummyCalendar.id;

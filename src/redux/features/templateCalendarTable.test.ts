@@ -1,3 +1,4 @@
+import { toStr } from "@/testHelpers/index";
 import reducer, {
   upsertPublicCollegeStoriesAction,
   resetAction,
@@ -25,12 +26,12 @@ const createRootState = (partialState: any) =>
     features: { templateCalendar: partialState },
   } as RootState);
 
-describe(reducer.name, () => {
+describe(toStr({ reducer }), () => {
   it("can init.", () => {
     expect(reducer(undefined, {} as any)).toEqual(initialState);
   });
 
-  describe(resetAction.name, () => {
+  describe(toStr({ resetAction }), () => {
     const dummyPrivateCollegeCalendar = createDummyPrivateCollegeCalendar();
     const dummyPublicCollegeCalendar = createDummyPublicCollegeCalendar();
     const befState = {
@@ -40,13 +41,13 @@ describe(reducer.name, () => {
     expect(reducer(befState, resetAction)).toEqual(initialState);
   });
 
-  describe(upsertPublicCollegeStoriesAction.name, () => {
+  describe(toStr({ upsertPublicCollegeStoriesAction }), () => {
     it.skip("can work.", () => {
       // TODO: Fix to become testable
     });
   });
 
-  describe(upsertPrivateCollegeStoriesAction.name, () => {
+  describe(toStr({ upsertPrivateCollegeStoriesAction }), () => {
     it.skip("can work.", () => {
       // TODO: Fix to become testable
     });
@@ -61,7 +62,7 @@ describe("Selector of", () => {
     [PUBLIC_COLLEGE_CALENDAR_ID]: dummyPublicCollegeCalendar,
   });
 
-  describe(selectPrivateCollegeCalendar.name, () => {
+  describe(toStr({ selectPrivateCollegeCalendar }), () => {
     it("can select.", () => {
       expect(selectPrivateCollegeCalendar(rootState)).toEqual(
         dummyPrivateCollegeCalendar
@@ -69,7 +70,7 @@ describe("Selector of", () => {
     });
   });
 
-  describe(selectPublicCollegeCalendar.name, () => {
+  describe(toStr({ selectPublicCollegeCalendar }), () => {
     it("can select.", () => {
       expect(selectPublicCollegeCalendar(rootState)).toEqual(
         dummyPublicCollegeCalendar

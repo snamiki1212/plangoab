@@ -1,3 +1,4 @@
+import { toStr } from "@/testHelpers/index";
 import reducer, {
   selectTemplateOption,
   selectWithWorkingholiday,
@@ -27,17 +28,17 @@ const dummyOption = {
 const createRootState = (partialState: any) =>
   ({ features: { templateOption: { option: partialState } } } as RootState);
 
-describe(reducer.name, () => {
+describe(toStr({ reducer }), () => {
   it("can init.", () => {
     expect(reducer(undefined, {} as any)).toEqual(initialState);
   });
-  describe(resetAction.name, () => {
+  describe(toStr({ resetAction }), () => {
     it("can work.", () => {
       const befState = { option: dummyOption };
       expect(reducer(befState, resetAction())).toEqual(initialState);
     });
   });
-  describe(updateAction.name, () => {
+  describe(toStr({ updateAction }), () => {
     it("can work.", () => {
       const aftState = { option: dummyOption };
       expect(reducer(undefined, updateAction(dummyOption))).toEqual(aftState);
@@ -46,13 +47,13 @@ describe(reducer.name, () => {
 });
 
 describe("Selectors of ", () => {
-  describe(selectTemplateOption.name, () => {
+  describe(toStr({ selectTemplateOption }), () => {
     it("can select.", () => {
       const rootState = createRootState(dummyOption);
       expect(selectTemplateOption(rootState)).toEqual(dummyOption);
     });
   });
-  describe(selectWithWorkingholiday.name, () => {
+  describe(toStr({ selectWithWorkingholiday }), () => {
     it("can select as true.", () => {
       const rootState = createRootState({
         ...dummyOption,

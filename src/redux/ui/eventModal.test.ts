@@ -1,3 +1,4 @@
+import { toStr } from "@/testHelpers/index";
 import reducer, {
   pushAction,
   popAction,
@@ -28,13 +29,13 @@ const createRootState = ({
     features: { userCalendars: { calendars: calendars } },
   } as any as RootState);
 
-describe(reducer.name, () => {
+describe(toStr({ reducer }), () => {
   it("can save init state", () => {
     const initialState = { event: null };
     expect(reducer(undefined, {} as any)).toEqual(initialState);
   });
 
-  describe(pushAction.name, () => {
+  describe(toStr({ pushAction }), () => {
     it("can work when not to have prev state.", () => {
       const modalInfo = createDummyEventModal();
       const befState = { event: null };
@@ -43,7 +44,7 @@ describe(reducer.name, () => {
     });
   });
 
-  describe(popAction.name, () => {
+  describe(toStr({ popAction }), () => {
     it("can work when to have prev state.", () => {
       const modalInfo = createDummyEventModal();
       const befState = { event: modalInfo };
@@ -53,7 +54,7 @@ describe(reducer.name, () => {
   });
 });
 
-describe(selectIsOpen.name, () => {
+describe(toStr({ selectIsOpen }), () => {
   it("should be false when to close.", () => {
     const rootState = createRootState({ eventModalInfo: null });
     expect(selectIsOpen(rootState)).toBe(false);
@@ -66,7 +67,7 @@ describe(selectIsOpen.name, () => {
   });
 });
 
-describe(selectEventModal.name, () => {
+describe(toStr({ selectEventModal }), () => {
   it("should exist when to open.", () => {
     const modal = createDummyEventModal();
     const rootState = createRootState({ eventModalInfo: modal });
@@ -80,7 +81,7 @@ describe(selectEventModal.name, () => {
   });
 });
 
-describe(selectEvent.name, () => {
+describe(toStr({ selectEvent }), () => {
   // Dummy data
   const dummyEvents = Array.from({ length: 3 }).map((_, idx) =>
     createDummyEvent({ id: idx })

@@ -7,16 +7,17 @@ import reducer, {
 } from "./storyModal";
 import { RootState } from "../rootReducer";
 import { createDummyStoryModal } from "@/testHelpers/factories/redux";
+import { toStr } from "@/testHelpers/index";
 
 const createRootState = (partialState: any) =>
   ({ ui: { storyModal: { story: partialState } } } as RootState);
 
-describe(reducer.name, () => {
+describe(toStr({ reducer }), () => {
   it("can init.", () => {
     expect(reducer(undefined, {} as any)).toEqual({ story: null });
   });
 
-  describe(pushAction.name, () => {
+  describe(toStr({ pushAction }), () => {
     it("can work.", () => {
       const story = createDummyStoryModal();
       const befState = { story: null };
@@ -25,7 +26,7 @@ describe(reducer.name, () => {
     });
   });
 
-  describe(popAction.name, () => {
+  describe(toStr({ popAction }), () => {
     it("can work.", () => {
       const story = createDummyStoryModal();
       const befState = { story };
@@ -35,7 +36,7 @@ describe(reducer.name, () => {
   });
 });
 
-describe(selectIsOpen.name, () => {
+describe(toStr({ selectIsOpen }), () => {
   it("should be true when to open.", () => {
     const story = createDummyStoryModal();
     const rootState = createRootState(story);
@@ -47,13 +48,13 @@ describe(selectIsOpen.name, () => {
   });
 });
 
-describe(selectStory.name, () => {
+describe(toStr({ selectStory }), () => {
   it.skip("can select.", () => {
     // TODO: Fix logic using re-select feature in RTK because for now it's not testable.
   });
 });
 
-describe(selectStoryModal.name, () => {
+describe(toStr({ selectStoryModal }), () => {
   it("can select.", () => {
     const story = createDummyStoryModal();
     const rootState = createRootState(story);
