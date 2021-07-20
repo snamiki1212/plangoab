@@ -66,6 +66,9 @@ describe(toStr({ selectIsOpen }), () => {
 });
 
 describe(toStr({ selectStory }), () => {
+  const consoleSpy = jest.spyOn(console, "warn").mockImplementation();
+
+  // Dummy
   const dummyEvents = Array.from({ length: 3 }).map((_, idx) =>
     createDummyEvent({ id: idx })
   );
@@ -97,9 +100,41 @@ describe(toStr({ selectStory }), () => {
     expect(selectStory(rootState)).toEqual(expected);
   });
 
-  it.skip("cannot select when not to find calendar.", () => {});
+  it("cannot select when not to find calendar.", () => {
+    consoleSpy.mockClear();
+    // ids
+    const calendarId = "Invalid calendar id";
+    const storyId = dummyStories[1].id;
 
-  it.skip("cannot select when not to find story.", () => {});
+    // params
+    const modalInfo = createDummyStoryModal({ calendarId, storyId });
+    const rootState = createRootState({
+      storyModalInfo: modalInfo,
+      calendars: [dummyCalendar],
+    });
+
+    expect(selectStory(rootState)).toEqual(undefined);
+    expect(console.warn).toBeCalledTimes(1);
+    expect(console.warn).toHaveBeenLastCalledWith(
+      "cannot find calendar on removeStory",
+      calendarId
+    );
+  });
+
+  it("cannot select when not to find story.", () => {
+    // ids
+    const calendarId = dummyCalendar.id;
+    const storyId = "Invalid story id";
+
+    // params
+    const modalInfo = createDummyStoryModal({ calendarId, storyId });
+    const rootState = createRootState({
+      storyModalInfo: modalInfo,
+      calendars: [dummyCalendar],
+    });
+
+    expect(selectStory(rootState)).toEqual(undefined);
+  });
 });
 
 describe(toStr({ selectStoryModal }), () => {
