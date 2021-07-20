@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction, createSelector } from "@reduxjs/toolkit";
 import { RootState } from "@/redux/rootReducer";
-import { selectEventById } from "@/redux/features/userCalendars";
+import { selectEventByIdFilter } from "@/redux/features/userCalendars";
 
 type State = {
   event: null | {
@@ -39,11 +39,11 @@ export const selectIsOpen = (state: RootState) => !!state.ui.eventModal.event;
 export const selectEventModal = (state: RootState) => state.ui.eventModal.event;
 
 export const selectEvent = createSelector(
-  [selectEventModal, selectEventById],
-  (modalInfo, selector) => {
+  [selectEventModal, selectEventByIdFilter],
+  (modalInfo, filter) => {
     if (!modalInfo) return null;
     const { calendarId, storyId, eventId } = modalInfo;
-    return selector(calendarId, storyId, eventId);
+    return filter(calendarId, storyId, eventId);
   }
 );
 

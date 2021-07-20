@@ -2,9 +2,9 @@ import { toStr } from "@/testHelpers/index";
 import reducer, {
   // selectors
   selectUserCalendar,
-  selectUserCalendarById,
-  selectStoryById,
-  selectEventById,
+  selectUserCalendarByIdFilter,
+  selectStoryByIdFilter,
+  selectEventByIdFilter,
 
   // actions
   addEventAction,
@@ -147,11 +147,11 @@ describe("Selectors of", () => {
     });
   });
 
-  describe(toStr({ selectUserCalendarById }), () => {
+  describe(toStr({ selectUserCalendarByIdFilter }), () => {
     it("can select.", () => {
       const rootState = createRootState([dummyCalendar]);
       const calendarId = dummyCalendar.id;
-      expect(selectUserCalendarById(rootState)(calendarId)).toEqual(
+      expect(selectUserCalendarByIdFilter(rootState)(calendarId)).toEqual(
         dummyCalendar
       );
     });
@@ -159,11 +159,13 @@ describe("Selectors of", () => {
     it("cannot select because cannot find.", () => {
       const rootState = createRootState([dummyCalendar]);
       const calendarId = "this is calendarId but not exist";
-      expect(selectUserCalendarById(rootState)(calendarId)).toEqual(undefined);
+      expect(selectUserCalendarByIdFilter(rootState)(calendarId)).toEqual(
+        undefined
+      );
     });
   });
 
-  describe(toStr({ selectStoryById }), () => {
+  describe(toStr({ selectStoryByIdFilter }), () => {
     beforeEach(() => {
       consoleSpy.mockClear();
     });
@@ -173,14 +175,16 @@ describe("Selectors of", () => {
       const storyId = dummyStories[1].id;
       const expected = dummyStories.find((item) => item.id === storyId);
 
-      expect(selectStoryById(rootState)(calendarId, storyId)).toEqual(expected);
+      expect(selectStoryByIdFilter(rootState)(calendarId, storyId)).toEqual(
+        expected
+      );
     });
 
     it("cannot select because cannot find calendar.", () => {
       const rootState = createRootState([dummyCalendar]);
       const calendarId = "this is calendarId but not exist";
       const storyId = dummyStories[1].id;
-      expect(selectStoryById(rootState)(calendarId, storyId)).toEqual(
+      expect(selectStoryByIdFilter(rootState)(calendarId, storyId)).toEqual(
         undefined
       );
       expect(console.warn).toBeCalledTimes(1);
@@ -193,13 +197,13 @@ describe("Selectors of", () => {
       const rootState = createRootState([dummyCalendar]);
       const calendarId = dummyCalendar.id;
       const storyId = "this is storyId but not exist";
-      expect(selectStoryById(rootState)(calendarId, storyId)).toEqual(
+      expect(selectStoryByIdFilter(rootState)(calendarId, storyId)).toEqual(
         undefined
       );
     });
   });
 
-  describe(toStr({ selectEventById }), () => {
+  describe(toStr({ selectEventByIdFilter }), () => {
     beforeEach(() => {
       consoleSpy.mockClear();
     });
@@ -210,9 +214,9 @@ describe("Selectors of", () => {
       const eventId = dummyEvents[1].id;
       const expected = dummyEvents.find((item) => item.id === eventId);
 
-      expect(selectEventById(rootState)(calendarId, storyId, eventId)).toEqual(
-        expected
-      );
+      expect(
+        selectEventByIdFilter(rootState)(calendarId, storyId, eventId)
+      ).toEqual(expected);
     });
 
     it("cannot select because cannot find calendar.", () => {
@@ -220,9 +224,9 @@ describe("Selectors of", () => {
       const calendarId = "this is calendarId but not exist";
       const storyId = dummyStories[0].id;
       const eventId = dummyEvents[1].id;
-      expect(selectEventById(rootState)(calendarId, storyId, eventId)).toEqual(
-        undefined
-      );
+      expect(
+        selectEventByIdFilter(rootState)(calendarId, storyId, eventId)
+      ).toEqual(undefined);
       expect(console.warn).toBeCalledTimes(1);
       expect(console.warn).toHaveBeenLastCalledWith(
         `Cannot find calendar: ${calendarId}.`
@@ -234,9 +238,9 @@ describe("Selectors of", () => {
       const calendarId = dummyCalendar.id;
       const storyId = "this is storyId but not exist";
       const eventId = dummyEvents[1].id;
-      expect(selectEventById(rootState)(calendarId, storyId, eventId)).toEqual(
-        undefined
-      );
+      expect(
+        selectEventByIdFilter(rootState)(calendarId, storyId, eventId)
+      ).toEqual(undefined);
       expect(console.warn).toBeCalledTimes(1);
       expect(console.warn).toHaveBeenLastCalledWith(
         `Cannot find story: ${storyId}.`
@@ -248,9 +252,9 @@ describe("Selectors of", () => {
       const calendarId = dummyCalendar.id;
       const storyId = dummyStories[1].id;
       const eventId = "this is storyId but not exist";
-      expect(selectEventById(rootState)(calendarId, storyId, eventId)).toEqual(
-        undefined
-      );
+      expect(
+        selectEventByIdFilter(rootState)(calendarId, storyId, eventId)
+      ).toEqual(undefined);
       expect(console.warn).toBeCalledTimes(1);
       expect(console.warn).toHaveBeenLastCalledWith(
         `Cannot find event: ${eventId}.`

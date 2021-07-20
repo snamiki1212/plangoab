@@ -407,7 +407,7 @@ const logCalendar = (id: String) =>
 const logStory = (id: String) => console.warn(`Cannot find story: ${id}.`);
 const logEvent = (id: String) => console.warn(`Cannot find event: ${id}.`);
 
-export const selectUserCalendarById = createSelector(
+export const selectUserCalendarByIdFilter = createSelector(
   selectUserCalendars,
   (calendars) =>
     memoize((calendarId: String) => {
@@ -417,7 +417,7 @@ export const selectUserCalendarById = createSelector(
     })
 );
 
-export const selectStoryById = createSelector(
+export const selectStoryByIdFilter = createSelector(
   selectUserCalendars,
   (calendars) =>
     memoize((calendarId: String, storyId: String) => {
@@ -427,7 +427,7 @@ export const selectStoryById = createSelector(
     })
 );
 
-export const selectEventById = createSelector(
+export const selectEventByIdFilter = createSelector(
   selectUserCalendars,
   (calendars) =>
     memoize((calendarId: String, storyId: String, eventId: String) => {
