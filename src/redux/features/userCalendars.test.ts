@@ -2,7 +2,6 @@ import { toStr } from "@/testHelpers/index";
 import reducer, {
   // selectors
   selectUserCalendar,
-  selectUserCalendarByIdFilter,
   selectStoryByIdFilter,
   selectEventByIdFilter,
 
@@ -144,24 +143,6 @@ describe("Selectors of", () => {
     it("cannot select because of null.", () => {
       const rootState = createRootState([]);
       expect(selectUserCalendar(rootState)).toEqual(undefined);
-    });
-  });
-
-  describe(toStr({ selectUserCalendarByIdFilter }), () => {
-    it("can select.", () => {
-      const rootState = createRootState([dummyCalendar]);
-      const calendarId = dummyCalendar.id;
-      expect(selectUserCalendarByIdFilter(rootState)(calendarId)).toEqual(
-        dummyCalendar
-      );
-    });
-
-    it("cannot select because cannot find.", () => {
-      const rootState = createRootState([dummyCalendar]);
-      const calendarId = "this is calendarId but not exist";
-      expect(selectUserCalendarByIdFilter(rootState)(calendarId)).toEqual(
-        undefined
-      );
     });
   });
 
