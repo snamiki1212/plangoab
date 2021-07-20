@@ -202,6 +202,16 @@ describe("Selectors of", () => {
       );
     });
 
+    it("cannot select because cannot find calendar.", () => {
+      const rootState = createRootState([dummyCalendar]);
+      const calendarId = "this is calendarId but not exist";
+      const storyId = dummyStories[0].id;
+      const eventId = dummyEvents[1].id;
+      expect(selectEventById(rootState)(calendarId, storyId, eventId)).toEqual(
+        undefined
+      );
+    });
+
     it("cannot select because cannot find story.", () => {
       const rootState = createRootState([dummyCalendar]);
       const calendarId = dummyCalendar.id;
