@@ -399,18 +399,22 @@ export const {
 
 export default userCalendarsSlice.reducer;
 
-// export const selectUserCalendars = (state: RootState) =>
-//   state.userCalendars.calendars;
-
 const selectUserCalendars = (state: RootState) =>
   state.features.userCalendars.calendars;
+
+const logCalendar = (id: String) =>
+  console.warn(`Cannot find calendar: ${id}.`);
+const logStory = (id: String) => console.warn(`Cannot find story: ${id}.`);
+const logEvent = (id: String) => console.warn(`Cannot find event: ${id}.`);
 
 export const selectUserCalendarById = createSelector(
   selectUserCalendars,
   (calendars) =>
-    memoize((calendarId: String) =>
-      calendars.find((item) => item.id === calendarId)
-    )
+    memoize((calendarId: String) => {
+      const calendar = calendars.find((item) => item.id === calendarId);
+      if (!calendar) return logCalendar(calendarId);
+      return calendar;
+    })
 );
 
 export const selectStoryById = createSelector(
@@ -418,7 +422,7 @@ export const selectStoryById = createSelector(
   (calendars) =>
     memoize((calendarId: String, storyId: String) => {
       const calendar = calendars.find((item) => item.id === calendarId);
-      if (!calendar) return console.warn("Cannot find calendar.");
+      if (!calendar) return logCalendar(calendarId);
       return calendar.stories.find((item) => item.id === storyId);
     })
 );
@@ -428,10 +432,12 @@ export const selectEventById = createSelector(
   (calendars) =>
     memoize((calendarId: String, storyId: String, eventId: String) => {
       const calendar = calendars.find((item) => item.id === calendarId);
-      if (!calendar) return console.warn("Cannot find calendar.");
+      if (!calendar) return logCalendar(calendarId);
       const story = calendar.stories.find((item) => item.id === storyId);
-      if (!story) return console.warn("Cannot find story.");
-      return story.events.find((item) => item.id === eventId);
+      if (!story) return logStory(storyId);
+      const event = story.events.find((item) => item.id === eventId);
+      if (!event) return logEvent(eventId);
+      return event;
     })
 );
 

@@ -184,7 +184,9 @@ describe("Selectors of", () => {
         undefined
       );
       expect(console.warn).toBeCalledTimes(1);
-      expect(console.warn).toHaveBeenLastCalledWith("Cannot find calendar.");
+      expect(console.warn).toHaveBeenLastCalledWith(
+        `Cannot find calendar: ${calendarId}.`
+      );
     });
 
     it("cannot select because cannot find story.", () => {
@@ -222,7 +224,9 @@ describe("Selectors of", () => {
         undefined
       );
       expect(console.warn).toBeCalledTimes(1);
-      expect(console.warn).toHaveBeenLastCalledWith("Cannot find calendar.");
+      expect(console.warn).toHaveBeenLastCalledWith(
+        `Cannot find calendar: ${calendarId}.`
+      );
     });
 
     it("cannot select because cannot find story.", () => {
@@ -234,7 +238,9 @@ describe("Selectors of", () => {
         undefined
       );
       expect(console.warn).toBeCalledTimes(1);
-      expect(console.warn).toHaveBeenLastCalledWith("Cannot find story.");
+      expect(console.warn).toHaveBeenLastCalledWith(
+        `Cannot find story: ${storyId}.`
+      );
     });
 
     it("cannot select because cannot find event.", () => {
@@ -244,6 +250,10 @@ describe("Selectors of", () => {
       const eventId = "this is storyId but not exist";
       expect(selectEventById(rootState)(calendarId, storyId, eventId)).toEqual(
         undefined
+      );
+      expect(console.warn).toBeCalledTimes(1);
+      expect(console.warn).toHaveBeenLastCalledWith(
+        `Cannot find event: ${eventId}.`
       );
     });
   });
