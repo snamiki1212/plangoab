@@ -415,19 +415,24 @@ export const selectUserCalendarById = createSelector(
 
 export const selectStoryById = createSelector(
   selectUserCalendars,
-  (calendars) => (calendarId: String, storyId: String) =>
-    calendars
-      .find((item) => item.id === calendarId)
-      ?.stories.find((item) => item.id === storyId)
+  (calendars) =>
+    memoize((calendarId: String, storyId: String) => {
+      const calendar = calendars.find((item) => item.id === calendarId);
+      if (!calendar) return console.warn("Cannot find calendar.");
+      return calendar.stories.find((item) => item.id === storyId);
+    })
 );
 
 export const selectEventById = createSelector(
   selectUserCalendars,
-  (calendars) => (calendarId: String, storyId: String, eventId: String) =>
-    calendars
-      .find((item) => item.id === calendarId)
-      ?.stories.find((item) => item.id === storyId)
-      ?.events.find((item) => item.id === eventId)
+  (calendars) =>
+    memoize((calendarId: String, storyId: String, eventId: String) => {
+      const calendar = calendars.find((item) => item.id === calendarId);
+      if (!calendar) return console.warn("Cannot find calendar.");
+      const story = calendar.stories.find((item) => item.id === storyId);
+      if (!story) return console.warn("Cannot find story.");
+      return story.events.find((item) => item.id === eventId);
+    })
 );
 
 export const selectUserCalendar = (state: RootState) =>

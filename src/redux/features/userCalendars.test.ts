@@ -132,6 +132,9 @@ describe("Selectors of", () => {
     return item;
   })();
 
+  // console spy
+  const consoleSpy = jest.spyOn(console, "warn").mockImplementation();
+
   describe(toStr({ selectUserCalendar }), () => {
     it("can select.", () => {
       const rootState = createRootState([dummyCalendar]);
@@ -161,6 +164,9 @@ describe("Selectors of", () => {
   });
 
   describe(toStr({ selectStoryById }), () => {
+    beforeEach(() => {
+      consoleSpy.mockClear();
+    });
     it("can select.", () => {
       const rootState = createRootState([dummyCalendar]);
       const calendarId = dummyCalendar.id;
@@ -177,6 +183,8 @@ describe("Selectors of", () => {
       expect(selectStoryById(rootState)(calendarId, storyId)).toEqual(
         undefined
       );
+      expect(console.warn).toBeCalledTimes(1);
+      expect(console.warn).toHaveBeenLastCalledWith("Cannot find calendar.");
     });
 
     it("cannot select because cannot find story.", () => {
@@ -190,6 +198,9 @@ describe("Selectors of", () => {
   });
 
   describe(toStr({ selectEventById }), () => {
+    beforeEach(() => {
+      consoleSpy.mockClear();
+    });
     it("can select.", () => {
       const rootState = createRootState([dummyCalendar]);
       const calendarId = dummyCalendar.id;
@@ -210,6 +221,8 @@ describe("Selectors of", () => {
       expect(selectEventById(rootState)(calendarId, storyId, eventId)).toEqual(
         undefined
       );
+      expect(console.warn).toBeCalledTimes(1);
+      expect(console.warn).toHaveBeenLastCalledWith("Cannot find calendar.");
     });
 
     it("cannot select because cannot find story.", () => {
@@ -220,6 +233,8 @@ describe("Selectors of", () => {
       expect(selectEventById(rootState)(calendarId, storyId, eventId)).toEqual(
         undefined
       );
+      expect(console.warn).toBeCalledTimes(1);
+      expect(console.warn).toHaveBeenLastCalledWith("Cannot find story.");
     });
 
     it("cannot select because cannot find event.", () => {
