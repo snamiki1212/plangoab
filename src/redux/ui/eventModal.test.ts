@@ -6,35 +6,15 @@ import reducer, {
   selectIsOpen,
 } from "./eventModal";
 import { RootState } from "../rootReducer";
-
-type DummyCalendar = any;
-type DummyStory = any;
-type DummyEvent = any;
-
-const createDummyCalendarId = (str: String | number) => `CALENDAR_${str}`;
-const createDummyStoryId = (str: String | number) => `STORY_${str}`;
-const createDummyEventId = (str: String | number) => `EVENT_${str}`;
-
-const createDummyCalendar = ({ id }: { id: any }) =>
-  ({ id: createDummyCalendarId(id) } as DummyCalendar);
-const createDummyStory = ({ id }: { id: any }) =>
-  ({ id: createDummyStoryId(id) } as DummyStory);
-const createDummyEvent = ({ id }: { id: any }) =>
-  ({ id: createDummyEventId(id) } as DummyEvent);
-
-const createDummyEventModal = () => ({
-  calendarId: "calendarId",
-  storyId: "storyId",
-  eventId: "eventId",
-});
-
-const createSelectableDummyEventModal = () => ({
-  calendarId: createDummyCalendarId(0),
-  storyId: createDummyStoryId(1),
-  eventId: createDummyEventId(2),
-});
+import { createDummyEventModal } from "@/testHelpers/factories/redux";
+import {
+  createDummyCalendar,
+  createDummyEvent,
+  createDummyStory,
+} from "@/testHelpers/factories/core";
 
 type DummyEventModal = ReturnType<typeof createDummyEventModal>;
+type DummyCalendar = ReturnType<typeof createDummyCalendar>;
 
 const createRootState = ({
   eventModalInfo = null,
@@ -115,6 +95,12 @@ describe(selectEvent.name, () => {
     item.stories = dummyStories;
     return item;
   })();
+
+  const createSelectableDummyEventModal = () => ({
+    calendarId: dummyCalendar.id,
+    storyId: dummyStories[1].id,
+    eventId: dummyEvents[2].id,
+  });
 
   it("can select.", () => {
     const eventModalInfo = createSelectableDummyEventModal();

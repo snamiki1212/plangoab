@@ -9,11 +9,11 @@ import {
   PRIVATE_COLLEGE_CALENDAR_ID,
   PUBLIC_COLLEGE_CALENDAR_ID,
 } from "@/core/calendar/TemplateCalendar/model";
-import {
-  PrivateCollegeCalendar,
-  PublicCollegeCalendar,
-} from "@/core/calendar/TemplateCalendar/model";
 import { RootState } from "../rootReducer";
+import {
+  createDummyPrivateCollegeCalendar,
+  createDummyPublicCollegeCalendar,
+} from "@/testHelpers/factories/core";
 
 const initialState = {
   [PRIVATE_COLLEGE_CALENDAR_ID]: undefined,
@@ -24,11 +24,6 @@ const createRootState = (partialState: any) =>
   ({
     features: { templateCalendar: partialState },
   } as RootState);
-
-const createDummyPrivateCollegeCalendar = () =>
-  "dummy private college calendar" as any as PrivateCollegeCalendar;
-const createDummyPublicCollegeCalendar = () =>
-  "dummy public college calendar  " as any as PublicCollegeCalendar;
 
 describe(reducer.name, () => {
   it("can init.", () => {

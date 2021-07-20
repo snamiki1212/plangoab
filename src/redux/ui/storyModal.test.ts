@@ -6,11 +6,7 @@ import reducer, {
   popAction,
 } from "./storyModal";
 import { RootState } from "../rootReducer";
-
-const createDummyStory = () => ({
-  calendarId: "calendarId",
-  storyId: "storyId",
-});
+import { createDummyStoryModal } from "@/testHelpers/factories/redux";
 
 const createRootState = (partialState: any) =>
   ({ ui: { storyModal: { story: partialState } } } as RootState);
@@ -22,7 +18,7 @@ describe(reducer.name, () => {
 
   describe(pushAction.name, () => {
     it("can work.", () => {
-      const story = createDummyStory();
+      const story = createDummyStoryModal();
       const befState = { story: null };
       const aftState = { story };
       expect(reducer(befState, pushAction(story))).toEqual(aftState);
@@ -31,7 +27,7 @@ describe(reducer.name, () => {
 
   describe(popAction.name, () => {
     it("can work.", () => {
-      const story = createDummyStory();
+      const story = createDummyStoryModal();
       const befState = { story };
       const aftState = { story: null };
       expect(reducer(befState, popAction())).toEqual(aftState);
@@ -41,7 +37,7 @@ describe(reducer.name, () => {
 
 describe(selectIsOpen.name, () => {
   it("should be true when to open.", () => {
-    const story = createDummyStory();
+    const story = createDummyStoryModal();
     const rootState = createRootState(story);
     expect(selectIsOpen(rootState)).toEqual(true);
   });
@@ -59,7 +55,7 @@ describe(selectStory.name, () => {
 
 describe(selectStoryModal.name, () => {
   it("can select.", () => {
-    const story = createDummyStory();
+    const story = createDummyStoryModal();
     const rootState = createRootState(story);
     expect(selectStoryModal(rootState)).toEqual(story);
   });

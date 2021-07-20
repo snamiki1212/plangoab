@@ -22,17 +22,14 @@ import reducer, {
   removeResourceAction,
 } from "./userCalendars";
 import { RootState } from "../rootReducer";
+import {
+  createDummyCalendar,
+  createDummyEvent,
+  createDummyStory,
+} from "@/testHelpers/factories/core";
 
 const createRootState = (partialState: any) =>
   ({ features: { userCalendars: { calendars: partialState } } } as RootState);
-
-type DummyCalendar = any;
-type DummyStory = any;
-type DummyEvent = any;
-
-const createDummyCalendar = ({ id }: { id: any }) => ({ id } as DummyCalendar);
-const createDummyStory = ({ id }: { id: any }) => ({ id } as DummyStory);
-const createDummyEvent = ({ id }: { id: String }) => ({ id } as DummyEvent);
 
 const initialState = { calendars: [] };
 
@@ -86,7 +83,10 @@ describe(reducer.name, () => {
       const befState = { calendars: [dummyCalendar1, dummyCalendar2] };
       const aftState = { calendars: [dummyCalendar1] };
       expect(
-        reducer(befState, removeCalendarAction({ calendarId: id2 }))
+        reducer(
+          befState,
+          removeCalendarAction({ calendarId: dummyCalendar2.id })
+        )
       ).toEqual(aftState);
     });
   });
@@ -118,15 +118,15 @@ describe(reducer.name, () => {
 describe("Selectors of", () => {
   // Dummy data
   const dummyEvents = Array.from({ length: 3 }).map((_, idx) =>
-    createDummyEvent({ id: `event_${idx}` })
+    createDummyEvent({ id: idx })
   );
   const dummyStories = Array.from({ length: 3 }).map((_, idx) => {
-    let story = createDummyStory({ id: `story_${idx}` });
+    let story = createDummyStory({ id: idx });
     story.events = dummyEvents;
     return story;
   });
   const dummyCalendar = (() => {
-    let item = createDummyCalendar({ id: `calendar_${0}` });
+    let item = createDummyCalendar({ id: "0" });
     item.stories = dummyStories;
     return item;
   })();
@@ -163,8 +163,8 @@ describe("Selectors of", () => {
     it("can select.", () => {
       const rootState = createRootState([dummyCalendar]);
       const calendarId = dummyCalendar.id;
-      const storyId = dummyStories[1];
-      const expected = dummyStories[storyId];
+      const storyId = dummyStories[1].id;
+      const expected = dummyStories.find((item) => item.id === storyId);
 
       expect(selectStoryById(rootState)(calendarId, storyId)).toEqual(expected);
     });
@@ -172,7 +172,7 @@ describe("Selectors of", () => {
     it("cannot select because cannot find calendar.", () => {
       const rootState = createRootState([dummyCalendar]);
       const calendarId = "this is calendarId but not exist";
-      const storyId = dummyStories[1];
+      const storyId = dummyStories[1].id;
       expect(selectStoryById(rootState)(calendarId, storyId)).toEqual(
         undefined
       );
@@ -192,9 +192,9 @@ describe("Selectors of", () => {
     it("can select.", () => {
       const rootState = createRootState([dummyCalendar]);
       const calendarId = dummyCalendar.id;
-      const storyId = dummyStories[1];
-      const eventId = dummyEvents[1];
-      const expected = dummyEvents[eventId];
+      const storyId = dummyStories[1].id;
+      const eventId = dummyEvents[1].id;
+      const expected = dummyEvents.find((item) => item.id === eventId);
 
       expect(selectEventById(rootState)(calendarId, storyId, eventId)).toEqual(
         expected
@@ -205,7 +205,7 @@ describe("Selectors of", () => {
       const rootState = createRootState([dummyCalendar]);
       const calendarId = dummyCalendar.id;
       const storyId = "this is storyId but not exist";
-      const eventId = dummyEvents[1];
+      const eventId = dummyEvents[1].id;
       expect(selectEventById(rootState)(calendarId, storyId, eventId)).toEqual(
         undefined
       );
@@ -214,7 +214,7 @@ describe("Selectors of", () => {
     it("cannot select because cannot find event.", () => {
       const rootState = createRootState([dummyCalendar]);
       const calendarId = dummyCalendar.id;
-      const storyId = dummyStories[1];
+      const storyId = dummyStories[1].id;
       const eventId = "this is storyId but not exist";
       expect(selectEventById(rootState)(calendarId, storyId, eventId)).toEqual(
         undefined
