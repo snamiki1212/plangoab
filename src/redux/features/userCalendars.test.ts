@@ -1,5 +1,11 @@
+import { toStr } from "@/testHelpers/index";
 import reducer, {
+  // selectors
   selectUserCalendar,
+  selectStoryByIdFilter,
+  selectEventByIdFilter,
+
+  // actions
   addEventAction,
   addStoryAction,
   removeEventAction,
@@ -16,37 +22,39 @@ import reducer, {
   removeResourceAction,
 } from "./userCalendars";
 import { RootState } from "../rootReducer";
+import {
+  createDummyCalendar,
+  createDummyEvent,
+  createDummyStory,
+} from "@/testHelpers/factories/core";
 
 const createRootState = (partialState: any) =>
   ({ features: { userCalendars: { calendars: partialState } } } as RootState);
 
-type DummyCalendar = any;
-const createDummyCalendar = ({ id }: { id: any }) => ({ id } as DummyCalendar);
-
 const initialState = { calendars: [] };
 
-describe(reducer.name, () => {
+describe(toStr({ reducer }), () => {
   it("can init.", () => {
     expect(reducer(undefined, {} as any)).toEqual(initialState);
   });
 
-  describe(addEventAction.name, () => {
+  describe(toStr({ addEventAction }), () => {
     it.skip("can work.", () => {});
   });
 
-  describe(addStoryAction.name, () => {
+  describe(toStr({ addStoryAction }), () => {
     it.skip("can work.", () => {});
   });
 
-  describe(removeEventAction.name, () => {
+  describe(toStr({ removeEventAction }), () => {
     it.skip("can work.", () => {});
   });
 
-  describe(removeStoryAction.name, () => {
+  describe(toStr({ removeStoryAction }), () => {
     it.skip("can work.", () => {});
   });
 
-  describe(resetAction.name, () => {
+  describe(toStr({ resetAction }), () => {
     it("can work.", () => {
       const befState = { calendars: ["dummy", "dummy"] as any[] };
       const aftState = initialState;
@@ -54,19 +62,19 @@ describe(reducer.name, () => {
     });
   });
 
-  describe(updateEventAction.name, () => {
+  describe(toStr({ updateEventAction }), () => {
     it.skip("can work.", () => {});
   });
 
-  describe(updateStoryAction.name, () => {
+  describe(toStr({ updateStoryAction }), () => {
     it.skip("can work.", () => {});
   });
 
-  describe(pushResourceAction.name, () => {
+  describe(toStr({ pushResourceAction }), () => {
     it.skip("can work.", () => {});
   });
 
-  describe(removeCalendarAction.name, () => {
+  describe(toStr({ removeCalendarAction }), () => {
     it("can work.", () => {
       const id1 = "this is dummy1";
       const id2 = "this is dummy2";
@@ -75,39 +83,163 @@ describe(reducer.name, () => {
       const befState = { calendars: [dummyCalendar1, dummyCalendar2] };
       const aftState = { calendars: [dummyCalendar1] };
       expect(
-        reducer(befState, removeCalendarAction({ calendarId: id2 }))
+        reducer(
+          befState,
+          removeCalendarAction({ calendarId: dummyCalendar2.id })
+        )
       ).toEqual(aftState);
     });
   });
 
-  describe(removeResourceAction.name, () => {
+  describe(toStr({ removeResourceAction }), () => {
     it.skip("can work.", () => {});
     it.skip("cannot work because not find calendar", () => {});
     it.skip("cannot work because not find story", () => {});
     it.skip("cannot work because not find resouce", () => {});
   });
 
-  describe(updateCalendarsAction.name, () => {
+  describe(toStr({ updateCalendarsAction }), () => {
     it.skip("can work.", () => {});
   });
 
-  describe(updateEventByIdAction.name, () => {
+  describe(toStr({ updateEventByIdAction }), () => {
     it.skip("can work.", () => {});
   });
 
-  describe(updateResourcesAction.name, () => {
+  describe(toStr({ updateResourcesAction }), () => {
     it.skip("can work.", () => {});
   });
 
-  describe(updateStoryByIdAction.name, () => {
+  describe(toStr({ updateStoryByIdAction }), () => {
     it.skip("can work.", () => {});
   });
 });
 
-describe(selectUserCalendar.name, () => {
-  it("can select.", () => {
-    const dummyCalendar = "dummy";
-    const rootState = createRootState([dummyCalendar]);
-    expect(selectUserCalendar(rootState)).toEqual(dummyCalendar);
+describe("Selectors of", () => {
+  // Dummy data
+  const dummyEvents = Array.from({ length: 3 }).map((_, idx) =>
+    createDummyEvent({ id: idx })
+  );
+  const dummyStories = Array.from({ length: 3 }).map((_, idx) => {
+    let story = createDummyStory({ id: idx });
+    story.events = dummyEvents;
+    return story;
+  });
+  const dummyCalendar = (() => {
+    let item = createDummyCalendar({ id: "0" });
+    item.stories = dummyStories;
+    return item;
+  })();
+
+  // console spy
+  const consoleSpy = jest.spyOn(console, "warn").mockImplementation();
+
+  describe(toStr({ selectUserCalendar }), () => {
+    it("can select.", () => {
+      const rootState = createRootState([dummyCalendar]);
+      expect(selectUserCalendar(rootState)).toEqual(dummyCalendar);
+    });
+
+    it("cannot select because of null.", () => {
+      const rootState = createRootState([]);
+      expect(selectUserCalendar(rootState)).toEqual(undefined);
+    });
+  });
+
+  describe(toStr({ selectStoryByIdFilter }), () => {
+    beforeEach(() => {
+      consoleSpy.mockClear();
+    });
+    it("can select.", () => {
+      const rootState = createRootState([dummyCalendar]);
+      const calendarId = dummyCalendar.id;
+      const storyId = dummyStories[1].id;
+      const expected = dummyStories.find((item) => item.id === storyId);
+
+      expect(selectStoryByIdFilter(rootState)(calendarId, storyId)).toEqual(
+        expected
+      );
+    });
+
+    it("cannot select because cannot find calendar.", () => {
+      const rootState = createRootState([dummyCalendar]);
+      const calendarId = "this is calendarId but not exist";
+      const storyId = dummyStories[1].id;
+      expect(selectStoryByIdFilter(rootState)(calendarId, storyId)).toEqual(
+        undefined
+      );
+      expect(console.warn).toBeCalledTimes(1);
+      expect(console.warn).toHaveBeenLastCalledWith(
+        `Cannot find calendar: ${calendarId}.`
+      );
+    });
+
+    it("cannot select because cannot find story.", () => {
+      const rootState = createRootState([dummyCalendar]);
+      const calendarId = dummyCalendar.id;
+      const storyId = "this is storyId but not exist";
+      expect(selectStoryByIdFilter(rootState)(calendarId, storyId)).toEqual(
+        undefined
+      );
+    });
+  });
+
+  describe(toStr({ selectEventByIdFilter }), () => {
+    beforeEach(() => {
+      consoleSpy.mockClear();
+    });
+    it("can select.", () => {
+      const rootState = createRootState([dummyCalendar]);
+      const calendarId = dummyCalendar.id;
+      const storyId = dummyStories[1].id;
+      const eventId = dummyEvents[1].id;
+      const expected = dummyEvents.find((item) => item.id === eventId);
+
+      expect(
+        selectEventByIdFilter(rootState)(calendarId, storyId, eventId)
+      ).toEqual(expected);
+    });
+
+    it("cannot select because cannot find calendar.", () => {
+      const rootState = createRootState([dummyCalendar]);
+      const calendarId = "this is calendarId but not exist";
+      const storyId = dummyStories[0].id;
+      const eventId = dummyEvents[1].id;
+      expect(
+        selectEventByIdFilter(rootState)(calendarId, storyId, eventId)
+      ).toEqual(undefined);
+      expect(console.warn).toBeCalledTimes(1);
+      expect(console.warn).toHaveBeenLastCalledWith(
+        `Cannot find calendar: ${calendarId}.`
+      );
+    });
+
+    it("cannot select because cannot find story.", () => {
+      const rootState = createRootState([dummyCalendar]);
+      const calendarId = dummyCalendar.id;
+      const storyId = "this is storyId but not exist";
+      const eventId = dummyEvents[1].id;
+      expect(
+        selectEventByIdFilter(rootState)(calendarId, storyId, eventId)
+      ).toEqual(undefined);
+      expect(console.warn).toBeCalledTimes(1);
+      expect(console.warn).toHaveBeenLastCalledWith(
+        `Cannot find story: ${storyId}.`
+      );
+    });
+
+    it("cannot select because cannot find event.", () => {
+      const rootState = createRootState([dummyCalendar]);
+      const calendarId = dummyCalendar.id;
+      const storyId = dummyStories[1].id;
+      const eventId = "this is storyId but not exist";
+      expect(
+        selectEventByIdFilter(rootState)(calendarId, storyId, eventId)
+      ).toEqual(undefined);
+      expect(console.warn).toBeCalledTimes(1);
+      expect(console.warn).toHaveBeenLastCalledWith(
+        `Cannot find event: ${eventId}.`
+      );
+    });
   });
 });

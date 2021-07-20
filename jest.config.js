@@ -26,7 +26,10 @@ module.exports = {
   transform: {
     "^.+\\.tsx?$": "ts-jest",
   },
-  moduleNameMapper: makeModuleNameMapper(SRC_PATH, TS_CONFIG_PATH),
+  moduleNameMapper: {
+    ...makeModuleNameMapper(SRC_PATH, TS_CONFIG_PATH),
+    "^lodash-es$": "lodash",
+  },
   // All imported modules in your tests should be mocked automatically
   // automock: false,
 

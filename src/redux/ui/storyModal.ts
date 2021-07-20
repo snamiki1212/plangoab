@@ -1,5 +1,6 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction, createSelector } from "@reduxjs/toolkit";
 import { RootState } from "@/redux/rootReducer";
+import { selectStoryByIdFilter } from "@/redux/features/userCalendars";
 
 type State = {
   story: null | {
@@ -35,26 +36,14 @@ export const selectIsOpen = (state: RootState) => !!state.ui.storyModal.story;
 
 export const selectStoryModal = (state: RootState) => state.ui.storyModal.story;
 
-export const selectStory = (state: RootState) => {
-  const _story = state.ui.storyModal.story;
-  if (!_story) return null;
-  const { calendarId, storyId } = _story;
-
-  // calendar
-  const calendarIdx = state.features.userCalendars.calendars.findIndex(
-    (calendar) => calendar.id === calendarId
-  );
-  const cannotFind = calendarIdx === -1;
-  if (cannotFind) {
-    console.warn("cannot find calendar on removeStory", calendarId);
-    return;
+export const selectStory = createSelector(
+  [selectStoryModal, selectStoryByIdFilter],
+  (modal, filter) => {
+    if (!modal) return null;
+    const { calendarId, storyId } = modal;
+    return filter(calendarId, storyId);
   }
-
-  // story
-  return state.features.userCalendars.calendars[calendarIdx].stories.find(
-    (story) => story.id === storyId
-  );
-};
+);
 
 export const { push: pushAction, pop: popAction } = slice.actions;
 
