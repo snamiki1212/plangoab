@@ -117,6 +117,10 @@ Read [ARCHITECTURE.md](./doc/ARCHITECTURE.md) more details.
     <td>GitHub Actions</td>
   </tr>
   <tr>
+    <td>Test</td>
+    <td>Cypress, Jest</td>
+  </tr>
+  <tr>
     <td>Hosting</td>
     <td>GitHub Pages + Netlify</td>
   </tr>
