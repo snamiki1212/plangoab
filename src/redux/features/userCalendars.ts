@@ -423,7 +423,9 @@ export const selectStoryByIdFilter = createSelector(
     memoize((calendarId: String, storyId: String) => {
       const calendar = calendars.find((item) => item.id === calendarId);
       if (!calendar) return logCalendar(calendarId);
-      return calendar.stories.find((item) => item.id === storyId);
+      const story = calendar.stories.find((item) => item.id === storyId);
+      if (!story) return logStory(storyId);
+      return story;
     })
 );
 

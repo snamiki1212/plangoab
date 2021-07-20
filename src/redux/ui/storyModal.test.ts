@@ -83,6 +83,10 @@ describe(toStr({ selectStory }), () => {
     return item;
   })();
 
+  beforeEach(() => {
+    consoleSpy.mockClear();
+  });
+
   it("can select.", () => {
     const expected = dummyStories[1];
 
@@ -101,7 +105,6 @@ describe(toStr({ selectStory }), () => {
   });
 
   it("cannot select when not to find calendar.", () => {
-    consoleSpy.mockClear();
     // ids
     const calendarId = "Invalid calendar id";
     const storyId = dummyStories[1].id;
@@ -116,8 +119,7 @@ describe(toStr({ selectStory }), () => {
     expect(selectStory(rootState)).toEqual(undefined);
     expect(console.warn).toBeCalledTimes(1);
     expect(console.warn).toHaveBeenLastCalledWith(
-      "cannot find calendar on removeStory",
-      calendarId
+      `Cannot find calendar: ${calendarId}.`
     );
   });
 
@@ -134,6 +136,10 @@ describe(toStr({ selectStory }), () => {
     });
 
     expect(selectStory(rootState)).toEqual(undefined);
+    expect(console.warn).toBeCalledTimes(1);
+    expect(console.warn).toHaveBeenLastCalledWith(
+      `Cannot find story: ${storyId}.`
+    );
   });
 });
 

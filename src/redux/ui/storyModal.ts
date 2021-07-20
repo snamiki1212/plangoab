@@ -46,14 +46,16 @@ export const selectStory = (state: RootState) => {
   );
   const cannotFind = calendarIdx === -1;
   if (cannotFind) {
-    console.warn("cannot find calendar on removeStory", calendarId);
+    console.warn(`Cannot find calendar: ${calendarId}.`);
     return;
   }
 
   // story
-  return state.features.userCalendars.calendars[calendarIdx].stories.find(
-    (story) => story.id === storyId
-  );
+  const story = state.features.userCalendars.calendars[
+    calendarIdx
+  ].stories.find((story) => story.id === storyId);
+  if (!story) return console.warn(`Cannot find story: ${storyId}.`);
+  return story;
 };
 
 export const { push: pushAction, pop: popAction } = slice.actions;
