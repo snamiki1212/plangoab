@@ -8,9 +8,26 @@ import reducer, {
 import { RootState } from "../rootReducer";
 import { createDummyStoryModal } from "@/testHelpers/factories/redux";
 import { toStr } from "@/testHelpers/index";
+import {
+  createDummyCalendar,
+  createDummyEvent,
+  createDummyStory,
+} from "@/testHelpers/factories/core";
 
-const createRootState = (partialState: any) =>
-  ({ ui: { storyModal: { story: partialState } } } as RootState);
+type ModalInfo = ReturnType<typeof createDummyStoryModal>;
+type DummyCalendar = ReturnType<typeof createDummyCalendar>;
+
+const createRootState = ({
+  storyModalInfo = null,
+  calendars = [],
+}: {
+  storyModalInfo?: ModalInfo;
+  calendars?: DummyCalendar;
+}) =>
+  ({
+    ui: { storyModal: { story: storyModalInfo } },
+    features: { userCalendars: { calendars: calendars } },
+  } as RootState);
 
 describe(toStr({ reducer }), () => {
   it("can init.", () => {
@@ -19,7 +36,7 @@ describe(toStr({ reducer }), () => {
 
   describe(toStr({ pushAction }), () => {
     it("can work.", () => {
-      const story = createDummyStoryModal();
+      const story = createDummyStoryModal({});
       const befState = { story: null };
       const aftState = { story };
       expect(reducer(befState, pushAction(story))).toEqual(aftState);
@@ -28,7 +45,7 @@ describe(toStr({ reducer }), () => {
 
   describe(toStr({ popAction }), () => {
     it("can work.", () => {
-      const story = createDummyStoryModal();
+      const story = createDummyStoryModal({});
       const befState = { story };
       const aftState = { story: null };
       expect(reducer(befState, popAction())).toEqual(aftState);
@@ -38,26 +55,57 @@ describe(toStr({ reducer }), () => {
 
 describe(toStr({ selectIsOpen }), () => {
   it("should be true when to open.", () => {
-    const story = createDummyStoryModal();
-    const rootState = createRootState(story);
+    const story = createDummyStoryModal({});
+    const rootState = createRootState({ storyModalInfo: story });
     expect(selectIsOpen(rootState)).toEqual(true);
   });
   it("should be false when to close.", () => {
-    const rootState = createRootState(null);
+    const rootState = createRootState({ storyModalInfo: null });
     expect(selectIsOpen(rootState)).toEqual(false);
   });
 });
 
 describe(toStr({ selectStory }), () => {
-  it.skip("can select.", () => {
-    // TODO: Fix logic using re-select feature in RTK because for now it's not testable.
+  const dummyEvents = Array.from({ length: 3 }).map((_, idx) =>
+    createDummyEvent({ id: idx })
+  );
+  const dummyStories = Array.from({ length: 3 }).map((_, idx) => {
+    let story = createDummyStory({ id: idx });
+    story.events = dummyEvents;
+    return story;
   });
+  const dummyCalendar = (() => {
+    let item = createDummyCalendar({ id: "0" });
+    item.stories = dummyStories;
+    return item;
+  })();
+
+  it("can select.", () => {
+    const expected = dummyStories[1];
+
+    // ids
+    const calendarId = dummyCalendar.id;
+    const storyId = expected.id;
+
+    // params
+    const modalInfo = createDummyStoryModal({ calendarId, storyId });
+    const rootState = createRootState({
+      storyModalInfo: modalInfo,
+      calendars: [dummyCalendar],
+    });
+
+    expect(selectStory(rootState)).toEqual(expected);
+  });
+
+  it.skip("cannot select when not to find calendar.", () => {});
+
+  it.skip("cannot select when not to find story.", () => {});
 });
 
 describe(toStr({ selectStoryModal }), () => {
   it("can select.", () => {
-    const story = createDummyStoryModal();
-    const rootState = createRootState(story);
+    const story = createDummyStoryModal({});
+    const rootState = createRootState({ storyModalInfo: story });
     expect(selectStoryModal(rootState)).toEqual(story);
   });
 });

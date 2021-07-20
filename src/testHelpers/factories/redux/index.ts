@@ -1,6 +1,12 @@
-export const createDummyStoryModal = () => ({
-  calendarId: "calendarId",
-  storyId: "storyId",
+export const createDummyStoryModal = ({
+  calendarId = "calendarId",
+  storyId = "storyId",
+}: {
+  calendarId?: string;
+  storyId?: string;
+}) => ({
+  calendarId,
+  storyId,
 });
 
 export const createDummyEventModal = () => ({
