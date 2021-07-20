@@ -61,7 +61,7 @@ export const selectEvent = (state: RootState) => {
   ].stories.findIndex((story) => story.id === storyId);
   const cannotFindStory = storyIdx === -1;
   if (cannotFindStory) {
-    console.warn("cannot find story on removeResource", calendarId);
+    console.warn("cannot find story on removeResource", storyId);
     return;
   }
 

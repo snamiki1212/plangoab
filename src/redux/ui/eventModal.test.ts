@@ -103,6 +103,11 @@ describe(toStr({ selectEvent }), () => {
     eventId: dummyEvents[2].id,
   });
 
+  const consoleSpy = jest.spyOn(console, "warn").mockImplementation();
+  beforeEach(() => {
+    consoleSpy.mockClear();
+  });
+
   it("can select.", () => {
     const eventModalInfo = createSelectableDummyEventModal();
     const rootState = createRootState({
@@ -117,9 +122,10 @@ describe(toStr({ selectEvent }), () => {
   });
 
   it("can not select when not to find calendar.", () => {
+    const calendarId = "NOT_SELECTABLE_CALENDAR_ID";
     const eventModalInfo = (() => {
       const modal = createSelectableDummyEventModal();
-      modal.calendarId = "NOT_SELECTABLE_CALENDAR_ID";
+      modal.calendarId = calendarId;
       return modal;
     })();
 
@@ -127,16 +133,20 @@ describe(toStr({ selectEvent }), () => {
       eventModalInfo,
       calendars: [dummyCalendar],
     });
-    const spy = jest.spyOn(global.console, "warn").mockImplementation();
-    // TODO: check that warn message is exact same.
+
     expect(selectEvent(rootState)).toEqual(undefined);
-    spy.mockRestore();
+    expect(console.warn).toBeCalledTimes(1);
+    expect(console.warn).toHaveBeenLastCalledWith(
+      "cannot find calendar when to select event-modal.",
+      calendarId
+    );
   });
 
   it("can not select when not to find story.", () => {
+    const storyId = "NOT_SELECTABLE_STORY_ID";
     const eventModalInfo = (() => {
       const modal = createSelectableDummyEventModal();
-      modal.storyId = "NOT_SELECTABLE_STORY_ID";
+      modal.storyId = storyId;
       return modal;
     })();
 
@@ -144,16 +154,19 @@ describe(toStr({ selectEvent }), () => {
       eventModalInfo,
       calendars: [dummyCalendar],
     });
-    const spy = jest.spyOn(global.console, "warn").mockImplementation();
-    // TODO: check that warn message is exact same.
     expect(selectEvent(rootState)).toEqual(undefined);
-    spy.mockRestore();
+    expect(console.warn).toBeCalledTimes(1);
+    expect(console.warn).toHaveBeenLastCalledWith(
+      "cannot find story on removeResource",
+      storyId
+    );
   });
 
   it("can not select when not to find event.", () => {
+    const eventId = "NOT_SELECTABLE_EVENT_ID";
     const eventModalInfo = (() => {
       const modal = createSelectableDummyEventModal();
-      modal.eventId = "NOT_SELECTABLE_EVENT_ID";
+      modal.eventId = eventId;
       return modal;
     })();
 
@@ -161,9 +174,6 @@ describe(toStr({ selectEvent }), () => {
       eventModalInfo,
       calendars: [dummyCalendar],
     });
-    const spy = jest.spyOn(global.console, "warn").mockImplementation();
-    // TODO: check that warn message is exact same.
     expect(selectEvent(rootState)).toEqual(undefined);
-    spy.mockRestore();
   });
 });
