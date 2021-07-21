@@ -277,7 +277,7 @@ const userCalendarsSlice = createSlice({
       );
       const cannotFindCalendar = calendarIdx === -1;
       if (cannotFindCalendar) {
-        console.warn("cannot find calendar on updateStory", calendarId);
+        console.warn("cannot find calendar on updateEvent", calendarId);
         return;
       }
 
@@ -287,7 +287,7 @@ const userCalendarsSlice = createSlice({
       );
       const cannotFindStory = storyIdx === -1;
       if (cannotFindStory) {
-        console.warn("cannot find story on updateStory", calendarId);
+        console.warn("cannot find story on updateEvent", storyId);
         return;
       }
 
@@ -297,7 +297,7 @@ const userCalendarsSlice = createSlice({
       ].events.findIndex((event) => event.id === eventId);
       const cannotFindEvent = eventIdx === -1;
       if (cannotFindEvent) {
-        console.warn("cannot find event on updateEvent");
+        console.warn("cannot find event on updateEvent", eventId);
         return;
       }
 

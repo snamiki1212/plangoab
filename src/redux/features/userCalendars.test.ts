@@ -219,10 +219,120 @@ describe(toStr({ reducer }), () => {
     });
 
     describe(toStr({ updateEventAction }), () => {
-      it.skip("can work.", () => {});
-      it.skip("cannot work when invalid calendar id.", () => {});
-      it.skip("cannot work when invalid story id.", () => {});
-      it.skip("cannot work when invalid event id.", () => {});
+      // Dummy
+      const dummyEvents = Array.from({ length: 3 }).map((_, idx) =>
+        createDummyEvent({ id: idx })
+      );
+      const dummyStories = Array.from({ length: 3 }).map((_, idx) => {
+        const story = createDummyStory({ id: idx });
+        story.events = dummyEvents;
+        return story;
+      });
+      const dummyCalendar = (() => {
+        const calendar = createDummyCalendar({ id: "id1" });
+        calendar.stories = dummyStories;
+        return calendar;
+      })();
+
+      const consoleSpy = jest.spyOn(console, "warn").mockImplementation();
+      beforeEach(() => {
+        consoleSpy.mockClear();
+      });
+      it("can work.", () => {
+        const newEvent = createDummyEvent({ id: "created" });
+        const targetStoryIdx = 1;
+        const targetEventIdx = 0;
+        const aftCalendar = (() => {
+          const calendar = deepClone(dummyCalendar);
+          calendar.stories[targetStoryIdx].events[targetEventIdx] = newEvent;
+          return calendar;
+        })();
+
+        // payload
+        const calendar = dummyCalendar;
+        const story = dummyStories[targetStoryIdx];
+        const event = dummyEvents[targetEventIdx];
+        const payload = {
+          calendarId: calendar.id,
+          storyId: story.id,
+          eventId: event.id,
+          newEvent,
+        };
+
+        const befState = { calendars: [dummyCalendar] };
+        const aftState = { calendars: [aftCalendar] };
+        expect(reducer(befState, updateEventAction(payload))).toEqual(aftState);
+      });
+      it("cannot work when invalid calendar id.", () => {
+        const invalidCalendarId = "invalid calendar id";
+        const newEvent = createDummyEvent({ id: "created" });
+        const targetStoryIdx = 1;
+        const targetEventIdx = 0;
+
+        // payload
+        const story = dummyStories[targetStoryIdx];
+        const event = dummyEvents[targetEventIdx];
+        const payload = {
+          calendarId: invalidCalendarId,
+          storyId: story.id,
+          eventId: event.id,
+          newEvent,
+        };
+
+        const befState = { calendars: [dummyCalendar] };
+        expect(reducer(befState, updateEventAction(payload))).toEqual(befState);
+        expect(console.warn).toBeCalledTimes(1);
+        expect(console.warn).toHaveBeenLastCalledWith(
+          "cannot find calendar on updateEvent",
+          invalidCalendarId
+        );
+      });
+      it("cannot work when invalid story id.", () => {
+        const invalidStoryId = "invalid story id";
+        const newEvent = createDummyEvent({ id: "created" });
+        const targetEventIdx = 0;
+
+        // payload
+        const calendar = dummyCalendar;
+        const event = dummyEvents[targetEventIdx];
+        const payload = {
+          calendarId: calendar.id,
+          storyId: invalidStoryId,
+          eventId: event.id,
+          newEvent,
+        };
+
+        const befState = { calendars: [dummyCalendar] };
+        expect(reducer(befState, updateEventAction(payload))).toEqual(befState);
+        expect(console.warn).toBeCalledTimes(1);
+        expect(console.warn).toHaveBeenLastCalledWith(
+          "cannot find story on updateEvent",
+          invalidStoryId
+        );
+      });
+      it("cannot work when invalid event id.", () => {
+        const invalidEventId = "invalid event id";
+        const newEvent = createDummyEvent({ id: "created" });
+        const targetStoryIdx = 1;
+
+        // payload
+        const calendar = dummyCalendar;
+        const story = dummyStories[targetStoryIdx];
+        const payload = {
+          calendarId: calendar.id,
+          storyId: story.id,
+          eventId: invalidEventId,
+          newEvent,
+        };
+
+        const befState = { calendars: [dummyCalendar] };
+        expect(reducer(befState, updateEventAction(payload))).toEqual(befState);
+        expect(console.warn).toBeCalledTimes(1);
+        expect(console.warn).toHaveBeenLastCalledWith(
+          "cannot find event on updateEvent",
+          invalidEventId
+        );
+      });
     });
 
     describe(toStr({ updateEventByIdAction }), () => {
