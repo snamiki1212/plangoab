@@ -124,14 +124,18 @@ describe(toStr({ reducer }), () => {
 
   describe(toStr({ addStoryAction }), () => {
     it.skip("can work.", () => {});
+    it.skip("cannot work when invalid calendar id.", () => {});
   });
 
   describe(toStr({ removeEventAction }), () => {
     it.skip("can work.", () => {});
+    it.skip("cannot work when invalid calendar id.", () => {});
+    it.skip("cannot work when invalid story id.", () => {});
   });
 
   describe(toStr({ removeStoryAction }), () => {
     it.skip("can work.", () => {});
+    it.skip("cannot work when invalid calendar id.", () => {});
   });
 
   describe(toStr({ resetAction }), () => {
@@ -144,10 +148,15 @@ describe(toStr({ reducer }), () => {
 
   describe(toStr({ updateEventAction }), () => {
     it.skip("can work.", () => {});
+    it.skip("cannot work when invalid calendar id.", () => {});
+    it.skip("cannot work when invalid story id.", () => {});
+    it.skip("cannot work when invalid event id.", () => {});
   });
 
   describe(toStr({ updateStoryAction }), () => {
     it.skip("can work.", () => {});
+    it.skip("cannot work when invalid calendar id.", () => {});
+    it.skip("cannot work when invalid story id.", () => {});
   });
 
   describe(toStr({ pushResourceAction }), () => {
@@ -376,7 +385,11 @@ describe(toStr({ reducer }), () => {
   });
 
   describe(toStr({ updateEventByIdAction }), () => {
+    // TODO: Fix to be testable. Don't pass params in arguments, but created data.
     it.skip("can work.", () => {});
+    it.skip("cannot work when invalid calendar Id.", () => {});
+    it.skip("cannot work when invalid story Id.", () => {});
+    it.skip("cannot work when invalid event Id.", () => {});
   });
 
   describe(toStr({ updateResourcesAction }), () => {
@@ -478,7 +491,10 @@ describe(toStr({ reducer }), () => {
   });
 
   describe(toStr({ updateStoryByIdAction }), () => {
+    // TODO: Fix to be testable. Don't pass params in arguments, but created model.
     it.skip("can work.", () => {});
+    it.skip("cannot work when invalid calendar id.", () => {});
+    it.skip("cannot work when invalid story id.", () => {});
   });
 });
 
