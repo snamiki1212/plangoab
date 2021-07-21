@@ -3,9 +3,9 @@ import {
   createPublicCollegeCalendar,
 } from "./createCalendar";
 
-describe("func: createPrivateCollegeCalendar", () => {
-  test("sucess", () => {
-    const actual = createPrivateCollegeCalendar(
+describe(createPrivateCollegeCalendar.name, () => {
+  test("can work.", () => {
+    const calendar = createPrivateCollegeCalendar(
       {
         birth: new Date(),
         canWorkingholiday: false,
@@ -20,13 +20,13 @@ describe("func: createPrivateCollegeCalendar", () => {
     );
 
     // TODO: write more detail test
-    expect(actual.stories).toHaveLength(33);
+    expect(calendar.stories).toHaveLength(33);
   });
 });
 
-describe("func: createPublicCollegeCalendar", () => {
-  test("sucess", () => {
-    const actual = createPublicCollegeCalendar(
+describe(createPublicCollegeCalendar.name, () => {
+  test("can work.", () => {
+    const calendar = createPublicCollegeCalendar(
       {
         birth: new Date(),
         canWorkingholiday: false,
@@ -41,6 +41,6 @@ describe("func: createPublicCollegeCalendar", () => {
     );
 
     // TODO: write more detail test
-    expect(actual.stories).toHaveLength(33);
+    expect(calendar.stories).toHaveLength(33);
   });
 });
