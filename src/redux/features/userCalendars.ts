@@ -241,22 +241,21 @@ const userCalendarsSlice = createSlice({
     addEvent(state, action: PayloadAction<AddEventPayload>) {
       const { calendarId, storyId, event } = action.payload;
 
+      // get
       const idSet = { calendarId, storyId };
       const { calendarIdx, storyIdx } = deriveEachIdx(current(state.calendars))(
         idSet
       );
 
+      // validate
       if (calendarIdx == undefined) {
-        console.warn("cannot find calendar on addEvent", calendarId);
-        return;
+        return console.warn("cannot find calendar on addEvent", calendarId);
       }
-
       if (storyIdx == undefined) {
-        console.warn("cannot find story on addEvent", storyId);
-        return;
+        return console.warn("cannot find story on addEvent", storyId);
       }
 
-      // addd
+      // add
       state.calendars[calendarIdx].stories[storyIdx].events.push(event);
     },
     removeEvent(state, action: PayloadAction<RemoveEventPayload>) {
