@@ -5,7 +5,7 @@ import { BaseStory, updateStory } from "@/core/story/BaseStory";
 import { BaseEvent, updateEvent } from "@/core/event/BaseEvent";
 import { BaseResource } from "@/core/resource/BaseResource";
 import { memoize } from "lodash";
-import { createSelector } from "@reduxjs/toolkit";
+import { createSelector, current } from "@reduxjs/toolkit";
 
 type Calendar = BaseCalendar;
 type RemoveCalendarPayload = { calendarId: string };
@@ -241,22 +241,17 @@ const userCalendarsSlice = createSlice({
     addEvent(state, action: PayloadAction<AddEventPayload>) {
       const { calendarId, storyId, event } = action.payload;
 
-      // calendar
-      const calendarIdx = state.calendars.findIndex(
-        (calendar) => calendar.id === calendarId
+      const idSet = { calendarId, storyId };
+      const { calendarIdx, storyIdx } = deriveEachIdx(current(state.calendars))(
+        idSet
       );
-      const cannotFindCalendar = calendarIdx === -1;
-      if (cannotFindCalendar) {
+
+      if (calendarIdx == undefined) {
         console.warn("cannot find calendar on addEvent", calendarId);
         return;
       }
 
-      // story
-      const storyIdx = state.calendars[calendarIdx].stories.findIndex(
-        (story) => story.id === storyId
-      );
-      const cannotFindStory = storyIdx === -1;
-      if (cannotFindStory) {
+      if (storyIdx == undefined) {
         console.warn("cannot find story on addEvent", storyId);
         return;
       }
@@ -450,3 +445,47 @@ export const selectEventByIdFilter = createSelector(
 
 export const selectUserCalendar = (state: RootState) =>
   state.features.userCalendars.calendars[0]; // NOTE: now calendars have only 1 calendar.
+
+const deriveEachIdx = (calendars: BaseCalendar[]) =>
+  memoize(
+    ({
+      calendarId,
+      storyId,
+      eventId,
+    }: {
+      calendarId: string;
+      storyId: string;
+      eventId?: string;
+    }) => {
+      let calendarIdx: number, storyIdx: number, eventIdx: number;
+
+      // calendar
+      calendarIdx = (() => {
+        const idx = calendars.findIndex((item) => item.id === calendarId);
+        const canFind = idx !== -1;
+        return canFind ? idx : undefined;
+      })();
+      if (calendarIdx == undefined) return { calendarIdx, storyIdx, eventIdx };
+
+      // story
+      storyIdx = (() => {
+        const idx = calendars[calendarIdx].stories.findIndex(
+          (item) => item.id === storyId
+        );
+        const canFind = idx !== -1;
+        return canFind ? idx : undefined;
+      })();
+      if (storyIdx == undefined) return { calendarIdx, storyIdx, eventIdx };
+
+      // event
+      eventIdx = (() => {
+        const idx = calendars[calendarIdx].stories[storyIdx].events.findIndex(
+          (item) => item.id === eventId
+        );
+        const canFind = eventIdx !== -1;
+        return canFind ? idx : undefined;
+      })();
+
+      return { calendarIdx, storyIdx, eventIdx };
+    }
+  );
