@@ -99,7 +99,18 @@ describe(toStr({ reducer }), () => {
   });
 
   describe(toStr({ updateCalendarsAction }), () => {
-    it.skip("can work.", () => {});
+    it("can work.", () => {
+      const dummyCalendar1 = createDummyCalendar({ id: "id1" });
+      const dummyCalendar2 = createDummyCalendar({ id: "id2" });
+      const befState = { calendars: [dummyCalendar1] };
+      const aftState = {
+        calendars: [dummyCalendar2, dummyCalendar1, dummyCalendar2],
+      };
+      const props = [dummyCalendar2, dummyCalendar1, dummyCalendar2];
+      expect(
+        reducer(befState, updateCalendarsAction({ calendars: props }))
+      ).toEqual(aftState);
+    });
   });
 
   describe(toStr({ updateEventByIdAction }), () => {
