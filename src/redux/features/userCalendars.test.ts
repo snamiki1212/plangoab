@@ -339,6 +339,25 @@ describe(toStr({ reducer }), () => {
         befState
       );
     });
+
+    it("cannot work because not resource id.", () => {
+      const invalidResourceId = "invalid resource id";
+      const targetStoryId = 0;
+
+      // payload
+      const calendar = dummyCalendar;
+      const story = dummyStories[targetStoryId];
+      const payload = {
+        calendarId: calendar.id,
+        resourceId: invalidResourceId,
+        storyId: story.id,
+      };
+
+      const befState = { calendars: [dummyCalendar] };
+      expect(reducer(befState, removeResourceAction(payload))).toEqual(
+        befState
+      );
+    });
   });
 
   describe(toStr({ updateCalendarsAction }), () => {
