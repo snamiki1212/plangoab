@@ -118,7 +118,7 @@ Read [ARCHITECTURE.md](./doc/ARCHITECTURE.md) more details.
   </tr>
   <tr>
     <td>Test</td>
-    <td>Cypress, Jest</td>
+    <td>Cypress, React Testing Library, Jest</td>
   </tr>
   <tr>
     <td>Hosting</td>

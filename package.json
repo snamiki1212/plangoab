@@ -69,6 +69,7 @@
   },
   "devDependencies": {
     "@testing-library/cypress": "^7.0.6",
+    "@testing-library/react-hooks": "^7.0.1",
     "@types/date-fns": "^2.6.0",
     "@types/jest": "^26.0.23",
     "@types/node": "^15.0.2",
