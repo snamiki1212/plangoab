@@ -412,9 +412,15 @@ export const selectStoryByIdFilter = createSelector(
   (calendars) =>
     memoize((calendarId: String, storyId: String) => {
       const calendar = calendars.find((item) => item.id === calendarId);
-      if (!calendar) return logCalendar(calendarId);
+      if (!calendar) {
+        logCalendar(calendarId);
+        return undefined;
+      }
       const story = calendar.stories.find((item) => item.id === storyId);
-      if (!story) return logStory(storyId);
+      if (!story) {
+        logStory(storyId);
+        return undefined;
+      }
       return story;
     })
 );
@@ -424,11 +430,20 @@ export const selectEventByIdFilter = createSelector(
   (calendars) =>
     memoize((calendarId: String, storyId: String, eventId: String) => {
       const calendar = calendars.find((item) => item.id === calendarId);
-      if (!calendar) return logCalendar(calendarId);
+      if (!calendar) {
+        logCalendar(calendarId);
+        return undefined;
+      }
       const story = calendar.stories.find((item) => item.id === storyId);
-      if (!story) return logStory(storyId);
+      if (!story) {
+        logStory(storyId);
+        return undefined;
+      }
       const event = story.events.find((item) => item.id === eventId);
-      if (!event) return logEvent(eventId);
+      if (!event) {
+        logEvent(eventId);
+        return undefined;
+      }
       return event;
     })
 );
