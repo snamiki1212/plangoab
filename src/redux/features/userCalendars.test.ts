@@ -73,25 +73,29 @@ describe(toStr({ reducer }), () => {
   });
 
   describe(toStr({ pushResourceAction }), () => {
+    // Dummy
+    const dummyResources = Array.from({ length: 3 }).map((_, idx) =>
+      createDummyResource({ id: idx })
+    );
+    const dummyStories = Array.from({ length: 3 }).map((_, idx) => {
+      const story = createDummyStory({ id: idx });
+      story.resources = dummyResources;
+      return story;
+    });
+    const dummyCalendar = (() => {
+      const calendar = createDummyCalendar({ id: "id1" });
+      calendar.stories = dummyStories;
+      return calendar;
+    })();
+    const newResource = createDummyResource({ id: "pushed" });
+
+    const consoleSpy = jest.spyOn(console, "warn").mockImplementation();
+    beforeEach(() => {
+      consoleSpy.mockClear();
+    });
+
     it("can work.", () => {
-      const dummyResources = Array.from({ length: 3 }).map((_, idx) =>
-        createDummyResource({ id: idx })
-      );
-      const dummyStories = Array.from({ length: 3 }).map((_, idx) => {
-        const story = createDummyStory({ id: idx });
-        story.resources = dummyResources;
-        return story;
-      });
-      const dummyCalendar = (() => {
-        const calendar = createDummyCalendar({ id: "id1" });
-        calendar.stories = dummyStories;
-        return calendar;
-      })();
-
       const targetStoryIdx = 1;
-
-      // new resource
-      const newResource = createDummyResource({ id: "pushed" });
       const aftCalendar = (() => {
         const calendar = deepClone(dummyCalendar);
         calendar.stories[targetStoryIdx].resources = [
@@ -113,6 +117,47 @@ describe(toStr({ reducer }), () => {
       const befState = { calendars: [dummyCalendar] };
       const aftState = { calendars: [aftCalendar] };
       expect(reducer(befState, pushResourceAction(payload))).toEqual(aftState);
+    });
+
+    it("cannot work when invalid calendarId using.", () => {
+      const targetStoryIdx = 1;
+      const invalidCalendarId = "invalid calendar id";
+
+      // payload
+      const story = dummyStories[targetStoryIdx];
+      const payload = {
+        calendarId: invalidCalendarId,
+        storyId: story.id,
+        resource: newResource,
+      };
+
+      const befState = { calendars: [dummyCalendar] };
+      expect(reducer(befState, pushResourceAction(payload))).toEqual(befState);
+      expect(console.warn).toBeCalledTimes(1);
+      expect(console.warn).toHaveBeenLastCalledWith(
+        `Cannot find calendar on pushResource`,
+        invalidCalendarId
+      );
+    });
+
+    it("cannot work when invalid storyId using.", () => {
+      const invalidStoryId = "invalid story id";
+
+      // payload
+      const calendar = dummyCalendar;
+      const payload = {
+        calendarId: calendar.id,
+        storyId: invalidStoryId,
+        resource: newResource,
+      };
+
+      const befState = { calendars: [dummyCalendar] };
+      expect(reducer(befState, pushResourceAction(payload))).toEqual(befState);
+      expect(console.warn).toBeCalledTimes(1);
+      expect(console.warn).toHaveBeenLastCalledWith(
+        `Cannot find story on pushResource`,
+        invalidStoryId
+      );
     });
   });
 

@@ -88,7 +88,7 @@ const userCalendarsSlice = createSlice({
       );
       const cannotFind = calendarIdx === -1;
       if (cannotFind) {
-        console.warn("cannot find calendar on updateResource", calendarId);
+        console.warn("Cannot find calendar on pushResource", calendarId);
         return;
       }
 
@@ -98,7 +98,7 @@ const userCalendarsSlice = createSlice({
       );
       const cannotFindStory = storyIdx === -1;
       if (cannotFindStory) {
-        console.warn("cannot find story on updateResource", calendarId);
+        console.warn("Cannot find story on pushResource", storyId);
         return;
       }
 
