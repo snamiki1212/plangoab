@@ -100,27 +100,22 @@ const userCalendarsSlice = createSlice({
     updateResources(state, action: PayloadAction<UpdateResourcesPayload>) {
       const { calendarId, storyId, newResources } = action.payload;
 
-      // calendar
-      const calendarIdx = state.calendars.findIndex(
-        (calendar) => calendar.id === calendarId
+      const { calendarIdx, storyIdx } = deriveEachIdx(current(state.calendars))(
+        { calendarId, storyId }
       );
-      const cannotFind = calendarIdx === -1;
-      if (cannotFind) {
-        console.warn("cannot find calendar on updateResource", calendarId);
-        return;
+
+      // validate
+      if (calendarIdx == undefined) {
+        return console.warn(
+          "cannot find calendar on updateResource",
+          calendarId
+        );
+      }
+      if (storyIdx == undefined) {
+        return console.warn("cannot find story on updateResource", storyId);
       }
 
-      // story
-      const storyIdx = state.calendars[calendarIdx].stories.findIndex(
-        (story) => story.id === storyId
-      );
-      const cannotFindStory = storyIdx === -1;
-      if (cannotFindStory) {
-        console.warn("cannot find story on updateResource", storyId);
-        return;
-      }
-
-      // query
+      // mutate
       state.calendars[calendarIdx].stories[storyIdx].resources = newResources;
     },
     removeResource(state, action: PayloadAction<RemoveResourcePayload>) {
