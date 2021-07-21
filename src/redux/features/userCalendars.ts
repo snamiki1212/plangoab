@@ -435,9 +435,10 @@ export const selectUserCalendar = (state: RootState) =>
   state.features.userCalendars.calendars[0]; // NOTE: now calendars have only 1 calendar.
 
 const findIdxOrUndefined = function <T extends { id?: string }>(
-  list: T[],
+  list: T[] | undefined,
   id: any
 ) {
+  if (list == undefined) return undefined;
   if (id == undefined) return undefined;
   const idx = list.findIndex((item) => item?.id === id);
   const canFind = idx !== -1;
@@ -457,33 +458,19 @@ const deriveEachIdx = (calendars: BaseCalendar[]) =>
       eventId?: string;
       resourceId?: string;
     }) => {
-      let calendarIdx: number,
-        storyIdx: number,
-        eventIdx: number,
-        resourceIdx: number;
-
-      // calendar
-      calendarIdx = findIdxOrUndefined(calendars, calendarId);
-      if (calendarIdx == undefined)
-        return { calendarIdx, storyIdx, eventIdx, resourceIdx };
-
-      // story
-      storyIdx = findIdxOrUndefined(calendars[calendarIdx].stories, storyId);
-      if (storyIdx == undefined)
-        return { calendarIdx, storyIdx, eventIdx, resourceIdx };
-
-      // resource
-      resourceIdx = findIdxOrUndefined(
-        calendars[calendarIdx].stories[storyIdx].resources,
+      const calendarIdx = findIdxOrUndefined(calendars, calendarId);
+      const storyIdx = findIdxOrUndefined(
+        calendars[calendarIdx]?.stories,
+        storyId
+      );
+      const resourceIdx = findIdxOrUndefined(
+        calendars[calendarIdx]?.stories[storyIdx]?.resources,
         resourceId
       );
-
-      // event
-      eventIdx = findIdxOrUndefined(
-        calendars[calendarIdx].stories[storyIdx].events,
+      const eventIdx = findIdxOrUndefined(
+        calendars[calendarIdx]?.stories[storyIdx]?.events,
         eventId
       );
-
       return { calendarIdx, storyIdx, eventIdx, resourceIdx };
     }
   );
