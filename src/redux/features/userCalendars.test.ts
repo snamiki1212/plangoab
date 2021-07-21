@@ -25,9 +25,11 @@ import { RootState } from "../rootReducer";
 import {
   createDummyCalendar,
   createDummyEvent,
+  createDummyResource,
   createDummyStory,
 } from "@/testHelpers/factories/core";
 
+const deepClone = (obj: Object) => JSON.parse(JSON.stringify(obj));
 const createRootState = (partialState: any) =>
   ({ features: { userCalendars: { calendars: partialState } } } as RootState);
 
@@ -71,7 +73,47 @@ describe(toStr({ reducer }), () => {
   });
 
   describe(toStr({ pushResourceAction }), () => {
-    it.skip("can work.", () => {});
+    it("can work.", () => {
+      const dummyResources = Array.from({ length: 3 }).map((_, idx) =>
+        createDummyResource({ id: idx })
+      );
+      const dummyStories = Array.from({ length: 3 }).map((_, idx) => {
+        const story = createDummyStory({ id: idx });
+        story.resources = dummyResources;
+        return story;
+      });
+      const dummyCalendar = (() => {
+        const calendar = createDummyCalendar({ id: "id1" });
+        calendar.stories = dummyStories;
+        return calendar;
+      })();
+
+      const targetStoryIdx = 1;
+
+      // new resource
+      const newResource = createDummyResource({ id: "pushed" });
+      const aftCalendar = (() => {
+        const calendar = deepClone(dummyCalendar);
+        calendar.stories[targetStoryIdx].resources = [
+          ...calendar.stories[targetStoryIdx].resources,
+          newResource,
+        ];
+        return calendar;
+      })();
+
+      // payload
+      const calendar = dummyCalendar;
+      const story = dummyStories[targetStoryIdx];
+      const payload = {
+        calendarId: calendar.id,
+        storyId: story.id,
+        resource: newResource,
+      };
+
+      const befState = { calendars: [dummyCalendar] };
+      const aftState = { calendars: [aftCalendar] };
+      expect(reducer(befState, pushResourceAction(payload))).toEqual(aftState);
+    });
   });
 
   describe(toStr({ removeCalendarAction }), () => {
