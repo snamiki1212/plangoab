@@ -250,30 +250,23 @@ const userCalendarsSlice = createSlice({
     removeEvent(state, action: PayloadAction<RemoveEventPayload>) {
       const { calendarId, storyId, eventId } = action.payload;
 
-      // calendar
-      const calendarIdx = state.calendars.findIndex(
-        (calendar) => calendar.id === calendarId
-      );
-      const cannotFindCalendar = calendarIdx === -1;
-      if (cannotFindCalendar) {
-        console.warn("cannot find calendar on removeEvent", calendarId);
-        return;
-      }
+      const { calendarIdx, storyIdx, eventIdx } = deriveEachIdx(
+        current(state.calendars)
+      )({ calendarId, storyId, eventId });
 
-      // story
-      const storyIdx = state.calendars[calendarIdx].stories.findIndex(
-        (story) => story.id === storyId
-      );
-      const cannotFindStory = storyIdx === -1;
-      if (cannotFindStory) {
-        console.warn("cannot find story on removeEvent", storyId);
-        return;
+      // validation
+      if (calendarIdx == undefined) {
+        return console.warn("cannot find calendar on removeEvent", calendarId);
+      }
+      if (storyIdx == undefined) {
+        return console.warn("cannot find story on removeEvent", storyId);
+      }
+      if (eventIdx == undefined) {
+        return; // TODO: console.warn ??
       }
 
       // remove
-      state.calendars[calendarIdx].stories[storyIdx].events = state.calendars[
-        calendarIdx
-      ].stories[storyIdx].events.filter((_event) => _event.id !== eventId);
+      state.calendars[calendarIdx].stories[storyIdx].events.splice(eventIdx, 1);
     },
     updateEvent(state, action: PayloadAction<UpdateEventPayload>) {
       const { calendarId, storyId, eventId, newEvent } = action.payload;
