@@ -7,7 +7,7 @@ import { createPrivateCollegeCalendar } from "@/core/calendar/TemplateCalendar/c
 import {
   upsertPrivateCollegeCalendarAction,
   selectPrivateCollegeCalendar,
-} from "@/redux/features/templateCalendarTable";
+} from "@/redux/features/templateCalendar";
 
 export const usePrivateCollegeCalendar = () => {
   const dispatch = useDispatch();

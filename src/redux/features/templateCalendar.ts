@@ -22,8 +22,8 @@ const initialState = {
   [PUBLIC_COLLEGE_CALENDAR_ID]: undefined as PublicCollegeCalendar,
 };
 
-const templateCalendarTable = createSlice({
-  name: "templateCalendarTable",
+const templateCalendar = createSlice({
+  name: "templateCalendar",
   initialState,
   reducers: {
     reset: () => initialState,
@@ -44,13 +44,13 @@ const templateCalendarTable = createSlice({
   },
 });
 
-export default templateCalendarTable.reducer;
+export default templateCalendar.reducer;
 
 export const {
   reset: resetAction,
   upsertPrivateCollegeCalendar: upsertPrivateCollegeCalendarAction,
   upsertPublicCollegeCalendar: upsertPublicCollegeCalendarAction,
-} = templateCalendarTable.actions;
+} = templateCalendar.actions;
 
 export const selectPrivateCollegeCalendar = (state: RootState) =>
   state.features.templateCalendar[PRIVATE_COLLEGE_CALENDAR_ID];

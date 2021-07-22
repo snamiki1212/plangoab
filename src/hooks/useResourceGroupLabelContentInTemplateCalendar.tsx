@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import {
   selectPrivateCollegeCalendar,
   selectPublicCollegeCalendar,
-} from "@/redux/features/templateCalendarTable";
+} from "@/redux/features/templateCalendar";
 import { selectUserCalendar } from "@/redux/features/userCalendars";
 import { updateStory } from "@/core/story/BaseStory";
 import styled from "styled-components";

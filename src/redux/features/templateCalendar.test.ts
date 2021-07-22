@@ -5,7 +5,7 @@ import reducer, {
   upsertPrivateCollegeCalendarAction,
   selectPrivateCollegeCalendar,
   selectPublicCollegeCalendar,
-} from "./templateCalendarTable";
+} from "./templateCalendar";
 import {
   PRIVATE_COLLEGE_CALENDAR_ID,
   PUBLIC_COLLEGE_CALENDAR_ID,

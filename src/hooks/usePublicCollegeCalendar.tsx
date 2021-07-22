@@ -7,7 +7,7 @@ import { createPublicCollegeCalendar } from "@/core/calendar/TemplateCalendar/cr
 import {
   upsertPublicCollegeCalendarAction,
   selectPublicCollegeCalendar,
-} from "@/redux/features/templateCalendarTable";
+} from "@/redux/features/templateCalendar";
 
 export const usePublicCollegeCalendar = () => {
   const dispatch = useDispatch();

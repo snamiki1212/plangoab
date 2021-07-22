@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { resetAction as resetUserCalendarsAction } from "@/redux/features/userCalendars";
 import { resetAction as resetUserAction } from "@/redux/features/user";
 import { resetAction as resetTemplateOptionAction } from "@/redux/features/templateOption";
-import { resetAction as resetTemplateCalendarAction } from "@/redux/features/templateCalendarTable";
+import { resetAction as resetTemplateCalendarAction } from "@/redux/features/templateCalendar";
 import { resetAction as resetStepAction } from "@/redux/ui/step";
 
 export function useResetAllData() {
