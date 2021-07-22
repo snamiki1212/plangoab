@@ -53,11 +53,12 @@ type UpdateEventPayload = {
   eventId: string;
   newEvent: BaseEvent;
 };
+
 type UpdateEventByIdPayload = {
   calendarId: string;
   storyId: string;
   eventId: string;
-  params: Partial<BaseEvent>;
+  newEvent: BaseEvent;
 };
 
 const initialState = {
@@ -281,46 +282,6 @@ const userCalendarsSlice = createSlice({
       state.calendars[calendarIdx].stories[storyIdx].events[eventIdx] =
         newEvent;
     },
-    updateEventById(state, action: PayloadAction<UpdateEventByIdPayload>) {
-      const { calendarId, storyId, eventId, params } = action.payload;
-
-      // calendar
-      const calendarIdx = state.calendars.findIndex(
-        (calendar) => calendar.id === calendarId
-      );
-      const cannotFindCalendar = calendarIdx === -1;
-      if (cannotFindCalendar) {
-        console.warn("cannot find calendar on updateStory", calendarId);
-        return;
-      }
-
-      // story
-      const storyIdx = state.calendars[calendarIdx].stories.findIndex(
-        (story) => story.id === storyId
-      );
-      const cannotFindStory = storyIdx === -1;
-      if (cannotFindStory) {
-        console.warn("cannot find story on updateStory", calendarId);
-        return;
-      }
-
-      // event
-      const eventIdx = state.calendars[calendarIdx].stories[
-        storyIdx
-      ].events.findIndex((event) => event.id === eventId);
-      const cannotFindEvent = eventIdx === -1;
-      if (cannotFindEvent) {
-        console.warn("cannot find event on updateEvent");
-        return;
-      }
-
-      // prcess
-      const oldEvent =
-        state.calendars[calendarIdx].stories[storyIdx].events[eventIdx];
-      const newEvent = updateEvent(oldEvent, params);
-      state.calendars[calendarIdx].stories[storyIdx].events[eventIdx] =
-        newEvent;
-    },
   },
 });
 
@@ -346,7 +307,6 @@ export const {
   addEvent: addEventAction,
   removeEvent: removeEventAction,
   updateEvent: updateEventAction,
-  updateEventById: updateEventByIdAction,
 } = userCalendarsSlice.actions;
 
 export default userCalendarsSlice.reducer;

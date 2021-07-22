@@ -1,9 +1,9 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   removeEventAction,
   updateEventAction,
-  updateEventByIdAction,
+  selectEventByIdFilter,
 } from "@/redux/features/userCalendars";
 import { BaseEvent, updateEvent } from "@/core/event/BaseEvent";
 
@@ -34,11 +34,16 @@ export const useEvent = () => {
     [dispatch]
   );
 
+  const filterEvent = useSelector(selectEventByIdFilter);
+
   const updateById = React.useCallback(
     (idSet: IdSet, params: Partial<BaseEvent>) => {
-      dispatch(updateEventByIdAction({ ...idSet, params }));
+      const { calendarId, storyId, eventId } = idSet;
+      const oldEvent = filterEvent(calendarId, storyId, eventId);
+      const newEvent = updateEvent(oldEvent, params);
+      dispatch(updateEventAction({ ...idSet, newEvent }));
     },
-    [dispatch]
+    [dispatch, filterEvent]
   );
 
   return {
