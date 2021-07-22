@@ -1,10 +1,10 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   removeStoryAction,
   updateStoryAction,
-  updateStoryByIdAction,
   addStoryAction,
+  selectStoryByIdFilter,
 } from "@/redux/features/userCalendars";
 import { BaseStory, updateStory } from "@/core/story/BaseStory";
 import { initStory } from "@/core/story/BaseStory";
@@ -37,11 +37,16 @@ export const useStory = () => {
     [dispatch]
   );
 
+  const filterStory = useSelector(selectStoryByIdFilter);
+
   const updateById = React.useCallback(
     (idSet: IdSet, params: Partial<BaseStory>) => {
-      dispatch(updateStoryByIdAction({ ...idSet, params }));
+      const { calendarId, storyId } = idSet;
+      const oldStory = filterStory(calendarId, storyId);
+      const newStory = updateStory(oldStory, params);
+      dispatch(updateStoryAction({ ...idSet, newStory }));
     },
-    [dispatch]
+    [dispatch, filterStory]
   );
 
   const create = React.useCallback(

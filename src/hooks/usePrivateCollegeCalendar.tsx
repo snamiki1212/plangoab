@@ -3,10 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { BaseEvent } from "@/core/event/BaseEvent";
 import { BaseResource } from "@/core/resource/BaseResource";
 import { TemplateOption } from "@/core/calendar/BaseCalendar";
+import { createPrivateCollegeCalendar } from "@/core/calendar/TemplateCalendar/createCalendar";
 import {
-  upsertPrivateCollegeStoriesAction,
+  upsertPrivateCollegeCalendarAction,
   selectPrivateCollegeCalendar,
-} from "../redux/features/templateCalendarTable";
+} from "@/redux/features/templateCalendar";
 
 export const usePrivateCollegeCalendar = () => {
   const dispatch = useDispatch();
@@ -20,9 +21,14 @@ export const usePrivateCollegeCalendar = () => {
       canWorkingholiday: boolean;
       options: TemplateOption;
     }) => {
-      dispatch(
-        upsertPrivateCollegeStoriesAction({ birth, canWorkingholiday, options })
+      const calendar = createPrivateCollegeCalendar(
+        {
+          birth: new Date(birth),
+          canWorkingholiday,
+        },
+        options
       );
+      dispatch(upsertPrivateCollegeCalendarAction({ calendar }));
     },
     [dispatch]
   );

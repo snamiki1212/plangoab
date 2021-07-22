@@ -14,9 +14,7 @@ import reducer, {
   updateEventAction,
   updateStoryAction,
   updateCalendarsAction,
-  updateEventByIdAction,
   updateResourcesAction,
-  updateStoryByIdAction,
   pushResourceAction,
   removeCalendarAction,
   removeResourceAction,
@@ -334,14 +332,6 @@ describe(toStr({ reducer }), () => {
         );
       });
     });
-
-    describe(toStr({ updateEventByIdAction }), () => {
-      // TODO: Fix to be testable. Don't pass params in arguments, but created data.
-      it.skip("can work.", () => {});
-      it.skip("cannot work when invalid calendar Id.", () => {});
-      it.skip("cannot work when invalid story Id.", () => {});
-      it.skip("cannot work when invalid event Id.", () => {});
-    });
   });
 
   describe("Story of", () => {
@@ -463,13 +453,6 @@ describe(toStr({ reducer }), () => {
           invalidCalendarId
         );
       });
-    });
-
-    describe(toStr({ updateStoryByIdAction }), () => {
-      // TODO: Fix to be testable. Don't pass params in arguments, but created model.
-      it.skip("can work.", () => {});
-      it.skip("cannot work when invalid calendar id.", () => {});
-      it.skip("cannot work when invalid story id.", () => {});
     });
 
     describe(toStr({ updateStoryAction }), () => {

@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { updateBirthdayAction, selectUser } from "@/redux/features/user";
+import { updateBirthdayAction, selectUserWithAge } from "@/redux/features/user";
 
 export const useUser = () => {
   const dispatch = useDispatch();
@@ -10,7 +10,7 @@ export const useUser = () => {
     [dispatch]
   );
 
-  const { birthday, age } = useSelector(selectUser);
+  const { birthday, age } = useSelector(selectUserWithAge);
 
   return {
     birth: birthday,
