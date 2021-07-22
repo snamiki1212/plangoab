@@ -9,11 +9,11 @@ import {
   PublicCollegeCalendar,
 } from "@/core/calendar/TemplateCalendar/model";
 
-type UpsertPrivateCollegeStoriesPayload = {
+type UpsertPrivateCollegeCalendarPayload = {
   calendar: PrivateCollegeCalendar;
 };
 
-type UpsertPublicCollegeStoriesPayload = {
+type UpsertPublicCollegeCalendarPayload = {
   calendar: PublicCollegeCalendar;
 };
 
@@ -27,16 +27,16 @@ const templateCalendarTable = createSlice({
   initialState,
   reducers: {
     reset: () => initialState,
-    upsertPrivateCollegeStories(
+    upsertPrivateCollegeCalendar(
       state,
-      action: PayloadAction<UpsertPrivateCollegeStoriesPayload>
+      action: PayloadAction<UpsertPrivateCollegeCalendarPayload>
     ) {
       const { calendar } = action.payload;
       state[PRIVATE_COLLEGE_CALENDAR_ID] = calendar;
     },
-    upsertPublicCollegeStories(
+    upsertPublicCollegeCalendar(
       state,
-      action: PayloadAction<UpsertPublicCollegeStoriesPayload>
+      action: PayloadAction<UpsertPublicCollegeCalendarPayload>
     ) {
       const { calendar } = action.payload;
       state[PUBLIC_COLLEGE_CALENDAR_ID] = calendar;
@@ -48,8 +48,8 @@ export default templateCalendarTable.reducer;
 
 export const {
   reset: resetAction,
-  upsertPrivateCollegeStories: upsertPrivateCollegeStoriesAction,
-  upsertPublicCollegeStories: upsertPublicCollegeStoriesAction,
+  upsertPrivateCollegeCalendar: upsertPrivateCollegeCalendarAction,
+  upsertPublicCollegeCalendar: upsertPublicCollegeCalendarAction,
 } = templateCalendarTable.actions;
 
 export const selectPrivateCollegeCalendar = (state: RootState) =>

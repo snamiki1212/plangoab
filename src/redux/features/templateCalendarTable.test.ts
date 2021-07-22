@@ -1,8 +1,8 @@
 import { toStr } from "@/testHelpers/index";
 import reducer, {
-  upsertPublicCollegeStoriesAction,
   resetAction,
-  upsertPrivateCollegeStoriesAction,
+  upsertPublicCollegeCalendarAction,
+  upsertPrivateCollegeCalendarAction,
   selectPrivateCollegeCalendar,
   selectPublicCollegeCalendar,
 } from "./templateCalendarTable";
@@ -41,13 +41,13 @@ describe(toStr({ reducer }), () => {
     expect(reducer(befState, resetAction)).toEqual(initialState);
   });
 
-  describe(toStr({ upsertPublicCollegeStoriesAction }), () => {
+  describe(toStr({ upsertPublicCollegeCalendarAction }), () => {
     it.skip("can work.", () => {
       // TODO: Fix to become testable
     });
   });
 
-  describe(toStr({ upsertPrivateCollegeStoriesAction }), () => {
+  describe(toStr({ upsertPrivateCollegeCalendarAction }), () => {
     it.skip("can work.", () => {
       // TODO: Fix to become testable
     });

@@ -5,7 +5,7 @@ import { BaseResource } from "@/core/resource/BaseResource";
 import { TemplateOption } from "@/core/calendar/BaseCalendar";
 import { createPublicCollegeCalendar } from "@/core/calendar/TemplateCalendar/createCalendar";
 import {
-  upsertPublicCollegeStoriesAction,
+  upsertPublicCollegeCalendarAction,
   selectPublicCollegeCalendar,
 } from "@/redux/features/templateCalendarTable";
 
@@ -28,7 +28,7 @@ export const usePublicCollegeCalendar = () => {
         },
         options
       );
-      dispatch(upsertPublicCollegeStoriesAction({ calendar }));
+      dispatch(upsertPublicCollegeCalendarAction({ calendar }));
     },
     [dispatch]
   );
