@@ -7,37 +7,62 @@ import reducer, {
 import { addYears } from "date-fns";
 import { RootState } from "../rootReducer";
 
-const PERSONA_AGE = 25;
-const personaBirth = addYears(new Date(), -PERSONA_AGE).toISOString();
+// const PERSONA_AGE = 25;
+// const getBirthday = (today: Date) =>
+//   addYears(today, -PERSONA_AGE).toISOString();
 
 describe(toStr({ reducer }), () => {
-  const initialState = {
-    birthday: personaBirth,
-    age: PERSONA_AGE,
-  };
+  // const mockToday = new Date(2005, 1, 1);
+  // let dateNowSpy;
+  // beforeAll(() => {
+  //   // jest.useFakeTimers("modern");
+  //   // jest.setSystemTime(new Date(2005, 1, 1));
+  //   dateNowSpy = jest
+  //     .spyOn(Date, "now")
+  //     .mockImplementation(() => Date.parse(mockToday.toISOString()));
+  // });
+  // afterAll(() => {
+  //   // jest.useRealTimers();
+  //   jest.clearAllMocks();
+  // });
+
   it.skip("can init.", () => {
-    // TODO: fix to be testable
-    expect(reducer(undefined, {} as any)).toEqual(initialState);
+    // const today = mockToday;
+    // const initialState = {
+    //   birthday: getBirthday(today),
+    // };
+    // console.log({ initialState, today });
+    // expect(reducer(undefined, {} as any)).toEqual(initialState);
   });
   describe(toStr({ updateBirthdayAction }), () => {
-    it.skip("can work.", () => {
-      // TODO: fix to be testable
+    it("can work.", () => {
+      const today = new Date(2999, 1, 1);
+
+      const birthday = new Date();
+      const befState = { birthday: today.toISOString() };
+      const aftState = { birthday: birthday.toISOString() };
+      expect(
+        reducer(
+          befState,
+          updateBirthdayAction({ birthday: birthday.toISOString() })
+        )
+      ).toEqual(aftState);
     });
   });
   describe(toStr({ resetAction }), () => {
     it.skip("can work.", () => {
       // TODO: fix to be testable
-      const befState = { birthday: personaBirth, age: 99 };
-      const aftState = { birthday: personaBirth, age: PERSONA_AGE };
-      expect(reducer(befState, resetAction())).toEqual(aftState);
+      // const befState = { birthday: personaBirth, age: 99 };
+      // const aftState = { birthday: personaBirth, age: PERSONA_AGE };
+      // expect(reducer(befState, resetAction())).toEqual(aftState);
     });
   });
 });
 
-const createRootState = (partialState: any) =>
-  ({ features: { user: partialState } } as RootState);
-
 describe(toStr({ selectUserWithAge }), () => {
+  const createRootState = (partialState: any) =>
+    ({ features: { user: partialState } } as RootState);
+
   beforeAll(() => {
     jest.useFakeTimers("modern");
     jest.setSystemTime(new Date(2005, 1, 1));
