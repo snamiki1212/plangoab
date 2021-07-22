@@ -1,5 +1,9 @@
 import { toStr } from "@/testHelpers/index";
-import reducer, { selectUser, updateBirthdayAction, resetAction } from "./user";
+import reducer, {
+  selectUserWithAge,
+  updateBirthdayAction,
+  resetAction,
+} from "./user";
 import { addYears } from "date-fns";
 import { RootState } from "../rootReducer";
 
@@ -33,10 +37,18 @@ describe(toStr({ reducer }), () => {
 const createRootState = (partialState: any) =>
   ({ features: { user: partialState } } as RootState);
 
-describe(toStr({ selectUser }), () => {
+describe(toStr({ selectUserWithAge }), () => {
+  beforeAll(() => {
+    jest.useFakeTimers("modern");
+    jest.setSystemTime(new Date(2005, 1, 1));
+  });
+  afterAll(() => {
+    jest.useRealTimers();
+  });
+
   it("can select.", () => {
-    const dummyUser = { birthday: "2021-01-01", age: 10 };
+    const dummyUser = { birthday: "2000-01-01", age: 5 };
     const rootState = createRootState(dummyUser);
-    expect(selectUser(rootState)).toEqual(dummyUser);
+    expect(selectUserWithAge(rootState)).toEqual(dummyUser);
   });
 });
