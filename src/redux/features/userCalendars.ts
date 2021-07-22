@@ -161,17 +161,18 @@ const userCalendarsSlice = createSlice({
     },
     removeStory(state, action: PayloadAction<RemoveStoryPayload>) {
       const { calendarId, storyId } = action.payload;
-      const idx = state.calendars.findIndex(
-        (calendar) => calendar.id === calendarId
+      const { calendarIdx, storyIdx } = deriveEachIdx(current(state.calendars))(
+        { calendarId, storyId }
       );
-      const cannotFind = idx === -1;
-      if (cannotFind) {
-        console.warn("cannot find calendar on removeStory", calendarId);
-        return;
+      if (calendarIdx == undefined) {
+        return console.warn("cannot find calendar on removeStory", calendarId);
       }
-      state.calendars[idx].stories = state.calendars[idx].stories.filter(
-        (story) => story.id !== storyId
-      );
+      if (storyIdx == undefined) {
+        return; // TODO: console.warn?
+      }
+
+      // mutate
+      state.calendars[calendarIdx].stories.splice(storyIdx, 1);
     },
     updateStory(state, action: PayloadAction<UpdateStoryPayload>) {
       const { calendarId, storyId, newStory } = action.payload;
