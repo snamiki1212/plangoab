@@ -3,10 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { BaseEvent } from "@/core/event/BaseEvent";
 import { BaseResource } from "@/core/resource/BaseResource";
 import { TemplateOption } from "@/core/calendar/BaseCalendar";
-import {
-  createPrivateCollegeCalendar,
-  createPublicCollegeCalendar,
-} from "@/core/calendar/TemplateCalendar/createCalendar";
+import { createPrivateCollegeCalendar } from "@/core/calendar/TemplateCalendar/createCalendar";
 import {
   upsertPrivateCollegeStoriesAction,
   selectPrivateCollegeCalendar,

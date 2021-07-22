@@ -1,14 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "@/redux/rootReducer";
 import {
-  createPrivateCollegeCalendar,
-  createPublicCollegeCalendar,
-} from "@/core/calendar/TemplateCalendar/createCalendar";
-import {
   PRIVATE_COLLEGE_CALENDAR_ID,
   PUBLIC_COLLEGE_CALENDAR_ID,
 } from "@/core/calendar/TemplateCalendar/model";
-import { TemplateOption } from "@/core/calendar/BaseCalendar";
 import {
   PrivateCollegeCalendar,
   PublicCollegeCalendar,
@@ -19,17 +14,14 @@ type UpsertPrivateCollegeStoriesPayload = {
 };
 
 type UpsertPublicCollegeStoriesPayload = {
-  birth: string;
-  canWorkingholiday: boolean;
-  options: TemplateOption;
+  calendar: PublicCollegeCalendar;
 };
 
 const initialState = {
-  [PRIVATE_COLLEGE_CALENDAR_ID]: undefined as
-    | PrivateCollegeCalendar
-    | undefined,
-  [PUBLIC_COLLEGE_CALENDAR_ID]: undefined as PublicCollegeCalendar | undefined,
+  [PRIVATE_COLLEGE_CALENDAR_ID]: undefined as PrivateCollegeCalendar,
+  [PUBLIC_COLLEGE_CALENDAR_ID]: undefined as PublicCollegeCalendar,
 };
+
 const templateCalendarTable = createSlice({
   name: "templateCalendarTable",
   initialState,
@@ -46,16 +38,8 @@ const templateCalendarTable = createSlice({
       state,
       action: PayloadAction<UpsertPublicCollegeStoriesPayload>
     ) {
-      const { birth, canWorkingholiday, options } = action.payload;
-
-      const _calendar = createPublicCollegeCalendar(
-        {
-          birth: new Date(birth), // TODO: don't new here
-          canWorkingholiday,
-        },
-        options
-      );
-      state[PUBLIC_COLLEGE_CALENDAR_ID] = _calendar;
+      const { calendar } = action.payload;
+      state[PUBLIC_COLLEGE_CALENDAR_ID] = calendar;
     },
   },
 });

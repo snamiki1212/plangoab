@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { BaseEvent } from "@/core/event/BaseEvent";
 import { BaseResource } from "@/core/resource/BaseResource";
 import { TemplateOption } from "@/core/calendar/BaseCalendar";
+import { createPublicCollegeCalendar } from "@/core/calendar/TemplateCalendar/createCalendar";
 import {
   upsertPublicCollegeStoriesAction,
   selectPublicCollegeCalendar,
@@ -11,12 +12,23 @@ import {
 export const usePublicCollegeCalendar = () => {
   const dispatch = useDispatch();
   const generate = React.useCallback(
-    (args: {
+    ({
+      birth,
+      canWorkingholiday,
+      options,
+    }: {
       birth: string;
       canWorkingholiday: boolean;
       options: TemplateOption;
     }) => {
-      dispatch(upsertPublicCollegeStoriesAction(args));
+      const calendar = createPublicCollegeCalendar(
+        {
+          birth: new Date(birth),
+          canWorkingholiday,
+        },
+        options
+      );
+      dispatch(upsertPublicCollegeStoriesAction({ calendar }));
     },
     [dispatch]
   );
