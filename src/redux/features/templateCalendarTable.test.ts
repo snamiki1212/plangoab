@@ -1,3 +1,4 @@
+import { toStr } from "@/testHelpers/index";
 import reducer, {
   upsertPublicCollegeStoriesAction,
   resetAction,
@@ -9,11 +10,11 @@ import {
   PRIVATE_COLLEGE_CALENDAR_ID,
   PUBLIC_COLLEGE_CALENDAR_ID,
 } from "@/core/calendar/TemplateCalendar/model";
-import {
-  PrivateCollegeCalendar,
-  PublicCollegeCalendar,
-} from "@/core/calendar/TemplateCalendar/model";
 import { RootState } from "../rootReducer";
+import {
+  createDummyPrivateCollegeCalendar,
+  createDummyPublicCollegeCalendar,
+} from "@/testHelpers/factories/core";
 
 const initialState = {
   [PRIVATE_COLLEGE_CALENDAR_ID]: undefined,
@@ -25,17 +26,12 @@ const createRootState = (partialState: any) =>
     features: { templateCalendar: partialState },
   } as RootState);
 
-const createDummyPrivateCollegeCalendar = () =>
-  "dummy private college calendar" as any as PrivateCollegeCalendar;
-const createDummyPublicCollegeCalendar = () =>
-  "dummy public college calendar  " as any as PublicCollegeCalendar;
-
-describe(reducer.name, () => {
+describe(toStr({ reducer }), () => {
   it("can init.", () => {
     expect(reducer(undefined, {} as any)).toEqual(initialState);
   });
 
-  describe(resetAction.name, () => {
+  describe(toStr({ resetAction }), () => {
     const dummyPrivateCollegeCalendar = createDummyPrivateCollegeCalendar();
     const dummyPublicCollegeCalendar = createDummyPublicCollegeCalendar();
     const befState = {
@@ -45,13 +41,13 @@ describe(reducer.name, () => {
     expect(reducer(befState, resetAction)).toEqual(initialState);
   });
 
-  describe(upsertPublicCollegeStoriesAction.name, () => {
+  describe(toStr({ upsertPublicCollegeStoriesAction }), () => {
     it.skip("can work.", () => {
       // TODO: Fix to become testable
     });
   });
 
-  describe(upsertPrivateCollegeStoriesAction.name, () => {
+  describe(toStr({ upsertPrivateCollegeStoriesAction }), () => {
     it.skip("can work.", () => {
       // TODO: Fix to become testable
     });
@@ -66,7 +62,7 @@ describe("Selector of", () => {
     [PUBLIC_COLLEGE_CALENDAR_ID]: dummyPublicCollegeCalendar,
   });
 
-  describe(selectPrivateCollegeCalendar.name, () => {
+  describe(toStr({ selectPrivateCollegeCalendar }), () => {
     it("can select.", () => {
       expect(selectPrivateCollegeCalendar(rootState)).toEqual(
         dummyPrivateCollegeCalendar
@@ -74,7 +70,7 @@ describe("Selector of", () => {
     });
   });
 
-  describe(selectPublicCollegeCalendar.name, () => {
+  describe(toStr({ selectPublicCollegeCalendar }), () => {
     it("can select.", () => {
       expect(selectPublicCollegeCalendar(rootState)).toEqual(
         dummyPublicCollegeCalendar
