@@ -346,8 +346,62 @@ describe(toStr({ reducer }), () => {
 
   describe("Story of", () => {
     describe(toStr({ addStoryAction }), () => {
-      it.skip("can work.", () => {});
-      it.skip("cannot work when invalid calendar id.", () => {});
+      // Dummy
+      const dummyEvents = Array.from({ length: 3 }).map((_, idx) =>
+        createDummyEvent({ id: idx })
+      );
+      const dummyStories = Array.from({ length: 3 }).map((_, idx) => {
+        const story = createDummyStory({ id: idx });
+        story.events = dummyEvents;
+        return story;
+      });
+      const dummyCalendar = (() => {
+        const calendar = createDummyCalendar({ id: "id1" });
+        calendar.stories = dummyStories;
+        return calendar;
+      })();
+
+      const consoleSpy = jest.spyOn(console, "warn").mockImplementation();
+      beforeEach(() => {
+        consoleSpy.mockClear();
+      });
+      it("can work.", () => {
+        const newStory = createDummyStory({ id: "created" });
+        const aftCalendar = (() => {
+          const calendar = deepClone(dummyCalendar);
+          calendar.stories.push(newStory);
+          return calendar;
+        })();
+
+        // payload
+        const calendar = dummyCalendar;
+        const payload = {
+          calendarId: calendar.id,
+          story: newStory,
+        };
+
+        const befState = { calendars: [dummyCalendar] };
+        const aftState = { calendars: [aftCalendar] };
+        expect(reducer(befState, addStoryAction(payload))).toEqual(aftState);
+      });
+      it("cannot work when invalid calendar id.", () => {
+        const invalidCalendarId = "invalid calendar id";
+        const newStory = createDummyStory({ id: "created" });
+
+        // payload
+        const payload = {
+          calendarId: invalidCalendarId,
+          story: newStory,
+        };
+
+        const befState = { calendars: [dummyCalendar] };
+        expect(reducer(befState, addStoryAction(payload))).toEqual(befState);
+        expect(console.warn).toBeCalledTimes(1);
+        expect(console.warn).toHaveBeenLastCalledWith(
+          "cannot find calendar on addStory",
+          invalidCalendarId
+        );
+      });
     });
 
     describe(toStr({ removeStoryAction }), () => {
