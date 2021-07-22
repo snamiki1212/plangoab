@@ -1,11 +1,11 @@
 import { toStr } from "@/testHelpers/index";
 import reducer, {
-  upsertPublicCollegeStoriesAction,
   resetAction,
-  upsertPrivateCollegeStoriesAction,
+  upsertPublicCollegeCalendarAction,
+  upsertPrivateCollegeCalendarAction,
   selectPrivateCollegeCalendar,
   selectPublicCollegeCalendar,
-} from "./templateCalendarTable";
+} from "./templateCalendar";
 import {
   PRIVATE_COLLEGE_CALENDAR_ID,
   PUBLIC_COLLEGE_CALENDAR_ID,
@@ -41,15 +41,39 @@ describe(toStr({ reducer }), () => {
     expect(reducer(befState, resetAction)).toEqual(initialState);
   });
 
-  describe(toStr({ upsertPublicCollegeStoriesAction }), () => {
-    it.skip("can work.", () => {
-      // TODO: Fix to become testable
+  describe(toStr({ upsertPrivateCollegeCalendarAction }), () => {
+    it("can work.", () => {
+      const dummyPrivateCollegeCalendar = createDummyPrivateCollegeCalendar();
+      const aftState = {
+        [PRIVATE_COLLEGE_CALENDAR_ID]: dummyPrivateCollegeCalendar,
+        [PUBLIC_COLLEGE_CALENDAR_ID]: undefined,
+      };
+      expect(
+        reducer(
+          undefined,
+          upsertPrivateCollegeCalendarAction({
+            calendar: dummyPrivateCollegeCalendar,
+          })
+        )
+      ).toEqual(aftState);
     });
   });
 
-  describe(toStr({ upsertPrivateCollegeStoriesAction }), () => {
-    it.skip("can work.", () => {
-      // TODO: Fix to become testable
+  describe(toStr({ upsertPublicCollegeCalendarAction }), () => {
+    it("can work.", () => {
+      const dummyPublicCollegeCalendar = createDummyPublicCollegeCalendar();
+      const aftState = {
+        [PRIVATE_COLLEGE_CALENDAR_ID]: undefined,
+        [PUBLIC_COLLEGE_CALENDAR_ID]: dummyPublicCollegeCalendar,
+      };
+      expect(
+        reducer(
+          undefined,
+          upsertPublicCollegeCalendarAction({
+            calendar: dummyPublicCollegeCalendar,
+          })
+        )
+      ).toEqual(aftState);
     });
   });
 });
