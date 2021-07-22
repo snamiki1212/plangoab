@@ -82,130 +82,110 @@ const userCalendarsSlice = createSlice({
     pushResource(state, action: PayloadAction<PushRsourceAction>) {
       const { calendarId, storyId, resource } = action.payload;
 
-      // calendar
-      const calendarIdx = state.calendars.findIndex(
-        (calendar) => calendar.id === calendarId
+      const { calendarIdx, storyIdx } = deriveEachIdx(current(state.calendars))(
+        { calendarId, storyId }
       );
-      const cannotFind = calendarIdx === -1;
-      if (cannotFind) {
-        console.warn("Cannot find calendar on pushResource", calendarId);
-        return;
+
+      // validate
+      if (calendarIdx == undefined) {
+        return console.warn("Cannot find calendar on pushResource", calendarId);
+      }
+      if (storyIdx == undefined) {
+        return console.warn("Cannot find story on pushResource", storyId);
       }
 
-      // story
-      const storyIdx = state.calendars[calendarIdx].stories.findIndex(
-        (story) => story.id === storyId
-      );
-      const cannotFindStory = storyIdx === -1;
-      if (cannotFindStory) {
-        console.warn("Cannot find story on pushResource", storyId);
-        return;
-      }
-
-      // process
+      // mutate
       state.calendars[calendarIdx].stories[storyIdx].resources.push(resource);
     },
     updateResources(state, action: PayloadAction<UpdateResourcesPayload>) {
       const { calendarId, storyId, newResources } = action.payload;
 
-      // calendar
-      const calendarIdx = state.calendars.findIndex(
-        (calendar) => calendar.id === calendarId
+      const { calendarIdx, storyIdx } = deriveEachIdx(current(state.calendars))(
+        { calendarId, storyId }
       );
-      const cannotFind = calendarIdx === -1;
-      if (cannotFind) {
-        console.warn("cannot find calendar on updateResource", calendarId);
-        return;
+
+      // validate
+      if (calendarIdx == undefined) {
+        return console.warn(
+          "cannot find calendar on updateResource",
+          calendarId
+        );
+      }
+      if (storyIdx == undefined) {
+        return console.warn("cannot find story on updateResource", storyId);
       }
 
-      // story
-      const storyIdx = state.calendars[calendarIdx].stories.findIndex(
-        (story) => story.id === storyId
-      );
-      const cannotFindStory = storyIdx === -1;
-      if (cannotFindStory) {
-        console.warn("cannot find story on updateResource", calendarId);
-        return;
-      }
-
-      // query
+      // mutate
       state.calendars[calendarIdx].stories[storyIdx].resources = newResources;
     },
     removeResource(state, action: PayloadAction<RemoveResourcePayload>) {
       const { calendarId, resourceId, storyId } = action.payload;
 
-      // calendar
-      const calendarIdx = state.calendars.findIndex(
-        (calendar) => calendar.id === calendarId
-      );
-      const cannotFind = calendarIdx === -1;
-      if (cannotFind) {
-        console.warn("cannot find calendar on removeResource", calendarId);
-        return;
-      }
+      const { calendarIdx, storyIdx, resourceIdx } = deriveEachIdx(
+        current(state.calendars)
+      )({
+        calendarId,
+        storyId,
+        resourceId,
+      });
 
-      // story
-      const storyIdx = state.calendars[calendarIdx].stories.findIndex(
-        (story) => story.id === storyId
-      );
-      const cannotFindStory = storyIdx === -1;
-      if (cannotFindStory) {
-        console.warn("cannot find story on removeResource", calendarId);
-        return;
-      }
-
-      // query
-      state.calendars[calendarIdx].stories[storyIdx].resources =
-        state.calendars[calendarIdx].stories[storyIdx].resources.filter(
-          (resource) => resource.id !== resourceId
+      // validation
+      if (calendarIdx == undefined) {
+        return console.warn(
+          "cannot find calendar on removeResource",
+          calendarId
         );
+      }
+      if (storyIdx == undefined) {
+        return console.warn("cannot find story on removeResource", calendarId);
+      }
+      if (resourceIdx == undefined) {
+        return; // TODO: console.warn?
+      }
+
+      // mutate to remove
+      state.calendars[calendarIdx].stories[storyIdx].resources.splice(
+        resourceIdx,
+        1
+      );
     },
     addStory(state, action: PayloadAction<AddStoryPayload>) {
       const { calendarId, story } = action.payload;
-      const idx = state.calendars.findIndex(
-        (calendar) => calendar.id === calendarId
-      );
-      const cannotFind = idx === -1;
-      if (cannotFind) {
-        console.warn("cannot find calendar on addStory", calendarId);
-        return;
+      const { calendarIdx } = deriveEachIdx(current(state.calendars))({
+        calendarId,
+      });
+      if (calendarIdx == undefined) {
+        return console.warn("cannot find calendar on addStory", calendarId);
       }
-      state.calendars[idx].stories.push(story);
+      state.calendars[calendarIdx].stories.push(story);
     },
     removeStory(state, action: PayloadAction<RemoveStoryPayload>) {
       const { calendarId, storyId } = action.payload;
-      const idx = state.calendars.findIndex(
-        (calendar) => calendar.id === calendarId
+      const { calendarIdx, storyIdx } = deriveEachIdx(current(state.calendars))(
+        { calendarId, storyId }
       );
-      const cannotFind = idx === -1;
-      if (cannotFind) {
-        console.warn("cannot find calendar on removeStory", calendarId);
-        return;
+      if (calendarIdx == undefined) {
+        return console.warn("cannot find calendar on removeStory", calendarId);
       }
-      state.calendars[idx].stories = state.calendars[idx].stories.filter(
-        (story) => story.id !== storyId
-      );
+      if (storyIdx == undefined) {
+        return; // TODO: console.warn?
+      }
+
+      // mutate
+      state.calendars[calendarIdx].stories.splice(storyIdx, 1);
     },
     updateStory(state, action: PayloadAction<UpdateStoryPayload>) {
       const { calendarId, storyId, newStory } = action.payload;
-      // calendar
-      const calendarIdx = state.calendars.findIndex(
-        (calendar) => calendar.id === calendarId
+      const { calendarIdx, storyIdx } = deriveEachIdx(current(state.calendars))(
+        { calendarId, storyId }
       );
-      const cannotFindCalendar = calendarIdx === -1;
-      if (cannotFindCalendar) {
-        console.warn("cannot find calendar on updateStory", calendarId);
-        return;
-      }
 
-      // story
-      const storyIdx = state.calendars[calendarIdx].stories.findIndex(
-        (story) => story.id === storyId
-      );
-      const cannotFindStory = storyIdx === -1;
-      if (cannotFindStory) {
-        console.warn("cannot find story on updateStory", calendarId);
-        return;
+      // validation
+      if (calendarIdx == undefined) {
+        return console.warn("cannot find calendar on updateStory", calendarId);
+      }
+      if (storyIdx == undefined) {
+        return console.warn("cannot find story on updateStory", storyId);
       }
 
       // prcess
@@ -261,62 +241,40 @@ const userCalendarsSlice = createSlice({
     removeEvent(state, action: PayloadAction<RemoveEventPayload>) {
       const { calendarId, storyId, eventId } = action.payload;
 
-      // calendar
-      const calendarIdx = state.calendars.findIndex(
-        (calendar) => calendar.id === calendarId
-      );
-      const cannotFindCalendar = calendarIdx === -1;
-      if (cannotFindCalendar) {
-        console.warn("cannot find calendar on removeEvent", calendarId);
-        return;
-      }
+      const { calendarIdx, storyIdx, eventIdx } = deriveEachIdx(
+        current(state.calendars)
+      )({ calendarId, storyId, eventId });
 
-      // story
-      const storyIdx = state.calendars[calendarIdx].stories.findIndex(
-        (story) => story.id === storyId
-      );
-      const cannotFindStory = storyIdx === -1;
-      if (cannotFindStory) {
-        console.warn("cannot find story on removeEvent", storyIdx);
-        return;
+      // validation
+      if (calendarIdx == undefined) {
+        return console.warn("cannot find calendar on removeEvent", calendarId);
+      }
+      if (storyIdx == undefined) {
+        return console.warn("cannot find story on removeEvent", storyId);
+      }
+      if (eventIdx == undefined) {
+        return; // TODO: console.warn ??
       }
 
       // remove
-      state.calendars[calendarIdx].stories[storyIdx].events = state.calendars[
-        calendarIdx
-      ].stories[storyIdx].events.filter((_event) => _event.id !== eventId);
+      state.calendars[calendarIdx].stories[storyIdx].events.splice(eventIdx, 1);
     },
     updateEvent(state, action: PayloadAction<UpdateEventPayload>) {
       const { calendarId, storyId, eventId, newEvent } = action.payload;
 
-      // calendar
-      const calendarIdx = state.calendars.findIndex(
-        (calendar) => calendar.id === calendarId
-      );
-      const cannotFindCalendar = calendarIdx === -1;
-      if (cannotFindCalendar) {
-        console.warn("cannot find calendar on updateStory", calendarId);
-        return;
-      }
+      const { calendarIdx, storyIdx, eventIdx } = deriveEachIdx(
+        current(state.calendars)
+      )({ calendarId, storyId, eventId });
 
-      // story
-      const storyIdx = state.calendars[calendarIdx].stories.findIndex(
-        (story) => story.id === storyId
-      );
-      const cannotFindStory = storyIdx === -1;
-      if (cannotFindStory) {
-        console.warn("cannot find story on updateStory", calendarId);
-        return;
+      // validation
+      if (calendarIdx == undefined) {
+        return console.warn("cannot find calendar on updateEvent", calendarId);
       }
-
-      // event
-      const eventIdx = state.calendars[calendarIdx].stories[
-        storyIdx
-      ].events.findIndex((event) => event.id === eventId);
-      const cannotFindEvent = eventIdx === -1;
-      if (cannotFindEvent) {
-        console.warn("cannot find event on updateEvent");
-        return;
+      if (storyIdx == undefined) {
+        return console.warn("cannot find story on updateEvent", storyId);
+      }
+      if (eventIdx == undefined) {
+        return console.warn("cannot find event on updateEvent", eventId);
       }
 
       // prcess
@@ -446,9 +404,10 @@ export const selectUserCalendar = (state: RootState) =>
   state.features.userCalendars.calendars[0]; // NOTE: now calendars have only 1 calendar.
 
 const findIdxOrUndefined = function <T extends { id?: string }>(
-  list: T[],
+  list: T[] | undefined,
   id: any
 ) {
+  if (list == undefined) return undefined;
   if (id == undefined) return undefined;
   const idx = list.findIndex((item) => item?.id === id);
   const canFind = idx !== -1;
@@ -461,27 +420,26 @@ const deriveEachIdx = (calendars: BaseCalendar[]) =>
       calendarId,
       storyId,
       eventId,
+      resourceId,
     }: {
       calendarId: string;
-      storyId: string;
+      storyId?: string;
       eventId?: string;
+      resourceId?: string;
     }) => {
-      let calendarIdx: number, storyIdx: number, eventIdx: number;
-
-      // calendar
-      calendarIdx = findIdxOrUndefined(calendars, calendarId);
-      if (calendarIdx == undefined) return { calendarIdx, storyIdx, eventIdx };
-
-      // story
-      storyIdx = findIdxOrUndefined(calendars[calendarIdx].stories, storyId);
-      if (storyIdx == undefined) return { calendarIdx, storyIdx, eventIdx };
-
-      // event
-      eventIdx = findIdxOrUndefined(
-        calendars[calendarIdx].stories[storyIdx].events,
+      const calendarIdx = findIdxOrUndefined(calendars, calendarId);
+      const storyIdx = findIdxOrUndefined(
+        calendars[calendarIdx]?.stories,
+        storyId
+      );
+      const resourceIdx = findIdxOrUndefined(
+        calendars[calendarIdx]?.stories[storyIdx]?.resources,
+        resourceId
+      );
+      const eventIdx = findIdxOrUndefined(
+        calendars[calendarIdx]?.stories[storyIdx]?.events,
         eventId
       );
-
-      return { calendarIdx, storyIdx, eventIdx };
+      return { calendarIdx, storyIdx, eventIdx, resourceIdx };
     }
   );
