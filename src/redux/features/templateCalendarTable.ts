@@ -15,9 +15,7 @@ import {
 } from "@/core/calendar/TemplateCalendar/model";
 
 type UpsertPrivateCollegeStoriesPayload = {
-  birth: string;
-  canWorkingholiday: boolean;
-  options: TemplateOption;
+  calendar: PrivateCollegeCalendar;
 };
 
 type UpsertPublicCollegeStoriesPayload = {
@@ -41,16 +39,8 @@ const templateCalendarTable = createSlice({
       state,
       action: PayloadAction<UpsertPrivateCollegeStoriesPayload>
     ) {
-      const { birth, canWorkingholiday, options } = action.payload;
-
-      const _calendar = createPrivateCollegeCalendar(
-        {
-          birth: new Date(birth), // TODO: don't new here
-          canWorkingholiday,
-        },
-        options
-      );
-      state[PRIVATE_COLLEGE_CALENDAR_ID] = _calendar;
+      const { calendar } = action.payload;
+      state[PRIVATE_COLLEGE_CALENDAR_ID] = calendar;
     },
     upsertPublicCollegeStories(
       state,

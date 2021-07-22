@@ -4,9 +4,13 @@ import { BaseEvent } from "@/core/event/BaseEvent";
 import { BaseResource } from "@/core/resource/BaseResource";
 import { TemplateOption } from "@/core/calendar/BaseCalendar";
 import {
+  createPrivateCollegeCalendar,
+  createPublicCollegeCalendar,
+} from "@/core/calendar/TemplateCalendar/createCalendar";
+import {
   upsertPrivateCollegeStoriesAction,
   selectPrivateCollegeCalendar,
-} from "../redux/features/templateCalendarTable";
+} from "@/redux/features/templateCalendarTable";
 
 export const usePrivateCollegeCalendar = () => {
   const dispatch = useDispatch();
@@ -20,9 +24,14 @@ export const usePrivateCollegeCalendar = () => {
       canWorkingholiday: boolean;
       options: TemplateOption;
     }) => {
-      dispatch(
-        upsertPrivateCollegeStoriesAction({ birth, canWorkingholiday, options })
+      const calendar = createPrivateCollegeCalendar(
+        {
+          birth: new Date(birth),
+          canWorkingholiday,
+        },
+        options
       );
+      dispatch(upsertPrivateCollegeStoriesAction({ calendar }));
     },
     [dispatch]
   );
