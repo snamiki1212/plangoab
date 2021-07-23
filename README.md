@@ -1,9 +1,15 @@
 <p align="center">
   <a href="https://plangoab.snamiki1212.com">
-	  <img alt="Plangoab is an immigration scheduler application for going abroad." src="https://user-images.githubusercontent.com/26793088/114226819-f7332d80-9928-11eb-93f8-4f9919018bf6.png">
+    <img alt="Plangoab is an immigration scheduler application for going abroad." src="https://user-images.githubusercontent.com/26793088/114226819-f7332d80-9928-11eb-93f8-4f9919018bf6.png">
   </a>
-  <a href="https://github.com/snamiki1212/plangoab/blob/main/LICENSE.md">
-    <img src="https://img.shields.io/badge/License-GPLv3-blue.svg" alt="License:GPLv3" align="center">
+</p>
+
+<p align="center">
+  <a align="center" href="https://github.com/snamiki1212/plangoab/blob/main/LICENSE.md">
+    <img src="https://img.shields.io/badge/License-GPLv3-blue.svg" alt="License:GPLv3" />
+  </a>
+  <a align="center" href="https://codecov.io/gh/snamiki1212/plangoab">
+    <img src="https://codecov.io/gh/snamiki1212/plangoab/branch/main/graph/badge.svg?token=PALDGS8QHD"/>
   </a>
 </p>
 
@@ -121,8 +127,12 @@ Read [ARCHITECTURE.md](./doc/ARCHITECTURE.md) more details.
     <td>Cypress, React Testing Library, Jest</td>
   </tr>
   <tr>
+    <td>Code Coverage</td>
+    <td><a href="https://codecov.io/gh/snamiki1212/plangoab">Codecov</a></td>
+  </tr>
+  <tr>
     <td>Hosting</td>
-    <td>GitHub Pages + Netlify</td>
+    <td><a href="https://plangoab.snamiki1212.com">GitHub Pages + Netlify</a></td>
   </tr>
 </table>
 
