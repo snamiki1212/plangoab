@@ -65,3 +65,15 @@ Plangoab is using local storage with `redux-persist`.
 
 That's why we have to pay attention when to change a shape of redux data.
 Now that `redux-persist` has `version` config so we care it when to upgrade a shape.
+
+## Hosting
+
+Hosting = Netlify + Github Pages
+
+- Name Server is `Netlify`
+- Web Server is `GitHub Pages`
+
+Config Files
+
+- `/public/_redirects`: File which Netlify will read in order to force config to redirect http to https.
+- `/public/CNAME`: File that which GitHub Pages will read in order to configure a custom domain.
