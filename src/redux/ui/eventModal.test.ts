@@ -10,9 +10,9 @@ import { RootState } from "../rootReducer";
 import { createDummyEventModal } from "@/testHelpers/factories/redux";
 import {
   createDummyCalendar,
-  createDummyEvent,
   createDummyStory,
 } from "@/testHelpers/factories/core";
+import { eventFactory } from "@/testHelpers/factories/core/event";
 
 type DummyEventModal = ReturnType<typeof createDummyEventModal>;
 type DummyCalendar = ReturnType<typeof createDummyCalendar>;
@@ -83,9 +83,7 @@ describe(toStr({ selectEventModal }), () => {
 
 describe(toStr({ selectEvent }), () => {
   // Dummy data
-  const dummyEvents = Array.from({ length: 3 }).map((_, idx) =>
-    createDummyEvent({ id: idx })
-  );
+  const dummyEvents = Array.from({ length: 3 }).map(() => eventFactory.build());
   const dummyStories = Array.from({ length: 3 }).map((_, idx) => {
     let story = createDummyStory({ id: idx });
     story.events = dummyEvents;
