@@ -672,9 +672,7 @@ describe(toStr({ reducer }), () => {
       });
 
       it("can work.", () => {
-        const updatedResources = Array.from({ length: 3 }).map(() =>
-          resourceFactory.build()
-        );
+        const updatedResources = resourceFactory.buildList(3);
         const targetStoryIdx = 0;
         const aftCalendar = (() => {
           const calendar = deepClone(dummyCalendar);
@@ -698,9 +696,7 @@ describe(toStr({ reducer }), () => {
         );
       });
       it("cannot work when to invalid calendarId.", () => {
-        const updatedResources = Array.from({ length: 3 }).map(() =>
-          resourceFactory.build()
-        );
+        const updatedResources = resourceFactory.buildList(3);
         const targetStoryIdx = 1;
         const invalidCalendarId = "invalid calendar id";
 
@@ -723,9 +719,7 @@ describe(toStr({ reducer }), () => {
         );
       });
       it("cannot work when to invalid storyId.", () => {
-        const updatedResources = Array.from({ length: 3 }).map(() =>
-          resourceFactory.build()
-        );
+        const updatedResources = resourceFactory.buildList(3);
         const invalidStoryId = "invalid story id";
 
         // payload
