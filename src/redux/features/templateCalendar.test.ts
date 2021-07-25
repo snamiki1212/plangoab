@@ -12,9 +12,9 @@ import {
 } from "@/core/calendar/TemplateCalendar/model";
 import { RootState } from "../rootReducer";
 import {
-  createDummyPrivateCollegeCalendar,
-  createDummyPublicCollegeCalendar,
-} from "@/testHelpers/factories/core";
+  privateCollegeCalendarFactory,
+  publicCollegeCalendarFactory,
+} from "@/testHelpers/factories/core/calendar";
 
 const initialState = {
   [PRIVATE_COLLEGE_CALENDAR_ID]: undefined,
@@ -32,27 +32,27 @@ describe(toStr({ reducer }), () => {
   });
 
   describe(toStr({ resetAction }), () => {
-    const dummyPrivateCollegeCalendar = createDummyPrivateCollegeCalendar();
-    const dummyPublicCollegeCalendar = createDummyPublicCollegeCalendar();
+    const privateCollegeCalendar = privateCollegeCalendarFactory.build();
+    const publicCollegeCalendar = publicCollegeCalendarFactory.build();
     const befState = {
-      [PRIVATE_COLLEGE_CALENDAR_ID]: dummyPrivateCollegeCalendar,
-      [PUBLIC_COLLEGE_CALENDAR_ID]: dummyPublicCollegeCalendar,
+      [PRIVATE_COLLEGE_CALENDAR_ID]: privateCollegeCalendar,
+      [PUBLIC_COLLEGE_CALENDAR_ID]: publicCollegeCalendar,
     };
     expect(reducer(befState, resetAction)).toEqual(initialState);
   });
 
   describe(toStr({ upsertPrivateCollegeCalendarAction }), () => {
     it("can work.", () => {
-      const dummyPrivateCollegeCalendar = createDummyPrivateCollegeCalendar();
+      const privateCollegeCalendar = privateCollegeCalendarFactory.build();
       const aftState = {
-        [PRIVATE_COLLEGE_CALENDAR_ID]: dummyPrivateCollegeCalendar,
+        [PRIVATE_COLLEGE_CALENDAR_ID]: privateCollegeCalendar,
         [PUBLIC_COLLEGE_CALENDAR_ID]: undefined,
       };
       expect(
         reducer(
           undefined,
           upsertPrivateCollegeCalendarAction({
-            calendar: dummyPrivateCollegeCalendar,
+            calendar: privateCollegeCalendar,
           })
         )
       ).toEqual(aftState);
@@ -61,16 +61,16 @@ describe(toStr({ reducer }), () => {
 
   describe(toStr({ upsertPublicCollegeCalendarAction }), () => {
     it("can work.", () => {
-      const dummyPublicCollegeCalendar = createDummyPublicCollegeCalendar();
+      const publicCollegeCalendar = publicCollegeCalendarFactory.build();
       const aftState = {
         [PRIVATE_COLLEGE_CALENDAR_ID]: undefined,
-        [PUBLIC_COLLEGE_CALENDAR_ID]: dummyPublicCollegeCalendar,
+        [PUBLIC_COLLEGE_CALENDAR_ID]: publicCollegeCalendar,
       };
       expect(
         reducer(
           undefined,
           upsertPublicCollegeCalendarAction({
-            calendar: dummyPublicCollegeCalendar,
+            calendar: publicCollegeCalendar,
           })
         )
       ).toEqual(aftState);
@@ -79,17 +79,17 @@ describe(toStr({ reducer }), () => {
 });
 
 describe("Selector of", () => {
-  const dummyPrivateCollegeCalendar = createDummyPrivateCollegeCalendar();
-  const dummyPublicCollegeCalendar = createDummyPublicCollegeCalendar();
+  const privateCollegeCalendar = privateCollegeCalendarFactory.build();
+  const publicCollegeCalendar = publicCollegeCalendarFactory.build();
   const rootState = createRootState({
-    [PRIVATE_COLLEGE_CALENDAR_ID]: dummyPrivateCollegeCalendar,
-    [PUBLIC_COLLEGE_CALENDAR_ID]: dummyPublicCollegeCalendar,
+    [PRIVATE_COLLEGE_CALENDAR_ID]: privateCollegeCalendar,
+    [PUBLIC_COLLEGE_CALENDAR_ID]: publicCollegeCalendar,
   });
 
   describe(toStr({ selectPrivateCollegeCalendar }), () => {
     it("can select.", () => {
       expect(selectPrivateCollegeCalendar(rootState)).toEqual(
-        dummyPrivateCollegeCalendar
+        privateCollegeCalendar
       );
     });
   });
@@ -97,7 +97,7 @@ describe("Selector of", () => {
   describe(toStr({ selectPublicCollegeCalendar }), () => {
     it("can select.", () => {
       expect(selectPublicCollegeCalendar(rootState)).toEqual(
-        dummyPublicCollegeCalendar
+        publicCollegeCalendar
       );
     });
   });

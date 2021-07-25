@@ -17,7 +17,7 @@ const initialState = {
   },
 };
 
-const dummyOption = {
+const option = {
   schoolPeriod: 999,
   coopPeriod: 999,
   pgwpPeriod: 999,
@@ -34,14 +34,14 @@ describe(toStr({ reducer }), () => {
   });
   describe(toStr({ resetAction }), () => {
     it("can work.", () => {
-      const befState = { option: dummyOption };
+      const befState = { option: option };
       expect(reducer(befState, resetAction())).toEqual(initialState);
     });
   });
   describe(toStr({ updateAction }), () => {
     it("can work.", () => {
-      const aftState = { option: dummyOption };
-      expect(reducer(undefined, updateAction(dummyOption))).toEqual(aftState);
+      const aftState = { option: option };
+      expect(reducer(undefined, updateAction(option))).toEqual(aftState);
     });
   });
 });
@@ -49,21 +49,21 @@ describe(toStr({ reducer }), () => {
 describe("Selectors of ", () => {
   describe(toStr({ selectTemplateOption }), () => {
     it("can select.", () => {
-      const rootState = createRootState(dummyOption);
-      expect(selectTemplateOption(rootState)).toEqual(dummyOption);
+      const rootState = createRootState(option);
+      expect(selectTemplateOption(rootState)).toEqual(option);
     });
   });
   describe(toStr({ selectWithWorkingholiday }), () => {
     it("can select as true.", () => {
       const rootState = createRootState({
-        ...dummyOption,
+        ...option,
         workingholidayPeriod: 1,
       });
       expect(selectWithWorkingholiday(rootState)).toEqual(true);
     });
     it("can select as false", () => {
       const rootState = createRootState({
-        ...dummyOption,
+        ...option,
         workingholidayPeriod: 0,
       });
       expect(selectWithWorkingholiday(rootState)).toEqual(false);

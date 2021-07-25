@@ -19,11 +19,10 @@ describe(getRangeNumbers.name, () => {
 });
 
 describe(calcAge.name, () => {
-  const dummyToday = "2020-12-13";
-
+  const today = "2020-12-13";
   beforeAll(() => {
     jest.useFakeTimers("modern"); // tell Jest to use a different timer implementation.
-    jest.setSystemTime(new Date(dummyToday).getTime());
+    jest.setSystemTime(new Date(today).getTime());
   });
 
   afterAll(() => {
