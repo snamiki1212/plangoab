@@ -6,12 +6,11 @@ import reducer, {
   popAction,
 } from "./storyModal";
 import { RootState } from "../rootReducer";
-import { createDummyStoryModal } from "@/testHelpers/factories/redux";
 import { toStr } from "@/testHelpers/index";
-import { storyFactory } from "@/testHelpers/factories/core/story";
 import { calendarFactory } from "@/testHelpers/factories/core/calendar";
+import { storyModalFactory } from "@/testHelpers/factories/redux/storyModal";
 
-type ModalInfo = ReturnType<typeof createDummyStoryModal>;
+type ModalInfo = ReturnType<typeof storyModalFactory.build>;
 type DummyCalendar = ReturnType<typeof calendarFactory.build>;
 
 const createRootState = ({
@@ -33,7 +32,7 @@ describe(toStr({ reducer }), () => {
 
   describe(toStr({ pushAction }), () => {
     it("can work.", () => {
-      const story = createDummyStoryModal({});
+      const story = storyModalFactory.build();
       const befState = { story: null };
       const aftState = { story };
       expect(reducer(befState, pushAction(story))).toEqual(aftState);
@@ -42,7 +41,7 @@ describe(toStr({ reducer }), () => {
 
   describe(toStr({ popAction }), () => {
     it("can work.", () => {
-      const story = createDummyStoryModal({});
+      const story = storyModalFactory.build();
       const befState = { story };
       const aftState = { story: null };
       expect(reducer(befState, popAction())).toEqual(aftState);
@@ -52,7 +51,7 @@ describe(toStr({ reducer }), () => {
 
 describe(toStr({ selectIsOpen }), () => {
   it("should be true when to open.", () => {
-    const story = createDummyStoryModal({});
+    const story = storyModalFactory.build();
     const rootState = createRootState({ storyModalInfo: story });
     expect(selectIsOpen(rootState)).toEqual(true);
   });
@@ -80,7 +79,7 @@ describe(toStr({ selectStory }), () => {
     const storyId = expected.id;
 
     // params
-    const modalInfo = createDummyStoryModal({ calendarId, storyId });
+    const modalInfo = storyModalFactory.build({ calendarId, storyId });
     const rootState = createRootState({
       storyModalInfo: modalInfo,
       calendars: [dummyCalendar],
@@ -95,7 +94,7 @@ describe(toStr({ selectStory }), () => {
     const storyId = dummyCalendar.stories[1].id;
 
     // params
-    const modalInfo = createDummyStoryModal({ calendarId, storyId });
+    const modalInfo = storyModalFactory.build({ calendarId, storyId });
     const rootState = createRootState({
       storyModalInfo: modalInfo,
       calendars: [dummyCalendar],
@@ -114,7 +113,7 @@ describe(toStr({ selectStory }), () => {
     const storyId = "Invalid story id";
 
     // params
-    const modalInfo = createDummyStoryModal({ calendarId, storyId });
+    const modalInfo = storyModalFactory.build({ calendarId, storyId });
     const rootState = createRootState({
       storyModalInfo: modalInfo,
       calendars: [dummyCalendar],
@@ -130,7 +129,7 @@ describe(toStr({ selectStory }), () => {
 
 describe(toStr({ selectStoryModal }), () => {
   it("can select.", () => {
-    const story = createDummyStoryModal({});
+    const story = storyModalFactory.build();
     const rootState = createRootState({ storyModalInfo: story });
     expect(selectStoryModal(rootState)).toEqual(story);
   });
