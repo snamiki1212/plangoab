@@ -7,10 +7,10 @@ import reducer, {
   selectIsOpen,
 } from "./eventModal";
 import { RootState } from "../rootReducer";
-import { createDummyEventModal } from "@/testHelpers/factories/redux";
+import { eventModalFactory } from "@/testHelpers/factories/redux/eventModal";
 import { calendarFactory } from "@/testHelpers/factories/core/calendar";
 
-type DummyEventModal = ReturnType<typeof createDummyEventModal>;
+type DummyEventModal = ReturnType<typeof eventModalFactory.build>;
 type DummyCalendar = ReturnType<typeof calendarFactory.build>;
 
 const createRootState = ({
@@ -33,17 +33,17 @@ describe(toStr({ reducer }), () => {
 
   describe(toStr({ pushAction }), () => {
     it("can work when not to have prev state.", () => {
-      const modalInfo = createDummyEventModal();
+      const modal = eventModalFactory.build();
       const befState = { event: null };
-      const aftState = { event: modalInfo };
-      expect(reducer(befState, pushAction(modalInfo))).toEqual(aftState);
+      const aftState = { event: modal };
+      expect(reducer(befState, pushAction(modal))).toEqual(aftState);
     });
   });
 
   describe(toStr({ popAction }), () => {
     it("can work when to have prev state.", () => {
-      const modalInfo = createDummyEventModal();
-      const befState = { event: modalInfo };
+      const modal = eventModalFactory.build();
+      const befState = { event: modal };
       const aftState = { event: null };
       expect(reducer(befState, popAction())).toEqual(aftState);
     });
@@ -57,7 +57,7 @@ describe(toStr({ selectIsOpen }), () => {
   });
 
   it("should be true when to open.", () => {
-    const modal = createDummyEventModal();
+    const modal = eventModalFactory.build();
     const rootState = createRootState({ eventModalInfo: modal });
     expect(selectIsOpen(rootState)).toBe(true);
   });
@@ -65,7 +65,7 @@ describe(toStr({ selectIsOpen }), () => {
 
 describe(toStr({ selectEventModal }), () => {
   it("should exist when to open.", () => {
-    const modal = createDummyEventModal();
+    const modal = eventModalFactory.build();
     const rootState = createRootState({ eventModalInfo: modal });
     expect(selectEventModal(rootState)).toEqual(modal);
   });

@@ -8,9 +8,3 @@ export const createDummyStoryModal = ({
   calendarId,
   storyId,
 });
-
-export const createDummyEventModal = () => ({
-  calendarId: "calendarId",
-  storyId: "storyId",
-  eventId: "eventId",
-});
