@@ -37,6 +37,7 @@ describe(toStr({ reducer }), () => {
   });
   describe(toStr({ resetAction }), () => {
     it("can work.", () => {
+      // TODO: use factory
       const befState = { calendars: ["dummy", "dummy"] as any[] };
       const aftState = initialState;
       expect(reducer(befState, resetAction())).toEqual(aftState);
@@ -45,8 +46,7 @@ describe(toStr({ reducer }), () => {
 
   describe("Event of", () => {
     describe(toStr({ addEventAction }), () => {
-      // Dummy
-      const dummyCalendar = calendarFactory.build();
+      const calendar = calendarFactory.build();
       const newEvent = eventFactory.build();
 
       // check console
@@ -58,24 +58,23 @@ describe(toStr({ reducer }), () => {
       it("can work.", () => {
         const targetStoryIdx = 1;
         const aftCalendar = (() => {
-          const calendar = deepClone(dummyCalendar);
-          calendar.stories[targetStoryIdx].events = [
-            ...calendar.stories[targetStoryIdx].events,
+          const _calendar = deepClone(calendar);
+          _calendar.stories[targetStoryIdx].events = [
+            ..._calendar.stories[targetStoryIdx].events,
             newEvent,
           ];
-          return calendar;
+          return _calendar;
         })();
 
         // payload
-        const calendar = dummyCalendar;
-        const story = dummyCalendar.stories[targetStoryIdx];
+        const story = calendar.stories[targetStoryIdx];
         const payload = {
           calendarId: calendar.id,
           storyId: story.id,
           event: newEvent,
         };
 
-        const befState = { calendars: [dummyCalendar] };
+        const befState = { calendars: [calendar] };
         const aftState = { calendars: [aftCalendar] };
         expect(reducer(befState, addEventAction(payload))).toEqual(aftState);
       });
@@ -83,14 +82,14 @@ describe(toStr({ reducer }), () => {
       it("cannot work when invalid calendarId.", () => {
         const invalidCalendarId = "Invalid calendar id";
         const targetStoryIdx = 1;
-        const story = dummyCalendar.stories[targetStoryIdx];
+        const story = calendar.stories[targetStoryIdx];
         const payload = {
           calendarId: invalidCalendarId,
           storyId: story.id,
           event: newEvent,
         };
 
-        const befState = { calendars: [dummyCalendar] };
+        const befState = { calendars: [calendar] };
         expect(reducer(befState, addEventAction(payload))).toEqual(befState);
         expect(console.warn).toBeCalledTimes(1);
         expect(console.warn).toHaveBeenLastCalledWith(
@@ -101,12 +100,12 @@ describe(toStr({ reducer }), () => {
       it("cannot work when invalid storyId.", () => {
         const invalidStoryId = "Invalid calendar id";
         const payload = {
-          calendarId: dummyCalendar.id,
+          calendarId: calendar.id,
           storyId: invalidStoryId,
           event: newEvent,
         };
 
-        const befState = { calendars: [dummyCalendar] };
+        const befState = { calendars: [calendar] };
         expect(reducer(befState, addEventAction(payload))).toEqual(befState);
         expect(console.warn).toBeCalledTimes(1);
         expect(console.warn).toHaveBeenLastCalledWith(
@@ -117,8 +116,7 @@ describe(toStr({ reducer }), () => {
     });
 
     describe(toStr({ removeEventAction }), () => {
-      // Dummy
-      const dummyCalendar = calendarFactory.build();
+      const calendar = calendarFactory.build();
 
       const consoleSpy = jest.spyOn(console, "warn").mockImplementation();
       beforeEach(() => {
@@ -128,23 +126,21 @@ describe(toStr({ reducer }), () => {
         const targetStoryIdx = 1;
         const targetEventIdx = 0;
         const aftCalendar = (() => {
-          const calendar = deepClone(dummyCalendar);
-          calendar.stories[targetStoryIdx].events.splice(targetEventIdx, 1);
-          return calendar;
+          const _calendar = deepClone(calendar);
+          _calendar.stories[targetStoryIdx].events.splice(targetEventIdx, 1);
+          return _calendar;
         })();
 
         // payload
-        const calendar = dummyCalendar;
-        const story = dummyCalendar.stories[targetStoryIdx];
-        const event =
-          dummyCalendar.stories[targetStoryIdx].events[targetEventIdx];
+        const story = calendar.stories[targetStoryIdx];
+        const event = calendar.stories[targetStoryIdx].events[targetEventIdx];
         const payload = {
           calendarId: calendar.id,
           storyId: story.id,
           eventId: event.id,
         };
 
-        const befState = { calendars: [dummyCalendar] };
+        const befState = { calendars: [calendar] };
         const aftState = { calendars: [aftCalendar] };
         expect(reducer(befState, removeEventAction(payload))).toEqual(aftState);
       });
@@ -154,16 +150,15 @@ describe(toStr({ reducer }), () => {
         const invalidCalendarId = "invalid calendar id";
 
         // payload
-        const story = dummyCalendar.stories[targetStoryIdx];
-        const event =
-          dummyCalendar.stories[targetStoryIdx].events[targetEventIdx];
+        const story = calendar.stories[targetStoryIdx];
+        const event = calendar.stories[targetStoryIdx].events[targetEventIdx];
         const payload = {
           calendarId: invalidCalendarId,
           storyId: story.id,
           eventId: event.id,
         };
 
-        const befState = { calendars: [dummyCalendar] };
+        const befState = { calendars: [calendar] };
         expect(reducer(befState, removeEventAction(payload))).toEqual(befState);
         expect(console.warn).toBeCalledTimes(1);
         expect(console.warn).toHaveBeenLastCalledWith(
@@ -177,16 +172,14 @@ describe(toStr({ reducer }), () => {
         const invalidStoryId = "invalid story id";
 
         // payload
-        const calendar = dummyCalendar;
-        const event =
-          dummyCalendar.stories[targetStoryIdx].events[targetEventIdx];
+        const event = calendar.stories[targetStoryIdx].events[targetEventIdx];
         const payload = {
           calendarId: calendar.id,
           storyId: invalidStoryId,
           eventId: event.id,
         };
 
-        const befState = { calendars: [dummyCalendar] };
+        const befState = { calendars: [calendar] };
         expect(reducer(befState, removeEventAction(payload))).toEqual(befState);
         expect(console.warn).toBeCalledTimes(1);
         expect(console.warn).toHaveBeenLastCalledWith(
@@ -197,8 +190,7 @@ describe(toStr({ reducer }), () => {
     });
 
     describe(toStr({ updateEventAction }), () => {
-      // Dummy
-      const dummyCalendar = calendarFactory.build();
+      const calendar = calendarFactory.build();
 
       // check console
       const consoleSpy = jest.spyOn(console, "warn").mockImplementation();
@@ -211,16 +203,14 @@ describe(toStr({ reducer }), () => {
         const targetStoryIdx = 1;
         const targetEventIdx = 0;
         const aftCalendar = (() => {
-          const calendar = deepClone(dummyCalendar);
-          calendar.stories[targetStoryIdx].events[targetEventIdx] = newEvent;
-          return calendar;
+          const _calendar = deepClone(calendar);
+          _calendar.stories[targetStoryIdx].events[targetEventIdx] = newEvent;
+          return _calendar;
         })();
 
         // payload
-        const calendar = dummyCalendar;
-        const story = dummyCalendar.stories[targetStoryIdx];
-        const event =
-          dummyCalendar.stories[targetStoryIdx].events[targetEventIdx];
+        const story = calendar.stories[targetStoryIdx];
+        const event = calendar.stories[targetStoryIdx].events[targetEventIdx];
         const payload = {
           calendarId: calendar.id,
           storyId: story.id,
@@ -228,7 +218,7 @@ describe(toStr({ reducer }), () => {
           newEvent,
         };
 
-        const befState = { calendars: [dummyCalendar] };
+        const befState = { calendars: [calendar] };
         const aftState = { calendars: [aftCalendar] };
         expect(reducer(befState, updateEventAction(payload))).toEqual(aftState);
       });
@@ -239,9 +229,8 @@ describe(toStr({ reducer }), () => {
         const targetEventIdx = 0;
 
         // payload
-        const story = dummyCalendar.stories[targetStoryIdx];
-        const event =
-          dummyCalendar.stories[targetStoryIdx].events[targetEventIdx];
+        const story = calendar.stories[targetStoryIdx];
+        const event = calendar.stories[targetStoryIdx].events[targetEventIdx];
         const payload = {
           calendarId: invalidCalendarId,
           storyId: story.id,
@@ -249,7 +238,7 @@ describe(toStr({ reducer }), () => {
           newEvent,
         };
 
-        const befState = { calendars: [dummyCalendar] };
+        const befState = { calendars: [calendar] };
         expect(reducer(befState, updateEventAction(payload))).toEqual(befState);
         expect(console.warn).toBeCalledTimes(1);
         expect(console.warn).toHaveBeenLastCalledWith(
@@ -264,9 +253,7 @@ describe(toStr({ reducer }), () => {
         const targetEventIdx = 0;
 
         // payload
-        const calendar = dummyCalendar;
-        const event =
-          dummyCalendar.stories[targetStoryIdx].events[targetEventIdx];
+        const event = calendar.stories[targetStoryIdx].events[targetEventIdx];
         const payload = {
           calendarId: calendar.id,
           storyId: invalidStoryId,
@@ -274,7 +261,7 @@ describe(toStr({ reducer }), () => {
           newEvent,
         };
 
-        const befState = { calendars: [dummyCalendar] };
+        const befState = { calendars: [calendar] };
         expect(reducer(befState, updateEventAction(payload))).toEqual(befState);
         expect(console.warn).toBeCalledTimes(1);
         expect(console.warn).toHaveBeenLastCalledWith(
@@ -288,8 +275,7 @@ describe(toStr({ reducer }), () => {
         const targetStoryIdx = 1;
 
         // payload
-        const calendar = dummyCalendar;
-        const story = dummyCalendar.stories[targetStoryIdx];
+        const story = calendar.stories[targetStoryIdx];
         const payload = {
           calendarId: calendar.id,
           storyId: story.id,
@@ -297,7 +283,7 @@ describe(toStr({ reducer }), () => {
           newEvent,
         };
 
-        const befState = { calendars: [dummyCalendar] };
+        const befState = { calendars: [calendar] };
         expect(reducer(befState, updateEventAction(payload))).toEqual(befState);
         expect(console.warn).toBeCalledTimes(1);
         expect(console.warn).toHaveBeenLastCalledWith(
@@ -310,8 +296,7 @@ describe(toStr({ reducer }), () => {
 
   describe("Story of", () => {
     describe(toStr({ addStoryAction }), () => {
-      // Dummy
-      const dummyCalendar = calendarFactory.build();
+      const calendar = calendarFactory.build();
 
       const consoleSpy = jest.spyOn(console, "warn").mockImplementation();
       beforeEach(() => {
@@ -320,19 +305,18 @@ describe(toStr({ reducer }), () => {
       it("can work.", () => {
         const newStory = storyFactory.build();
         const aftCalendar = (() => {
-          const calendar = deepClone(dummyCalendar);
-          calendar.stories.push(newStory);
-          return calendar;
+          const _calendar = deepClone(calendar);
+          _calendar.stories.push(newStory);
+          return _calendar;
         })();
 
         // payload
-        const calendar = dummyCalendar;
         const payload = {
           calendarId: calendar.id,
           story: newStory,
         };
 
-        const befState = { calendars: [dummyCalendar] };
+        const befState = { calendars: [calendar] };
         const aftState = { calendars: [aftCalendar] };
         expect(reducer(befState, addStoryAction(payload))).toEqual(aftState);
       });
@@ -346,7 +330,7 @@ describe(toStr({ reducer }), () => {
           story: newStory,
         };
 
-        const befState = { calendars: [dummyCalendar] };
+        const befState = { calendars: [calendar] };
         expect(reducer(befState, addStoryAction(payload))).toEqual(befState);
         expect(console.warn).toBeCalledTimes(1);
         expect(console.warn).toHaveBeenLastCalledWith(
@@ -357,8 +341,7 @@ describe(toStr({ reducer }), () => {
     });
 
     describe(toStr({ removeStoryAction }), () => {
-      // Dummy
-      const dummyCalendar = calendarFactory.build();
+      const calendar = calendarFactory.build();
 
       const consoleSpy = jest.spyOn(console, "warn").mockImplementation();
       beforeEach(() => {
@@ -367,20 +350,19 @@ describe(toStr({ reducer }), () => {
       it("can work.", () => {
         const targetStoryIdx = 1;
         const aftCalendar = (() => {
-          const calendar = deepClone(dummyCalendar);
-          calendar.stories.splice(targetStoryIdx, 1); // remove
-          return calendar;
+          const _calendar = deepClone(calendar);
+          _calendar.stories.splice(targetStoryIdx, 1); // remove
+          return _calendar;
         })();
 
         // payload
-        const calendar = dummyCalendar;
-        const story = dummyCalendar.stories[targetStoryIdx];
+        const story = calendar.stories[targetStoryIdx];
         const payload = {
           calendarId: calendar.id,
           storyId: story.id,
         };
 
-        const befState = { calendars: [dummyCalendar] };
+        const befState = { calendars: [calendar] };
         const aftState = { calendars: [aftCalendar] };
         expect(reducer(befState, removeStoryAction(payload))).toEqual(aftState);
       });
@@ -389,13 +371,13 @@ describe(toStr({ reducer }), () => {
         const targetStoryIdx = 1;
 
         // payload
-        const story = dummyCalendar.stories[targetStoryIdx];
+        const story = calendar.stories[targetStoryIdx];
         const payload = {
           calendarId: invalidCalendarId,
           storyId: story.id,
         };
 
-        const befState = { calendars: [dummyCalendar] };
+        const befState = { calendars: [calendar] };
         expect(reducer(befState, removeStoryAction(payload))).toEqual(befState);
         expect(console.warn).toBeCalledTimes(1);
         expect(console.warn).toHaveBeenLastCalledWith(
@@ -406,8 +388,7 @@ describe(toStr({ reducer }), () => {
     });
 
     describe(toStr({ updateStoryAction }), () => {
-      // Dummy
-      const dummyCalendar = calendarFactory.build();
+      const calendar = calendarFactory.build();
 
       const consoleSpy = jest.spyOn(console, "warn").mockImplementation();
       beforeEach(() => {
@@ -417,21 +398,20 @@ describe(toStr({ reducer }), () => {
         const updatedStory = storyFactory.build();
         const targetStoryIdx = 1;
         const aftCalendar = (() => {
-          const calendar = deepClone(dummyCalendar);
-          calendar.stories[targetStoryIdx] = updatedStory;
-          return calendar;
+          const _calendar = deepClone(calendar);
+          _calendar.stories[targetStoryIdx] = updatedStory;
+          return _calendar;
         })();
 
         // payload
-        const calendar = dummyCalendar;
-        const story = dummyCalendar.stories[targetStoryIdx];
+        const story = calendar.stories[targetStoryIdx];
         const payload = {
           calendarId: calendar.id,
           storyId: story.id,
           newStory: updatedStory,
         };
 
-        const befState = { calendars: [dummyCalendar] };
+        const befState = { calendars: [calendar] };
         const aftState = { calendars: [aftCalendar] };
         expect(reducer(befState, updateStoryAction(payload))).toEqual(aftState);
       });
@@ -441,14 +421,14 @@ describe(toStr({ reducer }), () => {
         const targetStoryIdx = 1;
 
         // payload
-        const story = dummyCalendar.stories[targetStoryIdx];
+        const story = calendar.stories[targetStoryIdx];
         const payload = {
           calendarId: invalidCalendarId,
           storyId: story.id,
           newStory: updatedStory,
         };
 
-        const befState = { calendars: [dummyCalendar] };
+        const befState = { calendars: [calendar] };
         expect(reducer(befState, updateStoryAction(payload))).toEqual(befState);
         expect(console.warn).toBeCalledTimes(1);
         expect(console.warn).toHaveBeenLastCalledWith(
@@ -461,14 +441,13 @@ describe(toStr({ reducer }), () => {
         const updatedStory = storyFactory.build();
 
         // payload
-        const calendar = dummyCalendar;
         const payload = {
           calendarId: calendar.id,
           storyId: invalidStoryId,
           newStory: updatedStory,
         };
 
-        const befState = { calendars: [dummyCalendar] };
+        const befState = { calendars: [calendar] };
         expect(reducer(befState, updateStoryAction(payload))).toEqual(befState);
         expect(console.warn).toBeCalledTimes(1);
         expect(console.warn).toHaveBeenLastCalledWith(
@@ -481,8 +460,7 @@ describe(toStr({ reducer }), () => {
 
   describe("Resource of", () => {
     describe(toStr({ pushResourceAction }), () => {
-      // Dummy
-      const dummyCalendar = calendarFactory.build();
+      const calendar = calendarFactory.build();
       const newResource = resourceFactory.build();
 
       const consoleSpy = jest.spyOn(console, "warn").mockImplementation();
@@ -493,24 +471,23 @@ describe(toStr({ reducer }), () => {
       it("can work.", () => {
         const targetStoryIdx = 1;
         const aftCalendar = (() => {
-          const calendar = deepClone(dummyCalendar);
-          calendar.stories[targetStoryIdx].resources = [
-            ...calendar.stories[targetStoryIdx].resources,
+          const _calendar = deepClone(calendar);
+          _calendar.stories[targetStoryIdx].resources = [
+            ..._calendar.stories[targetStoryIdx].resources,
             newResource,
           ];
-          return calendar;
+          return _calendar;
         })();
 
         // payload
-        const calendar = dummyCalendar;
-        const story = dummyCalendar.stories[targetStoryIdx];
+        const story = calendar.stories[targetStoryIdx];
         const payload = {
           calendarId: calendar.id,
           storyId: story.id,
           resource: newResource,
         };
 
-        const befState = { calendars: [dummyCalendar] };
+        const befState = { calendars: [calendar] };
         const aftState = { calendars: [aftCalendar] };
         expect(reducer(befState, pushResourceAction(payload))).toEqual(
           aftState
@@ -522,14 +499,14 @@ describe(toStr({ reducer }), () => {
         const invalidCalendarId = "invalid calendar id";
 
         // payload
-        const story = dummyCalendar.stories[targetStoryIdx];
+        const story = calendar.stories[targetStoryIdx];
         const payload = {
           calendarId: invalidCalendarId,
           storyId: story.id,
           resource: newResource,
         };
 
-        const befState = { calendars: [dummyCalendar] };
+        const befState = { calendars: [calendar] };
         expect(reducer(befState, pushResourceAction(payload))).toEqual(
           befState
         );
@@ -544,14 +521,13 @@ describe(toStr({ reducer }), () => {
         const invalidStoryId = "invalid story id";
 
         // payload
-        const calendar = dummyCalendar;
         const payload = {
           calendarId: calendar.id,
           storyId: invalidStoryId,
           resource: newResource,
         };
 
-        const befState = { calendars: [dummyCalendar] };
+        const befState = { calendars: [calendar] };
         expect(reducer(befState, pushResourceAction(payload))).toEqual(
           befState
         );
@@ -564,8 +540,7 @@ describe(toStr({ reducer }), () => {
     });
 
     describe(toStr({ removeResourceAction }), () => {
-      // Dummy
-      const dummyCalendar = calendarFactory.build();
+      const calendar = calendarFactory.build();
 
       const consoleSpy = jest.spyOn(console, "warn").mockImplementation();
       beforeEach(() => {
@@ -576,26 +551,25 @@ describe(toStr({ reducer }), () => {
         const targetStoryIdx = 0;
         const targetResourceIdx = 1;
         const aftCalendar = (() => {
-          const calendar = deepClone(dummyCalendar);
-          calendar.stories[targetStoryIdx].resources.splice(
+          const _calendar = deepClone(calendar);
+          _calendar.stories[targetStoryIdx].resources.splice(
             targetResourceIdx,
             1
           ); // remove mutably
-          return calendar;
+          return _calendar;
         })();
 
         // payload
-        const calendar = dummyCalendar;
-        const story = dummyCalendar.stories[targetStoryIdx];
+        const story = calendar.stories[targetStoryIdx];
         const resource =
-          dummyCalendar.stories[targetStoryIdx].resources[targetResourceIdx];
+          calendar.stories[targetStoryIdx].resources[targetResourceIdx];
         const payload = {
           calendarId: calendar.id,
           resourceId: resource.id,
           storyId: story.id,
         };
 
-        const befState = { calendars: [dummyCalendar] };
+        const befState = { calendars: [calendar] };
         const aftState = { calendars: [aftCalendar] };
         expect(reducer(befState, removeResourceAction(payload))).toEqual(
           aftState
@@ -607,16 +581,16 @@ describe(toStr({ reducer }), () => {
         const targetResourceIdx = 1;
 
         // payload
-        const story = dummyCalendar.stories[targetStoryIdx];
+        const story = calendar.stories[targetStoryIdx];
         const resource =
-          dummyCalendar.stories[targetStoryIdx].resources[targetResourceIdx];
+          calendar.stories[targetStoryIdx].resources[targetResourceIdx];
         const payload = {
           calendarId: invalidCalendarId,
           resourceId: resource.id,
           storyId: story.id,
         };
 
-        const befState = { calendars: [dummyCalendar] };
+        const befState = { calendars: [calendar] };
         expect(reducer(befState, removeResourceAction(payload))).toEqual(
           befState
         );
@@ -627,16 +601,15 @@ describe(toStr({ reducer }), () => {
         const targetStoryIdx = 2;
 
         // payload
-        const calendar = dummyCalendar;
         const resource =
-          dummyCalendar.stories[targetStoryIdx]?.resources[targetResourceIdx];
+          calendar.stories[targetStoryIdx]?.resources[targetResourceIdx];
         const payload = {
           calendarId: calendar.id,
           resourceId: resource.id,
           storyId: invalidStoryId,
         };
 
-        const befState = { calendars: [dummyCalendar] };
+        const befState = { calendars: [calendar] };
         expect(reducer(befState, removeResourceAction(payload))).toEqual(
           befState
         );
@@ -647,15 +620,14 @@ describe(toStr({ reducer }), () => {
         const targetStoryIdx = 0;
 
         // payload
-        const calendar = dummyCalendar;
-        const story = dummyCalendar.stories[targetStoryIdx];
+        const story = calendar.stories[targetStoryIdx];
         const payload = {
           calendarId: calendar.id,
           resourceId: invalidResourceId,
           storyId: story.id,
         };
 
-        const befState = { calendars: [dummyCalendar] };
+        const befState = { calendars: [calendar] };
         expect(reducer(befState, removeResourceAction(payload))).toEqual(
           befState
         );
@@ -663,8 +635,7 @@ describe(toStr({ reducer }), () => {
     });
 
     describe(toStr({ updateResourcesAction }), () => {
-      // Dummy
-      const dummyCalendar = calendarFactory.build();
+      const calendar = calendarFactory.build();
 
       const consoleSpy = jest.spyOn(console, "warn").mockImplementation();
       beforeEach(() => {
@@ -675,21 +646,20 @@ describe(toStr({ reducer }), () => {
         const updatedResources = resourceFactory.buildList(3);
         const targetStoryIdx = 0;
         const aftCalendar = (() => {
-          const calendar = deepClone(dummyCalendar);
-          calendar.stories[targetStoryIdx].resources = updatedResources;
-          return calendar;
+          const _calendar = deepClone(calendar);
+          _calendar.stories[targetStoryIdx].resources = updatedResources;
+          return _calendar;
         })();
 
         // payload
-        const calendar = dummyCalendar;
-        const story = dummyCalendar.stories[targetStoryIdx];
+        const story = calendar.stories[targetStoryIdx];
         const payload = {
           calendarId: calendar.id,
           storyId: story.id,
           newResources: updatedResources,
         };
 
-        const befState = { calendars: [dummyCalendar] };
+        const befState = { calendars: [calendar] };
         const aftState = { calendars: [aftCalendar] };
         expect(reducer(befState, updateResourcesAction(payload))).toEqual(
           aftState
@@ -701,14 +671,14 @@ describe(toStr({ reducer }), () => {
         const invalidCalendarId = "invalid calendar id";
 
         // payload
-        const story = dummyCalendar.stories[targetStoryIdx];
+        const story = calendar.stories[targetStoryIdx];
         const payload = {
           calendarId: invalidCalendarId,
           storyId: story.id,
           newResources: updatedResources,
         };
 
-        const befState = { calendars: [dummyCalendar] };
+        const befState = { calendars: [calendar] };
         expect(reducer(befState, updateResourcesAction(payload))).toEqual(
           befState
         );
@@ -723,14 +693,13 @@ describe(toStr({ reducer }), () => {
         const invalidStoryId = "invalid story id";
 
         // payload
-        const calendar = dummyCalendar;
         const payload = {
           calendarId: calendar.id,
           storyId: invalidStoryId,
           newResources: updatedResources,
         };
 
-        const befState = { calendars: [dummyCalendar] };
+        const befState = { calendars: [calendar] };
         expect(reducer(befState, updateResourcesAction(payload))).toEqual(
           befState
         );
@@ -746,25 +715,22 @@ describe(toStr({ reducer }), () => {
   describe("Calendar of", () => {
     describe(toStr({ removeCalendarAction }), () => {
       it("can work.", () => {
-        const [dummyCalendar1, dummyCalendar2] = calendarFactory.buildList(2);
-        const befState = { calendars: [dummyCalendar1, dummyCalendar2] };
-        const aftState = { calendars: [dummyCalendar1] };
+        const [calendar1, calendar2] = calendarFactory.buildList(2);
+        const befState = { calendars: [calendar1, calendar2] };
+        const aftState = { calendars: [calendar1] };
         expect(
-          reducer(
-            befState,
-            removeCalendarAction({ calendarId: dummyCalendar2.id })
-          )
+          reducer(befState, removeCalendarAction({ calendarId: calendar2.id }))
         ).toEqual(aftState);
       });
     });
     describe(toStr({ updateCalendarsAction }), () => {
       it("can work.", () => {
-        const [dummyCalendar1, dummyCalendar2] = calendarFactory.buildList(2);
-        const befState = { calendars: [dummyCalendar1] };
+        const [calendar1, calendar2] = calendarFactory.buildList(2);
+        const befState = { calendars: [calendar1] };
         const aftState = {
-          calendars: [dummyCalendar2, dummyCalendar1, dummyCalendar2],
+          calendars: [calendar2, calendar1, calendar2],
         };
-        const props = [dummyCalendar2, dummyCalendar1, dummyCalendar2];
+        const props = [calendar2, calendar1, calendar2];
         expect(
           reducer(befState, updateCalendarsAction({ calendars: props }))
         ).toEqual(aftState);
@@ -774,16 +740,15 @@ describe(toStr({ reducer }), () => {
 });
 
 describe("Selectors of", () => {
-  // Dummy data
-  const dummyCalendar = calendarFactory.build();
+  const calendar = calendarFactory.build();
 
   // console spy
   const consoleSpy = jest.spyOn(console, "warn").mockImplementation();
 
   describe(toStr({ selectUserCalendar }), () => {
     it("can select.", () => {
-      const rootState = createRootState([dummyCalendar]);
-      expect(selectUserCalendar(rootState)).toEqual(dummyCalendar);
+      const rootState = createRootState([calendar]);
+      expect(selectUserCalendar(rootState)).toEqual(calendar);
     });
 
     it("cannot select because of null.", () => {
@@ -797,12 +762,10 @@ describe("Selectors of", () => {
       consoleSpy.mockClear();
     });
     it("can select.", () => {
-      const rootState = createRootState([dummyCalendar]);
-      const calendarId = dummyCalendar.id;
-      const storyId = dummyCalendar.stories[1].id;
-      const expected = dummyCalendar.stories.find(
-        (item) => item.id === storyId
-      );
+      const rootState = createRootState([calendar]);
+      const calendarId = calendar.id;
+      const storyId = calendar.stories[1].id;
+      const expected = calendar.stories.find((item) => item.id === storyId);
 
       expect(selectStoryByIdFilter(rootState)(calendarId, storyId)).toEqual(
         expected
@@ -810,9 +773,9 @@ describe("Selectors of", () => {
     });
 
     it("cannot select because cannot find calendar.", () => {
-      const rootState = createRootState([dummyCalendar]);
+      const rootState = createRootState([calendar]);
       const calendarId = "this is calendarId but not exist";
-      const storyId = dummyCalendar.stories[1].id;
+      const storyId = calendar.stories[1].id;
       expect(selectStoryByIdFilter(rootState)(calendarId, storyId)).toEqual(
         undefined
       );
@@ -823,8 +786,8 @@ describe("Selectors of", () => {
     });
 
     it("cannot select because cannot find story.", () => {
-      const rootState = createRootState([dummyCalendar]);
-      const calendarId = dummyCalendar.id;
+      const rootState = createRootState([calendar]);
+      const calendarId = calendar.id;
       const storyId = "this is storyId but not exist";
       expect(selectStoryByIdFilter(rootState)(calendarId, storyId)).toEqual(
         undefined
@@ -837,11 +800,11 @@ describe("Selectors of", () => {
       consoleSpy.mockClear();
     });
     it("can select.", () => {
-      const rootState = createRootState([dummyCalendar]);
-      const calendarId = dummyCalendar.id;
-      const storyId = dummyCalendar.stories[1].id;
-      const eventId = dummyCalendar.stories[1].events[1].id;
-      const expected = dummyCalendar.stories[1].events[1];
+      const rootState = createRootState([calendar]);
+      const calendarId = calendar.id;
+      const storyId = calendar.stories[1].id;
+      const eventId = calendar.stories[1].events[1].id;
+      const expected = calendar.stories[1].events[1];
 
       expect(
         selectEventByIdFilter(rootState)(calendarId, storyId, eventId)
@@ -849,10 +812,10 @@ describe("Selectors of", () => {
     });
 
     it("cannot select because cannot find calendar.", () => {
-      const rootState = createRootState([dummyCalendar]);
+      const rootState = createRootState([calendar]);
       const calendarId = "this is calendarId but not exist";
-      const storyId = dummyCalendar.stories[0].id;
-      const eventId = dummyCalendar.stories[0].events[1].id;
+      const storyId = calendar.stories[0].id;
+      const eventId = calendar.stories[0].events[1].id;
       expect(
         selectEventByIdFilter(rootState)(calendarId, storyId, eventId)
       ).toEqual(undefined);
@@ -863,10 +826,10 @@ describe("Selectors of", () => {
     });
 
     it("cannot select because cannot find story.", () => {
-      const rootState = createRootState([dummyCalendar]);
-      const calendarId = dummyCalendar.id;
+      const rootState = createRootState([calendar]);
+      const calendarId = calendar.id;
       const storyId = "this is storyId but not exist";
-      const eventId = dummyCalendar.stories[0].events[1].id;
+      const eventId = calendar.stories[0].events[1].id;
       expect(
         selectEventByIdFilter(rootState)(calendarId, storyId, eventId)
       ).toEqual(undefined);
@@ -877,9 +840,9 @@ describe("Selectors of", () => {
     });
 
     it("cannot select because cannot find event.", () => {
-      const rootState = createRootState([dummyCalendar]);
-      const calendarId = dummyCalendar.id;
-      const storyId = dummyCalendar.stories[1].id;
+      const rootState = createRootState([calendar]);
+      const calendarId = calendar.id;
+      const storyId = calendar.stories[1].id;
       const eventId = "this is storyId but not exist";
       expect(
         selectEventByIdFilter(rootState)(calendarId, storyId, eventId)

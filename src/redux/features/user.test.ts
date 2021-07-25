@@ -63,9 +63,9 @@ describe("[mock before import files because using date at global scope]", () => 
       ({ features: { user: partialState } } as RootState);
 
     it("can select.", () => {
-      const dummyUser = { birthday: "2000-01-01", age: 5 }; // 2005 - 5 = 2000
-      const rootState = createRootState(dummyUser);
-      expect(selectUserWithAge(rootState)).toEqual(dummyUser);
+      const user = { birthday: "2000-01-01", age: 5 }; // 2005 - 5 = 2000
+      const rootState = createRootState(user);
+      expect(selectUserWithAge(rootState)).toEqual(user);
     });
   });
 });

@@ -12,7 +12,7 @@ export const storyFactory = Factory.define<BaseStory>(
     const extendedProps = {
       calendarId,
       storyId,
-      description: "dummy description",
+      description: "description",
     };
     return {
       id: storyId,

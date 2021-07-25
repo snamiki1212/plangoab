@@ -10,15 +10,15 @@ import { toStr } from "@/testHelpers/index";
 import { calendarFactory } from "@/testHelpers/factories/core/calendar";
 import { storyModalFactory } from "@/testHelpers/factories/redux/storyModal";
 
-type ModalInfo = ReturnType<typeof storyModalFactory.build>;
-type DummyCalendar = ReturnType<typeof calendarFactory.build>;
+type Modal = ReturnType<typeof storyModalFactory.build>;
+type Calendar = ReturnType<typeof calendarFactory.build>;
 
 const createRootState = ({
   storyModalInfo = null,
-  calendars = [] as DummyCalendar[],
+  calendars = [] as Calendar[],
 }: {
-  storyModalInfo?: ModalInfo;
-  calendars?: DummyCalendar[];
+  storyModalInfo?: Modal;
+  calendars?: Calendar[];
 }) =>
   ({
     ui: { storyModal: { story: storyModalInfo } },
@@ -62,8 +62,7 @@ describe(toStr({ selectIsOpen }), () => {
 });
 
 describe(toStr({ selectStory }), () => {
-  // Dummy
-  const dummyCalendar = calendarFactory.build();
+  const calendar = calendarFactory.build();
 
   // check console
   const consoleSpy = jest.spyOn(console, "warn").mockImplementation();
@@ -72,17 +71,17 @@ describe(toStr({ selectStory }), () => {
   });
 
   it("can select.", () => {
-    const expected = dummyCalendar.stories[1];
+    const expected = calendar.stories[1];
 
     // ids
-    const calendarId = dummyCalendar.id;
+    const calendarId = calendar.id;
     const storyId = expected.id;
 
     // params
     const modalInfo = storyModalFactory.build({ calendarId, storyId });
     const rootState = createRootState({
       storyModalInfo: modalInfo,
-      calendars: [dummyCalendar],
+      calendars: [calendar],
     });
 
     expect(selectStory(rootState)).toEqual(expected);
@@ -91,13 +90,13 @@ describe(toStr({ selectStory }), () => {
   it("cannot select when not to find calendar.", () => {
     // ids
     const calendarId = "Invalid calendar id";
-    const storyId = dummyCalendar.stories[1].id;
+    const storyId = calendar.stories[1].id;
 
     // params
     const modalInfo = storyModalFactory.build({ calendarId, storyId });
     const rootState = createRootState({
       storyModalInfo: modalInfo,
-      calendars: [dummyCalendar],
+      calendars: [calendar],
     });
 
     expect(selectStory(rootState)).toEqual(undefined);
@@ -109,14 +108,14 @@ describe(toStr({ selectStory }), () => {
 
   it("cannot select when not to find story.", () => {
     // ids
-    const calendarId = dummyCalendar.id;
+    const calendarId = calendar.id;
     const storyId = "Invalid story id";
 
     // params
     const modalInfo = storyModalFactory.build({ calendarId, storyId });
     const rootState = createRootState({
       storyModalInfo: modalInfo,
-      calendars: [dummyCalendar],
+      calendars: [calendar],
     });
 
     expect(selectStory(rootState)).toEqual(undefined);

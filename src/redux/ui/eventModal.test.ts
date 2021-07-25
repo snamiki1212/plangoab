@@ -10,15 +10,15 @@ import { RootState } from "../rootReducer";
 import { eventModalFactory } from "@/testHelpers/factories/redux/eventModal";
 import { calendarFactory } from "@/testHelpers/factories/core/calendar";
 
-type DummyEventModal = ReturnType<typeof eventModalFactory.build>;
-type DummyCalendar = ReturnType<typeof calendarFactory.build>;
+type EventModal = ReturnType<typeof eventModalFactory.build>;
+type Calendar = ReturnType<typeof calendarFactory.build>;
 
 const createRootState = ({
   eventModalInfo = null,
   calendars = [],
 }: {
-  eventModalInfo?: DummyEventModal;
-  calendars?: DummyCalendar[];
+  eventModalInfo?: EventModal;
+  calendars?: Calendar[];
 }) =>
   ({
     ui: { eventModal: { event: eventModalInfo } },
@@ -78,13 +78,13 @@ describe(toStr({ selectEventModal }), () => {
 });
 
 describe(toStr({ selectEvent }), () => {
-  // Dummy data
-  const dummyCalendar = calendarFactory.build();
+  const calendar = calendarFactory.build();
 
+  // TODO: Use factory
   const createSelectableDummyEventModal = () => ({
-    calendarId: dummyCalendar.id,
-    storyId: dummyCalendar.stories[1].id,
-    eventId: dummyCalendar.stories[1].events[2].id,
+    calendarId: calendar.id,
+    storyId: calendar.stories[1].id,
+    eventId: calendar.stories[1].events[2].id,
   });
 
   const consoleSpy = jest.spyOn(console, "warn").mockImplementation();
@@ -96,9 +96,9 @@ describe(toStr({ selectEvent }), () => {
     const eventModalInfo = createSelectableDummyEventModal();
     const rootState = createRootState({
       eventModalInfo,
-      calendars: [dummyCalendar],
+      calendars: [calendar],
     });
-    const expected = dummyCalendar.stories[1].events[2];
+    const expected = calendar.stories[1].events[2];
 
     expect(selectEvent(rootState)).toEqual(expected);
   });
@@ -113,7 +113,7 @@ describe(toStr({ selectEvent }), () => {
 
     const rootState = createRootState({
       eventModalInfo,
-      calendars: [dummyCalendar],
+      calendars: [calendar],
     });
 
     expect(selectEvent(rootState)).toEqual(undefined);
@@ -133,7 +133,7 @@ describe(toStr({ selectEvent }), () => {
 
     const rootState = createRootState({
       eventModalInfo,
-      calendars: [dummyCalendar],
+      calendars: [calendar],
     });
     expect(selectEvent(rootState)).toEqual(undefined);
     expect(console.warn).toBeCalledTimes(1);
@@ -152,7 +152,7 @@ describe(toStr({ selectEvent }), () => {
 
     const rootState = createRootState({
       eventModalInfo,
-      calendars: [dummyCalendar],
+      calendars: [calendar],
     });
     expect(selectEvent(rootState)).toEqual(undefined);
     expect(console.warn).toBeCalledTimes(1);
