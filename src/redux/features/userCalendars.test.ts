@@ -20,10 +20,10 @@ import reducer, {
   removeResourceAction,
 } from "./userCalendars";
 import { RootState } from "../rootReducer";
-import { createDummyCalendar } from "@/testHelpers/factories/core";
 import { eventFactory } from "@/testHelpers/factories/core/event";
 import { resourceFactory } from "@/testHelpers/factories/core/resource";
 import { storyFactory } from "@/testHelpers/factories/core/story";
+import { calendarFactory } from "@/testHelpers/factories/core/calendar";
 
 const deepClone = (obj: Object) => JSON.parse(JSON.stringify(obj));
 const createRootState = (partialState: any) =>
@@ -46,12 +46,7 @@ describe(toStr({ reducer }), () => {
   describe("Event of", () => {
     describe(toStr({ addEventAction }), () => {
       // Dummy
-      const dummyStories = storyFactory.buildList(3);
-      const dummyCalendar = (() => {
-        const calendar = createDummyCalendar({ id: "id1" });
-        calendar.stories = dummyStories;
-        return calendar;
-      })();
+      const dummyCalendar = calendarFactory.build();
       const newEvent = eventFactory.build();
 
       // check console
@@ -73,7 +68,7 @@ describe(toStr({ reducer }), () => {
 
         // payload
         const calendar = dummyCalendar;
-        const story = dummyStories[targetStoryIdx];
+        const story = dummyCalendar.stories[targetStoryIdx];
         const payload = {
           calendarId: calendar.id,
           storyId: story.id,
@@ -88,7 +83,7 @@ describe(toStr({ reducer }), () => {
       it("cannot work when invalid calendarId.", () => {
         const invalidCalendarId = "Invalid calendar id";
         const targetStoryIdx = 1;
-        const story = dummyStories[targetStoryIdx];
+        const story = dummyCalendar.stories[targetStoryIdx];
         const payload = {
           calendarId: invalidCalendarId,
           storyId: story.id,
@@ -123,12 +118,7 @@ describe(toStr({ reducer }), () => {
 
     describe(toStr({ removeEventAction }), () => {
       // Dummy
-      const dummyStories = storyFactory.buildList(3);
-      const dummyCalendar = (() => {
-        const calendar = createDummyCalendar({ id: "id1" });
-        calendar.stories = dummyStories;
-        return calendar;
-      })();
+      const dummyCalendar = calendarFactory.build();
 
       const consoleSpy = jest.spyOn(console, "warn").mockImplementation();
       beforeEach(() => {
@@ -145,8 +135,9 @@ describe(toStr({ reducer }), () => {
 
         // payload
         const calendar = dummyCalendar;
-        const story = dummyStories[targetStoryIdx];
-        const event = dummyStories[targetStoryIdx].events[targetEventIdx];
+        const story = dummyCalendar.stories[targetStoryIdx];
+        const event =
+          dummyCalendar.stories[targetStoryIdx].events[targetEventIdx];
         const payload = {
           calendarId: calendar.id,
           storyId: story.id,
@@ -163,8 +154,9 @@ describe(toStr({ reducer }), () => {
         const invalidCalendarId = "invalid calendar id";
 
         // payload
-        const story = dummyStories[targetStoryIdx];
-        const event = dummyStories[targetStoryIdx].events[targetEventIdx];
+        const story = dummyCalendar.stories[targetStoryIdx];
+        const event =
+          dummyCalendar.stories[targetStoryIdx].events[targetEventIdx];
         const payload = {
           calendarId: invalidCalendarId,
           storyId: story.id,
@@ -186,7 +178,8 @@ describe(toStr({ reducer }), () => {
 
         // payload
         const calendar = dummyCalendar;
-        const event = dummyStories[targetStoryIdx].events[targetEventIdx];
+        const event =
+          dummyCalendar.stories[targetStoryIdx].events[targetEventIdx];
         const payload = {
           calendarId: calendar.id,
           storyId: invalidStoryId,
@@ -205,12 +198,7 @@ describe(toStr({ reducer }), () => {
 
     describe(toStr({ updateEventAction }), () => {
       // Dummy
-      const dummyStories = storyFactory.buildList(3);
-      const dummyCalendar = (() => {
-        const calendar = createDummyCalendar({ id: "id1" });
-        calendar.stories = dummyStories;
-        return calendar;
-      })();
+      const dummyCalendar = calendarFactory.build();
 
       // check console
       const consoleSpy = jest.spyOn(console, "warn").mockImplementation();
@@ -230,8 +218,9 @@ describe(toStr({ reducer }), () => {
 
         // payload
         const calendar = dummyCalendar;
-        const story = dummyStories[targetStoryIdx];
-        const event = dummyStories[targetStoryIdx].events[targetEventIdx];
+        const story = dummyCalendar.stories[targetStoryIdx];
+        const event =
+          dummyCalendar.stories[targetStoryIdx].events[targetEventIdx];
         const payload = {
           calendarId: calendar.id,
           storyId: story.id,
@@ -250,8 +239,9 @@ describe(toStr({ reducer }), () => {
         const targetEventIdx = 0;
 
         // payload
-        const story = dummyStories[targetStoryIdx];
-        const event = dummyStories[targetStoryIdx].events[targetEventIdx];
+        const story = dummyCalendar.stories[targetStoryIdx];
+        const event =
+          dummyCalendar.stories[targetStoryIdx].events[targetEventIdx];
         const payload = {
           calendarId: invalidCalendarId,
           storyId: story.id,
@@ -275,7 +265,8 @@ describe(toStr({ reducer }), () => {
 
         // payload
         const calendar = dummyCalendar;
-        const event = dummyStories[targetStoryIdx].events[targetEventIdx];
+        const event =
+          dummyCalendar.stories[targetStoryIdx].events[targetEventIdx];
         const payload = {
           calendarId: calendar.id,
           storyId: invalidStoryId,
@@ -298,7 +289,7 @@ describe(toStr({ reducer }), () => {
 
         // payload
         const calendar = dummyCalendar;
-        const story = dummyStories[targetStoryIdx];
+        const story = dummyCalendar.stories[targetStoryIdx];
         const payload = {
           calendarId: calendar.id,
           storyId: story.id,
@@ -320,12 +311,7 @@ describe(toStr({ reducer }), () => {
   describe("Story of", () => {
     describe(toStr({ addStoryAction }), () => {
       // Dummy
-      const dummyStories = storyFactory.buildList(3);
-      const dummyCalendar = (() => {
-        const calendar = createDummyCalendar({ id: "id1" });
-        calendar.stories = dummyStories;
-        return calendar;
-      })();
+      const dummyCalendar = calendarFactory.build();
 
       const consoleSpy = jest.spyOn(console, "warn").mockImplementation();
       beforeEach(() => {
@@ -372,12 +358,7 @@ describe(toStr({ reducer }), () => {
 
     describe(toStr({ removeStoryAction }), () => {
       // Dummy
-      const dummyStories = storyFactory.buildList(3);
-      const dummyCalendar = (() => {
-        const calendar = createDummyCalendar({ id: "id1" });
-        calendar.stories = dummyStories;
-        return calendar;
-      })();
+      const dummyCalendar = calendarFactory.build();
 
       const consoleSpy = jest.spyOn(console, "warn").mockImplementation();
       beforeEach(() => {
@@ -393,7 +374,7 @@ describe(toStr({ reducer }), () => {
 
         // payload
         const calendar = dummyCalendar;
-        const story = dummyStories[targetStoryIdx];
+        const story = dummyCalendar.stories[targetStoryIdx];
         const payload = {
           calendarId: calendar.id,
           storyId: story.id,
@@ -408,7 +389,7 @@ describe(toStr({ reducer }), () => {
         const targetStoryIdx = 1;
 
         // payload
-        const story = dummyStories[targetStoryIdx];
+        const story = dummyCalendar.stories[targetStoryIdx];
         const payload = {
           calendarId: invalidCalendarId,
           storyId: story.id,
@@ -426,12 +407,7 @@ describe(toStr({ reducer }), () => {
 
     describe(toStr({ updateStoryAction }), () => {
       // Dummy
-      const dummyStories = storyFactory.buildList(3);
-      const dummyCalendar = (() => {
-        const calendar = createDummyCalendar({ id: "id1" });
-        calendar.stories = dummyStories;
-        return calendar;
-      })();
+      const dummyCalendar = calendarFactory.build();
 
       const consoleSpy = jest.spyOn(console, "warn").mockImplementation();
       beforeEach(() => {
@@ -448,7 +424,7 @@ describe(toStr({ reducer }), () => {
 
         // payload
         const calendar = dummyCalendar;
-        const story = dummyStories[targetStoryIdx];
+        const story = dummyCalendar.stories[targetStoryIdx];
         const payload = {
           calendarId: calendar.id,
           storyId: story.id,
@@ -465,7 +441,7 @@ describe(toStr({ reducer }), () => {
         const targetStoryIdx = 1;
 
         // payload
-        const story = dummyStories[targetStoryIdx];
+        const story = dummyCalendar.stories[targetStoryIdx];
         const payload = {
           calendarId: invalidCalendarId,
           storyId: story.id,
@@ -506,12 +482,7 @@ describe(toStr({ reducer }), () => {
   describe("Resource of", () => {
     describe(toStr({ pushResourceAction }), () => {
       // Dummy
-      const dummyStories = storyFactory.buildList(3);
-      const dummyCalendar = (() => {
-        const calendar = createDummyCalendar({ id: "id1" });
-        calendar.stories = dummyStories;
-        return calendar;
-      })();
+      const dummyCalendar = calendarFactory.build();
       const newResource = resourceFactory.build();
 
       const consoleSpy = jest.spyOn(console, "warn").mockImplementation();
@@ -532,7 +503,7 @@ describe(toStr({ reducer }), () => {
 
         // payload
         const calendar = dummyCalendar;
-        const story = dummyStories[targetStoryIdx];
+        const story = dummyCalendar.stories[targetStoryIdx];
         const payload = {
           calendarId: calendar.id,
           storyId: story.id,
@@ -551,7 +522,7 @@ describe(toStr({ reducer }), () => {
         const invalidCalendarId = "invalid calendar id";
 
         // payload
-        const story = dummyStories[targetStoryIdx];
+        const story = dummyCalendar.stories[targetStoryIdx];
         const payload = {
           calendarId: invalidCalendarId,
           storyId: story.id,
@@ -594,12 +565,7 @@ describe(toStr({ reducer }), () => {
 
     describe(toStr({ removeResourceAction }), () => {
       // Dummy
-      const dummyStories = storyFactory.buildList(3);
-      const dummyCalendar = (() => {
-        const calendar = createDummyCalendar({ id: "id1" });
-        calendar.stories = dummyStories;
-        return calendar;
-      })();
+      const dummyCalendar = calendarFactory.build();
 
       const consoleSpy = jest.spyOn(console, "warn").mockImplementation();
       beforeEach(() => {
@@ -620,9 +586,9 @@ describe(toStr({ reducer }), () => {
 
         // payload
         const calendar = dummyCalendar;
-        const story = dummyStories[targetStoryIdx];
+        const story = dummyCalendar.stories[targetStoryIdx];
         const resource =
-          dummyStories[targetStoryIdx].resources[targetResourceIdx];
+          dummyCalendar.stories[targetStoryIdx].resources[targetResourceIdx];
         const payload = {
           calendarId: calendar.id,
           resourceId: resource.id,
@@ -641,9 +607,9 @@ describe(toStr({ reducer }), () => {
         const targetResourceIdx = 1;
 
         // payload
-        const story = dummyStories[targetStoryIdx];
+        const story = dummyCalendar.stories[targetStoryIdx];
         const resource =
-          dummyStories[targetStoryIdx].resources[targetResourceIdx];
+          dummyCalendar.stories[targetStoryIdx].resources[targetResourceIdx];
         const payload = {
           calendarId: invalidCalendarId,
           resourceId: resource.id,
@@ -663,7 +629,7 @@ describe(toStr({ reducer }), () => {
         // payload
         const calendar = dummyCalendar;
         const resource =
-          dummyStories[targetStoryIdx]?.resources[targetResourceIdx];
+          dummyCalendar.stories[targetStoryIdx]?.resources[targetResourceIdx];
         const payload = {
           calendarId: calendar.id,
           resourceId: resource.id,
@@ -682,7 +648,7 @@ describe(toStr({ reducer }), () => {
 
         // payload
         const calendar = dummyCalendar;
-        const story = dummyStories[targetStoryIdx];
+        const story = dummyCalendar.stories[targetStoryIdx];
         const payload = {
           calendarId: calendar.id,
           resourceId: invalidResourceId,
@@ -698,12 +664,7 @@ describe(toStr({ reducer }), () => {
 
     describe(toStr({ updateResourcesAction }), () => {
       // Dummy
-      const dummyStories = storyFactory.buildList(3);
-      const dummyCalendar = (() => {
-        const calendar = createDummyCalendar({ id: "id1" });
-        calendar.stories = dummyStories;
-        return calendar;
-      })();
+      const dummyCalendar = calendarFactory.build();
 
       const consoleSpy = jest.spyOn(console, "warn").mockImplementation();
       beforeEach(() => {
@@ -723,7 +684,7 @@ describe(toStr({ reducer }), () => {
 
         // payload
         const calendar = dummyCalendar;
-        const story = dummyStories[targetStoryIdx];
+        const story = dummyCalendar.stories[targetStoryIdx];
         const payload = {
           calendarId: calendar.id,
           storyId: story.id,
@@ -744,7 +705,7 @@ describe(toStr({ reducer }), () => {
         const invalidCalendarId = "invalid calendar id";
 
         // payload
-        const story = dummyStories[targetStoryIdx];
+        const story = dummyCalendar.stories[targetStoryIdx];
         const payload = {
           calendarId: invalidCalendarId,
           storyId: story.id,
@@ -791,10 +752,7 @@ describe(toStr({ reducer }), () => {
   describe("Calendar of", () => {
     describe(toStr({ removeCalendarAction }), () => {
       it("can work.", () => {
-        const id1 = "this is dummy1";
-        const id2 = "this is dummy2";
-        const dummyCalendar1 = createDummyCalendar({ id: id1 });
-        const dummyCalendar2 = createDummyCalendar({ id: id2 });
+        const [dummyCalendar1, dummyCalendar2] = calendarFactory.buildList(2);
         const befState = { calendars: [dummyCalendar1, dummyCalendar2] };
         const aftState = { calendars: [dummyCalendar1] };
         expect(
@@ -807,8 +765,7 @@ describe(toStr({ reducer }), () => {
     });
     describe(toStr({ updateCalendarsAction }), () => {
       it("can work.", () => {
-        const dummyCalendar1 = createDummyCalendar({ id: "id1" });
-        const dummyCalendar2 = createDummyCalendar({ id: "id2" });
+        const [dummyCalendar1, dummyCalendar2] = calendarFactory.buildList(2);
         const befState = { calendars: [dummyCalendar1] };
         const aftState = {
           calendars: [dummyCalendar2, dummyCalendar1, dummyCalendar2],
@@ -824,12 +781,7 @@ describe(toStr({ reducer }), () => {
 
 describe("Selectors of", () => {
   // Dummy data
-  const dummyStories = storyFactory.buildList(3);
-  const dummyCalendar = (() => {
-    let item = createDummyCalendar({ id: "0" });
-    item.stories = dummyStories;
-    return item;
-  })();
+  const dummyCalendar = calendarFactory.build();
 
   // console spy
   const consoleSpy = jest.spyOn(console, "warn").mockImplementation();
@@ -853,8 +805,10 @@ describe("Selectors of", () => {
     it("can select.", () => {
       const rootState = createRootState([dummyCalendar]);
       const calendarId = dummyCalendar.id;
-      const storyId = dummyStories[1].id;
-      const expected = dummyStories.find((item) => item.id === storyId);
+      const storyId = dummyCalendar.stories[1].id;
+      const expected = dummyCalendar.stories.find(
+        (item) => item.id === storyId
+      );
 
       expect(selectStoryByIdFilter(rootState)(calendarId, storyId)).toEqual(
         expected
@@ -864,7 +818,7 @@ describe("Selectors of", () => {
     it("cannot select because cannot find calendar.", () => {
       const rootState = createRootState([dummyCalendar]);
       const calendarId = "this is calendarId but not exist";
-      const storyId = dummyStories[1].id;
+      const storyId = dummyCalendar.stories[1].id;
       expect(selectStoryByIdFilter(rootState)(calendarId, storyId)).toEqual(
         undefined
       );
@@ -891,9 +845,9 @@ describe("Selectors of", () => {
     it("can select.", () => {
       const rootState = createRootState([dummyCalendar]);
       const calendarId = dummyCalendar.id;
-      const storyId = dummyStories[1].id;
-      const eventId = dummyStories[1].events[1].id;
-      const expected = dummyStories[1].events[1];
+      const storyId = dummyCalendar.stories[1].id;
+      const eventId = dummyCalendar.stories[1].events[1].id;
+      const expected = dummyCalendar.stories[1].events[1];
 
       expect(
         selectEventByIdFilter(rootState)(calendarId, storyId, eventId)
@@ -903,8 +857,8 @@ describe("Selectors of", () => {
     it("cannot select because cannot find calendar.", () => {
       const rootState = createRootState([dummyCalendar]);
       const calendarId = "this is calendarId but not exist";
-      const storyId = dummyStories[0].id;
-      const eventId = dummyStories[0].events[1].id;
+      const storyId = dummyCalendar.stories[0].id;
+      const eventId = dummyCalendar.stories[0].events[1].id;
       expect(
         selectEventByIdFilter(rootState)(calendarId, storyId, eventId)
       ).toEqual(undefined);
@@ -918,7 +872,7 @@ describe("Selectors of", () => {
       const rootState = createRootState([dummyCalendar]);
       const calendarId = dummyCalendar.id;
       const storyId = "this is storyId but not exist";
-      const eventId = dummyStories[0].events[1].id;
+      const eventId = dummyCalendar.stories[0].events[1].id;
       expect(
         selectEventByIdFilter(rootState)(calendarId, storyId, eventId)
       ).toEqual(undefined);
@@ -931,7 +885,7 @@ describe("Selectors of", () => {
     it("cannot select because cannot find event.", () => {
       const rootState = createRootState([dummyCalendar]);
       const calendarId = dummyCalendar.id;
-      const storyId = dummyStories[1].id;
+      const storyId = dummyCalendar.stories[1].id;
       const eventId = "this is storyId but not exist";
       expect(
         selectEventByIdFilter(rootState)(calendarId, storyId, eventId)

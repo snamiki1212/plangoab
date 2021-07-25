@@ -8,18 +8,18 @@ import reducer, {
 import { RootState } from "../rootReducer";
 import { createDummyStoryModal } from "@/testHelpers/factories/redux";
 import { toStr } from "@/testHelpers/index";
-import { createDummyCalendar } from "@/testHelpers/factories/core";
 import { storyFactory } from "@/testHelpers/factories/core/story";
+import { calendarFactory } from "@/testHelpers/factories/core/calendar";
 
 type ModalInfo = ReturnType<typeof createDummyStoryModal>;
-type DummyCalendar = ReturnType<typeof createDummyCalendar>;
+type DummyCalendar = ReturnType<typeof calendarFactory.build>;
 
 const createRootState = ({
   storyModalInfo = null,
-  calendars = [],
+  calendars = [] as DummyCalendar[],
 }: {
   storyModalInfo?: ModalInfo;
-  calendars?: DummyCalendar;
+  calendars?: DummyCalendar[];
 }) =>
   ({
     ui: { storyModal: { story: storyModalInfo } },
@@ -63,22 +63,17 @@ describe(toStr({ selectIsOpen }), () => {
 });
 
 describe(toStr({ selectStory }), () => {
-  const consoleSpy = jest.spyOn(console, "warn").mockImplementation();
-
   // Dummy
-  const dummyStories = storyFactory.buildList(3);
-  const dummyCalendar = (() => {
-    let item = createDummyCalendar({ id: "0" });
-    item.stories = dummyStories;
-    return item;
-  })();
+  const dummyCalendar = calendarFactory.build();
 
+  // check console
+  const consoleSpy = jest.spyOn(console, "warn").mockImplementation();
   beforeEach(() => {
     consoleSpy.mockClear();
   });
 
   it("can select.", () => {
-    const expected = dummyStories[1];
+    const expected = dummyCalendar.stories[1];
 
     // ids
     const calendarId = dummyCalendar.id;
@@ -97,7 +92,7 @@ describe(toStr({ selectStory }), () => {
   it("cannot select when not to find calendar.", () => {
     // ids
     const calendarId = "Invalid calendar id";
-    const storyId = dummyStories[1].id;
+    const storyId = dummyCalendar.stories[1].id;
 
     // params
     const modalInfo = createDummyStoryModal({ calendarId, storyId });

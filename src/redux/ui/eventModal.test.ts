@@ -8,11 +8,10 @@ import reducer, {
 } from "./eventModal";
 import { RootState } from "../rootReducer";
 import { createDummyEventModal } from "@/testHelpers/factories/redux";
-import { createDummyCalendar } from "@/testHelpers/factories/core";
-import { storyFactory } from "@/testHelpers/factories/core/story";
+import { calendarFactory } from "@/testHelpers/factories/core/calendar";
 
 type DummyEventModal = ReturnType<typeof createDummyEventModal>;
-type DummyCalendar = ReturnType<typeof createDummyCalendar>;
+type DummyCalendar = ReturnType<typeof calendarFactory.build>;
 
 const createRootState = ({
   eventModalInfo = null,
@@ -80,17 +79,12 @@ describe(toStr({ selectEventModal }), () => {
 
 describe(toStr({ selectEvent }), () => {
   // Dummy data
-  const dummyStories = storyFactory.buildList(3);
-  const dummyCalendar = (() => {
-    let item = createDummyCalendar({ id: "0" });
-    item.stories = dummyStories;
-    return item;
-  })();
+  const dummyCalendar = calendarFactory.build();
 
   const createSelectableDummyEventModal = () => ({
     calendarId: dummyCalendar.id,
-    storyId: dummyStories[1].id,
-    eventId: dummyStories[1].events[2].id,
+    storyId: dummyCalendar.stories[1].id,
+    eventId: dummyCalendar.stories[1].events[2].id,
   });
 
   const consoleSpy = jest.spyOn(console, "warn").mockImplementation();
@@ -104,7 +98,7 @@ describe(toStr({ selectEvent }), () => {
       eventModalInfo,
       calendars: [dummyCalendar],
     });
-    const expected = dummyStories[1].events[2];
+    const expected = dummyCalendar.stories[1].events[2];
 
     expect(selectEvent(rootState)).toEqual(expected);
   });
