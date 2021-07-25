@@ -22,10 +22,10 @@ import reducer, {
 import { RootState } from "../rootReducer";
 import {
   createDummyCalendar,
-  createDummyResource,
   createDummyStory,
 } from "@/testHelpers/factories/core";
 import { eventFactory } from "@/testHelpers/factories/core/event";
+import { resourceFactory } from "@/testHelpers/factories/core/resource";
 
 const deepClone = (obj: Object) => JSON.parse(JSON.stringify(obj));
 const createRootState = (partialState: any) =>
@@ -544,8 +544,8 @@ describe(toStr({ reducer }), () => {
   describe("Resource of", () => {
     describe(toStr({ pushResourceAction }), () => {
       // Dummy
-      const dummyResources = Array.from({ length: 3 }).map((_, idx) =>
-        createDummyResource({ id: idx })
+      const dummyResources = Array.from({ length: 3 }).map(() =>
+        resourceFactory.build()
       );
       const dummyStories = Array.from({ length: 3 }).map((_, idx) => {
         const story = createDummyStory({ id: idx });
@@ -557,7 +557,7 @@ describe(toStr({ reducer }), () => {
         calendar.stories = dummyStories;
         return calendar;
       })();
-      const newResource = createDummyResource({ id: "pushed" });
+      const newResource = resourceFactory.build();
 
       const consoleSpy = jest.spyOn(console, "warn").mockImplementation();
       beforeEach(() => {
@@ -639,8 +639,8 @@ describe(toStr({ reducer }), () => {
 
     describe(toStr({ removeResourceAction }), () => {
       // Dummy
-      const dummyResources = Array.from({ length: 3 }).map((_, idx) =>
-        createDummyResource({ id: idx })
+      const dummyResources = Array.from({ length: 3 }).map(() =>
+        resourceFactory.build()
       );
       const dummyStories = Array.from({ length: 3 }).map((_, idx) => {
         const story = createDummyStory({ id: idx });
@@ -746,8 +746,8 @@ describe(toStr({ reducer }), () => {
 
     describe(toStr({ updateResourcesAction }), () => {
       // Dummy
-      const dummyResources = Array.from({ length: 3 }).map((_, idx) =>
-        createDummyResource({ id: idx })
+      const dummyResources = Array.from({ length: 3 }).map(() =>
+        resourceFactory.build()
       );
       const dummyStories = Array.from({ length: 3 }).map((_, idx) => {
         const story = createDummyStory({ id: idx });
@@ -766,8 +766,8 @@ describe(toStr({ reducer }), () => {
       });
 
       it("can work.", () => {
-        const updatedResources = Array.from({ length: 3 }).map((_, idx) =>
-          createDummyResource({ id: `updated_${idx}` })
+        const updatedResources = Array.from({ length: 3 }).map(() =>
+          resourceFactory.build()
         );
         const targetStoryIdx = 0;
         const aftCalendar = (() => {
@@ -792,8 +792,8 @@ describe(toStr({ reducer }), () => {
         );
       });
       it("cannot work when to invalid calendarId.", () => {
-        const updatedResources = Array.from({ length: 3 }).map((_, idx) =>
-          createDummyResource({ id: `updated_${idx}` })
+        const updatedResources = Array.from({ length: 3 }).map(() =>
+          resourceFactory.build()
         );
         const targetStoryIdx = 1;
         const invalidCalendarId = "invalid calendar id";
@@ -817,8 +817,8 @@ describe(toStr({ reducer }), () => {
         );
       });
       it("cannot work when to invalid storyId.", () => {
-        const updatedResources = Array.from({ length: 3 }).map((_, idx) =>
-          createDummyResource({ id: `updated_${idx}` })
+        const updatedResources = Array.from({ length: 3 }).map(() =>
+          resourceFactory.build()
         );
         const invalidStoryId = "invalid story id";
 

@@ -10,17 +10,12 @@ export const createDummyPublicCollegeCalendar = () =>
 
 type DummyCalendar = any;
 type DummyStory = any;
-type DummyResource = any;
 
 const createDummyCalendarId = (str: String | number) => `CALENDAR_${str}`;
 const createDummyStoryId = (str: String | number) => `STORY_${str}`;
-const createDummyResourceId = (str: String | number) => `RESOURCE_${str}`;
 
 export const createDummyCalendar = ({ id }: { id: any }) =>
   ({ id: createDummyCalendarId(id) } as DummyCalendar);
 
 export const createDummyStory = ({ id }: { id: any }) =>
   ({ id: createDummyStoryId(id) } as DummyStory);
-
-export const createDummyResource = ({ id }: { id: any }) =>
-  ({ id: createDummyResourceId(id) } as DummyResource);
