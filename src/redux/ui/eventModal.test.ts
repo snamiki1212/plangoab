@@ -8,11 +8,8 @@ import reducer, {
 } from "./eventModal";
 import { RootState } from "../rootReducer";
 import { createDummyEventModal } from "@/testHelpers/factories/redux";
-import {
-  createDummyCalendar,
-  createDummyStory,
-} from "@/testHelpers/factories/core";
-import { eventFactory } from "@/testHelpers/factories/core/event";
+import { createDummyCalendar } from "@/testHelpers/factories/core";
+import { storyFactory } from "@/testHelpers/factories/core/story";
 
 type DummyEventModal = ReturnType<typeof createDummyEventModal>;
 type DummyCalendar = ReturnType<typeof createDummyCalendar>;
@@ -83,12 +80,7 @@ describe(toStr({ selectEventModal }), () => {
 
 describe(toStr({ selectEvent }), () => {
   // Dummy data
-  const dummyEvents = Array.from({ length: 3 }).map(() => eventFactory.build());
-  const dummyStories = Array.from({ length: 3 }).map((_, idx) => {
-    let story = createDummyStory({ id: idx });
-    story.events = dummyEvents;
-    return story;
-  });
+  const dummyStories = storyFactory.buildList(3);
   const dummyCalendar = (() => {
     let item = createDummyCalendar({ id: "0" });
     item.stories = dummyStories;
@@ -98,7 +90,7 @@ describe(toStr({ selectEvent }), () => {
   const createSelectableDummyEventModal = () => ({
     calendarId: dummyCalendar.id,
     storyId: dummyStories[1].id,
-    eventId: dummyEvents[2].id,
+    eventId: dummyStories[1].events[2].id,
   });
 
   const consoleSpy = jest.spyOn(console, "warn").mockImplementation();
@@ -112,9 +104,7 @@ describe(toStr({ selectEvent }), () => {
       eventModalInfo,
       calendars: [dummyCalendar],
     });
-    const expected = dummyEvents.find(
-      (item) => item.id === eventModalInfo.eventId
-    );
+    const expected = dummyStories[1].events[2];
 
     expect(selectEvent(rootState)).toEqual(expected);
   });

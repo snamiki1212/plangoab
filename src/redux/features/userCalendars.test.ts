@@ -20,12 +20,10 @@ import reducer, {
   removeResourceAction,
 } from "./userCalendars";
 import { RootState } from "../rootReducer";
-import {
-  createDummyCalendar,
-  createDummyStory,
-} from "@/testHelpers/factories/core";
+import { createDummyCalendar } from "@/testHelpers/factories/core";
 import { eventFactory } from "@/testHelpers/factories/core/event";
 import { resourceFactory } from "@/testHelpers/factories/core/resource";
+import { storyFactory } from "@/testHelpers/factories/core/story";
 
 const deepClone = (obj: Object) => JSON.parse(JSON.stringify(obj));
 const createRootState = (partialState: any) =>
@@ -48,14 +46,7 @@ describe(toStr({ reducer }), () => {
   describe("Event of", () => {
     describe(toStr({ addEventAction }), () => {
       // Dummy
-      const dummyEvents = Array.from({ length: 3 }).map(() =>
-        eventFactory.build()
-      );
-      const dummyStories = Array.from({ length: 3 }).map((_, idx) => {
-        const story = createDummyStory({ id: idx });
-        story.events = dummyEvents;
-        return story;
-      });
+      const dummyStories = storyFactory.buildList(3);
       const dummyCalendar = (() => {
         const calendar = createDummyCalendar({ id: "id1" });
         calendar.stories = dummyStories;
@@ -63,10 +54,12 @@ describe(toStr({ reducer }), () => {
       })();
       const newEvent = eventFactory.build();
 
+      // check console
       const consoleSpy = jest.spyOn(console, "warn").mockImplementation();
       beforeEach(() => {
         consoleSpy.mockClear();
       });
+
       it("can work.", () => {
         const targetStoryIdx = 1;
         const aftCalendar = (() => {
@@ -130,14 +123,7 @@ describe(toStr({ reducer }), () => {
 
     describe(toStr({ removeEventAction }), () => {
       // Dummy
-      const dummyEvents = Array.from({ length: 3 }).map((_) =>
-        eventFactory.build()
-      );
-      const dummyStories = Array.from({ length: 3 }).map((_, idx) => {
-        const story = createDummyStory({ id: idx });
-        story.events = dummyEvents;
-        return story;
-      });
+      const dummyStories = storyFactory.buildList(3);
       const dummyCalendar = (() => {
         const calendar = createDummyCalendar({ id: "id1" });
         calendar.stories = dummyStories;
@@ -160,7 +146,7 @@ describe(toStr({ reducer }), () => {
         // payload
         const calendar = dummyCalendar;
         const story = dummyStories[targetStoryIdx];
-        const event = dummyEvents[targetEventIdx];
+        const event = dummyStories[targetStoryIdx].events[targetEventIdx];
         const payload = {
           calendarId: calendar.id,
           storyId: story.id,
@@ -178,7 +164,7 @@ describe(toStr({ reducer }), () => {
 
         // payload
         const story = dummyStories[targetStoryIdx];
-        const event = dummyEvents[targetEventIdx];
+        const event = dummyStories[targetStoryIdx].events[targetEventIdx];
         const payload = {
           calendarId: invalidCalendarId,
           storyId: story.id,
@@ -194,12 +180,13 @@ describe(toStr({ reducer }), () => {
         );
       });
       it("cannot work when invalid story id.", () => {
+        const targetStoryIdx = 1;
         const targetEventIdx = 0;
         const invalidStoryId = "invalid story id";
 
         // payload
         const calendar = dummyCalendar;
-        const event = dummyEvents[targetEventIdx];
+        const event = dummyStories[targetStoryIdx].events[targetEventIdx];
         const payload = {
           calendarId: calendar.id,
           storyId: invalidStoryId,
@@ -218,24 +205,19 @@ describe(toStr({ reducer }), () => {
 
     describe(toStr({ updateEventAction }), () => {
       // Dummy
-      const dummyEvents = Array.from({ length: 3 }).map((_, idx) =>
-        eventFactory.build()
-      );
-      const dummyStories = Array.from({ length: 3 }).map((_, idx) => {
-        const story = createDummyStory({ id: idx });
-        story.events = dummyEvents;
-        return story;
-      });
+      const dummyStories = storyFactory.buildList(3);
       const dummyCalendar = (() => {
         const calendar = createDummyCalendar({ id: "id1" });
         calendar.stories = dummyStories;
         return calendar;
       })();
 
+      // check console
       const consoleSpy = jest.spyOn(console, "warn").mockImplementation();
       beforeEach(() => {
         consoleSpy.mockClear();
       });
+
       it("can work.", () => {
         const newEvent = eventFactory.build();
         const targetStoryIdx = 1;
@@ -249,7 +231,7 @@ describe(toStr({ reducer }), () => {
         // payload
         const calendar = dummyCalendar;
         const story = dummyStories[targetStoryIdx];
-        const event = dummyEvents[targetEventIdx];
+        const event = dummyStories[targetStoryIdx].events[targetEventIdx];
         const payload = {
           calendarId: calendar.id,
           storyId: story.id,
@@ -269,7 +251,7 @@ describe(toStr({ reducer }), () => {
 
         // payload
         const story = dummyStories[targetStoryIdx];
-        const event = dummyEvents[targetEventIdx];
+        const event = dummyStories[targetStoryIdx].events[targetEventIdx];
         const payload = {
           calendarId: invalidCalendarId,
           storyId: story.id,
@@ -288,11 +270,12 @@ describe(toStr({ reducer }), () => {
       it("cannot work when invalid story id.", () => {
         const invalidStoryId = "invalid story id";
         const newEvent = eventFactory.build();
+        const targetStoryIdx = 1;
         const targetEventIdx = 0;
 
         // payload
         const calendar = dummyCalendar;
-        const event = dummyEvents[targetEventIdx];
+        const event = dummyStories[targetStoryIdx].events[targetEventIdx];
         const payload = {
           calendarId: calendar.id,
           storyId: invalidStoryId,
@@ -337,14 +320,7 @@ describe(toStr({ reducer }), () => {
   describe("Story of", () => {
     describe(toStr({ addStoryAction }), () => {
       // Dummy
-      const dummyEvents = Array.from({ length: 3 }).map(() =>
-        eventFactory.build()
-      );
-      const dummyStories = Array.from({ length: 3 }).map((_, idx) => {
-        const story = createDummyStory({ id: idx });
-        story.events = dummyEvents;
-        return story;
-      });
+      const dummyStories = storyFactory.buildList(3);
       const dummyCalendar = (() => {
         const calendar = createDummyCalendar({ id: "id1" });
         calendar.stories = dummyStories;
@@ -356,7 +332,7 @@ describe(toStr({ reducer }), () => {
         consoleSpy.mockClear();
       });
       it("can work.", () => {
-        const newStory = createDummyStory({ id: "created" });
+        const newStory = storyFactory.build();
         const aftCalendar = (() => {
           const calendar = deepClone(dummyCalendar);
           calendar.stories.push(newStory);
@@ -376,7 +352,7 @@ describe(toStr({ reducer }), () => {
       });
       it("cannot work when invalid calendar id.", () => {
         const invalidCalendarId = "invalid calendar id";
-        const newStory = createDummyStory({ id: "created" });
+        const newStory = storyFactory.build();
 
         // payload
         const payload = {
@@ -396,14 +372,7 @@ describe(toStr({ reducer }), () => {
 
     describe(toStr({ removeStoryAction }), () => {
       // Dummy
-      const dummyEvents = Array.from({ length: 3 }).map(() =>
-        eventFactory.build()
-      );
-      const dummyStories = Array.from({ length: 3 }).map((_, idx) => {
-        const story = createDummyStory({ id: idx });
-        story.events = dummyEvents;
-        return story;
-      });
+      const dummyStories = storyFactory.buildList(3);
       const dummyCalendar = (() => {
         const calendar = createDummyCalendar({ id: "id1" });
         calendar.stories = dummyStories;
@@ -457,14 +426,7 @@ describe(toStr({ reducer }), () => {
 
     describe(toStr({ updateStoryAction }), () => {
       // Dummy
-      const dummyEvents = Array.from({ length: 3 }).map(() =>
-        eventFactory.build()
-      );
-      const dummyStories = Array.from({ length: 3 }).map((_, idx) => {
-        const story = createDummyStory({ id: idx });
-        story.events = dummyEvents;
-        return story;
-      });
+      const dummyStories = storyFactory.buildList(3);
       const dummyCalendar = (() => {
         const calendar = createDummyCalendar({ id: "id1" });
         calendar.stories = dummyStories;
@@ -476,7 +438,7 @@ describe(toStr({ reducer }), () => {
         consoleSpy.mockClear();
       });
       it("can work.", () => {
-        const updatedStory = createDummyStory({ id: "updated" });
+        const updatedStory = storyFactory.build();
         const targetStoryIdx = 1;
         const aftCalendar = (() => {
           const calendar = deepClone(dummyCalendar);
@@ -499,7 +461,7 @@ describe(toStr({ reducer }), () => {
       });
       it("cannot work when invalid calendar id.", () => {
         const invalidCalendarId = "invalid calendad id";
-        const updatedStory = createDummyStory({ id: "updated" });
+        const updatedStory = storyFactory.build();
         const targetStoryIdx = 1;
 
         // payload
@@ -520,7 +482,7 @@ describe(toStr({ reducer }), () => {
       });
       it("cannot work when invalid story id.", () => {
         const invalidStoryId = "invalid story id";
-        const updatedStory = createDummyStory({ id: "updated" });
+        const updatedStory = storyFactory.build();
 
         // payload
         const calendar = dummyCalendar;
@@ -544,14 +506,7 @@ describe(toStr({ reducer }), () => {
   describe("Resource of", () => {
     describe(toStr({ pushResourceAction }), () => {
       // Dummy
-      const dummyResources = Array.from({ length: 3 }).map(() =>
-        resourceFactory.build()
-      );
-      const dummyStories = Array.from({ length: 3 }).map((_, idx) => {
-        const story = createDummyStory({ id: idx });
-        story.resources = dummyResources;
-        return story;
-      });
+      const dummyStories = storyFactory.buildList(3);
       const dummyCalendar = (() => {
         const calendar = createDummyCalendar({ id: "id1" });
         calendar.stories = dummyStories;
@@ -639,14 +594,7 @@ describe(toStr({ reducer }), () => {
 
     describe(toStr({ removeResourceAction }), () => {
       // Dummy
-      const dummyResources = Array.from({ length: 3 }).map(() =>
-        resourceFactory.build()
-      );
-      const dummyStories = Array.from({ length: 3 }).map((_, idx) => {
-        const story = createDummyStory({ id: idx });
-        story.resources = dummyResources;
-        return story;
-      });
+      const dummyStories = storyFactory.buildList(3);
       const dummyCalendar = (() => {
         const calendar = createDummyCalendar({ id: "id1" });
         calendar.stories = dummyStories;
@@ -673,7 +621,8 @@ describe(toStr({ reducer }), () => {
         // payload
         const calendar = dummyCalendar;
         const story = dummyStories[targetStoryIdx];
-        const resource = dummyResources[targetResourceIdx];
+        const resource =
+          dummyStories[targetStoryIdx].resources[targetResourceIdx];
         const payload = {
           calendarId: calendar.id,
           resourceId: resource.id,
@@ -693,7 +642,8 @@ describe(toStr({ reducer }), () => {
 
         // payload
         const story = dummyStories[targetStoryIdx];
-        const resource = dummyResources[targetResourceIdx];
+        const resource =
+          dummyStories[targetStoryIdx].resources[targetResourceIdx];
         const payload = {
           calendarId: invalidCalendarId,
           resourceId: resource.id,
@@ -708,10 +658,12 @@ describe(toStr({ reducer }), () => {
       it("cannot work because not find story", () => {
         const invalidStoryId = "invalid story id";
         const targetResourceIdx = 1;
+        const targetStoryIdx = 2;
 
         // payload
         const calendar = dummyCalendar;
-        const resource = dummyResources[targetResourceIdx];
+        const resource =
+          dummyStories[targetStoryIdx]?.resources[targetResourceIdx];
         const payload = {
           calendarId: calendar.id,
           resourceId: resource.id,
@@ -726,11 +678,11 @@ describe(toStr({ reducer }), () => {
 
       it("cannot work because not resource id.", () => {
         const invalidResourceId = "invalid resource id";
-        const targetStoryId = 0;
+        const targetStoryIdx = 0;
 
         // payload
         const calendar = dummyCalendar;
-        const story = dummyStories[targetStoryId];
+        const story = dummyStories[targetStoryIdx];
         const payload = {
           calendarId: calendar.id,
           resourceId: invalidResourceId,
@@ -746,14 +698,7 @@ describe(toStr({ reducer }), () => {
 
     describe(toStr({ updateResourcesAction }), () => {
       // Dummy
-      const dummyResources = Array.from({ length: 3 }).map(() =>
-        resourceFactory.build()
-      );
-      const dummyStories = Array.from({ length: 3 }).map((_, idx) => {
-        const story = createDummyStory({ id: idx });
-        story.resources = dummyResources;
-        return story;
-      });
+      const dummyStories = storyFactory.buildList(3);
       const dummyCalendar = (() => {
         const calendar = createDummyCalendar({ id: "id1" });
         calendar.stories = dummyStories;
@@ -879,12 +824,7 @@ describe(toStr({ reducer }), () => {
 
 describe("Selectors of", () => {
   // Dummy data
-  const dummyEvents = Array.from({ length: 3 }).map(() => eventFactory.build());
-  const dummyStories = Array.from({ length: 3 }).map((_, idx) => {
-    let story = createDummyStory({ id: idx });
-    story.events = dummyEvents;
-    return story;
-  });
+  const dummyStories = storyFactory.buildList(3);
   const dummyCalendar = (() => {
     let item = createDummyCalendar({ id: "0" });
     item.stories = dummyStories;
@@ -952,8 +892,8 @@ describe("Selectors of", () => {
       const rootState = createRootState([dummyCalendar]);
       const calendarId = dummyCalendar.id;
       const storyId = dummyStories[1].id;
-      const eventId = dummyEvents[1].id;
-      const expected = dummyEvents.find((item) => item.id === eventId);
+      const eventId = dummyStories[1].events[1].id;
+      const expected = dummyStories[1].events[1];
 
       expect(
         selectEventByIdFilter(rootState)(calendarId, storyId, eventId)
@@ -964,7 +904,7 @@ describe("Selectors of", () => {
       const rootState = createRootState([dummyCalendar]);
       const calendarId = "this is calendarId but not exist";
       const storyId = dummyStories[0].id;
-      const eventId = dummyEvents[1].id;
+      const eventId = dummyStories[0].events[1].id;
       expect(
         selectEventByIdFilter(rootState)(calendarId, storyId, eventId)
       ).toEqual(undefined);
@@ -978,7 +918,7 @@ describe("Selectors of", () => {
       const rootState = createRootState([dummyCalendar]);
       const calendarId = dummyCalendar.id;
       const storyId = "this is storyId but not exist";
-      const eventId = dummyEvents[1].id;
+      const eventId = dummyStories[0].events[1].id;
       expect(
         selectEventByIdFilter(rootState)(calendarId, storyId, eventId)
       ).toEqual(undefined);

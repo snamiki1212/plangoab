@@ -8,11 +8,8 @@ import reducer, {
 import { RootState } from "../rootReducer";
 import { createDummyStoryModal } from "@/testHelpers/factories/redux";
 import { toStr } from "@/testHelpers/index";
-import {
-  createDummyCalendar,
-  createDummyStory,
-} from "@/testHelpers/factories/core";
-import { eventFactory } from "@/testHelpers/factories/core/event";
+import { createDummyCalendar } from "@/testHelpers/factories/core";
+import { storyFactory } from "@/testHelpers/factories/core/story";
 
 type ModalInfo = ReturnType<typeof createDummyStoryModal>;
 type DummyCalendar = ReturnType<typeof createDummyCalendar>;
@@ -69,12 +66,7 @@ describe(toStr({ selectStory }), () => {
   const consoleSpy = jest.spyOn(console, "warn").mockImplementation();
 
   // Dummy
-  const dummyEvents = Array.from({ length: 3 }).map(() => eventFactory.build());
-  const dummyStories = Array.from({ length: 3 }).map((_, idx) => {
-    let story = createDummyStory({ id: idx });
-    story.events = dummyEvents;
-    return story;
-  });
+  const dummyStories = storyFactory.buildList(3);
   const dummyCalendar = (() => {
     let item = createDummyCalendar({ id: "0" });
     item.stories = dummyStories;
