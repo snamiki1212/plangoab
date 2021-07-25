@@ -12,9 +12,9 @@ import {
 } from "@/core/calendar/TemplateCalendar/model";
 import { RootState } from "../rootReducer";
 import {
-  createDummyPrivateCollegeCalendar,
-  createDummyPublicCollegeCalendar,
-} from "@/testHelpers/factories/core";
+  privateCollegeCalendarFactory,
+  publicCollegeCalendarFactory,
+} from "@/testHelpers/factories/core/calendar";
 
 const initialState = {
   [PRIVATE_COLLEGE_CALENDAR_ID]: undefined,
@@ -32,8 +32,8 @@ describe(toStr({ reducer }), () => {
   });
 
   describe(toStr({ resetAction }), () => {
-    const dummyPrivateCollegeCalendar = createDummyPrivateCollegeCalendar();
-    const dummyPublicCollegeCalendar = createDummyPublicCollegeCalendar();
+    const dummyPrivateCollegeCalendar = privateCollegeCalendarFactory.build();
+    const dummyPublicCollegeCalendar = publicCollegeCalendarFactory.build();
     const befState = {
       [PRIVATE_COLLEGE_CALENDAR_ID]: dummyPrivateCollegeCalendar,
       [PUBLIC_COLLEGE_CALENDAR_ID]: dummyPublicCollegeCalendar,
@@ -43,7 +43,7 @@ describe(toStr({ reducer }), () => {
 
   describe(toStr({ upsertPrivateCollegeCalendarAction }), () => {
     it("can work.", () => {
-      const dummyPrivateCollegeCalendar = createDummyPrivateCollegeCalendar();
+      const dummyPrivateCollegeCalendar = privateCollegeCalendarFactory.build();
       const aftState = {
         [PRIVATE_COLLEGE_CALENDAR_ID]: dummyPrivateCollegeCalendar,
         [PUBLIC_COLLEGE_CALENDAR_ID]: undefined,
@@ -61,7 +61,7 @@ describe(toStr({ reducer }), () => {
 
   describe(toStr({ upsertPublicCollegeCalendarAction }), () => {
     it("can work.", () => {
-      const dummyPublicCollegeCalendar = createDummyPublicCollegeCalendar();
+      const dummyPublicCollegeCalendar = publicCollegeCalendarFactory.build();
       const aftState = {
         [PRIVATE_COLLEGE_CALENDAR_ID]: undefined,
         [PUBLIC_COLLEGE_CALENDAR_ID]: dummyPublicCollegeCalendar,
@@ -79,8 +79,8 @@ describe(toStr({ reducer }), () => {
 });
 
 describe("Selector of", () => {
-  const dummyPrivateCollegeCalendar = createDummyPrivateCollegeCalendar();
-  const dummyPublicCollegeCalendar = createDummyPublicCollegeCalendar();
+  const dummyPrivateCollegeCalendar = privateCollegeCalendarFactory.build();
+  const dummyPublicCollegeCalendar = publicCollegeCalendarFactory.build();
   const rootState = createRootState({
     [PRIVATE_COLLEGE_CALENDAR_ID]: dummyPrivateCollegeCalendar,
     [PUBLIC_COLLEGE_CALENDAR_ID]: dummyPublicCollegeCalendar,

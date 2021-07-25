@@ -1,6 +1,10 @@
 import { Factory } from "fishery";
 import { BaseCalendar } from "@/core/calendar/BaseCalendar";
 import { storyFactory } from "./story";
+// import {
+//   PrivateCollegeCalendar,
+//   PublicCollegeCalendar,
+// } from "@/core/calendar/TemplateCalendar/model";
 
 const decorateId = (id: number) => `CALENDAR_${id}`;
 
@@ -14,3 +18,6 @@ export const calendarFactory = Factory.define<BaseCalendar>(
     };
   }
 );
+
+export const privateCollegeCalendarFactory = calendarFactory;
+export const publicCollegeCalendarFactory = calendarFactory;
