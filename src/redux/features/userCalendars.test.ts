@@ -37,8 +37,7 @@ describe(toStr({ reducer }), () => {
   });
   describe(toStr({ resetAction }), () => {
     it("can work.", () => {
-      // TODO: use factory
-      const befState = { calendars: ["dummy", "dummy"] as any[] };
+      const befState = { calendars: calendarFactory.buildList(2) };
       const aftState = initialState;
       expect(reducer(befState, resetAction())).toEqual(aftState);
     });

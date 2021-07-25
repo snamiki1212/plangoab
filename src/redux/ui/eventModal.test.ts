@@ -14,14 +14,14 @@ type EventModal = ReturnType<typeof eventModalFactory.build>;
 type Calendar = ReturnType<typeof calendarFactory.build>;
 
 const createRootState = ({
-  eventModalInfo = null,
+  eventModal = null,
   calendars = [],
 }: {
-  eventModalInfo?: EventModal;
+  eventModal?: EventModal;
   calendars?: Calendar[];
 }) =>
   ({
-    ui: { eventModal: { event: eventModalInfo } },
+    ui: { eventModal: { event: eventModal } },
     features: { userCalendars: { calendars: calendars } },
   } as any as RootState);
 
@@ -52,13 +52,13 @@ describe(toStr({ reducer }), () => {
 
 describe(toStr({ selectIsOpen }), () => {
   it("should be false when to close.", () => {
-    const rootState = createRootState({ eventModalInfo: null });
+    const rootState = createRootState({ eventModal: null });
     expect(selectIsOpen(rootState)).toBe(false);
   });
 
   it("should be true when to open.", () => {
     const modal = eventModalFactory.build();
-    const rootState = createRootState({ eventModalInfo: modal });
+    const rootState = createRootState({ eventModal: modal });
     expect(selectIsOpen(rootState)).toBe(true);
   });
 });
@@ -66,13 +66,13 @@ describe(toStr({ selectIsOpen }), () => {
 describe(toStr({ selectEventModal }), () => {
   it("should exist when to open.", () => {
     const modal = eventModalFactory.build();
-    const rootState = createRootState({ eventModalInfo: modal });
+    const rootState = createRootState({ eventModal: modal });
     expect(selectEventModal(rootState)).toEqual(modal);
   });
 
   it("should not exist when to close.", () => {
     const modal = null;
-    const rootState = createRootState({ eventModalInfo: modal });
+    const rootState = createRootState({ eventModal: modal });
     expect(selectEventModal(rootState)).toEqual(null);
   });
 });
@@ -80,22 +80,19 @@ describe(toStr({ selectEventModal }), () => {
 describe(toStr({ selectEvent }), () => {
   const calendar = calendarFactory.build();
 
-  // TODO: Use factory
-  const createSelectableDummyEventModal = () => ({
-    calendarId: calendar.id,
-    storyId: calendar.stories[1].id,
-    eventId: calendar.stories[1].events[2].id,
-  });
-
   const consoleSpy = jest.spyOn(console, "warn").mockImplementation();
   beforeEach(() => {
     consoleSpy.mockClear();
   });
 
   it("can select.", () => {
-    const eventModalInfo = createSelectableDummyEventModal();
+    const eventModal = eventModalFactory.build({
+      calendarId: calendar.id,
+      storyId: calendar.stories[1].id,
+      eventId: calendar.stories[1].events[2].id,
+    });
     const rootState = createRootState({
-      eventModalInfo,
+      eventModal,
       calendars: [calendar],
     });
     const expected = calendar.stories[1].events[2];
@@ -104,60 +101,60 @@ describe(toStr({ selectEvent }), () => {
   });
 
   it("can not select when not to find calendar.", () => {
-    const calendarId = "NOT_SELECTABLE_CALENDAR_ID";
-    const eventModalInfo = (() => {
-      const modal = createSelectableDummyEventModal();
-      modal.calendarId = calendarId;
-      return modal;
-    })();
+    const invalidCalendarId = "NOT_SELECTABLE_CALENDAR_ID";
+    const eventModal = eventModalFactory.build({
+      calendarId: invalidCalendarId,
+      storyId: calendar.stories[1].id,
+      eventId: calendar.stories[1].events[2].id,
+    });
 
     const rootState = createRootState({
-      eventModalInfo,
+      eventModal,
       calendars: [calendar],
     });
 
     expect(selectEvent(rootState)).toEqual(undefined);
     expect(console.warn).toBeCalledTimes(1);
     expect(console.warn).toHaveBeenLastCalledWith(
-      `Cannot find calendar: ${calendarId}.`
+      `Cannot find calendar: ${invalidCalendarId}.`
     );
   });
 
   it("can not select when not to find story.", () => {
-    const storyId = "NOT_SELECTABLE_STORY_ID";
-    const eventModalInfo = (() => {
-      const modal = createSelectableDummyEventModal();
-      modal.storyId = storyId;
-      return modal;
-    })();
+    const invalidStoryId = "NOT_SELECTABLE_STORY_ID";
+    const eventModal = eventModalFactory.build({
+      calendarId: calendar.id,
+      storyId: invalidStoryId,
+      eventId: calendar.stories[1].events[2].id,
+    });
 
     const rootState = createRootState({
-      eventModalInfo,
+      eventModal,
       calendars: [calendar],
     });
     expect(selectEvent(rootState)).toEqual(undefined);
     expect(console.warn).toBeCalledTimes(1);
     expect(console.warn).toHaveBeenLastCalledWith(
-      `Cannot find story: ${storyId}.`
+      `Cannot find story: ${invalidStoryId}.`
     );
   });
 
   it("can not select when not to find event.", () => {
-    const eventId = "NOT_SELECTABLE_EVENT_ID";
-    const eventModalInfo = (() => {
-      const modal = createSelectableDummyEventModal();
-      modal.eventId = eventId;
-      return modal;
-    })();
+    const invalidEventId = "NOT_SELECTABLE_EVENT_ID";
+    const eventModal = eventModalFactory.build({
+      calendarId: calendar.id,
+      storyId: calendar.stories[1].id,
+      eventId: invalidEventId,
+    });
 
     const rootState = createRootState({
-      eventModalInfo,
+      eventModal,
       calendars: [calendar],
     });
     expect(selectEvent(rootState)).toEqual(undefined);
     expect(console.warn).toBeCalledTimes(1);
     expect(console.warn).toHaveBeenLastCalledWith(
-      `Cannot find event: ${eventId}.`
+      `Cannot find event: ${invalidEventId}.`
     );
   });
 });
