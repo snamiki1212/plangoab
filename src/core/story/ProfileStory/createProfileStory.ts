@@ -5,15 +5,16 @@ import { createProfileEvents } from "@/core/event/createProfileEvents";
 
 const STORY_NAME = "Profile";
 
+type Args = {
+  birth: string | Date;
+  calendarId: string;
+  workingholidayPeriod: number;
+};
 export const createProfileStory = ({
   birth,
   calendarId,
   workingholidayPeriod,
-}: {
-  birth: string | Date;
-  calendarId: string;
-  workingholidayPeriod: number;
-}): ProfileStory => {
+}: Args): ProfileStory => {
   const _birth = new Date(birth);
   const storyId = PROFILE_ID;
   const withWorkingholiday = workingholidayPeriod > 0;

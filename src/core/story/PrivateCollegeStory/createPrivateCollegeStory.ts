@@ -13,16 +13,13 @@ import { BaseEvent, initEvent } from "@/core/event/BaseEvent";
 import { BaseResource, initResource } from "@/core/resource/BaseResource";
 import { convertIsoToYearAndMonth } from "@/lib/date";
 
+type CreatePrivateCollegeStoryparams = {
+  startDate: Date;
+  calendarId: string;
+  canWorkingholiday: boolean;
+};
 export const createPrivateCollegeStory = (
-  {
-    startDate,
-    calendarId,
-    canWorkingholiday,
-  }: {
-    startDate: Date;
-    calendarId: string;
-    canWorkingholiday: boolean;
-  },
+  { startDate, calendarId, canWorkingholiday }: CreatePrivateCollegeStoryparams,
   options: TemplateOption
 ): PrivateCollegeStory => {
   const storyId = uuid();
@@ -44,18 +41,14 @@ export const createPrivateCollegeStory = (
   };
 };
 
+type DoCreateStoryParams = {
+  calendarId: string;
+  storyId: string;
+  startDate: Date;
+  canWorkingholiday: boolean;
+};
 const doCreateStory = (
-  {
-    calendarId,
-    storyId,
-    startDate,
-    canWorkingholiday,
-  }: {
-    calendarId: string;
-    storyId: string;
-    startDate: Date;
-    canWorkingholiday: boolean;
-  },
+  { calendarId, storyId, startDate, canWorkingholiday }: DoCreateStoryParams,
   options: TemplateOption
 ) => {
   let resources = [] as BaseResource[];
