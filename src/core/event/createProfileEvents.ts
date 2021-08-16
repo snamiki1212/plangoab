@@ -10,19 +10,20 @@ import { convertIsoToDateTime } from "@/lib/date";
 import { WORKING_HOLIDAY_APPLICATION_LIMITATION_AGE } from "@/constants/visa";
 import { BaseEvent } from "@/core/event/BaseEvent";
 
+type CreateProfileEventsParams = {
+  startDate: Date;
+  storyId: string;
+  calendarId: string;
+  withWorkingholiday: boolean;
+  workingholidayPeriod: number;
+};
 export const createProfileEvents = ({
   startDate,
   storyId,
   calendarId,
   withWorkingholiday,
   workingholidayPeriod,
-}: {
-  startDate: Date;
-  storyId: string;
-  calendarId: string;
-  withWorkingholiday: boolean;
-  workingholidayPeriod: number;
-}): BaseEvent[] => {
+}: CreateProfileEventsParams): BaseEvent[] => {
   const workingHolidayLimitEvents = withWorkingholiday
     ? createWorkingHolidayLimitEvents({
         startDate,

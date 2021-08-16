@@ -9,15 +9,17 @@ import {
 import { RESOURCES } from "@/constants/fullcalendar/templates";
 import { BaseResource } from "./BaseResource";
 
+type CreateProfileResourcesParams = {
+  calendarId: string;
+  storyId: string;
+  withWorkingholiday: boolean;
+};
+
 export const createProfileResources = ({
   calendarId,
   storyId,
   withWorkingholiday,
-}: {
-  calendarId: string;
-  storyId: string;
-  withWorkingholiday: boolean;
-}): BaseResource[] => {
+}: CreateProfileResourcesParams): BaseResource[] => {
   const list = [
     {
       ...RESOURCES.PROFILE.AGE,
