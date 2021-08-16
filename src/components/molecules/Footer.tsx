@@ -13,7 +13,7 @@ export function Footer() {
 
       <Box>
         <div>
-          <h3>Collcations</h3>
+          <h3>Collaboration</h3>
           <hr />
           <CollaborationsSection />
         </div>
