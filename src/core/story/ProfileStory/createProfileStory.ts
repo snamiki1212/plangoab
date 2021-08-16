@@ -2,6 +2,7 @@ import { ProfileStory } from "./model";
 import { PROFILE_ID } from "@/constants/fullcalendar/settings";
 import { createProfileResources } from "@/core/resource/createProfileResources";
 import { createProfileEvents } from "@/core/event/createProfileEvents";
+import { createDate } from "@/lib/date";
 
 const STORY_NAME = "Profile";
 
@@ -15,7 +16,7 @@ export const createProfileStory = ({
   calendarId,
   workingholidayPeriod,
 }: Args): ProfileStory => {
-  const _birth = new Date(birth);
+  const _birth = createDate(birth);
   const storyId = PROFILE_ID;
   const withWorkingholiday = workingholidayPeriod > 0;
   const resources = createProfileResources({
