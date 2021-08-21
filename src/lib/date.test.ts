@@ -5,6 +5,7 @@ import {
   endOfMonth,
   createRange,
   resetHHMMssmm,
+  convertDateSelectArgToRange,
 } from "./date";
 
 const today = new Date("2020-06-01 12:23:34 GMT");
@@ -91,5 +92,25 @@ describe(createRange.name, () => {
       createDate("2021-03-31 00:00"),
     ];
     expect(result).toEqual(expected);
+  });
+});
+
+describe(convertDateSelectArgToRange.name, () => {
+  it("can works on 1 month.", () => {
+    const start = createDate("2021-01-01 00:00");
+    const end = createDate("2021-02-01 00:00");
+    expect(convertDateSelectArgToRange(start, end)).toEqual([
+      createDate("2021-01-01 00:00"),
+      createDate("2021-01-31 00:00"),
+    ]);
+  });
+
+  it("can works on 2 month.", () => {
+    const start = createDate("2021-01-01 00:00");
+    const end = createDate("2021-03-01 00:00");
+    expect(convertDateSelectArgToRange(start, end)).toEqual([
+      createDate("2021-01-01 00:00"),
+      createDate("2021-02-28 00:00"),
+    ]);
   });
 });

@@ -1,11 +1,11 @@
 import {
   getYear,
   getMonth,
-  getDate,
   parseISO,
   endOfMonth as naiveEndOfMonth,
   startOfMonth as naitveStartOfMonth,
   addMonths,
+  addDays,
 } from "date-fns";
 
 const paddingZero = (num: number) => String(num).padStart(2, "0");
@@ -39,6 +39,15 @@ export const endOfMonth = (date: Date) => {
 
 export const startOfMonth = (date: Date) => {
   return createDate(naitveStartOfMonth(date));
+};
+
+export const convertDateSelectArgToRange = (
+  naiveStart: Date,
+  naiveEnd: Date
+) => {
+  const start = startOfMonth(naiveStart);
+  const end = endOfMonth(addDays(naiveEnd, -1));
+  return [start, end] as const;
 };
 
 export const createRange = (date: Date, range: number) => {
