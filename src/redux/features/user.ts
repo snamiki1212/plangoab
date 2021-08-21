@@ -2,9 +2,10 @@ import { addYears } from "date-fns";
 import { createSlice, PayloadAction, createSelector } from "@reduxjs/toolkit";
 import { RootState } from "@/redux/rootReducer";
 import { calcAge } from "@/lib/age";
+import { createDate } from "@/lib/date";
 
 const PERSONA_AGE = 25;
-const personaBirth = addYears(new Date(), -PERSONA_AGE).toISOString();
+const personaBirth = addYears(createDate(), -PERSONA_AGE).toISOString();
 
 type UpdatePayload = {
   birthday: string;

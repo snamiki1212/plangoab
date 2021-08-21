@@ -20,3 +20,9 @@ export const convertIsoToYearAndMonth = (_date: Date | string) => {
 export const convertDateToIso = (_date: Date | string) => {
   return typeof _date === "object" ? _date.toISOString() : _date;
 };
+
+export const createDate = (...arg: any) => {
+  const d = arg.length == 0 ? new Date() : new Date(arg);
+  d.setHours(0, 0, 0, 0); // reset hour/min/sec/ms
+  return d;
+};
