@@ -1,4 +1,4 @@
-import { addMonths, addYears, setMonth } from "date-fns";
+import { addMonths, addYears, setMonth, addDays } from "date-fns";
 import { RESOURCES, EVENTS } from "@/constants/fullcalendar/templates";
 import {
   NAME_OF_STORY_ID,
@@ -11,7 +11,7 @@ import { createStoryName } from "@/core/story/BaseStory";
 import { TemplateOption } from "@/core/calendar/BaseCalendar";
 import { BaseEvent, initEvent } from "@/core/event/BaseEvent";
 import { BaseResource, initResource } from "@/core/resource/BaseResource";
-import { convertIsoToYearAndMonth } from "@/lib/date";
+import { createRange, resetHHMMssmm, startOfMonth } from "@/lib/date";
 
 type CreatePublicCollegeStoryParams = {
   startDate: Date;
@@ -48,7 +48,12 @@ type DoCreateStoryParams = {
   canWorkingholiday: boolean;
 };
 const doCreateStory = (
-  { calendarId, storyId, startDate, canWorkingholiday }: DoCreateStoryParams,
+  {
+    calendarId,
+    storyId,
+    startDate: originalStartDate,
+    canWorkingholiday,
+  }: DoCreateStoryParams,
   options: TemplateOption
 ) => {
   let resources = [] as BaseResource[];
@@ -56,6 +61,8 @@ const doCreateStory = (
 
   const { schoolPeriod, pgwpPeriod, workingholidayPeriod } = options;
   const withPgwp = pgwpPeriod > 0;
+  const startDate = resetHHMMssmm(originalStartDate);
+  let start, end;
 
   // College Application
   const collegeApplicationId = uuid();
@@ -68,14 +75,15 @@ const doCreateStory = (
       [NAME_OF_ORDER]: 101,
     })
   );
+  [start, end] = createRange(addMonths(startDate, -9), 1);
   events.push(
     initEvent({
       ...EVENTS.TASK.COLLEGE_APPLICATION,
       id: uuid(),
       resourceId: collegeApplicationId,
       storyId,
-      start: addMonths(startDate, -9).toISOString(),
-      end: addMonths(startDate, -8).toISOString(),
+      start: start.toISOString(),
+      end: end.toISOString(),
       extendedProps: {
         resourceId: collegeApplicationId,
         calendarId,
@@ -98,14 +106,15 @@ const doCreateStory = (
       [NAME_OF_ORDER]: 102,
     })
   );
+  [start, end] = createRange(addMonths(startDate, -8), 1);
   events.push(
     initEvent({
       ...EVENTS.TASK.PAYMENT,
       id: uuid(),
       resourceId: paymentId,
       storyId,
-      start: addMonths(startDate, -8).toISOString(),
-      end: addMonths(startDate, -7).toISOString(),
+      start: start.toISOString(),
+      end: end.toISOString(),
       extendedProps: {
         resourceId: paymentId,
         calendarId,
@@ -127,14 +136,15 @@ const doCreateStory = (
       [NAME_OF_ORDER]: 103,
     })
   );
+  [start, end] = createRange(addMonths(startDate, -7), 1);
   events.push(
     initEvent({
       ...EVENTS.TASK.READY_FOR_VISA_APPLICATION,
       id: uuid(),
       resourceId: readyForVisaApplicationId,
       storyId,
-      start: addMonths(startDate, -7).toISOString(),
-      end: addMonths(startDate, -6).toISOString(),
+      start: start.toISOString(),
+      end: end.toISOString(),
       extendedProps: {
         resourceId: readyForVisaApplicationId,
         calendarId,
@@ -157,14 +167,15 @@ const doCreateStory = (
       [NAME_OF_ORDER]: 104,
     })
   );
+  [start, end] = createRange(addMonths(startDate, -6), 1);
   events.push(
     initEvent({
       ...EVENTS.TASK.BIOMETORICS,
       id: uuid(),
       resourceId: biometricsId,
       storyId,
-      start: addMonths(startDate, -6).toISOString(),
-      end: addMonths(startDate, -5).toISOString(),
+      start: start.toISOString(),
+      end: end.toISOString(),
       extendedProps: {
         resourceId: biometricsId,
         calendarId,
@@ -186,14 +197,15 @@ const doCreateStory = (
       [NAME_OF_ORDER]: 105,
     })
   );
+  [start, end] = createRange(addMonths(startDate, -5), 1);
   events.push(
     initEvent({
       ...EVENTS.TASK.READY_FOR_GOING,
       id: uuid(),
       resourceId: readyForGoingId,
       storyId,
-      start: addMonths(startDate, -5).toISOString(),
-      end: addMonths(startDate, -4).toISOString(),
+      start: start.toISOString(),
+      end: end.toISOString(),
       extendedProps: {
         resourceId: readyForGoingId,
         calendarId,
@@ -216,14 +228,15 @@ const doCreateStory = (
       [NAME_OF_ORDER]: 106,
     })
   );
+  [start, end] = createRange(addMonths(startDate, -4), 1);
   events.push(
     initEvent({
       ...EVENTS.TASK.LAST_CHECK,
       id: uuid(),
       resourceId: lastCheckId,
       storyId,
-      start: addMonths(startDate, -4).toISOString(),
-      end: addMonths(startDate, -3).toISOString(),
+      start: start.toISOString(),
+      end: end.toISOString(),
       extendedProps: {
         resourceId: lastCheckId,
         calendarId,
@@ -245,6 +258,7 @@ const doCreateStory = (
       [NAME_OF_ORDER]: 201,
     })
   );
+  [start, end] = createRange(startDate, schoolPeriod);
   events.push(
     initEvent({
       ...EVENTS.VISA.STUDY,
@@ -252,7 +266,7 @@ const doCreateStory = (
       resourceId: studyVisaResourceId,
       storyId,
       start: startDate.toISOString(),
-      end: addMonths(startDate, schoolPeriod).toISOString(),
+      end: end.toISOString(),
       extendedProps: {
         resourceId: studyVisaResourceId,
         calendarId,
@@ -274,14 +288,15 @@ const doCreateStory = (
         [NAME_OF_ORDER]: 202,
       })
     );
+    [start, end] = createRange(addMonths(startDate, schoolPeriod), pgwpPeriod);
     events.push(
       initEvent({
         ...EVENTS.VISA.PGWP,
         id: uuid(),
         resourceId: pgwpVisaResourceId,
         storyId,
-        start: addMonths(startDate, schoolPeriod).toISOString(),
-        end: addMonths(startDate, schoolPeriod + pgwpPeriod).toISOString(),
+        start: start.toISOString(),
+        end: end.toISOString(),
         extendedProps: {
           resourceId: pgwpVisaResourceId,
           calendarId,
@@ -307,17 +322,15 @@ const doCreateStory = (
       startDate,
       schoolPeriod + pgwpPeriod
     );
+    [start, end] = createRange(dateAsStartWorkingHoliday, workingholidayPeriod);
     events.push(
       initEvent({
         ...EVENTS.VISA.WORKING_HOLIDAY,
         id: uuid(),
         resourceId: workingholidayResourceId,
         storyId,
-        start: dateAsStartWorkingHoliday.toISOString(),
-        end: addMonths(
-          dateAsStartWorkingHoliday,
-          workingholidayPeriod
-        ).toISOString(),
+        start: start.toISOString(),
+        end: end.toISOString(),
         extendedProps: {
           resourceId: workingholidayResourceId,
           calendarId,
@@ -326,17 +339,21 @@ const doCreateStory = (
         },
       })
     );
+    end = addDays(start, -1);
+    start = startOfMonth(
+      setMonth(
+        addYears(dateAsStartWorkingHoliday, -1),
+        MONTH_OF_WORKING_HOLIDAY_APPLICATION_LIMIT
+      )
+    );
     events.push(
       initEvent({
         ...EVENTS.VISA.READY_WORKING_HOLIDAY,
         id: uuid(),
         resourceId: workingholidayResourceId,
         storyId,
-        start: setMonth(
-          addYears(dateAsStartWorkingHoliday, -1),
-          MONTH_OF_WORKING_HOLIDAY_APPLICATION_LIMIT
-        ).toISOString(),
-        end: dateAsStartWorkingHoliday.toISOString(),
+        start: start.toISOString(),
+        end: end.toISOString(),
         extendedProps: {
           resourceId: workingholidayResourceId,
           calendarId,
@@ -358,20 +375,18 @@ const doCreateStory = (
       [NAME_OF_ORDER]: 204,
     })
   );
+  [start, end] = createRange(
+    addMonths(startDate, schoolPeriod + workingholidayPeriod + pgwpPeriod - 4),
+    10
+  );
   events.push(
     initEvent({
       ...EVENTS.VISA.BOWP_OR_PNP,
       id: uuid(),
       resourceId: bowpOrPnpVisa,
       storyId,
-      start: addMonths(
-        startDate,
-        schoolPeriod + workingholidayPeriod + pgwpPeriod - 4
-      ).toISOString(),
-      end: addMonths(
-        startDate,
-        schoolPeriod + workingholidayPeriod + pgwpPeriod - 4 + 10
-      ).toISOString(),
+      start: start.toISOString(),
+      end: end.toISOString(),
       extendedProps: {
         resourceId: bowpOrPnpVisa,
         calendarId,
@@ -392,20 +407,18 @@ const doCreateStory = (
       [NAME_OF_ORDER]: 205,
     })
   );
+  [start, end] = createRange(
+    addMonths(startDate, schoolPeriod + workingholidayPeriod + pgwpPeriod + 6),
+    12 * 2
+  );
   events.push(
     initEvent({
       ...EVENTS.VISA.PR,
       id: uuid(),
       resourceId: prVisa,
       storyId,
-      start: addMonths(
-        startDate,
-        schoolPeriod + workingholidayPeriod + pgwpPeriod + 6
-      ).toISOString(),
-      end: addMonths(
-        startDate,
-        schoolPeriod + workingholidayPeriod + pgwpPeriod + 6 + 12 * 2
-      ).toISOString(),
+      start: start.toISOString(),
+      end: end.toISOString(),
       extendedProps: {
         resourceId: prVisa,
         calendarId,
@@ -426,17 +439,18 @@ const doCreateStory = (
       [NAME_OF_ORDER]: 205,
     })
   );
+  [start, end] = createRange(
+    addMonths(startDate, schoolPeriod),
+    pgwpPeriod + workingholidayPeriod + 6 + 2 * 12
+  );
   events.push(
     initEvent({
       ...EVENTS.STATUS.WORKER,
       id: uuid(),
       resourceId: statusResourceId,
       storyId,
-      start: addMonths(startDate, schoolPeriod).toISOString(),
-      end: addMonths(
-        startDate,
-        schoolPeriod + pgwpPeriod + workingholidayPeriod + 6 + 2 * 12
-      ).toISOString(),
+      start: start.toISOString(),
+      end: end.toISOString(),
       extendedProps: {
         resourceId: statusResourceId,
         calendarId,
@@ -445,6 +459,7 @@ const doCreateStory = (
       },
     })
   );
+  [start, end] = createRange(startDate, schoolPeriod);
   events.push(
     initEvent({
       ...EVENTS.STATUS.STUDENTS,
@@ -452,7 +467,7 @@ const doCreateStory = (
       resourceId: statusResourceId,
       storyId,
       start: startDate.toISOString(),
-      end: addMonths(startDate, schoolPeriod).toISOString(),
+      end: end.toISOString(),
       extendedProps: {
         resourceId: statusResourceId,
         calendarId,
@@ -473,20 +488,18 @@ const doCreateStory = (
       [NAME_OF_ORDER]: 301,
     })
   );
+  [start, end] = createRange(
+    addMonths(startDate, schoolPeriod + pgwpPeriod + workingholidayPeriod - 6),
+    2
+  );
   events.push(
     initEvent({
       ...EVENTS.TASK.PR_APPLICATION,
       id: uuid(),
       resourceId: prApplicationResourceId,
       storyId,
-      start: addMonths(
-        startDate,
-        schoolPeriod + pgwpPeriod + workingholidayPeriod - 6
-      ).toISOString(),
-      end: addMonths(
-        startDate,
-        schoolPeriod + pgwpPeriod + workingholidayPeriod - 6 + 2
-      ).toISOString(),
+      start: start.toISOString(),
+      end: end.toISOString(),
       extendedProps: {
         resourceId: prApplicationResourceId,
         calendarId,
@@ -509,20 +522,18 @@ const doCreateStory = (
       [NAME_OF_ORDER]: 302,
     })
   );
+  [start, end] = createRange(
+    addMonths(startDate, schoolPeriod + pgwpPeriod + workingholidayPeriod - 4),
+    10
+  );
   events.push(
     initEvent({
       ...EVENTS.TASK.PR_WAITING_FOR_APPLICATION,
       id: uuid(),
       resourceId: prWaitingForAcceptance,
       storyId,
-      start: addMonths(
-        startDate,
-        schoolPeriod + pgwpPeriod + workingholidayPeriod - 4
-      ).toISOString(),
-      end: addMonths(
-        startDate,
-        schoolPeriod + pgwpPeriod + workingholidayPeriod - 4 + 10
-      ).toISOString(),
+      start: start.toISOString(),
+      end: end.toISOString(),
       extendedProps: {
         resourceId: prWaitingForAcceptance,
         calendarId,
@@ -545,20 +556,18 @@ const doCreateStory = (
       [NAME_OF_ORDER]: 303,
     })
   );
+  [start, end] = createRange(
+    addMonths(startDate, schoolPeriod + pgwpPeriod + workingholidayPeriod + 6),
+    1
+  );
   events.push(
     initEvent({
       ...EVENTS.TASK.PR_ACCEPTANCE,
       id: uuid(),
       resourceId: prAcceptance,
       storyId,
-      start: addMonths(
-        startDate,
-        schoolPeriod + pgwpPeriod + workingholidayPeriod + 6
-      ).toISOString(),
-      end: addMonths(
-        startDate,
-        schoolPeriod + pgwpPeriod + workingholidayPeriod + 6
-      ).toISOString(),
+      start: start.toISOString(),
+      end: end.toISOString(),
       extendedProps: {
         resourceId: prAcceptance,
         calendarId,

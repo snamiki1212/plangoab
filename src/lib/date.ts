@@ -1,4 +1,12 @@
-import { getYear, getMonth, getDate, parseISO } from "date-fns";
+import {
+  getYear,
+  getMonth,
+  getDate,
+  parseISO,
+  endOfMonth as naiveEndOfMonth,
+  startOfMonth as naitveStartOfMonth,
+  addMonths,
+} from "date-fns";
 
 const paddingZero = (num: number) => String(num).padStart(2, "0");
 
@@ -17,12 +25,35 @@ export const convertIsoToYearAndMonth = (_date: Date | string) => {
   return `${YYYY}-${MM}`;
 };
 
+export const convertYYYYMMDDtoDate = (YYYY_MM_DD: string) => {
+  return new Date(`${YYYY_MM_DD} 00:00`);
+};
+
 export const convertDateToIso = (_date: Date | string) => {
   return typeof _date === "object" ? _date.toISOString() : _date;
 };
 
 export const createDate = (...arg: any) => {
-  const d = arg.length == 0 ? new Date() : new Date(arg);
-  d.setHours(0, 0, 0, 0); // reset hour/min/sec/ms
-  return d;
+  const date = arg.length == 0 ? new Date() : new Date(arg);
+  const reseted = resetHHMMssmm(date);
+  return reseted;
+};
+
+export const resetHHMMssmm = (date: Date) => {
+  date.setHours(0, 0, 0, 0); // reset hour/min/sec/ms
+  return date;
+};
+
+export const endOfMonth = (date: Date) => {
+  return createDate(naiveEndOfMonth(date));
+};
+
+export const startOfMonth = (date: Date) => {
+  return createDate(naitveStartOfMonth(date));
+};
+
+export const createRange = (date: Date, range: number) => {
+  const start = startOfMonth(date);
+  const end = endOfMonth(addMonths(date, range <= 0 ? range : range - 1));
+  return [start, end] as const;
 };
