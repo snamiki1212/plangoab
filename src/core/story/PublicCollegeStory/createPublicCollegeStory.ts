@@ -74,8 +74,8 @@ const doCreateStory = (
       id: uuid(),
       resourceId: collegeApplicationId,
       storyId,
-      start: convertIsoToYearAndMonth(addMonths(startDate, -9)),
-      end: convertIsoToYearAndMonth(addMonths(startDate, -8)),
+      start: addMonths(startDate, -9).toISOString(),
+      end: addMonths(startDate, -8).toISOString(),
       extendedProps: {
         resourceId: collegeApplicationId,
         calendarId,
@@ -104,8 +104,8 @@ const doCreateStory = (
       id: uuid(),
       resourceId: paymentId,
       storyId,
-      start: convertIsoToYearAndMonth(addMonths(startDate, -8)),
-      end: convertIsoToYearAndMonth(addMonths(startDate, -7)),
+      start: addMonths(startDate, -8).toISOString(),
+      end: addMonths(startDate, -7).toISOString(),
       extendedProps: {
         resourceId: paymentId,
         calendarId,
@@ -133,8 +133,8 @@ const doCreateStory = (
       id: uuid(),
       resourceId: readyForVisaApplicationId,
       storyId,
-      start: convertIsoToYearAndMonth(addMonths(startDate, -7)),
-      end: convertIsoToYearAndMonth(addMonths(startDate, -6)),
+      start: addMonths(startDate, -7).toISOString(),
+      end: addMonths(startDate, -6).toISOString(),
       extendedProps: {
         resourceId: readyForVisaApplicationId,
         calendarId,
@@ -163,8 +163,8 @@ const doCreateStory = (
       id: uuid(),
       resourceId: biometricsId,
       storyId,
-      start: convertIsoToYearAndMonth(addMonths(startDate, -6)),
-      end: convertIsoToYearAndMonth(addMonths(startDate, -5)),
+      start: addMonths(startDate, -6).toISOString(),
+      end: addMonths(startDate, -5).toISOString(),
       extendedProps: {
         resourceId: biometricsId,
         calendarId,
@@ -192,8 +192,8 @@ const doCreateStory = (
       id: uuid(),
       resourceId: readyForGoingId,
       storyId,
-      start: convertIsoToYearAndMonth(addMonths(startDate, -5)),
-      end: convertIsoToYearAndMonth(addMonths(startDate, -4)),
+      start: addMonths(startDate, -5).toISOString(),
+      end: addMonths(startDate, -4).toISOString(),
       extendedProps: {
         resourceId: readyForGoingId,
         calendarId,
@@ -222,8 +222,8 @@ const doCreateStory = (
       id: uuid(),
       resourceId: lastCheckId,
       storyId,
-      start: convertIsoToYearAndMonth(addMonths(startDate, -4)),
-      end: convertIsoToYearAndMonth(addMonths(startDate, -3)),
+      start: addMonths(startDate, -4).toISOString(),
+      end: addMonths(startDate, -3).toISOString(),
       extendedProps: {
         resourceId: lastCheckId,
         calendarId,
@@ -251,8 +251,8 @@ const doCreateStory = (
       id: uuid(),
       resourceId: studyVisaResourceId,
       storyId,
-      start: convertIsoToYearAndMonth(startDate),
-      end: convertIsoToYearAndMonth(addMonths(startDate, schoolPeriod)),
+      start: startDate.toISOString(),
+      end: addMonths(startDate, schoolPeriod).toISOString(),
       extendedProps: {
         resourceId: studyVisaResourceId,
         calendarId,
@@ -280,10 +280,8 @@ const doCreateStory = (
         id: uuid(),
         resourceId: pgwpVisaResourceId,
         storyId,
-        start: convertIsoToYearAndMonth(addMonths(startDate, schoolPeriod)),
-        end: convertIsoToYearAndMonth(
-          addMonths(startDate, schoolPeriod + pgwpPeriod)
-        ),
+        start: addMonths(startDate, schoolPeriod).toISOString(),
+        end: addMonths(startDate, schoolPeriod + pgwpPeriod).toISOString(),
         extendedProps: {
           resourceId: pgwpVisaResourceId,
           calendarId,
@@ -315,10 +313,11 @@ const doCreateStory = (
         id: uuid(),
         resourceId: workingholidayResourceId,
         storyId,
-        start: convertIsoToYearAndMonth(dateAsStartWorkingHoliday),
-        end: convertIsoToYearAndMonth(
-          addMonths(dateAsStartWorkingHoliday, workingholidayPeriod)
-        ),
+        start: dateAsStartWorkingHoliday.toISOString(),
+        end: addMonths(
+          dateAsStartWorkingHoliday,
+          workingholidayPeriod
+        ).toISOString(),
         extendedProps: {
           resourceId: workingholidayResourceId,
           calendarId,
@@ -333,13 +332,11 @@ const doCreateStory = (
         id: uuid(),
         resourceId: workingholidayResourceId,
         storyId,
-        start: convertIsoToYearAndMonth(
-          setMonth(
-            addYears(dateAsStartWorkingHoliday, -1),
-            MONTH_OF_WORKING_HOLIDAY_APPLICATION_LIMIT
-          )
-        ),
-        end: convertIsoToYearAndMonth(dateAsStartWorkingHoliday),
+        start: setMonth(
+          addYears(dateAsStartWorkingHoliday, -1),
+          MONTH_OF_WORKING_HOLIDAY_APPLICATION_LIMIT
+        ).toISOString(),
+        end: dateAsStartWorkingHoliday.toISOString(),
         extendedProps: {
           resourceId: workingholidayResourceId,
           calendarId,
@@ -367,18 +364,14 @@ const doCreateStory = (
       id: uuid(),
       resourceId: bowpOrPnpVisa,
       storyId,
-      start: convertIsoToYearAndMonth(
-        addMonths(
-          startDate,
-          schoolPeriod + workingholidayPeriod + pgwpPeriod - 4
-        )
-      ),
-      end: convertIsoToYearAndMonth(
-        addMonths(
-          startDate,
-          schoolPeriod + workingholidayPeriod + pgwpPeriod - 4 + 10
-        )
-      ),
+      start: addMonths(
+        startDate,
+        schoolPeriod + workingholidayPeriod + pgwpPeriod - 4
+      ).toISOString(),
+      end: addMonths(
+        startDate,
+        schoolPeriod + workingholidayPeriod + pgwpPeriod - 4 + 10
+      ).toISOString(),
       extendedProps: {
         resourceId: bowpOrPnpVisa,
         calendarId,
@@ -405,18 +398,14 @@ const doCreateStory = (
       id: uuid(),
       resourceId: prVisa,
       storyId,
-      start: convertIsoToYearAndMonth(
-        addMonths(
-          startDate,
-          schoolPeriod + workingholidayPeriod + pgwpPeriod + 6
-        )
-      ),
-      end: convertIsoToYearAndMonth(
-        addMonths(
-          startDate,
-          schoolPeriod + workingholidayPeriod + pgwpPeriod + 6 + 12 * 2
-        )
-      ),
+      start: addMonths(
+        startDate,
+        schoolPeriod + workingholidayPeriod + pgwpPeriod + 6
+      ).toISOString(),
+      end: addMonths(
+        startDate,
+        schoolPeriod + workingholidayPeriod + pgwpPeriod + 6 + 12 * 2
+      ).toISOString(),
       extendedProps: {
         resourceId: prVisa,
         calendarId,
@@ -443,13 +432,11 @@ const doCreateStory = (
       id: uuid(),
       resourceId: statusResourceId,
       storyId,
-      start: convertIsoToYearAndMonth(addMonths(startDate, schoolPeriod)),
-      end: convertIsoToYearAndMonth(
-        addMonths(
-          startDate,
-          schoolPeriod + pgwpPeriod + workingholidayPeriod + 6 + 2 * 12
-        )
-      ),
+      start: addMonths(startDate, schoolPeriod).toISOString(),
+      end: addMonths(
+        startDate,
+        schoolPeriod + pgwpPeriod + workingholidayPeriod + 6 + 2 * 12
+      ).toISOString(),
       extendedProps: {
         resourceId: statusResourceId,
         calendarId,
@@ -464,8 +451,8 @@ const doCreateStory = (
       id: uuid(),
       resourceId: statusResourceId,
       storyId,
-      start: convertIsoToYearAndMonth(startDate),
-      end: convertIsoToYearAndMonth(addMonths(startDate, schoolPeriod)),
+      start: startDate.toISOString(),
+      end: addMonths(startDate, schoolPeriod).toISOString(),
       extendedProps: {
         resourceId: statusResourceId,
         calendarId,
@@ -492,18 +479,14 @@ const doCreateStory = (
       id: uuid(),
       resourceId: prApplicationResourceId,
       storyId,
-      start: convertIsoToYearAndMonth(
-        addMonths(
-          startDate,
-          schoolPeriod + pgwpPeriod + workingholidayPeriod - 6
-        )
-      ),
-      end: convertIsoToYearAndMonth(
-        addMonths(
-          startDate,
-          schoolPeriod + pgwpPeriod + workingholidayPeriod - 6 + 2
-        )
-      ),
+      start: addMonths(
+        startDate,
+        schoolPeriod + pgwpPeriod + workingholidayPeriod - 6
+      ).toISOString(),
+      end: addMonths(
+        startDate,
+        schoolPeriod + pgwpPeriod + workingholidayPeriod - 6 + 2
+      ).toISOString(),
       extendedProps: {
         resourceId: prApplicationResourceId,
         calendarId,
@@ -532,18 +515,14 @@ const doCreateStory = (
       id: uuid(),
       resourceId: prWaitingForAcceptance,
       storyId,
-      start: convertIsoToYearAndMonth(
-        addMonths(
-          startDate,
-          schoolPeriod + pgwpPeriod + workingholidayPeriod - 4
-        )
-      ),
-      end: convertIsoToYearAndMonth(
-        addMonths(
-          startDate,
-          schoolPeriod + pgwpPeriod + workingholidayPeriod - 4 + 10
-        )
-      ),
+      start: addMonths(
+        startDate,
+        schoolPeriod + pgwpPeriod + workingholidayPeriod - 4
+      ).toISOString(),
+      end: addMonths(
+        startDate,
+        schoolPeriod + pgwpPeriod + workingholidayPeriod - 4 + 10
+      ).toISOString(),
       extendedProps: {
         resourceId: prWaitingForAcceptance,
         calendarId,
@@ -572,18 +551,14 @@ const doCreateStory = (
       id: uuid(),
       resourceId: prAcceptance,
       storyId,
-      start: convertIsoToYearAndMonth(
-        addMonths(
-          startDate,
-          schoolPeriod + pgwpPeriod + workingholidayPeriod + 6
-        )
-      ),
-      end: convertIsoToYearAndMonth(
-        addMonths(
-          startDate,
-          schoolPeriod + pgwpPeriod + workingholidayPeriod + 6
-        )
-      ),
+      start: addMonths(
+        startDate,
+        schoolPeriod + pgwpPeriod + workingholidayPeriod + 6
+      ).toISOString(),
+      end: addMonths(
+        startDate,
+        schoolPeriod + pgwpPeriod + workingholidayPeriod + 6
+      ).toISOString(),
       extendedProps: {
         resourceId: prAcceptance,
         calendarId,

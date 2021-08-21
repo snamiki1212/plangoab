@@ -6,7 +6,7 @@ import {
 import { EVENTS } from "@/constants/fullcalendar/templates";
 import { getRangeNumbers } from "@/lib/age";
 import { uuid } from "@/lib/uuid";
-import { convertIsoToDateTime, createDate } from "@/lib/date";
+import { createDate } from "@/lib/date";
 import { WORKING_HOLIDAY_APPLICATION_LIMITATION_AGE } from "@/constants/visa";
 import { BaseEvent } from "@/core/event/BaseEvent";
 
@@ -41,12 +41,10 @@ export const createProfileEvents = ({
     const start = (() => {
       startDate.setFullYear(year);
       const isoStr = startDate.toISOString();
-      const str = convertIsoToDateTime(isoStr);
-      return str;
+      return isoStr;
     })();
 
-    const isoStr = addMonths(createDate(start), +11).toISOString();
-    const end = convertIsoToDateTime(isoStr);
+    const end = addMonths(createDate(start), +11).toISOString();
 
     return {
       ...EVENTS.PROFILE.AGE(index),
@@ -88,12 +86,10 @@ const createWorkingHolidayLimitEvents = ({
     startDate,
     WORKING_HOLIDAY_APPLICATION_LIMITATION_AGE
   );
-  const start = convertIsoToDateTime(startDate.toISOString());
+  const start = startDate.toISOString();
   const endDate = addMonths(lastYearDate, workingholidayPeriod);
-  const endOfLimit = convertIsoToDateTime(endDate.toISOString());
-  const endOfApplication = convertIsoToDateTime(
-    addYears(setMonth(endDate, +6), -1).toISOString()
-  );
+  const endOfLimit = endDate.toISOString();
+  const endOfApplication = addYears(setMonth(endDate, +6), -1).toISOString();
 
   const limitation = {
     ...EVENTS.PROFILE.WORKING_HOLIDAY,

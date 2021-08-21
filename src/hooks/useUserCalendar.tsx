@@ -66,8 +66,8 @@ export const useUserCalendar = () => {
         resourceId: info.resource.id,
         calendarId,
         storyId,
-        start: info.startStr,
-        end: info.endStr,
+        start: info.start.toISOString(),
+        end: info.end.toISOString(),
       });
 
       dispatch(addEventAction({ event: newEvent, calendarId, storyId }));
