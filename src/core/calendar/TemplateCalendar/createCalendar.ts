@@ -7,6 +7,7 @@ import {
 import { AGE_OF_START_STORY } from "@/constants/fullcalendar/options";
 import { WORKING_HOLIDAY_APPLICATION_LIMITATION_AGE } from "@/constants/visa";
 import { range } from "@/lib/util";
+import { createDate } from "@/lib/date";
 import { createPrivateCollegeStory } from "@/core/story/PrivateCollegeStory/createPrivateCollegeStory";
 import { createPublicCollegeStory } from "@/core/story/PublicCollegeStory/createPublicCollegeStory";
 import { BaseStory } from "@/core/story/BaseStory";
@@ -18,20 +19,16 @@ const scopeAges = range(
 );
 
 const shouldViewPast = false;
-const now = new Date();
+const now = createDate();
 
+type CreateStoryListParams = {
+  birth: Date;
+  calendarId: string;
+  canWorkingholiday: boolean;
+  storyCreater: Function;
+};
 const createStoryList = (
-  {
-    birth,
-    calendarId,
-    canWorkingholiday,
-    storyCreater,
-  }: {
-    birth: Date;
-    calendarId: string;
-    canWorkingholiday: boolean;
-    storyCreater: Function;
-  },
+  { birth, calendarId, canWorkingholiday, storyCreater }: CreateStoryListParams,
   options: TemplateOption
 ): BaseStory[] => {
   const monthsOfStartSchool = options.monthsOfStartSchool;
@@ -55,14 +52,13 @@ const createStoryList = (
     });
 };
 
+type CreatePrivateCollegeCalendarParams = {
+  birth: Date;
+  canWorkingholiday: boolean;
+};
+
 export const createPrivateCollegeCalendar = (
-  {
-    birth,
-    canWorkingholiday,
-  }: {
-    birth: Date;
-    canWorkingholiday: boolean;
-  },
+  { birth, canWorkingholiday }: CreatePrivateCollegeCalendarParams,
   options: TemplateOption
 ): PrivateCollegeCalendar => {
   const params = {
@@ -78,14 +74,12 @@ export const createPrivateCollegeCalendar = (
   };
 };
 
+type CreatePublicCollegeCalendarParams = {
+  birth: Date;
+  canWorkingholiday: boolean;
+};
 export const createPublicCollegeCalendar = (
-  {
-    birth,
-    canWorkingholiday,
-  }: {
-    birth: Date;
-    canWorkingholiday: boolean;
-  },
+  { birth, canWorkingholiday }: CreatePublicCollegeCalendarParams,
   options: TemplateOption
 ): PrivateCollegeCalendar => {
   const params = {
