@@ -4,7 +4,6 @@ import { BaseEvent } from "@/core/event/BaseEvent";
 import { BaseResource } from "@/core/resource/BaseResource";
 import { TemplateOption } from "@/core/calendar/BaseCalendar";
 import { createPrivateCollegeCalendar } from "@/core/calendar/TemplateCalendar/createCalendar";
-import { createDate } from "@/lib/date";
 import {
   upsertPrivateCollegeCalendarAction,
   selectPrivateCollegeCalendar,
@@ -24,7 +23,7 @@ export const usePrivateCollegeCalendar = () => {
     }) => {
       const calendar = createPrivateCollegeCalendar(
         {
-          birth: createDate(birth),
+          birth: new Date(birth),
           canWorkingholiday,
         },
         options

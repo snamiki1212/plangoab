@@ -4,7 +4,6 @@ import { BaseEvent } from "@/core/event/BaseEvent";
 import { BaseResource } from "@/core/resource/BaseResource";
 import { TemplateOption } from "@/core/calendar/BaseCalendar";
 import { createPublicCollegeCalendar } from "@/core/calendar/TemplateCalendar/createCalendar";
-import { createDate } from "@/lib/date";
 import {
   upsertPublicCollegeCalendarAction,
   selectPublicCollegeCalendar,
@@ -24,7 +23,7 @@ export const usePublicCollegeCalendar = () => {
     }) => {
       const calendar = createPublicCollegeCalendar(
         {
-          birth: createDate(birth),
+          birth: new Date(birth),
           canWorkingholiday,
         },
         options

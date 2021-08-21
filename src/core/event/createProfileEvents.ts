@@ -6,24 +6,23 @@ import {
 import { EVENTS } from "@/constants/fullcalendar/templates";
 import { getRangeNumbers } from "@/lib/age";
 import { uuid } from "@/lib/uuid";
-import { convertIsoToDateTime, createDate } from "@/lib/date";
+import { convertIsoToDateTime } from "@/lib/date";
 import { WORKING_HOLIDAY_APPLICATION_LIMITATION_AGE } from "@/constants/visa";
 import { BaseEvent } from "@/core/event/BaseEvent";
 
-type CreateProfileEventsParams = {
-  startDate: Date;
-  storyId: string;
-  calendarId: string;
-  withWorkingholiday: boolean;
-  workingholidayPeriod: number;
-};
 export const createProfileEvents = ({
   startDate,
   storyId,
   calendarId,
   withWorkingholiday,
   workingholidayPeriod,
-}: CreateProfileEventsParams): BaseEvent[] => {
+}: {
+  startDate: Date;
+  storyId: string;
+  calendarId: string;
+  withWorkingholiday: boolean;
+  workingholidayPeriod: number;
+}): BaseEvent[] => {
   const workingHolidayLimitEvents = withWorkingholiday
     ? createWorkingHolidayLimitEvents({
         startDate,
@@ -34,7 +33,7 @@ export const createProfileEvents = ({
     : [];
 
   // create age events
-  const startYear = createDate(startDate).getFullYear();
+  const startYear = new Date(startDate).getFullYear();
   const endYear = getLastYear();
   const years = getRangeNumbers(startYear, endYear);
   const ageEventList = years.map((year, index) => {
@@ -45,7 +44,7 @@ export const createProfileEvents = ({
       return str;
     })();
 
-    const isoStr = addMonths(createDate(start), +11).toISOString();
+    const isoStr = addMonths(new Date(start), +11).toISOString();
     const end = convertIsoToDateTime(isoStr);
 
     return {
@@ -69,7 +68,7 @@ export const createProfileEvents = ({
 
 const getLastYear = () => {
   const BUFFER_YEAR = 10;
-  const date = createDate();
+  const date = new Date();
   return addYears(date, BUFFER_YEAR).getFullYear();
 };
 
