@@ -11,6 +11,11 @@ export type BaseStory = {
   name: string;
 };
 
+export const removeEvent = (story: BaseStory, eventId: string): BaseStory => {
+  const newEvents = story.events.filter((event) => event.id !== eventId);
+  return { ...story, events: newEvents };
+};
+
 export const createStoryName = (birth: Date) => {
   return "College from " + convertIsoToYearAndMonth(birth.toISOString());
 };

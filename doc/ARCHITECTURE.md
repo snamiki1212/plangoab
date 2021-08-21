@@ -18,12 +18,11 @@
 <img src="./ER_CORE.svg" alt="ER_CODE" />
 
 ```
-/src
-|- /core
-| |- /calendar
-| |- /story
-| |- /resource
-| |- /event
+/src/core
+|- /calendar
+|- /story
+|- /event
+|- /resource
 ```
 
 ## Deps graph
