@@ -1,24 +1,18 @@
 import {
-  convertIsoToDateTime,
-  convertIsoToYearAndMonth,
+  renderYYYYMMfromStr,
   createDate,
   startOfMonth,
   endOfMonth,
   createRange,
+  resetHHMMssmm,
 } from "./date";
 
 const today = new Date("2020-06-01 12:23:34 GMT");
 
-describe(convertIsoToDateTime.name, () => {
+describe(renderYYYYMMfromStr.name, () => {
   it("can work.", () => {
-    expect(convertIsoToDateTime(today)).toBe("2020-06-01");
-  });
-});
-
-describe(convertIsoToYearAndMonth.name, () => {
-  it("can work.", () => {
-    expect(convertIsoToYearAndMonth(today)).toBe("2020-06");
-    expect(convertIsoToYearAndMonth(today.toISOString())).toBe("2020-06");
+    expect(renderYYYYMMfromStr(today)).toBe("2020-06");
+    expect(renderYYYYMMfromStr(today.toISOString())).toBe("2020-06");
   });
 });
 
@@ -31,6 +25,13 @@ describe(createDate.name, () => {
     const n1 = createDate();
     const n2 = createDate();
     expect(n1).toEqual(n2);
+  });
+});
+
+describe(resetHHMMssmm.name, () => {
+  it("can work.", () => {
+    const expected = "2020-06-01T07:00:00.000Z";
+    expect(resetHHMMssmm(today).toISOString()).toEqual(expected);
   });
 });
 
@@ -53,12 +54,12 @@ describe(endOfMonth.name, () => {
 });
 
 describe(startOfMonth.name, () => {
-  it("can work on 31.", () => {
+  it("can work on Jan.", () => {
     const result = startOfMonth(createDate("2021-01-31 00:00"));
     const expected = createDate("2021-01-01 00:00");
     expect(result).toEqual(expected);
   });
-  it("can work on 28.", () => {
+  it("can work on Feb.", () => {
     const result = startOfMonth(createDate("2021-02-01 00:00"));
     const expected = createDate("2021-02-01 00:00");
     expect(result).toEqual(expected);

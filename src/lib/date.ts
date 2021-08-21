@@ -10,26 +10,15 @@ import {
 
 const paddingZero = (num: number) => String(num).padStart(2, "0");
 
-export const convertIsoToDateTime = (isoStr: string | Date) => {
-  const date = typeof isoStr === "string" ? new Date(isoStr) : isoStr;
-  const YYYY = getYear(date);
-  const MM = paddingZero(getMonth(date) + 1);
-  const dd = paddingZero(getDate(date));
-  return `${YYYY}-${MM}-${dd}`;
-};
-
-export const convertIsoToYearAndMonth = (_date: Date | string) => {
+export const renderYYYYMMfromStr = (_date: Date | string) => {
   const date = typeof _date === "string" ? parseISO(_date) : _date;
   const YYYY = getYear(date);
   const MM = paddingZero(getMonth(date) + 1);
   return `${YYYY}-${MM}`;
 };
 
-export const convertYYYYMMDDtoDate = (YYYY_MM_DD: string) => {
-  return new Date(`${YYYY_MM_DD} 00:00`);
-};
-
-export const convertDateToIso = (_date: Date | string) => {
+// Dont use this function. Use toISOString() directly.
+export const DEPRECATED_convertDateToIso = (_date: Date | string) => {
   return typeof _date === "object" ? _date.toISOString() : _date;
 };
 
