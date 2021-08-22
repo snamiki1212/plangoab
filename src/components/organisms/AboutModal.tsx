@@ -8,9 +8,9 @@ import Divider from "@material-ui/core/Divider";
 import { useResetAllData } from "@/hooks/useResetAllData";
 import { THIS_GITHUB_URL } from "@/constants/meta";
 import { SNS_LIST } from "@/constants/sns";
-import { collaborations } from "@/constants/collaborations";
 import { usePreviewCommand } from "@/hooks/usePreview";
 import { PreviewModal } from "@/components/molecules/PreviewModal";
+import { CollaborationsSection as NaiveCollaborationsSection } from "@/components/molecules/CollaborationsSection";
 
 type Props = {
   isOpen: boolean;
@@ -244,17 +244,7 @@ function CollaborationsSection() {
   return (
     <Section
       title="👨‍👦‍👦 Collaborations"
-      content={
-        <div>
-          {collaborations.map(({ name, link }) => (
-            <li>
-              <a target="_blank" rel="noopener noreferrer" href={link}>
-                {name}
-              </a>
-            </li>
-          ))}
-        </div>
-      }
+      content={<NaiveCollaborationsSection />}
     />
   );
 }
