@@ -66,20 +66,22 @@ export const useResourceGroupLabelContentInTemplateCalendar = ({
       });
 
       return (
-        <span>
-          <i>{name}</i>
-          <br />
-
+        <Container>
+          <Text>{name}</Text>
           <ButtonContainer>
             <Button
               onClick={clickHandle}
               variant="outlined"
-              style={{ textTransform: "none" }}
+              style={{
+                textTransform: "none",
+                color: `var(--base-dark1)`,
+                fontFamily: `var(--font-text1)`,
+              }}
             >
-              🗒Copy to my calendar
+              🗒 Copy to my calendar
             </Button>
           </ButtonContainer>
-        </span>
+        </Container>
       );
     },
     [
@@ -93,6 +95,16 @@ export const useResourceGroupLabelContentInTemplateCalendar = ({
   return { resourceGroupLabelContent };
 };
 
-const ButtonContainer = styled.div`
-  margin-left: 1rem;
+const Container = styled.span`
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.5rem;
 `;
+
+const Text = styled.i`
+  font-family: var(--font-text1);
+  color: var(--base-dark1);
+  font-weight: 800;
+`;
+
+const ButtonContainer = styled.div``;

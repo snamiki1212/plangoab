@@ -6,7 +6,7 @@ import { LogoImage } from "@/components/atoms/LogoImage";
 export function LoadingPage() {
   return (
     <Container>
-      <AppName />
+      <AppName>Plangoab</AppName>
       <LogoContainer>
         <LogoImage />
       </LogoContainer>
@@ -17,7 +17,11 @@ export function LoadingPage() {
   );
 }
 
-const AppName = () => <h2>Plangoab</h2>;
+const AppName = styled.h2`
+  font-weight: 900;
+  font-family: var(--font-design1);
+  color: var(--logo);
+`;
 
 const Container = styled.div`
   height: 100vh;

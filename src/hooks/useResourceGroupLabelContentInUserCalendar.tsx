@@ -43,7 +43,7 @@ export const useResourceGroupLabelContentInUserCalendar = ({
 
       return (
         <Container>
-          <i>{name}</i>
+          <Text>{name}</Text>
           <Button onClick={openHandle} variant="outlined">
             ✏️
           </Button>
@@ -56,8 +56,14 @@ export const useResourceGroupLabelContentInUserCalendar = ({
   return { resourceGroupLabelContent };
 };
 
+const Text = styled.i`
+  font-family: var(--font-text1);
+  color: var(--base-dark1);
+`;
+
 const Container = styled.div`
-  display: flex;
+  display: inline-flex;
   justify-content: space-between;
   align-items: center;
+  gap: 0.5rem;
 `;

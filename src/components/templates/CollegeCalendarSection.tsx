@@ -44,12 +44,20 @@ export function CollegeCalendarSection() {
           <Tab
             icon={<Icon>🏫</Icon>}
             label="Private College"
-            style={{ textTransform: "none" }}
+            style={{
+              textTransform: "none",
+              fontFamily: `var(--font-text1)`,
+              fontWeight: 900,
+            }}
           />
           <Tab
             icon={<Icon>🎓</Icon>}
             label="Public College"
-            style={{ textTransform: "none" }}
+            style={{
+              textTransform: "none",
+              fontFamily: `var(--font-text1)`,
+              fontWeight: 900,
+            }}
           />
         </Tabs>
         <TabPanel shouldShow={selectedIdx === 0}>
@@ -69,8 +77,10 @@ const PaperHeader = styled.div`
 
 const Title = styled.span`
   font-size: 2rem;
-  font-weight: 900;
   margin-right: 1rem;
+  font-weight: 900;
+  font-family: var(--font-header1);
+  color: var(--base-dark1);
 `;
 
 const Icon = styled.span`

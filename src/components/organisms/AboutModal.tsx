@@ -78,6 +78,7 @@ function AboutContent() {
   );
 }
 
+// TODO: Create another component as file
 function Section({
   title,
   content,
@@ -87,13 +88,19 @@ function Section({
 }) {
   return (
     <div>
-      <h2>{title}</h2>
+      <Title>{title}</Title>
       <SectionBody>{content}</SectionBody>
     </div>
   );
 }
+const Title = styled.h2`
+  color: var(--base-dark1);
+  font-family: var(--font-header1);
+`;
 const SectionBody = styled.div`
   margin-left: 1.5rem;
+  font-family: var(--font-text1);
+  color: var(--base-dark1);
 `;
 
 function AboutSection() {
@@ -275,4 +282,6 @@ const ContentContainer = styled.div`
 
 const MainTitle = styled.span`
   font-weight: 900;
+  font-family: var(--font-design1);
+  color: var(--logo);
 `;

@@ -20,7 +20,10 @@ export function Header() {
 
   return (
     <>
-      <AppBar position="static" style={{ background: "#fff", color: "#000" }}>
+      <AppBar
+        position="static"
+        style={{ background: "#fff", color: `var(--base-dark1)` }}
+      >
         <Toolbar>
           <div style={{ width: "50px", height: "50px" }}>
             <LogoImage />
@@ -28,16 +31,22 @@ export function Header() {
           <Title>Plangoab</Title>
           <ButtonContainer>
             <Button
-              variant="contained"
               onClick={open}
-              style={{ background: "white" }}
+              style={{
+                textTransform: "none",
+                fontWeight: 900,
+                fontFamily: `var(--font-header1)`,
+              }}
             >
               HowTo
             </Button>
             <Button
-              variant="contained"
               onClick={openAbout}
-              style={{ background: "white" }}
+              style={{
+                textTransform: "none",
+                fontWeight: 900,
+                fontFamily: `var(--font-header1)`,
+              }}
             >
               ✈️About Plangoab
             </Button>
@@ -56,6 +65,8 @@ const Title = styled.span`
   font-size: 2rem;
   padding: 1rem;
   font-weight: 600;
+  font-family: var(--font-design1);
+  color: var(--logo);
 `;
 
 const ButtonContainer = styled.div`

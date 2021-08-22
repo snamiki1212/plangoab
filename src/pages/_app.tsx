@@ -15,6 +15,9 @@ import "@fullcalendar/resource-timeline/main.css";
 import "@/styles/reset.css";
 import "@/styles/core.css";
 
+// global styles
+import "./global.css";
+
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ErrorBoundary>

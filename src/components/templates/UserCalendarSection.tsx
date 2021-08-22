@@ -37,6 +37,8 @@ const Title = styled.span`
   font-size: 2rem;
   font-weight: 900;
   margin-right: 1rem;
+  font-family: var(--font-header1);
+  color: var(--base-dark1);
 `;
 
 const PaperHeader = styled.div`

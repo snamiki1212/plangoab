@@ -6,12 +6,14 @@ import Tooltip from "@material-ui/core/Tooltip";
 const eventContent = function (arg: any) {
   const text = arg.event.title ?? "";
   const description = arg.event.extendedProps.description ?? text;
-  if (description === "") return <span>{text}</span>;
+  if (description === "") return <ItemText>{text}aaa</ItemText>;
   return (
     <Tooltip
-      title={<span style={{ whiteSpace: "pre-line" }}>{description}</span>}
+      title={
+        <ItemText style={{ whiteSpace: "pre-line" }}>{description}</ItemText>
+      }
     >
-      <span>{text}</span>
+      <ItemText>{text}</ItemText>
     </Tooltip>
   );
 };
@@ -37,4 +39,9 @@ const StyledContainer = styled.div`
       color: #000;
     }
   }
+`;
+
+const ItemText = styled.span`
+  color: var(--base-light1);
+  font-family: var(--font-text1);
 `;
