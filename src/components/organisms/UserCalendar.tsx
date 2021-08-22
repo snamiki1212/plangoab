@@ -11,6 +11,7 @@ import { useUserCalendar } from "@/hooks/useUserCalendar";
 import { useResourceGroupLabelContentInUserCalendar } from "@/hooks/useResourceGroupLabelContentInUserCalendar";
 import { useStoryModal } from "@/hooks/useStoryModal";
 import { useEventModal } from "@/hooks/useEventModal";
+import { convertDateSelectArgToRange } from "@/lib/date";
 
 const headerToolbar = {
   left: `${ADD_STORY_BUTTON},${REMOVE_CALENDAR_BUTTON}`,
@@ -33,11 +34,10 @@ export function UserCalendar({ isPreviewMode = false }: Props) {
     [pushStoryModal]
   );
 
-  const {
-    resourceGroupLabelContent,
-  } = useResourceGroupLabelContentInUserCalendar({
-    createOpenHandle: createOpenStoryHandle,
-  });
+  const { resourceGroupLabelContent } =
+    useResourceGroupLabelContentInUserCalendar({
+      createOpenHandle: createOpenStoryHandle,
+    });
   const { events, resources, select } = useUserCalendar();
 
   const click = React.useCallback(
@@ -89,8 +89,10 @@ export function UserCalendar({ isPreviewMode = false }: Props) {
         );
       if (!eventId) return console.error("Invalid data. Cannot find eventId");
 
-      const start = data.event.start;
-      const end = data.event.end;
+      const [start, end] = convertDateSelectArgToRange(
+        data.event.start,
+        data.event.end
+      );
       const idSet = { calendarId, storyId, eventId };
 
       const params = { start, end };
