@@ -8,6 +8,7 @@ import {
 import { initResource } from "@/core/resource/BaseResource";
 
 type IdSet = { calendarId: string; resourceId: string; storyId: string };
+type PushArg = { calendarId: string; storyId: string };
 
 export const useResource = () => {
   const dispatch = useDispatch();
@@ -16,7 +17,7 @@ export const useResource = () => {
   const calendar = useSelector(selectUserCalendar);
 
   const push = React.useCallback(
-    ({ calendarId, storyId }: { calendarId: string; storyId: string }) => {
+    ({ calendarId, storyId }: PushArg) => {
       // story
       const storyIdx = calendar.stories.findIndex(
         (story) => story.id === storyId

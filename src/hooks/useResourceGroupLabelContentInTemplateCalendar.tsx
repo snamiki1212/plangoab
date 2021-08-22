@@ -50,13 +50,13 @@ export const useResourceGroupLabelContentInTemplateCalendar = ({
       }
 
       // name handler
-      let name: string;
-      if (story.name) {
-        name = story.name;
-      } else {
+      const name = (() => {
+        if (story.name) {
+          return story.name;
+        }
         console.warn("cannot find this story name", storyId);
-        name = "No Name";
-      }
+        return "No Name";
+      })();
 
       const updatedStory = updateStory(story, { calendarId: myCalendarId });
 
