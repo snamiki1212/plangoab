@@ -2,10 +2,10 @@ import {
   renderYYYYMMfromStr,
   createDate,
   startOfMonth,
-  endOfMonth,
   createRange,
   resetHHMMssmm,
   convertDateSelectArgToRange,
+  convertUpdateFC,
 } from "./date";
 
 const today = new Date("2020-06-01 12:23:34 GMT");
@@ -36,24 +36,6 @@ describe(resetHHMMssmm.name, () => {
   });
 });
 
-describe(endOfMonth.name, () => {
-  it("can work on 31.", () => {
-    const result = endOfMonth(createDate("2021-01-01 00:00"));
-    const expected = createDate("2021-01-31 00:00");
-    expect(result).toEqual(expected);
-  });
-  it("can work on 28.", () => {
-    const result = endOfMonth(createDate("2021-02-01 00:00"));
-    const expected = createDate("2021-02-28 00:00");
-    expect(result).toEqual(expected);
-  });
-  it("can work on 30.", () => {
-    const result = endOfMonth(createDate("2021-04-01 00:00"));
-    const expected = createDate("2021-04-30 00:00");
-    expect(result).toEqual(expected);
-  });
-});
-
 describe(startOfMonth.name, () => {
   it("can work on Jan.", () => {
     const result = startOfMonth(createDate("2021-01-31 00:00"));
@@ -69,27 +51,27 @@ describe(startOfMonth.name, () => {
 
 describe(createRange.name, () => {
   it("should be one month by 0.", () => {
-    const result = createRange(createDate("2021-01-01 00:00"), 0);
+    const result = createRange(createDate("2021-01-01 01:00"), 0);
     const expected = [
       createDate("2021-01-01 00:00"),
-      createDate("2021-01-31 00:00"),
+      createDate("2021-02-01 00:00"),
     ];
     expect(result).toEqual(expected);
   });
   it("should be one month by 1.", () => {
-    const result = createRange(createDate("2021-01-01 00:00"), 1);
+    const result = createRange(createDate("2021-01-01 01:00"), 1);
     const expected = [
       createDate("2021-01-01 00:00"),
-      createDate("2021-01-31 00:00"),
+      createDate("2021-02-01 00:00"),
     ];
     expect(result).toEqual(expected);
   });
 
-  it("should be 3 month.", () => {
-    const result = createRange(createDate("2021-01-01 00:00"), 3);
+  it("should be 2 month.", () => {
+    const result = createRange(createDate("2021-01-01 00:00"), 2);
     const expected = [
       createDate("2021-01-01 00:00"),
-      createDate("2021-03-31 00:00"),
+      createDate("2021-03-01 00:00"),
     ];
     expect(result).toEqual(expected);
   });
@@ -101,7 +83,7 @@ describe(convertDateSelectArgToRange.name, () => {
     const end = createDate("2021-02-01 00:00");
     expect(convertDateSelectArgToRange(start, end)).toEqual([
       createDate("2021-01-01 00:00"),
-      createDate("2021-01-31 00:00"),
+      createDate("2021-02-01 00:00"),
     ]);
   });
 
@@ -110,7 +92,29 @@ describe(convertDateSelectArgToRange.name, () => {
     const end = createDate("2021-03-01 00:00");
     expect(convertDateSelectArgToRange(start, end)).toEqual([
       createDate("2021-01-01 00:00"),
-      createDate("2021-02-28 00:00"),
+      createDate("2021-03-01 00:00"),
+    ]);
+  });
+});
+
+describe(convertUpdateFC.name, () => {
+  it("can work.", () => {
+    const start = createDate("2021-01-01 00:00");
+    const end = createDate("2021-02-01 00:00");
+    const result = convertUpdateFC(start, end);
+    expect(result).toEqual([
+      createDate("2021-01-01 00:00"),
+      createDate("2021-02-01 00:00"),
+    ]);
+  });
+
+  it("can work for unstable end date.", () => {
+    const start = createDate("2021-01-01 00:00");
+    const end = createDate("2021-01-28 00:00");
+    const result = convertUpdateFC(start, end);
+    expect(result).toEqual([
+      createDate("2021-01-01 00:00"),
+      createDate("2021-02-01 00:00"),
     ]);
   });
 });

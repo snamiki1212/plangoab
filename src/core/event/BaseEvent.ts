@@ -1,6 +1,6 @@
 import { EventInput } from "@fullcalendar/react";
 import { uuid } from "@/lib/uuid";
-import { DEPRECATED_convertDateToIso } from "@/lib/date";
+import { DEPRECATED_convertDateToIso, convertUpdateFC } from "@/lib/date";
 
 export type BaseEvent = EventInput & {
   extendedProps: {
@@ -54,22 +54,16 @@ export const updateEvent = (
 ): BaseEvent => {
   const title = params.title;
   const extendedProps = params.extendedProps;
-  const start = params.start
-    ? DEPRECATED_convertDateToIso(params.start as Date)
-    : undefined;
-  const end = params.end
-    ? DEPRECATED_convertDateToIso(params.end as Date)
-    : undefined;
-
+  const [start, end] = convertUpdateFC(params.start, params.end);
   const newEvent = Object.assign(
     { ...event },
-    !isUndeifned(title) && { title },
-    !isUndeifned(start) && { start },
-    !isUndeifned(end) && { end },
+    !isEmpty(title) && { title },
+    !isEmpty(start) && { start },
+    !isEmpty(end) && { end },
 
     // extendedProps
-    !isUndeifned(extendedProps) &&
-      !isUndeifned(extendedProps.description) && {
+    !isEmpty(extendedProps) &&
+      !isEmpty(extendedProps.description) && {
         extendedProps: {
           ...event.extendedProps,
           description: extendedProps.description,
@@ -80,7 +74,7 @@ export const updateEvent = (
   return newEvent;
 };
 
-const isUndeifned = (...val: any) => {
-  if (Array.isArray(val)) return val.some((item: any) => item === undefined);
-  return val === undefined;
+const isEmpty = (...val: any) => {
+  if (Array.isArray(val)) return val.some((item: any) => item == undefined);
+  return val == undefined;
 };

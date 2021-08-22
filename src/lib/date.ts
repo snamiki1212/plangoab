@@ -2,7 +2,6 @@ import {
   getYear,
   getMonth,
   parseISO,
-  endOfMonth as naiveEndOfMonth,
   startOfMonth as naitveStartOfMonth,
   addMonths,
   addDays,
@@ -18,8 +17,8 @@ export const renderYYYYMMfromStr = (_date: Date | string) => {
 };
 
 // Dont use this function. Use toISOString() directly.
-export const DEPRECATED_convertDateToIso = (_date: Date | string) => {
-  return typeof _date === "object" ? _date.toISOString() : _date;
+export const DEPRECATED_convertDateToIso = (date: any) => {
+  return createDate(date).toISOString();
 };
 
 export const createDate = (...arg: any) => {
@@ -33,25 +32,32 @@ export const resetHHMMssmm = (date: Date) => {
   return date;
 };
 
-export const endOfMonth = (date: Date) => {
-  return createDate(naiveEndOfMonth(date));
-};
-
 export const startOfMonth = (date: Date) => {
   return createDate(naitveStartOfMonth(date));
 };
 
+// for FullCalendar when selecting
 export const convertDateSelectArgToRange = (
   naiveStart: Date,
   naiveEnd: Date
 ) => {
   const start = startOfMonth(naiveStart);
-  const end = endOfMonth(addDays(naiveEnd, -1));
+  const end = startOfMonth(naiveEnd);
   return [start, end] as const;
 };
 
 export const createRange = (date: Date, range: number) => {
   const start = startOfMonth(date);
-  const end = endOfMonth(addMonths(date, range <= 0 ? range : range - 1));
+  const end = startOfMonth(addMonths(date, range <= 0 ? 1 : range));
+  return [start, end] as const;
+};
+
+// for FullCalendar when updating
+export const convertUpdateFC = (naiveStart?: Date, naiveEnd?: Date) => {
+  const start = naiveStart ? startOfMonth(naiveStart) : naiveStart;
+
+  // sometimes 'end' date is unstable. e.g. naiveEnd might be Feb 01 / Feb 02 / Jan 31
+  const buffer = 5;
+  const end = naiveEnd ? startOfMonth(addDays(naiveEnd, buffer)) : naiveEnd;
   return [start, end] as const;
 };
