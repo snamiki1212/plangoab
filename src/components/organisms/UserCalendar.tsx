@@ -71,14 +71,14 @@ export function UserCalendar({ isPreviewMode = false }: Props) {
   );
   const { updateById } = useEvent();
   const updateEvent = React.useCallback(
-    (data: any) => {
-      if (!data.event || !data.event.extendedProps) {
+    (info: any) => {
+      if (!info.event || !info.event.extendedProps) {
         return console.error("Invalid data. cannot find event data.");
       }
       const calendarId: string | undefined =
-        data.event.extendedProps?.calendarId;
-      const storyId: string | undefined = data.event.extendedProps?.storyId;
-      const eventId: string | undefined = data.event.id;
+        info.event.extendedProps?.calendarId;
+      const storyId: string | undefined = info.event.extendedProps?.storyId;
+      const eventId: string | undefined = info.event.id;
       if (!calendarId)
         return console.error(
           "Invalid data. Cannot find calendarId in extendedProps"
@@ -90,8 +90,8 @@ export function UserCalendar({ isPreviewMode = false }: Props) {
       if (!eventId) return console.error("Invalid data. Cannot find eventId");
 
       const [start, end] = convertDateSelectArgToRange(
-        data.event.start,
-        data.event.end
+        info.event.start,
+        info.event.end
       );
       const idSet = { calendarId, storyId, eventId };
 
