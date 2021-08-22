@@ -11,6 +11,7 @@ import {
   addEventAction,
   selectUserCalendar,
 } from "@/redux/features/userCalendars";
+import { convertDateSelectArgToRange } from "@/lib/date";
 
 export const useUserCalendar = () => {
   const dispatch = useDispatch();
@@ -61,15 +62,15 @@ export const useUserCalendar = () => {
         return;
       }
 
+      const [start, end] = convertDateSelectArgToRange(info.start, info.end);
       const newEvent = initEvent({
         id: uuid(),
         resourceId: info.resource.id,
         calendarId,
         storyId,
-        start: info.startStr,
-        end: info.endStr,
+        start: start.toISOString(),
+        end: end.toISOString(),
       });
-
       dispatch(addEventAction({ event: newEvent, calendarId, storyId }));
     },
     [dispatch]

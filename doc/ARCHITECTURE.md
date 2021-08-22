@@ -78,3 +78,24 @@ Config Files
 
 - `/public/_redirects`: File which Netlify will read in order to force config to redirect http to https.
 - `/public/CNAME`: File that which GitHub Pages will read in order to configure a custom domain.
+
+## Date
+
+Use JavaScript Plain Date object and handling with it by `date-fns`.
+The `date-fns` is functional approach for JavaScript Plain Date object.
+
+In Plangoab, we need to use mainly `year` and `month` so every `day` must be 1 and rest of params(sec, milli sec) must be 0.
+
+### Reason why end day is also 1st.
+
+If we use 31/30/29/38 for end of day, manupulating process is so hard.
+
+e.g.)
+
+- First ready range
+  - (start: Jan 01) ~ (end: Mar 31)
+- Change end of month by going back 1 month.
+  - (start: Jan 01) ~ (end: Feb 31)
+- But Feb 31 is invalid day.
+
+That's why Plangoab use only 1st date.

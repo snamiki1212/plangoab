@@ -11,6 +11,7 @@ import { useUserCalendar } from "@/hooks/useUserCalendar";
 import { useResourceGroupLabelContentInUserCalendar } from "@/hooks/useResourceGroupLabelContentInUserCalendar";
 import { useStoryModal } from "@/hooks/useStoryModal";
 import { useEventModal } from "@/hooks/useEventModal";
+import { convertDateSelectArgToRange, convertUpdateFC } from "@/lib/date";
 
 const headerToolbar = {
   left: `${ADD_STORY_BUTTON},${REMOVE_CALENDAR_BUTTON}`,
@@ -33,11 +34,10 @@ export function UserCalendar({ isPreviewMode = false }: Props) {
     [pushStoryModal]
   );
 
-  const {
-    resourceGroupLabelContent,
-  } = useResourceGroupLabelContentInUserCalendar({
-    createOpenHandle: createOpenStoryHandle,
-  });
+  const { resourceGroupLabelContent } =
+    useResourceGroupLabelContentInUserCalendar({
+      createOpenHandle: createOpenStoryHandle,
+    });
   const { events, resources, select } = useUserCalendar();
 
   const click = React.useCallback(
@@ -71,14 +71,14 @@ export function UserCalendar({ isPreviewMode = false }: Props) {
   );
   const { updateById } = useEvent();
   const updateEvent = React.useCallback(
-    (data: any) => {
-      if (!data.event || !data.event.extendedProps) {
+    (info: any) => {
+      if (!info.event || !info.event.extendedProps) {
         return console.error("Invalid data. cannot find event data.");
       }
       const calendarId: string | undefined =
-        data.event.extendedProps?.calendarId;
-      const storyId: string | undefined = data.event.extendedProps?.storyId;
-      const eventId: string | undefined = data.event.id;
+        info.event.extendedProps?.calendarId;
+      const storyId: string | undefined = info.event.extendedProps?.storyId;
+      const eventId: string | undefined = info.event.id;
       if (!calendarId)
         return console.error(
           "Invalid data. Cannot find calendarId in extendedProps"
@@ -89,8 +89,7 @@ export function UserCalendar({ isPreviewMode = false }: Props) {
         );
       if (!eventId) return console.error("Invalid data. Cannot find eventId");
 
-      const start = data.event.start;
-      const end = data.event.end;
+      const [start, end] = convertUpdateFC(info.event.start, info.event.end);
       const idSet = { calendarId, storyId, eventId };
 
       const params = { start, end };

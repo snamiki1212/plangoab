@@ -1,4 +1,4 @@
-import { convertIsoToYearAndMonth } from "@/lib/date";
+import { renderYYYYMMfromStr } from "@/lib/date";
 import { uuid } from "@/lib/uuid";
 import { BaseEvent, initEvent } from "@/core/event/BaseEvent";
 import { BaseResource, initResource } from "@/core/resource/BaseResource";
@@ -12,7 +12,7 @@ export type BaseStory = {
 };
 
 export const createStoryName = (birth: Date) => {
-  return "College from " + convertIsoToYearAndMonth(birth.toISOString());
+  return "College from " + renderYYYYMMfromStr(birth.toISOString());
 };
 
 export const initStory = (props?: Partial<BaseStory>): BaseStory => {
