@@ -46,38 +46,40 @@ export function WelcomeModal() {
         <Title>Welcome to Plangoab🐱</Title>
       </DialogTitle>
       <DialogContent>
-        <p>
-          hi 👋
-          <br />
-          <br />
-          Plangoab helps you to create awesome plan to go abroad!
-          <br />
-          <br />
-          Let's input your birthday and create your plans✈️
-        </p>
-        <InputContainer>
-          <Avatar alt="you" />
-          <DatePicker
-            disableFuture
-            openTo="year"
-            format="yyyy-MM-dd"
-            label="Date of birth"
-            views={["year", "month", "date"]}
-            value={birth}
-            onChange={handleDateChange}
-          />
-        </InputContainer>
-        <ButtonsContainer>
-          <Button
-            onClick={handleFinish}
-            variant="contained"
-            color="primary"
-            style={{ textTransform: "none" }}
-          >
-            ✈️Create Calendar
-          </Button>
-          <AdvancedOptions />
-        </ButtonsContainer>
+        <Text>
+          <p>
+            hi 👋
+            <br />
+            <br />
+            Plangoab helps you to create awesome plan to go abroad!
+            <br />
+            <br />
+            Let's input your birthday and create your plans✈️
+          </p>
+          <InputContainer>
+            <Avatar alt="you" />
+            <DatePicker
+              disableFuture
+              openTo="year"
+              format="yyyy-MM-dd"
+              label="Date of birth"
+              views={["year", "month", "date"]}
+              value={birth}
+              onChange={handleDateChange}
+            />
+          </InputContainer>
+          <ButtonsContainer>
+            <Button
+              onClick={handleFinish}
+              variant="contained"
+              color="primary"
+              style={{ textTransform: "none" }}
+            >
+              ✈️Create Calendar
+            </Button>
+            <AdvancedOptions />
+          </ButtonsContainer>
+        </Text>
       </DialogContent>
       <Divider />
       <DialogActions>
@@ -89,6 +91,13 @@ export function WelcomeModal() {
 
 const Title = styled.span`
   font-weight: 900;
+  font-family: var(--font-header1);
+  color: var(--base-dark1);
+`;
+
+const Text = styled.div`
+  font-family: var(--font-text1);
+  color: var(--base-dark1);
 `;
 
 const InputContainer = styled.div`
