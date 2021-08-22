@@ -15,7 +15,7 @@ import { convertDateSelectArgToRange, convertUpdateFC } from "@/lib/date";
 
 const headerToolbar = {
   left: `${ADD_STORY_BUTTON},${REMOVE_CALENDAR_BUTTON}`,
-  center: "title",
+  center: "",
   right: "prev,next",
 } as const;
 
