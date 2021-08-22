@@ -38,7 +38,7 @@ export function Header() {
                 fontFamily: `var(--font-header1)`,
               }}
             >
-              HowTo
+              💡HowTo
             </Button>
             <Button
               onClick={openAbout}
@@ -48,7 +48,7 @@ export function Header() {
                 fontFamily: `var(--font-header1)`,
               }}
             >
-              ✈️About Plangoab
+              ✈️About
             </Button>
           </ButtonContainer>
         </Toolbar>
