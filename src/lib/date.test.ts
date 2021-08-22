@@ -31,7 +31,7 @@ describe(createDate.name, () => {
 
 describe(resetHHMMssmm.name, () => {
   it("can work.", () => {
-    const expected = "2020-06-01T07:00:00.000Z";
+    const expected = "2020-06-01T00:00:00.000Z";
     expect(resetHHMMssmm(today).toISOString()).toEqual(expected);
   });
 });
