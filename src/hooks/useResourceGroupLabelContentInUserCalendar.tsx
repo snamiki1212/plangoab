@@ -30,20 +30,20 @@ export const useResourceGroupLabelContentInUserCalendar = ({
       }
 
       // name handler
-      let name: string;
-      if (story.name) {
-        name = story.name;
-      } else {
+      const name = (() => {
+        if (story.name) {
+          return story.name;
+        }
         console.warn("cannot find this story name", storyId);
-        name = "No Name";
-      }
+        return "No Name";
+      })();
 
       const calendarId = calendar.id;
       const openHandle = createOpenHandle({ calendarId, storyId });
 
       return (
         <Container>
-          <i>{name}</i>
+          <Text>{name}</Text>
           <Button onClick={openHandle} variant="outlined">
             ✏️
           </Button>
@@ -56,8 +56,14 @@ export const useResourceGroupLabelContentInUserCalendar = ({
   return { resourceGroupLabelContent };
 };
 
+const Text = styled.i`
+  font-family: var(--font-text1);
+  color: var(--base-dark1);
+`;
+
 const Container = styled.div`
-  display: flex;
+  display: inline-flex;
   justify-content: space-between;
   align-items: center;
+  gap: 0.5rem;
 `;

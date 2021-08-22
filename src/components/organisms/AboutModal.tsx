@@ -8,9 +8,9 @@ import Divider from "@material-ui/core/Divider";
 import { useResetAllData } from "@/hooks/useResetAllData";
 import { THIS_GITHUB_URL } from "@/constants/meta";
 import { SNS_LIST } from "@/constants/sns";
-import { collaborations } from "@/constants/collaborations";
 import { usePreviewCommand } from "@/hooks/usePreview";
 import { PreviewModal } from "@/components/molecules/PreviewModal";
+import { CollaborationsSection as NaiveCollaborationsSection } from "@/components/molecules/CollaborationsSection";
 
 type Props = {
   isOpen: boolean;
@@ -78,6 +78,7 @@ function AboutContent() {
   );
 }
 
+// TODO: Create another component as file
 function Section({
   title,
   content,
@@ -87,13 +88,19 @@ function Section({
 }) {
   return (
     <div>
-      <h2>{title}</h2>
+      <Title>{title}</Title>
       <SectionBody>{content}</SectionBody>
     </div>
   );
 }
+const Title = styled.h2`
+  color: var(--base-dark1);
+  font-family: var(--font-header1);
+`;
 const SectionBody = styled.div`
   margin-left: 1.5rem;
+  font-family: var(--font-text1);
+  color: var(--base-dark1);
 `;
 
 function AboutSection() {
@@ -237,17 +244,7 @@ function CollaborationsSection() {
   return (
     <Section
       title="👨‍👦‍👦 Collaborations"
-      content={
-        <div>
-          {collaborations.map(({ name, link }) => (
-            <li>
-              <a target="_blank" rel="noopener noreferrer" href={link}>
-                {name}
-              </a>
-            </li>
-          ))}
-        </div>
-      }
+      content={<NaiveCollaborationsSection />}
     />
   );
 }
@@ -275,4 +272,6 @@ const ContentContainer = styled.div`
 
 const MainTitle = styled.span`
   font-weight: 900;
+  font-family: var(--font-design1);
+  color: var(--logo);
 `;

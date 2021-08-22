@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 import { useUserCalendar } from "@/hooks/useUserCalendar";
 import { useStory } from "@/hooks/useStory";
 
@@ -26,11 +27,11 @@ export const useUserCalendarCustomButtons = () => {
   const customButtons = React.useMemo(
     () => ({
       [ADD_STORY_BUTTON]: {
-        text: "📝Add story",
+        text: <Text>📝 Add story</Text>,
         click: handleAddStory,
       },
       [REMOVE_CALENDAR_BUTTON]: {
-        text: "🧹Clear Calendar",
+        text: <Text>🧹 Clear</Text>,
         click: handleRemoveCalendar,
       },
     }),
@@ -39,3 +40,8 @@ export const useUserCalendarCustomButtons = () => {
 
   return { customButtons };
 };
+
+const Text = styled.span`
+  color: var(--base-dark1);
+  font-family: var(--font-text1);
+`;

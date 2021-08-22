@@ -13,7 +13,7 @@ export function Footer() {
 
       <Box>
         <div>
-          <h3>Collaboration</h3>
+          <Title>Collaboration</Title>
           <hr />
           <CollaborationsSection />
         </div>
@@ -21,6 +21,11 @@ export function Footer() {
     </Container>
   );
 }
+const Title = styled.h3`
+  font-weight: 900;
+  font-family: var(--font-header1);
+  color: var(--base-dark1);
+`;
 
 const Container = styled.div`
   display: flex;
@@ -39,4 +44,7 @@ const Box = styled.div`
 const AppName = styled.div`
   font-size: 3rem;
   padding: 1rem;
+  font-weight: 900;
+  font-family: var(--font-design1);
+  color: var(--logo);
 `;

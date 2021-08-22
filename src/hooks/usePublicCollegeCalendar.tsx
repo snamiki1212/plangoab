@@ -10,25 +10,21 @@ import {
   selectPublicCollegeCalendar,
 } from "@/redux/features/templateCalendar";
 
+type GenerateArg = {
+  birth: string;
+  canWorkingholiday: boolean;
+  options: TemplateOption;
+};
+
 export const usePublicCollegeCalendar = () => {
   const dispatch = useDispatch();
   const generate = React.useCallback(
-    ({
-      birth,
-      canWorkingholiday,
-      options,
-    }: {
-      birth: string;
-      canWorkingholiday: boolean;
-      options: TemplateOption;
-    }) => {
-      const calendar = createPublicCollegeCalendar(
-        {
-          birth: createDate(birth),
-          canWorkingholiday,
-        },
-        options
-      );
+    ({ birth, canWorkingholiday, options }: GenerateArg) => {
+      const props = {
+        birth: createDate(birth),
+        canWorkingholiday,
+      };
+      const calendar = createPublicCollegeCalendar(props, options);
       dispatch(upsertPublicCollegeCalendarAction({ calendar }));
     },
     [dispatch]

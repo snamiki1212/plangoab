@@ -13,7 +13,7 @@ const configs = {
 
 const headerToolbar = {
   left: `${OPEN_OPTION_BUTTON}`,
-  center: "title",
+  center: "",
   right: "prev,next",
 } as const;
 
@@ -21,16 +21,16 @@ export function CollegeCalendarBase(props: any) {
   const { create: createStory } = useStory();
 
   const createClickHandel = React.useCallback(
-    ({ story, calendarId }: { story: BaseStory; calendarId: string }) => () => {
-      if (!window.confirm("Do you copy this story to My Calendar?")) return;
-      createStory({ calendarId }, story);
-    },
+    ({ story, calendarId }: { story: BaseStory; calendarId: string }) =>
+      () => {
+        if (!window.confirm("Do you copy this story to My Calendar?")) return;
+        createStory({ calendarId }, story);
+      },
     [createStory]
   );
 
-  const {
-    resourceGroupLabelContent,
-  } = useResourceGroupLabelContentInTemplateCalendar({ createClickHandel });
+  const { resourceGroupLabelContent } =
+    useResourceGroupLabelContentInTemplateCalendar({ createClickHandel });
 
   return (
     <CalendarBaseContainer
