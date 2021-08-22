@@ -6,7 +6,7 @@ import Tooltip from "@material-ui/core/Tooltip";
 const eventContent = function (arg: any) {
   const text = arg.event.title ?? "";
   const description = arg.event.extendedProps.description ?? text;
-  if (description === "") return <ItemText>{text}aaa</ItemText>;
+  if (description === "") return <ItemText>{text}</ItemText>;
   return (
     <Tooltip
       title={
