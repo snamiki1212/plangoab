@@ -1,0 +1,5 @@
+.fc-timeline-slot-frame,
+.fc-datagrid-cell-cushion {
+  color: var(--base-dark1);
+  font-family: var(--font-text1);
+}

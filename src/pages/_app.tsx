@@ -17,6 +17,7 @@ import "@/styles/core.css";
 
 // global styles
 import "./global.css";
+import "./fullcalendar.custom.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
