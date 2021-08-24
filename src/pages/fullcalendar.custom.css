@@ -3,3 +3,13 @@
   color: var(--base-dark1);
   font-family: var(--font-text1);
 }
+
+.fc-datagrid-expander {
+  font-size: 1.5rem;
+}
+
+.fc-datagrid-cell-cushion {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}

@@ -4,10 +4,11 @@ import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
+import DialogActions from "@material-ui/core/DialogActions";
 import Divider from "@material-ui/core/Divider";
 import { useResetAllData } from "@/hooks/useResetAllData";
 import { THIS_GITHUB_URL } from "@/constants/meta";
-import { SNS_LIST } from "@/constants/sns";
+import { SNS_LIST, TWITTER_URL } from "@/constants/sns";
 import { usePreviewCommand } from "@/hooks/usePreview";
 import { PreviewModal } from "@/components/molecules/PreviewModal";
 import { CollaborationsSection as NaiveCollaborationsSection } from "@/components/molecules/CollaborationsSection";
@@ -26,6 +27,13 @@ export function AboutModal({ isOpen, onClose }: PropsWithChildren<Props>) {
       <DialogContent dividers={true}>
         <AboutContent />
       </DialogContent>
+      <DialogActions>
+        <Footer>
+          <a href={TWITTER_URL} target="_blank" rel="noopener noreferrer">
+            Created by @snamiki1212
+          </a>
+        </Footer>
+      </DialogActions>
     </Dialog>
   );
 }
@@ -73,7 +81,6 @@ function AboutContent() {
       <AuthorSection />
       <CollaborationsSection />
       <CodeSection />
-      <Divider />
     </ContentContainer>
   );
 }
@@ -274,4 +281,9 @@ const MainTitle = styled.span`
   font-weight: 900;
   font-family: var(--font-design1);
   color: var(--logo);
+`;
+
+const Footer = styled.div`
+  font-family: var(--font-text1);
+  color: var(--base-dark1);
 `;

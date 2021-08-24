@@ -63,7 +63,7 @@ const Text = styled.i`
 
 const Container = styled.div`
   display: inline-flex;
-  justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.5rem;
+  flex-direction: column;
 `;
