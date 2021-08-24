@@ -281,43 +281,41 @@ const logEvent = (id: String) => console.warn(`Cannot find event: ${id}.`);
 
 export const selectStoryByIdFilter = createSelector(
   selectUserCalendars,
-  (calendars) =>
-    memoize((calendarId: String, storyId: String) => {
-      const calendar = calendars.find((item) => item.id === calendarId);
-      if (!calendar) {
-        logCalendar(calendarId);
-        return undefined;
-      }
-      const story = calendar.stories.find((item) => item.id === storyId);
-      if (!story) {
-        logStory(storyId);
-        return undefined;
-      }
-      return story;
-    })
+  (calendars) => (calendarId: String, storyId: String) => {
+    const calendar = calendars.find((item) => item.id === calendarId);
+    if (!calendar) {
+      logCalendar(calendarId);
+      return undefined;
+    }
+    const story = calendar.stories.find((item) => item.id === storyId);
+    if (!story) {
+      logStory(storyId);
+      return undefined;
+    }
+    return story;
+  }
 );
 
 export const selectEventByIdFilter = createSelector(
   selectUserCalendars,
-  (calendars) =>
-    memoize((calendarId: String, storyId: String, eventId: String) => {
-      const calendar = calendars.find((item) => item.id === calendarId);
-      if (!calendar) {
-        logCalendar(calendarId);
-        return undefined;
-      }
-      const story = calendar.stories.find((item) => item.id === storyId);
-      if (!story) {
-        logStory(storyId);
-        return undefined;
-      }
-      const event = story.events.find((item) => item.id === eventId);
-      if (!event) {
-        logEvent(eventId);
-        return undefined;
-      }
-      return event;
-    })
+  (calendars) => (calendarId: String, storyId: String, eventId: String) => {
+    const calendar = calendars.find((item) => item.id === calendarId);
+    if (!calendar) {
+      logCalendar(calendarId);
+      return undefined;
+    }
+    const story = calendar.stories.find((item) => item.id === storyId);
+    if (!story) {
+      logStory(storyId);
+      return undefined;
+    }
+    const event = story.events.find((item) => item.id === eventId);
+    if (!event) {
+      logEvent(eventId);
+      return undefined;
+    }
+    return event;
+  }
 );
 
 export const selectUserCalendar = (state: RootState) =>
