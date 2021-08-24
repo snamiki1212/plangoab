@@ -62,31 +62,27 @@ export function StoryEditModal({ isOpen, onClose }: Props) {
     [updateStory, storyModal, story, onClose]
   );
 
-  // // TODO: error handler
-  // // const { register, handleSubmit, errors } = useForm();
-  // const { register, handleSubmit } = useForm();
-
   if (!story) return <></>;
 
   return (
     <Dialog onClose={onClose} open={isOpen}>
-      <DialogTitle>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <DialogTitleInner>
-            <TextField
-              inputRef={register}
-              name="name"
-              defaultValue={story.name}
-              variant="outlined"
-              label="Story Name"
-            />
-          </DialogTitleInner>
-        </form>
-      </DialogTitle>
-
-      <DialogContent dividers={true}>
-        <div>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <DialogTitle>
           <form onSubmit={handleSubmit(onSubmit)}>
+            <DialogTitleInner>
+              <TextField
+                inputRef={register}
+                name="name"
+                defaultValue={story.name}
+                variant="outlined"
+                label="Story Name"
+              />
+            </DialogTitleInner>
+          </form>
+        </DialogTitle>
+
+        <DialogContent dividers={true}>
+          <div>
             {story.resources.map((resource, idx) => {
               const fieldName = `resources[${idx}]`;
               return (
@@ -108,7 +104,7 @@ export function StoryEditModal({ isOpen, onClose }: Props) {
                     color="secondary"
                     variant="contained"
                   >
-                    Delete
+                    🗑 Remove
                   </Button>
                 </Fieldset>
               );
@@ -122,24 +118,22 @@ export function StoryEditModal({ isOpen, onClose }: Props) {
                 + Add Resource
               </Button>
             </AddResourceButtonContainer>
+          </div>
+        </DialogContent>
 
-            <UpdateButtonContainer>
-              <Button type="submit" variant="contained" color="primary">
-                Update
-              </Button>
-            </UpdateButtonContainer>
-          </form>
-        </div>
-      </DialogContent>
-      <DialogActions>
-        <Button
-          onClick={handleRemoveStory}
-          color="secondary"
-          variant="contained"
-        >
-          Delete this story
-        </Button>
-      </DialogActions>
+        <DialogActions>
+          <Button type="submit" variant="contained" color="primary">
+            Update
+          </Button>
+          <Button
+            onClick={handleRemoveStory}
+            color="secondary"
+            variant="contained"
+          >
+            🗑 Delete
+          </Button>
+        </DialogActions>
+      </form>
     </Dialog>
   );
 }

@@ -31,7 +31,7 @@ export const useUserCalendarCustomButtons = () => {
         click: handleAddStory,
       },
       [REMOVE_CALENDAR_BUTTON]: {
-        text: <Text>🧹 Clear</Text>,
+        text: <Text>🗑 Reset</Text>,
         click: handleRemoveCalendar,
       },
     }),
