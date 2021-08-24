@@ -31,9 +31,7 @@ export const useResourceGroupLabelContentInUserCalendar = ({
 
       // name handler
       const name = (() => {
-        if (story.name) {
-          return story.name;
-        }
+        if (story.name) return story.name;
         console.warn("cannot find this story name", storyId);
         return "No Name";
       })();
