@@ -65,75 +65,75 @@ export function StoryEditModal({ isOpen, onClose }: Props) {
   if (!story) return <></>;
 
   return (
-    <Dialog onClose={onClose} open={isOpen}>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <DialogTitle>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <DialogTitleInner>
-              <TextField
-                inputRef={register}
-                name="name"
-                defaultValue={story.name}
-                variant="outlined"
-                label="Story Name"
-              />
-            </DialogTitleInner>
-          </form>
-        </DialogTitle>
+    <Dialog onClose={onClose} open={isOpen} scroll="paper">
+      <DialogTitle>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <DialogTitleInner>
+            <TextField
+              inputRef={register}
+              name="name"
+              defaultValue={story.name}
+              variant="outlined"
+              label="Story Name"
+            />
+          </DialogTitleInner>
+        </form>
+      </DialogTitle>
 
-        <DialogContent dividers={true}>
-          <div>
-            {story.resources.map((resource, idx) => {
-              const fieldName = `resources[${idx}]`;
-              return (
-                <Fieldset name={fieldName} key={fieldName}>
-                  <input
-                    type="hidden"
-                    name={`${fieldName}.id`}
-                    ref={register}
-                    value={resource.id}
-                  />
-                  <TextField
-                    defaultValue={resource[FIELD]}
-                    inputRef={register}
-                    name={`${fieldName}.${FIELD}`}
-                    label="Field"
-                  />
-                  <Button
-                    onClick={handleRemoveResource(resource.id)}
-                    color="secondary"
-                    variant="contained"
-                  >
-                    🗑 Remove
-                  </Button>
-                </Fieldset>
-              );
-            })}
-            <AddResourceButtonContainer>
-              <Button
-                onClick={handleAddResource}
-                variant="outlined"
-                color="primary"
-              >
-                + Add Resource
-              </Button>
-            </AddResourceButtonContainer>
-          </div>
-        </DialogContent>
+      <DialogContent dividers={true}>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          {story.resources.map((resource, idx) => {
+            const fieldName = `resources[${idx}]`;
+            return (
+              <Fieldset name={fieldName} key={fieldName}>
+                <input
+                  type="hidden"
+                  name={`${fieldName}.id`}
+                  ref={register}
+                  value={resource.id}
+                />
+                <TextField
+                  defaultValue={resource[FIELD]}
+                  inputRef={register}
+                  name={`${fieldName}.${FIELD}`}
+                  label="Field"
+                />
+                <Button
+                  onClick={handleRemoveResource(resource.id)}
+                  color="secondary"
+                  variant="contained"
+                >
+                  🗑 Remove
+                </Button>
+              </Fieldset>
+            );
+          })}
+        </form>
+        <AddResourceButtonContainer>
+          <Button
+            onClick={handleAddResource}
+            variant="outlined"
+            color="primary"
+          >
+            + Add Resource
+          </Button>
+        </AddResourceButtonContainer>
+      </DialogContent>
 
-        <DialogActions>
+      <DialogActions>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <Button type="submit" variant="contained" color="primary">
             Update
           </Button>
-          <Button
-            onClick={handleRemoveStory}
-            color="secondary"
-            variant="contained"
-          >
-            🗑 Delete
-          </Button>
-        </DialogActions>
-      </form>
+        </form>
+        <Button
+          onClick={handleRemoveStory}
+          color="secondary"
+          variant="contained"
+        >
+          🗑 Delete
+        </Button>
+      </DialogActions>
     </Dialog>
   );
 }
@@ -155,9 +155,4 @@ const Fieldset = styled.fieldset`
 
 const AddResourceButtonContainer = styled.div`
   padding: 1rem;
-`;
-
-const UpdateButtonContainer = styled.div`
-  padding: 1rem;
-  text-align: right;
 `;
