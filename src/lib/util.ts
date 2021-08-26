@@ -7,3 +7,5 @@ export function range(start: number, stop: number, step?: number) {
   }
   return a;
 }
+
+export const isExternalUrl = (url: string) => url.startsWith("http");
