@@ -6,7 +6,7 @@ import Container from "@material-ui/core/Container";
 import { LpHeroUnit } from "@/components/atoms/LpHeroUnit";
 
 const TITLE = "Collaborations";
-const SUBTITLE = "work with";
+const SUBTITLE = "Plangoab is created with awesome collaborators.";
 
 export function LpCollaborationsSection() {
   return (

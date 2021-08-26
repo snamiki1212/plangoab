@@ -11,8 +11,8 @@ export function WebHeader() {
       style={{
         background: "#fff",
         color: `var(--color-dark1)`,
-        boxShadow: "0px",
       }}
+      elevation={0}
     >
       <Toolbar>
         <Link href="/home">

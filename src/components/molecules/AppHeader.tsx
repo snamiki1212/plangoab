@@ -23,6 +23,7 @@ export function AppHeader() {
       <AppBar
         position="static"
         style={{ background: "#fff", color: `var(--color-dark1)` }}
+        elevation={0}
       >
         <Toolbar>
           <LogoImageContainer>

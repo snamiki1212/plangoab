@@ -26,7 +26,7 @@ const Title = styled.div`
 
 const Subtitle = styled.div`
   font-family: var(--font-header1);
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   /* color: var(--color-dark1); */
   color: gray;
   font-weight: 900;
