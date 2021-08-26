@@ -19,27 +19,8 @@ const eventContent = function (arg: any) {
 };
 
 export function CalendarBaseContainer(props: any) {
-  return (
-    <StyledContainer>
-      <CalendarBase {...props} eventContent={eventContent} />
-    </StyledContainer>
-  );
+  return <CalendarBase {...props} eventContent={eventContent} />;
 }
-
-const StyledContainer = styled.div`
-  .fc-button {
-    background: transparent;
-    color: #000;
-    border-color: lightgray;
-    transition: 0.3s;
-    &:hover {
-      transition: 0.3s;
-      background: transparent;
-      opacity: 0.7;
-      color: #000;
-    }
-  }
-`;
 
 const ItemText = styled.span`
   color: var(--base-light1);
