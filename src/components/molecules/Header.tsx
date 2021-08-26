@@ -30,31 +30,13 @@ export function Header() {
           </div>
           <Title>Plangoab</Title>
           <ButtonContainer>
-            <Button
-              onClick={open}
-              style={{
-                textTransform: "none",
-                fontWeight: 900,
-                fontFamily: `var(--font-header1)`,
-              }}
-            >
-              💡HowTo
-            </Button>
-            <Button
-              onClick={openAbout}
-              style={{
-                textTransform: "none",
-                fontWeight: 900,
-                fontFamily: `var(--font-header1)`,
-              }}
-            >
-              ✈️About
-            </Button>
+            <SButton onClick={open}>💡HowTo</SButton>
+            <SButton onClick={openAbout}>✈️About</SButton>
           </ButtonContainer>
         </Toolbar>
       </AppBar>
 
-      {/* Modal */}
+      {/* Modals */}
       <AboutModal isOpen={isOpenAbout} onClose={closeAbout} />
       <TutorialModal />
     </>
@@ -74,4 +56,12 @@ const ButtonContainer = styled.div`
   display: grid;
   gap: 1rem;
   grid-template-columns: 1fr 1fr;
+`;
+
+const SButton = styled(Button)`
+  && {
+    text-transform: none;
+    font-weight: 900;
+    font-family: var(--font-header1);
+  }
 `;
