@@ -1,8 +1,12 @@
+import Link from "next/link";
 import styled from "styled-components";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import { SNS_LIST } from "@/constants/sns";
+import { CONTACT_FORM_URL } from "@/constants/meta";
+import { ROUTES } from "@/constants/routes";
+import { isExternalUrl } from "@/lib/util";
 
 const SNS_DESCRIPTIONS = SNS_LIST.map((sns) => ({
   title: sns.name,
@@ -14,15 +18,14 @@ const footers = [
     title: "Team",
     description: [
       { title: "Home", url: "#" },
-      { title: "Create Calendar", url: "#" },
-      { title: "Contact us", url: "#" },
+      { title: "Contact us", url: CONTACT_FORM_URL },
     ],
   },
   {
     title: "Featuers",
     description: [
-      { title: "Create Calendar", url: "#" },
-      { title: "Show created calendars", url: "#" },
+      { title: "Create calendar", url: ROUTES.CALENDARS__NEW },
+      // { title: "Browse calendars", url: "#" },
     ],
   },
   { title: "Creater", description: [...SNS_DESCRIPTIONS] },
@@ -37,13 +40,23 @@ export function WebFooter() {
             <Grid item xs={6} sm={3} key={footer.title}>
               <Title>{footer.title}</Title>
               <ul>
-                {footer.description.map(({ title, url }) => (
-                  <li key={title}>
-                    <a href={url} style={{ textDecoration: "none" }}>
-                      <Text>{title}</Text>
-                    </a>
-                  </li>
-                ))}
+                {footer.description.map(({ title, url }) => {
+                  const aProps = isExternalUrl(url)
+                    ? {
+                        target: "_blank",
+                        rel: "noopener noreferrer",
+                      }
+                    : {};
+                  return (
+                    <li key={title}>
+                      <Link href={url}>
+                        <a style={{ textDecoration: "none" }} {...aProps}>
+                          <Text>{title}</Text>
+                        </a>
+                      </Link>
+                    </li>
+                  );
+                })}
               </ul>
             </Grid>
           ))}

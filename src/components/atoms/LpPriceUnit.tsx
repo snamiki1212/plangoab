@@ -9,6 +9,7 @@ import CardHeader from "@material-ui/core/CardHeader";
 import Grid from "@material-ui/core/Grid";
 import { ROUTES } from "@/constants/routes";
 import { CONTACT_FORM_URL } from "@/constants/meta";
+import { isExternalUrl } from "@/lib/util";
 
 const ENTERPRISE = "Enterprise";
 const FREE = "Free";
@@ -43,80 +44,72 @@ const tiers = [
 export const LpPriceUnit = () => {
   return (
     <Grid container spacing={5} alignItems="flex-start">
-      {tiers.map((tier) => (
-        <Grid item key={tier.title} xs={12} sm={6} md={6}>
-          <Card>
-            <CardHeader
-              title={
-                <Header
-                  style={{
-                    color: `${
-                      tier.id === FREE
-                        ? `var(--color-dark1)`
-                        : `var(--color-light1)`
-                    }`,
-                  }}
-                >
-                  {tier.title}
-                </Header>
-              }
-              subheader={
-                <Subheader
-                  style={{
-                    color: `${
-                      tier.id === FREE
-                        ? `var(--color-dark1)`
-                        : `var(--color-light1)`
-                    }`,
-                  }}
-                >
-                  {tier.subheader}
-                </Subheader>
-              }
-              titleTypographyProps={{
-                align: "center",
-              }}
-              subheaderTypographyProps={{
-                align: "center",
-              }}
-              action={tier.id === ENTERPRISE ? <span>⭐️</span> : null}
-              style={{
-                background: `${
-                  tier.id === FREE ? "lightgray" : `var(--color-dark1)`
-                }`,
-              }}
-            />
+      {tiers.map((tier) => {
+        const headerTextStyle = {
+          color: `${
+            tier.id === FREE ? `var(--color-dark1)` : `var(--color-light1)`
+          }`,
+        };
+        const headerStyle = {
+          background: `${
+            tier.id === FREE ? "lightgray" : `var(--color-dark1)`
+          }`,
+        };
+        const aStyle = {
+          textDecoration: "none",
+          color: `${
+            tier.id === FREE ? `var(--color-dark1)` : `var(--color-light1)`
+          }`,
+        };
+        const aProps = isExternalUrl(tier.buttonUrl)
+          ? {
+              target: "_blank",
+              rel: "noopener noreferrer",
+            }
+          : {};
 
-            <CardContent style={{ padding: "3rem", height: "20rem" }}>
-              <Price>{tier.price}</Price>
-              <FeatureContainer>
-                {tier.description.map((line) => (
-                  <Feature key={line}>{line}</Feature>
-                ))}
-              </FeatureContainer>
-            </CardContent>
+        return (
+          <Grid item key={tier.title} xs={12} sm={6} md={6}>
+            <Card>
+              <CardHeader
+                title={<Header style={headerTextStyle}>{tier.title}</Header>}
+                subheader={
+                  <Subheader style={headerTextStyle}>
+                    {tier.subheader}
+                  </Subheader>
+                }
+                titleTypographyProps={{
+                  align: "center",
+                }}
+                subheaderTypographyProps={{
+                  align: "center",
+                }}
+                action={tier.id === ENTERPRISE ? <span>⭐️</span> : null}
+                style={headerStyle}
+              />
 
-            <CardActions>
-              <Button fullWidth variant={tier.buttonVariant} color="primary">
-                <Link href={tier.buttonUrl}>
-                  <a
-                    style={{
-                      textDecoration: "none",
-                      color: `${
-                        tier.id === FREE
-                          ? `var(--color-dark1)`
-                          : `var(--color-light1)`
-                      }`,
-                    }}
-                  >
-                    {tier.buttonText}
-                  </a>
-                </Link>
-              </Button>
-            </CardActions>
-          </Card>
-        </Grid>
-      ))}
+              <CardContent style={{ padding: "3rem", height: "20rem" }}>
+                <Price>{tier.price}</Price>
+                <FeatureContainer>
+                  {tier.description.map((line) => (
+                    <Feature key={line}>{line}</Feature>
+                  ))}
+                </FeatureContainer>
+              </CardContent>
+
+              <CardActions>
+                <Button fullWidth variant={tier.buttonVariant} color="primary">
+                  <Link href={tier.buttonUrl}>
+                    <a style={aStyle} {...aProps}>
+                      {tier.buttonText}
+                    </a>
+                  </Link>
+                </Button>
+              </CardActions>
+            </Card>
+          </Grid>
+        );
+      })}
     </Grid>
   );
 };
