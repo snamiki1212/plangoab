@@ -3,20 +3,29 @@ import { useDispatch, useSelector } from "react-redux";
 import { BaseEvent } from "@/core/event/BaseEvent";
 import { BaseResource } from "@/core/resource/BaseResource";
 import { TemplateOption } from "@/core/calendar/BaseCalendar";
+import { createPublicCollegeCalendar } from "@/core/calendar/TemplateCalendar/createCalendar";
+import { createDate } from "@/lib/date";
 import {
-  upsertPublicCollegeStoriesAction,
+  upsertPublicCollegeCalendarAction,
   selectPublicCollegeCalendar,
-} from "@/redux/features/templateCalendarTable";
+} from "@/redux/features/templateCalendar";
+
+type GenerateArg = {
+  birth: string;
+  canWorkingholiday: boolean;
+  options: TemplateOption;
+};
 
 export const usePublicCollegeCalendar = () => {
   const dispatch = useDispatch();
   const generate = React.useCallback(
-    (args: {
-      birth: string;
-      canWorkingholiday: boolean;
-      options: TemplateOption;
-    }) => {
-      dispatch(upsertPublicCollegeStoriesAction(args));
+    ({ birth, canWorkingholiday, options }: GenerateArg) => {
+      const props = {
+        birth: createDate(birth),
+        canWorkingholiday,
+      };
+      const calendar = createPublicCollegeCalendar(props, options);
+      dispatch(upsertPublicCollegeCalendarAction({ calendar }));
     },
     [dispatch]
   );

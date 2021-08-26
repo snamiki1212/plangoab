@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 import { useModal } from "@/hooks/useModal";
 
 export const OPEN_OPTION_BUTTON = "OPEN_OPTION_BUTTON";
@@ -13,7 +14,7 @@ export const useTemplateCustomButtons = () => {
   const customButtons = React.useMemo(
     () => ({
       [OPEN_OPTION_BUTTON]: {
-        text: "⚙️Change Options",
+        text: <Text>⚙️ Options</Text>,
         click: handleOpenOption,
       },
     }),
@@ -22,3 +23,8 @@ export const useTemplateCustomButtons = () => {
 
   return { customButtons, isOpen, close };
 };
+
+const Text = styled.span`
+  color: var(--base-dark1);
+  font-family: var(--font-text1);
+`;

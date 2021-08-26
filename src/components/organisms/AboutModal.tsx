@@ -4,12 +4,14 @@ import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
+import DialogActions from "@material-ui/core/DialogActions";
+import Divider from "@material-ui/core/Divider";
 import { useResetAllData } from "@/hooks/useResetAllData";
 import { THIS_GITHUB_URL } from "@/constants/meta";
-import { SNS_LIST } from "@/constants/sns";
-import { collaborations } from "@/constants/collaborations";
+import { SNS_LIST, TWITTER_URL } from "@/constants/sns";
 import { usePreviewCommand } from "@/hooks/usePreview";
 import { PreviewModal } from "@/components/molecules/PreviewModal";
+import { CollaborationsSection as NaiveCollaborationsSection } from "@/components/molecules/CollaborationsSection";
 
 type Props = {
   isOpen: boolean;
@@ -25,6 +27,13 @@ export function AboutModal({ isOpen, onClose }: PropsWithChildren<Props>) {
       <DialogContent dividers={true}>
         <AboutContent />
       </DialogContent>
+      <DialogActions>
+        <Footer>
+          <a href={TWITTER_URL} target="_blank" rel="noopener noreferrer">
+            Created by @snamiki1212
+          </a>
+        </Footer>
+      </DialogActions>
     </Dialog>
   );
 }
@@ -56,11 +65,18 @@ function HowToPrintSection() {
 function AboutContent() {
   return (
     <ContentContainer>
+      {/* Description */}
       <AboutSection />
       <HowToUseSection />
+      <Divider />
+
+      {/* Peripheral */}
       <TipsSection />
-      <ResetSection />
       <HowToPrintSection />
+      <ResetSection />
+      <Divider />
+
+      {/* Meta  */}
       <LicenseSection />
       <AuthorSection />
       <CollaborationsSection />
@@ -69,6 +85,7 @@ function AboutContent() {
   );
 }
 
+// TODO: Create another component as file
 function Section({
   title,
   content,
@@ -78,11 +95,20 @@ function Section({
 }) {
   return (
     <div>
-      <h2>{title}</h2>
-      <div>{content}</div>
+      <Title>{title}</Title>
+      <SectionBody>{content}</SectionBody>
     </div>
   );
 }
+const Title = styled.h2`
+  color: var(--base-dark1);
+  font-family: var(--font-header1);
+`;
+const SectionBody = styled.div`
+  margin-left: 1.5rem;
+  font-family: var(--font-text1);
+  color: var(--base-dark1);
+`;
 
 function AboutSection() {
   return (
@@ -90,8 +116,9 @@ function AboutSection() {
       title="🐱 About Planogoab"
       content={
         <p>
-          A web calendar for a person going abroad. Generating a suitable
-          schedule and customizable.
+          A web calendar for a person going abroad.
+          <br />
+          Generating a suitable schedule and customizable.
         </p>
       }
     />
@@ -116,13 +143,14 @@ function HowToUseSection() {
           <p>
             <h3>Instruction</h3>
             <li>
-              1. Pick appropriate plan from a template calendar to click "Copy
-              to my calendar".
+              1. On 'Templates' card, pick a section and click "Copy to my
+              calendar".
             </li>
             <li>
-              2. Stories are copied from a template calendar into my calendar.
+              2. The section is copied from 'Template calendar' into 'My
+              calendar'.
             </li>
-            <li>3. Edit my story and events in my calendar.</li>
+            <li>3. On 'My Calendar', edit your plans.</li>
           </p>
         </div>
       }
@@ -157,21 +185,36 @@ function LicenseSection() {
   );
 }
 
+const reloadPage = () => location.reload();
+
+const runAfterWaitOneSec = (callback) => {
+  setTimeout(callback, 1_000);
+};
+
 function ResetSection() {
   const { reset } = useResetAllData();
 
   const handleResetAllData = React.useCallback(() => {
     if (!window.confirm("Would you remove all data in Plangoab?")) return;
     reset();
+
+    /**
+     * NOTE:
+     * Hard-code because reset func is not async
+     * and I expect to reload after finishing reset all process.
+     */
+    runAfterWaitOneSec(reloadPage);
   }, [reset]);
+
   return (
     <Section
       title="💥 Reset All Data"
       content={
         <div>
           <div>
-            <p>Would you like to reset all data in Plangoab?</p>
-            <br />
+            <li>
+              <span>Would you like to reset all data in Plangoab?</span>
+            </li>
             <Button
               onClick={handleResetAllData}
               variant="outlined"
@@ -208,17 +251,7 @@ function CollaborationsSection() {
   return (
     <Section
       title="👨‍👦‍👦 Collaborations"
-      content={
-        <div>
-          {collaborations.map(({ name, link }) => (
-            <li>
-              <a target="_blank" rel="noopener noreferrer" href={link}>
-                {name}
-              </a>
-            </li>
-          ))}
-        </div>
-      }
+      content={<NaiveCollaborationsSection />}
     />
   );
 }
@@ -229,10 +262,10 @@ function CodeSection() {
       title="🧑‍💻 Source Code"
       content={
         <div>
-          <span>
+          <li>
             Plangoab is OSS managed at <a href={THIS_GITHUB_URL}>GitHub</a> so
             you can check all of code.
-          </span>
+          </li>
         </div>
       }
     />
@@ -246,4 +279,11 @@ const ContentContainer = styled.div`
 
 const MainTitle = styled.span`
   font-weight: 900;
+  font-family: var(--font-design1);
+  color: var(--logo);
+`;
+
+const Footer = styled.div`
+  font-family: var(--font-text1);
+  color: var(--base-dark1);
 `;

@@ -84,43 +84,54 @@ export function TemplateOptionContent() {
 
   return (
     <Container>
-      <PeriodContainer>
-        <TextField
-          value={schoolPeriod}
-          onChange={handleChangeSchoolPeriod}
-          label="School Period"
-          InputProps={{
-            endAdornment: <InputAdornment position="end">Month</InputAdornment>,
-          }}
-        />
-        <TextField
-          value={coopPeriod}
-          onChange={handleChangeCoopPeriod}
-          label="Co-op Period"
-          InputProps={{
-            endAdornment: <InputAdornment position="end">Month</InputAdornment>,
-          }}
-        />
-        <TextField
-          value={pgwpPeriod}
-          onChange={handleChangePgwpPeriod}
-          label="PWGP Period"
-          InputProps={{
-            endAdornment: <InputAdornment position="end">Month</InputAdornment>,
-          }}
-        />
-        <TextField
-          value={workingholidayPeriod}
-          onChange={handleChangeWorkingholidayPeriod}
-          label="Working Holiday Period"
-          InputProps={{
-            endAdornment: <InputAdornment position="end">Month</InputAdornment>,
-          }}
-        />
-      </PeriodContainer>
+      <Content>
+        <Title>Periods</Title>
+        <PeriodContainer>
+          <TextField
+            value={schoolPeriod}
+            onChange={handleChangeSchoolPeriod}
+            label="School Period"
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">Month</InputAdornment>
+              ),
+            }}
+          />
+          <TextField
+            value={coopPeriod}
+            onChange={handleChangeCoopPeriod}
+            label="Co-op Period"
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">Month</InputAdornment>
+              ),
+            }}
+          />
+          <TextField
+            value={pgwpPeriod}
+            onChange={handleChangePgwpPeriod}
+            label="PWGP Period"
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">Month</InputAdornment>
+              ),
+            }}
+          />
+          <TextField
+            value={workingholidayPeriod}
+            onChange={handleChangeWorkingholidayPeriod}
+            label="Working Holiday Period"
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">Month</InputAdornment>
+              ),
+            }}
+          />
+        </PeriodContainer>
+      </Content>
 
-      <div>
-        <label>School start from (Month)</label>
+      <Content>
+        <Title>School start from (Month)</Title>
         <div>
           {MONTHS.map((month, idx) => {
             const monthNum = idx + 1;
@@ -137,12 +148,28 @@ export function TemplateOptionContent() {
             );
           })}
         </div>
-      </div>
+      </Content>
     </Container>
   );
 }
 
-const Container = styled.div``;
+const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+`;
+
+const Title = styled.div`
+  color: var(--base-dark1);
+  font-family: var(--font-header1);
+  font-size: 1.5rem;
+`;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+`;
 
 const CheckboxListItem = styled.div`
   display: inline-block;

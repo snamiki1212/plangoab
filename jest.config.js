@@ -26,7 +26,10 @@ module.exports = {
   transform: {
     "^.+\\.tsx?$": "ts-jest",
   },
-  moduleNameMapper: makeModuleNameMapper(SRC_PATH, TS_CONFIG_PATH),
+  moduleNameMapper: {
+    ...makeModuleNameMapper(SRC_PATH, TS_CONFIG_PATH),
+    "^lodash-es$": "lodash",
+  },
   // All imported modules in your tests should be mocked automatically
   // automock: false,
 
@@ -158,7 +161,7 @@ module.exports = {
   // snapshotSerializers: [],
 
   // The test environment that will be used for testing
-  testEnvironment: "node",
+  testEnvironment: "jsdom",
 
   // Options that will be passed to the testEnvironment
   // testEnvironmentOptions: {},

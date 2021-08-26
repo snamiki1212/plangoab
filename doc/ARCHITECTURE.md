@@ -1,7 +1,5 @@
 # ARCHITECTURE
 
-(Here is managed [issues](https://github.com/snamiki1212/plangoab/issues/11).)
-
 ## Component, Logic and State Dependency Flow
 
 <!--
@@ -11,7 +9,22 @@
     3) modify
     4) export as svg file
 -->
-<img src="./DATA_FLOW.svg" alt="DATA_FLOW">
+<img src="./DATA_FLOW.svg" alt="DATA_FLOW" />
+
+## ER of core model
+
+`/src/core` has model data and ER is like below.
+
+<img src="./ER_CORE.svg" alt="ER_CODE" />
+
+```
+/src
+|- /core
+| |- /calendar
+| |- /story
+| |- /resource
+| |- /event
+```
 
 ## Deps graph
 
@@ -26,56 +39,63 @@ $ brwe install graphviz # prerequirements
 $ yarn graph:svg
 ```
 
-## Don't Use `this` and `prototype`
-
-As literal.
-
-## Use regular function component
-
-// TODO: create eslint rule
-Because arrow function doesn't have display name but regular function has.
-
-```tsx
-// NG
-const Item = () => <div>this is item</div>;
-
-// OK
-function Item() {
-  return <div>this is item</div>;
-}
-```
-
-## Explaintive / Descriptive Code
-
-```ts
-// NG
-const nl = l.map((i) => i * i);
-
-// OK
-const newList = list.map((item) => item * item);
-```
-
 ## Atomic Design
 
-Plangoab is following the way of [Atomic Design](https://bradfrost.com/blog/post/atomic-web-design/).
+Plangoab is following [Atomic Design](https://bradfrost.com/blog/post/atomic-web-design/) at `/src/components/*`
 
-## No Class, Yes Function
+## No Class, But Function
 
-Plangoab adopted FP way when to handle model layer.
+On Model Layer, Plangoab is implemented without using Class at `/src/core/*`.
 
-So there is no class but only Plain JavaScript & Functions in `/core` directory.
-On the otherhands, we need strictly implicit rule to handle model. We must not handle model data without function of this model layer. If happend, I assume code would become easily getting chaos.
+There is no class but only plain JavaScript objects and functions.
+On the otherhands, we need a strictly implicit rule about how to handle a model.
+We must not handle a model without function of this model layer.
+If not, I assume the code would become easily getting chaos because data would be changed everywhere.
 
 ## State Management
 
-Plangoab is using Redux for global state.
+Plangoab is using Redux for global state at `/src/redux/*`.
 
-Redux is global state management library. Plangoab handles a little complicated data structure because of having calendar feature. Additionally, there is no back-end so we need handle data on state management in only front-end somehow. That is why Plangoab is choosing Redux instead of Context API.
+Redux is a global state management library. Plangoab handles a complicated structure of data because of having calendar features. Additionally, there is no back-end so we need handle data in only front-end somehow. That is why Plangoab is choosing Redux instead of Context API.
 
-Context API can handle global state esaily but trade-off is that logic become getting complicated easiliy. On this trade-off and background that Plangoab has to need Redux at least, we choose NOT to use Context API.
+Context API can easily handle a global state but trade-off is that logic become getting complicated easily as well. On this trade-off and background, Plangoab has to need Redux and We choose NOT to use Context API.
 
 ## Local Cache Management
 
-Plangoab is using localstorage with redux-persist.
+Plangoab is using local storage with `redux-persist`.
 
-That's why we have to pay attention when to change redux data shape. Now that redux-persist has `version` config so we care it when to upgrade data shape.
+That's why we have to pay attention when to change a shape of redux data.
+Now that `redux-persist` has `version` config so we care it when to upgrade a shape.
+
+## Hosting
+
+Hosting = Netlify + Github Pages
+
+- Name Server is `Netlify`
+- Web Server is `GitHub Pages`
+
+Config Files
+
+- `/public/_redirects`: File which Netlify will read in order to force config to redirect http to https.
+- `/public/CNAME`: File that which GitHub Pages will read in order to configure a custom domain.
+
+## Date
+
+Use JavaScript Plain Date object and handling with it by `date-fns`.
+The `date-fns` is functional approach for JavaScript Plain Date object.
+
+In Plangoab, we need to use mainly `year` and `month` so every `day` must be 1 and rest of params(sec, milli sec) must be 0.
+
+### Reason why end day is also 1st.
+
+If we use 31/30/29/38 for end of day, manupulating process is so hard.
+
+e.g.)
+
+- First ready range
+  - (start: Jan 01) ~ (end: Mar 31)
+- Change end of month by going back 1 month.
+  - (start: Jan 01) ~ (end: Feb 31)
+- But Feb 31 is invalid day.
+
+That's why Plangoab use only 1st date.

@@ -1,9 +1,15 @@
 <p align="center">
   <a href="https://plangoab.snamiki1212.com">
-	  <img alt="Plangoab is an immigration scheduler application for going abroad." src="https://user-images.githubusercontent.com/26793088/114226819-f7332d80-9928-11eb-93f8-4f9919018bf6.png">
+    <img alt="Plangoab is an immigration scheduler application for going abroad." src="https://user-images.githubusercontent.com/26793088/114226819-f7332d80-9928-11eb-93f8-4f9919018bf6.png">
   </a>
-  <a href="https://github.com/snamiki1212/plangoab/blob/main/LICENSE.md">
-    <img src="https://img.shields.io/badge/License-GPLv3-blue.svg" alt="License:GPLv3" align="center">
+</p>
+
+<p align="center">
+  <a align="center" href="https://github.com/snamiki1212/plangoab/blob/main/LICENSE.md">
+    <img src="https://img.shields.io/badge/License-GPLv3-blue.svg" alt="License:GPLv3" />
+  </a>
+  <a align="center" href="https://codecov.io/gh/snamiki1212/plangoab">
+    <img src="https://codecov.io/gh/snamiki1212/plangoab/branch/main/graph/badge.svg?token=PALDGS8QHD"/>
   </a>
 </p>
 
@@ -51,26 +57,26 @@
   </tr>
 </table>
 
-## Who want
+### Who use?
 
-Plangoab might help like below people
+Plangoab might help like esipecially below people:
 
 - Person going abroad to find job
 - Person going abroad to go to school
-- Immigration consultant
+- An Immigration consultant/agent
 
-## Why create
+### Why create?
 
-Because of reducing cost to plan schedule for going abroad.
+Because of easily planning schedule for going abroad.
 
-If you go abroad to find jobs, you should think about some topics like below.
+If you go abroad to find jobs, you have to think about some topics like below.
 
 - When is the deadline to go abroad with Working Holiday Visa?
 - How long can you stay there?
-- Should you go school in order to get visa? If so, which school? when to start?
+- Should you go school in order to get visa? If so, which school? And when you should start?
 - etc...
 
-Actually, in my case, I handwrote some plans but made some mistakes when to calculate a Visa and my ages. Fortunatelly, I realized it but I almost ruined my career. (Sorry, handwrite is Japanese!)
+Actually, in my case, I handwrote some plans but made some mistakes when to calculate a Visa and my ages. Fortunatelly, I realized it but I almost ruined my career. (Handwriting charactors are Japanese :D )
 
 <table>
   <tr>
@@ -93,7 +99,7 @@ I believe Plangoab would help people who want to plan to go abroad, especially w
 
 Read [ARCHITECTURE.md](./doc/ARCHITECTURE.md) more details.
 
-## Tech Stack
+### Tech Stack
 
 <table>
   <tr>
@@ -117,8 +123,16 @@ Read [ARCHITECTURE.md](./doc/ARCHITECTURE.md) more details.
     <td>GitHub Actions</td>
   </tr>
   <tr>
+    <td>Test</td>
+    <td>Cypress, React Testing Library, Jest, Fishery</td>
+  </tr>
+  <tr>
+    <td>Code Coverage</td>
+    <td><a href="https://codecov.io/gh/snamiki1212/plangoab">Codecov</a></td>
+  </tr>
+  <tr>
     <td>Hosting</td>
-    <td>GitHub Pages + Netlify</td>
+    <td><a href="https://plangoab.snamiki1212.com">GitHub Pages + Netlify</a></td>
   </tr>
 </table>
 
@@ -137,12 +151,6 @@ $ yarn start #=> open http://local:3000
 ## Contribution
 
 Welcome, whenever, whoever, whatever! Feel Free to create PRs or issues.
-
-## Licence
-
-[GPL-3.0](https://github.com/snamiki1212/plangoab/blob/main/LICENSE.md)
-
-Because of using [Fullcalendar Premium open-source project license](https://fullcalendar.io/license) as GPL-3.0. That makes a plangoab's license a same license.
 
 ## Collaborations
 
@@ -179,3 +187,9 @@ Because of using [Fullcalendar Premium open-source project license](https://full
 
 - [GitHub: snamiki1212](https://github.com/snamiki1212)
 - [Linkedin: snamiki1212](https://www.linkedin.com/in/snamiki1212/)
+
+## Licence
+
+[GPL-3.0](https://github.com/snamiki1212/plangoab/blob/main/LICENSE.md)
+
+Because of using [Fullcalendar Premium open-source project license](https://fullcalendar.io/license) as GPL-3.0. That makes a plangoab's license a same license.

@@ -2,19 +2,17 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { pushAction, popAction, selectIsOpen } from "@/redux/ui/eventModal";
 
+type Push = {
+  eventId: string;
+  storyId: string;
+  calendarId: string;
+};
+
 export const useEventModal = () => {
   const dispatch = useDispatch();
 
   const push = React.useCallback(
-    ({
-      eventId,
-      storyId,
-      calendarId,
-    }: {
-      eventId: string;
-      storyId: string;
-      calendarId: string;
-    }) => {
+    ({ eventId, storyId, calendarId }: Push) => {
       dispatch(pushAction({ calendarId, eventId, storyId }));
     },
     [dispatch]

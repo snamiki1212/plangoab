@@ -25,11 +25,10 @@ export function CalendarPage() {
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 5rem;
 `;
 
 const ContentContainer = styled.div`
   padding: 0 3rem;
   display: grid;
-  gap: 5rem;
 `;

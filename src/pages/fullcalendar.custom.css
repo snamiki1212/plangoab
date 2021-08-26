@@ -1,0 +1,28 @@
+.fc-timeline-slot-frame,
+.fc-datagrid-cell-cushion {
+  color: var(--base-dark1);
+  font-family: var(--font-text1);
+}
+
+.fc-datagrid-expander {
+  font-size: 1.5rem;
+}
+
+.fc-datagrid-cell-cushion {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.fc-button {
+  background: transparent !important;
+  color: var(--base-dark1) !important;
+  border-color: lightgray !important;
+  transition: 0.3s !important;
+  opacity: 0.7 !important;
+}
+.fc-button:hover {
+  background: lightgray !important;
+  transition: 0.3s !important;
+  opacity: 1 !important;
+}
