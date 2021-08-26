@@ -1,5 +1,5 @@
 import React from "react";
-import { CalendarBaseContainer } from "@/components/atoms/CalendarBaseContainer";
+import { CalendarBase } from "@/components/atoms/CalendarBase";
 import { useResourceGroupLabelContentInTemplateCalendar } from "@/hooks/useResourceGroupLabelContentInTemplateCalendar";
 import { useStory } from "@/hooks/useStory";
 import { BaseStory } from "@/core/story/BaseStory";
@@ -33,7 +33,7 @@ export function CollegeCalendarBase(props: any) {
     useResourceGroupLabelContentInTemplateCalendar({ createClickHandel });
 
   return (
-    <CalendarBaseContainer
+    <CalendarBase
       {...props}
       initialDate={"2020-06-01"}
       resourceGroupLabelContent={resourceGroupLabelContent}

@@ -25,41 +25,28 @@ export function Header() {
         style={{ background: "#fff", color: `var(--base-dark1)` }}
       >
         <Toolbar>
-          <div style={{ width: "50px", height: "50px" }}>
+          <LogoImageContainer>
             <LogoImage />
-          </div>
+          </LogoImageContainer>
           <Title>Plangoab</Title>
           <ButtonContainer>
-            <Button
-              onClick={open}
-              style={{
-                textTransform: "none",
-                fontWeight: 900,
-                fontFamily: `var(--font-header1)`,
-              }}
-            >
-              💡HowTo
-            </Button>
-            <Button
-              onClick={openAbout}
-              style={{
-                textTransform: "none",
-                fontWeight: 900,
-                fontFamily: `var(--font-header1)`,
-              }}
-            >
-              ✈️About
-            </Button>
+            <SButton onClick={open}>💡HowTo</SButton>
+            <SButton onClick={openAbout}>✈️About</SButton>
           </ButtonContainer>
         </Toolbar>
       </AppBar>
 
-      {/* Modal */}
+      {/* Modals */}
       <AboutModal isOpen={isOpenAbout} onClose={closeAbout} />
       <TutorialModal />
     </>
   );
 }
+
+const LogoImageContainer = styled.div`
+  width: 50px;
+  height: 50px;
+`;
 
 const Title = styled.span`
   font-size: 2rem;
@@ -74,4 +61,12 @@ const ButtonContainer = styled.div`
   display: grid;
   gap: 1rem;
   grid-template-columns: 1fr 1fr;
+`;
+
+const SButton = styled(Button)`
+  && {
+    text-transform: none;
+    font-weight: 900;
+    font-family: var(--font-header1);
+  }
 `;
