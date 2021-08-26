@@ -37,13 +37,7 @@ const PriceUnit = () => {
     <Container maxWidth="md" component="div">
       <Grid container spacing={5} alignItems="flex-end">
         {tiers.map((tier) => (
-          <Grid
-            item
-            key={tier.title}
-            xs={12}
-            sm={tier.title === ENTERPRISE ? 7 : 5}
-            md={tier.title === ENTERPRISE ? 7 : 5}
-          >
+          <Grid item key={tier.title} xs={12} sm={6} md={6}>
             <Card>
               <CardHeader
                 title={tier.title}
@@ -109,5 +103,5 @@ const PriceContainer = styled.div`
 
 const Wrapper = styled.div`
   background: lightgray;
-  padding: 3rem 0;
+  padding: 10rem 0;
 `;

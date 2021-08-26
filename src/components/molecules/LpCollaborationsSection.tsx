@@ -11,7 +11,7 @@ const SUBTITLE = "work with";
 export function LpCollaborationsSection() {
   return (
     <Wrapper>
-      <Container maxWidth="md">
+      <Container maxWidth="sm">
         <LpHeroUnit title={TITLE} subtitle={SUBTITLE} />
         <LpCollaborationUnit />
       </Container>
@@ -40,6 +40,6 @@ const Center = styled.div`
 `;
 
 const Wrapper = styled.div`
-  padding: 3rem 0;
+  padding: 10rem 0;
   background: lightblue;
 `;

@@ -37,4 +37,5 @@ const Text = styled.span``;
 
 const Wrapper = styled.div`
   background: lightyellow;
+  padding: 10rem 0;
 `;
