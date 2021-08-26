@@ -15,7 +15,7 @@ export const eventContent = function (arg: any) {
 };
 
 const Text = styled.span`
-  color: var(--base-light1);
+  color: var(--color-light1);
   font-family: var(--font-text1);
 `;
 

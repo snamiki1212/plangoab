@@ -11,8 +11,8 @@ export function HomePage() {
       <WebHeader />
       <LpHeroSection />
       <LpDemoSection />
-      <LpCollaborationsSection />
       <LpPriceSection />
+      <LpCollaborationsSection />
       <WebFooter />
     </div>
   );

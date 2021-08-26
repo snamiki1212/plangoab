@@ -68,9 +68,9 @@ const Text = styled.span`
 
 const Wrapper = styled.div`
   padding-top: 10rem;
-  background: var(--base-dark1);
-  color: var(--base-light1);
+  background: var(--color-dark1);
+  color: var(--color-light1);
   & a {
-    color: var(--base-light1);
+    color: var(--color-light1);
   }
 `;

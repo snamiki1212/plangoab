@@ -10,7 +10,7 @@ export function WebHeader() {
       position="static"
       style={{
         background: "#fff",
-        color: `var(--base-dark1)`,
+        color: `var(--color-dark1)`,
         boxShadow: "0px",
       }}
     >
@@ -46,5 +46,5 @@ const LogoText = styled.span`
   padding: 1rem;
   font-weight: 600;
   font-family: var(--font-design1);
-  color: var(--logo);
+  color: var(--color-logo);
 `;

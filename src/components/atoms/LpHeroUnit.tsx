@@ -19,7 +19,7 @@ export const LpHeroUnit: React.VFC<Props> = ({ title, subtitle = "" }) => {
 const Title = styled.div`
   font-family: var(--font-header1);
   font-size: 3rem;
-  color: var(--base-dark1);
+  color: var(--color-dark1);
   font-weight: 900;
   text-align: center;
 `;
@@ -27,7 +27,7 @@ const Title = styled.div`
 const Subtitle = styled.div`
   font-family: var(--font-header1);
   font-size: 1.5rem;
-  /* color: var(--base-dark1); */
+  /* color: var(--color-dark1); */
   color: gray;
   font-weight: 900;
   text-align: center;

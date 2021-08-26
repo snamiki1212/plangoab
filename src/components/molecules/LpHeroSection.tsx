@@ -32,13 +32,13 @@ export function LpHeroSection() {
 }
 
 const AppName = styled.div`
-  color: var(--logo);
+  color: var(--color-logo);
   font-family: var(--font-design1);
   font-size: 4rem;
 `;
 
 const Text = styled.div`
-  color: var(--base-dark1);
+  color: var(--color-dark1);
   font-family: var(--font-text1);
   font-size: 2rem;
   text-align: center;

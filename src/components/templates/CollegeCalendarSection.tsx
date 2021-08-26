@@ -80,7 +80,7 @@ const Title = styled.span`
   margin-right: 1rem;
   font-weight: 900;
   font-family: var(--font-header1);
-  color: var(--base-dark1);
+  color: var(--color-dark1);
 `;
 
 const Icon = styled.span`

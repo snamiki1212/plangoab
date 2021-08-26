@@ -56,7 +56,7 @@ export const useResourceGroupLabelContentInUserCalendar = ({
 
 const Text = styled.i`
   font-family: var(--font-text1);
-  color: var(--base-dark1);
+  color: var(--color-dark1);
 `;
 
 const Container = styled.div`

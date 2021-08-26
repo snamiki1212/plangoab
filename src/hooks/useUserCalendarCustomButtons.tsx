@@ -42,6 +42,6 @@ export const useUserCalendarCustomButtons = () => {
 };
 
 const Text = styled.span`
-  color: var(--base-dark1);
+  color: var(--color-dark1);
   font-family: var(--font-text1);
 `;

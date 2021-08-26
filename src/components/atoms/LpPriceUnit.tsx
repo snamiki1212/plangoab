@@ -78,14 +78,14 @@ export const LpPriceUnit = () => {
 
 const Header = styled.span`
   font-family: var(--font-header1);
-  color: var(--base-dark1);
+  color: var(--color-dark1);
   font-size: 2rem;
   font-weight: 900;
 `;
 
 const Subheader = styled.span`
   font-family: var(--font-header1);
-  color: var(--base-dark1);
+  color: var(--color-dark1);
 `;
 
 const FeatureContainer = styled.div`
@@ -99,13 +99,13 @@ const FeatureContainer = styled.div`
 
 const Feature = styled.div`
   font-family: var(--font-text1);
-  color: var(--base-dark1);
+  color: var(--color-dark1);
   font-size: 1.3rem;
 `;
 
 const Price = styled.span`
   font-family: var(--font-text1);
-  color: var(--base-dark1);
+  color: var(--color-dark1);
   font-size: 3rem;
   font-weight: 900;
   /*  */

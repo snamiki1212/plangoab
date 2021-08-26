@@ -49,5 +49,10 @@ const Center = styled.div`
 
 const Wrapper = styled.div`
   padding: 10rem 0;
-  background: lightblue;
+  background: linear-gradient(
+    45deg,
+    var(--color-lp-bg1),
+    var(--color-light1) 30%,
+    var(--color-lp-bg2)
+  );
 `;

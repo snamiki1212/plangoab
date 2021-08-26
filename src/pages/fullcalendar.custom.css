@@ -1,6 +1,6 @@
 .fc-timeline-slot-frame,
 .fc-datagrid-cell-cushion {
-  color: var(--base-dark1);
+  color: var(--color-dark1);
   font-family: var(--font-text1);
 }
 
@@ -16,7 +16,7 @@
 
 .fc-button {
   background: transparent !important;
-  color: var(--base-dark1) !important;
+  color: var(--color-dark1) !important;
   border-color: lightgray !important;
   transition: 0.3s !important;
   opacity: 0.7 !important;

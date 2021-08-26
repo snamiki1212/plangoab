@@ -29,7 +29,7 @@ export function TemplateOptionModal({ onClose, isOpen }: Props) {
 }
 
 const Title = styled.span`
-  color: var(--base-dark1);
+  color: var(--color-dark1);
   font-family: var(--font-header1);
   font-weight: 900;
   font-size: 2rem;

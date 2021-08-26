@@ -74,7 +74,7 @@ export const useResourceGroupLabelContentInTemplateCalendar = ({
               variant="outlined"
               style={{
                 textTransform: "none",
-                color: `var(--base-dark1)`,
+                color: `var(--color-dark1)`,
                 fontFamily: `var(--font-text1)`,
               }}
             >
@@ -103,7 +103,7 @@ const Container = styled.span`
 
 const Text = styled.i`
   font-family: var(--font-text1);
-  color: var(--base-dark1);
+  color: var(--color-dark1);
   font-weight: 800;
 `;
 

@@ -22,7 +22,7 @@ export function AppHeader() {
     <>
       <AppBar
         position="static"
-        style={{ background: "#fff", color: `var(--base-dark1)` }}
+        style={{ background: "#fff", color: `var(--color-dark1)` }}
       >
         <Toolbar>
           <LogoImageContainer>
@@ -53,7 +53,7 @@ const Title = styled.span`
   padding: 1rem;
   font-weight: 600;
   font-family: var(--font-design1);
-  color: var(--logo);
+  color: var(--color-logo);
 `;
 
 const ButtonContainer = styled.div`

@@ -24,7 +24,7 @@ export function Footer() {
 const Title = styled.h3`
   font-weight: 900;
   font-family: var(--font-header1);
-  color: var(--base-dark1);
+  color: var(--color-dark1);
 `;
 
 const Container = styled.div`
@@ -46,5 +46,5 @@ const AppName = styled.div`
   padding: 1rem;
   font-weight: 900;
   font-family: var(--font-design1);
-  color: var(--logo);
+  color: var(--color-logo);
 `;
