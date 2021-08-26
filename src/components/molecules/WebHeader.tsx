@@ -6,14 +6,21 @@ import styled from "styled-components";
 
 export function WebHeader() {
   return (
-    <AppBar position="static">
+    <AppBar
+      position="static"
+      style={{
+        background: "#fff",
+        color: `var(--base-dark1)`,
+        boxShadow: "0px",
+      }}
+    >
       <Toolbar>
         <Link href="/home">
           <a style={{ textDecoration: "none" }}>
             <LogoContainer>
-              <div style={{ width: "50px", height: "50px" }}>
+              <LogoImageContainer>
                 <LogoImage />
-              </div>
+              </LogoImageContainer>
               <LogoText>Plangoab</LogoText>
             </LogoContainer>
           </a>
@@ -23,14 +30,21 @@ export function WebHeader() {
   );
 }
 
+const LogoImageContainer = styled.div`
+  width: 50px;
+  height: 50px;
+`;
+
 const LogoContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 0.5rem;
 `;
 
 const LogoText = styled.span`
-  font-weight: bold;
-  color: white;
+  font-size: 2rem;
+  padding: 1rem;
+  font-weight: 600;
+  font-family: var(--font-design1);
+  color: var(--logo);
 `;
