@@ -1,33 +1,37 @@
 import { collaborations } from "@/constants/collaborations";
+import styled from "styled-components";
+import Image from "next/image";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
-import Image from "next/image";
+import { LpHeroUnit } from "@/components/atoms/LpHeroUnit";
 
-import styled from "styled-components";
+const TITLE = "Collaborations";
+const SUBTITLE = "work with";
 
 export function LpSponseredSection() {
   return (
     <Wrapper>
       <Container maxWidth="md">
-        <Title>Collaborations</Title>
-        <Grid container spacing={5} alignItems="flex-end">
-          {collaborations.map((item) => (
-            <Grid item key={item.name} xs={6} sm={6} md={6}>
-              <Center>
-                <Image
-                  src={item.logo}
-                  alt={item.name}
-                  height={100}
-                  width={100}
-                />
-              </Center>
-            </Grid>
-          ))}
-        </Grid>
+        <LpHeroUnit title={TITLE} subtitle={SUBTITLE} />
+        <LpCollaborationUnit />
       </Container>
     </Wrapper>
   );
 }
+
+const LpCollaborationUnit = () => {
+  return (
+    <Grid container spacing={5} alignItems="flex-end">
+      {collaborations.map((item) => (
+        <Grid item key={item.name} xs={6} sm={6} md={6}>
+          <Center>
+            <Image src={item.logo} alt={item.name} height={100} width={100} />
+          </Center>
+        </Grid>
+      ))}
+    </Grid>
+  );
+};
 
 const Title = styled.h2`
   text-align: center;
