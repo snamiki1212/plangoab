@@ -25,7 +25,7 @@ const tiers = [
   {
     title: ENTERPRISE,
     subheader: "for company",
-    price: "100",
+    price: "Paid",
     description: ["Create calendars", "Use templates", "Save calendars"],
     buttonVariant: "contained" as const, // "text" | "outlined" | "contained"
     buttonText: "Start trial",
@@ -34,51 +34,50 @@ const tiers = [
 
 const PriceUnit = () => {
   return (
-    <Container maxWidth="md" component="div">
-      <Grid container spacing={5} alignItems="flex-end">
-        {tiers.map((tier) => (
-          <Grid item key={tier.title} xs={12} sm={6} md={6}>
-            <Card>
-              <CardHeader
-                title={tier.title}
-                subheader={tier.subheader}
-                titleTypographyProps={{ align: "center" }}
-                subheaderTypographyProps={{ align: "center" }}
-                action={tier.title === ENTERPRISE ? <span>⭐️</span> : null}
-                // className={classes.cardHeader}
-              />
-              <CardContent>
-                <PriceContainer>
-                  <Typography component="h2" variant="h3" color="textPrimary">
-                    {tier.price === FREE ? FREE : `\$${tier.price}`}
+    <Grid container spacing={5} alignItems="flex-end">
+      {tiers.map((tier) => (
+        <Grid item key={tier.title} xs={12} sm={6} md={6}>
+          <Card>
+            <CardHeader
+              title={tier.title}
+              subheader={tier.subheader}
+              titleTypographyProps={{ align: "center" }}
+              subheaderTypographyProps={{ align: "center" }}
+              action={tier.title === ENTERPRISE ? <span>⭐️</span> : null}
+              style={{ background: "lightgray" }}
+            />
+            <CardContent style={{ height: "15rem" }}>
+              <PriceContainer>
+                <Typography component="h2" variant="h3" color="textPrimary">
+                  {/* {tier.price === FREE ? FREE : `\$${tier.price}`} */}
+                  {tier.price}
+                </Typography>
+                <Typography variant="h6" color="textSecondary">
+                  /mo
+                </Typography>
+              </PriceContainer>
+              <ul>
+                {tier.description.map((line) => (
+                  <Typography
+                    component="li"
+                    variant="subtitle1"
+                    align="center"
+                    key={line}
+                  >
+                    {line}
                   </Typography>
-                  <Typography variant="h6" color="textSecondary">
-                    /mo
-                  </Typography>
-                </PriceContainer>
-                <ul>
-                  {tier.description.map((line) => (
-                    <Typography
-                      component="li"
-                      variant="subtitle1"
-                      align="center"
-                      key={line}
-                    >
-                      {line}
-                    </Typography>
-                  ))}
-                </ul>
-              </CardContent>
-              <CardActions>
-                <Button fullWidth variant={tier.buttonVariant} color="primary">
-                  {tier.buttonText}
-                </Button>
-              </CardActions>
-            </Card>
-          </Grid>
-        ))}
-      </Grid>
-    </Container>
+                ))}
+              </ul>
+            </CardContent>
+            <CardActions>
+              <Button fullWidth variant={tier.buttonVariant} color="primary">
+                {tier.buttonText}
+              </Button>
+            </CardActions>
+          </Card>
+        </Grid>
+      ))}
+    </Grid>
   );
 };
 
@@ -88,20 +87,31 @@ const SUBTITLE = `Quickly build an effective pricing table for your potential cu
 export const LpPriceSection = () => {
   return (
     <Wrapper>
-      <LpHeroUnit title={TITLE} subtitle={SUBTITLE} />
-      <PriceUnit />
+      <Container maxWidth="md" component="div">
+        <Inner>
+          <LpHeroUnit title={TITLE} subtitle={SUBTITLE} />
+          <PriceUnit />
+        </Inner>
+      </Container>
     </Wrapper>
   );
 };
+
+const Inner = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+`;
 
 const PriceContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: baseline;
+  /*  */
   margin-bottom: 1rem;
 `;
 
 const Wrapper = styled.div`
-  background: lightgray;
+  background: lightsalmon;
   padding: 10rem 0;
 `;

@@ -12,8 +12,10 @@ export function LpCollaborationsSection() {
   return (
     <Wrapper>
       <Container maxWidth="sm">
-        <LpHeroUnit title={TITLE} subtitle={SUBTITLE} />
-        <LpCollaborationUnit />
+        <Inner>
+          <LpHeroUnit title={TITLE} subtitle={SUBTITLE} />
+          <LpCollaborationUnit />
+        </Inner>
       </Container>
     </Wrapper>
   );
@@ -32,6 +34,12 @@ const LpCollaborationUnit = () => {
     </Grid>
   );
 };
+
+const Inner = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+`;
 
 const Center = styled.div`
   display: flex;

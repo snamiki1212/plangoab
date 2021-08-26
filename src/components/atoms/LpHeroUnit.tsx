@@ -1,5 +1,5 @@
 import React from "react";
-import Typography from "@material-ui/core/Typography";
+import styled from "styled-components";
 import Container from "@material-ui/core/Container";
 
 type Props = {
@@ -10,23 +10,25 @@ type Props = {
 export const LpHeroUnit: React.VFC<Props> = ({ title, subtitle = "" }) => {
   return (
     <Container maxWidth="sm" component="main">
-      <Typography
-        component="h1"
-        variant="h2"
-        align="center"
-        color="textPrimary"
-        gutterBottom
-      >
-        {title}
-      </Typography>
-      <Typography
-        variant="h5"
-        align="center"
-        color="textSecondary"
-        component="p"
-      >
-        {subtitle}
-      </Typography>
+      <Title>{title}</Title>
+      <Subtitle>{subtitle}</Subtitle>
     </Container>
   );
 };
+
+const Title = styled.div`
+  font-family: var(--font-header1);
+  font-size: 3rem;
+  color: var(--base-dark1);
+  font-weight: 900;
+  text-align: center;
+`;
+
+const Subtitle = styled.div`
+  font-family: var(--font-header1);
+  font-size: 1.5rem;
+  /* color: var(--base-dark1); */
+  color: gray;
+  font-weight: 900;
+  text-align: center;
+`;
