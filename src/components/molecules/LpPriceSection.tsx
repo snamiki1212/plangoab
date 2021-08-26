@@ -31,13 +31,9 @@ const tiers = [
   },
 ];
 
-const HeroUnit = () => {
+const LpHeroUnit = () => {
   return (
-    <Container
-      maxWidth="sm"
-      component="main"
-      // className={classes.heroContent}
-    >
+    <Container maxWidth="sm" component="main">
       <Typography
         component="h1"
         variant="h2"
@@ -63,7 +59,7 @@ const HeroUnit = () => {
 
 const PriceUnit = () => {
   return (
-    <Container maxWidth="md" component="main">
+    <Container maxWidth="md" component="div">
       <Grid container spacing={5} alignItems="flex-end">
         {tiers.map((tier) => (
           <Grid
@@ -120,7 +116,7 @@ const PriceUnit = () => {
 export const LpPriceSection = () => {
   return (
     <Wrapper>
-      <HeroUnit />
+      <LpHeroUnit />
       <PriceUnit />
     </Wrapper>
   );
