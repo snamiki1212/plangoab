@@ -15,6 +15,7 @@ const FREE = "Free";
 
 const tiers = [
   {
+    id: FREE,
     title: "Free",
     subheader: "for indivisual",
     price: FREE,
@@ -24,6 +25,7 @@ const tiers = [
     buttonUrl: ROUTES.CALENDARS__NEW,
   },
   {
+    id: ENTERPRISE,
     title: ENTERPRISE,
     subheader: "for company",
     price: "Paid",
@@ -45,17 +47,43 @@ export const LpPriceUnit = () => {
         <Grid item key={tier.title} xs={12} sm={6} md={6}>
           <Card>
             <CardHeader
-              title={<Header>{tier.title}</Header>}
-              subheader={<Subheader>{tier.subheader}</Subheader>}
+              title={
+                <Header
+                  style={{
+                    color: `${
+                      tier.id === FREE
+                        ? `var(--color-dark1)`
+                        : `var(--color-light1)`
+                    }`,
+                  }}
+                >
+                  {tier.title}
+                </Header>
+              }
+              subheader={
+                <Subheader
+                  style={{
+                    color: `${
+                      tier.id === FREE
+                        ? `var(--color-dark1)`
+                        : `var(--color-light1)`
+                    }`,
+                  }}
+                >
+                  {tier.subheader}
+                </Subheader>
+              }
               titleTypographyProps={{
                 align: "center",
               }}
               subheaderTypographyProps={{
                 align: "center",
               }}
-              action={tier.title === ENTERPRISE ? <span>⭐️</span> : null}
+              action={tier.id === ENTERPRISE ? <span>⭐️</span> : null}
               style={{
-                background: "lightgray",
+                background: `${
+                  tier.id === FREE ? "lightgray" : `var(--color-dark1)`
+                }`,
               }}
             />
 
@@ -70,10 +98,15 @@ export const LpPriceUnit = () => {
 
             <CardActions>
               <Button fullWidth variant={tier.buttonVariant} color="primary">
-                <Link passHref href={tier.buttonUrl}>
+                <Link href={tier.buttonUrl}>
                   <a
                     style={{
                       textDecoration: "none",
+                      color: `${
+                        tier.id === FREE
+                          ? `var(--color-dark1)`
+                          : `var(--color-light1)`
+                      }`,
                     }}
                   >
                     {tier.buttonText}
