@@ -25,9 +25,9 @@ export function Header() {
         style={{ background: "#fff", color: `var(--base-dark1)` }}
       >
         <Toolbar>
-          <div style={{ width: "50px", height: "50px" }}>
+          <LogoImageContainer>
             <LogoImage />
-          </div>
+          </LogoImageContainer>
           <Title>Plangoab</Title>
           <ButtonContainer>
             <SButton onClick={open}>💡HowTo</SButton>
@@ -42,6 +42,11 @@ export function Header() {
     </>
   );
 }
+
+const LogoImageContainer = styled.div`
+  width: 50px;
+  height: 50px;
+`;
 
 const Title = styled.span`
   font-size: 2rem;
