@@ -8,7 +8,7 @@ import { LpHeroUnit } from "@/components/atoms/LpHeroUnit";
 const TITLE = "Collaborations";
 const SUBTITLE = "work with";
 
-export function LpSponseredSection() {
+export function LpCollaborationsSection() {
   return (
     <Wrapper>
       <Container maxWidth="md">
