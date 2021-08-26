@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import styled from "styled-components";
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
@@ -6,7 +7,8 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardHeader from "@material-ui/core/CardHeader";
 import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
+import { ROUTES } from "@/constants/routes";
+import { CONTACT_FORM_URL } from "@/constants/meta";
 
 const ENTERPRISE = "Enterprise";
 const FREE = "Free";
@@ -19,6 +21,7 @@ const tiers = [
     description: ["✔️ Create calendars", "✔️ Use templates"],
     buttonVariant: "outlined" as const, // "text" | "outlined" | "contained"
     buttonText: "Start Now",
+    buttonUrl: ROUTES.CALENDARS__NEW,
   },
   {
     title: ENTERPRISE,
@@ -31,6 +34,7 @@ const tiers = [
     ],
     buttonVariant: "contained" as const, // "text" | "outlined" | "contained"
     buttonText: "Start trial",
+    buttonUrl: CONTACT_FORM_URL,
   },
 ];
 
@@ -66,7 +70,15 @@ export const LpPriceUnit = () => {
 
             <CardActions>
               <Button fullWidth variant={tier.buttonVariant} color="primary">
-                {tier.buttonText}
+                <Link passHref href={tier.buttonUrl}>
+                  <a
+                    style={{
+                      textDecoration: "none",
+                    }}
+                  >
+                    {tier.buttonText}
+                  </a>
+                </Link>
               </Button>
             </CardActions>
           </Card>

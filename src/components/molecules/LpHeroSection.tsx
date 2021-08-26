@@ -1,8 +1,10 @@
 import styled from "styled-components";
 import Image from "next/image";
+import Link from "next/link";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
+import { ROUTES } from "@/constants/routes";
 
 export function LpHeroSection() {
   return (
@@ -19,7 +21,11 @@ export function LpHeroSection() {
             <AppName>Plangoab</AppName>
             <Text>Make a success your planning</Text>
             <Button variant="contained" color="primary">
-              Start Now
+              <Link href={ROUTES.CALENDARS__NEW}>
+                <a style={{ textDecoration: "none", color: "white" }}>
+                  Start Now
+                </a>
+              </Link>
             </Button>
           </Grid>
           <Grid item md={6}>

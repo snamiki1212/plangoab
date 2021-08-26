@@ -1,8 +1,9 @@
+import styled from "styled-components";
 import Link from "next/link";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import { LogoImage } from "@/components/atoms/LogoImage";
-import styled from "styled-components";
+import { ROUTES } from "@/constants/routes";
 
 export function WebHeader() {
   return (
@@ -15,7 +16,7 @@ export function WebHeader() {
       elevation={0}
     >
       <Toolbar>
-        <Link href="/home">
+        <Link href={ROUTES.HOME}>
           <a style={{ textDecoration: "none" }}>
             <LogoContainer>
               <LogoImageContainer>
