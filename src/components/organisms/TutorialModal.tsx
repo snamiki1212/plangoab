@@ -8,9 +8,9 @@ import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
-import GIF_ChooseScool from "@/assets/choose_school.gif";
-import GIF_CopyStory from "@/assets/copy_story.gif";
-import GIF_EditCalendar from "@/assets/edit_calendar.gif";
+import GIF_ChooseScool from "@/assets/demo_choose_school.gif";
+import GIF_CopyStory from "@/assets/demo_copy_story.gif";
+import GIF_EditCalendar from "@/assets/demo_edit_calendar.gif";
 import { useStepper } from "@/hooks/useStepper";
 
 const steps = [
