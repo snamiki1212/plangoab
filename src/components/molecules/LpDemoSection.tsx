@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Image from "next/image";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 
@@ -11,6 +10,7 @@ export function LpDemoSection() {
           <Grid
             item
             md={6}
+            sm={12}
             alignItems="center"
             justify="center"
             style={{
@@ -26,8 +26,13 @@ export function LpDemoSection() {
               <Text>👑 Save your plan</Text>
             </TextContainer>
           </Grid>
-          <Grid item md={6}>
-            <Image src="/assets/lp_calendar.png" width={680} height={382} />
+          <Grid item md={6} sm={12}>
+            <img
+              src="/assets/lp_calendar.png"
+              width={680}
+              height={382}
+              style={{ margin: "0 auto" }}
+            />
           </Grid>
         </Grid>
       </Container>

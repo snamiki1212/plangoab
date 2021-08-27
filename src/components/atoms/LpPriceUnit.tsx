@@ -69,7 +69,7 @@ export const LpPriceUnit = () => {
           : {};
 
         return (
-          <Grid item key={tier.title} xs={12} sm={6} md={6}>
+          <Grid item key={tier.title} xs={12} sm={12} md={6}>
             <Card>
               <CardHeader
                 title={<Header style={headerTextStyle}>{tier.title}</Header>}

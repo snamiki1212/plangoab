@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Image from "next/image";
 import Link from "next/link";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
@@ -14,6 +13,7 @@ export function LpHeroSection() {
           <Grid
             item
             md={6}
+            sm={12}
             alignItems="center"
             justify="center"
             style={{ display: "flex", flexDirection: "column" }}
@@ -28,8 +28,13 @@ export function LpHeroSection() {
               </a>
             </Link>
           </Grid>
-          <Grid item md={6}>
-            <Image src="/assets/airplane.png" width={680} height={382} />
+          <Grid item md={6} sm={12}>
+            <img
+              src="/assets/airplane.png"
+              width={680}
+              height={382}
+              style={{ margin: "0 auto" }}
+            />
           </Grid>
         </Grid>
       </Container>
