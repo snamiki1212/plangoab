@@ -4,10 +4,4 @@ const withTM = require("next-transpile-modules")(["@fullcalendar"]);
 
 const withImages = require("next-images");
 
-module.exports = withTM(
-  withImages({
-    images: {
-      domains: ["user-images.githubusercontent.com"],
-    },
-  })
-);
+module.exports = withTM(withImages({}));
