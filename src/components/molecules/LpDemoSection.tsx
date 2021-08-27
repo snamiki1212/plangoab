@@ -31,7 +31,7 @@ export function LpDemoSection() {
               src="/assets/lp_calendar.png"
               width={680}
               height={382}
-              style={{ margin: "0 auto" }}
+              style={{ margin: "0 auto", objectFit: "scale-down" }}
             />
           </Grid>
         </Grid>
