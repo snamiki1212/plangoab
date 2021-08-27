@@ -28,7 +28,7 @@ const tiers = [
   {
     id: ENTERPRISE,
     title: ENTERPRISE,
-    subheader: "for company",
+    subheader: "for business",
     price: "Paid",
     description: [
       "👑 Create calendars",
