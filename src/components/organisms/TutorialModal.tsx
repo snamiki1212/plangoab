@@ -1,5 +1,4 @@
 import React from "react";
-import Image from "next/image";
 import styled from "styled-components";
 import Divider from "@material-ui/core/Divider";
 import Stepper from "@material-ui/core/Stepper";
@@ -9,6 +8,9 @@ import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
+import GIF_ChooseScool from "@/assets/choose_school.gif";
+import GIF_CopyStory from "@/assets/copy_story.gif";
+import GIF_EditCalendar from "@/assets/edit_calendar.gif";
 import { useStepper } from "@/hooks/useStepper";
 
 const steps = [
@@ -23,12 +25,7 @@ const steps = [
             <li>Public college</li>
           </ul>
         </div>
-        <Image
-          src="/assets/demo_choose_school.gif"
-          alt="chooseScool"
-          height={554}
-          width={884}
-        />
+        <img src={GIF_ChooseScool} alt="chooseScool" style={{ width: "50%" }} />
       </div>
     ),
   },
@@ -45,12 +42,7 @@ const steps = [
           On 'My Calendar' card, the section your ordered to copy can display.
         </div>
         <br />
-        <Image
-          src="/assets/demo_copy_story.gif"
-          alt="CopyStory"
-          height={1382}
-          width={2014}
-        />
+        <img src={GIF_CopyStory} alt="CopyStory" style={{ width: "50%" }} />
       </div>
     ),
   },
@@ -59,11 +51,10 @@ const steps = [
     content: (
       <div>
         <div>On 'My Calendar' card, edit your plan.</div>
-        <Image
-          src="/assets/demo_edit_calendar.gif"
+        <img
+          src={GIF_EditCalendar}
           alt="Edit Calendar"
-          height={1254}
-          width={1744}
+          style={{ width: "50%" }}
         />
       </div>
     ),
