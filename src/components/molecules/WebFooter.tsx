@@ -1,3 +1,4 @@
+import React from "react";
 import Link from "next/link";
 import styled from "styled-components";
 import Container from "@material-ui/core/Container";
@@ -61,6 +62,7 @@ export function WebFooter() {
             </Grid>
           ))}
         </Grid>
+        <div style={{ height: "3rem" }} />
         <Box mt={5} style={{ textAlign: "center" }}>
           Copyright © 2021 Shun Namiki
         </Box>
@@ -85,5 +87,8 @@ const Wrapper = styled.div`
   color: var(--color-light1);
   & a {
     color: var(--color-light1);
+  }
+  & a:hover {
+    border: 1px;
   }
 `;
