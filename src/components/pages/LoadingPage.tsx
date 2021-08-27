@@ -20,7 +20,7 @@ export function LoadingPage() {
 const AppName = styled.h2`
   font-weight: 900;
   font-family: var(--font-design1);
-  color: var(--logo);
+  color: var(--color-logo);
 `;
 
 const Container = styled.div`

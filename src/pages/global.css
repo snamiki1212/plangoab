@@ -12,7 +12,11 @@
   --font-text1: "Quicksand", cursive;
 
   /* Color */
-  --base-dark1: #211f4f;
-  --base-light1: #fff;
-  --logo: #383484;
+  --color-dark1: #211f4f;
+  --color-light1: #fff;
+  --color-logo: #383484;
+
+  /* Color for LP */
+  --color-lp-bg1: #c6effb;
+  --color-lp-bg2: #cbaeff;
 }

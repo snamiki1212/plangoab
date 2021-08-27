@@ -119,7 +119,7 @@ export function TutorialModal() {
 const Title = styled.span`
   font-weight: 900;
   font-family: var(--font-header1);
-  color: var(--base-dark1);
+  color: var(--color-dark1);
 `;
 
 const ButtonContainer = styled.div`
@@ -133,5 +133,5 @@ const ContentContainer = styled.div`
   height: 70vh;
   width: 70vw;
   font-family: var(--font-text1);
-  color: var(--base-dark1);
+  color: var(--color-dark1);
 `;

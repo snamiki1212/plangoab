@@ -6,6 +6,8 @@ const withImages = require("next-images");
 
 module.exports = withTM(
   withImages({
-    // any other general next.js settings
+    images: {
+      domains: ["user-images.githubusercontent.com"],
+    },
   })
 );

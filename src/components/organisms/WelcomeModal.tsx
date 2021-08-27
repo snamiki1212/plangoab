@@ -92,12 +92,12 @@ export function WelcomeModal() {
 const Title = styled.span`
   font-weight: 900;
   font-family: var(--font-header1);
-  color: var(--base-dark1);
+  color: var(--color-dark1);
 `;
 
 const Text = styled.div`
   font-family: var(--font-text1);
-  color: var(--base-dark1);
+  color: var(--color-dark1);
 `;
 
 const InputContainer = styled.div`

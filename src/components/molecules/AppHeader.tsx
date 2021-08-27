@@ -1,15 +1,17 @@
 import React from "react";
+import Link from "next/link";
+import styled from "styled-components";
 import Button from "@material-ui/core/Button";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import styled from "styled-components";
 import { AboutModal } from "@/components/organisms/AboutModal";
-import { LogoImage } from "@/components/atoms/LogoImage";
 import { TutorialModal } from "@/components/organisms/TutorialModal";
+import { LogoWithText } from "@/components/molecules/LogoWithText";
 import { useModal } from "@/hooks/useModal";
 import { useStepper } from "@/hooks/useStepper";
+import { ROUTES } from "@/constants/routes";
 
-export function Header() {
+export function AppHeader() {
   const {
     isOpen: isOpenAbout,
     open: openAbout,
@@ -22,13 +24,15 @@ export function Header() {
     <>
       <AppBar
         position="static"
-        style={{ background: "#fff", color: `var(--base-dark1)` }}
+        style={{ background: "#fff", color: `var(--color-dark1)` }}
+        elevation={0}
       >
         <Toolbar>
-          <LogoImageContainer>
-            <LogoImage />
-          </LogoImageContainer>
-          <Title>Plangoab</Title>
+          <Link href={ROUTES.HOME}>
+            <a style={{ textDecoration: "none" }}>
+              <LogoWithText />
+            </a>
+          </Link>
           <ButtonContainer>
             <SButton onClick={open}>💡HowTo</SButton>
             <SButton onClick={openAbout}>✈️About</SButton>
@@ -42,19 +46,6 @@ export function Header() {
     </>
   );
 }
-
-const LogoImageContainer = styled.div`
-  width: 50px;
-  height: 50px;
-`;
-
-const Title = styled.span`
-  font-size: 2rem;
-  padding: 1rem;
-  font-weight: 600;
-  font-family: var(--font-design1);
-  color: var(--logo);
-`;
 
 const ButtonContainer = styled.div`
   margin-left: auto;

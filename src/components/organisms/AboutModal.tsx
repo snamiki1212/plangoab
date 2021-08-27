@@ -101,13 +101,13 @@ function Section({
   );
 }
 const Title = styled.h2`
-  color: var(--base-dark1);
+  color: var(--color-dark1);
   font-family: var(--font-header1);
 `;
 const SectionBody = styled.div`
   margin-left: 1.5rem;
   font-family: var(--font-text1);
-  color: var(--base-dark1);
+  color: var(--color-dark1);
 `;
 
 function AboutSection() {
@@ -280,10 +280,10 @@ const ContentContainer = styled.div`
 const MainTitle = styled.span`
   font-weight: 900;
   font-family: var(--font-design1);
-  color: var(--logo);
+  color: var(--color-logo);
 `;
 
 const Footer = styled.div`
   font-family: var(--font-text1);
-  color: var(--base-dark1);
+  color: var(--color-dark1);
 `;

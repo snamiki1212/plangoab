@@ -160,7 +160,7 @@ const Content = styled.div`
 `;
 
 const Title = styled.div`
-  color: var(--base-dark1);
+  color: var(--color-dark1);
   font-family: var(--font-header1);
   font-size: 1.5rem;
 `;
