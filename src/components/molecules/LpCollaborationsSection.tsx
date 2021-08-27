@@ -27,7 +27,7 @@ const LpCollaborationUnit = () => {
       {collaborations.map((item) => (
         <Grid item key={item.name} xs={6} sm={6} md={6}>
           <Center>
-            <Image src={item.logo} alt={item.name} height={100} width={100} />
+            <img src={item.logo} alt={item.name} width={100} height={100} />
           </Center>
         </Grid>
       ))}

@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Image from "next/image";
 import Link from "next/link";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
@@ -29,7 +28,7 @@ export function LpHeroSection() {
             </Link>
           </Grid>
           <Grid item md={6}>
-            <Image src="/assets/airplane.png" width={680} height={382} />
+            <img src="/assets/airplane.png" width={680} height={382} />
           </Grid>
         </Grid>
       </Container>

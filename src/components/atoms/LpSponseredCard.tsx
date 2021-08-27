@@ -1,7 +1,6 @@
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
-import Image from "next/image";
 
 type Collaboration = {
   name: string;
@@ -17,7 +16,7 @@ export function LpSponseredCard({ collaboration }: Props) {
   return (
     <Card>
       <CardActionArea>
-        <Image src={logo} alt={name} height={200} width={200} />
+        <img src={logo} alt={name} height={200} width={200} />
         <CardContent>{name}</CardContent>
       </CardActionArea>
     </Card>
