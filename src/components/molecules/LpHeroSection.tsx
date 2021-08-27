@@ -13,6 +13,7 @@ export function LpHeroSection() {
           <Grid
             item
             md={6}
+            sm={12}
             alignItems="center"
             justify="center"
             style={{ display: "flex", flexDirection: "column" }}
@@ -27,8 +28,13 @@ export function LpHeroSection() {
               </a>
             </Link>
           </Grid>
-          <Grid item md={6}>
-            <img src="/assets/airplane.png" width={680} height={382} />
+          <Grid item md={6} sm={12}>
+            <img
+              src="/assets/airplane.png"
+              width={680}
+              height={382}
+              style={{ margin: "0 auto" }}
+            />
           </Grid>
         </Grid>
       </Container>

@@ -10,6 +10,7 @@ export function LpDemoSection() {
           <Grid
             item
             md={6}
+            sm={12}
             alignItems="center"
             justify="center"
             style={{
@@ -25,8 +26,13 @@ export function LpDemoSection() {
               <Text>👑 Save your plan</Text>
             </TextContainer>
           </Grid>
-          <Grid item md={6}>
-            <img src="/assets/lp_calendar.png" width={680} height={382} />
+          <Grid item md={6} sm={12}>
+            <img
+              src="/assets/lp_calendar.png"
+              width={680}
+              height={382}
+              style={{ margin: "0 auto" }}
+            />
           </Grid>
         </Grid>
       </Container>
