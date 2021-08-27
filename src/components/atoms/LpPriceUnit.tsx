@@ -98,13 +98,19 @@ export const LpPriceUnit = () => {
               </CardContent>
 
               <CardActions>
-                <Button fullWidth variant={tier.buttonVariant} color="primary">
+                <div style={{ margin: "0 auto", marginBottom: "2rem" }}>
                   <Link href={tier.buttonUrl}>
                     <a style={aStyle} {...aProps}>
-                      {tier.buttonText}
+                      <Button
+                        fullWidth
+                        variant={tier.buttonVariant}
+                        color="primary"
+                      >
+                        {tier.buttonText}
+                      </Button>
                     </a>
                   </Link>
-                </Button>
+                </div>
               </CardActions>
             </Card>
           </Grid>

@@ -20,13 +20,13 @@ export function LpHeroSection() {
           >
             <AppName>Plangoab</AppName>
             <Text>Make a success your planning</Text>
-            <Button variant="contained" color="primary">
-              <Link href={ROUTES.CALENDARS__NEW}>
-                <a style={{ textDecoration: "none", color: "white" }}>
+            <Link href={ROUTES.CALENDARS__NEW}>
+              <a style={{ textDecoration: "none", color: "white" }}>
+                <Button variant="contained" color="primary">
                   Start Now
-                </a>
-              </Link>
-            </Button>
+                </Button>
+              </a>
+            </Link>
           </Grid>
           <Grid item md={6}>
             <Image src="/assets/airplane.png" width={680} height={382} />
