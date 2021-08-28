@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 
-export function LpDemoSection() {
+export function LpFeatureSection() {
   return (
     <Wrapper>
       <Container maxWidth="lg">
