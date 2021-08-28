@@ -11,7 +11,7 @@ export function LpDemoSection() {
         <Grid container>
           <Grid item md={6} sm={12}>
             <img
-              src="/assets/demo_edit_calendar.gif"
+              src="/assets/lp_demo.gif"
               width={680}
               height={382}
               style={{ margin: "0 auto", objectFit: "scale-down" }}
