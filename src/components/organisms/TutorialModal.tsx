@@ -8,9 +8,6 @@ import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
-import GIF_ChooseScool from "@/assets/demo_choose_school.gif";
-import GIF_CopyStory from "@/assets/demo_copy_story.gif";
-import GIF_EditCalendar from "@/assets/demo_edit_calendar.gif";
 import { useStepper } from "@/hooks/useStepper";
 
 const steps = [
@@ -25,7 +22,11 @@ const steps = [
             <li>Public college</li>
           </ul>
         </div>
-        <img src={GIF_ChooseScool} alt="chooseScool" style={{ width: "50%" }} />
+        <img
+          src="/assets/demo_choose_school.gif"
+          alt="chooseScool"
+          style={{ width: "50%" }}
+        />
       </div>
     ),
   },
@@ -42,7 +43,11 @@ const steps = [
           On 'My Calendar' card, the section your ordered to copy can display.
         </div>
         <br />
-        <img src={GIF_CopyStory} alt="CopyStory" style={{ width: "50%" }} />
+        <img
+          src="/assets/demo_copy_story.gif"
+          alt="CopyStory"
+          style={{ width: "50%" }}
+        />
       </div>
     ),
   },
@@ -52,7 +57,7 @@ const steps = [
       <div>
         <div>On 'My Calendar' card, edit your plan.</div>
         <img
-          src={GIF_EditCalendar}
+          src="/assets/demo_edit_calendar.gif"
           alt="Edit Calendar"
           style={{ width: "50%" }}
         />

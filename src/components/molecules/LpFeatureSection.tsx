@@ -1,22 +1,12 @@
-import Link from "next/link";
 import styled from "styled-components";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
-import { ROUTES } from "@/constants/routes";
 
-export function LpDemoSection() {
+export function LpFeatureSection() {
   return (
     <Wrapper>
       <Container maxWidth="lg">
         <Grid container>
-          <Grid item md={6} sm={12}>
-            <img
-              src="/assets/demo_edit_calendar.gif"
-              width={680}
-              height={382}
-              style={{ margin: "0 auto", objectFit: "scale-down" }}
-            />
-          </Grid>
           <Grid
             item
             md={6}
@@ -29,15 +19,20 @@ export function LpDemoSection() {
               alignItems: "center",
             }}
           >
-            <Title>Demo</Title>
+            <Title>Features</Title>
             <TextContainer>
-              <Text>Create your plan!</Text>
-              <Text>
-                <Link href={ROUTES.CALENDARS__NEW}>
-                  <a style={{ textDecoration: "none" }}>👉 Start Plangoab</a>
-                </Link>
-              </Text>
+              <Text>👑 Create your plan</Text>
+              <Text>👑 Use template</Text>
+              <Text>👑 Save your plan</Text>
             </TextContainer>
+          </Grid>
+          <Grid item md={6} sm={12}>
+            <img
+              src="/assets/lp_calendar.png"
+              width={680}
+              height={382}
+              style={{ margin: "0 auto", objectFit: "scale-down" }}
+            />
           </Grid>
         </Grid>
       </Container>
@@ -71,7 +66,7 @@ const TextContainer = styled.div`
 
 const Wrapper = styled.div`
   background: linear-gradient(
-    135deg,
+    45deg,
     var(--color-lp-bg1),
     var(--color-light1) 30%
   );
