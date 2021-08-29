@@ -13,6 +13,11 @@ const github: SNS = {
   url: "https://github.com/snamiki1212",
 };
 
-export const SNS_LIST: SNS[] = [github, twitter];
+const linkedin: SNS = {
+  name: "LinkedIn",
+  url: "https://www.linkedin.com/in/snamiki1212/",
+};
+
+export const SNS_LIST: SNS[] = [github, twitter, linkedin];
 
 export const TWITTER_URL = twitter.url;
