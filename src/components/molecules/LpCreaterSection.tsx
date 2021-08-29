@@ -84,6 +84,7 @@ const IconSquare = styled.div`
   font-size: 0.8rem;
   font-family: var(--font-text1);
   color: var(--color-logo1);
+  font-weight: 900;
 
   /* Animation */
   background: var(--color-lp-bg1);
