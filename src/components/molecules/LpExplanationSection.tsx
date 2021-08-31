@@ -22,6 +22,7 @@ const Inner = styled.div`
 
 const Wrapper = styled.div`
   padding: 10rem 0;
+  background: linear-gradient(180deg, white, transparent);
 `;
 
 const Text = styled.div`
