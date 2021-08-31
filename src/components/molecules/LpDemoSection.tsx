@@ -70,10 +70,5 @@ const TextContainer = styled.div`
 `;
 
 const Wrapper = styled.div`
-  background: linear-gradient(
-    135deg,
-    var(--color-lp-bg1),
-    var(--color-light1) 30%
-  );
   padding: 10rem 0;
 `;

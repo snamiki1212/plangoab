@@ -65,12 +65,6 @@ const Center = styled.div`
 
 const Wrapper = styled.div`
   padding: 10rem 0;
-  background: linear-gradient(
-    120deg,
-    var(--color-lp-bg1),
-    white,
-    var(--color-lp-bg2)
-  );
 `;
 
 const IconSquare = styled.div`
@@ -83,15 +77,16 @@ const IconSquare = styled.div`
   /* Text */
   font-size: 0.8rem;
   font-family: var(--font-text1);
-  color: var(--color-logo1);
+  color: var(--color-light1);
   font-weight: 900;
 
   /* Animation */
-  background: var(--color-lp-bg1);
+  background: var(--color-dark1);
   transition: 1s;
   &:hover {
     transition: 0.5s;
-    background: var(--color-lp-bg2);
+    background: var(--color-light1);
+    color: var(--color-dark1);
     transform: scale(1.2);
   }
 `;

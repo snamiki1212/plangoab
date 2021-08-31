@@ -1,3 +1,4 @@
+import styled from "styled-components";
 import { WebHeader } from "@/components/molecules/WebHeader";
 import { WebFooter } from "@/components/molecules/WebFooter";
 import { LpFeatureSection } from "@/components/molecules/LpFeatureSection";
@@ -10,16 +11,31 @@ import { LpDemoSection } from "@/components/molecules/LpDemoSection";
 
 export function HomePage() {
   return (
-    <div>
+    <Container>
       <WebHeader />
       <LpHeroSection />
-      <LpExplanationSection />
-      <LpDemoSection />
-      <LpFeatureSection />
-      <LpPriceSection />
-      <LpCollaborationsSection />
-      <LpCreaterSection />
-      <WebFooter />
-    </div>
+      <BackgroundColor>
+        <LpExplanationSection />
+        <LpDemoSection />
+        <LpFeatureSection />
+        <LpPriceSection />
+        <LpCollaborationsSection />
+        <LpCreaterSection />
+        <WebFooter />
+      </BackgroundColor>
+    </Container>
   );
 }
+
+const BackgroundColor = styled.div`
+  background: linear-gradient(
+    190deg,
+    white 10rem,
+    var(--color-lp-bg1),
+    var(--color-lp-bg2),
+    var(--color-lp-bg1),
+    var(--color-lp-bg2)
+  );
+`;
+
+const Container = styled.div``;
