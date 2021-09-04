@@ -26,3 +26,19 @@
   transition: 0.3s !important;
   opacity: 1 !important;
 }
+
+/********************
+** Table
+*********************/
+table.fc-scrollgrid-sync-table {
+  border-collapse: separate; /* for displaying border */
+}
+
+.fc-datagrid-body > tbody > tr > .fc-resource-group,
+.fc-scrollgrid-sync-table > tbody > tr > .fc-resource-group {
+  position: sticky;
+  background: #f9f9f9 !important;
+  top: 0;
+  opacity: 0.99; /* create stack */
+  z-index: 99;
+}
