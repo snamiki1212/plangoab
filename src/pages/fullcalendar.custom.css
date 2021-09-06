@@ -42,3 +42,14 @@ table.fc-scrollgrid-sync-table {
   opacity: 0.99; /* create stack */
   z-index: 99;
 }
+
+/**********************
+** Button
+ **********************/
+.fc-button {
+  font-size: 1rem !important;
+  padding: 0.3rem 0.5rem !important;
+}
+.fc-header-toolbar {
+  margin-bottom: 0.7rem !important;
+}
