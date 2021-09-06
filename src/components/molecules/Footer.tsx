@@ -1,14 +1,18 @@
-import React from "react";
+import Link from "next/link";
 import styled from "styled-components";
-import { LogoImage } from "@/components/atoms/LogoImage";
 import { CollaborationsSection } from "@/components/molecules/CollaborationsSection";
+import { LogoWithText } from "@/components/molecules/LogoWithText";
+import { ROUTES } from "@/constants/routes";
 
 export function Footer() {
   return (
     <Container>
       <Box>
-        <LogoImage />
-        <AppName>Plangoab</AppName>
+        <Link href={ROUTES.HOME}>
+          <a style={{ textDecoration: "none" }}>
+            <LogoWithText />
+          </a>
+        </Link>
       </Box>
 
       <Box>
