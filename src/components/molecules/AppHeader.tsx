@@ -22,7 +22,7 @@ export function AppHeader({ renderAbout = true, renderHowTo = true }: Props) {
     close: closeAbout,
   } = useModal();
 
-  const { open } = useStepper();
+  const { open: openHowto } = useStepper();
 
   return (
     <>
@@ -38,7 +38,7 @@ export function AppHeader({ renderAbout = true, renderHowTo = true }: Props) {
             </a>
           </Link>
           <ButtonContainer>
-            {renderHowTo && <SButton onClick={open}>💡HowTo</SButton>}
+            {renderHowTo && <SButton onClick={openHowto}>💡HowTo</SButton>}
             {renderAbout && <SButton onClick={openAbout}>✈️About</SButton>}
           </ButtonContainer>
         </Toolbar>
