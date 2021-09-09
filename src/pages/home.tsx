@@ -1,7 +1,7 @@
 import { HomePage } from "@/components/pages/HomePage";
 
-const Component = () => {
+const Page = () => {
   return <HomePage />;
 };
 
-export default Component;
+export default Page;

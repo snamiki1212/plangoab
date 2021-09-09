@@ -6,7 +6,7 @@ import { WelcomeModal } from "@/components/organisms/WelcomeModal";
 import { EmptyApp } from "@/components/templates/EmptyApp";
 import { useUserCalendar } from "@/hooks/useUserCalendar";
 
-export function CalendarPage() {
+export function CalendarNewPage() {
   const { isAlreadyCreated: shouldRenderApp } = useUserCalendar();
   return (
     <>

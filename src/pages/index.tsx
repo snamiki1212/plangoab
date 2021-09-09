@@ -1,6 +1,7 @@
-import React from "react";
-import { CalendarPage } from "@/components/pages/CalendarPage";
+import { CalendarNewPage } from "@/components/pages/CalendarNewPage";
 
-const Index = () => <CalendarPage />;
+const Page = () => {
+  return <CalendarNewPage />;
+};
 
-export default Index;
+export default Page;
