@@ -6,7 +6,7 @@ import { AppHeader } from "@/components/molecules/AppHeader";
 export const CalendarsListPage = () => {
   return (
     <Container>
-      <AppHeader />
+      <AppHeader renderAbout={false} renderHowTo={false} />
       <Content>
         <CalendarListContent />
       </Content>

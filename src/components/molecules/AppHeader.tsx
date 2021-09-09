@@ -10,7 +10,12 @@ import { useModal } from "@/hooks/useModal";
 import { useStepper } from "@/hooks/useStepper";
 import { ROUTES } from "@/constants/routes";
 
-export function AppHeader() {
+type Props = {
+  renderHowTo?: boolean;
+  renderAbout?: boolean;
+};
+
+export function AppHeader({ renderAbout = true, renderHowTo = true }: Props) {
   const {
     isOpen: isOpenAbout,
     open: openAbout,
@@ -33,8 +38,8 @@ export function AppHeader() {
             </a>
           </Link>
           <ButtonContainer>
-            <SButton onClick={open}>💡HowTo</SButton>
-            <SButton onClick={openAbout}>✈️About</SButton>
+            {renderHowTo && <SButton onClick={open}>💡HowTo</SButton>}
+            {renderAbout && <SButton onClick={openAbout}>✈️About</SButton>}
           </ButtonContainer>
         </Toolbar>
       </AppBar>
