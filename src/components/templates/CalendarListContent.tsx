@@ -1,4 +1,6 @@
+import Link from "next/link";
 import { DataGrid } from "@mui/x-data-grid";
+import { ROUTES } from "@/constants/routes";
 
 const columns = [
   { field: "id", headerName: "ID", width: 100 },
@@ -32,11 +34,27 @@ const columns = [
         params.getValue(params.id, "lastName") || ""
       }`,
   },
+  {
+    field: "link",
+    headerName: "Show",
+    description: "Show calendar",
+    sortable: false,
+    width: 160,
+    renderCell: (params) => <DoLink url={params.value} />,
+  },
 ];
+
+const DoLink = ({ url }: { url: string }) => {
+  return (
+    <Link href={url}>
+      <a style={{ textDecoration: "none" }}>Link</a>
+    </Link>
+  );
+};
 
 const now = new Date();
 
-const rows = [
+const NAIVE_ROWS = [
   { id: 1, startedAt: now, firstName: "Jon", age: 35 },
   { id: 2, startedAt: now, firstName: "Cersei", age: 42 },
   { id: 3, startedAt: now, firstName: "Jaime", age: 45 },
@@ -47,6 +65,11 @@ const rows = [
   { id: 8, startedAt: now, firstName: "Rossini", age: 36 },
   { id: 9, startedAt: now, firstName: "Harvey", age: 65 },
 ];
+
+const rows = NAIVE_ROWS.map((item) => ({
+  ...item,
+  link: ROUTES.CALENDARS__DETAIL(item.id),
+}));
 
 export const CalendarListContent = () => {
   return (
