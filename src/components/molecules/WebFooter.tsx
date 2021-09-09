@@ -26,6 +26,7 @@ const footers = [
     title: "Featuers",
     description: [
       { title: "Create calendar", url: ROUTES.CALENDARS__NEW },
+      { title: "Show calendars", url: ROUTES.CALENDARS__LIST },
       // { title: "Browse calendars", url: "#" },
     ],
   },
