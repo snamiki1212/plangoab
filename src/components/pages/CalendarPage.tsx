@@ -1,20 +1,26 @@
-import React from "react";
 import styled from "styled-components";
 import { Footer } from "@/components/molecules/Footer";
 import { AppHeader } from "@/components/molecules/AppHeader";
 import { CalendarPageContent } from "@/components/templates/CalendarPageContent";
 import { WelcomeModal } from "@/components/organisms/WelcomeModal";
+import { EmptyApp } from "@/components/templates/EmptyApp";
+import { useUserCalendar } from "@/hooks/useUserCalendar";
 
 export function CalendarPage() {
+  const { isAlreadyCreated: shouldRenderApp } = useUserCalendar();
   return (
     <>
-      <Container>
-        <AppHeader />
-        <ContentContainer>
-          <CalendarPageContent />
-        </ContentContainer>
-        <Footer />
-      </Container>
+      {shouldRenderApp ? (
+        <Container>
+          <AppHeader />
+          <ContentContainer>
+            <CalendarPageContent />
+          </ContentContainer>
+          <Footer />
+        </Container>
+      ) : (
+        <EmptyApp />
+      )}
 
       {/* Modal */}
       <WelcomeModal />

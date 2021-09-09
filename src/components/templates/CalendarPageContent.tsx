@@ -6,11 +6,10 @@ import { EmptyCalendar } from "@/components/molecules/EmptyCalendar";
 import { useUserCalendar } from "@/hooks/useUserCalendar";
 
 export function CalendarPageContent() {
-  const { calendar } = useUserCalendar();
-  const existsCalendar = !!calendar;
+  const { isAlreadyCreated: shouldRenderCalendarSection } = useUserCalendar();
   return (
     <div>
-      {existsCalendar ? (
+      {shouldRenderCalendarSection ? (
         <InnerContainer>
           <UserCalendarSection />
           <CollegeCalendarSection />

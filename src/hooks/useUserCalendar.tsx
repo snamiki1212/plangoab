@@ -16,6 +16,7 @@ import { convertDateSelectArgToRange } from "@/lib/date";
 export const useUserCalendar = () => {
   const dispatch = useDispatch();
   const calendar = useSelector(selectUserCalendar);
+  const isAlreadyCreated = !!calendar
 
   const init = React.useCallback(
     ({
@@ -106,5 +107,6 @@ export const useUserCalendar = () => {
     stories,
     events,
     resources,
+    isAlreadyCreated,
   } as const;
 };

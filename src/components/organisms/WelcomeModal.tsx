@@ -16,8 +16,7 @@ import { AdvancedOptions } from "@/components/organisms/AdvancedOptions";
 import { useTemplateOptions } from "@/hooks/useTemplateOptions";
 
 export function WelcomeModal() {
-  const { calendar } = useUserCalendar();
-  const shouldSkipIntroFlow = !!calendar;
+  const { isAlreadyCreated: shouldSkipIntroFlow } = useUserCalendar();
   const { isOpen, close } = useModal(!shouldSkipIntroFlow);
   const { init: initUserCalendar } = useUserCalendar();
   const { birth, setBirth } = useUser();
