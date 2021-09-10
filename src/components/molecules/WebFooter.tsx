@@ -6,7 +6,7 @@ import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import { SNS_LIST } from "@/constants/sns";
 import { CONTACT_FORM_URL } from "@/constants/meta";
-import { collaborations } from "@/constants/collaborations";
+import { COLLABORATIONS } from "@/constants/collaborations";
 import { ROUTES } from "@/constants/routes";
 import { isExternalUrl } from "@/lib/util";
 
@@ -37,7 +37,7 @@ const footers: Footer[] = [
   { title: "Creater", descriptions: [...SNS_DESCRIPTIONS] },
   {
     title: "Collaborations",
-    descriptions: collaborations.map((item) => ({
+    descriptions: COLLABORATIONS.map((item) => ({
       title: item.name,
       url: item.link,
     })),

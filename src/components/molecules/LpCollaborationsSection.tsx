@@ -1,6 +1,5 @@
-import { collaborations } from "@/constants/collaborations";
+import { COLLABORATIONS } from "@/constants/collaborations";
 import styled from "styled-components";
-import Image from "next/image";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 import { LpHeroUnit } from "@/components/atoms/LpHeroUnit";
@@ -24,7 +23,7 @@ export function LpCollaborationsSection() {
 const LpCollaborationUnit = () => {
   return (
     <Grid container spacing={5} alignItems="flex-end">
-      {collaborations.map((item) => (
+      {COLLABORATIONS.map((item) => (
         <Grid item key={item.name} xs={6} sm={6} md={6}>
           <Center>
             <img

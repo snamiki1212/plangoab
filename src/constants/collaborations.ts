@@ -16,4 +16,4 @@ const COS: Collaboration = {
   logo: "/assets/collaborations_COS.png",
 };
 
-export const collaborations = [FROG, COS];
+export const COLLABORATIONS = [FROG, COS];

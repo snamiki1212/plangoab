@@ -1,11 +1,10 @@
-import React from "react";
 import styled from "styled-components";
-import { collaborations } from "@/constants/collaborations";
+import { COLLABORATIONS } from "@/constants/collaborations";
 
 export function CollaborationsSection() {
   return (
     <Container>
-      {collaborations.map(({ link, name, logo }) => (
+      {COLLABORATIONS.map(({ link, name, logo }) => (
         <InnerContainer key={name}>
           <Link href={link} target="_blank" rel="noopener noreferrer">
             <Img src={logo} alt={`${name}-logo`} />
