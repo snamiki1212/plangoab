@@ -9,6 +9,7 @@
   /* Header */
   --font-header1: "Quicksand", cursive;
 
+  /* Text */
   --font-text1: "Quicksand", cursive;
 
   /* Color */
@@ -18,7 +19,6 @@
 
   /* Color for LP */
   --color-lp-bg1: #c6effb;
-  /* --color-lp-bg2: #cbaeff; */
   --color-lp-bg2: #cbaeff;
   --color-lp-bg3: #e5d7cf;
 }

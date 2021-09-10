@@ -11,13 +11,10 @@ import "@fullcalendar/common/main.css";
 import "@fullcalendar/timeline/main.css";
 import "@fullcalendar/resource-timeline/main.css";
 
-// fundamental styles
+// styles
 import "@/styles/reset.css";
-import "@/styles/core.css";
-
-// global styles
-import "./global.css";
-import "./fullcalendar.custom.css";
+import "@/styles/global.css";
+import "@/styles/fullcalendar.custom.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
