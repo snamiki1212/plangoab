@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
+import Divider from "@material-ui/core/Divider";
 import { SNS_LIST } from "@/constants/sns";
 import { CONTACT_FORM_URL } from "@/constants/meta";
 import { COLLABORATIONS } from "@/constants/collaborations";
@@ -76,7 +77,8 @@ export function WebFooter() {
         </Grid>
         <div style={{ height: "3rem" }} />
         <Box mt={5} style={{ textAlign: "center" }}>
-          Copyright © 2021 Shun Namiki
+          <Divider style={{ background: "var(--color-light1)" }} />
+          <Text>Copyright © 2021 Shun Namiki</Text>
         </Box>
       </Container>
     </Wrapper>
