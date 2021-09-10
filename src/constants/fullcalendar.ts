@@ -1,5 +1,81 @@
-import { FIELD } from "./settings";
+// field name
+export const FIELD = "FIELD";
 
+// keys
+export const NAME_OF_STORY_ID = "storyId";
+export const NAME_OF_ORDER = "order";
+export const RESOURCE_NAME_KEY = "RESOURCE_NAME_KEY";
+
+// calendar ID
+export const PRIVATE_COLLEGE_CALENDAR_ID = "PRIVATE_COLLEGE_CALENDAR_ID";
+export const PUBLIC_COLLEGE_CALENDAR_ID = "PUBLIC_COLLEGE_CALENDAR_ID";
+
+// story ID
+export const PROFILE_ID = "PROFILE_ID";
+
+// resouce ID
+export const RESOURCE_ID__SHARED__AGE = "RESOURCE_ID__SHARED__AGE";
+export const RESOURCE_ID__SHARED__LIMIT = "RESOURCE_ID__SHARED__LIMIT";
+
+export const MY_TIME_LINE_NAME = "MY_TIME_LINE_NAME";
+export const AGE_OF_START_STORY = 21;
+
+/************************
+ * Configs
+ ************************/
+const initialView = { initialView: MY_TIME_LINE_NAME } as const;
+
+const resourceGroupField = { resourceGroupField: NAME_OF_STORY_ID } as const;
+
+const schedulerLicenseKey = {
+  schedulerLicenseKey: "GPL-My-Project-Is-Open-Source",
+} as const;
+
+const views = {
+  [MY_TIME_LINE_NAME]: {
+    type: "resourceTimelineYear",
+    duration: { year: 15 },
+    buttonText: "TIME_LINE",
+  },
+} as const;
+
+const nowIndicator = {
+  nowIndicator: true,
+} as const;
+
+const resourceConfigs = {
+  resourceOrder: NAME_OF_ORDER,
+} as const;
+
+const styleConfigs = {
+  // NOTE: if no height props, another calendar after opening tab would become 0 height
+  height: 600,
+
+  // NOTE: Because of capture feature. When to open preview page, need this setting.
+  resourceAreaWidth: "250px",
+};
+
+const resourceAreaColumns = [
+  {
+    field: FIELD,
+  },
+];
+
+export const FULL_CALENDAR_CONFIGS = {
+  views,
+  // slotLabelFormat,
+  resourceAreaColumns,
+  ...initialView,
+  ...resourceGroupField,
+  ...schedulerLicenseKey,
+  ...nowIndicator,
+  ...resourceConfigs,
+  ...styleConfigs,
+} as const;
+
+/************************
+ * Color
+ ************************/
 export const DARK_BLUE = "#00008b";
 const GREEN = "#206a5d";
 // const YELLOW = "#ffd700";

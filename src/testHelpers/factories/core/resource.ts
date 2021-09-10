@@ -4,7 +4,7 @@ import {
   NAME_OF_ORDER,
   NAME_OF_STORY_ID,
   FIELD,
-} from "@/constants/fullcalendar/settings";
+} from "@/constants/fullcalendar";
 
 const decorateId = (id: number) => `RESOURCE_${id}`;
 

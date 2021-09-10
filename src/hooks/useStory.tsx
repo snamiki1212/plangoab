@@ -8,7 +8,7 @@ import {
 } from "@/redux/features/userCalendars";
 import { BaseStory, updateStory } from "@/core/story/BaseStory";
 import { initStory } from "@/core/story/BaseStory";
-import { PROFILE_ID } from "@/constants/fullcalendar/settings";
+import { PROFILE_ID } from "@/constants/fullcalendar";
 
 type IdSet = { calendarId: string; storyId: string };
 

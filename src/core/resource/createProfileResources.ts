@@ -1,12 +1,10 @@
 import {
   NAME_OF_STORY_ID,
   NAME_OF_ORDER,
-} from "@/constants/fullcalendar/settings";
-import {
   RESOURCE_ID__SHARED__AGE,
   RESOURCE_ID__SHARED__LIMIT,
-} from "@/constants/fullcalendar/settings";
-import { RESOURCES } from "@/constants/fullcalendar/templates";
+  RESOURCES,
+} from "@/constants/fullcalendar";
 import { BaseResource } from "./BaseResource";
 
 type CreateProfileResourcesParams = {

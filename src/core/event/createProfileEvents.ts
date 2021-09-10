@@ -2,8 +2,8 @@ import { addMonths, addYears, setMonth } from "date-fns";
 import {
   RESOURCE_ID__SHARED__AGE,
   RESOURCE_ID__SHARED__LIMIT,
-} from "@/constants/fullcalendar/settings";
-import { EVENTS } from "@/constants/fullcalendar/templates";
+  EVENTS,
+} from "@/constants/fullcalendar";
 import { getRangeNumbers } from "@/lib/age";
 import { uuid } from "@/lib/uuid";
 import { createDate } from "@/lib/date";

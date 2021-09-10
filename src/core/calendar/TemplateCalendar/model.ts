@@ -5,4 +5,4 @@ export type PublicCollegeCalendar = BaseCalendar;
 export {
   PRIVATE_COLLEGE_CALENDAR_ID,
   PUBLIC_COLLEGE_CALENDAR_ID,
-} from "../../../constants/fullcalendar/settings";
+} from "@/constants/fullcalendar";

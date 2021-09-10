@@ -1,9 +1,10 @@
 import { addMonths, addYears, setMonth, addDays } from "date-fns";
-import { RESOURCES, EVENTS } from "@/constants/fullcalendar/templates";
 import {
+  RESOURCES,
+  EVENTS,
   NAME_OF_STORY_ID,
   NAME_OF_ORDER,
-} from "@/constants/fullcalendar/settings";
+} from "@/constants/fullcalendar";
 import { MONTH_OF_WORKING_HOLIDAY_APPLICATION_LIMIT } from "@/constants/visa";
 import { uuid } from "@/lib/uuid";
 import { PrivateCollegeStory } from "./model";

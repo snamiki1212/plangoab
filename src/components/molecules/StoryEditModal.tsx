@@ -12,7 +12,7 @@ import TextField from "@material-ui/core/TextField";
 import { selectStoryModal, selectStory } from "@/redux/ui/storyModal";
 import { useStory } from "@/hooks/useStory";
 import { useResource } from "@/hooks/useResource";
-import { FIELD } from "@/constants/fullcalendar/settings";
+import { FIELD } from "@/constants/fullcalendar";
 
 type Props = {
   isOpen: boolean;

@@ -1,5 +1,5 @@
 import { ProfileStory } from "./model";
-import { PROFILE_ID } from "@/constants/fullcalendar/settings";
+import { PROFILE_ID } from "@/constants/fullcalendar";
 import { createProfileResources } from "@/core/resource/createProfileResources";
 import { createProfileEvents } from "@/core/event/createProfileEvents";
 import { createDate } from "@/lib/date";

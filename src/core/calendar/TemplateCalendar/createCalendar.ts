@@ -4,7 +4,7 @@ import {
   PRIVATE_COLLEGE_CALENDAR_ID,
   PUBLIC_COLLEGE_CALENDAR_ID,
 } from "./model";
-import { AGE_OF_START_STORY } from "@/constants/fullcalendar/options";
+import { AGE_OF_START_STORY } from "@/constants/fullcalendar";
 import { WORKING_HOLIDAY_APPLICATION_LIMITATION_AGE } from "@/constants/visa";
 import { range } from "@/lib/util";
 import { createDate } from "@/lib/date";

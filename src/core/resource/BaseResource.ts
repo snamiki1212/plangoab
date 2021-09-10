@@ -3,7 +3,7 @@ import {
   NAME_OF_ORDER,
   NAME_OF_STORY_ID,
   FIELD,
-} from "@/constants/fullcalendar/settings";
+} from "@/constants/fullcalendar";
 
 export type BaseResource = {
   id: string;
