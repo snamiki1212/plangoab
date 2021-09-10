@@ -101,6 +101,6 @@ const Wrapper = styled.div`
     color: var(--color-light1);
   }
   & a:hover {
-    border: 1px;
+    border-bottom: 1px solid var(--color-light1);
   }
 `;
