@@ -3,4 +3,4 @@ export const ROUTES = {
   CALENDARS__NEW: "/",
   CALENDARS__LIST: "/calendars",
   CALENDARS__DETAIL: (id: number) => `/calendars/${id}`,
-};
+} as const;
