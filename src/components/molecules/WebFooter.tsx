@@ -11,17 +11,24 @@ import { COLLABORATIONS } from "@/constants/collaborations";
 import { ROUTES } from "@/constants/routes";
 import { isExternalUrl } from "@/lib/util";
 
-const SNS_DESCRIPTIONS = SNS_LIST.map((sns) => ({
+type Description = { title: string; url: string };
+type Footer = { title: string; descriptions: Description[] };
+
+const SNS_DESCRIPTIONS: Description[] = SNS_LIST.map((sns) => ({
   title: sns.name,
   url: sns.url,
 }));
 
-type Description = { title: string; url: string };
-type Footer = { title: string; descriptions: Description[] };
+const COLLABORATION_DESCRIPTIONS: Description[] = COLLABORATIONS.map(
+  (item) => ({
+    title: item.name,
+    url: item.link,
+  })
+);
 
 const footers: Footer[] = [
   {
-    title: "Team",
+    title: "Plangoab",
     descriptions: [
       { title: "Home", url: "#" },
       { title: "Contact us", url: CONTACT_FORM_URL },
@@ -30,18 +37,24 @@ const footers: Footer[] = [
   {
     title: "Featuers",
     descriptions: [
-      { title: "Create calendar", url: ROUTES.CALENDARS__NEW },
-      { title: "Show calendars", url: ROUTES.CALENDARS__LIST },
+      {
+        title: "Create calendar",
+        url: ROUTES.CALENDARS__NEW,
+      },
+      {
+        title: "Show calendars",
+        url: ROUTES.CALENDARS__LIST,
+      },
       // { title: "Browse calendars", url: "#" },
     ],
   },
-  { title: "Creater", descriptions: [...SNS_DESCRIPTIONS] },
+  {
+    title: "Creater",
+    descriptions: SNS_DESCRIPTIONS,
+  },
   {
     title: "Collaborations",
-    descriptions: COLLABORATIONS.map((item) => ({
-      title: item.name,
-      url: item.link,
-    })),
+    descriptions: COLLABORATION_DESCRIPTIONS,
   },
 ];
 
@@ -55,7 +68,9 @@ export function WebFooter() {
               <Title>{footer.title}</Title>
               <ul>
                 {footer.descriptions.map(({ title, url }) => {
-                  const aProps = isExternalUrl(url)
+                  const _isExternalUrl = isExternalUrl(url);
+                  console.log({ url });
+                  const aProps = _isExternalUrl
                     ? {
                         target: "_blank",
                         rel: "noopener noreferrer",
@@ -66,6 +81,7 @@ export function WebFooter() {
                       <Link href={url}>
                         <a style={{ textDecoration: "none" }} {...aProps}>
                           <Text>{title}</Text>
+                          {_isExternalUrl && <span> 🔗</span>}
                         </a>
                       </Link>
                     </li>
