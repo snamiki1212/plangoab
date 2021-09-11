@@ -68,7 +68,7 @@ export const useResourceGroupLabelContentInTemplateCalendar = ({
       return (
         <Container>
           <Text>{name}</Text>
-          <ButtonContainer>
+          <ButtonContainer className="driver__buttonContainer">
             <Button
               onClick={clickHandle}
               variant="outlined"
@@ -77,6 +77,7 @@ export const useResourceGroupLabelContentInTemplateCalendar = ({
                 color: `var(--color-dark1)`,
                 fontFamily: `var(--font-text1)`,
               }}
+              className="driver__button"
             >
               🗒 Copy to my calendar
             </Button>
