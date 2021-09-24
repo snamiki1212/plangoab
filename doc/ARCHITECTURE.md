@@ -99,3 +99,8 @@ e.g.)
 - But Feb 31 is invalid day.
 
 That's why Plangoab use only 1st date.
+
+### TODO: API
+
+- JSON:API schema
+  - using serializer:https://github.com/SeyZ/jsonapi-serializer/pull/170
