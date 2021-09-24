@@ -12,7 +12,8 @@
     "e2e:run": "cypress run",
     "clean": "rm -rf .next",
     "graph:dot": "yarn depcruise --include-only '^src' --output-type dot ./src --output-to dependencygraph.dot",
-    "graph:svg": "dot dependencygraph.dot -T svg > dependencygraph.svg"
+    "graph:svg": "dot dependencygraph.dot -T svg > dependencygraph.svg",
+    "preinstall": "npx only-allow yarn"
   },
   "dependencies": {
     "@babel/core": "^7.12.3",
