@@ -1,11 +1,11 @@
 import React, { PropsWithChildren } from "react";
-import { MuiPickersUtilsProvider as RawMuiPickersUtilsProvider } from "@material-ui/pickers";
-import DateFnsUtils from "@date-io/date-fns";
+import AdapterDateFns from "@mui/lab/AdapterDateFns";
+import LocalizationProvider from "@mui/lab/LocalizationProvider";
 
 export function MuiPickersUtilsProvider<T>({ children }: PropsWithChildren<T>) {
   return (
-    <RawMuiPickersUtilsProvider utils={DateFnsUtils}>
+    <LocalizationProvider dateAdapter={AdapterDateFns}>
       {children}
-    </RawMuiPickersUtilsProvider>
+    </LocalizationProvider>
   );
 }

@@ -6,7 +6,8 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import Divider from "@mui/material/Divider";
 import Button from "@mui/material/Button";
-import { DatePicker } from "@material-ui/pickers";
+import TextField from "@mui/material/TextField";
+import DatePicker from "@mui/lab/DatePicker";
 import Avatar from "@mui/material/Avatar";
 import { PolicyExplanation } from "@/components/atoms/PolicyExplanation";
 import { useModal } from "@/hooks/useModal";
@@ -58,11 +59,10 @@ export function WelcomeModal() {
           <InputContainer>
             <Avatar alt="you" />
             <DatePicker
-              disableFuture
               openTo="year"
-              format="yyyy-MM-dd"
               label="Date of birth"
-              views={["year", "month", "date"]}
+              renderInput={(params) => <TextField {...params} />}
+              views={["year", "month", "day"]}
               value={birth}
               onChange={handleDateChange}
             />
