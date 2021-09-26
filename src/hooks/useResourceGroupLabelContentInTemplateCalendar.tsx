@@ -7,7 +7,7 @@ import {
 import { selectUserCalendar } from "@/redux/features/userCalendars";
 import { updateStory } from "@/core/story/BaseStory";
 import styled from "styled-components";
-import Button from "@material-ui/core/Button";
+import Button from "@mui/material/Button";
 
 type ResourceContentProps = {
   // REF: https://fullcalendar.io/docs/resource-group-render-hooks

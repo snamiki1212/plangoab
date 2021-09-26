@@ -1,11 +1,11 @@
 import React, { PropsWithChildren } from "react";
 import styled from "styled-components";
-import Button from "@material-ui/core/Button";
-import Dialog from "@material-ui/core/Dialog";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogActions from "@material-ui/core/DialogActions";
-import Divider from "@material-ui/core/Divider";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogContent from "@mui/material/DialogContent";
+import DialogActions from "@mui/material/DialogActions";
+import Divider from "@mui/material/Divider";
 import { useResetAllData } from "@/hooks/useResetAllData";
 import { THIS_GITHUB_URL } from "@/constants/meta";
 import { SNS_LIST, TWITTER_URL } from "@/constants/sns";

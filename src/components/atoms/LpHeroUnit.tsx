@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Container from "@material-ui/core/Container";
+import Container from "@mui/material/Container";
 
 type Props = {
   title: string;

@@ -1,10 +1,10 @@
 import React from "react";
 import Link from "next/link";
 import styled from "styled-components";
-import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
-import Divider from "@material-ui/core/Divider";
+import Container from "@mui/material/Container";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import Divider from "@mui/material/Divider";
 import { SNS_LIST } from "@/constants/sns";
 import { CONTACT_FORM_URL } from "@/constants/meta";
 import { COLLABORATIONS } from "@/constants/collaborations";
@@ -62,14 +62,13 @@ export function WebFooter() {
   return (
     <Wrapper>
       <Container maxWidth="md">
-        <Grid container spacing={4} justify="space-evenly">
+        <Grid container spacing={4} justifyContent="space-evenly">
           {footers.map((footer) => (
             <Grid item xs={12} sm={6} md={3} key={footer.title}>
               <Title>{footer.title}</Title>
               <ul>
                 {footer.descriptions.map(({ title, url }) => {
                   const _isExternalUrl = isExternalUrl(url);
-                  console.log({ url });
                   const aProps = _isExternalUrl
                     ? {
                         target: "_blank",

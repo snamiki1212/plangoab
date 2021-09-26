@@ -2,8 +2,8 @@ import React from "react";
 import { UserCalendar } from "../organisms/UserCalendar";
 import { ExplanationSection } from "../atoms/ExplanationSection";
 import { usePreviewQuery, usePreviewCommand } from "@/hooks/usePreview";
-import Button from "@material-ui/core/Button";
-import Dialog from "@material-ui/core/Dialog";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
 
 export function PreviewModal() {
   const { toggle } = usePreviewCommand();

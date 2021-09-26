@@ -2,12 +2,12 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
-import Dialog from "@material-ui/core/Dialog";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogActions from "@material-ui/core/DialogActions";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogContent from "@mui/material/DialogContent";
+import DialogActions from "@mui/material/DialogActions";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
 //
 import { selectStoryModal, selectStory } from "@/redux/ui/storyModal";
 import { useStory } from "@/hooks/useStory";

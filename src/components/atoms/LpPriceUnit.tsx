@@ -1,12 +1,12 @@
 import React from "react";
 import Link from "next/link";
 import styled from "styled-components";
-import Button from "@material-ui/core/Button";
-import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import CardHeader from "@material-ui/core/CardHeader";
-import Grid from "@material-ui/core/Grid";
+import Button from "@mui/material/Button";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardHeader from "@mui/material/CardHeader";
+import Grid from "@mui/material/Grid";
 import { ROUTES } from "@/constants/routes";
 import { CONTACT_FORM_URL } from "@/constants/meta";
 import { isExternalUrl } from "@/lib/util";

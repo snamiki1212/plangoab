@@ -1,10 +1,10 @@
 import React, { PropsWithChildren } from "react";
 import styled from "styled-components";
-import Divider from "@material-ui/core/Divider";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
-import Box from "@material-ui/core/Box";
-import Paper from "@material-ui/core/Paper";
+import Divider from "@mui/material/Divider";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Box from "@mui/material/Box";
+import Paper from "@mui/material/Paper";
 import { PrivateCollegeCalendar } from "@/components/organisms/PrivateCollegeCalendar";
 import { PublicCollegeCalendar } from "@/components/organisms/PublicCollegeCalendar";
 
