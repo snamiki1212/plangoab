@@ -1,8 +1,8 @@
 import styled, { css } from "styled-components";
 import Link from "next/link";
-import Grid from "@material-ui/core/Grid";
-import Container from "@material-ui/core/Container";
-import Button from "@material-ui/core/Button";
+import Grid from "@mui/material/Grid";
+import Container from "@mui/material/Container";
+import Button from "@mui/material/Button";
 import { ROUTES } from "@/constants/routes";
 
 export function LpHeroSection() {
@@ -15,7 +15,7 @@ export function LpHeroSection() {
             md={6}
             sm={12}
             alignItems="center"
-            justify="center"
+            justifyContent="center"
             style={{ display: "flex", flexDirection: "column" }}
           >
             <AppName>Plangoab</AppName>

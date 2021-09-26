@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import Grid from "@material-ui/core/Grid";
-import Container from "@material-ui/core/Container";
+import Grid from "@mui/material/Grid";
+import Container from "@mui/material/Container";
 import { LpHeroUnit } from "@/components/atoms/LpHeroUnit";
 import { SNS_LIST } from "@/constants/sns";
 
@@ -22,7 +22,7 @@ export function LpCreaterSection() {
 
 const Unit = () => {
   return (
-    <Grid container spacing={10} alignItems="center" justify="center">
+    <Grid container spacing={10} alignItems="center" justifyContent="center">
       {SNS_LIST.map(({ name, url }) => (
         <Grid item key={name} xs={6} sm={3} md={3}>
           <Center>

@@ -1,8 +1,7 @@
-import React from "react";
 import styled from "styled-components";
-import Paper from "@material-ui/core/Paper";
-import Box from "@material-ui/core/Box";
-import Divider from "@material-ui/core/Divider";
+import Paper from "@mui/material/Paper";
+import Box from "@mui/material/Box";
+import Divider from "@mui/material/Divider";
 import { useStoryModal } from "@/hooks/useStoryModal";
 import { useEventModal } from "@/hooks/useEventModal";
 import { StoryEditModal } from "@/components/molecules/StoryEditModal";

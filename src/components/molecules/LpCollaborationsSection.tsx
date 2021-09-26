@@ -1,7 +1,7 @@
 import { COLLABORATIONS } from "@/constants/collaborations";
 import styled from "styled-components";
-import Grid from "@material-ui/core/Grid";
-import Container from "@material-ui/core/Container";
+import Grid from "@mui/material/Grid";
+import Container from "@mui/material/Container";
 import { LpHeroUnit } from "@/components/atoms/LpHeroUnit";
 import { Animation1 } from "@/components/atoms/Animation1";
 

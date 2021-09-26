@@ -1,8 +1,8 @@
 import Link from "next/link";
 import styled from "styled-components";
-import Button from "@material-ui/core/Button";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
+import Button from "@mui/material/Button";
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
 import { AboutModal } from "@/components/organisms/AboutModal";
 import { TutorialModal } from "@/components/organisms/TutorialModal";
 import { LogoWithText } from "@/components/molecules/LogoWithText";

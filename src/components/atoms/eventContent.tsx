@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Tooltip from "@material-ui/core/Tooltip";
+import Tooltip from "@mui/material/Tooltip";
 
 // REF: https://fullcalendar.io/docs/content-injection
 export const eventContent = function (arg: any) {

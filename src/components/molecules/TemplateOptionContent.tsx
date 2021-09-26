@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import TextField from "@material-ui/core/TextField";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import Checkbox from "@material-ui/core/Checkbox";
+import TextField from "@mui/material/TextField";
+import InputAdornment from "@mui/material/InputAdornment";
+import Checkbox from "@mui/material/Checkbox";
 import { useTemplateOptions } from "@/hooks/useTemplateOptions";
 
 const MONTHS = [
