@@ -1,0 +1,1 @@
+_N_E=(window.webpackJsonp_N_E=window.webpackJsonp_N_E||[]).push([[18],{"0O83":function(n,e,_){(window.__NEXT_P=window.__NEXT_P||[]).push(["/calendars/create",function(){return _("D04e")}])},D04e:function(n,e,_){"use strict";_.r(e);var t=_("nKUr"),c=_("Wxmz");e.default=function(){return Object(t.jsx)(c.a,{})}}},[["0O83",0,2,6,8,1,3,4,5,7,9,10]]]);
