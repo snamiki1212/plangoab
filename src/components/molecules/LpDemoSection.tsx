@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 import { ROUTES } from "@/constants/routes";
+import { Animation1 } from "@/components/atoms/Animation1";
 
 export function LpDemoSection() {
   return (
@@ -10,12 +11,14 @@ export function LpDemoSection() {
       <Container maxWidth="lg">
         <Grid container>
           <Grid item md={6} sm={12}>
-            <img
-              src="/assets/lp_demo.gif"
-              width={680}
-              height={382}
-              style={{ margin: "0 auto", objectFit: "scale-down" }}
-            />
+            <Animation1>
+              <img
+                src="/assets/lp_demo.gif"
+                width={680}
+                height={382}
+                style={{ margin: "0 auto", objectFit: "scale-down" }}
+              />
+            </Animation1>
           </Grid>
           <Grid
             item

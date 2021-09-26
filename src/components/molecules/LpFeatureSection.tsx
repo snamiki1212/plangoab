@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
+import { Animation1 } from "@/components/atoms/Animation1";
 
 export function LpFeatureSection() {
   return (
@@ -27,12 +28,14 @@ export function LpFeatureSection() {
             </TextContainer>
           </Grid>
           <Grid item md={6} sm={12}>
-            <img
-              src="/assets/lp_calendar.png"
-              width={680}
-              height={382}
-              style={{ margin: "0 auto", objectFit: "scale-down" }}
-            />
+            <Animation1>
+              <img
+                src="/assets/lp_calendar.png"
+                width={680}
+                height={382}
+                style={{ margin: "0 auto", objectFit: "scale-down" }}
+              />
+            </Animation1>
           </Grid>
         </Grid>
       </Container>

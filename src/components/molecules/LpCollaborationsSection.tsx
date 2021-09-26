@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 import { LpHeroUnit } from "@/components/atoms/LpHeroUnit";
+import { Animation1 } from "@/components/atoms/Animation1";
 
 const TITLE = "Collaborations";
 const SUBTITLE = "Plangoab is created with awesome collaborators.";
@@ -26,13 +27,15 @@ const LpCollaborationUnit = () => {
       {COLLABORATIONS.map((item) => (
         <Grid item key={item.name} xs={6} sm={6} md={6}>
           <Center>
-            <img
-              src={item.logo}
-              alt={item.name}
-              width={100}
-              height={100}
-              style={{ objectFit: "scale-down" }}
-            />
+            <Animation1>
+              <img
+                src={item.logo}
+                alt={item.name}
+                width={100}
+                height={100}
+                style={{ objectFit: "scale-down" }}
+              />
+            </Animation1>
           </Center>
         </Grid>
       ))}
