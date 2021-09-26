@@ -69,7 +69,6 @@ export function WebFooter() {
               <ul>
                 {footer.descriptions.map(({ title, url }) => {
                   const _isExternalUrl = isExternalUrl(url);
-                  console.log({ url });
                   const aProps = _isExternalUrl
                     ? {
                         target: "_blank",
