@@ -23,7 +23,7 @@ const tiers = [
     description: ["✔️ Create calendars", "✔️ Use templates"],
     buttonVariant: "outlined" as const, // "text" | "outlined" | "contained"
     buttonText: "Start Now",
-    buttonUrl: ROUTES.CALENDARS__NEW,
+    buttonUrl: ROUTES.DEPRECATED_CALENDARS__NEW,
   },
   {
     id: ENTERPRISE,

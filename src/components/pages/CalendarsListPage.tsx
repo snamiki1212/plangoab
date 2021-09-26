@@ -1,22 +1,30 @@
+import { useMemo } from "react";
 import styled from "styled-components";
 import { CalendarListContent } from "@/components/templates/CalendarListContent";
 import { Footer } from "@/components/molecules/Footer";
 import { AppHeader } from "@/components/molecules/AppHeader";
-import { useGetCalendarsQuery } from "@/redux/services/calendarApiV1";
+import { useFetchCalendarsQuery } from "@/redux/services/calendarApiV1";
+import { ErrorPage } from "@/components/pages/ErrorPage";
+import { LoadingPage } from "@/components/pages/LoadingPage";
 //
 
 export const CalendarsListPage = () => {
-  const { data, error, isLoading } = useGetCalendarsQuery("");
+  const { data = [], error, isLoading } = useFetchCalendarsQuery("");
 
-  if (error) return <div>Error</div>;
-  if (isLoading) return <div>loading...</div>;
+  const rows = useMemo(
+    () =>
+      data.map((item) => ({ id: item.id, birthday: item.visitor.birthday })),
+    [data]
+  );
 
-  console.log({ data });
+  if (error) return <ErrorPage />;
+  if (isLoading) return <LoadingPage />;
+
   return (
     <Container>
       <AppHeader renderAbout={false} renderHowTo={false} />
       <Content>
-        <CalendarListContent />
+        <CalendarListContent rows={rows} />
       </Content>
       <Footer />
     </Container>

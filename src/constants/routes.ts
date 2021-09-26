@@ -1,6 +1,7 @@
 export const ROUTES = {
   HOME: "/home",
-  CALENDARS__NEW: "/",
+  DEPRECATED_CALENDARS__NEW: "/",
   CALENDARS__LIST: "/calendars",
+  CALENDARS__NEW: "/calendars/create",
   CALENDARS__DETAIL: (id: number) => `/calendars/${id}`,
 } as const;

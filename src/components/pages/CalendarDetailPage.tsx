@@ -1,4 +1,5 @@
 import React from "react";
+import { LoadingPage } from "@/components/pages/LoadingPage";
 
 type Props = { slug: string };
 export const CalendarDetailPage: React.VFC<Props> = ({ slug }) => {
@@ -9,6 +10,6 @@ export const CalendarDetailPage: React.VFC<Props> = ({ slug }) => {
   }, []);
   // --
 
-  if (loading) return <div>loading</div>;
+  if (loading) return <LoadingPage />;
   return <div>ok</div>;
 };
