@@ -116,7 +116,7 @@ Read [ARCHITECTURE.md](./doc/ARCHITECTURE.md) more details.
   </tr>
   <tr>
     <td>UI</td>
-    <td>Material UI</td>
+    <td>MUI</td>
   </tr>
   <tr>
     <td>CI</td>
