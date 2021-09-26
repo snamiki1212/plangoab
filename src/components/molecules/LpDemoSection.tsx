@@ -33,7 +33,7 @@ export function LpDemoSection() {
             <TextContainer>
               <Text>Create your plan!</Text>
               <Text>
-                <Link href={ROUTES.CALENDARS__NEW}>
+                <Link href={ROUTES.DEPRECATED_CALENDARS__NEW}>
                   <a style={{ textDecoration: "none" }}>👉 Start Plangoab</a>
                 </Link>
               </Text>
