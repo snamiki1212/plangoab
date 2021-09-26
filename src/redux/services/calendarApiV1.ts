@@ -9,7 +9,7 @@ export const calendarApiV1 = createApi({
     baseUrl: "http://127.0.0.1:3001/api/v1/",
   }),
   endpoints: (builder) => ({
-    getCalendars: builder.query<any, any>({
+    fetchCalendars: builder.query<any, any>({
       query: () => ({
         url: "calendars",
       }),
@@ -24,4 +24,4 @@ export const calendarApiV1 = createApi({
   }),
 });
 
-export const { useGetCalendarsQuery } = calendarApiV1;
+export const { useFetchCalendarsQuery } = calendarApiV1;
