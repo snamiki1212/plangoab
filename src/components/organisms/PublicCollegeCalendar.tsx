@@ -1,9 +1,9 @@
 import React from "react";
 import { CollegeCalendarBase } from "@/components/molecules/CollegeCalendarBase";
-import { usePublicCollegeCalendar } from "@/hooks/usePublicCollegeCalendar";
-import { useUser } from "@/hooks/useUser";
-import { useTemplateOptions } from "@/hooks/useTemplateOptions";
-import { useTemplateCustomButtons } from "@/hooks/useTemplateCustomButtons";
+import { usePublicCollegeCalendar } from "@/hooks/v1/usePublicCollegeCalendar";
+import { useUser } from "@/hooks/v1/useUser";
+import { useTemplateOptions } from "@/hooks/v1/useTemplateOptions";
+import { useTemplateCustomButtons } from "@/hooks/v1/useTemplateCustomButtons";
 import { TemplateOptionModal } from "@/components/molecules/TemplateOptionModal";
 
 export function PublicCollegeCalendar() {

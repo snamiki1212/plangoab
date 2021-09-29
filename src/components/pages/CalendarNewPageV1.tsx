@@ -4,7 +4,7 @@ import { AppHeader } from "@/components/molecules/AppHeader";
 import { CalendarPageContent } from "@/components/templates/CalendarPageContent";
 import { WelcomeModal } from "@/components/organisms/WelcomeModal";
 import { EmptyApp } from "@/components/templates/EmptyApp";
-import { useUserCalendar } from "@/hooks/useUserCalendar";
+import { useUserCalendar } from "@/hooks/v1/useUserCalendar";
 
 export function CalendarNewPageV1() {
   const { isAlreadyCreated: shouldRenderApp } = useUserCalendar();

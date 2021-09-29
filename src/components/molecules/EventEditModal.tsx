@@ -9,7 +9,7 @@ import TextField from "@mui/material/TextField";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { selectEventModal, selectEvent } from "@/redux/v1/ui/eventModal";
-import { useEvent } from "@/hooks/useEvent";
+import { useEvent } from "@/hooks/v1/useEvent";
 import { BaseEvent } from "@/core/event/BaseEvent";
 
 interface Props {

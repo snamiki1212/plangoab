@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { useModal } from "@/hooks/useModal";
+import { useModal } from "@/hooks/v1/useModal";
 
 export const OPEN_OPTION_BUTTON = "OPEN_OPTION_BUTTON";
 

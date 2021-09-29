@@ -6,8 +6,8 @@ import Toolbar from "@mui/material/Toolbar";
 import { AboutModal } from "@/components/organisms/AboutModal";
 import { TutorialModal } from "@/components/organisms/TutorialModal";
 import { LogoWithText } from "@/components/molecules/LogoWithText";
-import { useModal } from "@/hooks/useModal";
-import { useStepper } from "@/hooks/useStepper";
+import { useModal } from "@/hooks/v1/useModal";
+import { useStepper } from "@/hooks/v1/useStepper";
 import { ROUTES } from "@/constants/routes";
 
 type Props = {

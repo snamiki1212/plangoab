@@ -10,11 +10,11 @@ import TextField from "@mui/material/TextField";
 import DatePicker from "@mui/lab/DatePicker";
 import Avatar from "@mui/material/Avatar";
 import { PolicyExplanation } from "@/components/atoms/PolicyExplanation";
-import { useModal } from "@/hooks/useModal";
-import { useUserCalendar } from "@/hooks/useUserCalendar";
-import { useUser } from "@/hooks/useUser";
+import { useModal } from "@/hooks/v1/useModal";
+import { useUserCalendar } from "@/hooks/v1/useUserCalendar";
+import { useUser } from "@/hooks/v1/useUser";
 import { AdvancedOptions } from "@/components/organisms/AdvancedOptions";
-import { useTemplateOptions } from "@/hooks/useTemplateOptions";
+import { useTemplateOptions } from "@/hooks/v1/useTemplateOptions";
 
 export function WelcomeModal() {
   const { isAlreadyCreated: shouldSkipIntroFlow } = useUserCalendar();

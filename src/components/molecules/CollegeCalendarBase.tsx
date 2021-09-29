@@ -1,9 +1,9 @@
 import React from "react";
 import { CalendarBase } from "@/components/atoms/CalendarBase";
-import { useResourceGroupLabelContentInTemplateCalendar } from "@/hooks/useResourceGroupLabelContentInTemplateCalendar";
-import { useStory } from "@/hooks/useStory";
+import { useResourceGroupLabelContentInTemplateCalendar } from "@/hooks/v1/useResourceGroupLabelContentInTemplateCalendar";
+import { useStory } from "@/hooks/v1/useStory";
 import { BaseStory } from "@/core/story/BaseStory";
-import { OPEN_OPTION_BUTTON } from "@/hooks/useTemplateCustomButtons";
+import { OPEN_OPTION_BUTTON } from "@/hooks/v1/useTemplateCustomButtons";
 
 const configs = {
   selectable: false,

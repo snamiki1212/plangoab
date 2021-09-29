@@ -1,7 +1,7 @@
-import React from'react';
+import React from "react";
 
 export const useModal = (init?: boolean) => {
-  const [isOpen, setIsOpen] = React.useState(!!init)
+  const [isOpen, setIsOpen] = React.useState(!!init);
 
   const open = React.useCallback(() => {
     setIsOpen(true);
@@ -12,8 +12,8 @@ export const useModal = (init?: boolean) => {
   }, []);
 
   const toggle = React.useCallback(() => {
-    setIsOpen(prev => !prev)
+    setIsOpen((prev) => !prev);
   }, []);
 
-  return {isOpen, open, close, toggle}
-}
+  return { isOpen, open, close, toggle };
+};

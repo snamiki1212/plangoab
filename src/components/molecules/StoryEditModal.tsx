@@ -10,8 +10,8 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 //
 import { selectStoryModal, selectStory } from "@/redux/v1/ui/storyModal";
-import { useStory } from "@/hooks/useStory";
-import { useResource } from "@/hooks/useResource";
+import { useStory } from "@/hooks/v1/useStory";
+import { useResource } from "@/hooks/v1/useResource";
 import { FIELD } from "@/constants/fullcalendar";
 
 type Props = {
