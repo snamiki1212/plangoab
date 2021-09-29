@@ -7,32 +7,32 @@ import {
 } from "@/constants/fullcalendar";
 import { MONTH_OF_WORKING_HOLIDAY_APPLICATION_LIMIT } from "@/constants/visa";
 import { uuid } from "@/lib/uuid";
-import { createRange, resetHHMMssmm, startOfMonth } from "@/lib/date";
 import { PrivateCollegeStory } from "./model";
-import { createStoryName } from "@/core/story/BaseStory";
-import { TemplateOption } from "@/core/calendar/BaseCalendar";
-import { BaseEvent, initEvent } from "@/core/event/BaseEvent";
-import { BaseResource, initResource } from "@/core/resource/BaseResource";
+import { createStoryName } from "@/core/v1/story/BaseStory";
+import { TemplateOption } from "@/core/v1/calendar/BaseCalendar";
+import { BaseEvent, initEvent } from "@/core/v1/event/BaseEvent";
+import { BaseResource, initResource } from "@/core/v1/resource/BaseResource";
+import { createRange, resetHHMMssmm, startOfMonth } from "@/lib/date";
 
-type CreatePrivateCollegeStoryparams = {
+type CreatePublicCollegeStoryParams = {
   startDate: Date;
   calendarId: string;
   canWorkingholiday: boolean;
 };
-export const createPrivateCollegeStory = (
-  { startDate, calendarId, canWorkingholiday }: CreatePrivateCollegeStoryparams,
+export const createPublicCollegeStory = (
+  { startDate, calendarId, canWorkingholiday }: CreatePublicCollegeStoryParams,
   options: TemplateOption
 ): PrivateCollegeStory => {
   const storyId = uuid();
   const name = createStoryName(startDate);
-  const params = {
+  const props = {
     calendarId,
     storyId,
     startDate,
     canWorkingholiday,
   };
+  const [resources, events] = doCreateStory(props, options);
 
-  const [resources, events] = doCreateStory(params, options);
   return {
     id: storyId,
     calendarId,
@@ -60,8 +60,8 @@ const doCreateStory = (
   let resources = [] as BaseResource[];
   let events = [] as BaseEvent[];
 
-  const { schoolPeriod, coopPeriod, workingholidayPeriod } = options;
-  const withCoop = coopPeriod > 0;
+  const { schoolPeriod, pgwpPeriod, workingholidayPeriod } = options;
+  const withPgwp = pgwpPeriod > 0;
   const startDate = resetHHMMssmm(originalStartDate);
   let start, end;
 
@@ -248,37 +248,6 @@ const doCreateStory = (
     })
   );
 
-  // Coop
-  if (withCoop) {
-    const coopVisaResourceId = uuid();
-    resources.push(
-      initResource({
-        ...RESOURCES.VISA.COOP,
-        id: coopVisaResourceId,
-        calendarId,
-        [NAME_OF_STORY_ID]: storyId,
-        [NAME_OF_ORDER]: 201,
-      })
-    );
-    [start, end] = createRange(startDate, coopPeriod);
-    events.push(
-      initEvent({
-        ...EVENTS.VISA.COOP,
-        id: uuid(),
-        resourceId: coopVisaResourceId,
-        storyId,
-        start: start.toISOString(),
-        end: end.toISOString(),
-        extendedProps: {
-          resourceId: coopVisaResourceId,
-          calendarId,
-          storyId,
-          description: "",
-        },
-      })
-    );
-  }
-
   // StudyVisa
   const studyVisaResourceId = uuid();
   resources.push(
@@ -287,7 +256,7 @@ const doCreateStory = (
       id: studyVisaResourceId,
       calendarId,
       [NAME_OF_STORY_ID]: storyId,
-      [NAME_OF_ORDER]: 202,
+      [NAME_OF_ORDER]: 201,
     })
   );
   [start, end] = createRange(startDate, schoolPeriod);
@@ -297,7 +266,7 @@ const doCreateStory = (
       id: uuid(),
       resourceId: studyVisaResourceId,
       storyId,
-      start: start.toISOString(),
+      start: startDate.toISOString(),
       end: end.toISOString(),
       extendedProps: {
         resourceId: studyVisaResourceId,
@@ -308,10 +277,38 @@ const doCreateStory = (
     })
   );
 
-  if (canWorkingholiday) {
-    const dateAsStartWorkingHoliday = addMonths(startDate, schoolPeriod);
+  // PGWP
+  if (withPgwp) {
+    const pgwpVisaResourceId = uuid();
+    resources.push(
+      initResource({
+        ...RESOURCES.VISA.PGWP,
+        id: pgwpVisaResourceId,
+        calendarId,
+        [NAME_OF_STORY_ID]: storyId,
+        [NAME_OF_ORDER]: 202,
+      })
+    );
+    [start, end] = createRange(addMonths(startDate, schoolPeriod), pgwpPeriod);
+    events.push(
+      initEvent({
+        ...EVENTS.VISA.PGWP,
+        id: uuid(),
+        resourceId: pgwpVisaResourceId,
+        storyId,
+        start: start.toISOString(),
+        end: end.toISOString(),
+        extendedProps: {
+          resourceId: pgwpVisaResourceId,
+          calendarId,
+          storyId,
+          description: "",
+        },
+      })
+    );
+  }
 
-    // working holiday period
+  if (canWorkingholiday) {
     const workingholidayResourceId = uuid();
     resources.push(
       initResource({
@@ -321,6 +318,10 @@ const doCreateStory = (
         [NAME_OF_STORY_ID]: storyId,
         [NAME_OF_ORDER]: 203,
       })
+    );
+    const dateAsStartWorkingHoliday = addMonths(
+      startDate,
+      schoolPeriod + pgwpPeriod
     );
     [start, end] = createRange(dateAsStartWorkingHoliday, workingholidayPeriod);
     events.push(
@@ -346,7 +347,6 @@ const doCreateStory = (
         MONTH_OF_WORKING_HOLIDAY_APPLICATION_LIMIT
       )
     );
-
     events.push(
       initEvent({
         ...EVENTS.VISA.READY_WORKING_HOLIDAY,
@@ -377,7 +377,7 @@ const doCreateStory = (
     })
   );
   [start, end] = createRange(
-    addMonths(startDate, schoolPeriod + workingholidayPeriod - 4),
+    addMonths(startDate, schoolPeriod + workingholidayPeriod + pgwpPeriod - 4),
     10
   );
   events.push(
@@ -409,7 +409,7 @@ const doCreateStory = (
     })
   );
   [start, end] = createRange(
-    addMonths(startDate, schoolPeriod + workingholidayPeriod + 6),
+    addMonths(startDate, schoolPeriod + workingholidayPeriod + pgwpPeriod + 6),
     12 * 2
   );
   events.push(
@@ -429,7 +429,7 @@ const doCreateStory = (
     })
   );
 
-  // Status
+  // status
   const statusResourceId = uuid();
   resources.push(
     initResource({
@@ -437,12 +437,12 @@ const doCreateStory = (
       id: statusResourceId,
       calendarId,
       [NAME_OF_STORY_ID]: storyId,
-      [NAME_OF_ORDER]: 299,
+      [NAME_OF_ORDER]: 205,
     })
   );
   [start, end] = createRange(
     addMonths(startDate, schoolPeriod),
-    workingholidayPeriod + 6 + 12 * 2
+    pgwpPeriod + workingholidayPeriod + 6 + 2 * 12
   );
   events.push(
     initEvent({
@@ -490,7 +490,7 @@ const doCreateStory = (
     })
   );
   [start, end] = createRange(
-    addMonths(startDate, schoolPeriod + workingholidayPeriod - 6),
+    addMonths(startDate, schoolPeriod + pgwpPeriod + workingholidayPeriod - 6),
     2
   );
   events.push(
@@ -524,7 +524,7 @@ const doCreateStory = (
     })
   );
   [start, end] = createRange(
-    addMonths(startDate, schoolPeriod + workingholidayPeriod - 4),
+    addMonths(startDate, schoolPeriod + pgwpPeriod + workingholidayPeriod - 4),
     10
   );
   events.push(
@@ -558,7 +558,7 @@ const doCreateStory = (
     })
   );
   [start, end] = createRange(
-    addMonths(startDate, schoolPeriod + workingholidayPeriod + 6),
+    addMonths(startDate, schoolPeriod + pgwpPeriod + workingholidayPeriod + 6),
     1
   );
   events.push(

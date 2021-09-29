@@ -1,5 +1,5 @@
 import { Factory } from "fishery";
-import { BaseCalendar } from "@/core/calendar/BaseCalendar";
+import { BaseCalendar } from "@/core/v1/calendar/BaseCalendar";
 import { storyFactory } from "./story";
 // import {
 //   PrivateCollegeCalendar,

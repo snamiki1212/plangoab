@@ -5,7 +5,7 @@ import {
   removeResourceAction,
   pushResourceAction,
 } from "@/redux/v1/features/userCalendars";
-import { initResource } from "@/core/resource/BaseResource";
+import { initResource } from "@/core/v1/resource/BaseResource";
 
 type IdSet = { calendarId: string; resourceId: string; storyId: string };
 type PushArg = { calendarId: string; storyId: string };

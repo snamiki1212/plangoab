@@ -8,10 +8,10 @@ import { AGE_OF_START_STORY } from "@/constants/fullcalendar";
 import { WORKING_HOLIDAY_APPLICATION_LIMITATION_AGE } from "@/constants/visa";
 import { range } from "@/lib/util";
 import { createDate } from "@/lib/date";
-import { createPrivateCollegeStory } from "@/core/story/PrivateCollegeStory/createPrivateCollegeStory";
-import { createPublicCollegeStory } from "@/core/story/PublicCollegeStory/createPublicCollegeStory";
-import { BaseStory } from "@/core/story/BaseStory";
-import { TemplateOption } from "@/core/calendar/BaseCalendar";
+import { createPrivateCollegeStory } from "@/core/v1/story/PrivateCollegeStory/createPrivateCollegeStory";
+import { createPublicCollegeStory } from "@/core/v1/story/PublicCollegeStory/createPublicCollegeStory";
+import { BaseStory } from "@/core/v1/story/BaseStory";
+import { TemplateOption } from "@/core/v1/calendar/BaseCalendar";
 
 const scopeAges = range(
   AGE_OF_START_STORY,

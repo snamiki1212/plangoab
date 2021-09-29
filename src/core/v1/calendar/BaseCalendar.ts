@@ -1,4 +1,4 @@
-import { BaseStory } from "@/core/story/BaseStory";
+import { BaseStory } from "@/core/v1/story/BaseStory";
 
 export type BaseCalendar = {
   id: string;

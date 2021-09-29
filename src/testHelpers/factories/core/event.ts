@@ -1,5 +1,5 @@
 import { Factory } from "fishery";
-import { BaseEvent } from "@/core/event/BaseEvent";
+import { BaseEvent } from "@/core/v1/event/BaseEvent";
 
 const decorateId = (id: number) => `EVENT_${id}`;
 

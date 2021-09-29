@@ -1,5 +1,5 @@
 import { Factory } from "fishery";
-import { BaseResource } from "@/core/resource/BaseResource";
+import { BaseResource } from "@/core/v1/resource/BaseResource";
 import {
   NAME_OF_ORDER,
   NAME_OF_STORY_ID,

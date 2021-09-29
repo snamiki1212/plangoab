@@ -6,8 +6,8 @@ import {
   addStoryAction,
   selectStoryByIdFilter,
 } from "@/redux/v1/features/userCalendars";
-import { BaseStory, updateStory } from "@/core/story/BaseStory";
-import { initStory } from "@/core/story/BaseStory";
+import { BaseStory, updateStory } from "@/core/v1/story/BaseStory";
+import { initStory } from "@/core/v1/story/BaseStory";
 import { PROFILE_ID } from "@/constants/fullcalendar";
 
 type IdSet = { calendarId: string; storyId: string };
