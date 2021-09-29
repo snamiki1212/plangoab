@@ -3,7 +3,7 @@ import { Deserializer } from "jsonapi-serializer";
 
 const deserializer = new Deserializer({});
 
-export const calendarApiV2 = createApi({
+export const calendarApi = createApi({
   reducerPath: "calendarApi",
   baseQuery: fetchBaseQuery({
     baseUrl: "http://127.0.0.1:3001/api/v1/",
@@ -24,4 +24,4 @@ export const calendarApiV2 = createApi({
   }),
 });
 
-export const { useFetchCalendarsQuery } = calendarApiV2;
+export const { useFetchCalendarsQuery } = calendarApi;

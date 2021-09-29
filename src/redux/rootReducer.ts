@@ -9,7 +9,7 @@ import storyModalReducer from "@/redux/v1/ui/storyModal";
 import stepReducer from "@/redux/v1/ui/step";
 import previewModalReducer from "@/redux/v1/ui/previewModal";
 
-import { calendarApiV2 } from "@/redux/v2/services/calendarApiV2";
+import { calendarApi } from "@/redux/v2/services/calendarApi";
 
 const uiReducer = combineReducers({
   storyModal: storyModalReducer,
@@ -31,7 +31,7 @@ const V1 = {
 };
 
 const V2Reducer = combineReducers({
-  [calendarApiV2.reducerPath]: calendarApiV2.reducer,
+  [calendarApi.reducerPath]: calendarApi.reducer,
 });
 
 const rootReducer = combineReducers({

@@ -2,14 +2,14 @@ import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage"; // NOTE: localstorage for web
 import rootReducer from "@/redux/rootReducer";
 
-import { calendarApiV2 } from "@/redux/v2/services/calendarApiV2";
+import { calendarApi } from "@/redux/v2/services/calendarApi";
 
 const persistConfig = {
   key: "root",
   version: 0,
   storage,
   whitelist: ["features", "ui"],
-  blacklist: [calendarApiV2.reducerPath],
+  blacklist: [calendarApi.reducerPath],
 };
 
 export const persistedReducer = persistReducer(persistConfig, rootReducer);
