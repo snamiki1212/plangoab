@@ -1,7 +1,7 @@
-import { CalendarNewPage } from "@/components/pages/CalendarNewPage";
+import { CalendarNewPageV1 } from "@/components/v1/pages/CalendarNewPageV1";
 
 const Page = () => {
-  return <CalendarNewPage />;
+  return <CalendarNewPageV1 />;
 };
 
 export default Page;

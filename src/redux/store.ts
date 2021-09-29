@@ -1,12 +1,11 @@
 import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
-import { persistedReducer } from "./store/persistedReducer";
-
-import { calendarApiV1 } from "./services/calendarApiV1";
+import { persistedReducer } from "@/redux/v1/store/persistedReducer";
+import { calendarApi } from "@/redux/v2/services/calendarApi";
 
 const store = configureStore({
   reducer: persistedReducer,
   middleware: getDefaultMiddleware({ serializableCheck: false }).concat(
-    calendarApiV1.middleware
+    calendarApi.middleware
   ),
 });
 
