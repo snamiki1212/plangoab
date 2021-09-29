@@ -8,7 +8,7 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
-import { selectEventModal, selectEvent } from "@/redux/ui/eventModal";
+import { selectEventModal, selectEvent } from "@/redux/v1/ui/eventModal";
 import { useEvent } from "@/hooks/useEvent";
 import { BaseEvent } from "@/core/event/BaseEvent";
 

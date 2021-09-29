@@ -10,7 +10,7 @@ import {
   PRIVATE_COLLEGE_CALENDAR_ID,
   PUBLIC_COLLEGE_CALENDAR_ID,
 } from "@/core/calendar/TemplateCalendar/model";
-import { RootState } from "../rootReducer";
+import { RootState } from "@/redux/rootReducer";
 import {
   privateCollegeCalendarFactory,
   publicCollegeCalendarFactory,

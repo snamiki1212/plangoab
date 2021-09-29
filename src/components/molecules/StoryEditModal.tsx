@@ -9,7 +9,7 @@ import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 //
-import { selectStoryModal, selectStory } from "@/redux/ui/storyModal";
+import { selectStoryModal, selectStory } from "@/redux/v1/ui/storyModal";
 import { useStory } from "@/hooks/useStory";
 import { useResource } from "@/hooks/useResource";
 import { FIELD } from "@/constants/fullcalendar";

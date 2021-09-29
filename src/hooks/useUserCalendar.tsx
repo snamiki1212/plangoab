@@ -10,13 +10,13 @@ import {
   removeCalendarAction,
   addEventAction,
   selectUserCalendar,
-} from "@/redux/features/userCalendars";
+} from "@/redux/v1/features/userCalendars";
 import { convertDateSelectArgToRange } from "@/lib/date";
 
 export const useUserCalendar = () => {
   const dispatch = useDispatch();
   const calendar = useSelector(selectUserCalendar);
-  const isAlreadyCreated = !!calendar
+  const isAlreadyCreated = !!calendar;
 
   const init = React.useCallback(
     ({

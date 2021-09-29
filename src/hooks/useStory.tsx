@@ -5,7 +5,7 @@ import {
   updateStoryAction,
   addStoryAction,
   selectStoryByIdFilter,
-} from "@/redux/features/userCalendars";
+} from "@/redux/v1/features/userCalendars";
 import { BaseStory, updateStory } from "@/core/story/BaseStory";
 import { initStory } from "@/core/story/BaseStory";
 import { PROFILE_ID } from "@/constants/fullcalendar";

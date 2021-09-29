@@ -1,49 +1,47 @@
 import { createSlice, PayloadAction, createSelector } from "@reduxjs/toolkit";
 import { RootState } from "@/redux/rootReducer";
-import { selectEventByIdFilter } from "@/redux/features/userCalendars";
+import { selectStoryByIdFilter } from "@/redux/v1/features/userCalendars";
 
 type State = {
-  event: null | {
+  story: null | {
     calendarId: string;
     storyId: string;
-    eventId: string;
   };
 };
 
 type PushPayload = {
   calendarId: string;
   storyId: string;
-  eventId: string;
 };
 
 type PopPayload = undefined;
 
 const slice = createSlice({
-  name: "eventModal",
+  name: "storyModal",
   initialState: {
-    event: null,
+    story: null,
   } as State,
   reducers: {
     push(state, action: PayloadAction<PushPayload>) {
       const _payload = action.payload;
-      state.event = _payload;
+      state.story = _payload;
     },
     pop(state, _action: PayloadAction<PopPayload>) {
-      state.event = null;
+      state.story = null;
     },
   },
 });
 
-export const selectIsOpen = (state: RootState) => !!state.ui.eventModal.event;
+export const selectIsOpen = (state: RootState) => !!state.ui.storyModal.story;
 
-export const selectEventModal = (state: RootState) => state.ui.eventModal.event;
+export const selectStoryModal = (state: RootState) => state.ui.storyModal.story;
 
-export const selectEvent = createSelector(
-  [selectEventModal, selectEventByIdFilter],
-  (modalInfo, filter) => {
-    if (!modalInfo) return null;
-    const { calendarId, storyId, eventId } = modalInfo;
-    return filter(calendarId, storyId, eventId);
+export const selectStory = createSelector(
+  [selectStoryModal, selectStoryByIdFilter],
+  (modal, filter) => {
+    if (!modal) return null;
+    const { calendarId, storyId } = modal;
+    return filter(calendarId, storyId);
   }
 );
 

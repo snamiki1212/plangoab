@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleAction, selectIsOpen } from "@/redux/ui/previewModal";
+import { toggleAction, selectIsOpen } from "@/redux/v1/ui/previewModal";
 
 export const usePreviewCommand = () => {
   const dispatch = useDispatch();

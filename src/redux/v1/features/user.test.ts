@@ -1,6 +1,6 @@
-import { toStr } from "@/testHelpers/index";
 import { addYears } from "date-fns";
-import { RootState } from "../rootReducer";
+import { toStr } from "@/testHelpers/index";
+import { RootState } from "@/redux/rootReducer";
 
 const PERSONA_AGE = 25;
 const getBirthday = (today: Date) =>

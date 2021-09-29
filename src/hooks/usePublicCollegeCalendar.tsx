@@ -8,7 +8,7 @@ import { createDate } from "@/lib/date";
 import {
   upsertPublicCollegeCalendarAction,
   selectPublicCollegeCalendar,
-} from "@/redux/features/templateCalendar";
+} from "@/redux/v1/features/templateCalendar";
 
 type GenerateArg = {
   birth: string;

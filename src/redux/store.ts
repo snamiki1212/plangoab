@@ -1,7 +1,6 @@
 import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
-import { persistedReducer } from "./store/persistedReducer";
-
-import { calendarApiV2 } from "./services/calendarApiV2";
+import { persistedReducer } from "@/redux/v1/store/persistedReducer";
+import { calendarApiV2 } from "@/redux/v2/services/calendarApiV2";
 
 const store = configureStore({
   reducer: persistedReducer,

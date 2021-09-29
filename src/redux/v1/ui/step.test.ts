@@ -7,7 +7,7 @@ import reducer, {
   selectActiveStepIdx,
   selectIsOpen,
 } from "./step";
-import { RootState } from "../rootReducer";
+import { RootState } from "@/redux/rootReducer";
 
 describe(toStr({ reducer }), () => {
   const expectedInitialState = {

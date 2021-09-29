@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { pushAction, popAction, selectIsOpen } from "@/redux/ui/storyModal";
+import { pushAction, popAction, selectIsOpen } from "@/redux/v1/ui/storyModal";
 
 export const useStoryModal = () => {
   const dispatch = useDispatch();

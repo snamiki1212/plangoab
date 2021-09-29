@@ -5,7 +5,7 @@ import reducer, {
   resetAction,
   updateAction,
 } from "./templateOption";
-import { RootState } from "../rootReducer";
+import { RootState } from "@/redux/rootReducer";
 
 const initialState = {
   option: {
