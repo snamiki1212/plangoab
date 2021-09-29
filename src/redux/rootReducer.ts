@@ -25,10 +25,18 @@ const featuresReducer = combineReducers({
   user: userReducer,
 });
 
-const rootReducer = combineReducers({
+const V1 = {
   features: featuresReducer,
   ui: uiReducer,
+};
+
+const V2 = {
   [calendarApiV2.reducerPath]: calendarApiV2.reducer,
+};
+
+const rootReducer = combineReducers({
+  ...V1,
+  ...V2,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
