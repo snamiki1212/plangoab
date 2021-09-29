@@ -20,10 +20,10 @@ import reducer, {
   removeResourceAction,
 } from "./userCalendars";
 import { RootState } from "@/redux/rootReducer";
-import { eventFactory } from "@/testHelpers/factories/core/event";
-import { resourceFactory } from "@/testHelpers/factories/core/resource";
-import { storyFactory } from "@/testHelpers/factories/core/story";
-import { calendarFactory } from "@/testHelpers/factories/core/calendar";
+import { eventFactory } from "@/testHelpers/v1/factories/core/event";
+import { resourceFactory } from "@/testHelpers/v1/factories/core/resource";
+import { storyFactory } from "@/testHelpers/v1/factories/core/story";
+import { calendarFactory } from "@/testHelpers/v1/factories/core/calendar";
 
 const deepClone = (obj: Object) => JSON.parse(JSON.stringify(obj));
 const createRootState = (partialState: any) =>

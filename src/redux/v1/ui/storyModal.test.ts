@@ -7,8 +7,8 @@ import reducer, {
 } from "./storyModal";
 import { RootState } from "@/redux/rootReducer";
 import { toStr } from "@/testHelpers/index";
-import { calendarFactory } from "@/testHelpers/factories/core/calendar";
-import { storyModalFactory } from "@/testHelpers/factories/redux/storyModal";
+import { calendarFactory } from "@/testHelpers/v1/factories/core/calendar";
+import { storyModalFactory } from "@/testHelpers/v1/factories/redux/storyModal";
 
 type Modal = ReturnType<typeof storyModalFactory.build>;
 type Calendar = ReturnType<typeof calendarFactory.build>;

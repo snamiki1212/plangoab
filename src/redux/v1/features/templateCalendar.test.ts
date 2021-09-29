@@ -14,7 +14,7 @@ import { RootState } from "@/redux/rootReducer";
 import {
   privateCollegeCalendarFactory,
   publicCollegeCalendarFactory,
-} from "@/testHelpers/factories/core/calendar";
+} from "@/testHelpers/v1/factories/core/calendar";
 
 const initialState = {
   [PRIVATE_COLLEGE_CALENDAR_ID]: undefined,
