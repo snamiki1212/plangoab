@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { CalendarListContent } from "@/components/templates/CalendarListContent";
 import { Footer } from "@/components/molecules/Footer";
 import { AppHeader } from "@/components/molecules/AppHeader";
-import { useFetchCalendarsQuery } from "@/redux/services/calendarApiV1";
+import { useFetchCalendarsQuery } from "@/redux/services/calendarApiV2";
 import { ErrorPage } from "@/components/pages/ErrorPage";
 import { LoadingPage } from "@/components/pages/LoadingPage";
 //

@@ -9,7 +9,7 @@ import storyModalReducer from "./ui/storyModal";
 import stepReducer from "./ui/step";
 import previewModalReducer from "./ui/previewModal";
 
-import { calendarApiV1 } from "./services/calendarApiV1";
+import { calendarApiV2 } from "./services/calendarApiV2";
 
 const uiReducer = combineReducers({
   storyModal: storyModalReducer,
@@ -28,7 +28,7 @@ const featuresReducer = combineReducers({
 const rootReducer = combineReducers({
   features: featuresReducer,
   ui: uiReducer,
-  [calendarApiV1.reducerPath]: calendarApiV1.reducer,
+  [calendarApiV2.reducerPath]: calendarApiV2.reducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
