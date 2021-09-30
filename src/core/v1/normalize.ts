@@ -45,10 +45,9 @@ const normalizeStory = (obj: BaseStory): NormalizedStory => {
 // Resource
 type NormalizedResource = {
   id: string;
-  FIELD: string;
-  eventBorderColor?: string;
-  order?: number;
+  title: string;
   events: NormalizedEvent[];
+  order: number;
 };
 
 const normalizeResourcesList = (
@@ -60,9 +59,8 @@ const normalizeResourcesList = (
     const normalizedEvents = normalizeEventsList(thisEvents);
     return {
       id: item.id,
-      FIELD: item.FIELD,
-      eventBorderColor: item.eventBorderColor,
-      order: item.order,
+      title: item.FIELD,
+      order: item.order ?? 0,
       events: normalizedEvents,
     };
   });
@@ -73,10 +71,10 @@ const normalizeResourcesList = (
 type NormalizedEvent = {
   id: string;
   title: string;
+  description: string;
   start: string;
   end: string;
   backgroundColor?: string;
-  description?: string;
 };
 const normalizeEventsList = (obj: BaseEvent[]): NormalizedEvent[] =>
   obj.map((it) => normalizeEvent(it));
@@ -84,9 +82,9 @@ const normalizeEventsList = (obj: BaseEvent[]): NormalizedEvent[] =>
 const normalizeEvent = (obj: BaseEvent): NormalizedEvent => ({
   id: obj.id,
   title: obj.title,
+  description: obj.extendedProps?.description ?? "",
   start: obj.start as string,
   end: obj.end as string,
   // options
   backgroundColor: obj.backgroundColor,
-  description: obj.extendedProps?.description,
 });
