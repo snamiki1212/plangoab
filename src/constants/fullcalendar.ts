@@ -1,3 +1,6 @@
+/************************
+ * CONSTANT NAME
+ ************************/
 // field name
 export const FIELD = "FIELD";
 
@@ -281,3 +284,8 @@ export const EVENTS = {
     },
   },
 };
+
+/************************
+ * KEY
+ ************************/
+export const PLANGOAB_LICENSE_KEY = "freekey";
