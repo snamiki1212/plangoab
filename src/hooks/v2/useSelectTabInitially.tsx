@@ -15,6 +15,6 @@ export const useSelectTabInitially = () => {
   useEffect(() => {
     if (selectedStoryId !== undefined) return;
     if (stories.length === 0) return;
-    selectTab(stories[0].id);
+    selectTab(stories[stories.length - 1].id);
   }, [stories, selectedStoryId]);
 };
