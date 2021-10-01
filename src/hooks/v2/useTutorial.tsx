@@ -6,6 +6,7 @@ import {
   gotoAction,
   selectStepIdx,
   selectStepName,
+  selectIsFinished,
 } from "@/redux/v2/stores/ui/step";
 
 export const useTutorial = () => {
@@ -25,3 +26,4 @@ export const useTutorial = () => {
 
 export const useSelectStepIdx = () => useSelector(selectStepIdx);
 export const useSelectStepName = () => useSelector(selectStepName);
+export const useSelectIsFinished = () => useSelector(selectIsFinished);

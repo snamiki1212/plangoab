@@ -10,6 +10,7 @@ const STEP_NAME = {
 type State = {
   step: {
     stepIdx: number;
+    isFinished: boolean;
   };
 };
 
@@ -20,6 +21,7 @@ type GotoPayload = {
 const initialState = {
   step: {
     stepIdx: 0,
+    isFinished: false,
   },
 } as State;
 
@@ -39,6 +41,7 @@ const slice = createSlice({
     next(state, _action) {
       if (state.step.stepIdx >= MAX) return;
       state.step.stepIdx += 1;
+      if (state.step.stepIdx === MAX) state.step.isFinished = true;
     },
     back(state, _action) {
       if (state.step.stepIdx <= MIN) return;
@@ -52,6 +55,9 @@ export const selectStepIdx = (state: RootState) =>
 
 export const selectStepName = (state: RootState) =>
   STEP_NAME[selectStepIdx(state)];
+
+export const selectIsFinished = (state: RootState) =>
+  state.v2.ui.step.step.isFinished;
 
 export const {
   reset: resetAction,
