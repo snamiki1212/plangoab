@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { DataGrid } from "@mui/x-data-grid";
+import { ROUTES } from "@/constants/routes";
 
 const columns = [
   { field: "id", headerName: "ID", width: 100 },
@@ -15,7 +16,9 @@ const columns = [
     description: "Show calendar",
     sortable: false,
     width: 160,
-    renderCell: (params) => <DoLink url={params.id} />,
+    renderCell: (params) => (
+      <DoLink url={ROUTES.CALENDARS__DETAIL(params.id)} />
+    ),
   },
 ];
 
