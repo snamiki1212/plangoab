@@ -13,6 +13,7 @@ import previewModalReducer from "@/redux/v1/ui/previewModal";
 // V2
 import { calendarApi } from "@/redux/v2/services/calendarApi";
 import stepReducerV2 from "@/redux/v2/stores/ui/step";
+import saveModalReducerV2 from "@/redux/v2/stores/ui/saveModal";
 
 const uiReducer = combineReducers({
   storyModal: storyModalReducer,
@@ -35,6 +36,7 @@ const V1 = {
 
 const uiReducerV2 = combineReducers({
   step: stepReducerV2,
+  saveModal: saveModalReducerV2,
 });
 
 const V2Reducer = combineReducers({

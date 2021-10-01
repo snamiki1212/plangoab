@@ -2,6 +2,7 @@ import { useSelectStepName, useTutorial } from "@/hooks/v2/useTutorial";
 import { UserCalendarSection } from "@/components/v2/x1_molecules/UserCalendarSection";
 import { TemplateSelectionModal } from "@/components/v2/x3_pages/TemplateSelectionModal";
 import { WelcomeModal } from "@/components/v2/x3_pages/WelcomeModal";
+import { SaveModal } from "@/components/v2/x3_pages/SaveModal";
 
 export function CalendarNewPage() {
   const { next: nextStep } = useTutorial();
@@ -13,9 +14,13 @@ export function CalendarNewPage() {
 
   return (
     <>
+      {/* Step Pages */}
       <WelcomeModal isOpen={shouldShowWelcome} onFinish={nextStep} />
       <TemplateSelectionModal isOpen={shouldShowSelection} />
       {shouldShowCalendar && <UserCalendarSection />}
+
+      {/* Modals */}
+      <SaveModal />
     </>
   );
 }

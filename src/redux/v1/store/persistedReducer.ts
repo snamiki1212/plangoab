@@ -9,7 +9,7 @@ const persistConfig = {
   version: 0,
   storage,
   whitelist: ["features", "ui"],
-  blacklist: [calendarApi.reducerPath],
+  blacklist: ["v2"],
 };
 
 export const persistedReducer = persistReducer(persistConfig, rootReducer);
