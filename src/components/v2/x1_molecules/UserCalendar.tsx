@@ -107,48 +107,24 @@ export function UserCalendar() {
   const updateEvent = useHandleUpdateEvent();
   const clickEvent = useHandleClickEvent();
 
-  // const { birth } = useUser();
-  // const calendarId = React.useMemo(() => uuid(), []);
-  // const normalized = normalizeCalendar({ id: calendarId, stories });
-
-  // const [doCreateCalendar, { isLoading: isUpdating }] =
-  //   useCreateCalendarMutation();
-
-  // const createCalendarApi = React.useCallback(
-  //   () =>
-  //     doCreateCalendar({
-  //       calendar: normalized,
-  //       birthday: birth,
-  //       licenseKey: PLANGOAB_LICENSE_KEY,
-  //     }),
-  //   [doCreateCalendar, normalized, birth]
-  // );
-
   return (
-    <>
-      {/* {isUpdating ? (
-        "isUpdating"
-      ) : (
-        <button onClick={createCalendarApi}>POST</button>
-      )} */}
-      <CalendarBase
-        events={events}
-        resources={resources}
-        // click event
-        eventClick={clickEvent}
-        // select empty space
-        selectable={true}
-        select={select}
-        // drag or resize event
-        editable={true}
-        eventResize={updateEvent}
-        eventDrop={updateEvent}
-        // etc
-        initialDate={"2020-06-01"} // TODO: change dynamically
-        resourceGroupLabelContent={resourceGroupLabelContent}
-        headerToolbar={headerToolbar}
-        resourcesInitiallyExpanded
-      />
-    </>
+    <CalendarBase
+      events={events}
+      resources={resources}
+      // click event
+      eventClick={clickEvent}
+      // select empty space
+      selectable={true}
+      select={select}
+      // drag or resize event
+      editable={true}
+      eventResize={updateEvent}
+      eventDrop={updateEvent}
+      // etc
+      initialDate={"2020-06-01"} // TODO: change dynamically
+      resourceGroupLabelContent={resourceGroupLabelContent}
+      headerToolbar={headerToolbar}
+      resourcesInitiallyExpanded
+    />
   );
 }
