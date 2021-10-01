@@ -48,7 +48,9 @@ export const SaveModal: React.VFC = () => {
         <Button onClick={toggle} variant="outlined">
           {"<< Close"}
         </Button>
-        <Button onClick={handleSave}>Save</Button>
+        <Button onClick={handleSave} variant="outlined">
+          Save
+        </Button>
       </DialogContent>
     </Dialog>
   );
