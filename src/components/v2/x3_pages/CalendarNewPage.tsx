@@ -5,8 +5,10 @@ import { AppHeader } from "@/components/v2/x1_molecules/AppHeader";
 import { TemplateSelectionModal } from "@/components/v2/x3_pages/TemplateSelectionModal";
 import { WelcomeModal } from "@/components/v2/x3_pages/WelcomeModal";
 import { SaveModal } from "@/components/v2/x3_pages/SaveModal";
+import { useLeavePageConfirm } from "@/hooks/v2/useLeavePageConfirm";
 
 export function CalendarNewPage() {
+  useLeavePageConfirm();
   const { next: nextStep } = useTutorial();
   const stepName = useSelectStepName();
 
