@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useMemo } from "react";
 import { convertUpdateFC } from "@/lib/date";
 import { EventClickArg } from "@fullcalendar/react";
 import { CalendarBase } from "@/components/v2/x0_atoms/CalendarBase";
 import { useHideCalendarHeader } from "@/hooks/v2/useHideCalendarHeader";
+import { useSelectTabOfStoryId } from "@/hooks/v2/useSelectedTab";
 // TODO: v1 to v2
 import { useEvent } from "@/hooks/v1/useEvent";
 import { useUserCalendar } from "@/hooks/v1/useUserCalendar";
@@ -104,10 +105,24 @@ const useRGLC = () => {
 
 export function UserCalendar() {
   useHideCalendarHeader();
-  const { events, resources, select } = useUserCalendar();
+  const selectedStoryId = useSelectTabOfStoryId();
+  const { stories, select } = useUserCalendar();
+
   const resourceGroupLabelContent = useRGLC();
   const updateEvent = useHandleUpdateEvent();
   const clickEvent = useHandleClickEvent();
+
+  const [selectedStory, events, resources] = useMemo(() => {
+    const story = stories.find((story) => story.id === selectedStoryId);
+    const events = story?.events;
+    const resources = story?.resources;
+    return [story, events, resources] as const;
+  }, [stories, selectedStoryId]);
+
+  if (!selectedStory) {
+    console.warn("Cannot find selected story.");
+    return <></>;
+  }
 
   return (
     <CalendarBase

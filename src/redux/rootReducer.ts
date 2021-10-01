@@ -14,6 +14,7 @@ import previewModalReducer from "@/redux/v1/ui/previewModal";
 import { calendarApi } from "@/redux/v2/services/calendarApi";
 import stepReducerV2 from "@/redux/v2/stores/ui/step";
 import saveModalReducerV2 from "@/redux/v2/stores/ui/saveModal";
+import selectedTabReducerV2 from "@/redux/v2/stores/features/selectedTab";
 
 const uiReducer = combineReducers({
   storyModal: storyModalReducer,
@@ -39,7 +40,12 @@ const uiReducerV2 = combineReducers({
   saveModal: saveModalReducerV2,
 });
 
+const featuresReducerV2 = combineReducers({
+  selectedTab: selectedTabReducerV2,
+});
+
 const V2Reducer = combineReducers({
+  features: featuresReducerV2,
   ui: uiReducerV2,
 });
 
