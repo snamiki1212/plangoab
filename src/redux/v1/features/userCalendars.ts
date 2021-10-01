@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "@/redux/rootReducer";
-import { BaseCalendar } from "@/core/v1/calendar/BaseCalendar";
-import { BaseStory } from "@/core/v1/story/BaseStory";
-import { BaseEvent } from "@/core/v1/event/BaseEvent";
-import { BaseResource } from "@/core/v1/resource/BaseResource";
+import { RootState } from "~/src/redux/rootReducer";
+import { BaseCalendar } from "~/src/core/v1/calendar/BaseCalendar";
+import { BaseStory } from "~/src/core/v1/story/BaseStory";
+import { BaseEvent } from "~/src/core/v1/event/BaseEvent";
+import { BaseResource } from "~/src/core/v1/resource/BaseResource";
 import { memoize } from "lodash";
 import { createSelector, current } from "@reduxjs/toolkit";
 

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { RootState } from "@/redux/rootReducer";
+import { RootState } from "~/src/redux/rootReducer";
 
 type State = {
   isOpen: boolean;

@@ -3,9 +3,9 @@ import { useSelector } from "react-redux";
 import {
   selectPrivateCollegeCalendar,
   selectPublicCollegeCalendar,
-} from "@/redux/v1/features/templateCalendar";
-import { selectUserCalendar } from "@/redux/v1/features/userCalendars";
-import { updateStory } from "@/core/v1/story/BaseStory";
+} from "~/src/redux/v1/features/templateCalendar";
+import { selectUserCalendar } from "~/src/redux/v1/features/userCalendars";
+import { updateStory } from "~/src/core/v1/story/BaseStory";
 import styled from "styled-components";
 import Button from "@mui/material/Button";
 

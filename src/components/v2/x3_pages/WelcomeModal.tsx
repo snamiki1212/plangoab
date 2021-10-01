@@ -1,10 +1,10 @@
 import { useMemo, useCallback } from "react";
 
 // TODO: v1
-import { useUser } from "@/hooks/v1/useUser";
-import { useTemplateOptions } from "@/hooks/v1/useTemplateOptions";
-import { useUserCalendar } from "@/hooks/v1/useUserCalendar";
-import { Presenter as WelcomeModalPresenter } from "@/components/v1/organisms/WelcomeModal";
+import { useUser } from "~/src/hooks/v1/useUser";
+import { useTemplateOptions } from "~/src/hooks/v1/useTemplateOptions";
+import { useUserCalendar } from "~/src/hooks/v1/useUserCalendar";
+import { Presenter as WelcomeModalPresenter } from "~/src/components/v1/organisms/WelcomeModal";
 
 type Props = {
   onFinish: () => void;

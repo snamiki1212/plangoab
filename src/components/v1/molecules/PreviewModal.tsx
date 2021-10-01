@@ -1,7 +1,7 @@
 import React from "react";
-import { UserCalendar } from "@/components/v1/organisms/UserCalendar";
-import { ExplanationSection } from "@/components/v1/atoms/ExplanationSection";
-import { usePreviewQuery, usePreviewCommand } from "@/hooks/v1/usePreview";
+import { UserCalendar } from "~/src/components/v1/organisms/UserCalendar";
+import { ExplanationSection } from "~/src/components/v1/atoms/ExplanationSection";
+import { usePreviewQuery, usePreviewCommand } from "~/src/hooks/v1/usePreview";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 

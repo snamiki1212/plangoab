@@ -1,16 +1,16 @@
 import { useMemo, useCallback } from "react";
-import { PLANGOAB_LICENSE_KEY } from "@/constants/fullcalendar";
-import { uuid } from "@/lib/uuid";
+import { PLANGOAB_LICENSE_KEY } from "~/src/constants/fullcalendar";
+import { uuid } from "~/src/lib/uuid";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
-import { useSaveModal, useSelectIsOpen } from "@/hooks/v2/useSaveModal";
-import { useCreateCalendarMutation } from "@/redux/v2/services/calendarApi";
+import { useSaveModal, useSelectIsOpen } from "~/src/hooks/v2/useSaveModal";
+import { useCreateCalendarMutation } from "~/src/redux/v2/services/calendarApi";
 
 // TODO: v1 to v2
-import { useUser } from "@/hooks/v1/useUser";
-import { useUserCalendar } from "@/hooks/v1/useUserCalendar";
-import { normalizeCalendar } from "@/core/v1/normalize";
+import { useUser } from "~/src/hooks/v1/useUser";
+import { useUserCalendar } from "~/src/hooks/v1/useUserCalendar";
+import { normalizeCalendar } from "~/src/core/v1/normalize";
 
 const useSave = () => {
   const { stories } = useUserCalendar();

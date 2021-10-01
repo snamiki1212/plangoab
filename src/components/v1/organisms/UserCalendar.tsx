@@ -1,22 +1,22 @@
 import React from "react";
-import { CalendarBase } from "@/components/v1/atoms/CalendarBase";
-import { useEvent } from "@/hooks/v1/useEvent";
+import { CalendarBase } from "~/src/components/v1/atoms/CalendarBase";
+import { useEvent } from "~/src/hooks/v1/useEvent";
 import {
   useUserCalendarCustomButtons,
   ADD_STORY_BUTTON,
   REMOVE_CALENDAR_BUTTON,
-} from "@/hooks/v1/useUserCalendarCustomButtons";
+} from "~/src/hooks/v1/useUserCalendarCustomButtons";
 import { EventClickArg } from "@fullcalendar/react";
-import { useUserCalendar } from "@/hooks/v1/useUserCalendar";
-import { useResourceGroupLabelContentInUserCalendar } from "@/hooks/v1/useResourceGroupLabelContentInUserCalendar";
-import { useStoryModal } from "@/hooks/v1/useStoryModal";
-import { useEventModal } from "@/hooks/v1/useEventModal";
-import { convertDateSelectArgToRange, convertUpdateFC } from "@/lib/date";
-import { normalizeCalendar } from "@/core/v1/normalize";
-import { useCreateCalendarMutation } from "@/redux/v2/services/calendarApi";
-import { PLANGOAB_LICENSE_KEY } from "@/constants/fullcalendar";
-import { useUser } from "@/hooks/v1/useUser";
-import { uuid } from "@/lib/uuid";
+import { useUserCalendar } from "~/src/hooks/v1/useUserCalendar";
+import { useResourceGroupLabelContentInUserCalendar } from "~/src/hooks/v1/useResourceGroupLabelContentInUserCalendar";
+import { useStoryModal } from "~/src/hooks/v1/useStoryModal";
+import { useEventModal } from "~/src/hooks/v1/useEventModal";
+import { convertDateSelectArgToRange, convertUpdateFC } from "~/src/lib/date";
+import { normalizeCalendar } from "~/src/core/v1/normalize";
+import { useCreateCalendarMutation } from "~/src/redux/v2/services/calendarApi";
+import { PLANGOAB_LICENSE_KEY } from "~/src/constants/fullcalendar";
+import { useUser } from "~/src/hooks/v1/useUser";
+import { uuid } from "~/src/lib/uuid";
 
 const headerToolbar = {
   left: `${ADD_STORY_BUTTON},${REMOVE_CALENDAR_BUTTON}`,

@@ -1,11 +1,11 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectUserCalendar } from "@/redux/v1/features/userCalendars";
+import { selectUserCalendar } from "~/src/redux/v1/features/userCalendars";
 import {
   removeResourceAction,
   pushResourceAction,
-} from "@/redux/v1/features/userCalendars";
-import { initResource } from "@/core/v1/resource/BaseResource";
+} from "~/src/redux/v1/features/userCalendars";
+import { initResource } from "~/src/core/v1/resource/BaseResource";
 
 type IdSet = { calendarId: string; resourceId: string; storyId: string };
 type PushArg = { calendarId: string; storyId: string };

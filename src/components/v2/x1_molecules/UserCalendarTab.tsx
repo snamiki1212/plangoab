@@ -4,13 +4,13 @@ import styled from "styled-components";
 import {
   useSelectedTab,
   useSelectTabOfStoryId,
-} from "@/hooks/v2/useSelectedTab";
-import { BaseStory } from "@/core/v1/story/BaseStory";
-import { CalendarTab } from "@/components/v2/x0_atoms/CalendarTab";
+} from "~/src/hooks/v2/useSelectedTab";
+import { BaseStory } from "~/src/core/v1/story/BaseStory";
+import { CalendarTab } from "~/src/components/v2/x0_atoms/CalendarTab";
 
 // TODO: v1 to v2
-import { useStoryModal } from "@/hooks/v1/useStoryModal";
-import { useStory } from "@/hooks/v1/useStory";
+import { useStoryModal } from "~/src/hooks/v1/useStoryModal";
+import { useStory } from "~/src/hooks/v1/useStory";
 
 const useHandleEdit = (story: BaseStory) => {
   const { push: pushStoryModal } = useStoryModal();

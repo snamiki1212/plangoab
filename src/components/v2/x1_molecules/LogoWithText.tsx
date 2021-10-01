@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 // TODO: v1 to v2
-import { LogoImage } from "@/components/v1/atoms/LogoImage";
+import { LogoImage } from "~/src/components/v1/atoms/LogoImage";
 
 export const LogoWithText = () => {
   return (

@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction, createSelector } from "@reduxjs/toolkit";
-import { RootState } from "@/redux/rootReducer";
-import { selectStoryByIdFilter } from "@/redux/v1/features/userCalendars";
+import { RootState } from "~/src/redux/rootReducer";
+import { selectStoryByIdFilter } from "~/src/redux/v1/features/userCalendars";
 
 type State = {
   story: null | {

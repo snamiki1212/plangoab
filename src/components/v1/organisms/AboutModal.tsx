@@ -6,12 +6,12 @@ import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import Divider from "@mui/material/Divider";
-import { useResetAllData } from "@/hooks/v1/useResetAllData";
-import { THIS_GITHUB_URL } from "@/constants/meta";
-import { SNS_LIST, TWITTER_URL } from "@/constants/sns";
-import { usePreviewCommand } from "@/hooks/v1/usePreview";
-import { PreviewModal } from "@/components/v1/molecules/PreviewModal";
-import { CollaborationsSection as NaiveCollaborationsSection } from "@/components/v1/molecules/CollaborationsSection";
+import { useResetAllData } from "~/src/hooks/v1/useResetAllData";
+import { THIS_GITHUB_URL } from "~/src/constants/meta";
+import { SNS_LIST, TWITTER_URL } from "~/src/constants/sns";
+import { usePreviewCommand } from "~/src/hooks/v1/usePreview";
+import { PreviewModal } from "~/src/components/v1/molecules/PreviewModal";
+import { CollaborationsSection as NaiveCollaborationsSection } from "~/src/components/v1/molecules/CollaborationsSection";
 
 type Props = {
   isOpen: boolean;

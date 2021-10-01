@@ -1,4 +1,4 @@
-import { toStr } from "@/testHelpers/index";
+import { toStr } from "~/src/testHelpers/index";
 import reducer, {
   // selectors
   selectUserCalendar,
@@ -19,11 +19,11 @@ import reducer, {
   removeCalendarAction,
   removeResourceAction,
 } from "./userCalendars";
-import { RootState } from "@/redux/rootReducer";
-import { eventFactory } from "@/testHelpers/v1/factories/core/event";
-import { resourceFactory } from "@/testHelpers/v1/factories/core/resource";
-import { storyFactory } from "@/testHelpers/v1/factories/core/story";
-import { calendarFactory } from "@/testHelpers/v1/factories/core/calendar";
+import { RootState } from "~/src/redux/rootReducer";
+import { eventFactory } from "~/src/testHelpers/v1/factories/core/event";
+import { resourceFactory } from "~/src/testHelpers/v1/factories/core/resource";
+import { storyFactory } from "~/src/testHelpers/v1/factories/core/story";
+import { calendarFactory } from "~/src/testHelpers/v1/factories/core/calendar";
 
 const deepClone = (obj: Object) => JSON.parse(JSON.stringify(obj));
 const createRootState = (partialState: any) =>

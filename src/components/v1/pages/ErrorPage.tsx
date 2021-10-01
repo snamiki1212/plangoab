@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import Button from "@mui/material/Button";
-import { LogoImage } from "@/components/v1/atoms/LogoImage";
-import { useResetAllData } from "@/hooks/v1/useResetAllData";
+import { LogoImage } from "~/src/components/v1/atoms/LogoImage";
+import { useResetAllData } from "~/src/hooks/v1/useResetAllData";
 
 export function ErrorPage() {
   const { reset } = useResetAllData();

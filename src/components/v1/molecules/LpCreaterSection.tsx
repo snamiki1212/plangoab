@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
-import { LpHeroUnit } from "@/components/v1/atoms/LpHeroUnit";
-import { SNS_LIST } from "@/constants/sns";
+import { LpHeroUnit } from "~/src/components/v1/atoms/LpHeroUnit";
+import { SNS_LIST } from "~/src/constants/sns";
 
 const TITLE = "Creater";
 const SUBTITLE = "Created by Nash";

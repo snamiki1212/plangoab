@@ -3,7 +3,7 @@ import styled from "styled-components";
 import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
 import Checkbox from "@mui/material/Checkbox";
-import { useTemplateOptions } from "@/hooks/v1/useTemplateOptions";
+import { useTemplateOptions } from "~/src/hooks/v1/useTemplateOptions";
 
 const MONTHS = [
   "Jan",

@@ -1,9 +1,9 @@
-import { COLLABORATIONS } from "@/constants/collaborations";
+import { COLLABORATIONS } from "~/src/constants/collaborations";
 import styled from "styled-components";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
-import { LpHeroUnit } from "@/components/v1/atoms/LpHeroUnit";
-import { Animation1 } from "@/components/v1/atoms/Animation1";
+import { LpHeroUnit } from "~/src/components/v1/atoms/LpHeroUnit";
+import { Animation1 } from "~/src/components/v1/atoms/Animation1";
 
 const TITLE = "Collaborations";
 const SUBTITLE = "Plangoab is created with awesome collaborators.";

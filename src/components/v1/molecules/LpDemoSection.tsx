@@ -2,8 +2,8 @@ import Link from "next/link";
 import styled from "styled-components";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
-import { ROUTES } from "@/constants/routes";
-import { Animation1 } from "@/components/v1/atoms/Animation1";
+import { ROUTES } from "~/src/constants/routes";
+import { Animation1 } from "~/src/components/v1/atoms/Animation1";
 
 export function LpDemoSection() {
   return (

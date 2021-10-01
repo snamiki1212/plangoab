@@ -1,8 +1,8 @@
 import { ProfileStory } from "./model";
-import { PROFILE_ID } from "@/constants/fullcalendar";
-import { createProfileResources } from "@/core/v1/resource/createProfileResources";
-import { createProfileEvents } from "@/core/v1/event/createProfileEvents";
-import { createDate } from "@/lib/date";
+import { PROFILE_ID } from "~/src/constants/fullcalendar";
+import { createProfileResources } from "~/src/core/v1/resource/createProfileResources";
+import { createProfileEvents } from "~/src/core/v1/event/createProfileEvents";
+import { createDate } from "~/src/lib/date";
 
 const STORY_NAME = "Profile";
 

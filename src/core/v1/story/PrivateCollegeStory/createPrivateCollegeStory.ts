@@ -4,15 +4,18 @@ import {
   EVENTS,
   NAME_OF_STORY_ID,
   NAME_OF_ORDER,
-} from "@/constants/fullcalendar";
-import { MONTH_OF_WORKING_HOLIDAY_APPLICATION_LIMIT } from "@/constants/visa";
-import { uuid } from "@/lib/uuid";
-import { createRange, resetHHMMssmm, startOfMonth } from "@/lib/date";
+} from "~/src/constants/fullcalendar";
+import { MONTH_OF_WORKING_HOLIDAY_APPLICATION_LIMIT } from "~/src/constants/visa";
+import { uuid } from "~/src/lib/uuid";
+import { createRange, resetHHMMssmm, startOfMonth } from "~/src/lib/date";
 import { PrivateCollegeStory } from "./model";
-import { createStoryName } from "@/core/v1/story/BaseStory";
-import { TemplateOption } from "@/core/v1/calendar/BaseCalendar";
-import { BaseEvent, initEvent } from "@/core/v1/event/BaseEvent";
-import { BaseResource, initResource } from "@/core/v1/resource/BaseResource";
+import { createStoryName } from "~/src/core/v1/story/BaseStory";
+import { TemplateOption } from "~/src/core/v1/calendar/BaseCalendar";
+import { BaseEvent, initEvent } from "~/src/core/v1/event/BaseEvent";
+import {
+  BaseResource,
+  initResource,
+} from "~/src/core/v1/resource/BaseResource";
 
 type CreatePrivateCollegeStoryparams = {
   startDate: Date;

@@ -3,12 +3,12 @@ import {
   RESOURCE_ID__SHARED__AGE,
   RESOURCE_ID__SHARED__LIMIT,
   EVENTS,
-} from "@/constants/fullcalendar";
-import { getRangeNumbers } from "@/lib/age";
-import { uuid } from "@/lib/uuid";
-import { createDate } from "@/lib/date";
-import { WORKING_HOLIDAY_APPLICATION_LIMITATION_AGE } from "@/constants/visa";
-import { BaseEvent } from "@/core/v1/event/BaseEvent";
+} from "~/src/constants/fullcalendar";
+import { getRangeNumbers } from "~/src/lib/age";
+import { uuid } from "~/src/lib/uuid";
+import { createDate } from "~/src/lib/date";
+import { WORKING_HOLIDAY_APPLICATION_LIMITATION_AGE } from "~/src/constants/visa";
+import { BaseEvent } from "~/src/core/v1/event/BaseEvent";
 
 type CreateProfileEventsParams = {
   startDate: Date;

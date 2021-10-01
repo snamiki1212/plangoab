@@ -4,7 +4,7 @@ import {
   RESOURCE_ID__SHARED__AGE,
   RESOURCE_ID__SHARED__LIMIT,
   RESOURCES,
-} from "@/constants/fullcalendar";
+} from "~/src/constants/fullcalendar";
 import { BaseResource } from "./BaseResource";
 
 type CreateProfileResourcesParams = {

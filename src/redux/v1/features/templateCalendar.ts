@@ -1,13 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "@/redux/rootReducer";
+import { RootState } from "~/src/redux/rootReducer";
 import {
   PRIVATE_COLLEGE_CALENDAR_ID,
   PUBLIC_COLLEGE_CALENDAR_ID,
-} from "@/core/v1/calendar/TemplateCalendar/model";
+} from "~/src/core/v1/calendar/TemplateCalendar/model";
 import {
   PrivateCollegeCalendar,
   PublicCollegeCalendar,
-} from "@/core/v1/calendar/TemplateCalendar/model";
+} from "~/src/core/v1/calendar/TemplateCalendar/model";
 
 type UpsertPrivateCollegeCalendarPayload = {
   calendar: PrivateCollegeCalendar;

@@ -7,9 +7,9 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardHeader from "@mui/material/CardHeader";
 import Grid from "@mui/material/Grid";
-import { ROUTES } from "@/constants/routes";
-import { CONTACT_FORM_URL } from "@/constants/meta";
-import { isExternalUrl } from "@/lib/util";
+import { ROUTES } from "~/src/constants/routes";
+import { CONTACT_FORM_URL } from "~/src/constants/meta";
+import { isExternalUrl } from "~/src/lib/util";
 
 const ENTERPRISE = "Enterprise";
 const FREE = "Free";

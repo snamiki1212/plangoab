@@ -3,7 +3,7 @@ import Link from "next/link";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
-import { ROUTES } from "@/constants/routes";
+import { ROUTES } from "~/src/constants/routes";
 
 export function LpHeroSection() {
   return (

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { LogoImage } from "@/components/v1/atoms/LogoImage";
+import { LogoImage } from "~/src/components/v1/atoms/LogoImage";
 
 export const LogoWithText = () => {
   return (

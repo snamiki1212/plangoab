@@ -1,15 +1,15 @@
 import React, { useMemo } from "react";
-import { convertUpdateFC } from "@/lib/date";
+import { convertUpdateFC } from "~/src/lib/date";
 import { EventClickArg } from "@fullcalendar/react";
-import { CalendarBase } from "@/components/v2/x0_atoms/CalendarBase";
-import { useHideCalendarHeader } from "@/hooks/v2/useHideCalendarHeader";
-import { useSelectTabOfStoryId } from "@/hooks/v2/useSelectedTab";
+import { CalendarBase } from "~/src/components/v2/x0_atoms/CalendarBase";
+import { useHideCalendarHeader } from "~/src/hooks/v2/useHideCalendarHeader";
+import { useSelectTabOfStoryId } from "~/src/hooks/v2/useSelectedTab";
 // TODO: v1 to v2
-import { useEvent } from "@/hooks/v1/useEvent";
-import { useUserCalendar } from "@/hooks/v1/useUserCalendar";
-import { useResourceGroupLabelContentInUserCalendar } from "@/hooks/v1/useResourceGroupLabelContentInUserCalendar";
-import { useStoryModal } from "@/hooks/v1/useStoryModal";
-import { useEventModal } from "@/hooks/v1/useEventModal";
+import { useEvent } from "~/src/hooks/v1/useEvent";
+import { useUserCalendar } from "~/src/hooks/v1/useUserCalendar";
+import { useResourceGroupLabelContentInUserCalendar } from "~/src/hooks/v1/useResourceGroupLabelContentInUserCalendar";
+import { useStoryModal } from "~/src/hooks/v1/useStoryModal";
+import { useEventModal } from "~/src/hooks/v1/useEventModal";
 
 const headerToolbar = {
   left: "",

@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
-import { useSelectTab } from "@/hooks/v2/useSelectTab";
-import { UserCalendarTab } from "@/components/v2/x1_molecules/UserCalendarTab";
-import { AddCalendarTab } from "@/components/v2/x1_molecules/AddCalendarTab";
+import { useSelectTab } from "~/src/hooks/v2/useSelectTab";
+import { UserCalendarTab } from "~/src/components/v2/x1_molecules/UserCalendarTab";
+import { AddCalendarTab } from "~/src/components/v2/x1_molecules/AddCalendarTab";
 
 // TODO: v1 to v2
-import { useUserCalendar } from "@/hooks/v1/useUserCalendar";
+import { useUserCalendar } from "~/src/hooks/v1/useUserCalendar";
 
 export const UserCalendarTabsList = () => {
   useSelectTab();

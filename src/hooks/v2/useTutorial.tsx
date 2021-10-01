@@ -7,7 +7,7 @@ import {
   selectStepIdx,
   selectStepName,
   selectIsFinished,
-} from "@/redux/v2/stores/ui/step";
+} from "~/src/redux/v2/stores/ui/step";
 
 export const useTutorial = () => {
   const dispatch = useDispatch();

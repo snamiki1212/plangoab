@@ -1,17 +1,17 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { DateSelectArg } from "@fullcalendar/react";
-import { uuid } from "@/lib/uuid";
-import { createProfileStory } from "@/core/v1/story/ProfileStory/createProfileStory";
-import { initEvent } from "@/core/v1/event/BaseEvent";
-import { createUserCalendar } from "@/core/v1/calendar/UserCalendar/createUserCalendar";
+import { uuid } from "~/src/lib/uuid";
+import { createProfileStory } from "~/src/core/v1/story/ProfileStory/createProfileStory";
+import { initEvent } from "~/src/core/v1/event/BaseEvent";
+import { createUserCalendar } from "~/src/core/v1/calendar/UserCalendar/createUserCalendar";
 import {
   updateCalendarsAction,
   removeCalendarAction,
   addEventAction,
   selectUserCalendar,
-} from "@/redux/v1/features/userCalendars";
-import { convertDateSelectArgToRange } from "@/lib/date";
+} from "~/src/redux/v1/features/userCalendars";
+import { convertDateSelectArgToRange } from "~/src/lib/date";
 
 export const useUserCalendar = () => {
   const dispatch = useDispatch();

@@ -4,8 +4,8 @@ import {
   selectTemplateOption,
   selectWithWorkingholiday,
   updateAction,
-} from "@/redux/v1/features/templateOption";
-import { TemplateOption } from "@/core/v1/calendar/BaseCalendar";
+} from "~/src/redux/v1/features/templateOption";
+import { TemplateOption } from "~/src/core/v1/calendar/BaseCalendar";
 
 export const useTemplateOptions = () => {
   const dispatch = useDispatch();

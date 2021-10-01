@@ -1,9 +1,9 @@
-import { uuid } from "@/lib/uuid";
+import { uuid } from "~/src/lib/uuid";
 import {
   NAME_OF_ORDER,
   NAME_OF_STORY_ID,
   FIELD,
-} from "@/constants/fullcalendar";
+} from "~/src/constants/fullcalendar";
 
 export type BaseResource = {
   id: string;

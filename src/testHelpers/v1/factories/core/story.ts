@@ -1,5 +1,5 @@
 import { Factory } from "fishery";
-import { BaseStory } from "@/core/v1/story/BaseStory";
+import { BaseStory } from "~/src/core/v1/story/BaseStory";
 import { eventFactory } from "./event";
 import { resourceFactory } from "./resource";
 

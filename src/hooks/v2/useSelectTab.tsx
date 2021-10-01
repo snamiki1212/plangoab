@@ -1,10 +1,10 @@
 import { useEffect } from "react";
-import { useSelectedTab } from "@/hooks/v2/useSelectedTab";
-import { useSelectIsFinished } from "@/hooks/v2/useTutorial";
+import { useSelectedTab } from "~/src/hooks/v2/useSelectedTab";
+import { useSelectIsFinished } from "~/src/hooks/v2/useTutorial";
 import { usePrevious } from "react-use";
 
 // TODO: v1 to v2
-import { useUserCalendar } from "@/hooks/v1/useUserCalendar";
+import { useUserCalendar } from "~/src/hooks/v1/useUserCalendar";
 
 export const useSelectTab = () => {
   const isFinished = useSelectIsFinished();

@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import Container from "@mui/material/Container";
-import { LpHeroUnit } from "@/components/v1/atoms/LpHeroUnit";
-import { LpPriceUnit } from "@/components/v1/atoms/LpPriceUnit";
+import { LpHeroUnit } from "~/src/components/v1/atoms/LpHeroUnit";
+import { LpPriceUnit } from "~/src/components/v1/atoms/LpPriceUnit";
 
 const TITLE = "Price";
 const SUBTITLE = ``;

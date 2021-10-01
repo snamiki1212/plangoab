@@ -1,5 +1,5 @@
 import React from "react";
-import { LoadingPage } from "@/components/v1/pages/LoadingPage";
+import { LoadingPage } from "~/src/components/v1/pages/LoadingPage";
 
 type Props = { calendarId: string };
 

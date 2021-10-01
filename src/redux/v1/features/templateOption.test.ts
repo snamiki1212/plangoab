@@ -1,11 +1,11 @@
-import { toStr } from "@/testHelpers/index";
+import { toStr } from "~/src/testHelpers/index";
 import reducer, {
   selectTemplateOption,
   selectWithWorkingholiday,
   resetAction,
   updateAction,
 } from "./templateOption";
-import { RootState } from "@/redux/rootReducer";
+import { RootState } from "~/src/redux/rootReducer";
 
 const initialState = {
   option: {

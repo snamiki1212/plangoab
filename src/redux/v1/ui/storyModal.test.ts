@@ -5,10 +5,10 @@ import reducer, {
   pushAction,
   popAction,
 } from "./storyModal";
-import { RootState } from "@/redux/rootReducer";
-import { toStr } from "@/testHelpers/index";
-import { calendarFactory } from "@/testHelpers/v1/factories/core/calendar";
-import { storyModalFactory } from "@/testHelpers/v1/factories/redux/storyModal";
+import { RootState } from "~/src/redux/rootReducer";
+import { toStr } from "~/src/testHelpers/index";
+import { calendarFactory } from "~/src/testHelpers/v1/factories/core/calendar";
+import { storyModalFactory } from "~/src/testHelpers/v1/factories/redux/storyModal";
 
 type Modal = ReturnType<typeof storyModalFactory.build>;
 type Calendar = ReturnType<typeof calendarFactory.build>;

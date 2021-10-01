@@ -1,4 +1,4 @@
-import { toStr } from "@/testHelpers/index";
+import { toStr } from "~/src/testHelpers/index";
 import reducer, {
   resetAction,
   toggleAction,
@@ -7,7 +7,7 @@ import reducer, {
   selectActiveStepIdx,
   selectIsOpen,
 } from "./step";
-import { RootState } from "@/redux/rootReducer";
+import { RootState } from "~/src/redux/rootReducer";
 
 describe(toStr({ reducer }), () => {
   const expectedInitialState = {

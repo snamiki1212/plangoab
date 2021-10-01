@@ -1,8 +1,8 @@
-import { UserCalendar } from "@/core/v1/calendar/UserCalendar/model";
-import { BaseStory } from "@/core/v1/story/BaseStory";
-import { BaseResource } from "@/core/v1/resource/BaseResource";
-import { BaseEvent } from "@/core/v1/event/BaseEvent";
-import { PROFILE_ID } from "@/constants/fullcalendar";
+import { UserCalendar } from "~/src/core/v1/calendar/UserCalendar/model";
+import { BaseStory } from "~/src/core/v1/story/BaseStory";
+import { BaseResource } from "~/src/core/v1/resource/BaseResource";
+import { BaseEvent } from "~/src/core/v1/event/BaseEvent";
+import { PROFILE_ID } from "~/src/constants/fullcalendar";
 
 export const normalizeCalendar = (obj: UserCalendar) => {
   const stories = normalizeStoriesList(obj.stories);

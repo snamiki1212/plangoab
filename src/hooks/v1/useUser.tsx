@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   updateBirthdayAction,
   selectUserWithAge,
-} from "@/redux/v1/features/user";
+} from "~/src/redux/v1/features/user";
 
 export const useUser = () => {
   const dispatch = useDispatch();

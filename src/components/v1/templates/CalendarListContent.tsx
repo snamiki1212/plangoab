@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { DataGrid } from "@mui/x-data-grid";
-import { ROUTES } from "@/constants/routes";
+import { ROUTES } from "~/src/constants/routes";
 
 const columns = [
   { field: "id", headerName: "ID", width: 100 },

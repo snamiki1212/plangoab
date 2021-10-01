@@ -1,8 +1,8 @@
 import Link from "next/link";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
-import { ROUTES } from "@/constants/routes";
-import { LogoWithText } from "@/components/v1/molecules/LogoWithText";
+import { ROUTES } from "~/src/constants/routes";
+import { LogoWithText } from "~/src/components/v1/molecules/LogoWithText";
 
 export function WebHeader() {
   return (

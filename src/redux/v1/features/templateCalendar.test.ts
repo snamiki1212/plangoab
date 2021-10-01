@@ -1,4 +1,4 @@
-import { toStr } from "@/testHelpers/index";
+import { toStr } from "~/src/testHelpers/index";
 import reducer, {
   resetAction,
   upsertPublicCollegeCalendarAction,
@@ -9,12 +9,12 @@ import reducer, {
 import {
   PRIVATE_COLLEGE_CALENDAR_ID,
   PUBLIC_COLLEGE_CALENDAR_ID,
-} from "@/core/v1/calendar/TemplateCalendar/model";
-import { RootState } from "@/redux/rootReducer";
+} from "~/src/core/v1/calendar/TemplateCalendar/model";
+import { RootState } from "~/src/redux/rootReducer";
 import {
   privateCollegeCalendarFactory,
   publicCollegeCalendarFactory,
-} from "@/testHelpers/v1/factories/core/calendar";
+} from "~/src/testHelpers/v1/factories/core/calendar";
 
 const initialState = {
   [PRIVATE_COLLEGE_CALENDAR_ID]: undefined,

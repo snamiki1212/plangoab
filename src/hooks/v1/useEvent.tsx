@@ -4,8 +4,8 @@ import {
   removeEventAction,
   updateEventAction,
   selectEventByIdFilter,
-} from "@/redux/v1/features/userCalendars";
-import { BaseEvent, updateEvent } from "@/core/v1/event/BaseEvent";
+} from "~/src/redux/v1/features/userCalendars";
+import { BaseEvent, updateEvent } from "~/src/core/v1/event/BaseEvent";
 
 type IdSet = { calendarId: string; storyId: string; eventId: string };
 

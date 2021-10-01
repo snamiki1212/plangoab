@@ -1,8 +1,8 @@
 import Link from "next/link";
 import styled from "styled-components";
-import { CollaborationsSection } from "@/components/v1/molecules/CollaborationsSection";
-import { LogoWithText } from "@/components/v1/molecules/LogoWithText";
-import { ROUTES } from "@/constants/routes";
+import { CollaborationsSection } from "~/src/components/v1/molecules/CollaborationsSection";
+import { LogoWithText } from "~/src/components/v1/molecules/LogoWithText";
+import { ROUTES } from "~/src/constants/routes";
 
 export function Footer() {
   return (

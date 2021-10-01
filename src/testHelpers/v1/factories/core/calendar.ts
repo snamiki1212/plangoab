@@ -1,10 +1,10 @@
 import { Factory } from "fishery";
-import { BaseCalendar } from "@/core/v1/calendar/BaseCalendar";
+import { BaseCalendar } from "~/src/core/v1/calendar/BaseCalendar";
 import { storyFactory } from "./story";
 // import {
 //   PrivateCollegeCalendar,
 //   PublicCollegeCalendar,
-// } from "@/core/calendar/TemplateCalendar/model";
+// } from "~/src/core/calendar/TemplateCalendar/model";
 
 const decorateId = (id: number) => `CALENDAR_${id}`;
 

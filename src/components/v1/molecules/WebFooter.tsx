@@ -5,11 +5,11 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
-import { SNS_LIST } from "@/constants/sns";
-import { CONTACT_FORM_URL } from "@/constants/meta";
-import { COLLABORATIONS } from "@/constants/collaborations";
-import { ROUTES } from "@/constants/routes";
-import { isExternalUrl } from "@/lib/util";
+import { SNS_LIST } from "~/src/constants/sns";
+import { CONTACT_FORM_URL } from "~/src/constants/meta";
+import { COLLABORATIONS } from "~/src/constants/collaborations";
+import { ROUTES } from "~/src/constants/routes";
+import { isExternalUrl } from "~/src/lib/util";
 
 type Description = { title: string; url: string };
 type Footer = { title: string; descriptions: Description[] };

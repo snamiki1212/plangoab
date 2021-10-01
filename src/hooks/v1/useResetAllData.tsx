@@ -1,10 +1,10 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { resetAction as resetUserCalendarsAction } from "@/redux/v1/features/userCalendars";
-import { resetAction as resetUserAction } from "@/redux/v1/features/user";
-import { resetAction as resetTemplateOptionAction } from "@/redux/v1/features/templateOption";
-import { resetAction as resetTemplateCalendarAction } from "@/redux/v1/features/templateCalendar";
-import { resetAction as resetStepAction } from "@/redux/v1/ui/step";
+import { resetAction as resetUserCalendarsAction } from "~/src/redux/v1/features/userCalendars";
+import { resetAction as resetUserAction } from "~/src/redux/v1/features/user";
+import { resetAction as resetTemplateOptionAction } from "~/src/redux/v1/features/templateOption";
+import { resetAction as resetTemplateCalendarAction } from "~/src/redux/v1/features/templateCalendar";
+import { resetAction as resetStepAction } from "~/src/redux/v1/ui/step";
 
 export function useResetAllData() {
   const dispatch = useDispatch();

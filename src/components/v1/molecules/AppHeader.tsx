@@ -3,12 +3,12 @@ import styled from "styled-components";
 import Button from "@mui/material/Button";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
-import { AboutModal } from "@/components/v1/organisms/AboutModal";
-import { TutorialModal } from "@/components/v1/organisms/TutorialModal";
-import { LogoWithText } from "@/components/v1/molecules/LogoWithText";
-import { useModal } from "@/hooks/v1/useModal";
-import { useStepper } from "@/hooks/v1/useStepper";
-import { ROUTES } from "@/constants/routes";
+import { AboutModal } from "~/src/components/v1/organisms/AboutModal";
+import { TutorialModal } from "~/src/components/v1/organisms/TutorialModal";
+import { LogoWithText } from "~/src/components/v1/molecules/LogoWithText";
+import { useModal } from "~/src/hooks/v1/useModal";
+import { useStepper } from "~/src/hooks/v1/useStepper";
+import { ROUTES } from "~/src/constants/routes";
 
 type Props = {
   renderHowTo?: boolean;

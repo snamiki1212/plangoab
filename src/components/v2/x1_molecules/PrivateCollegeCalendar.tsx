@@ -1,12 +1,12 @@
 import React from "react";
-import { CollegeCalendarBase } from "@/components/v2/x1_molecules/CollegeCalendarBase";
+import { CollegeCalendarBase } from "~/src/components/v2/x1_molecules/CollegeCalendarBase";
 
 // TODO: v1 to v2
-import { usePrivateCollegeCalendar } from "@/hooks/v1/usePrivateCollegeCalendar";
-import { useUser } from "@/hooks/v1/useUser";
-import { useTemplateOptions } from "@/hooks/v1/useTemplateOptions";
-import { useTemplateCustomButtons } from "@/hooks/v1/useTemplateCustomButtons";
-import { TemplateOptionModal } from "@/components/v1/molecules/TemplateOptionModal";
+import { usePrivateCollegeCalendar } from "~/src/hooks/v1/usePrivateCollegeCalendar";
+import { useUser } from "~/src/hooks/v1/useUser";
+import { useTemplateOptions } from "~/src/hooks/v1/useTemplateOptions";
+import { useTemplateCustomButtons } from "~/src/hooks/v1/useTemplateCustomButtons";
+import { TemplateOptionModal } from "~/src/components/v1/molecules/TemplateOptionModal";
 
 export function PrivateCollegeCalendar() {
   const { birth } = useUser();

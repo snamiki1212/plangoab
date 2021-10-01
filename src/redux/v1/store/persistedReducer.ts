@@ -1,8 +1,8 @@
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage"; // NOTE: localstorage for web
-import rootReducer from "@/redux/rootReducer";
+import rootReducer from "~/src/redux/rootReducer";
 
-import { calendarApi } from "@/redux/v2/services/calendarApi";
+import { calendarApi } from "~/src/redux/v2/services/calendarApi";
 
 const persistConfig = {
   key: "root",

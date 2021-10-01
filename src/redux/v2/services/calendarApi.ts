@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { deserializer as calendarListDeserializer } from "@/redux/v2/serializer/calendarList";
+import { deserializer as calendarListDeserializer } from "~/src/redux/v2/serializer/calendarList";
 
 export const calendarApi = createApi({
   reducerPath: "calendarApi",

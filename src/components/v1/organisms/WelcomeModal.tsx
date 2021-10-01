@@ -9,12 +9,12 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import DatePicker from "@mui/lab/DatePicker";
 import Avatar from "@mui/material/Avatar";
-import { PolicyExplanation } from "@/components/v1/atoms/PolicyExplanation";
-import { useModal } from "@/hooks/v1/useModal";
-import { useUserCalendar } from "@/hooks/v1/useUserCalendar";
-import { useUser } from "@/hooks/v1/useUser";
-import { AdvancedOptions } from "@/components/v1/organisms/AdvancedOptions";
-import { useTemplateOptions } from "@/hooks/v1/useTemplateOptions";
+import { PolicyExplanation } from "~/src/components/v1/atoms/PolicyExplanation";
+import { useModal } from "~/src/hooks/v1/useModal";
+import { useUserCalendar } from "~/src/hooks/v1/useUserCalendar";
+import { useUser } from "~/src/hooks/v1/useUser";
+import { AdvancedOptions } from "~/src/components/v1/organisms/AdvancedOptions";
+import { useTemplateOptions } from "~/src/hooks/v1/useTemplateOptions";
 
 type PresenterProps = {
   isOpen: boolean;

@@ -9,10 +9,10 @@ import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 //
-import { selectStoryModal, selectStory } from "@/redux/v1/ui/storyModal";
-import { useStory } from "@/hooks/v1/useStory";
-import { useResource } from "@/hooks/v1/useResource";
-import { FIELD } from "@/constants/fullcalendar";
+import { selectStoryModal, selectStory } from "~/src/redux/v1/ui/storyModal";
+import { useStory } from "~/src/hooks/v1/useStory";
+import { useResource } from "~/src/hooks/v1/useResource";
+import { FIELD } from "~/src/constants/fullcalendar";
 
 type Props = {
   isOpen: boolean;

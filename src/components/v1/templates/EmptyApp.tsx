@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { LogoWithText } from "@/components/v1/molecules/LogoWithText";
+import { LogoWithText } from "~/src/components/v1/molecules/LogoWithText";
 
 export const EmptyApp = () => {
   return (

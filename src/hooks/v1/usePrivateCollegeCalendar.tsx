@@ -1,14 +1,14 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { BaseEvent } from "@/core/v1/event/BaseEvent";
-import { BaseResource } from "@/core/v1/resource/BaseResource";
-import { TemplateOption } from "@/core/v1/calendar/BaseCalendar";
-import { createPrivateCollegeCalendar } from "@/core/v1/calendar/TemplateCalendar/createCalendar";
-import { createDate } from "@/lib/date";
+import { BaseEvent } from "~/src/core/v1/event/BaseEvent";
+import { BaseResource } from "~/src/core/v1/resource/BaseResource";
+import { TemplateOption } from "~/src/core/v1/calendar/BaseCalendar";
+import { createPrivateCollegeCalendar } from "~/src/core/v1/calendar/TemplateCalendar/createCalendar";
+import { createDate } from "~/src/lib/date";
 import {
   upsertPrivateCollegeCalendarAction,
   selectPrivateCollegeCalendar,
-} from "@/redux/v1/features/templateCalendar";
+} from "~/src/redux/v1/features/templateCalendar";
 
 type GenerateArg = {
   birth: string;

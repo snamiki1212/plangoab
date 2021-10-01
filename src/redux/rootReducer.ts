@@ -1,20 +1,20 @@
 import { combineReducers } from "@reduxjs/toolkit";
 
 // V1
-import userReducer from "@/redux/v1/features/user";
-import templateCalendarReducer from "@/redux/v1/features/templateCalendar";
-import templateOptionReducer from "@/redux/v1/features/templateOption";
-import userCalendarsReducer from "@/redux/v1/features/userCalendars";
-import eventModalReducer from "@/redux/v1/ui/eventModal";
-import storyModalReducer from "@/redux/v1/ui/storyModal";
-import stepReducer from "@/redux/v1/ui/step";
-import previewModalReducer from "@/redux/v1/ui/previewModal";
+import userReducer from "~/src/redux/v1/features/user";
+import templateCalendarReducer from "~/src/redux/v1/features/templateCalendar";
+import templateOptionReducer from "~/src/redux/v1/features/templateOption";
+import userCalendarsReducer from "~/src/redux/v1/features/userCalendars";
+import eventModalReducer from "~/src/redux/v1/ui/eventModal";
+import storyModalReducer from "~/src/redux/v1/ui/storyModal";
+import stepReducer from "~/src/redux/v1/ui/step";
+import previewModalReducer from "~/src/redux/v1/ui/previewModal";
 
 // V2
-import { calendarApi } from "@/redux/v2/services/calendarApi";
-import stepReducerV2 from "@/redux/v2/stores/ui/step";
-import saveModalReducerV2 from "@/redux/v2/stores/ui/saveModal";
-import selectedTabReducerV2 from "@/redux/v2/stores/features/selectedTab";
+import { calendarApi } from "~/src/redux/v2/services/calendarApi";
+import stepReducerV2 from "~/src/redux/v2/stores/ui/step";
+import saveModalReducerV2 from "~/src/redux/v2/stores/ui/saveModal";
+import selectedTabReducerV2 from "~/src/redux/v2/stores/features/selectedTab";
 
 const uiReducer = combineReducers({
   storyModal: storyModalReducer,

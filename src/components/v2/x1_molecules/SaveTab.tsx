@@ -1,5 +1,5 @@
-import { CalendarTab } from "@/components/v2/x0_atoms/CalendarTab";
-import { useSaveModal } from "@/hooks/v2/useSaveModal";
+import { CalendarTab } from "~/src/components/v2/x0_atoms/CalendarTab";
+import { useSaveModal } from "~/src/hooks/v2/useSaveModal";
 
 export const SaveTab = () => {
   const openModal = useSaveModal();

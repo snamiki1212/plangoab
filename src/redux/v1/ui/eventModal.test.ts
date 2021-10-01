@@ -1,4 +1,4 @@
-import { toStr } from "@/testHelpers/index";
+import { toStr } from "~/src/testHelpers/index";
 import reducer, {
   pushAction,
   popAction,
@@ -6,9 +6,9 @@ import reducer, {
   selectEventModal,
   selectIsOpen,
 } from "./eventModal";
-import { RootState } from "@/redux/rootReducer";
-import { eventModalFactory } from "@/testHelpers/v1/factories/redux/eventModal";
-import { calendarFactory } from "@/testHelpers/v1/factories/core/calendar";
+import { RootState } from "~/src/redux/rootReducer";
+import { eventModalFactory } from "~/src/testHelpers/v1/factories/redux/eventModal";
+import { calendarFactory } from "~/src/testHelpers/v1/factories/core/calendar";
 
 type EventModal = ReturnType<typeof eventModalFactory.build>;
 type Calendar = ReturnType<typeof calendarFactory.build>;

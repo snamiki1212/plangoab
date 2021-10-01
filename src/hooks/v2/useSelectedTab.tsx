@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   selectAction,
   selectedStoryId,
-} from "@/redux/v2/stores/features/selectedTab";
+} from "~/src/redux/v2/stores/features/selectedTab";
 
 export const useSelectedTab = () => {
   const dispatch = useDispatch();

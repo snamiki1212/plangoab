@@ -1,7 +1,10 @@
-import { renderYYYYMMfromStr } from "@/lib/date";
-import { uuid } from "@/lib/uuid";
-import { BaseEvent, initEvent } from "@/core/v1/event/BaseEvent";
-import { BaseResource, initResource } from "@/core/v1/resource/BaseResource";
+import { renderYYYYMMfromStr } from "~/src/lib/date";
+import { uuid } from "~/src/lib/uuid";
+import { BaseEvent, initEvent } from "~/src/core/v1/event/BaseEvent";
+import {
+  BaseResource,
+  initResource,
+} from "~/src/core/v1/resource/BaseResource";
 
 export type BaseStory = {
   id: string;

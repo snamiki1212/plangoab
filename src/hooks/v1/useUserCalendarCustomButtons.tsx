@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { useUserCalendar } from "@/hooks/v1/useUserCalendar";
-import { useStory } from "@/hooks/v1/useStory";
+import { useUserCalendar } from "~/src/hooks/v1/useUserCalendar";
+import { useStory } from "~/src/hooks/v1/useStory";
 
 export const ADD_STORY_BUTTON = "ADD_STORY_BUTTON";
 export const REMOVE_CALENDAR_BUTTON = "REMOVE_CALENDAR_BUTTON";

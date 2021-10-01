@@ -1,6 +1,6 @@
 import { EventInput } from "@fullcalendar/react";
-import { uuid } from "@/lib/uuid";
-import { DEPRECATED_convertDateToIso, convertUpdateFC } from "@/lib/date";
+import { uuid } from "~/src/lib/uuid";
+import { DEPRECATED_convertDateToIso, convertUpdateFC } from "~/src/lib/date";
 
 export type BaseEvent = EventInput & {
   extendedProps: {

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { COLLABORATIONS } from "@/constants/collaborations";
+import { COLLABORATIONS } from "~/src/constants/collaborations";
 
 export function CollaborationsSection() {
   return (

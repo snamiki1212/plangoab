@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
-import { Animation1 } from "@/components/v1/atoms/Animation1";
+import { Animation1 } from "~/src/components/v1/atoms/Animation1";
 
 export function LpFeatureSection() {
   return (

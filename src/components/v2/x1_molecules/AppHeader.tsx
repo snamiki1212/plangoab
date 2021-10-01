@@ -1,14 +1,14 @@
 import Link from "next/link";
 import styled from "styled-components";
 import Button from "@mui/material/Button";
-import { ROUTES } from "@/constants/routes";
-import { LogoWithText } from "@/components/v2/x1_molecules/LogoWithText";
+import { ROUTES } from "~/src/constants/routes";
+import { LogoWithText } from "~/src/components/v2/x1_molecules/LogoWithText";
 
 // TODO: v1 to v2
-import { AboutModal } from "@/components/v1/organisms/AboutModal";
-import { TutorialModal } from "@/components/v1/organisms/TutorialModal";
-import { useModal } from "@/hooks/v1/useModal";
-import { useStepper } from "@/hooks/v1/useStepper";
+import { AboutModal } from "~/src/components/v1/organisms/AboutModal";
+import { TutorialModal } from "~/src/components/v1/organisms/TutorialModal";
+import { useModal } from "~/src/hooks/v1/useModal";
+import { useStepper } from "~/src/hooks/v1/useStepper";
 
 type Props = {
   renderHowTo?: boolean;

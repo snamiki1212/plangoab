@@ -5,8 +5,8 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
-import { PrivateCollegeCalendar } from "@/components/v1/organisms/PrivateCollegeCalendar";
-import { PublicCollegeCalendar } from "@/components/v1/organisms/PublicCollegeCalendar";
+import { PrivateCollegeCalendar } from "~/src/components/v1/organisms/PrivateCollegeCalendar";
+import { PublicCollegeCalendar } from "~/src/components/v1/organisms/PublicCollegeCalendar";
 
 function TabPanel({
   shouldShow,
