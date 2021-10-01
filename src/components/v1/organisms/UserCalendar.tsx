@@ -12,6 +12,11 @@ import { useResourceGroupLabelContentInUserCalendar } from "@/hooks/v1/useResour
 import { useStoryModal } from "@/hooks/v1/useStoryModal";
 import { useEventModal } from "@/hooks/v1/useEventModal";
 import { convertDateSelectArgToRange, convertUpdateFC } from "@/lib/date";
+import { normalizeCalendar } from "@/core/v1/normalize";
+import { useCreateCalendarMutation } from "@/redux/v2/services/calendarApi";
+import { PLANGOAB_LICENSE_KEY } from "@/constants/fullcalendar";
+import { useUser } from "@/hooks/v1/useUser";
+import { uuid } from "@/lib/uuid";
 
 const headerToolbar = {
   left: `${ADD_STORY_BUTTON},${REMOVE_CALENDAR_BUTTON}`,
@@ -23,6 +28,7 @@ const previewConfig = { height: 3000 } as const;
 const nonPreviewConfig = { height: 600 } as const;
 
 type Props = { isPreviewMode?: boolean };
+
 export function UserCalendar({ isPreviewMode = false }: Props) {
   const { push: pushStoryModal } = useStoryModal();
   const { push: pushEventModal } = useEventModal();
@@ -103,25 +109,27 @@ export function UserCalendar({ isPreviewMode = false }: Props) {
   const config = isPreviewMode ? previewConfig : nonPreviewConfig;
 
   return (
-    <CalendarBase
-      events={events}
-      resources={resources}
-      // click event
-      eventClick={click}
-      // select empty space
-      selectable={true}
-      select={select}
-      // drag or resize event
-      editable={true}
-      eventResize={updateEvent}
-      eventDrop={updateEvent}
-      // etc
-      initialDate={"2020-06-01"} // TODO: change dynamically
-      resourceGroupLabelContent={resourceGroupLabelContent}
-      customButtons={customButtons}
-      headerToolbar={headerToolbar}
-      resourcesInitiallyExpanded
-      {...config}
-    />
+    <>
+      <CalendarBase
+        events={events}
+        resources={resources}
+        // click event
+        eventClick={click}
+        // select empty space
+        selectable={true}
+        select={select}
+        // drag or resize event
+        editable={true}
+        eventResize={updateEvent}
+        eventDrop={updateEvent}
+        // etc
+        initialDate={"2020-06-01"} // TODO: change dynamically
+        resourceGroupLabelContent={resourceGroupLabelContent}
+        customButtons={customButtons}
+        headerToolbar={headerToolbar}
+        resourcesInitiallyExpanded
+        {...config}
+      />
+    </>
   );
 }

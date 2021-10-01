@@ -1,7 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { Deserializer } from "jsonapi-serializer";
-
-const deserializer = new Deserializer({});
+import { deserializer as calendarListDeserializer } from "@/redux/v2/serializer/calendarList";
 
 export const calendarApi = createApi({
   reducerPath: "calendarApi",
@@ -14,14 +12,26 @@ export const calendarApi = createApi({
         url: "calendars",
       }),
       transformResponse: (response) => {
-        const deserialized = deserializer.deserialize(response, (err, data) => {
-          if (err) throw new Error(`Invalid when to transformResponse: ${err}`);
-          return data;
-        });
+        const deserialized = calendarListDeserializer.deserialize(
+          response,
+          (err, data) => {
+            if (err)
+              throw new Error(`Invalid when to transformResponse: ${err}`);
+            return data;
+          }
+        );
         return deserialized;
       },
+    }),
+    createCalendar: builder.mutation<any, any>({
+      query: ({ id, ...params }) => ({
+        url: `calendars`,
+        method: "POST",
+        body: params,
+      }),
     }),
   }),
 });
 
-export const { useFetchCalendarsQuery } = calendarApi;
+export const { useFetchCalendarsQuery, useCreateCalendarMutation } =
+  calendarApi;

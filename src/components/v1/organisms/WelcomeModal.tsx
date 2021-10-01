@@ -16,6 +16,67 @@ import { useUser } from "@/hooks/v1/useUser";
 import { AdvancedOptions } from "@/components/v1/organisms/AdvancedOptions";
 import { useTemplateOptions } from "@/hooks/v1/useTemplateOptions";
 
+type PresenterProps = {
+  isOpen: boolean;
+  birthday: string;
+  onDateChange: (date: Date | null) => void;
+  onFinish: () => void;
+};
+
+export const Presenter: React.VFC<PresenterProps> = ({
+  isOpen,
+  birthday,
+  onDateChange,
+  onFinish,
+}) => {
+  return (
+    <Dialog open={isOpen}>
+      <DialogTitle>
+        <Title>Welcome to Plangoab🐱</Title>
+      </DialogTitle>
+      <DialogContent>
+        <Text>
+          <p>
+            hi 👋
+            <br />
+            <br />
+            Plangoab helps you to create awesome plan to go abroad!
+            <br />
+            <br />
+            Let's input your birthday and create your plans✈️
+          </p>
+          <InputContainer>
+            <Avatar alt="you" />
+            <DatePicker
+              openTo="year"
+              label="Date of birth"
+              renderInput={(params) => <TextField {...params} />}
+              views={["year", "month", "day"]}
+              value={birthday}
+              onChange={onDateChange}
+            />
+          </InputContainer>
+          <ButtonsContainer>
+            <Button
+              onClick={onFinish}
+              variant="contained"
+              color="primary"
+              style={{ textTransform: "none" }}
+            >
+              ✈️Create Calendar
+            </Button>
+            <AdvancedOptions />
+          </ButtonsContainer>
+        </Text>
+      </DialogContent>
+      <Divider />
+      <DialogActions>
+        <PolicyExplanation />
+      </DialogActions>
+    </Dialog>
+  );
+};
+
 export function WelcomeModal() {
   const { isAlreadyCreated: shouldSkipIntroFlow } = useUserCalendar();
   const { isOpen, close } = useModal(!shouldSkipIntroFlow);
@@ -41,50 +102,12 @@ export function WelcomeModal() {
   );
 
   return (
-    <Dialog open={isOpen}>
-      <DialogTitle>
-        <Title>Welcome to Plangoab🐱</Title>
-      </DialogTitle>
-      <DialogContent>
-        <Text>
-          <p>
-            hi 👋
-            <br />
-            <br />
-            Plangoab helps you to create awesome plan to go abroad!
-            <br />
-            <br />
-            Let's input your birthday and create your plans✈️
-          </p>
-          <InputContainer>
-            <Avatar alt="you" />
-            <DatePicker
-              openTo="year"
-              label="Date of birth"
-              renderInput={(params) => <TextField {...params} />}
-              views={["year", "month", "day"]}
-              value={birth}
-              onChange={handleDateChange}
-            />
-          </InputContainer>
-          <ButtonsContainer>
-            <Button
-              onClick={handleFinish}
-              variant="contained"
-              color="primary"
-              style={{ textTransform: "none" }}
-            >
-              ✈️Create Calendar
-            </Button>
-            <AdvancedOptions />
-          </ButtonsContainer>
-        </Text>
-      </DialogContent>
-      <Divider />
-      <DialogActions>
-        <PolicyExplanation />
-      </DialogActions>
-    </Dialog>
+    <Presenter
+      birthday={birth}
+      isOpen={isOpen}
+      onFinish={handleFinish}
+      onDateChange={handleDateChange}
+    />
   );
 }
 

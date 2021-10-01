@@ -6,7 +6,10 @@
       "dom.iterable",
       "esnext"
     ],
-    "types": ["cypress", "@testing-library/cypress"],
+    "types": [
+      "cypress",
+      "@testing-library/cypress"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -22,15 +25,33 @@
     "noFallthroughCasesInSwitch": true,
     "baseUrl": ".",
     "paths": {
-      "@/components/*": ["src/components/*"],
-      "@/constants/*": ["src/constants/*"],
-      "@/core/*": ["src/core/*"],
-      "@/hooks/*": ["src/hooks/*"],
-      "@/lib/*": ["src/lib/*"],
-      "@/providers/*": ["src/providers/*"],
-      "@/redux/*": ["src/redux/*"],
-      "@/styles/*": ["src/styles/*"],
-      "@/testHelpers/*": ["src/testHelpers/*"]
+      "@/components/*": [
+        "src/components/*"
+      ],
+      "@/constants/*": [
+        "src/constants/*"
+      ],
+      "@/core/*": [
+        "src/core/*"
+      ],
+      "@/hooks/*": [
+        "src/hooks/*"
+      ],
+      "@/lib/*": [
+        "src/lib/*"
+      ],
+      "@/providers/*": [
+        "src/providers/*"
+      ],
+      "@/redux/*": [
+        "src/redux/*"
+      ],
+      "@/styles/*": [
+        "src/styles/*"
+      ],
+      "@/testHelpers/*": [
+        "src/testHelpers/*"
+      ]
     }
   },
   "include": [

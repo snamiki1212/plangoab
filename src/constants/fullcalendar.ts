@@ -1,3 +1,6 @@
+/************************
+ * CONSTANT NAME
+ ************************/
 // field name
 export const FIELD = "FIELD";
 
@@ -47,14 +50,6 @@ const resourceConfigs = {
   resourceOrder: NAME_OF_ORDER,
 } as const;
 
-const styleConfigs = {
-  // NOTE: if no height props, another calendar after opening tab would become 0 height
-  height: 600,
-
-  // NOTE: Because of capture feature. When to open preview page, need this setting.
-  resourceAreaWidth: "250px",
-};
-
 const resourceAreaColumns = [
   {
     field: FIELD,
@@ -70,7 +65,6 @@ export const FULL_CALENDAR_CONFIGS = {
   ...schedulerLicenseKey,
   ...nowIndicator,
   ...resourceConfigs,
-  ...styleConfigs,
 } as const;
 
 /************************
@@ -281,3 +275,8 @@ export const EVENTS = {
     },
   },
 };
+
+/************************
+ * KEY
+ ************************/
+export const PLANGOAB_LICENSE_KEY = "freekey";

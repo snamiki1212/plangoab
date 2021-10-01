@@ -1,4 +1,4 @@
-import { CalendarNewPage } from "@/components/v2/x0_mount/CalendarNewPage";
+import { CalendarNewPage } from "@/components/v2/x3_pages/CalendarNewPage";
 
 const Page = () => {
   return <CalendarNewPage />;

@@ -21,7 +21,7 @@ export type NormalizedUserCalendar = {
 // Story
 export type NormalizedStory = {
   id: string;
-  name: string;
+  title: string;
   resources: NormalizedResource[];
 };
 
@@ -36,7 +36,7 @@ const normalizeStory = (obj: BaseStory): NormalizedStory => {
   const resources = normalizeResourcesList(obj.resources, obj.events);
   return {
     id: obj.id,
-    name: obj.name,
+    title: obj.name,
     resources,
   };
 };
@@ -72,8 +72,8 @@ type NormalizedEvent = {
   id: string;
   title: string;
   description: string;
-  start: string;
-  end: string;
+  startedAt: string;
+  endedAt: string;
   backgroundColor?: string;
 };
 const normalizeEventsList = (obj: BaseEvent[]): NormalizedEvent[] =>
@@ -83,8 +83,8 @@ const normalizeEvent = (obj: BaseEvent): NormalizedEvent => ({
   id: obj.id,
   title: obj.title,
   description: obj.extendedProps?.description ?? "",
-  start: obj.start as string,
-  end: obj.end as string,
+  startedAt: obj.start as string,
+  endedAt: obj.end as string,
   // options
   backgroundColor: obj.backgroundColor,
 });

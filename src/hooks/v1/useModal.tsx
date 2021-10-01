@@ -1,5 +1,6 @@
 import React from "react";
 
+// TODO: rename useToggle
 export const useModal = (init?: boolean) => {
   const [isOpen, setIsOpen] = React.useState(!!init);
 
