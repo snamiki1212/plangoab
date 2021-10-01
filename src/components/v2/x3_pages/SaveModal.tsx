@@ -37,10 +37,10 @@ export const SaveModal: React.VFC = () => {
 
   const save = useSave();
 
-  const handleSave = () => {
+  const handleSave = useCallback(() => {
     save();
     toggle();
-  };
+  }, [save, toggle]);
 
   return (
     <Dialog onClose={toggle} open={isOpen}>
