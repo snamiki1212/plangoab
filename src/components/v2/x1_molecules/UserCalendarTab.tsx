@@ -58,11 +58,9 @@ export const UserCalendarTab: React.VFC<Props> = ({ story }) => {
       <CalendarTab
         title={
           <Inner>
+            <Icon onClick={onClickEdit}>☰</Icon>
             {story.name}
-            <Flex>
-              <Icon onClick={onClickEdit}>📝</Icon>
-              <Icon onClick={onClickDelete}>×</Icon>
-            </Flex>
+            <Icon onClick={onClickDelete}>×</Icon>
           </Inner>
         }
         selected={selected}
@@ -72,15 +70,11 @@ export const UserCalendarTab: React.VFC<Props> = ({ story }) => {
   );
 };
 
-const Flex = styled.div`
+const Inner = styled.div`
+  justify-content: space-between;
   display: flex;
   flex-direction: row;
-  gap: 0.4rem;
-`;
-
-const Inner = styled(Flex)`
-  justify-content: space-between;
-  gap: 1rem;
+  gap: 0.7rem;
 `;
 
 const Icon = styled.div`

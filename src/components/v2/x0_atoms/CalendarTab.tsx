@@ -20,7 +20,7 @@ export const CalendarTab: React.VFC<Props> = ({
 
 const Container = styled.div<{ selected: boolean }>`
   border-radius: 0.5rem 0.5rem 0px 0px;
-  background-color: ${({ selected }) => (selected ? "gray" : "#eeeeee")};
+  background-color: ${({ selected }) => (selected ? "lightgray" : "#f2f2f2")};
   padding: 0.2rem 1.2rem;
   font-family: var(--font-text1);
   font-weight: 700;
