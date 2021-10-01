@@ -40,12 +40,12 @@ const uiReducerV2 = combineReducers({
 });
 
 const V2Reducer = combineReducers({
-  [calendarApi.reducerPath]: calendarApi.reducer,
   ui: uiReducerV2,
 });
 
 const rootReducer = combineReducers({
   ...V1,
+  [calendarApi.reducerPath]: calendarApi.reducer, // TODO: this line should move to V2 reducer
   v2: V2Reducer,
 });
 
