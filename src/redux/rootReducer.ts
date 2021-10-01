@@ -1,5 +1,6 @@
 import { combineReducers } from "@reduxjs/toolkit";
 
+// V1
 import userReducer from "@/redux/v1/features/user";
 import templateCalendarReducer from "@/redux/v1/features/templateCalendar";
 import templateOptionReducer from "@/redux/v1/features/templateOption";
@@ -9,7 +10,9 @@ import storyModalReducer from "@/redux/v1/ui/storyModal";
 import stepReducer from "@/redux/v1/ui/step";
 import previewModalReducer from "@/redux/v1/ui/previewModal";
 
+// V2
 import { calendarApi } from "@/redux/v2/services/calendarApi";
+import stepReducerV2 from "@/redux/v2/stores/ui/step";
 
 const uiReducer = combineReducers({
   storyModal: storyModalReducer,
@@ -30,8 +33,13 @@ const V1 = {
   ui: uiReducer,
 };
 
+const uiReducerV2 = combineReducers({
+  step: stepReducerV2,
+});
+
 const V2Reducer = combineReducers({
   [calendarApi.reducerPath]: calendarApi.reducer,
+  ui: uiReducerV2,
 });
 
 const rootReducer = combineReducers({
