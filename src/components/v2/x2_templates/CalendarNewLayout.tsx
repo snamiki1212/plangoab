@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 type Props = {
   header: React.ReactNode;
   body: React.ReactNode;

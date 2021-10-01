@@ -3,7 +3,7 @@ import styled from "styled-components";
 type Props = {
   title: string | React.ReactNode;
   selected?: boolean;
-  onClick: () => void;
+  onClick?: () => void;
 };
 
 export const CalendarTab: React.VFC<Props> = ({

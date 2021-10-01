@@ -2,10 +2,10 @@ import styled from "styled-components";
 
 import { useSelectTabInitially } from "@/hooks/v2/useSelectTabInitially";
 import { UserCalendarTab } from "@/components/v2/x1_molecules/UserCalendarTab";
+import { AddCalendarTab } from "@/components/v2/x1_molecules/AddCalendarTab";
 
 // TODO: v1 to v2
 import { useUserCalendar } from "@/hooks/v1/useUserCalendar";
-import { AddCalendarTab } from "@/components/v2/x1_molecules/AddCalendarTab";
 
 export const UserCalendarTabsList = () => {
   useSelectTabInitially();

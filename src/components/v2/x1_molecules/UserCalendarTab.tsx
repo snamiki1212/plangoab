@@ -10,7 +10,6 @@ import { CalendarTab } from "@/components/v2/x0_atoms/CalendarTab";
 
 // TODO: v1 to v2
 import { useStoryModal } from "@/hooks/v1/useStoryModal";
-import { selectStoryModal, selectStory } from "@/redux/v1/ui/storyModal";
 import { useStory } from "@/hooks/v1/useStory";
 
 const useHandleEdit = (story: BaseStory) => {

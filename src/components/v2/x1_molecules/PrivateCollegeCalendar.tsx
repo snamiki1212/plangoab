@@ -1,5 +1,7 @@
 import React from "react";
 import { CollegeCalendarBase } from "@/components/v2/x1_molecules/CollegeCalendarBase";
+
+// TODO: v1 to v2
 import { usePrivateCollegeCalendar } from "@/hooks/v1/usePrivateCollegeCalendar";
 import { useUser } from "@/hooks/v1/useUser";
 import { useTemplateOptions } from "@/hooks/v1/useTemplateOptions";
