@@ -28,7 +28,7 @@ const Container = styled.div<{ selected: boolean }>`
   transition: 0.5s;
   &:hover {
     transition: 0.5s;
-    background-color: lightblue;
+    background-color: lightcyan;
     cursor: pointer;
   }
 `;
