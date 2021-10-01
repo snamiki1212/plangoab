@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { useSelectTabInitially } from "@/hooks/v2/useSelectTabInitially";
+import { useSelectTab } from "@/hooks/v2/useSelectTab";
 import { UserCalendarTab } from "@/components/v2/x1_molecules/UserCalendarTab";
 import { AddCalendarTab } from "@/components/v2/x1_molecules/AddCalendarTab";
 
@@ -8,7 +8,7 @@ import { AddCalendarTab } from "@/components/v2/x1_molecules/AddCalendarTab";
 import { useUserCalendar } from "@/hooks/v1/useUserCalendar";
 
 export const UserCalendarTabsList = () => {
-  useSelectTabInitially();
+  useSelectTab();
   const { stories } = useUserCalendar();
 
   return (
