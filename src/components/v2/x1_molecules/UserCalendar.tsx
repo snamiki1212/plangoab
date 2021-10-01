@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { convertUpdateFC } from "@/lib/date";
 import { EventClickArg } from "@fullcalendar/react";
 import { CalendarBase } from "@/components/v2/x0_atoms/CalendarBase";
+import { useHideCalendarHeader } from "@/hooks/v2/useHideCalendarHeader";
 // TODO: v1 to v2
 import { useEvent } from "@/hooks/v1/useEvent";
 import { useUserCalendar } from "@/hooks/v1/useUserCalendar";
@@ -102,6 +103,7 @@ const useRGLC = () => {
 };
 
 export function UserCalendar() {
+  useHideCalendarHeader();
   const { events, resources, select } = useUserCalendar();
   const resourceGroupLabelContent = useRGLC();
   const updateEvent = useHandleUpdateEvent();
