@@ -15,13 +15,11 @@ export function UserCalendarSection() {
   const { pop: popEventModal, isOpen: isOpenEventModal } = useEventModal();
   return (
     <>
-      <Box style={{ height: "100vh" }}>
-        <Paper elevation={8} style={{ height: "100%" }}>
-          <CalendarContainer>
-            <UserCalendarTabSection />
-            <UserCalendar />
-          </CalendarContainer>
-        </Paper>
+      <Box style={{ height: "90vh" }}>
+        <CalendarContainer>
+          <UserCalendarTabSection />
+          <UserCalendar />
+        </CalendarContainer>
       </Box>
 
       {/* Modal */}
@@ -32,6 +30,5 @@ export function UserCalendarSection() {
 }
 
 const CalendarContainer = styled.div`
-  padding: 1rem 1.5rem;
   height: 100%;
 `;
