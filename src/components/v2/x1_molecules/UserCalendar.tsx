@@ -1,22 +1,19 @@
 import React from "react";
-import { CalendarBase } from "@/components/v1/atoms/CalendarBase";
-import { useEvent } from "@/hooks/v1/useEvent";
-import { useUserCalendarCustomButtons } from "@/hooks/v2/useUserCalendarCustomButtons";
+import { convertUpdateFC } from "@/lib/date";
 import { EventClickArg } from "@fullcalendar/react";
+import { CalendarBase } from "@/components/v2/x0_atoms/CalendarBase";
+// TODO: v1 to v2
+import { useEvent } from "@/hooks/v1/useEvent";
 import { useUserCalendar } from "@/hooks/v1/useUserCalendar";
 import { useResourceGroupLabelContentInUserCalendar } from "@/hooks/v1/useResourceGroupLabelContentInUserCalendar";
 import { useStoryModal } from "@/hooks/v1/useStoryModal";
 import { useEventModal } from "@/hooks/v1/useEventModal";
-import { convertUpdateFC } from "@/lib/date";
 
 const headerToolbar = {
   left: "",
   center: "",
   right: "",
 } as const;
-
-const previewConfig = { height: 3000 } as const;
-const nonPreviewConfig = { height: 600 } as const;
 
 type Props = { isPreviewMode?: boolean };
 
@@ -95,8 +92,6 @@ export function UserCalendar({ isPreviewMode = false }: Props) {
     [updateById]
   );
 
-  const config = isPreviewMode ? previewConfig : nonPreviewConfig;
-
   // const { birth } = useUser();
   // const calendarId = React.useMemo(() => uuid(), []);
   // const normalized = normalizeCalendar({ id: calendarId, stories });
@@ -138,7 +133,6 @@ export function UserCalendar({ isPreviewMode = false }: Props) {
         resourceGroupLabelContent={resourceGroupLabelContent}
         headerToolbar={headerToolbar}
         resourcesInitiallyExpanded
-        {...config}
       />
     </>
   );
