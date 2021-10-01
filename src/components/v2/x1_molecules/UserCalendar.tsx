@@ -112,17 +112,12 @@ export function UserCalendar() {
   const updateEvent = useHandleUpdateEvent();
   const clickEvent = useHandleClickEvent();
 
-  const [selectedStory, events, resources] = useMemo(() => {
+  const [events, resources] = useMemo(() => {
     const story = stories.find((story) => story.id === selectedStoryId);
-    const events = story?.events;
-    const resources = story?.resources;
-    return [story, events, resources] as const;
+    const events = story?.events ?? [];
+    const resources = story?.resources ?? [];
+    return [events, resources] as const;
   }, [stories, selectedStoryId]);
-
-  if (!selectedStory) {
-    console.warn("Cannot find selected story.");
-    return <></>;
-  }
 
   return (
     <CalendarBase
@@ -139,9 +134,10 @@ export function UserCalendar() {
       eventDrop={updateEvent}
       // etc
       initialDate={"2020-06-01"} // TODO: change dynamically
-      resourceGroupLabelContent={resourceGroupLabelContent}
+      // resourceGroupLabelContent={resourceGroupLabelContent}
       headerToolbar={headerToolbar}
       resourcesInitiallyExpanded
+      resourceGroupField={undefined}
     />
   );
 }
