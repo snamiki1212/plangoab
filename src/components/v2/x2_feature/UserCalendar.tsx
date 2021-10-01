@@ -1,27 +1,18 @@
 import React from "react";
 import { CalendarBase } from "@/components/v1/atoms/CalendarBase";
 import { useEvent } from "@/hooks/v1/useEvent";
-import {
-  useUserCalendarCustomButtons,
-  ADD_STORY_BUTTON,
-  REMOVE_CALENDAR_BUTTON,
-} from "@/hooks/v1/useUserCalendarCustomButtons";
+import { useUserCalendarCustomButtons } from "@/hooks/v2/useUserCalendarCustomButtons";
 import { EventClickArg } from "@fullcalendar/react";
 import { useUserCalendar } from "@/hooks/v1/useUserCalendar";
 import { useResourceGroupLabelContentInUserCalendar } from "@/hooks/v1/useResourceGroupLabelContentInUserCalendar";
 import { useStoryModal } from "@/hooks/v1/useStoryModal";
 import { useEventModal } from "@/hooks/v1/useEventModal";
-import { convertDateSelectArgToRange, convertUpdateFC } from "@/lib/date";
-import { normalizeCalendar } from "@/core/v1/normalize";
-import { useCreateCalendarMutation } from "@/redux/v2/services/calendarApi";
-import { PLANGOAB_LICENSE_KEY } from "@/constants/fullcalendar";
-import { useUser } from "@/hooks/v1/useUser";
-import { uuid } from "@/lib/uuid";
+import { convertUpdateFC } from "@/lib/date";
 
 const headerToolbar = {
-  left: `${ADD_STORY_BUTTON},${REMOVE_CALENDAR_BUTTON}`,
+  left: "",
   center: "",
-  right: "prev,next",
+  right: "",
 } as const;
 
 const previewConfig = { height: 3000 } as const;
@@ -44,7 +35,7 @@ export function UserCalendar({ isPreviewMode = false }: Props) {
     useResourceGroupLabelContentInUserCalendar({
       createOpenHandle: createOpenStoryHandle,
     });
-  const { events, resources, select, stories } = useUserCalendar();
+  const { events, resources, select } = useUserCalendar();
 
   const click = React.useCallback(
     (info: EventClickArg) => {
@@ -104,8 +95,6 @@ export function UserCalendar({ isPreviewMode = false }: Props) {
     [updateById]
   );
 
-  const { customButtons } = useUserCalendarCustomButtons();
-
   const config = isPreviewMode ? previewConfig : nonPreviewConfig;
 
   // const { birth } = useUser();
@@ -147,7 +136,6 @@ export function UserCalendar({ isPreviewMode = false }: Props) {
         // etc
         initialDate={"2020-06-01"} // TODO: change dynamically
         resourceGroupLabelContent={resourceGroupLabelContent}
-        customButtons={customButtons}
         headerToolbar={headerToolbar}
         resourcesInitiallyExpanded
         {...config}
