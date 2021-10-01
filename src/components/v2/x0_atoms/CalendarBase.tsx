@@ -3,7 +3,7 @@ import FullCalendarLib from "@fullcalendar/react";
 import resourceTimelinePlugin from "@fullcalendar/resource-timeline";
 import interactionPlugin from "@fullcalendar/interaction";
 import { FULL_CALENDAR_CONFIGS } from "@/constants/fullcalendar";
-import { eventContent } from "@/components/v2/x3_element/eventContent";
+import { eventContent } from "@/components/v2/x0_atoms/eventContent";
 
 const styleConfigs = {
   height: "100%",

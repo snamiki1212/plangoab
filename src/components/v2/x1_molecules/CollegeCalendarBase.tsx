@@ -1,10 +1,11 @@
 import React from "react";
-import { CalendarBase } from "@/components/v1/atoms/CalendarBase";
+import { useTutorial } from "@/hooks/v2/useTutorial";
+import { CalendarBase } from "@/components/v2/x0_atoms/CalendarBase";
+// TODO: v1 to v2
 import { useResourceGroupLabelContentInTemplateCalendar } from "@/hooks/v1/useResourceGroupLabelContentInTemplateCalendar";
 import { useStory } from "@/hooks/v1/useStory";
 import { BaseStory } from "@/core/v1/story/BaseStory";
 import { OPEN_OPTION_BUTTON } from "@/hooks/v1/useTemplateCustomButtons";
-import { useTutorial } from "@/hooks/v2/useTutorial";
 
 const configs = {
   selectable: false,

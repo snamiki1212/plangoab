@@ -1,5 +1,5 @@
 import Dialog from "@mui/material/Dialog";
-import { CollegeCalendarSection } from "@/components/v2/x2_feature/CollegeCalendarSection";
+import { CollegeCalendarSection } from "@/components/v2/x1_molecules/CollegeCalendarSection";
 
 type Props = { isOpen: boolean };
 

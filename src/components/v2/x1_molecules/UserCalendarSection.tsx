@@ -6,7 +6,7 @@ import { useStoryModal } from "@/hooks/v1/useStoryModal";
 import { useEventModal } from "@/hooks/v1/useEventModal";
 import { StoryEditModal } from "@/components/v1/molecules/StoryEditModal";
 import { EventEditModal } from "@/components/v1/molecules/EventEditModal";
-import { UserCalendar } from "@/components/v2/x2_feature/UserCalendar";
+import { UserCalendar } from "@/components/v2/x1_molecules/UserCalendar";
 
 export function UserCalendarSection() {
   const { pop: popStoryModal, isOpen: isOpenStoryModal } = useStoryModal();

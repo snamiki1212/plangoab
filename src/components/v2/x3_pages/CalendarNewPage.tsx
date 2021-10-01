@@ -1,7 +1,7 @@
 import { useSelectStepName, useTutorial } from "@/hooks/v2/useTutorial";
-import { UserCalendarSection } from "@/components/v2/x2_feature/UserCalendarSection";
-import { TemplateSelectionModal } from "@/components/v2/x0_mount/TemplateSelectionModal";
-import { WelcomeModal } from "@/components/v2/x0_mount/WelcomeModal";
+import { UserCalendarSection } from "@/components/v2/x1_molecules/UserCalendarSection";
+import { TemplateSelectionModal } from "@/components/v2/x3_pages/TemplateSelectionModal";
+import { WelcomeModal } from "@/components/v2/x3_pages/WelcomeModal";
 
 export function CalendarNewPage() {
   const { next: nextStep } = useTutorial();

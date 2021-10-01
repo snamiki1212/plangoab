@@ -1,14 +1,14 @@
 import React from "react";
-import { CollegeCalendarBase } from "@/components/v2/x2_feature/CollegeCalendarBase";
-import { usePublicCollegeCalendar } from "@/hooks/v1/usePublicCollegeCalendar";
+import { CollegeCalendarBase } from "@/components/v2/x1_molecules/CollegeCalendarBase";
+import { usePrivateCollegeCalendar } from "@/hooks/v1/usePrivateCollegeCalendar";
 import { useUser } from "@/hooks/v1/useUser";
 import { useTemplateOptions } from "@/hooks/v1/useTemplateOptions";
 import { useTemplateCustomButtons } from "@/hooks/v1/useTemplateCustomButtons";
 import { TemplateOptionModal } from "@/components/v1/molecules/TemplateOptionModal";
 
-export function PublicCollegeCalendar() {
+export function PrivateCollegeCalendar() {
   const { birth } = useUser();
-  const { resources, events, generate } = usePublicCollegeCalendar();
+  const { resources, events, generate } = usePrivateCollegeCalendar();
   const { options, withWorkingholiday } = useTemplateOptions();
   const { customButtons, close, isOpen } = useTemplateCustomButtons();
 
