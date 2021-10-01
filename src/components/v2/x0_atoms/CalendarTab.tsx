@@ -22,6 +22,8 @@ const Container = styled.div<{ selected: boolean }>`
   border-radius: 0.5rem 0.5rem 0px 0px;
   background-color: ${({ selected }) => (selected ? "gray" : "#eeeeee")};
   padding: 0.2rem 1.2rem;
+  font-family: var(--font-text1);
+  font-weight: 700;
 
   transition: 0.5s;
   &:hover {
