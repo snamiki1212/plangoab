@@ -18,7 +18,9 @@ export const useTutorial = () => {
     [dispatch]
   );
 
-  return { next, back, goto };
+  const gotoSelectionTemplate = useCallback(() => goto(1), [goto]);
+
+  return { next, back, gotoSelectionTemplate };
 };
 
 export const useSelectStepIdx = () => useSelector(selectStepIdx);
