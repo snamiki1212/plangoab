@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import { UserCalendar } from "@/components/v2/x1_molecules/UserCalendar";
+import { UserCalendarTabSection } from "@/components/v2/x1_molecules/UserCalendarTabSection";
 
 // TODO: v1 to v2
 import { useStoryModal } from "@/hooks/v1/useStoryModal";
@@ -17,6 +18,7 @@ export function UserCalendarSection() {
       <Box style={{ height: "100vh" }}>
         <Paper elevation={8} style={{ height: "100%" }}>
           <CalendarContainer>
+            <UserCalendarTabSection />
             <UserCalendar />
           </CalendarContainer>
         </Paper>

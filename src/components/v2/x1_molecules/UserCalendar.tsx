@@ -17,23 +17,41 @@ const headerToolbar = {
 
 type Props = { isPreviewMode?: boolean };
 
-export function UserCalendar({ isPreviewMode = false }: Props) {
-  const { push: pushStoryModal } = useStoryModal();
-  const { push: pushEventModal } = useEventModal();
+const useHandleUpdateEvent = () => {
+  const { updateById } = useEvent();
 
-  const createOpenStoryHandle = React.useCallback(
-    (idSet: { calendarId: string; storyId: string }) => () => {
-      pushStoryModal(idSet);
+  const updateEvent = React.useCallback(
+    (info: any) => {
+      if (!info.event || !info.event.extendedProps) {
+        return console.error("Invalid data. cannot find event data.");
+      }
+      const calendarId: string | undefined =
+        info.event.extendedProps?.calendarId;
+      const storyId: string | undefined = info.event.extendedProps?.storyId;
+      const eventId: string | undefined = info.event.id;
+      if (!calendarId)
+        return console.error(
+          "Invalid data. Cannot find calendarId in extendedProps"
+        );
+      if (!storyId)
+        return console.error(
+          "Invalid data. Cannot find storyId in extendedProps"
+        );
+      if (!eventId) return console.error("Invalid data. Cannot find eventId");
+
+      const [start, end] = convertUpdateFC(info.event.start, info.event.end);
+      const idSet = { calendarId, storyId, eventId };
+
+      const params = { start, end };
+      updateById(idSet, params);
     },
-    [pushStoryModal]
+    [updateById]
   );
+  return updateEvent;
+};
 
-  const { resourceGroupLabelContent } =
-    useResourceGroupLabelContentInUserCalendar({
-      createOpenHandle: createOpenStoryHandle,
-    });
-  const { events, resources, select } = useUserCalendar();
-
+const useHandleClickEvent = () => {
+  const { push: pushEventModal } = useEventModal();
   const click = React.useCallback(
     (info: EventClickArg) => {
       const calendarId = info.event.extendedProps.calendarId as
@@ -63,34 +81,31 @@ export function UserCalendar({ isPreviewMode = false }: Props) {
     },
     [pushEventModal]
   );
-  const { updateById } = useEvent();
-  const updateEvent = React.useCallback(
-    (info: any) => {
-      if (!info.event || !info.event.extendedProps) {
-        return console.error("Invalid data. cannot find event data.");
-      }
-      const calendarId: string | undefined =
-        info.event.extendedProps?.calendarId;
-      const storyId: string | undefined = info.event.extendedProps?.storyId;
-      const eventId: string | undefined = info.event.id;
-      if (!calendarId)
-        return console.error(
-          "Invalid data. Cannot find calendarId in extendedProps"
-        );
-      if (!storyId)
-        return console.error(
-          "Invalid data. Cannot find storyId in extendedProps"
-        );
-      if (!eventId) return console.error("Invalid data. Cannot find eventId");
+  return click;
+};
 
-      const [start, end] = convertUpdateFC(info.event.start, info.event.end);
-      const idSet = { calendarId, storyId, eventId };
+const useRGLC = () => {
+  const { push: pushStoryModal } = useStoryModal();
 
-      const params = { start, end };
-      updateById(idSet, params);
+  const createOpenStoryHandle = React.useCallback(
+    (idSet: { calendarId: string; storyId: string }) => () => {
+      pushStoryModal(idSet);
     },
-    [updateById]
+    [pushStoryModal]
   );
+
+  const { resourceGroupLabelContent } =
+    useResourceGroupLabelContentInUserCalendar({
+      createOpenHandle: createOpenStoryHandle,
+    });
+  return resourceGroupLabelContent;
+};
+
+export function UserCalendar() {
+  const { events, resources, select } = useUserCalendar();
+  const resourceGroupLabelContent = useRGLC();
+  const updateEvent = useHandleUpdateEvent();
+  const clickEvent = useHandleClickEvent();
 
   // const { birth } = useUser();
   // const calendarId = React.useMemo(() => uuid(), []);
@@ -120,7 +135,7 @@ export function UserCalendar({ isPreviewMode = false }: Props) {
         events={events}
         resources={resources}
         // click event
-        eventClick={click}
+        eventClick={clickEvent}
         // select empty space
         selectable={true}
         select={select}

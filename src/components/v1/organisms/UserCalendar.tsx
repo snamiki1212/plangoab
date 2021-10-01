@@ -44,7 +44,7 @@ export function UserCalendar({ isPreviewMode = false }: Props) {
     useResourceGroupLabelContentInUserCalendar({
       createOpenHandle: createOpenStoryHandle,
     });
-  const { events, resources, select, stories } = useUserCalendar();
+  const { events, resources, select } = useUserCalendar();
 
   const click = React.useCallback(
     (info: EventClickArg) => {
@@ -108,30 +108,8 @@ export function UserCalendar({ isPreviewMode = false }: Props) {
 
   const config = isPreviewMode ? previewConfig : nonPreviewConfig;
 
-  const { birth } = useUser();
-  const calendarId = React.useMemo(() => uuid(), []);
-  const normalized = normalizeCalendar({ id: calendarId, stories });
-
-  const [doCreateCalendar, { isLoading: isUpdating }] =
-    useCreateCalendarMutation();
-
-  const createCalendarApi = React.useCallback(
-    () =>
-      doCreateCalendar({
-        calendar: normalized,
-        birthday: birth,
-        licenseKey: PLANGOAB_LICENSE_KEY,
-      }),
-    [doCreateCalendar, normalized, birth]
-  );
-
   return (
     <>
-      {isUpdating ? (
-        "isUpdating"
-      ) : (
-        <button onClick={createCalendarApi}>POST</button>
-      )}
       <CalendarBase
         events={events}
         resources={resources}
