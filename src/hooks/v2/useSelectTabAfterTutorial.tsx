@@ -6,7 +6,7 @@ import { usePrevious } from "react-use";
 // TODO: v1 to v2
 import { useUserCalendar } from "~/src/hooks/v1/useUserCalendar";
 
-export const useSelectTab = () => {
+export const useSelectTabAfterTutorial = () => {
   const isFinished = useSelectIsFinished();
   const { stories } = useUserCalendar();
   const selectTab = useSelectedTab();
