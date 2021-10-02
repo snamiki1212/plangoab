@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { usePrevious } from "react-use";
 import { useFetchCalendarQuery } from "~/src/redux/v2/services/calendarApi";
 import { CalendarNewLayout } from "~/src/components/v2/x2_templates/CalendarNewLayout";
@@ -24,16 +24,13 @@ export const CalendarDetailPage: React.VFC<Props> = ({ calendarId }) => {
 
   const { replace } = useUserCalendar();
 
-  const denormalized = denormalizeCalendar(calendar);
-  console.log({ calendar, denormalized });
+  const denormalized = useMemo(() => denormalizeCalendar(calendar), [calendar]);
 
   const prevCalendar = usePrevious(denormalized);
+
   useEffect(() => {
     const shouldInsertIntoReduxOnce = prevCalendar == undefined;
-    if (shouldInsertIntoReduxOnce) {
-      console.log("Replace");
-      replace(denormalized);
-    }
+    if (shouldInsertIntoReduxOnce) replace(denormalized);
   }, [denormalized, prevCalendar]);
 
   useSelectTabAfterFetch(isSuccess);
