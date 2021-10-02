@@ -14,7 +14,7 @@ export const UserCalendarTabsList = () => {
   return (
     <Container>
       {stories.map((story) => (
-        <UserCalendarTab story={story} />
+        <UserCalendarTab story={story} key={story.id} />
       ))}
       <AddCalendarTab />
     </Container>

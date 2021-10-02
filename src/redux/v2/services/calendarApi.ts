@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { deserializer as calendarListDeserializer } from "~/src/redux/v2/serializer/calendarList";
+import { deserializer as calendarDetailDeserializer } from "~/src/redux/v2/serializer/calendarDetail";
 
 export const calendarApi = createApi({
   reducerPath: "calendarApi",
@@ -16,7 +17,27 @@ export const calendarApi = createApi({
           response,
           (err, data) => {
             if (err)
-              throw new Error(`Invalid when to transformResponse: ${err}`);
+              throw new Error(
+                `Invalid deserialize calendar lsit when doing transformResponse: ${err}`
+              );
+            return data;
+          }
+        );
+        return deserialized;
+      },
+    }),
+    fetchCalendar: builder.query<any, any>({
+      query: (id: string) => ({
+        url: `calendars/${id}`,
+      }),
+      transformResponse: (response) => {
+        const deserialized = calendarDetailDeserializer.deserialize(
+          response,
+          (err, data) => {
+            if (err)
+              throw new Error(
+                `Invalid deserialize calendar detail when doing transformResponse: ${err}`
+              );
             return data;
           }
         );
@@ -33,5 +54,8 @@ export const calendarApi = createApi({
   }),
 });
 
-export const { useFetchCalendarsQuery, useCreateCalendarMutation } =
-  calendarApi;
+export const {
+  useFetchCalendarsQuery,
+  useCreateCalendarMutation,
+  useFetchCalendarQuery,
+} = calendarApi;

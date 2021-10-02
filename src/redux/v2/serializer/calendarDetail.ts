@@ -1,4 +1,4 @@
-import { Serializer, Deserializer } from "jsonapi-serializer";
+import { Deserializer } from "jsonapi-serializer";
 
 // export const serializer = new Serializer("calendars", {
 //   attributes: ["name", "stories"],
@@ -15,4 +15,4 @@ import { Serializer, Deserializer } from "jsonapi-serializer";
 //     },
 //   },
 // });
-export const deserializer = new Deserializer({});
+export const deserializer = new Deserializer({ keyForAttribute: "camelCase" });

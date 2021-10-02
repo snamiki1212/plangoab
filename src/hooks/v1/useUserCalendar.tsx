@@ -4,6 +4,7 @@ import { DateSelectArg } from "@fullcalendar/react";
 import { uuid } from "~/src/lib/uuid";
 import { createProfileStory } from "~/src/core/v1/story/ProfileStory/createProfileStory";
 import { initEvent } from "~/src/core/v1/event/BaseEvent";
+import { BaseCalendar } from "~/src/core/v1/calendar/BaseCalendar";
 import { createUserCalendar } from "~/src/core/v1/calendar/UserCalendar/createUserCalendar";
 import {
   updateCalendarsAction,
@@ -38,6 +39,13 @@ export const useUserCalendar = () => {
       });
       const _calendars = [_calendar];
       dispatch(updateCalendarsAction({ calendars: _calendars }));
+    },
+    [dispatch]
+  );
+
+  const replace = React.useCallback(
+    (calendar: BaseCalendar) => {
+      dispatch(updateCalendarsAction({ calendars: [calendar] }));
     },
     [dispatch]
   );
@@ -101,6 +109,7 @@ export const useUserCalendar = () => {
     init,
     select,
     remove,
+    replace,
 
     // params
     calendar,
