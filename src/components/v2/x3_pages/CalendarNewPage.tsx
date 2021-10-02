@@ -11,7 +11,7 @@ import { TemplateSelectionModal } from "~/src/components/v2/x3_pages/TemplateSel
 import { WelcomeModal } from "~/src/components/v2/x3_pages/WelcomeModal";
 import { SaveModal } from "~/src/components/v2/x3_pages/SaveModal";
 import { useLeavePageConfirm } from "~/src/hooks/v2/useLeavePageConfirm";
-import { useSelectTabAfterTutorial } from "~/src/hooks/v2/useSelectTabAfterTutorial";
+import { useSelectTabAfterTutorial } from "~/src/hooks/v2/useSelectTab";
 
 export function CalendarNewPage() {
   useLeavePageConfirm();
