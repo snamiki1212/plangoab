@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { convertUpdateFC } from "~/src/lib/date";
 import { EventClickArg } from "@fullcalendar/react";
-import { CalendarBase } from "~/src/components/v2/x0_atoms/CalendarBase";
+import { CalendarBase } from "~/src/components/v2/0a_atoms/CalendarBase";
 import { useHideCalendarHeader } from "~/src/hooks/v2/useHideCalendarHeader";
 import { useSelectTabOfStoryId } from "~/src/hooks/v2/useSelectedTab";
 // TODO: v1 to v2

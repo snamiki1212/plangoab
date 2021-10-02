@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { CalendarDetailPage } from "~/src/components/v2/x3_pages/CalendarDetailPage";
+import { CalendarDetailPage } from "~/src/components/v2/0d_pages/CalendarDetailPage";
 
 const Page = () => {
   const router = useRouter();

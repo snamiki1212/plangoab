@@ -3,8 +3,8 @@ import styled from "styled-components";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Paper from "@mui/material/Paper";
-import { PrivateCollegeCalendar } from "~/src/components/v2/x1_molecules/PrivateCollegeCalendar";
-import { PublicCollegeCalendar } from "~/src/components/v2/x1_molecules/PublicCollegeCalendar";
+import { PrivateCollegeCalendar } from "~/src/components/v2/0b_molecules/PrivateCollegeCalendar";
+import { PublicCollegeCalendar } from "~/src/components/v2/0b_molecules/PublicCollegeCalendar";
 
 function TabPanel({
   shouldShow,

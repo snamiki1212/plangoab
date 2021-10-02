@@ -1,6 +1,6 @@
 import React from "react";
 import { useTutorial } from "~/src/hooks/v2/useTutorial";
-import { CalendarBase } from "~/src/components/v2/x0_atoms/CalendarBase";
+import { CalendarBase } from "~/src/components/v2/0a_atoms/CalendarBase";
 // TODO: v1 to v2
 import { useResourceGroupLabelContentInTemplateCalendar } from "~/src/hooks/v1/useResourceGroupLabelContentInTemplateCalendar";
 import { useStory } from "~/src/hooks/v1/useStory";

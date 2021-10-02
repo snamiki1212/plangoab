@@ -1,9 +1,9 @@
 import { useEffect, useMemo } from "react";
 import { usePrevious } from "react-use";
 import { useFetchCalendarQuery } from "~/src/redux/v2/services/calendarApi";
-import { CalendarNewLayout } from "~/src/components/v2/x2_templates/CalendarNewLayout";
-import { AppHeader } from "~/src/components/v2/x1_molecules/AppHeader";
-import { UserCalendarSection } from "~/src/components/v2/x1_molecules/UserCalendarSection";
+import { CalendarNewLayout } from "~/src/components/v2/0c_templates/CalendarNewLayout";
+import { AppHeader } from "~/src/components/v2/0b_molecules/AppHeader";
+import { UserCalendarSection } from "~/src/components/v2/0b_molecules/UserCalendarSection";
 import { useSelectTabAfterFetch } from "~/src/hooks/v2/useSelectTab";
 
 // TODO: v1 to v2

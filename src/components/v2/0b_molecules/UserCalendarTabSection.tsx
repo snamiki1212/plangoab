@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { UserCalendarTabsList } from "~/src/components/v2/x1_molecules/UserCalendarTabsList";
-import { SaveTab } from "~/src/components/v2/x1_molecules/SaveTab";
+import { UserCalendarTabsList } from "~/src/components/v2/0b_molecules/UserCalendarTabsList";
+import { SaveTab } from "~/src/components/v2/0b_molecules/SaveTab";
 
 export const UserCalendarTabSection = () => {
   return (

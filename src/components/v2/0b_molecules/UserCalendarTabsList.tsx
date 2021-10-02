@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-import { UserCalendarTab } from "~/src/components/v2/x1_molecules/UserCalendarTab";
-import { AddCalendarTab } from "~/src/components/v2/x1_molecules/AddCalendarTab";
+import { UserCalendarTab } from "~/src/components/v2/0b_molecules/UserCalendarTab";
+import { AddCalendarTab } from "~/src/components/v2/0b_molecules/AddCalendarTab";
 
 // TODO: v1 to v2
 import { useUserCalendar } from "~/src/hooks/v1/useUserCalendar";

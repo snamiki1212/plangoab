@@ -4,12 +4,12 @@ import {
   useTutorial,
   useSelectIsFinished,
 } from "~/src/hooks/v2/useTutorial";
-import { UserCalendarSection } from "~/src/components/v2/x1_molecules/UserCalendarSection";
-import { CalendarNewLayout } from "~/src/components/v2/x2_templates/CalendarNewLayout";
-import { AppHeader } from "~/src/components/v2/x1_molecules/AppHeader";
-import { TemplateSelectionModal } from "~/src/components/v2/x3_pages/TemplateSelectionModal";
-import { WelcomeModal } from "~/src/components/v2/x3_pages/WelcomeModal";
-import { SaveModal } from "~/src/components/v2/x3_pages/SaveModal";
+import { UserCalendarSection } from "~/src/components/v2/0b_molecules/UserCalendarSection";
+import { CalendarNewLayout } from "~/src/components/v2/0c_templates/CalendarNewLayout";
+import { AppHeader } from "~/src/components/v2/0b_molecules/AppHeader";
+import { TemplateSelectionModal } from "~/src/components/v2/0d_pages/TemplateSelectionModal";
+import { WelcomeModal } from "~/src/components/v2/0d_pages/WelcomeModal";
+import { SaveModal } from "~/src/components/v2/0d_pages/SaveModal";
 import { useLeavePageConfirm } from "~/src/hooks/v2/useLeavePageConfirm";
 import { useSelectTabAfterTutorial } from "~/src/hooks/v2/useSelectTab";
 

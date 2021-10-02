@@ -2,7 +2,7 @@ import Link from "next/link";
 import styled from "styled-components";
 import Button from "@mui/material/Button";
 import { ROUTES } from "~/src/constants/routes";
-import { LogoWithText } from "~/src/components/v2/x1_molecules/LogoWithText";
+import { LogoWithText } from "~/src/components/v2/0b_molecules/LogoWithText";
 
 // TODO: v1 to v2
 import { AboutModal } from "~/src/components/v1/organisms/AboutModal";

@@ -6,7 +6,7 @@ import {
   useSelectTabOfStoryId,
 } from "~/src/hooks/v2/useSelectedTab";
 import { BaseStory } from "~/src/core/v1/story/BaseStory";
-import { CalendarTab } from "~/src/components/v2/x0_atoms/CalendarTab";
+import { CalendarTab } from "~/src/components/v2/0a_atoms/CalendarTab";
 
 // TODO: v1 to v2
 import { useStoryModal } from "~/src/hooks/v1/useStoryModal";

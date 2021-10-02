@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
-import { UserCalendar } from "~/src/components/v2/x1_molecules/UserCalendar";
-import { UserCalendarTabSection } from "~/src/components/v2/x1_molecules/UserCalendarTabSection";
+import { UserCalendar } from "~/src/components/v2/0b_molecules/UserCalendar";
+import { UserCalendarTabSection } from "~/src/components/v2/0b_molecules/UserCalendarTabSection";
 
 // TODO: v1 to v2
 import { useStoryModal } from "~/src/hooks/v1/useStoryModal";

@@ -1,4 +1,4 @@
-import { CalendarTab } from "~/src/components/v2/x0_atoms/CalendarTab";
+import { CalendarTab } from "~/src/components/v2/0a_atoms/CalendarTab";
 import { useSaveModal } from "~/src/hooks/v2/useSaveModal";
 
 export const SaveTab = () => {
