@@ -19,7 +19,7 @@ const slice = createSlice({
   },
 });
 
-export const selectIsOpen = (state: RootState) => state.ui.previewModal.isOpen;
+export const selectIsOpen = (state: RootState) => state.v2.ui.saveModal.isOpen;
 
 export const { toggle: toggleAction } = slice.actions;
 
