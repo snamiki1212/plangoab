@@ -1,4 +1,4 @@
-import { useFetchCalendarQuery } from "~/src/redux/v2/services/calendarApi";
+import { useFetchCalendarQuery } from "~/src/hooks/v2/useCalendarApi";
 import { CalendarUpsertLayout } from "~/src/components/v2/0c_templates/CalendarUpsertLayout";
 import { AppHeader } from "~/src/components/v2/0b_molecules/AppHeader";
 import { UserCalendarSection } from "~/src/components/v2/0b_molecules/UserCalendarSection";

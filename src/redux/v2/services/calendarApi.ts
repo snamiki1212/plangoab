@@ -53,9 +53,3 @@ export const calendarApi = createApi({
     }),
   }),
 });
-
-export const {
-  useFetchCalendarsQuery,
-  useCreateCalendarMutation,
-  useFetchCalendarQuery,
-} = calendarApi;

@@ -13,6 +13,7 @@ import previewModalReducer from "~/src/redux/v1/ui/previewModal";
 // V2
 import { calendarApi } from "~/src/redux/v2/services/calendarApi";
 import stepReducerV2 from "~/src/redux/v2/stores/ui/step";
+import navigationReducerV2 from "~/src/redux/v2/stores/ui/navigation";
 import saveModalReducerV2 from "~/src/redux/v2/stores/ui/saveModal";
 import selectedTabReducerV2 from "~/src/redux/v2/stores/features/selectedTab";
 
@@ -38,6 +39,7 @@ const V1 = {
 const uiReducerV2 = combineReducers({
   step: stepReducerV2,
   saveModal: saveModalReducerV2,
+  navigation: navigationReducerV2,
 });
 
 const featuresReducerV2 = combineReducers({
