@@ -1,11 +1,15 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { deserializer as calendarListDeserializer } from "~/src/redux/v2/serializer/calendarList";
 import { deserializer as calendarDetailDeserializer } from "~/src/redux/v2/serializer/calendarDetail";
+import { API_SERVER_DOMAIN } from "~/src/constants/app";
+
+const isDev = process.env.NODE_ENV === "development";
+const DOMAIN = isDev ? "http://127.0.0.1:3001" : API_SERVER_DOMAIN;
 
 export const calendarApi = createApi({
   reducerPath: "calendarApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://127.0.0.1:3001/api/v1/",
+    baseUrl: `${DOMAIN}/api/v1/`,
   }),
   endpoints: (builder) => ({
     fetchCalendars: builder.query<any, any>({
