@@ -1,4 +1,4 @@
-import { toStr } from "~/src/testHelpers/index";
+import { nameOf } from "~/src/testHelpers/index";
 import reducer, {
   pushAction,
   popAction,
@@ -25,13 +25,13 @@ const createRootState = ({
     features: { userCalendars: { calendars: calendars } },
   } as any as RootState);
 
-describe(toStr({ reducer }), () => {
+describe(nameOf({ reducer }), () => {
   it("can save init state", () => {
     const initialState = { event: null };
     expect(reducer(undefined, {} as any)).toEqual(initialState);
   });
 
-  describe(toStr({ pushAction }), () => {
+  describe(nameOf({ pushAction }), () => {
     it("can work when not to have prev state.", () => {
       const modal = eventModalFactory.build();
       const befState = { event: null };
@@ -40,7 +40,7 @@ describe(toStr({ reducer }), () => {
     });
   });
 
-  describe(toStr({ popAction }), () => {
+  describe(nameOf({ popAction }), () => {
     it("can work when to have prev state.", () => {
       const modal = eventModalFactory.build();
       const befState = { event: modal };
@@ -50,7 +50,7 @@ describe(toStr({ reducer }), () => {
   });
 });
 
-describe(toStr({ selectIsOpen }), () => {
+describe(nameOf({ selectIsOpen }), () => {
   it("should be false when to close.", () => {
     const rootState = createRootState({ eventModal: null });
     expect(selectIsOpen(rootState)).toBe(false);
@@ -63,7 +63,7 @@ describe(toStr({ selectIsOpen }), () => {
   });
 });
 
-describe(toStr({ selectEventModal }), () => {
+describe(nameOf({ selectEventModal }), () => {
   it("should exist when to open.", () => {
     const modal = eventModalFactory.build();
     const rootState = createRootState({ eventModal: modal });
@@ -77,7 +77,7 @@ describe(toStr({ selectEventModal }), () => {
   });
 });
 
-describe(toStr({ selectEvent }), () => {
+describe(nameOf({ selectEvent }), () => {
   const calendar = calendarFactory.build();
 
   const consoleSpy = jest.spyOn(console, "warn").mockImplementation();

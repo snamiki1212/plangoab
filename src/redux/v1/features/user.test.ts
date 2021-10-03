@@ -1,5 +1,5 @@
 import { addYears } from "date-fns";
-import { toStr } from "~/src/testHelpers/index";
+import { nameOf } from "~/src/testHelpers/index";
 import { RootState } from "~/src/redux/rootReducer";
 
 const PERSONA_AGE = 25;
@@ -26,7 +26,7 @@ describe("[mock before import files because using date at global scope]", () => 
     jest.clearAllMocks();
   });
 
-  describe(toStr({ reducer }), () => {
+  describe(nameOf({ reducer }), () => {
     it("can init.", () => {
       const initialState = {
         birthday: getBirthday(mockDate),
@@ -35,7 +35,7 @@ describe("[mock before import files because using date at global scope]", () => 
     });
   });
 
-  describe(toStr({ updateBirthdayAction }), () => {
+  describe(nameOf({ updateBirthdayAction }), () => {
     it("can work.", () => {
       const befBirthday = new Date(2999, 1, 1);
       const aftBirthday = new Date();
@@ -50,7 +50,7 @@ describe("[mock before import files because using date at global scope]", () => 
     });
   });
 
-  describe(toStr({ resetAction }), () => {
+  describe(nameOf({ resetAction }), () => {
     it("can work.", () => {
       const befState = { birthday: getBirthday(new Date(1990, 1, 1)) };
       const aftState = { birthday: getBirthday(mockDate) };
@@ -58,7 +58,7 @@ describe("[mock before import files because using date at global scope]", () => 
     });
   });
 
-  describe(toStr({ selectUserWithAge }), () => {
+  describe(nameOf({ selectUserWithAge }), () => {
     const createRootState = (partialState: any) =>
       ({ features: { user: partialState } } as RootState);
 

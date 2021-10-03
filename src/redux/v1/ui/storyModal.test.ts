@@ -6,7 +6,7 @@ import reducer, {
   popAction,
 } from "./storyModal";
 import { RootState } from "~/src/redux/rootReducer";
-import { toStr } from "~/src/testHelpers/index";
+import { nameOf } from "~/src/testHelpers/index";
 import { calendarFactory } from "~/src/testHelpers/v1/factories/core/calendar";
 import { storyModalFactory } from "~/src/testHelpers/v1/factories/redux/storyModal";
 
@@ -25,12 +25,12 @@ const createRootState = ({
     features: { userCalendars: { calendars: calendars } },
   } as RootState);
 
-describe(toStr({ reducer }), () => {
+describe(nameOf({ reducer }), () => {
   it("can init.", () => {
     expect(reducer(undefined, {} as any)).toEqual({ story: null });
   });
 
-  describe(toStr({ pushAction }), () => {
+  describe(nameOf({ pushAction }), () => {
     it("can work.", () => {
       const story = storyModalFactory.build();
       const befState = { story: null };
@@ -39,7 +39,7 @@ describe(toStr({ reducer }), () => {
     });
   });
 
-  describe(toStr({ popAction }), () => {
+  describe(nameOf({ popAction }), () => {
     it("can work.", () => {
       const story = storyModalFactory.build();
       const befState = { story };
@@ -49,7 +49,7 @@ describe(toStr({ reducer }), () => {
   });
 });
 
-describe(toStr({ selectIsOpen }), () => {
+describe(nameOf({ selectIsOpen }), () => {
   it("should be true when to open.", () => {
     const story = storyModalFactory.build();
     const rootState = createRootState({ storyModalInfo: story });
@@ -61,7 +61,7 @@ describe(toStr({ selectIsOpen }), () => {
   });
 });
 
-describe(toStr({ selectStory }), () => {
+describe(nameOf({ selectStory }), () => {
   const calendar = calendarFactory.build();
 
   // check console
@@ -126,7 +126,7 @@ describe(toStr({ selectStory }), () => {
   });
 });
 
-describe(toStr({ selectStoryModal }), () => {
+describe(nameOf({ selectStoryModal }), () => {
   it("can select.", () => {
     const story = storyModalFactory.build();
     const rootState = createRootState({ storyModalInfo: story });

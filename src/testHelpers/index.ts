@@ -1,1 +1,1 @@
-export const toStr = (val: Object) => Object.keys(val)[0];
+export const nameOf = (val: Object) => Object.keys(val)[0];

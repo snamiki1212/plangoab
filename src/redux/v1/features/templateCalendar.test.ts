@@ -1,4 +1,4 @@
-import { toStr } from "~/src/testHelpers/index";
+import { nameOf } from "~/src/testHelpers/index";
 import reducer, {
   resetAction,
   upsertPublicCollegeCalendarAction,
@@ -26,12 +26,12 @@ const createRootState = (partialState: any) =>
     features: { templateCalendar: partialState },
   } as RootState);
 
-describe(toStr({ reducer }), () => {
+describe(nameOf({ reducer }), () => {
   it("can init.", () => {
     expect(reducer(undefined, {} as any)).toEqual(initialState);
   });
 
-  describe(toStr({ resetAction }), () => {
+  describe(nameOf({ resetAction }), () => {
     const privateCollegeCalendar = privateCollegeCalendarFactory.build();
     const publicCollegeCalendar = publicCollegeCalendarFactory.build();
     const befState = {
@@ -41,7 +41,7 @@ describe(toStr({ reducer }), () => {
     expect(reducer(befState, resetAction)).toEqual(initialState);
   });
 
-  describe(toStr({ upsertPrivateCollegeCalendarAction }), () => {
+  describe(nameOf({ upsertPrivateCollegeCalendarAction }), () => {
     it("can work.", () => {
       const privateCollegeCalendar = privateCollegeCalendarFactory.build();
       const aftState = {
@@ -59,7 +59,7 @@ describe(toStr({ reducer }), () => {
     });
   });
 
-  describe(toStr({ upsertPublicCollegeCalendarAction }), () => {
+  describe(nameOf({ upsertPublicCollegeCalendarAction }), () => {
     it("can work.", () => {
       const publicCollegeCalendar = publicCollegeCalendarFactory.build();
       const aftState = {
@@ -86,7 +86,7 @@ describe("Selector of", () => {
     [PUBLIC_COLLEGE_CALENDAR_ID]: publicCollegeCalendar,
   });
 
-  describe(toStr({ selectPrivateCollegeCalendar }), () => {
+  describe(nameOf({ selectPrivateCollegeCalendar }), () => {
     it("can select.", () => {
       expect(selectPrivateCollegeCalendar(rootState)).toEqual(
         privateCollegeCalendar
@@ -94,7 +94,7 @@ describe("Selector of", () => {
     });
   });
 
-  describe(toStr({ selectPublicCollegeCalendar }), () => {
+  describe(nameOf({ selectPublicCollegeCalendar }), () => {
     it("can select.", () => {
       expect(selectPublicCollegeCalendar(rootState)).toEqual(
         publicCollegeCalendar

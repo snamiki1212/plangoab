@@ -1,4 +1,4 @@
-import { toStr } from "~/src/testHelpers/index";
+import { nameOf } from "~/src/testHelpers/index";
 import reducer, {
   resetAction,
   toggleAction,
@@ -9,7 +9,7 @@ import reducer, {
 } from "./step";
 import { RootState } from "~/src/redux/rootReducer";
 
-describe(toStr({ reducer }), () => {
+describe(nameOf({ reducer }), () => {
   const expectedInitialState = {
     step: { isOpen: true, activeStepIdx: 0 },
   };
@@ -18,14 +18,14 @@ describe(toStr({ reducer }), () => {
     expect(reducer(undefined, {} as any)).toEqual(expectedInitialState);
   });
 
-  describe(toStr({ resetAction }), () => {
+  describe(nameOf({ resetAction }), () => {
     it("can reset.", () => {
       const prevState = { step: { isOpen: false, activeStepIdx: 999 } };
       expect(reducer(prevState, resetAction())).toEqual(expectedInitialState);
     });
   });
 
-  describe(toStr({ toggleAction }), () => {
+  describe(nameOf({ toggleAction }), () => {
     it("can toggle open to close.", () => {
       const befState = { step: { isOpen: true, activeStepIdx: 0 } };
       const aftState = { step: { isOpen: false, activeStepIdx: 0 } };
@@ -41,14 +41,14 @@ describe(toStr({ reducer }), () => {
       );
     });
   });
-  describe(toStr({ nextAction }), () => {
+  describe(nameOf({ nextAction }), () => {
     it("can go next.", () => {
       const befState = { step: { isOpen: true, activeStepIdx: 99 } };
       const aftState = { step: { isOpen: true, activeStepIdx: 100 } };
       expect(reducer(befState, nextAction({}))).toEqual(aftState);
     });
   });
-  describe(toStr({ backAction }), () => {
+  describe(nameOf({ backAction }), () => {
     it("can go back.", () => {
       const befState = { step: { isOpen: true, activeStepIdx: 100 } };
       const aftState = { step: { isOpen: true, activeStepIdx: 99 } };
@@ -62,13 +62,13 @@ describe("Selector of", () => {
     ({ ui: { step: { step: partialState } } } as RootState);
   const rootState = createRootState({ isOpen: true, activeStepIdx: 0 });
 
-  describe(toStr({ selectActiveStepIdx }), () => {
+  describe(nameOf({ selectActiveStepIdx }), () => {
     it("can select.", () => {
       expect(selectActiveStepIdx(rootState)).toEqual(0);
     });
   });
 
-  describe(toStr({ selectIsOpen }), () => {
+  describe(nameOf({ selectIsOpen }), () => {
     it("can select.", () => {
       expect(selectIsOpen(rootState)).toEqual(true);
     });

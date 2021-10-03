@@ -1,18 +1,18 @@
-import { toStr } from "./index";
+import { nameOf } from "./index";
 
-describe("toStr", () => {
+describe("nameOf", () => {
   it("can work for string", () => {
     const str1 = "xyz";
-    expect(toStr({ str1 })).toBe("str1");
+    expect(nameOf({ str1 })).toBe("str1");
   });
 
   it("can work for num", () => {
     const num1 = 10;
-    expect(toStr({ num1 })).toBe("num1");
+    expect(nameOf({ num1 })).toBe("num1");
   });
 
   it("can work for function", () => {
     const f1 = () => {};
-    expect(toStr({ f1 })).toBe("f1");
+    expect(nameOf({ f1 })).toBe("f1");
   });
 });

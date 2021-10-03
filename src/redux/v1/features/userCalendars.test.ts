@@ -1,4 +1,4 @@
-import { toStr } from "~/src/testHelpers/index";
+import { nameOf } from "~/src/testHelpers/index";
 import reducer, {
   // selectors
   selectUserCalendar,
@@ -31,11 +31,11 @@ const createRootState = (partialState: any) =>
 
 const initialState = { calendars: [] };
 
-describe(toStr({ reducer }), () => {
+describe(nameOf({ reducer }), () => {
   it("can init.", () => {
     expect(reducer(undefined, {} as any)).toEqual(initialState);
   });
-  describe(toStr({ resetAction }), () => {
+  describe(nameOf({ resetAction }), () => {
     it("can work.", () => {
       const befState = { calendars: calendarFactory.buildList(2) };
       const aftState = initialState;
@@ -44,7 +44,7 @@ describe(toStr({ reducer }), () => {
   });
 
   describe("Event of", () => {
-    describe(toStr({ addEventAction }), () => {
+    describe(nameOf({ addEventAction }), () => {
       const calendar = calendarFactory.build();
       const newEvent = eventFactory.build();
 
@@ -114,7 +114,7 @@ describe(toStr({ reducer }), () => {
       });
     });
 
-    describe(toStr({ removeEventAction }), () => {
+    describe(nameOf({ removeEventAction }), () => {
       const calendar = calendarFactory.build();
 
       const consoleSpy = jest.spyOn(console, "warn").mockImplementation();
@@ -188,7 +188,7 @@ describe(toStr({ reducer }), () => {
       });
     });
 
-    describe(toStr({ updateEventAction }), () => {
+    describe(nameOf({ updateEventAction }), () => {
       const calendar = calendarFactory.build();
 
       // check console
@@ -294,7 +294,7 @@ describe(toStr({ reducer }), () => {
   });
 
   describe("Story of", () => {
-    describe(toStr({ addStoryAction }), () => {
+    describe(nameOf({ addStoryAction }), () => {
       const calendar = calendarFactory.build();
 
       const consoleSpy = jest.spyOn(console, "warn").mockImplementation();
@@ -339,7 +339,7 @@ describe(toStr({ reducer }), () => {
       });
     });
 
-    describe(toStr({ removeStoryAction }), () => {
+    describe(nameOf({ removeStoryAction }), () => {
       const calendar = calendarFactory.build();
 
       const consoleSpy = jest.spyOn(console, "warn").mockImplementation();
@@ -386,7 +386,7 @@ describe(toStr({ reducer }), () => {
       });
     });
 
-    describe(toStr({ updateStoryAction }), () => {
+    describe(nameOf({ updateStoryAction }), () => {
       const calendar = calendarFactory.build();
 
       const consoleSpy = jest.spyOn(console, "warn").mockImplementation();
@@ -458,7 +458,7 @@ describe(toStr({ reducer }), () => {
   });
 
   describe("Resource of", () => {
-    describe(toStr({ pushResourceAction }), () => {
+    describe(nameOf({ pushResourceAction }), () => {
       const calendar = calendarFactory.build();
       const newResource = resourceFactory.build();
 
@@ -538,7 +538,7 @@ describe(toStr({ reducer }), () => {
       });
     });
 
-    describe(toStr({ removeResourceAction }), () => {
+    describe(nameOf({ removeResourceAction }), () => {
       const calendar = calendarFactory.build();
 
       const consoleSpy = jest.spyOn(console, "warn").mockImplementation();
@@ -633,7 +633,7 @@ describe(toStr({ reducer }), () => {
       });
     });
 
-    describe(toStr({ updateResourcesAction }), () => {
+    describe(nameOf({ updateResourcesAction }), () => {
       const calendar = calendarFactory.build();
 
       const consoleSpy = jest.spyOn(console, "warn").mockImplementation();
@@ -712,7 +712,7 @@ describe(toStr({ reducer }), () => {
   });
 
   describe("Calendar of", () => {
-    describe(toStr({ removeCalendarAction }), () => {
+    describe(nameOf({ removeCalendarAction }), () => {
       it("can work.", () => {
         const [calendar1, calendar2] = calendarFactory.buildList(2);
         const befState = { calendars: [calendar1, calendar2] };
@@ -722,7 +722,7 @@ describe(toStr({ reducer }), () => {
         ).toEqual(aftState);
       });
     });
-    describe(toStr({ updateCalendarsAction }), () => {
+    describe(nameOf({ updateCalendarsAction }), () => {
       it("can work.", () => {
         const [calendar1, calendar2] = calendarFactory.buildList(2);
         const befState = { calendars: [calendar1] };
@@ -744,7 +744,7 @@ describe("Selectors of", () => {
   // console spy
   const consoleSpy = jest.spyOn(console, "warn").mockImplementation();
 
-  describe(toStr({ selectUserCalendar }), () => {
+  describe(nameOf({ selectUserCalendar }), () => {
     it("can select.", () => {
       const rootState = createRootState([calendar]);
       expect(selectUserCalendar(rootState)).toEqual(calendar);
@@ -756,7 +756,7 @@ describe("Selectors of", () => {
     });
   });
 
-  describe(toStr({ selectStoryByIdFilter }), () => {
+  describe(nameOf({ selectStoryByIdFilter }), () => {
     beforeEach(() => {
       consoleSpy.mockClear();
     });
@@ -794,7 +794,7 @@ describe("Selectors of", () => {
     });
   });
 
-  describe(toStr({ selectEventByIdFilter }), () => {
+  describe(nameOf({ selectEventByIdFilter }), () => {
     beforeEach(() => {
       consoleSpy.mockClear();
     });
