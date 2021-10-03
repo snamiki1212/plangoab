@@ -38,12 +38,12 @@ const slice = createSlice({
       if (payload.stepIdx <= MIN) return;
       state.store.stepIdx = payload.stepIdx;
     },
-    next(state, _action) {
+    next(state) {
       if (state.store.stepIdx >= MAX) return;
       state.store.stepIdx += 1;
       if (state.store.stepIdx === MAX) state.store.isFinished = true;
     },
-    back(state, _action) {
+    back(state) {
       if (state.store.stepIdx <= MIN) return;
       state.store.stepIdx -= 1;
     },
