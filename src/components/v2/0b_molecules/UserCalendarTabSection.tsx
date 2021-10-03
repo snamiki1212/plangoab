@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { UserCalendarTabsList } from "~/src/components/v2/0b_molecules/UserCalendarTabsList";
-import { SaveTab } from "~/src/components/v2/0b_molecules/SaveTab";
+import { CalendarTabSave } from "~/src/components/v2/0b_molecules/CalendarTabSave";
+import { CalendarTawNew } from "~/src/components/v2/0b_molecules/CalendarTawNew";
 import { useCanEditCalendar } from "~/src/hooks/v2/useCanEditCalendar";
 
 export const UserCalendarTabSection = () => {
@@ -9,7 +10,7 @@ export const UserCalendarTabSection = () => {
   return (
     <Container>
       <UserCalendarTabsList canEdit={canEdit} />
-      {canEdit && <SaveTab />}
+      {canEdit ? <CalendarTabSave /> : <CalendarTawNew />}
     </Container>
   );
 };

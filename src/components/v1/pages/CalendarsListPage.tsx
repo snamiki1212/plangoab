@@ -24,6 +24,7 @@ export const CalendarsListPage = () => {
     <Container>
       <AppHeader renderAbout={false} renderHowTo={false} />
       <Content>
+        <Title>Calendar List</Title>
         <CalendarListContent rows={rows} />
       </Content>
       <Footer />
@@ -38,4 +39,10 @@ const Container = styled.div`
 
 const Content = styled.div`
   height: 70vh;
+`;
+
+const Title = styled.h2`
+  font-family: var(--font-header1);
+  color: var(--color-dark1);
+  font-weight: 900;
 `;
