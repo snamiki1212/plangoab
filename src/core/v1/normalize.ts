@@ -4,6 +4,9 @@ import { BaseResource } from "~/src/core/v1/resource/BaseResource";
 import { BaseEvent } from "~/src/core/v1/event/BaseEvent";
 import { PROFILE_ID } from "~/src/constants/fullcalendar";
 
+// --------------------
+// Calendar
+// -----------------------
 export const normalizeCalendar = (obj: UserCalendar) => {
   const stories = normalizeStoriesList(obj.stories);
   return {
@@ -19,6 +22,7 @@ export type NormalizedUserCalendar = {
 
 // --------------------
 // Story
+// -----------------------
 export type NormalizedStory = {
   id: string;
   title: string;
@@ -43,6 +47,7 @@ const normalizeStory = (obj: BaseStory): NormalizedStory => {
 
 // -----------------------
 // Resource
+// -----------------------
 type NormalizedResource = {
   id: string;
   title: string;
@@ -68,6 +73,7 @@ const normalizeResourcesList = (
 
 // -----------------------
 // Event
+// -----------------------
 type NormalizedEvent = {
   id: string;
   title: string;
@@ -88,3 +94,5 @@ const normalizeEvent = (obj: BaseEvent): NormalizedEvent => ({
   // options
   backgroundColor: obj.backgroundColor,
 });
+
+// -----------------------
