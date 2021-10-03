@@ -8,7 +8,7 @@ const STEP_NAME = {
 } as const;
 
 type State = {
-  step: {
+  store: {
     stepIdx: number;
     isFinished: boolean;
   };
@@ -19,7 +19,7 @@ type GotoPayload = {
 };
 
 const initialState = {
-  step: {
+  store: {
     stepIdx: 0,
     isFinished: false,
   },
@@ -36,28 +36,28 @@ const slice = createSlice({
     goto(state, { payload }: PayloadAction<GotoPayload>) {
       if (payload.stepIdx >= MAX) return;
       if (payload.stepIdx <= MIN) return;
-      state.step.stepIdx = payload.stepIdx;
+      state.store.stepIdx = payload.stepIdx;
     },
     next(state, _action) {
-      if (state.step.stepIdx >= MAX) return;
-      state.step.stepIdx += 1;
-      if (state.step.stepIdx === MAX) state.step.isFinished = true;
+      if (state.store.stepIdx >= MAX) return;
+      state.store.stepIdx += 1;
+      if (state.store.stepIdx === MAX) state.store.isFinished = true;
     },
     back(state, _action) {
-      if (state.step.stepIdx <= MIN) return;
-      state.step.stepIdx -= 1;
+      if (state.store.stepIdx <= MIN) return;
+      state.store.stepIdx -= 1;
     },
   },
 });
 
 export const selectStepIdx = (state: RootState) =>
-  state.v2.ui.step.step.stepIdx as 0 | 1 | 2;
+  state.v2.ui.step.store.stepIdx as 0 | 1 | 2;
 
 export const selectStepName = (state: RootState) =>
   STEP_NAME[selectStepIdx(state)];
 
 export const selectIsFinished = (state: RootState) =>
-  state.v2.ui.step.step.isFinished;
+  state.v2.ui.step.store.isFinished;
 
 export const {
   reset: resetAction,
