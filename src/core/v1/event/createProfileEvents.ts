@@ -10,6 +10,9 @@ import { createDate } from "~/src/lib/date";
 import { WORKING_HOLIDAY_APPLICATION_LIMITATION_AGE } from "~/src/constants/visa";
 import { BaseEvent } from "~/src/core/v1/event/BaseEvent";
 
+// type BaseEventWithOptions = BaseEvent & { [key: string]: any };
+type BaseEventWithOptions = any;
+
 type CreateProfileEventsParams = {
   startDate: Date;
   storyId: string;
@@ -23,7 +26,7 @@ export const createProfileEvents = ({
   calendarId,
   withWorkingholiday,
   workingholidayPeriod,
-}: CreateProfileEventsParams): BaseEvent[] => {
+}: CreateProfileEventsParams): BaseEventWithOptions[] => {
   const workingHolidayLimitEvents = withWorkingholiday
     ? createWorkingHolidayLimitEvents({
         startDate,
@@ -45,8 +48,7 @@ export const createProfileEvents = ({
     })();
 
     const end = addMonths(createDate(start), +11).toISOString();
-
-    return {
+    const item: BaseEventWithOptions = {
       ...EVENTS.PROFILE.AGE(index),
       id: uuid(),
       start,
@@ -60,6 +62,8 @@ export const createProfileEvents = ({
         description: "",
       },
     };
+
+    return item;
   });
 
   return [...workingHolidayLimitEvents, ...ageEventList];
@@ -81,7 +85,7 @@ const createWorkingHolidayLimitEvents = ({
   storyId: string;
   calendarId: string;
   workingholidayPeriod: number;
-}): BaseEvent[] => {
+}): BaseEventWithOptions[] => {
   const lastYearDate = addYears(
     startDate,
     WORKING_HOLIDAY_APPLICATION_LIMITATION_AGE
@@ -91,7 +95,7 @@ const createWorkingHolidayLimitEvents = ({
   const endOfLimit = endDate.toISOString();
   const endOfApplication = addYears(setMonth(endDate, +6), -1).toISOString();
 
-  const limitation = {
+  const limitation: BaseEventWithOptions = {
     ...EVENTS.PROFILE.WORKING_HOLIDAY,
     id: uuid(),
     start,
@@ -106,7 +110,7 @@ const createWorkingHolidayLimitEvents = ({
     },
   };
 
-  const application = {
+  const application: BaseEventWithOptions = {
     ...EVENTS.PROFILE.WORKING_HOLIDAY_APPLICATION_LIMIT,
     id: uuid(),
     start,
