@@ -121,7 +121,6 @@ const denormalizeEvent = (
   obj: ResponseEvent,
   params: EventParam
 ): BaseEvent => {
-  console.log({ obj });
   return {
     id: obj.id,
     calendarId: params.calendarId,
