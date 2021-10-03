@@ -101,20 +101,18 @@ describe(convertUpdateFC.name, () => {
   it("can work.", () => {
     const start = createDate("2021-01-01 00:00");
     const end = createDate("2021-02-01 00:00");
-    const result = convertUpdateFC(start, end);
-    expect(result).toEqual([
-      createDate("2021-01-01 00:00"),
-      createDate("2021-02-01 00:00"),
+    expect(convertUpdateFC(start, end)).toEqual([
+      createDate("2021-01-01 00:00").toISOString(),
+      createDate("2021-02-01 00:00").toISOString(),
     ]);
   });
 
   it("can work for unstable end date.", () => {
     const start = createDate("2021-01-01 00:00");
     const end = createDate("2021-01-28 00:00");
-    const result = convertUpdateFC(start, end);
-    expect(result).toEqual([
-      createDate("2021-01-01 00:00"),
-      createDate("2021-02-01 00:00"),
+    expect(convertUpdateFC(start, end)).toEqual([
+      createDate("2021-01-01 00:00").toISOString(),
+      createDate("2021-02-01 00:00").toISOString(),
     ]);
   });
 });
