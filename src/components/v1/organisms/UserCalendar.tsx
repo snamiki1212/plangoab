@@ -11,12 +11,7 @@ import { useUserCalendar } from "~/src/hooks/v1/useUserCalendar";
 import { useResourceGroupLabelContentInUserCalendar } from "~/src/hooks/v1/useResourceGroupLabelContentInUserCalendar";
 import { useStoryModal } from "~/src/hooks/v1/useStoryModal";
 import { useEventModal } from "~/src/hooks/v1/useEventModal";
-import { convertDateSelectArgToRange, convertUpdateFC } from "~/src/lib/date";
-import { normalizeCalendar } from "~/src/core/v1/normalize";
-import { useCreateCalendarMutation } from "~/src/redux/v2/services/calendarApi";
-import { PLANGOAB_LICENSE_KEY } from "~/src/constants/fullcalendar";
-import { useUser } from "~/src/hooks/v1/useUser";
-import { uuid } from "~/src/lib/uuid";
+import { convertUpdateFC } from "~/src/lib/date";
 
 const headerToolbar = {
   left: `${ADD_STORY_BUTTON},${REMOVE_CALENDAR_BUTTON}`,
