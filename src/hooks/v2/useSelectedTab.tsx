@@ -2,7 +2,7 @@ import { useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   selectAction,
-  selectedStoryId,
+  selectSelectedStoryId,
 } from "~/src/redux/v2/stores/features/selectedTab";
 
 export const useSelectedTab = () => {
@@ -15,4 +15,4 @@ export const useSelectedTab = () => {
   return select;
 };
 
-export const useSelectTabOfStoryId = () => useSelector(selectedStoryId);
+export const useSelectTabOfStoryId = () => useSelector(selectSelectedStoryId);

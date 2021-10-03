@@ -22,7 +22,7 @@ const slices = createSlice({
   },
 });
 
-export const selectedStoryId = (state: RootState) =>
+export const selectSelectedStoryId = (state: RootState) =>
   state.v2.features.selectedTab.store.selectedStoryId;
 
 export const { reset: resetAction, select: selectAction } = slices.actions;
