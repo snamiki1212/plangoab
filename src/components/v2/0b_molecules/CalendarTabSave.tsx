@@ -3,5 +3,5 @@ import { useSaveModal } from "~/src/hooks/v2/useSaveModal";
 
 export const CalendarTabSave = () => {
   const openModal = useSaveModal();
-  return <CalendarTab title={"Save"} onClick={openModal} />;
+  return <CalendarTab title={"📩 Save"} onClick={openModal} />;
 };

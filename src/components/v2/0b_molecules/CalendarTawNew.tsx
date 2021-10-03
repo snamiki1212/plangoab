@@ -4,5 +4,5 @@ import { ROUTES } from "~/src/constants/routes";
 
 export const CalendarTawNew = () => {
   const goto = useGoto(ROUTES.CALENDARS__NEW);
-  return <CalendarTab title={"New"} onClick={goto} />;
+  return <CalendarTab title={"+ New Calendar"} onClick={goto} />;
 };
