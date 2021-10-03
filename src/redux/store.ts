@@ -10,8 +10,8 @@ const store = configureStore({
 });
 
 if (process.env.NODE_ENV === "development" && (module as any).hot) {
-  (module as any).hot.accept("./rootReducer", () => {
-    const newRootReducer = require("./rootReducer").default;
+  (module as any).hot.accept("./reducers/rootReducer", () => {
+    const newRootReducer = require("./reducers/rootReducer").default;
     store.replaceReducer(newRootReducer);
   });
 }

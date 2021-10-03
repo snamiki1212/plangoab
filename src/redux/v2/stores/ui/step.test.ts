@@ -1,5 +1,5 @@
 import { nameOf } from "~/src/testHelpers/index";
-import { RootState } from "~/src/redux/rootReducer";
+import { RootState } from "~/src/redux/reducers/rootReducer";
 import reducer, {
   backAction,
   gotoAction,

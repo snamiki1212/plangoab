@@ -1,6 +1,6 @@
 import { nameOf } from "~/src/testHelpers/index";
 import reducer, { toggleAction, selectIsOpen } from "./previewModal";
-import { RootState } from "~/src/redux/rootReducer";
+import { RootState } from "~/src/redux/reducers/rootReducer";
 
 describe(nameOf({ reducer }), () => {
   it("can init.", () => {

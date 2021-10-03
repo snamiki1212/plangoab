@@ -1,6 +1,6 @@
 import { addYears } from "date-fns";
 import { nameOf } from "~/src/testHelpers/index";
-import { RootState } from "~/src/redux/rootReducer";
+import { RootState } from "~/src/redux/reducers/rootReducer";
 
 const PERSONA_AGE = 25;
 const getBirthday = (today: Date) =>

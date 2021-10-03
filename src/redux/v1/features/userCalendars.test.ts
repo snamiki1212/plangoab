@@ -19,7 +19,7 @@ import reducer, {
   removeCalendarAction,
   removeResourceAction,
 } from "./userCalendars";
-import { RootState } from "~/src/redux/rootReducer";
+import { RootState } from "~/src/redux/reducers/rootReducer";
 import { eventFactory } from "~/src/testHelpers/v1/factories/core/event";
 import { resourceFactory } from "~/src/testHelpers/v1/factories/core/resource";
 import { storyFactory } from "~/src/testHelpers/v1/factories/core/story";

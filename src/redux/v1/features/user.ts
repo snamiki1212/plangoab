@@ -1,6 +1,6 @@
 import { addYears } from "date-fns";
 import { createSlice, PayloadAction, createSelector } from "@reduxjs/toolkit";
-import { RootState } from "~/src/redux/rootReducer";
+import { RootState } from "~/src/redux/reducers/rootReducer";
 import { calcAge } from "~/src/lib/age";
 import { createDate } from "~/src/lib/date";
 

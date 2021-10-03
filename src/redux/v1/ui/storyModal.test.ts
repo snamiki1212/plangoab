@@ -5,7 +5,7 @@ import reducer, {
   pushAction,
   popAction,
 } from "./storyModal";
-import { RootState } from "~/src/redux/rootReducer";
+import { RootState } from "~/src/redux/reducers/rootReducer";
 import { nameOf } from "~/src/testHelpers/index";
 import { calendarFactory } from "~/src/testHelpers/v1/factories/core/calendar";
 import { storyModalFactory } from "~/src/testHelpers/v1/factories/redux/storyModal";

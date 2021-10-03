@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "~/src/redux/rootReducer";
+import { RootState } from "~/src/redux/reducers/rootReducer";
 import { BaseCalendar } from "~/src/core/v1/calendar/BaseCalendar";
 import { BaseStory } from "~/src/core/v1/story/BaseStory";
 import { BaseEvent } from "~/src/core/v1/event/BaseEvent";

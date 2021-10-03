@@ -6,7 +6,7 @@ import reducer, {
   selectEventModal,
   selectIsOpen,
 } from "./eventModal";
-import { RootState } from "~/src/redux/rootReducer";
+import { RootState } from "~/src/redux/reducers/rootReducer";
 import { eventModalFactory } from "~/src/testHelpers/v1/factories/redux/eventModal";
 import { calendarFactory } from "~/src/testHelpers/v1/factories/core/calendar";
 
