@@ -53,11 +53,19 @@ export const createRange = (date: Date, range: number) => {
 };
 
 // for FullCalendar when updating
-export const convertUpdateFC = (naiveStart?: Date, naiveEnd?: Date) => {
-  const start = naiveStart ? startOfMonth(naiveStart) : naiveStart;
+export const convertUpdateFC = (
+  naiveStart?: Date | string,
+  naiveEnd?: Date | string
+) => {
+  const start =
+    naiveStart == undefined
+      ? undefined
+      : startOfMonth(new Date(naiveStart)).toISOString();
 
   // sometimes 'end' date is unstable. e.g. naiveEnd might be Feb 01 / Feb 02 / Jan 31
   const buffer = 5;
-  const end = naiveEnd ? startOfMonth(addDays(naiveEnd, buffer)) : naiveEnd;
+  const end = naiveEnd
+    ? startOfMonth(addDays(new Date(naiveEnd), buffer)).toISOString()
+    : undefined;
   return [start, end] as const;
 };
