@@ -35,9 +35,9 @@ const useHandleDelete = (story: BaseStory) => {
   return handleRemoveStory;
 };
 
-type Props = { story: BaseStory };
+type Props = { story: BaseStory; canEdit: boolean };
 
-export const UserCalendarTab: React.VFC<Props> = ({ story }) => {
+export const UserCalendarTab: React.VFC<Props> = ({ story, canEdit }) => {
   const selectTab = useSelectedTab();
 
   const selectedStoryId = useSelectTabOfStoryId();
@@ -58,9 +58,9 @@ export const UserCalendarTab: React.VFC<Props> = ({ story }) => {
       <CalendarTab
         title={
           <Inner>
-            <Icon onClick={onClickEdit}>☰</Icon>
+            {canEdit && <Icon onClick={onClickEdit}>☰</Icon>}
             {story.name}
-            <Icon onClick={onClickDelete}>×</Icon>
+            {canEdit && <Icon onClick={onClickDelete}>×</Icon>}
           </Inner>
         }
         selected={selected}

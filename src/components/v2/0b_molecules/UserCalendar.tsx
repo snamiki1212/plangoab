@@ -1,9 +1,11 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useCallback } from "react";
 import { convertUpdateFC } from "~/src/lib/date";
 import { EventClickArg } from "@fullcalendar/react";
 import { CalendarBase } from "~/src/components/v2/0a_atoms/CalendarBase";
 import { useHideCalendarHeader } from "~/src/hooks/v2/useHideCalendarHeader";
 import { useSelectTabOfStoryId } from "~/src/hooks/v2/useSelectedTab";
+import { useCanEditCalendar } from "~/src/hooks/v2/useCanEditCalendar";
+
 // TODO: v1 to v2
 import { useEvent } from "~/src/hooks/v1/useEvent";
 import { useUserCalendar } from "~/src/hooks/v1/useUserCalendar";
@@ -19,11 +21,12 @@ const headerToolbar = {
 
 type Props = { isPreviewMode?: boolean };
 
-const useHandleUpdateEvent = () => {
+const useHandleUpdateEvent = (enable: boolean) => {
   const { updateById } = useEvent();
 
   const updateEvent = React.useCallback(
     (info: any) => {
+      if (!enable) return;
       if (!info.event || !info.event.extendedProps) {
         return console.error("Invalid data. cannot find event data.");
       }
@@ -47,15 +50,16 @@ const useHandleUpdateEvent = () => {
       const params = { start, end };
       updateById(idSet, params);
     },
-    [updateById]
+    [updateById, enable]
   );
   return updateEvent;
 };
 
-const useHandleClickEvent = () => {
+const useHandleClickEvent = (enable: boolean) => {
   const { push: pushEventModal } = useEventModal();
   const click = React.useCallback(
     (info: EventClickArg) => {
+      if (!enable) return;
       const calendarId = info.event.extendedProps.calendarId as
         | string
         | undefined;
@@ -81,7 +85,7 @@ const useHandleClickEvent = () => {
 
       pushEventModal(idSet);
     },
-    [pushEventModal]
+    [pushEventModal, enable]
   );
   return click;
 };
@@ -103,21 +107,33 @@ const useRGLC = () => {
   return resourceGroupLabelContent;
 };
 
-export function UserCalendar() {
-  useHideCalendarHeader();
+const useGetEventsAndResources = () => {
   const selectedStoryId = useSelectTabOfStoryId();
-  const { stories, select } = useUserCalendar();
-
-  const resourceGroupLabelContent = useRGLC();
-  const updateEvent = useHandleUpdateEvent();
-  const clickEvent = useHandleClickEvent();
-
-  const [events, resources] = useMemo(() => {
+  const { stories } = useUserCalendar();
+  const result = useMemo(() => {
     const story = stories.find((story) => story.id === selectedStoryId);
     const events = story?.events ?? [];
     const resources = story?.resources ?? [];
     return [events, resources] as const;
   }, [stories, selectedStoryId]);
+  return result;
+};
+
+const useHandleSelectEventCell = (enable: boolean) => {
+  const { select } = useUserCalendar();
+  const noop = useCallback(() => {}, []);
+  return enable ? select : noop;
+};
+
+export function UserCalendar() {
+  useHideCalendarHeader();
+
+  // const resourceGroupLabelContent = useRGLC();
+  const canEdit = useCanEditCalendar();
+  const selectEventCell = useHandleSelectEventCell(canEdit);
+  const updateEvent = useHandleUpdateEvent(canEdit);
+  const clickEvent = useHandleClickEvent(canEdit);
+  const [events, resources] = useGetEventsAndResources();
 
   return (
     <CalendarBase
@@ -126,10 +142,10 @@ export function UserCalendar() {
       // click event
       eventClick={clickEvent}
       // select empty space
-      selectable={true}
-      select={select}
+      selectable={canEdit}
+      select={selectEventCell}
       // drag or resize event
-      editable={true}
+      editable={canEdit}
       eventResize={updateEvent}
       eventDrop={updateEvent}
       // etc

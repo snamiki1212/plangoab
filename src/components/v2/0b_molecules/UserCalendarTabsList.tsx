@@ -6,15 +6,17 @@ import { AddCalendarTab } from "~/src/components/v2/0b_molecules/AddCalendarTab"
 // TODO: v1 to v2
 import { useUserCalendar } from "~/src/hooks/v1/useUserCalendar";
 
-export const UserCalendarTabsList = () => {
+type Props = { canEdit: boolean };
+
+export const UserCalendarTabsList: React.VFC<Props> = ({ canEdit }) => {
   const { stories } = useUserCalendar();
 
   return (
     <Container>
       {stories.map((story) => (
-        <UserCalendarTab story={story} key={story.id} />
+        <UserCalendarTab story={story} key={story.id} canEdit={canEdit} />
       ))}
-      <AddCalendarTab />
+      {canEdit && <AddCalendarTab />}
     </Container>
   );
 };
