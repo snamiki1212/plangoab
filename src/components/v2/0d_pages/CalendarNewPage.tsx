@@ -5,7 +5,7 @@ import {
   useSelectIsFinished,
 } from "~/src/hooks/v2/useTutorial";
 import { UserCalendarSection } from "~/src/components/v2/0b_molecules/UserCalendarSection";
-import { CalendarNewLayout } from "~/src/components/v2/0c_templates/CalendarNewLayout";
+import { CalendarUpsertLayout } from "~/src/components/v2/0c_templates/CalendarUpsertLayout";
 import { AppHeader } from "~/src/components/v2/0b_molecules/AppHeader";
 import { TemplateSelectionModal } from "~/src/components/v2/0d_pages/TemplateSelectionModal";
 import { WelcomeModal } from "~/src/components/v2/0d_pages/WelcomeModal";
@@ -39,7 +39,7 @@ export function CalendarNewPage() {
         onClose={onCoseTemplateSelection}
       />
       {shouldShowCalendar && (
-        <CalendarNewLayout
+        <CalendarUpsertLayout
           header={<AppHeader />}
           body={<UserCalendarSection />}
         />

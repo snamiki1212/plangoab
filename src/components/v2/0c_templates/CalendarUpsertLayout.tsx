@@ -5,7 +5,7 @@ type Props = {
   body: React.ReactNode;
 };
 
-export const CalendarNewLayout: React.VFC<Props> = ({ header, body }) => {
+export const CalendarUpsertLayout: React.VFC<Props> = ({ header, body }) => {
   return (
     <Container>
       <div>{header}</div>

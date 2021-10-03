@@ -1,5 +1,5 @@
 import { useFetchCalendarQuery } from "~/src/redux/v2/services/calendarApi";
-import { CalendarNewLayout } from "~/src/components/v2/0c_templates/CalendarNewLayout";
+import { CalendarUpsertLayout } from "~/src/components/v2/0c_templates/CalendarUpsertLayout";
 import { AppHeader } from "~/src/components/v2/0b_molecules/AppHeader";
 import { UserCalendarSection } from "~/src/components/v2/0b_molecules/UserCalendarSection";
 import { useSelectTabAfterFetch } from "~/src/hooks/v2/useSelectTab";
@@ -26,6 +26,9 @@ export const CalendarDetailPage: React.VFC<Props> = ({ calendarId }) => {
   if (isLoading) return <LoadingPage />;
 
   return (
-    <CalendarNewLayout header={<AppHeader />} body={<UserCalendarSection />} />
+    <CalendarUpsertLayout
+      header={<AppHeader />}
+      body={<UserCalendarSection />}
+    />
   );
 };
