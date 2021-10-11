@@ -16,7 +16,11 @@ import "~/src/styles/reset.css";
 import "~/src/styles/global.css";
 import "~/src/styles/fullcalendar.custom.css";
 
+// hooks
+import { useHealthcheck } from "~/src/hooks/v2/useHealthcheck";
+
 function MyApp({ Component, pageProps }: AppProps) {
+  useHealthcheck();
   return (
     <ErrorBoundary>
       <ReactReduxProvider>

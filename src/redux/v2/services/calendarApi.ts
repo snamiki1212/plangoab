@@ -1,20 +1,17 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { deserializer as calendarListDeserializer } from "~/src/redux/v2/serializer/calendarList";
 import { deserializer as calendarDetailDeserializer } from "~/src/redux/v2/serializer/calendarDetail";
-import { API_SERVER_DOMAIN } from "~/src/constants/app";
-
-const isDev = process.env.NODE_ENV === "development";
-const DOMAIN = isDev ? "http://127.0.0.1:3001" : API_SERVER_DOMAIN;
+import { HOST_API_V1 } from "~/src/services/api/v2/url";
 
 export const calendarApi = createApi({
   reducerPath: "calendarApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: `${DOMAIN}/api/v1/`,
+    baseUrl: HOST_API_V1,
   }),
   endpoints: (builder) => ({
     fetchCalendars: builder.query<any, any>({
       query: () => ({
-        url: "calendars",
+        url: "/calendars",
       }),
       transformResponse: (response) => {
         const deserialized = calendarListDeserializer.deserialize(
@@ -32,7 +29,7 @@ export const calendarApi = createApi({
     }),
     fetchCalendar: builder.query<any, any>({
       query: (id: string) => ({
-        url: `calendars/${id}`,
+        url: `/calendars/${id}`,
       }),
       transformResponse: (response) => {
         const deserialized = calendarDetailDeserializer.deserialize(
@@ -50,7 +47,7 @@ export const calendarApi = createApi({
     }),
     createCalendar: builder.mutation<any, any>({
       query: ({ id, ...params }) => ({
-        url: `calendars`,
+        url: `/calendars`,
         method: "POST",
         body: params,
       }),
