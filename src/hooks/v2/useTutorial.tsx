@@ -12,8 +12,8 @@ import {
 export const useTutorial = () => {
   const dispatch = useDispatch();
 
-  const next = useCallback(() => dispatch(nextAction({})), [dispatch]);
-  const back = useCallback(() => dispatch(backAction({})), [dispatch]);
+  const next = useCallback(() => dispatch(nextAction()), [dispatch]);
+  const back = useCallback(() => dispatch(backAction()), [dispatch]);
   const goto = useCallback(
     (stepIdx: number) => dispatch(gotoAction({ stepIdx })),
     [dispatch]
