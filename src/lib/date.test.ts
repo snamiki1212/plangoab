@@ -1,5 +1,6 @@
 import {
   renderYYYYMMfromStr,
+  renderYYYYMMDDfromStr,
   createDate,
   startOfMonth,
   createRange,
@@ -16,6 +17,14 @@ describe(renderYYYYMMfromStr.name, () => {
     expect(renderYYYYMMfromStr(today.toISOString())).toBe("2020-06");
   });
 });
+
+describe(renderYYYYMMDDfromStr.name, () => {
+  it("can work.", () => {
+    expect(renderYYYYMMDDfromStr("2020-06-01T10:10:20")).toBe("2020-06-01");
+  });
+});
+
+renderYYYYMMDDfromStr;
 
 describe(createDate.name, () => {
   it("can work.", () => {

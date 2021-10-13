@@ -16,6 +16,15 @@ export const renderYYYYMMfromStr = (_date: Date | string) => {
   return `${YYYY}-${MM}`;
 };
 
+export const renderYYYYMMDDfromStr = (_date: string) => {
+  const date = new Date(_date);
+  const [mm, dd, YYYY] = date.toLocaleDateString().split("/");
+  const MM = paddingZero(parseInt(mm));
+  const DD = paddingZero(parseInt(dd));
+  const YYYYMMDD = `${YYYY}-${MM}-${DD}`;
+  return YYYYMMDD;
+};
+
 // Dont use this function. Use toISOString() directly.
 export const DEPRECATED_convertDateToIso = (date: any) => {
   return createDate(date).toISOString();

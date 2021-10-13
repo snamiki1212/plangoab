@@ -6,6 +6,7 @@ import { AppHeader } from "~/src/components/v1/molecules/AppHeader";
 import { useFetchCalendarsQuery } from "~/src/hooks/v2/useCalendarApi";
 import { ErrorPage } from "~/src/components/v1/pages/ErrorPage";
 import { LoadingPage } from "~/src/components/v1/pages/LoadingPage";
+import { renderYYYYMMDDfromStr } from "~/src/lib/date";
 //
 
 export const CalendarsListPage = () => {
@@ -13,7 +14,10 @@ export const CalendarsListPage = () => {
 
   const rows = useMemo(
     () =>
-      data.map((item) => ({ id: item.id, birthday: item.visitor.birthday })),
+      data.map((item) => ({
+        id: item.id,
+        birthday: renderYYYYMMDDfromStr(item.visitor.birthday),
+      })),
     [data]
   );
 
