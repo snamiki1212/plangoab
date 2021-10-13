@@ -65,11 +65,17 @@ export function StoryEditModal({ isOpen, onClose }: Props) {
   if (!story) return <></>;
 
   return (
-    <Dialog onClose={onClose} open={isOpen} scroll="paper">
+    <Dialog
+      onClose={onClose}
+      open={isOpen}
+      scroll="paper"
+      fullWidth={true}
+      maxWidth="lg"
+    >
       <DialogTitle>
         <form onSubmit={handleSubmit(onSubmit)}>
           <DialogTitleInner>
-            <TextField
+            <STextField
               inputRef={register}
               name="name"
               defaultValue={story.name}
@@ -80,7 +86,7 @@ export function StoryEditModal({ isOpen, onClose }: Props) {
         </form>
       </DialogTitle>
 
-      <DialogContent dividers={true}>
+      <DialogContent dividers={true} style={{ padding: "3rem" }}>
         <form onSubmit={handleSubmit(onSubmit)}>
           {story.resources.map((resource, idx) => {
             const fieldName = `resources[${idx}]`;
@@ -109,15 +115,9 @@ export function StoryEditModal({ isOpen, onClose }: Props) {
             );
           })}
         </form>
-        <AddResourceButtonContainer>
-          <Button
-            onClick={handleAddResource}
-            variant="outlined"
-            color="primary"
-          >
-            + Add Resource
-          </Button>
-        </AddResourceButtonContainer>
+        <SButton onClick={handleAddResource} variant="outlined" color="primary">
+          + Add Row
+        </SButton>
       </DialogContent>
 
       <DialogActions>
@@ -143,16 +143,19 @@ const DialogTitleInner = styled.div`
   align-items: center;
 `;
 
+const STextField = styled(TextField)`
+  width: 50%;
+`;
+
 const Fieldset = styled.fieldset`
   border: none;
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 2fr 0.5fr;
   gap: 1rem;
-  padding: 1rem;
-  margin: 1rem;
-  border: 1px solid lightgray;
+  padding: 1rem 0;
+  margin: 1rem 0;
 `;
 
-const AddResourceButtonContainer = styled.div`
-  padding: 1rem;
+const SButton = styled(Button)`
+  width: 100%;
 `;
