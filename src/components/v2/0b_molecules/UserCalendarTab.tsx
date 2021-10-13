@@ -58,8 +58,8 @@ export const UserCalendarTab: React.VFC<Props> = ({ story, canEdit }) => {
       <CalendarTab
         title={
           <Inner>
-            {canEdit && <Icon onClick={onClickEdit}>☰</Icon>}
             {story.name}
+            {canEdit && <Icon onClick={onClickEdit}>⚙</Icon>}
             {canEdit && <Icon onClick={onClickDelete}>×</Icon>}
           </Inner>
         }
@@ -74,7 +74,7 @@ const Inner = styled.div`
   justify-content: space-between;
   display: flex;
   flex-direction: row;
-  gap: 0.7rem;
+  gap: 0.5rem;
 `;
 
 const Icon = styled.div`
@@ -82,6 +82,7 @@ const Icon = styled.div`
   font-weight: 200;
   border-radius: 100%;
   transition: 0.3s;
+  padding: 0 0.5rem;
   &:hover {
     transition: 0.3s;
     background-color: lightblue;
