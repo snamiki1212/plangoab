@@ -46,7 +46,7 @@ export function EventEditModal({ isOpen, onClose }: Props) {
   const { register, handleSubmit } = useForm();
 
   return (
-    <Dialog onClose={onClose} open={isOpen}>
+    <Dialog onClose={onClose} open={isOpen} fullWidth maxWidth="md">
       <DialogTitle>Event</DialogTitle>
       <form onSubmit={handleSubmit(onUpdate)}>
         <DialogContent dividers={true}>
@@ -60,7 +60,7 @@ export function EventEditModal({ isOpen, onClose }: Props) {
             />
             <TextField
               multiline
-              rows={3}
+              rows={10}
               maxRows={10}
               inputRef={register}
               name={"extendedProps.description"}
