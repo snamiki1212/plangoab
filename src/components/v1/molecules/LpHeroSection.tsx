@@ -20,9 +20,16 @@ export function LpHeroSection() {
           >
             <AppName>Plangoab</AppName>
             <Text>Make a success your planning</Text>
-            <Link href={ROUTES.DEPRECATED_CALENDARS__NEW}>
-              <a style={{ textDecoration: "none", color: "white" }}>
-                <Button variant="contained" color="primary">
+            <Link href={ROUTES.CALENDARS__NEW}>
+              <a style={{ textDecoration: "none" }}>
+                <Button
+                  variant="outlined"
+                  color="primary"
+                  style={{
+                    fontSize: "1.2rem",
+                    fontFamily: "var(--font-design1)",
+                  }}
+                >
                   Start Now
                 </Button>
               </a>

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import styled from "styled-components";
 import Grid from "@mui/material/Grid";
+import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import { ROUTES } from "~/src/constants/routes";
 import { Animation1 } from "~/src/components/v1/atoms/Animation1";
@@ -36,7 +37,19 @@ export function LpDemoSection() {
             <TextContainer>
               <Text>Create your plan!</Text>
               <Text>
-                  <a style={{ textDecoration: "none" }}>👉 Start Plangoab</a>
+                <Link href={ROUTES.CALENDARS__NEW}>
+                  <a style={{ textDecoration: "none" }}>
+                    <Button
+                      variant="outlined"
+                      color="primary"
+                      style={{
+                        fontSize: "1.2rem",
+                        fontFamily: "var(--font-design1)",
+                      }}
+                    >
+                      Start Plangoab
+                    </Button>
+                  </a>
                 </Link>
               </Text>
             </TextContainer>
