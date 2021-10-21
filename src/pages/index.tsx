@@ -1,7 +1,7 @@
-import { CalendarNewPageV1 } from "~/src/components/v1/pages/CalendarNewPageV1";
+import { HomePage } from "~/src/components/v1/pages/HomePage";
 
 const Page = () => {
-  return <CalendarNewPageV1 />;
+  return <HomePage />;
 };
 
 export default Page;
