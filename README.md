@@ -148,6 +148,8 @@ $ yarn start #=> open http://local:3000
 
 (TODO: Color Pallete)
 
+- [Figma](https://www.figma.com/file/82LVs78k7dV4z8QoTBQ728/Plangoab?node-id=0%3A1)
+
 ## Contribution
 
 Welcome, whenever, whoever, whatever! Feel Free to create PRs or issues.
