@@ -91,6 +91,13 @@ Actually, in my case, I handwrote some plans but made some mistakes when to calc
 
 I believe Plangoab would help people who want to plan to go abroad, especially want to find job seriously.
 
+## Repository
+
+- Front-end / description docs
+  - [GitHub - snamiki1212/plangoab (This repository) ](https://github.com/snamiki1212/plangoab)
+- Back-end
+  - [GitHub - snamiki1212/plangoab-api](https://github.com/snamiki1212/plangoab-api)
+
 ## Architecture
 
 <a href="./doc/ARCHITECTURE.md">
