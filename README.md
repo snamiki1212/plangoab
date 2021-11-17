@@ -19,7 +19,9 @@
 
 (Plangoab stands for '<b>plan</b> to <b>go ab</b>road')
 
-👉 Try here: <a href="https://plangoab.snamiki1212.com">https://plangoab.snamiki1212.com</a>
+- Application: <a href="https://plangoab.snamiki1212.com">https://plangoab.snamiki1212.com</a>
+- Backend Repository: [snamiki1212/plangoab-api](https://github.com/snamiki1212/plangoab-api)
+- Frontend Repository: [snamiki1212/plangoab](https://github.com/snamiki1212/plangoab) (This repository)
 
 ### Features
 
@@ -90,13 +92,6 @@ Actually, in my case, I handwrote some plans but made some mistakes when to calc
 </table>
 
 I believe Plangoab would help people who want to plan to go abroad, especially want to find job seriously.
-
-## Repository
-
-- Front-end / description docs
-  - [GitHub - snamiki1212/plangoab (This repository) ](https://github.com/snamiki1212/plangoab)
-- Back-end
-  - [GitHub - snamiki1212/plangoab-api](https://github.com/snamiki1212/plangoab-api)
 
 ## Architecture
 
